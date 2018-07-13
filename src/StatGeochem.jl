@@ -13,6 +13,7 @@ __precompile__()
 module StatGeochem
 
     include("utilities/Math.jl");
+    include("utilities/Strings.jl");
 
     using StatsBase: percentile
     using Interpolations: interpolate, Gridded, Linear
@@ -20,6 +21,8 @@ module StatGeochem
 
     using Images: ColorTypes, N0f8
     include("utilities/Colormaps.jl");
+
+    include("utilities/GIS.jl");
 
     include("utilities/Etc.jl");
 
