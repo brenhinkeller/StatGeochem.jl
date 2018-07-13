@@ -45,7 +45,7 @@
             cmax = maximum(matrix)
         end
         crange = cmax - cmin
-        return  matrix .|> x -> colormap[floor(UInt16, min(max((x-cmin)/crange*Nc,0), Nc))+1]
+        return  matrix .|> x -> colormap[floor(UInt, min(max((x-cmin)/crange*Nc,0), Nc))+1]
     end
     export imsc
 
@@ -56,7 +56,7 @@
             cmax = log10f(maximum(matrix),from)
         end
         crange = cmax - cmin
-        return  matrix .|> x -> colormap[floor(UInt16, min(max((log10f(x,from)-cmin)/crange*Nc,0), Nc))+1]
+        return  matrix .|> x -> colormap[floor(UInt, min(max((log10f(x,from)-cmin)/crange*Nc,0), Nc))+1]
     end
     export imsc_log10f
 
