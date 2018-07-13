@@ -41,22 +41,22 @@
     function imsc(matrix::Array,colormap::Array,cmin::Number=0,cmax::Number=0)
         Nc = length(colormap)-1;
         if cmin>=cmax
-            cmin = minimum(matrix)
-            cmax = maximum(matrix)
+            cmin = nanminimum(matrix)
+            cmax = nanmaximum(matrix)
         end
         crange = cmax - cmin
-        return  matrix .|> x -> colormap[floor(UInt, min(max((x-cmin)/crange*Nc,0), Nc))+1]
+        return  matrix .|> x -> colormap[isnan(x) ? 1 : floor(UInt, min(max((x-cmin)/crange*Nc,0), Nc))+1]
     end
     export imsc
 
     function imsc_log10f(matrix::Array,from::Number,colormap::Array,cmin::Number=0,cmax::Number=0)
         Nc = length(colormap)-1;
         if cmin>=cmax
-            cmin = log10f(minimum(matrix),from)
-            cmax = log10f(maximum(matrix),from)
+            cmin = log10f(nanminimum(matrix),from)
+            cmax = log10f(nanmaximum(matrix),from)
         end
         crange = cmax - cmin
-        return  matrix .|> x -> colormap[floor(UInt, min(max((log10f(x,from)-cmin)/crange*Nc,0), Nc))+1]
+        return  matrix .|> x -> colormap[isnan(x) ? 1 : floor(UInt, min(max((log10f(x,from)-cmin)/crange*Nc,0), Nc))+1]
     end
     export imsc_log10f
 
