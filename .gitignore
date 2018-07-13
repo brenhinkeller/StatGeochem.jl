@@ -1,0 +1,10 @@
+.DS_STORE
+*.pdf
+*.jld
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+deps/deps.jl
+
+# Don't include dev tests
+dev/
