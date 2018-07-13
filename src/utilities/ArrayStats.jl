@@ -397,24 +397,4 @@
     end
     export fillFromDistribution
 
-## --- Downsample an image
-
-    function downsample(matrix::Array,factor::Int)
-        if ndims(matrix)==2
-            rows = floor(Int,size(matrix,1)/factor);
-            cols = floor(Int,size(matrix,2)/factor);
-
-            downsampled = typeof(matrix)(rows,cols)
-            for i=1:rows
-                for j=1:cols
-                    downsampled[i,j]=matrix[i*factor,j*factor]
-                end
-            end
-        else
-            downsampled = matrix[factor:factor:end]
-        end
-        return downsampled
-    end
-    export downsample
-
 ## --- End of File

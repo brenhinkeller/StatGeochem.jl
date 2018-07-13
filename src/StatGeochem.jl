@@ -18,6 +18,7 @@ module StatGeochem
     using StatsBase: percentile
     using Interpolations: interpolate, Gridded, Linear
     include("utilities/ArrayStats.jl");
+    include("utilities/Resampling.jl.jl");
 
     using Images: ColorTypes, N0f8
     include("utilities/Colormaps.jl");

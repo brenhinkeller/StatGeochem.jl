@@ -3,7 +3,6 @@
 # load data as:
 #
 # using MAT
-# include("Utilities.jl")
 # etopoelev = matread("/Users/cbkeller/Documents/MATLAB/statistical geochemistry/resources/etopo/etopoelev.mat")["etopoelev"]
 
 function findelevation(etopoelev,lat,lon)
