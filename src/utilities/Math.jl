@@ -1,7 +1,7 @@
 ## --- Fast inverse square-root
     # This is mostly just for fun: while it can be 1.5x faster than 1/sqrt(x)
     # I'm not sure there's any realistic scientific application where it's
-    # worth the loss of precision. Both versions good to about 1.5 ppm
+    # worth the loss of precision. Both versions good to about 4 ppm
 
     # Float64 version
     function inv_sqrt(number::Float64)
