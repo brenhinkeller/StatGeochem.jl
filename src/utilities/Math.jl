@@ -1,19 +1,23 @@
 ## --- Fast inverse square-root
+    # This is mostly just for fun: while it can be 1.5x faster than 1/sqrt(x)
+    # I'm not sure there's any realistic scientific application where it's
+    # worth the loss of precision. Both versions good to about 1.5 ppm
 
     # Float64 version
     function inv_sqrt(number::Float64)
-        y = copy(number)
-        y = Base.sub_int(9.603007803048109e153, Base.lshr_int(y,1)) # Floating point bit-level hacking
-        y *= ( 1.5 - (number * 0.5 * y * y )) # Newton's method
-        y *= ( 1.5 - (number * 0.5 * y * y ))
+        n_2 = 0.5 * number
+        y = Base.sub_int(9.603007803048109e153, Base.lshr_int(number,1)) # Floating point magic
+        y *= ( 1.5 - (n_2 * y * y )) # Newton's method
+        y *= ( 1.5 - (n_2 * y * y )) # Newton's method (again)
         return y
     end
 
     # Float32 version
     function inv_sqrt(number::Float32)
-        y = copy(number)
-        y = Base.sub_int(1.321202f19, Base.lshr_int(y,1)) # Floating point bit-level hacking
-        y *= ( 1.5 - (number * 0.5 * y * y )) # Newton's method
+        n_2 = 0.5f0 * number
+        y = Base.sub_int(1.321202f19, Base.lshr_int(number,1)) # Floating point magic
+        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method
+        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method (again)
         return y
     end
 
