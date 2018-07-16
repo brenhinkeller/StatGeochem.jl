@@ -27,4 +27,6 @@ module StatGeochem
 
     include("utilities/Etc.jl");
 
+    include("Resources.jl")
+
 end # module
