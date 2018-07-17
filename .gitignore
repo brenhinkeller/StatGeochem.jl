@@ -2,6 +2,9 @@
 *.swp
 *.pdf
 
+# Ignore hdf5 files so these don't interfere with updates
+*.h5
+
 # Various julia files to ignore
 *.jld
 *.jl.cov
