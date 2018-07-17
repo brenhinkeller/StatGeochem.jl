@@ -290,4 +290,54 @@ function get_crust1_base(lat,lon,layer)
 end
 export get_crust1_base
 
+## --- ETOPO1 (1 arc minute topography)
+
+    # Read etopoelev file from HDF5 storage, downloading from cloud if necessary
+    function get_etopoelev()
+        # Construct file path
+        filepath = joinpath(resourcepath,"etopo","etopoelev.h5")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading etopoelev.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/etopoelev.h5", filepath)
+        end
+
+        # Read and return the file
+        return h5read(filepath,"vars/etopoelev")
+    end
+    export get_etopoelev
+
+    # Find the elevation of points at position (lat,lon) on the surface of the
+    # Earth, using the ETOPO elevation model.
+    function find_etopoelev(etopoelev,lat,lon)
+        sf=60;
+        maxrow = 180*sf;
+        maxcol = 360*sf;
+
+        # Create and fill output vector
+        elev=Array{Float64}(size(lat));
+        for i=1:length(lat)
+            if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
+                elev[i]=NaN; # Result is NaN if either input is NaN
+            else
+                # Convert latitude and longitude into indicies of the elevation map array
+                row = 1 + trunc(Int,(90+lat[i])*sf);
+                if row == (maxrow+1)
+                    row = maxrow;
+                end
+
+                col = 1 + trunc(Int,(180+lon[i])*sf);
+                if col == (maxcol+1)
+                    col = maxcol;
+                end
+
+                elev[i]=etopoelev[row,col]; # Otherwise, find result
+            end
+        end
+
+        return elev
+    end
+    export find_etopoelev
+
 ## --- End of File

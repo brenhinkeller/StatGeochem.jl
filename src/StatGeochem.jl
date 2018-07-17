@@ -27,6 +27,7 @@ module StatGeochem
 
     include("utilities/Etc.jl");
 
+    using HDF5
     include("Resources.jl")
 
 end # module
