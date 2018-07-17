@@ -1,11 +1,17 @@
 ## -- Establish path
-resourcepath = joinpath(Pkg.dir("StatGeochem"),"resources");
-export resourcepath
+    resourcepath = joinpath(Pkg.dir("StatGeochem"),"resources");
+    export resourcepath
 
 ## --- CRUST 1.0
     # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
+
     function find_crust1_point(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
+
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
         if ~isa(layer,Integer) || layer < 1 || layer > 8
             error("""Error: layer must be an integer between 1 and 8.
             Available layers:
@@ -90,6 +96,11 @@ export resourcepath
     # Get seismic data (Vp, Vs, Rho) for crust 1.0 layer
     function find_crust1_seismic(lat,lon,layer)
         # Get Vp, Vs, and Rho for a given lat, lon, and crustal layer.
+
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
         if ~isa(layer,Integer) || layer < 1 || layer > 9
             error("""Error: layer must be an integer between 1 and 9.
             Available layers:
@@ -168,6 +179,11 @@ export resourcepath
     # Get layer thickness for crust 1.0 layer
     function find_crust1_thickness(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
+
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
         if ~isa(layer,Integer) || layer < 1 || layer > 8
             error("""Error: layer must be an integer between 1 and 8.
             Available layers:
@@ -231,8 +247,13 @@ export resourcepath
     # Get detph to layer base for crust 1.0 layer
     function find_crust1_base(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
+
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
         if ~isa(layer,Integer) || layer < 1 || layer > 8
-            error("""Error: layer must be an integer between 1 and 8.
+            error("""layer must be an integer between 1 and 8.
             Available layers:
             1) water
             2) ice
@@ -311,6 +332,10 @@ export resourcepath
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the ETOPO elevation model.
     function find_etopoelev(etopoelev,lat,lon)
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
         sf=60;
         maxrow = 180*sf;
         maxcol = 360*sf;
@@ -392,6 +417,9 @@ export resourcepath
     # Parse seafloorage, seafloorage_sigma, or seafloorrate from file
     # data = find_seafloorage(sfdata, lat, lon)
     function find_seafloorage(sfdata,lat,lon)
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
 
         # Find the column numbers (using mod to convert lon from -180:180 to 0:360
         x = floor.(Int, mod.(lon, 360) * 10800/360) + 1
