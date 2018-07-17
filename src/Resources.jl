@@ -414,6 +414,7 @@
                     elev[i] = NaN
                 else
                     elev[i] = res
+                end
             end
         end
 
