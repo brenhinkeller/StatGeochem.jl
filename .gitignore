@@ -1,5 +1,8 @@
 .DS_STORE
+*.swp
 *.pdf
+
+# Various julia files to ignore
 *.jld
 *.jl.cov
 *.jl.*.cov
