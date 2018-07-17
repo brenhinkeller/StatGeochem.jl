@@ -54,7 +54,8 @@
 
 ## --- Geometry
 
-    # Check if a 2D polygon defined by the arrays x, y contains a point
+    # Check if a 2D polygon defined by the arrays x, y contains a point.
+    # Returns boolean (true or false)
     function inpolygon(x,y,point)
 
         # Check that we have the right kind of input data
@@ -127,5 +128,48 @@
         # If number of intersections is odd, point is in the polygon
         return Bool(mod(intersections,2))
     end
+    export inpolygon
+
+    # Find the indexes of grid points that fall within a polygon for a grid /
+    # matrix with cell centers given by grid_x (j-columns of matrix) and
+    # grid_y (i-rows of matrix).
+    # Returns a list of rows and columns in the polygon
+    function find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
+        # (row, column) = find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
+
+        # Check that we have the right kind of input data
+        if length(poly_x) != length(poly_y)
+            error("polygon must have equal number of x and y points\n")
+        end
+        if length(poly_x) < 3
+            error("polygon must have at least 3 points\n")
+        end
+
+        # Find maximum x and y range of polygon
+        (xmin, xmax) = extrema(poly_x)
+        (ymin, ymax) = extrema(poly_y)
+
+        # Find the matrix indices within the range of the polygon (if any)
+        column_inrange = find((grid_x .>= xmin) .& (grid_x .<= xmax))
+        row_inrange = find((grid_y .>= ymin) .& (grid_y .<= ymax))
+
+        # Keep a list of matrix indexes in the polygon
+        row = Array{Int}(length(column_inrange) * length(row_inrange))
+        column = Array{Int}(length(column_inrange) * length(row_inrange))
+        n = 0
+        for j = 1:length(column_inrange)
+            for i = 1:length(row_inrange)
+                point = [grid_x[column_inrange[j]], grid_y[row_inrange[i]]]
+                if inpolygon(poly_x, poly_y, point)
+                    n += 1
+                    row[n] = row_inrange[i]
+                    column[n] = column_inrange[j]
+                end
+            end
+        end
+
+        return (row[1:n], column[1:n])
+    end
+    export find_grid_inpolygon
 
 ## --- End of File
