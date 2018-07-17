@@ -3,8 +3,8 @@
     export resourcepath
 
 ## --- CRUST 1.0
-    # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
 
+    # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
     function find_crust1_point(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
@@ -379,7 +379,7 @@
         end
 
         # Read and return the file
-        return h5read(filepath,"vars/elevation")
+        return h5read(filepath,"vars/elev")
     end
     export get_srtm15plus
 
