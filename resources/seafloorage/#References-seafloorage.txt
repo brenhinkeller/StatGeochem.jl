@@ -1,3 +1,5 @@
+# Muller et al. global seafloor spreading database
+
 M⁠⁠üller, R. D., M. Sdrolias, C. Gaina, and W. R. Roest (2008), Age, spreading rates, and spreading asymmetry of the world's ocean crust, Geochem. Geophys. Geosyst., 9, Q04006, doi:10.1029/2007GC001743.
 
 Available at: ftp://ftp.es.usyd.edu.au/pub/agegrid/2008/Grids/
