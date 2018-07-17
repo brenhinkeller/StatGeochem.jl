@@ -336,28 +336,31 @@
             error("lat and lon must be equal length\n")
         end
 
-        sf=60;
-        maxrow = 180*sf;
-        maxcol = 360*sf;
+        # Scale factor = 60 = arc minutes in an arc degree
+        sf = 60
+        maxrow = 180 * sf
+        maxcol = 360 * sf
 
         # Create and fill output vector
         elev=Array{Float64}(size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
-                elev[i]=NaN; # Result is NaN if either input is NaN
+                # Result is NaN if either input is NaN or out of bounds
+                elev[i] = NaN
             else
                 # Convert latitude and longitude into indicies of the elevation map array
-                row = 1 + trunc(Int,(90+lat[i])*sf);
-                if row == (maxrow+1)
+                row = 1 + trunc(Int,(90+lat[i])*sf)
+                if row == (maxrow+1) # Edge case
                     row = maxrow;
                 end
 
-                col = 1 + trunc(Int,(180+lon[i])*sf);
-                if col == (maxcol+1)
+                col = 1 + trunc(Int,(180+lon[i])*sf)
+                if col == (maxcol+1) # Edge case
                     col = maxcol;
                 end
 
-                elev[i]=etopoelev[row,col]; # Otherwise, find result
+                # Find result by indexing
+                elev[i] = etopoelev[row,col]
             end
         end
 
@@ -390,28 +393,23 @@
             error("lat and lon must be equal length\n")
         end
 
-        sf=240;
-        maxrow = 180*sf;
-        maxcol = 360*sf;
+        # Scale factor = 60 * 4 = 240
+        # (15 arc seconds goes into 1 arc degree 240 times)
+        sf = 240
 
         # Create and fill output vector
         elev=Array{Float64}(size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
-                elev[i]=NaN; # Result is NaN if either input is NaN
+                # Result is NaN if either input is NaN or out of bounds
+                elev[i] = NaN
             else
                 # Convert latitude and longitude into indicies of the elevation map array
-                row = 1 + trunc(Int,(90+lat[i])*sf);
-                if row == (maxrow+1)
-                    row = maxrow;
-                end
-
-                col = 1 + trunc(Int,(180+lon[i])*sf);
-                if col == (maxcol+1)
-                    col = maxcol;
-                end
-
-                elev[i]=srtm15plus[row,col]; # Otherwise, find result
+                # Note that STRTM15 plus has N+1 columns where N = 360*sf
+                row = 1 + round(Int,(90+lat[i])*sf)
+                col = 1 + round(Int,(180+lon[i])*sf)
+                # Find result by indexing
+                elev[i]=srtm15plus[row,col];
             end
         end
 
