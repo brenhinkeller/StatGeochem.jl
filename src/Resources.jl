@@ -5,7 +5,7 @@
 ## --- CRUST 1.0
 
     # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
-    function find_crust1_point(lat,lon,layer)
+    function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
         if length(lat) ~= length(lon)
@@ -27,15 +27,15 @@
             """)
         end
 
-        np=9;
-        nlo=360;
-        nla=180;
+        nlayers=9;
+        nlon=360;
+        nlat=180;
 
         # Allocate data arrays
-        vp = Array{Float64,3}(np,nla,nlo)
-        vs = Array{Float64,3}(np,nla,nlo)
-        rho = Array{Float64,3}(np,nla,nlo)
-        bnd = Array{Float64,3}(np,nla,nlo)
+        vp = Array{Float64,3}(nlayers,nlat,nlon)
+        vs = Array{Float64,3}(nlayers,nlat,nlon)
+        rho = Array{Float64,3}(nlayers,nlat,nlon)
+        bnd = Array{Float64,3}(nlayers,nlat,nlon)
 
         # Open data files
         vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
@@ -44,8 +44,8 @@
         bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
 
         # Read data files into array
-        for j=1:nla
-           for i=1:nlo
+        for j=1:nlat
+           for i=1:nlon
               vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
               vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
               rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true)
@@ -91,7 +91,7 @@
         # The end
         return (vpout, vsout, rhoout, thkout)
     end
-    export find_crust1_point
+    export find_crust1_layer
 
     # Get seismic data (Vp, Vs, Rho) for crust 1.0 layer
     function find_crust1_seismic(lat,lon,layer)
@@ -117,14 +117,14 @@
             """)
         end
 
-        np=9;
-        nlo=360;
-        nla=180;
+        nlayers=9;
+        nlon=360;
+        nlat=180;
 
         # Allocate data arrays
-        vp = Array{Float64,3}(np,nla,nlo)
-        vs = Array{Float64,3}(np,nla,nlo)
-        rho = Array{Float64,3}(np,nla,nlo)
+        vp = Array{Float64,3}(nlayers,nlat,nlon)
+        vs = Array{Float64,3}(nlayers,nlat,nlon)
+        rho = Array{Float64,3}(nlayers,nlat,nlon)
 
         # Open data files
         vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
@@ -132,8 +132,8 @@
         rhofile = open(joinpath(resourcepath,"crust1","crust1.rho"), "r")
 
         # Read data files into array
-        for j=1:nla
-           for i=1:nlo
+        for j=1:nlat
+           for i=1:nlon
               vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
               vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
               rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
@@ -199,19 +199,19 @@
             """)
         end
 
-        np=9;
-        nlo=360;
-        nla=180;
+        nlayers=9;
+        nlon=360;
+        nlat=180;
 
         # Allocate data arrays
-        bnd = Array{Float64,3}(np,nla,nlo)
+        bnd = Array{Float64,3}(nlayers,nlat,nlon)
 
         # Open data files
         bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
 
         # Read data files into array
-        for j=1:nla
-           for i=1:nlo
+        for j=1:nlat
+           for i=1:nlon
               bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
           end
         end
@@ -266,19 +266,19 @@
             Result is depth from sea level to base of the requested layer
             """)
         end
-        np=9;
-        nlo=360;
-        nla=180;
+        nlayers=9;
+        nlon=360;
+        nlat=180;
 
         # Allocate data arrays
-        bnd = Array{Float64,3}(np,nla,nlo)
+        bnd = Array{Float64,3}(nlayers,nlat,nlon)
 
         # Open data files
         bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
 
         # Read data files into array
-        for j=1:nla
-           for i=1:nlo
+        for j=1:nlat
+           for i=1:nlon
               bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
           end
         end
