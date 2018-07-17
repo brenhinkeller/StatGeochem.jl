@@ -365,6 +365,60 @@
     end
     export find_etopoelev
 
+## --- SRTM15_PLUS (15 arc second topography)
+
+    # Read srtm15plus file from HDF5 storage, downloading from cloud if necessary
+    function get_srtm15plus()
+        # Construct file path
+        filepath = joinpath(resourcepath,"SRTM15plus","SRTM15plus.h5")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading SRTM15plus.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/SRTM15plus.h5", filepath)
+        end
+
+        # Read and return the file
+        return h5read(filepath,"vars/elevation")
+    end
+    export get_srtm15plus
+
+    # Find the elevation of points at position (lat,lon) on the surface of the
+    # Earth, using the SRTM15plus 15-arc-second elevation model.
+    function find_srtm15plus(srtm15plus,lat,lon)
+        if length(lat) ~= length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
+        sf=240;
+        maxrow = 180*sf;
+        maxcol = 360*sf;
+
+        # Create and fill output vector
+        elev=Array{Float64}(size(lat));
+        for i=1:length(lat)
+            if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
+                elev[i]=NaN; # Result is NaN if either input is NaN
+            else
+                # Convert latitude and longitude into indicies of the elevation map array
+                row = 1 + trunc(Int,(90+lat[i])*sf);
+                if row == (maxrow+1)
+                    row = maxrow;
+                end
+
+                col = 1 + trunc(Int,(180+lon[i])*sf);
+                if col == (maxcol+1)
+                    col = maxcol;
+                end
+
+                elev[i]=srtm15plus[row,col]; # Otherwise, find result
+            end
+        end
+
+        return elev
+    end
+    export find_srtm15plus
+
 ## --- Müller et al. seafloor age and spreading rate
 
     # Read seafloorage file from HDF5 storage, downloading from cloud if necessary
