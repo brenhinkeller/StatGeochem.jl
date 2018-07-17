@@ -1,34 +1,34 @@
-## --- Read Arc ASCII grid files
+## --- Read ESRI Arc/Info ASCII grid files
 
-    function parseAAIGrid(fname, parseType)
+    function parse_AAIGrid(fname, parseType)
         f = open(fname);
 
-            metadata = Dict();
-            metadata["ncols"] = parse(match(r"  *(.*?)$", readline(f))[1])
-            metadata["nrows"] = parse(match(r"  *(.*?)$", readline(f))[1])
-            metadata["xll_corner"] = parse(match(r"  *(.*?)$", readline(f))[1])
-            metadata["yll_corner"] = parse(match(r"  *(.*?)$", readline(f))[1])
-            metadata["cellsize"] = parse(match(r"  *(.*?)$", readline(f))[1])
-            metadata["nodata"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata = Dict();
+        metadata["ncols"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata["nrows"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata["xll_corner"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata["yll_corner"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata["cellsize"] = parse(match(r"  *(.*?)$", readline(f))[1])
+        metadata["nodata"] = parse(match(r"  *(.*?)$", readline(f))[1])
 
-            nrows = metadata["nrows"];
-            ncols = metadata["ncols"];
+        nrows = metadata["nrows"];
+        ncols = metadata["ncols"];
 
-            data = Array{Int16}(ncols,nrows)
-            for i=1:nrows
-                l = readline(f);
-                parse_delim_string!(data, l, ' ', Int16, offset=(i-1)*ncols);
-            end
+        data = Array{Int16}(ncols,nrows)
+        for i=1:nrows
+            l = readline(f);
+            parse_delim_string!(data, l, ' ', Int16, offset=(i-1)*ncols);
+        end
 
         close(f)
 
         return (data', metadata)
     end
-    export parseAAIGrid
+    export parse_AAIGrid
 
 ## --- Calculate slope from a DEM
 
-    function quickMaxSlopeEarth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500)
+    function max_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
@@ -194,9 +194,9 @@
 
         return slope
     end
-    export quickMaxSlopeEarth
+    export max_slope_earth
 
-    function quickAveSlopeEarth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500, maxmatval=9000)
+    function ave_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500, maxmatval=9000)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
@@ -331,6 +331,6 @@
 
         return slope
     end
-    export quickAveSlopeEarth
+    export ave_slope_earth
 
 ## --- End of File
