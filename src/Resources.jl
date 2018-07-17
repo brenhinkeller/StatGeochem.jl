@@ -8,7 +8,7 @@
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -97,7 +97,7 @@
     function find_crust1_seismic(lat,lon,layer)
         # Get Vp, Vs, and Rho for a given lat, lon, and crustal layer.
 
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -180,7 +180,7 @@
     function find_crust1_thickness(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
 
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -248,7 +248,7 @@
     function find_crust1_base(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
 
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -332,7 +332,7 @@
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the ETOPO elevation model.
     function find_etopoelev(etopoelev,lat,lon)
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -389,7 +389,7 @@
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the SRTM15plus 15-arc-second elevation model.
     function find_srtm15plus(srtm15plus,lat,lon)
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
@@ -469,7 +469,7 @@
     # Parse seafloorage, seafloorage_sigma, or seafloorrate from file
     # data = find_seafloorage(sfdata, lat, lon)
     function find_seafloorage(sfdata,lat,lon)
-        if length(lat) ~= length(lon)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
