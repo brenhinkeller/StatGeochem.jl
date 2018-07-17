@@ -313,40 +313,53 @@
 
 ## --- ETOPO1 (1 arc minute topography)
 
-    # Read etopoelev file from HDF5 storage, downloading from cloud if necessary
-    function get_etopoelev()
+    # Read etopo file from HDF5 storage, downloading from cloud if necessary
+    function get_etopo(varname="")
+        # Available variable names: "elevation", "y_lat_cntr", "x_lon_cntr",
+        # "cellsize", "scalefactor", and "reference". Units are meters of
+        # elevation and decimal degrees of latitude and longitude
+
         # Construct file path
-        filepath = joinpath(resourcepath,"etopo","etopoelev.h5")
+        filepath = joinpath(resourcepath,"etopo","etopo1.h5")
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading etopoelev.h5 from google cloud storage\n")
-            download("https://storage.googleapis.com/statgeochem/etopoelev.h5", filepath)
+            print("Downloading etopo1.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
         end
 
         # Read and return the file
-        return h5read(filepath,"vars/etopoelev")
+        return h5read(filepath, "vars/"*varname)
     end
-    export get_etopoelev
+    export get_etopo
 
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the ETOPO elevation model.
-    function find_etopoelev(etopoelev,lat,lon)
+    function find_etopoelev(etopo,lat,lon)
+
+        # Interpret user input
         if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
+        elseif isa(etopo,Dict)
+            data = etopo["elevation"]
+        elseif isa(etopo, Array)
+            data = etopo
+        else
+            error("wrong etopo variable")
         end
 
-        # Scale factor = 60 = arc minutes in an arc degree
+
+        # Scale factor (cells per degree) = 60 = arc minutes in an arc degree
         sf = 60
         maxrow = 180 * sf
         maxcol = 360 * sf
 
         # Create and fill output vector
-        elev=Array{Float64}(size(lat));
+        out=Array{Float64}(size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
-                elev[i] = NaN
+                out[i] = NaN
             else
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)
@@ -360,72 +373,87 @@
                 end
 
                 # Find result by indexing
-                elev[i] = etopoelev[row,col]
+                out[i] = data[row,col]
             end
         end
 
-        return elev
+        return out
     end
     export find_etopoelev
 
 ## --- SRTM15_PLUS (15 arc second topography)
 
     # Read srtm15plus file from HDF5 storage, downloading from cloud if necessary
-    function get_srtm15plus()
+    function get_srtm15plus(varname="")
+        # Available variable names: "elevation", "y_lat_cntr", "x_lon_cntr",
+        # "nanval", "cellsize", "scalefactor", and "reference". Units are
+        # meters of elevation and decimal degrees of latitude and longitude
+
         # Construct file path
-        filepath = joinpath(resourcepath,"SRTM15plus","SRTM15plus.h5")
+        filepath = joinpath(resourcepath,"srtm15plus","srtm15plus.h5")
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading SRTM15plus.h5 from google cloud storage\n")
-            download("https://storage.googleapis.com/statgeochem/SRTM15plus.h5", filepath)
+            print("Downloading srtm15plus.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)
         end
 
         # Read and return the file
-        return h5read(filepath,"vars/elev")
+        return h5read(filepath,"vars/"*varname)
     end
     export get_srtm15plus
 
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the SRTM15plus 15-arc-second elevation model.
     function find_srtm15plus(srtm15plus,lat,lon)
+
+        # Interpret user input
         if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
+        elseif isa(srtm15plus,Dict)
+            data = srtm15plus["elevation"]
+        elseif isa(srtm15plus, Array)
+            data = srtm15plus
+        else
+            error("wrong srtm15plus variable")
         end
 
-        # Scale factor = 60 * 4 = 240
+        # Scale factor (cells per degree) = 60 * 4 = 240
         # (15 arc seconds goes into 1 arc degree 240 times)
         sf = 240
 
         # Create and fill output vector
-        elev=Array{Float64}(size(lat));
+        out=Array{Float64}(size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
-                elev[i] = NaN
+                out[i] = NaN
             else
                 # Convert latitude and longitude into indicies of the elevation map array
                 # Note that STRTM15 plus has N+1 columns where N = 360*sf
-                row = 1 + round(Int,(90-lat[i])*sf)
+                row = 1 + round(Int,(90+lat[i])*sf)
                 col = 1 + round(Int,(180+lon[i])*sf)
                 # Find result by indexing
-                res = srtm15plus[row,col]
+                res = data[row,col]
                 if res == -32768
-                    elev[i] = NaN
+                    out[i] = NaN
                 else
-                    elev[i] = res
+                    out[i] = res
                 end
             end
         end
 
-        return elev
+        return out
     end
     export find_srtm15plus
 
 ## --- Müller et al. seafloor age and spreading rate
 
     # Read seafloorage file from HDF5 storage, downloading from cloud if necessary
-    function get_seafloorage()
+    function get_seafloorage(varname = "")
+        # Available variable names: "seafloorage", "seafloorage_sigma",
+        # "seafloorrate", "information", and "reference".
+
         # Construct file path
         filepath = joinpath(resourcepath,"seafloorage","seafloorage.h5")
 
@@ -436,46 +464,23 @@
         end
 
         # Read and return the file
-        return h5read(filepath,"vars/seafloorage")
+        return h5read(filepath,"vars/"*varname)
     end
     export get_seafloorage
-
-    function get_seafloorage_sigma()
-        # Construct file path
-        filepath = joinpath(resourcepath,"seafloorage","seafloorage.h5")
-
-        # Download HDF5 file from Google Cloud if necessary
-        if ~isfile(filepath)
-            print("Downloading seafloorage.h5 from google cloud storage\n")
-            download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
-        end
-
-        # Read and return the file
-        return h5read(filepath,"vars/seafloorage_sigma")
-    end
-    export get_seafloorage_sigma
-
-    # Read seafloorrate file from HDF5 storage, downloading from cloud if necessary
-    function get_seafloorrate()
-        # Construct file path
-        filepath = joinpath(resourcepath,"seafloorage","seafloorrate.h5")
-
-        # Download HDF5 file from Google Cloud if necessary
-        if ~isfile(filepath)
-            print("Downloading seafloorrate.h5 from google cloud storrate\n")
-            download("https://storrate.googleapis.com/statgeochem/seafloorrate.h5", filepath)
-        end
-
-        # Read and return the file
-        return h5read(filepath,"vars/seafloorrate")
-    end
-    export get_seafloorrate
 
     # Parse seafloorage, seafloorage_sigma, or seafloorrate from file
     # data = find_seafloorage(sfdata, lat, lon)
     function find_seafloorage(sfdata,lat,lon)
+
+        # Interpret user input
         if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
+        elseif isa(sfdata,Dict)
+            data = sfdata["seafloorage"]
+        elseif isa(srtm15plus, Array)
+            data = sfdata
+        else
+            error("wrong sfdata variable")
         end
 
         # Find the column numbers (using mod to convert lon from -180:180 to 0:360
@@ -499,6 +504,5 @@
         return out
     end
     export find_seafloorage
-
 
 ## --- End of File
