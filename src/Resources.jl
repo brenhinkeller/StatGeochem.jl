@@ -2,8 +2,8 @@
 resourcepath = joinpath(Pkg.dir("StatGeochem"),"resources");
 export resourcepath
 
-
-# Get points from Crust 1.0.
+## --- CRUST 1.0
+# Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
 function get_crust1_point(lat,lon,layer)
     # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
     if ~isa(layer,Integer) || layer < 1 || layer > 8
@@ -87,6 +87,7 @@ function get_crust1_point(lat,lon,layer)
 end
 export get_crust1_point
 
+# Get seismic data (Vp, Vs, Rho) for crust 1.0 layer
 function get_crust1_seismic(lat,lon,layer)
     # Get Vp, Vs, and Rho for a given lat, lon, and crustal layer.
     if ~isa(layer,Integer) || layer < 1 || layer > 9
@@ -164,6 +165,7 @@ function get_crust1_seismic(lat,lon,layer)
 end
 export get_crust1_seismic
 
+# Get layer thickness for crust 1.0 layer
 function get_crust1_thickness(lat,lon,layer)
     # Layer thickness for a given lat, lon, and crustal layer.
     if ~isa(layer,Integer) || layer < 1 || layer > 8
@@ -226,6 +228,7 @@ function get_crust1_thickness(lat,lon,layer)
 end
 export get_crust1_thickness
 
+# Get detph to layer base for crust 1.0 layer
 function get_crust1_base(lat,lon,layer)
     # Layer thickness for a given lat, lon, and crustal layer.
     if ~isa(layer,Integer) || layer < 1 || layer > 8
@@ -239,7 +242,7 @@ function get_crust1_base(lat,lon,layer)
         6) upper crystalline crust
         7) middle crystalline crust
         8) lower crystalline crust
-        Result is depth to base of the requested layer
+        Result is depth from sea level to base of the requested layer
         """)
     end
     np=9;
@@ -286,3 +289,5 @@ function get_crust1_base(lat,lon,layer)
     return baseout
 end
 export get_crust1_base
+
+## --- End of File
