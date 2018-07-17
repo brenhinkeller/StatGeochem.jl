@@ -406,10 +406,14 @@
             else
                 # Convert latitude and longitude into indicies of the elevation map array
                 # Note that STRTM15 plus has N+1 columns where N = 360*sf
-                row = 1 + round(Int,(90+lat[i])*sf)
+                row = 1 + round(Int,(90-lat[i])*sf)
                 col = 1 + round(Int,(180+lon[i])*sf)
                 # Find result by indexing
-                elev[i]=srtm15plus[row,col];
+                res = srtm15plus[row,col]
+                if res == -32768
+                    elev[i] = NaN
+                else
+                    elev[i] = res
             end
         end
 
