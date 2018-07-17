@@ -4,7 +4,7 @@ export resourcepath
 
 
 # Get points from Crust 1.0.
-function getCN1point(lat,lon,layer)
+function get_crust1_point(lat,lon,layer)
     # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
     if ~isa(layer,Integer) || layer < 1 || layer > 8
         error("""Error: layer must be an integer between 1 and 8.
@@ -58,8 +58,8 @@ function getCN1point(lat,lon,layer)
     ilat = max.(lat,-90+1e-9)
 
     # Convert lat and lon to index
-    ilat = 90 - ceil(Int,ilat) + 1
-    ilon = 180 + floor(Int,ilon) + 1
+    ilat = 90 - ceil.(Int,ilat) + 1
+    ilon = 180 + floor.(Int,ilon) + 1
 
     # Allocate output arrays
     vpout = Array{Float64}(size(lat));
@@ -85,7 +85,7 @@ function getCN1point(lat,lon,layer)
     # The end
     return (vpout, vsout, rhoout, thkout)
 end
-export getCN1point
+export get_crust1_point
 
 function get_crust1_seismic(lat,lon,layer)
     # Get Vp, Vs, and Rho for a given lat, lon, and crustal layer.
@@ -138,8 +138,8 @@ function get_crust1_seismic(lat,lon,layer)
     ilat = max.(lat,-90+1e-9)
 
     # Convert lat and lon to index
-    ilat = 90 - ceil(Int,ilat) + 1
-    ilon = 180 + floor(Int,ilon) + 1
+    ilat = 90 - ceil.(Int,ilat) + 1
+    ilon = 180 + floor.(Int,ilon) + 1
 
     # Allocate output arrays
     vpout = Array{Float64}(size(lat));
@@ -206,8 +206,8 @@ function get_crust1_thickness(lat,lon,layer)
     ilat = max.(lat,-90+1e-9)
 
     # Convert lat and lon to index
-    ilat = 90 - ceil(Int,ilat) + 1
-    ilon = 180 + floor(Int,ilon) + 1
+    ilat = 90 - ceil.(Int,ilat) + 1
+    ilon = 180 + floor.(Int,ilon) + 1
 
     # Allocate output arrays
     thkout = Array{Float64}(size(lat));
@@ -267,8 +267,8 @@ function get_crust1_base(lat,lon,layer)
     ilat = max.(lat,-90+1e-9)
 
     # Convert lat and lon to index
-    ilat = 90 - ceil(Int,ilat) + 1
-    ilon = 180 + floor(Int,ilon) + 1
+    ilat = 90 - ceil.(Int,ilat) + 1
+    ilon = 180 + floor.(Int,ilon) + 1
 
     # Allocate output arrays
     baseout = Array{Float64}(size(lat));
