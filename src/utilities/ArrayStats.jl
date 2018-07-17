@@ -347,7 +347,7 @@
 
     # Draw random numbers from a distribution specified by a vector of points
     # defining the PDF curve
-    function drawFromDistribution(dist::Array{Float64}, n::Int)
+    function draw_from_distribution(dist::Array{Float64}, n::Int)
         # Draw n random numbers from the distribution 'dist'
         x = Array{Float64}(n);
         dist_ymax = maximum(dist);
@@ -370,11 +370,11 @@
         end
         return x
     end
-    export drawFromDistribution
+    export draw_from_distribution
 
     # Fill an existing variable with random numbers from a distribution specified
     # by a vector of points defining the PDF curve
-    function fillFromDistribution(dist::Array{Float64}, x::Array{Float64})
+    function fill_from_distribution(dist::Array{Float64}, x::Array{Float64})
         # Fill the array x with random numbers from the distribution 'dist'
         dist_ymax = maximum(dist);
         dist_xmax = length(dist)-1.0;
@@ -395,6 +395,6 @@
             end
         end
     end
-    export fillFromDistribution
+    export fill_from_distribution
 
 ## --- End of File

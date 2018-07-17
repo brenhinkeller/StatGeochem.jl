@@ -12,7 +12,7 @@
 ## --- Two-sided linear exponential functions
 
     # Two-sided linear exponential distribution joined by an atan sigmoid.
-    function doubleLinearExponential(x,p)
+    function bilinear_exponential(x,p)
         # If to a normal-esque PDF, parameters p roughly correspond to:
         # p[1] = pre-exponential (normaliation constant)
         # p[2] = mean (central moment)
@@ -24,10 +24,10 @@
         f = p[1] .* exp.((p[4].^2).*(p[5].^2).*xs.*v - (p[4].^2)./(p[5].^2).*xs.*(1-v));
         return f
     end
-    export doubleLinearExponential
+    export bilinear_exponential
 
     # Log of two-sided linear exponential distribution joined by an atan sigmoid.
-    function doubleLinearExponentialLL(x,p)
+    function bilinear_exponential_LL(x,p)
         # If to a normal-esque PDF, parameters p roughly correspond to:
         # p[1] = pre-exponential (normaliation constant)
         # p[2] = mean (central moment)
@@ -39,7 +39,7 @@
         f = log.(p[1,:]) + (p[4,:].^2).*(p[5,:].^2).*xs.*v - (p[4,:].^2)./(p[5,:].^2).*xs.*(1-v);
         return f
     end
-    export doubleLinearExponentialLL
+    export bilinear_exponential_LL
 
 ## --- Some useful distributions
 

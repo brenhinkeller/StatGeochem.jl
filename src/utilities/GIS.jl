@@ -17,7 +17,7 @@
             data = Array{Int16}(ncols,nrows)
             for i=1:nrows
                 l = readline(f);
-                parseDelimString!(data, l, ' ', Int16, offset=(i-1)*ncols);
+                parse_delim_string!(data, l, ' ', Int16, offset=(i-1)*ncols);
             end
 
         close(f)

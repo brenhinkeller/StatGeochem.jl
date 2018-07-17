@@ -1,7 +1,7 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function parseDelimString!(parsed::Array, str::String, delim::Char, parseType::Type; offset=0, merge=false)
+    function parse_delim_string!(parsed::Array, str::String, delim::Char, parseType::Type; offset=0, merge=false)
 
         # Ignore initial delimiter
         last_delim_pos=0;
@@ -49,10 +49,10 @@
         # Return the number of parsed values
         return n-offset
     end
-    export parseDelimString!
+    export parse_delim_string!
 
     # Parse a delimited string, return an array as output
-    function parseDelimString(str::String, delim::Char, parseType::Type; merge=false)
+    function parse_delim_string(str::String, delim::Char, parseType::Type; merge=false)
         parsed = Array{parseType}(ceil(Int,length(str)/2));
 
         # Ignore initial delimiter
@@ -101,6 +101,6 @@
         # Return the parsed values
         return parsed[1:n]
     end
-    export parseDelimString
+    export parse_delim_string
 
 ## --- End of File

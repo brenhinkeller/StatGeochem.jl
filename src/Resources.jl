@@ -40,10 +40,10 @@ export resourcepath
         # Read data files into array
         for j=1:nla
            for i=1:nlo
-              vp[:,j,i] = parseDelimString(readline(vpfile), ' ', Float64, merge=true)
-              vs[:,j,i] = parseDelimString(readline(vsfile), ' ', Float64, merge=true)
-              rho[:,j,i] = parseDelimString(readline(rhofile), ' ', Float64, merge=true)
-              bnd[:,j,i] = parseDelimString(readline(bndfile), ' ', Float64, merge=true)
+              vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
+              vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
+              rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true)
+              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 
@@ -123,9 +123,9 @@ export resourcepath
         # Read data files into array
         for j=1:nla
            for i=1:nlo
-              vp[:,j,i] = parseDelimString(readline(vpfile), ' ', Float64, merge=true)
-              vs[:,j,i] = parseDelimString(readline(vsfile), ' ', Float64, merge=true)
-              rho[:,j,i] = parseDelimString(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
+              vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
+              vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
+              rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
           end
         end
 
@@ -196,7 +196,7 @@ export resourcepath
         # Read data files into array
         for j=1:nla
            for i=1:nlo
-              bnd[:,j,i] = parseDelimString(readline(bndfile), ' ', Float64, merge=true)
+              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 
@@ -258,7 +258,7 @@ export resourcepath
         # Read data files into array
         for j=1:nla
            for i=1:nlo
-              bnd[:,j,i] = parseDelimString(readline(bndfile), ' ', Float64, merge=true)
+              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 
