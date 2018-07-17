@@ -55,7 +55,7 @@
 ## --- Geometry
 
     # Check if a 2D polygon defined by the arrays x, y contains a point
-    function inpolygon(x::Array,y::Array,point::Array)
+    function inpolygon(x,y,point)
 
         # Check that we have the right kind of input data
         if length(x) != length(y)
