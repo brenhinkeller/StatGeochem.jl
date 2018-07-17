@@ -340,4 +340,53 @@ export resourcepath
     end
     export find_etopoelev
 
+## --- Müller et al. seafloor age and spreading rate
+
+    # Read seafloorage file from HDF5 storage, downloading from cloud if necessary
+    function get_seafloorage()
+        # Construct file path
+        filepath = joinpath(resourcepath,"seafloorage","seafloorage.h5")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading seafloorage.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
+        end
+
+        # Read and return the file
+        return h5read(filepath,"vars/seafloorage")
+    end
+    export get_seafloorage
+
+    # Read seafloorage file from HDF5 storage, downloading from cloud if necessary
+    function get_seafloorage_sigma()
+        # Construct file path
+        filepath = joinpath(resourcepath,"seafloorage","seafloorage.h5")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading seafloorage.h5 from google cloud storage\n")
+            download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
+        end
+
+        # Read and return the file
+        return h5read(filepath,"vars/seafloorage_sigma")
+    end
+    export get_seafloorage_sigma
+
+    function get_seafloorrate()
+        # Construct file path
+        filepath = joinpath(resourcepath,"seafloorage","seafloorrate.h5")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading seafloorrate.h5 from google cloud storrate\n")
+            download("https://storrate.googleapis.com/statgeochem/seafloorrate.h5", filepath)
+        end
+
+        # Read and return the file
+        return h5read(filepath,"vars/seafloorrate")
+    end
+    export get_seafloorrate
+
 ## --- End of File
