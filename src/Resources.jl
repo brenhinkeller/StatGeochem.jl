@@ -500,7 +500,12 @@
                 row = 1 + round(Int,(90+lat[i])*sf)
                 col = 1 + round(Int,(180+lon[i])*sf)
                 # Find result by indexing
-                out[i] = data[row,col]
+                res = data[row,col]
+                if res > 1000
+                    out[i] = NaN
+                else
+                    out[i] = res
+                end
             end
         end
 
