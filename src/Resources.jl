@@ -46,10 +46,10 @@
         # Read data files into array
         for j=1:nlat
            for i=1:nlon
-              vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
-              vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
-              rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true)
-              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
+              vp[:,j,i] = delim_string_parse(readline(vpfile), ' ', Float64, merge=true)
+              vs[:,j,i] = delim_string_parse(readline(vsfile), ' ', Float64, merge=true)
+              rho[:,j,i] = delim_string_parse(readline(rhofile), ' ', Float64, merge=true)
+              bnd[:,j,i] = delim_string_parse(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 
@@ -134,9 +134,9 @@
         # Read data files into array
         for j=1:nlat
            for i=1:nlon
-              vp[:,j,i] = parse_delim_string(readline(vpfile), ' ', Float64, merge=true)
-              vs[:,j,i] = parse_delim_string(readline(vsfile), ' ', Float64, merge=true)
-              rho[:,j,i] = parse_delim_string(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
+              vp[:,j,i] = delim_string_parse(readline(vpfile), ' ', Float64, merge=true)
+              vs[:,j,i] = delim_string_parse(readline(vsfile), ' ', Float64, merge=true)
+              rho[:,j,i] = delim_string_parse(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
           end
         end
 
@@ -212,7 +212,7 @@
         # Read data files into array
         for j=1:nlat
            for i=1:nlon
-              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
+              bnd[:,j,i] = delim_string_parse(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 
@@ -279,7 +279,7 @@
         # Read data files into array
         for j=1:nlat
            for i=1:nlon
-              bnd[:,j,i] = parse_delim_string(readline(bndfile), ' ', Float64, merge=true)
+              bnd[:,j,i] = delim_string_parse(readline(bndfile), ' ', Float64, merge=true)
           end
         end
 

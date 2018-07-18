@@ -26,7 +26,7 @@
     end
     const wmean = awmean # alias
     export wmean, awmean
-    
+
 
     function gwmean(x, sigma)
         # Geochronologist's weigted mean, including MSWD, with MSWD correction to uncertainty.
