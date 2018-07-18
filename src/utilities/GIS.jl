@@ -1,7 +1,8 @@
 ## --- Read ESRI Arc/Info ASCII grid files
 
     function parse_AAIGrid(fname, parseType)
-        f = open(fname);
+        # Open the file
+        fid = open(fname);
 
         metadata = Dict();
         metadata["ncols"] = parse(match(r"  *(.*?)$", readline(f))[1])
@@ -20,7 +21,8 @@
             parse_delim_string!(data, l, ' ', Int16, offset=(i-1)*ncols);
         end
 
-        close(f)
+        # Close the file
+        close(fid)
 
         return (data', metadata)
     end

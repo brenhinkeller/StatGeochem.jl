@@ -71,7 +71,7 @@
                 out[i] = percentile(A[t,i],p);
             end
         else
-            out = percentile(A,p);
+            out = percentile(A[:],p);
         end
         return out
     end
