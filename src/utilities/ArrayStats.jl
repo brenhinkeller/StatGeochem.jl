@@ -1,7 +1,7 @@
 ## --- Weighted mean of an array
 
     # Calculate a weigted mean, including MSWD, but without MSWD correction to uncertainty
-    function wmean(x, sigma)
+    function awmean(x, sigma)
         n = length(x);
 
         if n==1
@@ -24,7 +24,9 @@
         end
         return wx, wsigma, mswd
     end
-    export wmean
+    const wmean = awmean # alias
+    export wmean, awmean
+    
 
     function gwmean(x, sigma)
         # Geochronologist's weigted mean, including MSWD, with MSWD correction to uncertainty.
