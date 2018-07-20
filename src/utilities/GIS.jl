@@ -30,7 +30,7 @@
 
 ## --- Calculate slope from a DEM
 
-    function max_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500)
+    function max_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
@@ -198,7 +198,7 @@
     end
     export max_slope_earth
 
-    function ave_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-500, maxmatval=9000)
+    function ave_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, maxmatval=9000)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
