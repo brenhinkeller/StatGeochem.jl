@@ -79,6 +79,28 @@
     end
     export pctile
 
+    function nansum(A;dim=0)
+        s = size(A);
+        if dim==2
+            out = Array{typeof(A[1])}(s[1])
+            for i=1:s[1]
+                t = .~ isnan.(A[i,:])
+                out[i] = sum(A[i,t]);
+            end
+        elseif dim==1
+            out = Array{typeof(A[1])}(s[2])
+            for i=1:s[2]
+                t = .~ isnan.(A[:,i])
+                out[i] = sum(A[t,i]);
+            end
+        else
+            t = .~ isnan.(A)
+            out = sum(A[t]);
+        end
+        return out
+    end
+    export nansum
+
     # Smallest non-NaN value of an array
     function nanminimum(A;dim=0)
         s = size(A);
