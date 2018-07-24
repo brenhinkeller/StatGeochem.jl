@@ -20,7 +20,7 @@ module StatGeochem
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 
-    using Images: ColorTypes, N0f8
+    using Colors: ColorTypes, N0f8
     include("utilities/Colormaps.jl");
 
     include("utilities/GIS.jl");
