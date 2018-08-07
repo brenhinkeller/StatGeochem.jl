@@ -316,16 +316,31 @@
     end
     export linterp1s
 
+
     function movmean(x, n::Number)
-    	# Simple moving average
-    	ind = 1:length(x)
-    	m = Array{Float64}(size(x))
-    	halfspan = (n-1)/2;
-    	for i in ind
-    		t = (ind .>= ceil(i-halfspan)) .& (ind .<= ceil(i+halfspan))
-    		m[i] = mean(x[t])
-    	end
-    	return m;
+        # Simple moving average
+        halfspan = ceil((n-1)/2);
+        m = Array{Float64}(size(x))
+
+        # 2-D case
+        if length(size(x)) == 2
+            iind = repmat(1:size(x,1),1,size(x,2))
+            jind = repmat((1:size(x,2))',size(x,1),1)
+            for k = 1:length(x)
+                i = iind[k]
+                j = jind[k]
+                t = (iind .>= (i-halfspan)) .& (iind .<= (i+halfspan)) .& (jind .>= (j-halfspan)) .& (jind .<= (j+halfspan))
+                m[i,j] = mean(x[t])
+            end
+        # Treat all others as 1-D
+        else
+            ind = 1:length(x)
+            for i in ind
+                t = (ind .>= ceil(i-halfspan)) .& (ind .<= ceil(i+halfspan))
+                m[i] = mean(x[t])
+            end
+        end
+        return m;
     end
     export movmean
 
