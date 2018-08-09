@@ -36,6 +36,29 @@
     water = RGB{N0f8}.(r,g,b)
     export water
 
+## --- Resize and interpolate colormaps
+
+    # Linearly interpolate cmap at positions xq
+    function linterp_colormap(x,cmap,xq)
+        # Extract red, green, and blue vectors
+        cmap_r = cmap .|> c -> c.r
+        cmap_g = cmap .|> c -> c.g
+        cmap_b = cmap .|> c -> c.b
+        # Interpolate
+        r_interp = linterp1(x,cmap_r,xq)
+        g_interp = linterp1(x,cmap_g,xq)
+        b_interp = linterp1(x,cmap_b,xq)
+        # Convert back to a color
+        return RGB.(r_interp,g_interp,b_interp)
+    end
+    export linterp_colormap
+
+    function resize_colormap(cmap,n)
+        cNum = length(cmap)
+        return linterp_colormap(1:cNum,cmap,linspace(1,cNum,n))
+    end
+    export resize_colormap
+
 ## --- Map colormaps to images
 
     function imsc(matrix::Array,colormap::Array,cmin::Number=0,cmax::Number=0)
