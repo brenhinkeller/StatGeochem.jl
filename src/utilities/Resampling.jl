@@ -89,15 +89,15 @@
 
 ## --- Downsample an image / array
 
-    function downsample(matrix::Array,factor::Int)
+    function downsample(matrix::Array,factor::Int,jfactor=factor::Int)
         if ndims(matrix)==2
             rows = floor(Int,size(matrix,1)/factor);
-            cols = floor(Int,size(matrix,2)/factor);
+            cols = floor(Int,size(matrix,2)/jfactor);
 
             downsampled = typeof(matrix)(rows,cols)
             for i=1:rows
                 for j=1:cols
-                    downsampled[i,j]=matrix[i*factor,j*factor]
+                    downsampled[i,j]=matrix[i*factor,j*jfactor]
                 end
             end
         else
