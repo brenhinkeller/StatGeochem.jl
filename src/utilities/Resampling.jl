@@ -48,7 +48,7 @@
 
 ## --- Bin a dataset by a given independent variable
 
-    function binmeans(x,y,min,max,nbins; oversamplingratio=1)
+    function binmeans(x,y,min,max,nbins; resamplingratio=1)
         binwidth=(max-min)/nbins
         binedges=linspace(min,max,nbins+1)
         bincenters=(min+binwidth/2):binwidth:(max-binwidth/2)
@@ -58,7 +58,7 @@
         for i=1:nbins
             t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
             averages[i] = mean(y[t])
-            errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(oversamplingratio)
+            errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
         end
 
         return(bincenters, averages, errors)

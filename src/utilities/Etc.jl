@@ -101,6 +101,30 @@
         return (x,dx,y,dy)
     end
 
+## --- Working with imported datasets
+
+    function elementify(in::Array, type_out=Any::Type; elements = in[1,:])
+        # Clean up element names
+
+        # Output as dictionary
+        out = Dict()
+        out["elements"] = elements
+
+        if type_out == Any
+            for i=1:length(elements)
+                out[elements[i]] = in[2:end,i]
+            end
+        else
+            for i=1:length(elements)
+                out[elements[i]] = Array{type_out}(in[2:end,i])
+            end
+        end
+
+        return out
+    end
+    export elementify
+
+
 ## --- Some useful distributions
 
     UniformDistribution = [1.0, 1.0];
