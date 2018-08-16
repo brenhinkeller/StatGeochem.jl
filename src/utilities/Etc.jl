@@ -146,8 +146,8 @@
 
         # Parse the input array
         for i=1:length(elements)
-            if floatify && (isnumeric(in[2:end,i]) > nonnumeric(in[2:end,i]))
-                out[elements[i]] = floatify(in[2:end,i])
+            if floatify && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
+                out[elements[i]] = floatify.(in[2:end,i])
             else
                 out[elements[i]] = in[2:end,i]
             end
