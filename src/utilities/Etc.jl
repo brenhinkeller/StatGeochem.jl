@@ -103,23 +103,55 @@
 
 ## --- Working with imported datasets
 
-    function elementify(in::Array, type_out=Any::Type; elements = in[1,:])
-        # Clean up element names
+    # Return true for numbers and strings that can be parsed as numbers
+    function isnumeric(x)
+        if isa(x,Number)
+            return true
+        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+            return true
+        else
+            return false
+        end
+    end
+    export isnumeric
 
+    # Return true for values that are not missing and cannot be parsed as numbers
+    function nonnumeric(x)
+        if isa(x,Number)
+            return false
+        elseif isa(x,AbstractString) && (~isnull(tryparse(Float64,x)) || x == "")
+            return false
+        else
+            return true
+        end
+    end
+    export nonnumeric
+
+    # Convert to a Float64 if possible, or a Float64 NaN if not.
+    function floatify(x)
+        if isa(x,Number)
+            return Float64(x)
+        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+            return parse(Float64,x)
+        else
+            return NaN
+        end
+    end
+    export floatify
+
+    function elementify(in::Array; elements = in[1,:]; floatify==true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
 
-        if type_out == Any
-            for i=1:length(elements)
+        # Parse the input array
+        for i=1:length(elements)
+            if floatify && (isnumeric(in[2:end,i]) > nonnumeric(in[2:end,i]))
+                out[elements[i]] = floatify(in[2:end,i])
+            else
                 out[elements[i]] = in[2:end,i]
             end
-        else
-            for i=1:length(elements)
-                out[elements[i]] = Array{type_out}(in[2:end,i])
-            end
         end
-
         return out
     end
     export elementify
