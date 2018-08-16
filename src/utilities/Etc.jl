@@ -139,7 +139,7 @@
     end
     export floatify
 
-    function elementify(in::Array; elements = in[1,:]; floatify==true)
+    function elementify(in::Array; elements = in[1,:], floatify==true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
