@@ -1,6 +1,7 @@
 .DS_STORE
 *.swp
 *.pdf
+*.jpg
 
 # Ignore hdf5 files so these don't interfere with updates
 *.h5
