@@ -183,6 +183,7 @@
             return (eHf, Hf176_Hf177_t)
         end
     end
+    export eHf
 
 
     function bin_bsr_eHf(x,Hf176_Hf177,Lu176_Hf177,age,min,max,nbins,x_sigma,Hf176_Hf177_sigma,Lu176_Hf177_sigma,age_sigma,nresamples)
