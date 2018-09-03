@@ -107,5 +107,66 @@
     end
     export downsample
 
+## --- Spatiotemporal sample weighting
+
+    # Produce a weighting coefficient for each row of data corresponding
+    # to the input lat, lon, and age that is inversely proportional to the
+    # spatiotemporal data concentration
+    function invweight(lat,lon,age)
+
+        # Check if there is lat, lon, and age data
+        nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
+
+        k = Array{Float64}(length(lat))
+        for i=1:length(lat)
+            if nodata[i] # If there is no data, set k=inf for weight=0
+                k[i] = Inf
+            else # Otherwise, calculate weight
+                k[i] = nansum( 1.0./((arcdistance(lat[i],lon[i],lat,lon)/1.8).^2 + 1.0) + 1.0./(((age[i]-age)/38.0).^2 + 1.0) )
+            end
+        end
+        return k
+    end
+    export invweight
+
+    # Produce a weighting coefficient for each row of data corresponding
+    # to the input age that is inversely proportional to the
+    # temporal data concentration
+    function invweight_age(age)
+
+        # Check if there is lat, lon, and age data
+        nodata = isnan.(age)
+
+        k = Array{Float64}(length(lat))
+        for i=1:length(lat)
+            if nodata[i] # If there is no data, set k=inf for weight=0
+                k[i] = Inf
+            else # Otherwise, calculate weight
+                k[i] = nansum(1.0./(((age[i]-age)/38.0).^2 + 1.0) )
+            end
+        end
+        return k
+    end
+    export invweight_age
+
+    # Produce a weighting coefficient for each row of data corresponding
+    # to the input lat, lon, and age that is inversely proportional to the
+    # spatial data concentration
+    function invweight_location(lat,lon)
+
+        # Check if there is lat, lon, and age data
+        nodata = isnan.(lat) .| isnan.(lon)
+
+        k = Array{Float64}(length(lat))
+        for i=1:length(lat)
+            if nodata[i] # If there is no data, set k=inf for weight=0
+                k[i] = Inf
+            else # Otherwise, calculate weight
+                k[i] = nansum( 1.0./((arcdistance(lat[i],lon[i],lat,lon)/1.8).^2 + 1.0) )
+            end
+        end
+        return k
+    end
+    export invweight_location
 
 ## --- End of file

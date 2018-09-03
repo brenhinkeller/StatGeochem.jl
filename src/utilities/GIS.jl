@@ -335,13 +335,5 @@
     end
     export ave_slope_earth
 
-## --- Calculate the distance between two (lat,lon) points on a sphere
-
-    function sphere_distance(lat_i,lon_i,lat,lon)
-        # Lat, Lon in decimal degrees
-        theta = 180/pi*acos.(sin.(lat_i*pi/180).*sin.(lat*pi/180)+cos.(lat_i*pi/180).*cos.(lat*pi/180).*cos.(lon_i*pi/180-lon*pi/180))
-        return theta
-    end
-    export sphere_distance
 
 ## --- End of File

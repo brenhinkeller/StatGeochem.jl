@@ -172,4 +172,19 @@
     end
     export find_grid_inpolygon
 
+
+    # Calculate the distance between two (lat,lon) points on a sphere.
+    # Lat, Lon in decimal degrees
+    function arcdistance(lat_i,lon_i,lat,lon)
+        # Argument for acos()
+        arg = sin.(lat_i*pi/180).*sin.(lat*pi/180) + cos.(lat_i*pi/180).*cos.(lat*pi/180).*cos.((lon_i-lon)*pi/180)
+        # Avoid domain errors from imprecise sine and cosine math
+        arg[arg.>1] = 1.0
+        arg[arg.<-1] = -1.0
+        # Calculate angular distance
+        theta = 180/pi*acos.(arg)
+        return theta
+    end
+    export arcdistance
+
 ## --- End of File
