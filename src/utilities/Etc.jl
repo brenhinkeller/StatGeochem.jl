@@ -140,17 +140,29 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array; elements=in[1,:], floatout=true)
+    function elementify(in::Array, elements=in[1,:]; floatout=true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
 
-        # Parse the input array
-        for i=1:length(elements)
-            if floatout && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
-                out[elements[i]] = floatify.(in[2:end,i])
-            else
-                out[elements[i]] = in[2:end,i]
+        # If first row is all names, don't elementify first row
+        if sum(nonnumeric.(in[1,:]))==size(in,2)
+            # Parse the input array
+            for i=1:length(elements)
+                if floatout && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
+                    out[elements[i]] = floatify.(in[2:end,i])
+                else
+                    out[elements[i]] = in[2:end,i]
+                end
+            end
+        else
+            # Parse the input array
+            for i=1:length(elements)
+                if floatout && (sum(isnumeric.(in[:,i])) > sum(nonnumeric.(in[:,i])))
+                    out[elements[i]] = floatify.(in[:,i])
+                else
+                    out[elements[i]] = in[:,i]
+                end
             end
         end
         return out
@@ -158,7 +170,7 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict; elements=sort(collect(keys(in))), floatout=false, findnumeric=false)
+    function unelementify(in::Dict, elements=sort(collect(keys(in))); floatout=false, findnumeric=false)
 
         # Find the elements in the input dict
         if any(elements .== "elements")
@@ -195,7 +207,16 @@
         return out
     end
     export unelementify
-    
+
+    # New method for bsresample that takes a dictionary as input
+    function bsresample(in::Dict, nrows, elements=in["elements"]; p=0.5)
+        data = unelementify(in, elements, floatout=true)
+        sigma = unelementify(in, elements.*"_sigma", floatout=true)
+        sdata = bsresample(data, sigma, nrows, p=p)
+        return elementify(sdata, elements)
+    end
+    export bsresample
+
 
 ## --- Geochemistry
 

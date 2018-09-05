@@ -1,17 +1,16 @@
 ## --- Bootstrap resampling
 
-    function bsresample(data, sigma, nrows; p=0.5)
-        # resampled = bsresample(data, sigma, nrows; p=0.5)
-        # Bootstrap resample a variable up to size nrows. Optionally provide weights in p
-
+    # Bootstrap resample (with uncertainty) a variable up to size nrows.
+    # Optionally provide weights in p
+    function bsresample(data::Array{<:Number}, sigma, nrows::Number; p = min(0.5,nrows/size(data,1)))
+        # Allocate output array
         resampled = Array{Float64}(nrows,size(data,2))
 
+        # Resample
         i = 1;
         while i <= nrows
-
+            # If we have more than one sample
             if size(data,1) > 1
-                # If we have more than one sample
-
                 # Select weighted sample of data
                 t = rand(size(data,1)) .< p
                 sdata = data[t,:]
@@ -22,9 +21,7 @@
                 else
                     serr = ones(size(sdata)) .* sigma
                 end
-
-            else
-                # If only one sample
+            else # If only one sample
                 sdata = data
                 serr = sigma
             end
@@ -45,6 +42,38 @@
         return resampled
     end
     export bsresample
+
+    # Bootstrap resample (without uncertainty) a variable to size nrows.
+    # Optionally provide weights in p
+    function randsample(data::Array{<:Number}, nrows::Number; p = min(0.5,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(nrows,size(data,2))
+
+        # Resample
+        i = 1;
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+            else # If only one sample
+                sdata = data
+            end
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return resampled
+    end
+    export randsample
 
 ## --- Bin a dataset by a given independent variable
 
