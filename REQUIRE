@@ -1,4 +1,6 @@
 StatsBase
 Interpolations
-Colors
 HDF5
+Colors
+Plots
+GR

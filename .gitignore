@@ -2,6 +2,7 @@
 *.swp
 *.pdf
 *.jpg
+.ipynb_checkpoints
 
 # Ignore hdf5 files so these don't interfere with updates
 *.h5
