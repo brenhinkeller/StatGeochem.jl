@@ -2,7 +2,7 @@
 
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
-    function bsresample(data::Array{<:Number}, sigma, nrows::Number; p = min(0.5,nrows/size(data,1)))
+    function bsresample(data::Array{<:Number}, sigma, nrows::Number, p = min(0.5,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(nrows,size(data,2))
 
@@ -45,7 +45,7 @@
 
     # Bootstrap resample (without uncertainty) a variable to size nrows.
     # Optionally provide weights in p
-    function randsample(data::Array{<:Number}, nrows::Number; p = min(0.5,nrows/size(data,1)))
+    function randsample(data::Array{<:Number}, nrows::Number, p = min(0.5,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(nrows,size(data,2))
 
@@ -103,7 +103,7 @@
         means = Array{Float64}(nbins,nresamples)
         c = Array{Float64}(nbins)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p=p)
+            dbs = bsresample(data,sigma,length(x),p)
             (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins)
             means[:,i] = m;
         end
