@@ -146,7 +146,7 @@
         out["elements"] = elements
 
         # If first row is all names, don't elementify first row
-        if sum(nonnumeric.(in[1,:]))==size(in,2)
+        if sum(.~isnumeric.(in[1,:]))==size(in,2)
             # Parse the input array
             for i=1:length(elements)
                 if floatout && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
