@@ -1,9 +1,14 @@
 ## --- Load required packages
     using StatGeochem
     using Plots
-
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
+    # Note: melts_configure requires a working alphamelts installation.
+    # If you don't have alphamelts, you'll need to download, install, and
+    # configure it. The absolute path to the alphamelts perl script must be input here:
     meltspath = "/usr/local/bin/run_alphamelts.command"
+
+    # The absolute or relative path to a direcory where you want to run MELTS -
+    # A number of configuration and output files will be written here.
     scratchdir = "scratch/"
 
     # Conditions
@@ -43,5 +48,5 @@
     for m in modes["elements"][4:end]
         plot!(h,modes["Temperature"],modes[m],label=m)
     end
-    plot!(h,xlims=(0,100),framestyle=:box,fg_color_legend=:white,legend=:right)
+    plot!(h,ylims=(0,100),framestyle=:box,fg_color_legend=:white,legend=:topleft)
     display(h)
