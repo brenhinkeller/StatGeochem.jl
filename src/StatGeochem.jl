@@ -24,8 +24,8 @@ module StatGeochem
     using Colors: ColorTypes, N0f8
     include("utilities/Colormaps.jl");
 
+    include("utilities/Geochemistry.jl");
     include("utilities/GIS.jl");
-
     include("utilities/Etc.jl");
 
     using HDF5
