@@ -16,4 +16,5 @@ deps/deps.jl
 
 # Don't include dev tests
 dev/
+scratch/
 test.jl

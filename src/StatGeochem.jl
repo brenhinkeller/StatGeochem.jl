@@ -12,8 +12,9 @@ __precompile__()
 
 module StatGeochem
 
+    include("utilities/System.jl");
     include("utilities/Math.jl");
-    include("utilities/Strings.jl");
+    include("utilities/Import.jl");
 
     using StatsBase: percentile
     using Interpolations: interpolate, Gridded, Linear

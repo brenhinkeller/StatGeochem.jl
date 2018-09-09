@@ -41,6 +41,14 @@
         end
         return resampled
     end
+
+    # Second method for bsresample that takes a dictionary as input
+    function bsresample(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+        data = unelementify(in, elements, floatout=true)
+        sigma = unelementify(in, elements.*"_sigma", floatout=true)
+        sdata = bsresample(data, sigma, nrows, p)
+        return elementify(sdata, elements)
+    end
     export bsresample
 
     # Bootstrap resample (without uncertainty) a variable to size nrows.
@@ -73,8 +81,14 @@
         end
         return resampled
     end
-    export randsample
 
+    # Second method for randsample that takes a dictionary as input
+    function randsample(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+        data = unelementify(in, elements, floatout=true)
+        sdata = randsample(data, nrows, p)
+        return elementify(sdata, elements)
+    end
+    export randsample
 ## --- Bin a dataset by a given independent variable
 
     function binmeans(x,y,min,max,nbins; resamplingratio=1)

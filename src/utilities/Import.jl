@@ -165,4 +165,113 @@
     end
     export delim_string_function
 
+## --- Classifying imported datasets
+
+    # Return true for numbers and strings that can be parsed as numbers
+    function isnumeric(x)
+        if isa(x,Number)
+            return true
+        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+            return true
+        else
+            return false
+        end
+    end
+    export isnumeric
+
+    # Return true for values that are not missing and cannot be parsed as numbers
+    function nonnumeric(x)
+        if isa(x,Number)
+            return false
+        elseif isa(x,AbstractString) && (~isnull(tryparse(Float64,x)) || x == "")
+            return false
+        else
+            return true
+        end
+    end
+    export nonnumeric
+
+## --- Transforming imported datasets
+
+    # Convert to a Float64 if possible, or a Float64 NaN if not.
+    function floatify(x)
+        if isa(x,Number)
+            return Float64(x)
+        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+            return parse(Float64,x)
+        else
+            return NaN
+        end
+    end
+    export floatify
+
+    # Convert a flat array into a dict with each column as a variable
+    function elementify(in::Array, elements=in[1,:]; floatout=true)
+        # Output as dictionary
+        out = Dict()
+        out["elements"] = elements
+
+        # If first row is all names, don't elementify first row
+        if sum(.~isnumeric.(in[1,:]))==size(in,2)
+            # Parse the input array
+            for i=1:length(elements)
+                if floatout && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
+                    out[elements[i]] = floatify.(in[2:end,i])
+                elseif ~(elements[i] == "")
+                    out[elements[i]] = in[2:end,i]
+                end
+            end
+        else
+            # Parse the input array
+            for i=1:length(elements)
+                if floatout && (sum(isnumeric.(in[:,i])) > sum(nonnumeric.(in[:,i])))
+                    out[elements[i]] = floatify.(in[:,i])
+                else
+                    out[elements[i]] = in[:,i]
+                end
+            end
+        end
+        return out
+    end
+    export elementify
+
+    # Convert a dict into a flat array with variables as columns
+    function unelementify(in::Dict, elements=sort(collect(keys(in))); floatout=false, findnumeric=false)
+
+        # Find the elements in the input dict
+        if any(elements .== "elements")
+            elements = in["elements"]
+        end
+
+        # Figure out how many are numeric (if necessary)
+        if findnumeric
+            numericelements = Array{Bool}(length(elements))
+            for i=1:length(elements)
+                numericelements = sum(isnumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
+            end
+            elements = elements[numericelements]
+        end
+
+        if floatout
+            # Allocate output Array{Float64}
+            out=Array{Float64}(length(in[elements[1]]),length(elements))
+
+            # Parse the input dict
+            for i=1:length(elements)
+                out[:,i] = floatify.(in[elements[i]])
+            end
+        else
+            # Allocate output Array{Any}
+            out=Array{Any}(length(in[elements[1]])+1,length(elements))
+
+            # Parse the input dict
+            for i=1:length(elements)
+                out[1,i] = elements[i]
+                out[2:end,i] = in[elements[i]]
+            end
+        end
+        return out
+    end
+    export unelementify
+
 ## --- End of File
