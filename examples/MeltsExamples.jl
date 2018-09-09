@@ -1,10 +1,8 @@
 ## --- Load required packages
-
     using StatGeochem
-    using
+    using Plots
 
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
-
     meltspath = "/usr/local/bin/run_alphamelts.command"
     scratchdir = "scratch/"
 
