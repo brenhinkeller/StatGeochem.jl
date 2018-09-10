@@ -296,7 +296,7 @@
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
     function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
@@ -352,7 +352,7 @@
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
     function perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         P::Number=10000, T_range::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)

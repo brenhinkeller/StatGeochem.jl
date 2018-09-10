@@ -80,38 +80,39 @@
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
-## ---
-
-    # Plot melt composition as a function of melt percent
-
+## --- Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + G_solution_phases, $P bar")
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         plot!(h, melt["wt_pct"], melt[e], label=e)
     end
+    plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"MeltComposition.pdf")
 
-    # Plot melt composition as a function of melt percent
+## --- Plot melt composition as a function of melt percent
     h = plot(xlabel="Magma SIO2 (wt.%)", ylabel="Wt. % in melt", title="melt(G) + G_solution_phases, $P bar")
     for e in ["AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         plot!(h,melt["SIO2"], melt[e], label=e)
     end
+    plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"MeltCompositionvsSiO2.pdf")
 
-    # Plot solid composition as a function of melt percent
+## --- Plot solid composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in solid", title="$melt_model + G_solution_phases, $P bar")
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         plot!(h, melt["wt_pct"], solid[e], label=e)
     end
+    plot!(h,fg_color_legend=:white, framestyle=:box, legend=:topleft)
     # savefig(h,"SolidComposition.pdf")
 
-    # Plot modes of all phases as a function of temperature
-    h = plot(xlabel="T (C)", ylabel="Weight percent", title("$melt_model + G_solution_phases, $P bar")
+## --- Plot modes of all phases as a function of temperature
+    h = plot(xlabel="T (C)", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
     for m in modes["elements"][3:end]
         plot!(h, modes["T(K)"]-273.15, modes[m])
     end
+    plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"PhaseModes.pdf")
 
-    # Plot modes of all phases as a function of melt percent
+## --- Plot modes of all phases as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
     for m in modes["elements"][3:end]
         plot!(h, modes[melt_model], modes[m], label=m)

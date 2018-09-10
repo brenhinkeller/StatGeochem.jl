@@ -206,7 +206,7 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements::Array{String}=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
+    function elementify(in::Array, elements::Array=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
@@ -240,7 +240,7 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements=sort(collect(keys(in))); floatout=false, findnumeric=false)
+    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout=false, findnumeric=false)
 
         # Find the elements in the input dict
         if any(elements .== "elements")
