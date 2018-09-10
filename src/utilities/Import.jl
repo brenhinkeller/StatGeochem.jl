@@ -206,28 +206,32 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements=in[1,in[1,:].!=""]; floatout=true)
+    function elementify(in::Array, elements=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
 
-        # If first row is all names, don't elementify first row
-        if sum(.~isnumeric.(in[1,:]))==size(in,2)
-            # Parse the input array
+        # Parse, ignoring columns with empty names
+        if skipblanks
+            # Parse the input array, minus empty-named columns
             for i=1:length(elements)
-                if floatout && (sum(isnumeric.(in[2:end,i])) > sum(nonnumeric.(in[2:end,i])))
-                    out[elements[i]] = floatify.(in[2:end,i])
-                else
-                    out[elements[i]] = in[2:end,i]
+                if elements[i] .!= ""
+                    thiscolumn = in[(1+skipstart):end,i])
+                    if floatout && (sum(isnumeric.(thiscolumn) > sum(nonnumeric.(thiscolumn)))
+                        out[elements[i]] = floatify.(thiscolumn)
+                    else
+                        out[elements[i]] = thiscolumn
+                    end
                 end
             end
         else
             # Parse the input array
             for i=1:length(elements)
-                if floatout && (sum(isnumeric.(in[:,i])) > sum(nonnumeric.(in[:,i])))
-                    out[elements[i]] = floatify.(in[:,i])
+                thiscolumn = in[(1+skipstart):end,i])
+                if floatout && (sum(isnumeric.(thiscolumn) > sum(nonnumeric.(thiscolumn)))
+                    out[elements[i]] = floatify.(thiscolumn)
                 else
-                    out[elements[i]] = in[:,i]
+                    out[elements[i]] = thiscolumn
                 end
             end
         end

@@ -339,6 +339,7 @@
 
         return 0
     end
+    export perplex_configure_geotherm
 
     """
     perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
@@ -394,6 +395,7 @@
 
         return 0
     end
+    export perplex_configure_isobaric
 
     # Query perplex results at a single pressure on a geotherm. Results are returned
     # as string read from perplex text file output
@@ -426,6 +428,7 @@
         end
         return data
     end
+    export perplex_query_geotherm
 
     # Query perplex seismic results along a geotherm. Results are returned as
     # a dictionary
@@ -457,6 +460,7 @@
         end
         return data
     end
+    export perplex_query_geotherm_seismic
 
     # Query perplex results at a single temperature on an isobar. Results are
     # returned as string.
@@ -489,6 +493,7 @@
         end
         return data
     end
+    export perplex_query_isobar
 
     # Query perplex results for a specified phase along an entire isobar.
     # Results are returned as a dictionary
@@ -518,13 +523,14 @@
             data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
-                elements = replace(elements, ",%", "_pct") # substutue _pct for ,% in column names
-                elements = replace(elements, ",wt%", "") # Remove units on major oxides
+                elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names
+                elements = replace.(elements, ",wt%", "") # Remove units on major oxides
             end
             data = elementify(data,elements)
         end
         return data
     end
+    export perplex_query_isobar_phase
 
     # Query modal mineralogy along a given isobar. Results are returned as a
     # dictionary
@@ -556,6 +562,7 @@
         end
         return data
     end
+    export perplex_query_isobar_modes
 
     # Query calculated system properties along an entire isobar. Results are
     # returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
@@ -585,12 +592,13 @@
             data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
-                elements = replace(elements, ",%", "_pct") # substutue _pct for ,% in column names
-                elements = replace(elements, ",wt%", "") # Remove units on major oxides
+                elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names
+                elements = replace.(elements, ",wt%", "") # Remove units on major oxides
             end
             data = elementify(data,elements)
         end
         return data
     end
+    export perplex_query_isobar_system
 
 ## --- End of File

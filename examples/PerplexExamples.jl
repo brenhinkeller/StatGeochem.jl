@@ -76,8 +76,8 @@
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
     solid["wt_pct"] = 100 - melt["wt_pct"]
-    for e in elements
-        solid[e] = (bulk[e] - (melt[e] * melt["wt_pct"]/100)) / (solid["wt_pct"]/100)
+    for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
+        solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
 ## ---
