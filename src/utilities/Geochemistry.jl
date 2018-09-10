@@ -285,12 +285,22 @@
 ## -- Perplex interface
 
     """
-    configure_geotherm(perplexdir, scratchdir, composition, elements = ["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"], index = 1, P_range = [280,28000], T_surf = 273.15, geotherm = 0.1, dataset = "hp02ver.dat", solution_phases = "O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n", excludes = "ts\nparg\ngl\nged\nfanth\ng\n")
+    perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
+
     Set up a PerpleX calculation for a single bulk composition along a specified
     geothermal gradient and pressure (depth) range. P specified in bar and T_surf
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
-    function perplex_configure_geotherm(perplexdir, scratchdir, composition, elements = ["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"], index = 1, P_range = [280,28000], T_surf = 273.15, geotherm = 0.1, dataset = "hp02ver.dat", solution_phases = "O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n", excludes = "ts\nparg\ngl\nged\nfanth\ng\n")
+    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
+
         build = perplexdir * "build" # path to PerpleX build
         vertex = perplexdir * "vertex" # path to PerpleX vertex
 
@@ -331,11 +341,21 @@
     end
 
     """
-    configure_isobaric(perplexdir, scratchdir, composition, elements = ["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"], index = 1, P = 10000, T_range = [500+273.15, 1500+273.15], dataset = "hp11ver.dat", solution_phases = "O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n", excludes = "ts\nparg\ngl\nged\nfanth\ng\n")
+    perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+        P::Number=10000, T_range::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
+
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
-    function perplex_configure_isobaric(perplexdir, scratchdir, composition, elements = ["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"], index = 1, P = 10000, T_range = [500+273.15, 1500+273.15], dataset = "hp11ver.dat", solution_phases = "O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n", excludes = "ts\nparg\ngl\nged\nfanth\ng\n")
+    function perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        P::Number=10000, T_range::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
+
         build = perplexdir * "build" # path to PerpleX build
         vertex = perplexdir * "vertex" # path to PerpleX vertex
 
@@ -377,7 +397,7 @@
 
     # Query perplex results at a single pressure on a geotherm. Results are returned
     # as string read from perplex text file output
-    function perplex_query_geotherm(perplexdir, scratchdir, index::Int, P::Number)
+    function perplex_query_geotherm(perplexdir::String, scratchdir::String, P::Number; index::Int=1)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -409,7 +429,7 @@
 
     # Query perplex seismic results along a geotherm. Results are returned as
     # a dictionary
-    function perplex_query_geotherm_seismic(perplexdir, scratchdir, index::Int=1, P_range::Array{<:Number}=[284.2, 28420], npoints::Int=100)
+    function perplex_query_geotherm_seismic(perplexdir::String, scratchdir::String, P_range::Array{<:Number}=[284.2, 28420], npoints::Int=100; index::Int=1)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -440,7 +460,7 @@
 
     # Query perplex results at a single temperature on an isobar. Results are
     # returned as string.
-    function perplex_query_isobar(perplexdir, scratchdir, index::Int, T::Number)
+    function perplex_query_isobar(perplexdir::String, scratchdir::String, T::Number; index::Int=1)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -472,7 +492,7 @@
 
     # Query perplex results for a specified phase along an entire isobar.
     # Results are returned as a dictionary
-    function perplex_query_isobar_phase(perplexdir, scratchdir, index::Int, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)", include_fluid="y", clean_units=true)
+    function perplex_query_isobar_phase(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)"; index::Int=1, include_fluid="y", clean_units=true)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -496,19 +516,19 @@
         data = Dict()
         try
             data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
-            data = elementify(data)
+            elements = data[1,:]
             if clean_units
-                # data.columns = [cn.replace(",%","_pct") for cn in data.columns] # substutue _pct for ,% in column names
-                # data.columns =  [re.sub(",.*","",cn) for cn in data.columns] # Remove units from column names
-                # data.columns =  [re.sub("[{}]","",cn) for cn in data.columns] # Remove unnecessary {} from isochemical seismic derivatives
+                elements = replace(elements, ",%", "_pct") # substutue _pct for ,% in column names
+                elements = replace(elements, ",wt%", "") # Remove units on major oxides
             end
+            data = elementify(data,elements)
         end
         return data
     end
 
     # Query modal mineralogy along a given isobar. Results are returned as a
     # dictionary
-    function perplex_query_isobar_modes(perplexdir, scratchdir, index::Int=1, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, include_fluid="y")
+    function perplex_query_isobar_modes(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1, include_fluid="y")
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -539,7 +559,7 @@
 
     # Query calculated system properties along an entire isobar. Results are
     # returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
-    function perplex_query_isobar_system(perplexdir, scratchdir, index::Int=1, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, include_fluid="y", clean_units=true)
+    function perplex_query_isobar_system(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1, include_fluid="y", clean_units=true)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -563,12 +583,12 @@
         data = Dict()
         try
             data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
-            data = elementify(data)
+            elements = data[1,:]
             if clean_units
-                # data.columns = [cn.replace(",%","_pct") for cn in data.columns] # substutue _pct for ,% in column names
-                # data.columns =  [re.sub(",.*","",cn) for cn in data.columns] # Remove units from column names
-                # data.columns =  [re.sub("[{}]","",cn) for cn in data.columns] # Remove unnecessary {} from isochemical seismic derivatives
+                elements = replace(elements, ",%", "_pct") # substutue _pct for ,% in column names
+                elements = replace(elements, ",wt%", "") # Remove units on major oxides
             end
+            data = elementify(data,elements)
         end
         return data
     end
