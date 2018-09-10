@@ -206,7 +206,7 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
+    function elementify(in::Array, elements::Array{String}=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
@@ -217,7 +217,7 @@
             for i=1:length(elements)
                 if elements[i] .!= ""
                     thiscolumn = in[(1+skipstart):end,i]
-                    if floatout && (sum(isnumeric.(thiscolumn) > sum(nonnumeric.(thiscolumn)))
+                    if floatout && (sum(isnumeric.(thiscolumn)) > sum(nonnumeric.(thiscolumn)))
                         out[elements[i]] = floatify.(thiscolumn)
                     else
                         out[elements[i]] = thiscolumn
@@ -227,8 +227,8 @@
         else
             # Parse the input array
             for i=1:length(elements)
-                thiscolumn = in[(1+skipstart):end,i])
-                if floatout && (sum(isnumeric.(thiscolumn) > sum(nonnumeric.(thiscolumn)))
+                thiscolumn = in[(1+skipstart):end,i]
+                if floatout && (sum(isnumeric.(thiscolumn)) > sum(nonnumeric.(thiscolumn)))
                     out[elements[i]] = floatify.(thiscolumn)
                 else
                     out[elements[i]] = thiscolumn
