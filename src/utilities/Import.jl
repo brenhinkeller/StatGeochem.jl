@@ -216,7 +216,7 @@
             # Parse the input array, minus empty-named columns
             for i=1:length(elements)
                 if elements[i] .!= ""
-                    thiscolumn = in[(1+skipstart):end,i])
+                    thiscolumn = in[(1+skipstart):end,i]
                     if floatout && (sum(isnumeric.(thiscolumn) > sum(nonnumeric.(thiscolumn)))
                         out[elements[i]] = floatify.(thiscolumn)
                     else
