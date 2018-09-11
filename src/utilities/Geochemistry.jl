@@ -414,7 +414,7 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.txt")
+        system("rm -f $(prefix)$(index)_1.txt")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
@@ -422,7 +422,7 @@
         # Read results and return them if possible
         data = ""
         try
-            fp = open("$prefix$(index)_1.txt", "r")
+            fp = open("$(prefix)$(index)_1.txt", "r")
             data = read(fp)
             close(fp)
         end
@@ -442,20 +442,20 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
         try
-            data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             data = elementify(data)
         end
         return data
@@ -479,7 +479,7 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.txt")
+        system("rm -f $(prefix)$(index)_1.txt")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
@@ -487,7 +487,7 @@
         # Read results and return them if possible
         data = ""
         try
-            fp = open("$prefix$(index)_1.txt", "r")
+            fp = open("$(prefix)$(index)_1.txt", "r")
             data = read(fp, String)
             close(fp)
         end
@@ -510,20 +510,20 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
         try
-            data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
                 elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names
@@ -547,20 +547,20 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
         try
-            data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             data = elementify(data)
         end
         return data
@@ -582,20 +582,20 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $prefix$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)1_1.tab")
+        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
         try
-            data = readdlm("$prefix$(index)_1.tab", ' ', skipstart=8)
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
                 elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names

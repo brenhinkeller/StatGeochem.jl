@@ -1,6 +1,6 @@
 ################################################################################
-# Run the same isobaric Perplex calculation with different solution models
-# to compare results
+# Use the Julia-PerpleX interface to run the same isobaric Perplex calculation
+# with different solution models to compare results
 
 ## --- Import some useful packages
     using StatGeochem
@@ -257,7 +257,7 @@
     plot!(h,fg_color_legend=:white, framestyle=:box, legend=:topleft)
     savefig(h,"Perplex_SolidTest_W.pdf")
 
-#%% # # # # # # # # # # # melt(W) + G_solution_phases # # # # # # # # # # # # # #
+## --- # # # # # # # # # # melt(W) + G_solution_phases # # # # # # # # # # # # #
 
     # Input parameters
     P = 10000 # bar
