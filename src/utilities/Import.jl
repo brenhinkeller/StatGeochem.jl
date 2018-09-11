@@ -206,33 +206,23 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements::Array=in[1,:]; floatout=true, skipstart=1, skipblanks=true)
+    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
         # Output as dictionary
         out = Dict()
         out["elements"] = elements
 
-        # Parse, ignoring columns with empty names
-        if skipblanks
-            # Parse the input array, minus empty-named columns
-            for i=1:length(elements)
-                if elements[i] .!= ""
-                    thiscolumn = in[(1+skipstart):end,i]
-                    if floatout && (sum(isnumeric.(thiscolumn)) > sum(nonnumeric.(thiscolumn)))
-                        out[elements[i]] = floatify.(thiscolumn)
-                    else
-                        out[elements[i]] = thiscolumn
-                    end
-                end
-            end
-        else
-            # Parse the input array
-            for i=1:length(elements)
-                thiscolumn = in[(1+skipstart):end,i]
-                if floatout && (sum(isnumeric.(thiscolumn)) > sum(nonnumeric.(thiscolumn)))
-                    out[elements[i]] = floatify.(thiscolumn)
-                else
-                    out[elements[i]] = thiscolumn
-                end
+        # Parse the input array, minus empty-named columns
+        for i=1:length(elements)
+            thiscol = in[(1+skipstart):end,i]
+            floatcol = floatout && ( sum(isnumeric.(thiscol)) > sum(nonnumeric.(thiscol)) )
+            includecol = ~skipnameless || (elements[i] .!= "")
+
+            if haskey(out,elements[i]) && floatcol && includecol
+                out[elements[i]] = nanmean.( hcat( floatify.(out[elements[i]]), floatify.(thiscol) ) )
+            elseif floatcol && includecol
+                out[elements[i]] = floatify.(thiscol)
+            elseif includecol
+                out[elements[i]] = thiscolumn
             end
         end
         return out
@@ -240,7 +230,7 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout=false, findnumeric=false)
+    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::bool=false)
 
         # Find the elements in the input dict
         if any(elements .== "elements")

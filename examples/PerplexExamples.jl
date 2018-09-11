@@ -55,7 +55,7 @@
     melt_model = "melt(G)"
 
     # Configure (run build and vertex)
-    @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, "hp11ver.dat", melt_model*"\n"*G_solution_phases, G_excludes)
+    @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases=melt_model*"\n"*G_solution_phases, excludes=G_excludes)
 
 ## ---
 
@@ -107,7 +107,7 @@
 ## --- Plot modes of all phases as a function of temperature
     h = plot(xlabel="T (C)", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
     for m in modes["elements"][3:end]
-        plot!(h, modes["T(K)"]-273.15, modes[m])
+        plot!(h, modes["T(K)"]-273.15, modes[m], label=m)
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"PhaseModes.pdf")
@@ -117,6 +117,7 @@
     for m in modes["elements"][3:end]
         plot!(h, modes[melt_model], modes[m], label=m)
     end
+    plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"PhaseModesvsF.pdf")
 
 ## --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
@@ -128,7 +129,7 @@
     melt_model = "melt(G)"
 
     # Configure (run build and vertex)
-    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm, "hp11ver.dat", melt_model*"\n"*G_solution_phases, G_excludes)
+    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm, dataset="hp11ver.dat", solution_phases=melt_model*"\n"*G_solution_phases, excludes=G_excludes)
 
     # Query seismic properties along the whole geotherm
     geotherm_sesimic = perplex_query_geotherm_seismic(perplexdir, scratchdir, P_range, 100)
