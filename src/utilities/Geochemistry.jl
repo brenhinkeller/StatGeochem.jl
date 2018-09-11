@@ -1,7 +1,7 @@
 ## --- Hafnium isotopes
 
     # Calculate the initial Hf ratio and epsilon Hf at time t Ma
-    function eHf(Hf176_Hf177, Lu176_Hf177, t; eHfOnly=true)
+    function eHf(Hf176_Hf177, Lu176_Hf177, t; eHfOnly::Bool=true)
 
         # Lutetium decay constant (Soderlund et al., 2004
         lambda = 1.867E-11
@@ -55,7 +55,7 @@
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids=false,verbose=true)
+        fractionatesolids::Bool=false,verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
@@ -497,7 +497,10 @@
 
     # Query perplex results for a specified phase along an entire isobar.
     # Results are returned as a dictionary
-    function perplex_query_isobar_phase(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)"; index::Int=1, include_fluid="y", clean_units=true)
+    function perplex_query_isobar_phase(perplexdir::String, scratchdir::String,
+        T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)"; index::Int=1,
+        include_fluid="y", clean_units::Bool=true)
+
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
@@ -566,7 +569,10 @@
 
     # Query calculated system properties along an entire isobar. Results are
     # returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
-    function perplex_query_isobar_system(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1, include_fluid="y", clean_units=true)
+    function perplex_query_isobar_system(perplexdir::String, scratchdir::String,
+        T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1,
+        include_fluid="y", clean_units::Bool=true)
+
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 

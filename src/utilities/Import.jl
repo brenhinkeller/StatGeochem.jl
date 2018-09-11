@@ -1,17 +1,17 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(parsed::Array, str::AbstractString, delim::Char, parseType::Type; offset=0, merge=false)
+    function delim_string_parse!(parsed::Array, str::AbstractString, delim::Char, parseType::Type; offset::Int=0, merge::Bool=false)
 
         # Ignore initial delimiter
-        last_delim_pos=0;
+        last_delim_pos = 0
         if str[1]==delim
-            last_delim_pos=1;
+            last_delim_pos = 1
         end
 
         # Cycle through string parsing text betweeen delims
-        delim_pos=0;
-        n = offset;
+        delim_pos = 0
+        n = offset
         if merge
             for i=1:length(str)
                 if str[i] == delim
@@ -103,7 +103,7 @@
     end
     export delim_string_parse
 
-    function delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
+    function delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge::Bool=false)
         # parsed = delim_string(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
 
         # Max number of delimted values
@@ -233,7 +233,7 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::bool=false)
+    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false)
 
         # Find the elements in the input dict
         if any(elements .== "elements")
