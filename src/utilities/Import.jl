@@ -214,14 +214,17 @@
         # Parse the input array, minus empty-named columns
         for i=1:length(elements)
             thiscol = in[(1+skipstart):end,i]
-            floatcol = floatout && ( sum(isnumeric.(thiscol)) > sum(nonnumeric.(thiscol)) )
+            floatcol = floatout && ( sum(isnumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
             includecol = ~skipnameless || (elements[i] .!= "")
 
-            if haskey(out,elements[i]) && floatcol && includecol
+            if haskey(out,elements[i]) && ( sum(isnumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol)) ) && floatcol && includecol
+                # If key already exists and is numeric
                 out[elements[i]] = nanmean.( hcat( floatify.(out[elements[i]]), floatify.(thiscol) ) )
             elseif floatcol && includecol
+                # If key is numeric
                 out[elements[i]] = floatify.(thiscol)
             elseif includecol
+                # If key is non-numeric
                 out[elements[i]] = thiscolumn
             end
         end
