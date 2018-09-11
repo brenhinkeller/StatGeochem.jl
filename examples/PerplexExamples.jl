@@ -1,18 +1,16 @@
+################################################################################
 # A few PerpleX calculation examples using the Julia-Perplex interface
 
 ## --- Import some useful packages
-
     using StatGeochem
     using Plots
 
 ## --- Configure
-
     # Absolute paths to perplex resources
     perplexdir = "/Users/cbkeller/Applications/perplex-stable/" # Location of executables and solution models to use
     scratchdir = "./scratch/" # Location of directory to store output files
 
 ## --- # # # # # # # # # # # # # Initial composition # # # # # # # # # # # # # #
-
     ## McDonough Pyrolite
     #elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO",  "MNO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
     #composition = [45.1242, 0.2005, 4.4623, 8.0723, 0.1354, 37.9043, 3.5598, 0.3610, 0.0291, 0.1511, 0.0440,]
@@ -30,7 +28,6 @@
     #composition = [49.2054, 0.8401, 12.0551, 11.4018, 0.2198, 12.3997, 9.3113, 1.6549, 0.4630, 1.8935, 0.5555,]
 
 ## --- # # # # # # # # # # # Some solution model options # # # # # # # # # # # #
-
     # Emphasis on phases from Green (2016) -- developed for metabasites, includes what is probably the best (and most expensive) amphibole model. Use with hp11ver.dat
     G_solution_phases = "Augite(G)\nOpx(JH)\ncAmph(G)\noAmph(DP)\nO(JH)\nSp(JH)\nGrt(JH)\nfeldspar_B\nMica(W)\nBio(TCC)\nChl(W)\nCtd(W)\nCrd(W)\nSa(WP)\nSt(W)\nIlm(WPH)\nAtg(PN)\nT\nB\nF\nDo(HP)\nScap\nChum\nNeph(FB)\n"
     G_excludes ="ged\nfanth\ngl\n"
@@ -57,16 +54,12 @@
     # Configure (run build and vertex)
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases=melt_model*"\n"*G_solution_phases, excludes=G_excludes)
 
-## ---
-
-    # Query all properties at a single temperature -- results returned as text
+## --- Query all properties at a single temperature -- results returned as text
     T = 1450+273.15
     data_isobaric = perplex_query_isobar(perplexdir, scratchdir, T)
     print(data_isobaric)
 
-## ---
-
-    # Query the full isobar -- results returned as pandas DataFrames
+## --- Query the full isobar -- results returned as pandas DataFrames
     T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
     npoints = T_range_inc[2] - T_range_inc[1] + 1
     bulk = perplex_query_isobar_system(perplexdir, scratchdir, T_range_inc, npoints)             # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
@@ -81,15 +74,15 @@
     end
 
 ## --- Plot melt composition as a function of melt percent
-    h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + G_solution_phases, $P bar")
+    h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="$melt_model + G_solution_phases, $P bar")
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         plot!(h, melt["wt_pct"], melt[e], label=e)
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"MeltComposition.pdf")
 
-## --- Plot melt composition as a function of melt percent
-    h = plot(xlabel="Magma SIO2 (wt.%)", ylabel="Wt. % in melt", title="melt(G) + G_solution_phases, $P bar")
+## --- Plot melt composition as a function of melt SiO2
+    h = plot(xlabel="Magma SIO2 (wt.%)", ylabel="Wt. % in melt", title="$melt_model + G_solution_phases, $P bar")
     for e in ["AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         plot!(h,melt["SIO2"], melt[e], label=e)
     end
