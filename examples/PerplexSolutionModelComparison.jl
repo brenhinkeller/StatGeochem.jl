@@ -44,7 +44,7 @@
 
     # Emphasis on phases from Holland and Powell -- all phases can be used with hp02ver.dat.
     HP_solution_phases = "Omph(HP)\nOpx(HP)\nGlTrTsPg\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nChl(HP)\nCtd(HP)\nSapp(HP)\nSt(HP)\nIlHm(A)\nDo(HP)\nT\nB\nF\n"
-    HP_excludes = ""
+    HP_excludes = "";
 
 ## --- # # # # # # # # # # melt(G) + G_solution_phases # # # # # # # # # # # # #
 
@@ -52,6 +52,7 @@
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
     idx = 1
+    print("melt(G) + G_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*G_solution_phases, excludes=G_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -93,6 +94,7 @@
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
     idx = 2
+    print("melt(G) + W_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*W_solution_phases, excludes=W_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -135,6 +137,7 @@
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
     idx = 3
+    print("melt(G) + JH_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -176,6 +179,7 @@
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
     idx = 4
+    print("pMELTS(G) + JH_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp02ver.dat", solution_phases="pMELTS(G)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -216,7 +220,8 @@
     # Input parameters
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
-    idx = 2
+    idx = 5
+    print("melt(W) + W_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*W_solution_phases, excludes=W_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -257,7 +262,8 @@
     # Input parameters
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
-    idx = 1
+    idx = 6
+    print("melt(W) + G_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*G_solution_phases, excludes=G_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
@@ -298,7 +304,8 @@
     # Input parameters
     P = 10000 # bar
     T_range = [500+273.15, 1500+273.15]
-    idx = 1
+    idx = 7
+    print("melt(W) + JH_solution_phases\n")
     @time perplex_configure_isobaric(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
