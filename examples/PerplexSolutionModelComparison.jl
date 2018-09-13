@@ -112,7 +112,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + W")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + W")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + W_solution_phases, $P bar")
@@ -155,7 +155,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + JH")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + JH_solution_phases, $P bar")
@@ -197,7 +197,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="pMELTS(G) + JH")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="pMELTS(G) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="pMELTS(G) + JH_solution_phases, $P bar")
@@ -239,7 +239,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + W")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + W")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + W_solution_phases, $P bar")
@@ -281,7 +281,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + G")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + G")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + G_solution_phases, $P bar")
@@ -323,7 +323,7 @@
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + JH")
+    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + JH_solution_phases, $P bar")
@@ -343,7 +343,7 @@
 
 ## --- Format melt comparison
 
-    plot!(h0,fg_color_legend=:white)
+    plot!(h0,fg_color_legend=:white,legend=:topleft)
     display(h0)
     savefig(h0,"Perplex_T-F_comparison.pdf")
 
