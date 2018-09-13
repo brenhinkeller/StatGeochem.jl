@@ -24,8 +24,7 @@
         end
         return wx, wsigma, mswd
     end
-    const wmean = awmean # alias
-    export wmean, awmean
+    export awmean
 
 
     function gwmean(x, sigma)

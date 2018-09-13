@@ -168,7 +168,7 @@
 ## --- Classifying imported datasets
 
     # Return true for numbers and strings that can be parsed as numbers
-    function isnumeric(x)
+    function plausiblynumeric(x)
         if isa(x,Number)
             return true
         elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
@@ -177,7 +177,7 @@
             return false
         end
     end
-    export isnumeric
+    export plausiblynumeric
 
     # Return true for values that are not missing and cannot be parsed as numbers
     function nonnumeric(x)
@@ -214,10 +214,10 @@
         # Parse the input array, minus empty-named columns
         for i=1:length(elements)
             thiscol = in[(1+skipstart):end,i]
-            floatcol = floatout && ( sum(isnumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
+            floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
             includecol = ~skipnameless || (elements[i] .!= "")
 
-            if haskey(out,elements[i]) && ( sum(isnumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol)) ) && floatcol && includecol
+            if haskey(out,elements[i]) && ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol)) ) && floatcol && includecol
                 # If key already exists and is numeric
                 out[elements[i]] = nanmean.( hcat( floatify.(out[elements[i]]), floatify.(thiscol) ) )
             elseif floatcol && includecol
@@ -244,7 +244,7 @@
         if findnumeric
             numericelements = Array{Bool}(length(elements))
             for i=1:length(elements)
-                numericelements = sum(isnumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
+                numericelements = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
             end
             elements = elements[numericelements]
         end

@@ -207,14 +207,17 @@
     # Get melts results, return as string
     function melts_query(scratchdir::String; index=1)
         prefix = scratchdir*"out$index/" # path to data files
-        data = ""
 
         # Read results and return them if possible
+        data = ""
         try
-            # Returns results as text string
+            # Read entire output file as a string
             fp = open(prefix*"Phase_main_tbl.txt", "r")
             data = read(fp,String)
             close(fp)
+        catch
+            # Return empty string if file doesn't exist
+            data = ""
         end
         return data
     end
@@ -223,12 +226,17 @@
     # Get modal phase proportions, return as elementified dictionary
     function melts_query_modes(scratchdir::String; index=1)
         prefix = scratchdir*"out$index/" # path to data files
-        data = Dict()
 
         # Read results and return them if possible
+        data = Dict()
         try
+            # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
+            # Convert to a dictionary
             data = elementify(data,floatout=true)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -237,14 +245,17 @@
     # Get liquid composition, return as elementified dictionary
     function melts_query_liquid(scratchdir::String; index=1)
         prefix = scratchdir*"out$index/" # path to data files
-        data = Dict()
 
         # Read results and return them if possible
+        data = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -253,14 +264,17 @@
     # Read solid composition, return as elementified dictionary
     function melts_query_solid(scratchdir::String; index=1)
         prefix = scratchdir*"out$index/" # path to data files
-        data = Dict()
 
         # Read results and return them if possible
+        data = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -269,14 +283,17 @@
     # Read system thermodynamic data, return as elementified dictionary
     function melts_query_system(scratchdir::String; index=1)
         prefix = scratchdir*"out$index/" # path to data files
-        data = Dict()
 
         # Read results and return them if possible
+        data = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -422,9 +439,13 @@
         # Read results and return them if possible
         data = ""
         try
+            # Read entire output file as a string
             fp = open("$(prefix)$(index)_1.txt", "r")
             data = read(fp)
             close(fp)
+        catch
+            # Return empty string if file doesn't exist
+            data = ""
         end
         return data
     end
@@ -455,8 +476,13 @@
         # Read results and return them if possible
         data = Dict()
         try
+            # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
             data = elementify(data)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -487,9 +513,13 @@
         # Read results and return them if possible
         data = ""
         try
+            # Read entire output file as a string
             fp = open("$(prefix)$(index)_1.txt", "r")
             data = read(fp, String)
             close(fp)
+        catch
+            # Return empty string if file doesn't exist
+            data = ""
         end
         return data
     end
@@ -523,13 +553,18 @@
         # Read results and return them if possible
         data = Dict()
         try
+            # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
                 elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names
                 elements = replace.(elements, ",wt%", "") # Remove units on major oxides
             end
+            # Convert to a dictionary
             data = elementify(data,elements)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -560,8 +595,13 @@
         # Read results and return them if possible
         data = Dict()
         try
+            # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
             data = elementify(data)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
@@ -595,13 +635,18 @@
         # Read results and return them if possible
         data = Dict()
         try
+            # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
                 elements = replace.(elements, ",%", "_pct") # substutue _pct for ,% in column names
                 elements = replace.(elements, ",wt%", "") # Remove units on major oxides
             end
+            # Convert to a dictionary
             data = elementify(data,elements)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
         end
         return data
     end
