@@ -32,10 +32,10 @@
         nlat=180;
 
         # Allocate data arrays
-        vp = Array{Float64,3}(nlayers,nlat,nlon)
-        vs = Array{Float64,3}(nlayers,nlat,nlon)
-        rho = Array{Float64,3}(nlayers,nlat,nlon)
-        bnd = Array{Float64,3}(nlayers,nlat,nlon)
+        vp = Array{Float64,3}(undef,nlayers,nlat,nlon)
+        vs = Array{Float64,3}(undef,nlayers,nlat,nlon)
+        rho = Array{Float64,3}(undef,nlayers,nlat,nlon)
+        bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
         vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
@@ -68,10 +68,10 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        vpout = Array{Float64}(size(lat));
-        vsout = Array{Float64}(size(lat));
-        rhoout = Array{Float64}(size(lat));
-        thkout = Array{Float64}(size(lat));
+        vpout = Array{Float64}(undef,size(lat));
+        vsout = Array{Float64}(undef,size(lat));
+        rhoout = Array{Float64}(undef,size(lat));
+        thkout = Array{Float64}(undef,size(lat));
 
         # Fill output arrays
         for j=1:length(lat)
@@ -122,9 +122,9 @@
         nlat=180;
 
         # Allocate data arrays
-        vp = Array{Float64,3}(nlayers,nlat,nlon)
-        vs = Array{Float64,3}(nlayers,nlat,nlon)
-        rho = Array{Float64,3}(nlayers,nlat,nlon)
+        vp = Array{Float64,3}(undef,nlayers,nlat,nlon)
+        vs = Array{Float64,3}(undef,nlayers,nlat,nlon)
+        rho = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
         vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
@@ -154,9 +154,9 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        vpout = Array{Float64}(size(lat));
-        vsout = Array{Float64}(size(lat));
-        rhoout = Array{Float64}(size(lat));
+        vpout = Array{Float64}(undef,size(lat));
+        vsout = Array{Float64}(undef,size(lat));
+        rhoout = Array{Float64}(undef,size(lat));
 
         # Fill output arrays
         for j=1:length(lat)
@@ -204,7 +204,7 @@
         nlat=180;
 
         # Allocate data arrays
-        bnd = Array{Float64,3}(nlayers,nlat,nlon)
+        bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
         bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
@@ -228,7 +228,7 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        thkout = Array{Float64}(size(lat));
+        thkout = Array{Float64}(undef,size(lat));
 
         # Fill output arrays
         for j=1:length(lat)
@@ -271,7 +271,7 @@
         nlat=180;
 
         # Allocate data arrays
-        bnd = Array{Float64,3}(nlayers,nlat,nlon)
+        bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
         bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
@@ -295,7 +295,7 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        baseout = Array{Float64}(size(lat));
+        baseout = Array{Float64}(undef,size(lat));
 
         # Fill output arrays
         for j=1:length(lat)
@@ -355,7 +355,7 @@
         maxcol = 360 * sf
 
         # Create and fill output vector
-        out=Array{Float64}(size(lat));
+        out=Array{Float64}(undef,size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
@@ -423,7 +423,7 @@
         sf = 240
 
         # Create and fill output vector
-        out=Array{Float64}(size(lat));
+        out=Array{Float64}(undef,size(lat));
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
@@ -490,7 +490,7 @@
         y = 4320 - floor.(Int, 8640 * asinh.(tan.(lat*pi/180)) / asinh.(tan.(80.738*pi/180)) / 2 ) + 1
 
         # Make and fill output array
-        out=Array{Float64}(size(x));
+        out=Array{Float64}(undef,size(x));
         for i=1:length(x)
             # If there is out data for row(i), col(i)
             if isnan(x[i]) || isnan(y[i]) || x[i]<1 || x[i]>10800 || y[i]<1 || y[i]>8640

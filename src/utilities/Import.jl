@@ -53,7 +53,7 @@
 
     # Parse a delimited string, return an array as output
     function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge=false)
-        parsed = Array{parseType}(ceil(Int,length(str)/2));
+        parsed = Array{parseType}(undef,ceil(Int,length(str)/2));
 
         # Ignore initial delimiter
         last_delim_pos=0;
@@ -115,7 +115,7 @@
         end
 
         # Allocate output array
-        parsed = Array{outType}(ceil(Int,ndelims));
+        parsed = Array{outType}(undef,ceil(Int,ndelims));
 
         # Ignore initial delimiter
         last_delim_pos=0;
@@ -242,7 +242,7 @@
 
         # Figure out how many are numeric (if necessary)
         if findnumeric
-            numericelements = Array{Bool}(length(elements))
+            numericelements = Array{Bool}(undef,length(elements))
             for i=1:length(elements)
                 numericelements = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
             end
@@ -251,7 +251,7 @@
 
         if floatout
             # Allocate output Array{Float64}
-            out=Array{Float64}(length(in[elements[1]]),length(elements))
+            out=Array{Float64}(undef,length(in[elements[1]]),length(elements))
 
             # Parse the input dict
             for i=1:length(elements)
@@ -259,7 +259,7 @@
             end
         else
             # Allocate output Array{Any}
-            out=Array{Any}(length(in[elements[1]])+1,length(elements))
+            out=Array{Any}(undef,length(in[elements[1]])+1,length(elements))
 
             # Parse the input dict
             for i=1:length(elements)

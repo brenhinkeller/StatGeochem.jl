@@ -15,7 +15,7 @@
         nrows = metadata["nrows"];
         ncols = metadata["ncols"];
 
-        data = Array{Int16}(ncols,nrows)
+        data = Array{Int16}(undef,ncols,nrows)
         for i=1:nrows
             l = readline(f);
             delim_string_parse!(data, l, ' ', Int16, offset=(i-1)*ncols);
@@ -34,7 +34,7 @@
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
-        slope = Array{UInt16}(size(matrix))
+        slope = Array{UInt16}(undef,size(matrix))
 
         # Average size of a degree on Earth
         km_per_lat = 111.1;
@@ -202,9 +202,9 @@
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
-        distance = Array{Float64}(8);
-        local_slopes = Array{Float64}(8);
-        slope = Array{UInt16}(size(matrix))
+        distance = Array{Float64}(undef,8)
+        local_slopes = Array{Float64}(undef,8)
+        slope = Array{UInt16}(undef,size(matrix))
 
         # Index offsets to cycle through:
         #         [N,NE,E,SE,S,SW,W,NW]

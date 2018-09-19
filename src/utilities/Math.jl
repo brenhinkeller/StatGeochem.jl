@@ -154,8 +154,8 @@
         row_inrange = find((grid_y .>= ymin) .& (grid_y .<= ymax))
 
         # Keep a list of matrix indexes in the polygon
-        row = Array{Int}(length(column_inrange) * length(row_inrange))
-        column = Array{Int}(length(column_inrange) * length(row_inrange))
+        row = Array{Int}(undef,length(column_inrange) * length(row_inrange))
+        column = Array{Int}(undef,length(column_inrange) * length(row_inrange))
         n = 0
         for j = 1:length(column_inrange)
             for i = 1:length(row_inrange)

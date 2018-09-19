@@ -12,6 +12,9 @@ __precompile__()
 
 module StatGeochem
 
+    # Backwards compatibility
+    using Compat
+
     include("utilities/System.jl");
     include("utilities/Math.jl");
     include("utilities/Import.jl");

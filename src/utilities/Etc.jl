@@ -15,10 +15,10 @@
         ylims = collect(ylims)
 
         # Allocate index arrays
-        imin = Array{Float64}(round(Int,xrows/2))
-        imax = Array{Float64}(round(Int,xrows/2))
-        jmin = Array{Float64}(round(Int,xrows/2))
-        jmax = Array{Float64}(round(Int,xrows/2))
+        imin = Array{Float64}(undef,round(Int,xrows/2))
+        imax = Array{Float64}(undef,round(Int,xrows/2))
+        jmin = Array{Float64}(undef,round(Int,xrows/2))
+        jmax = Array{Float64}(undef,round(Int,xrows/2))
 
         # Fill index arrays
         found = false;

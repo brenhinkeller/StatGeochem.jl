@@ -60,13 +60,13 @@
     function pctile(A,p;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = percentile(A[i,t],p);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = percentile(A[t,i],p);
@@ -81,13 +81,13 @@
     function nansum(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = sum(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = sum(A[t,i]);
@@ -104,13 +104,13 @@
     function nanminimum(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = minimum(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = minimum(A[t,i]);
@@ -127,13 +127,13 @@
     function nanmaximum(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = maximum(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = maximum(A[t,i]);
@@ -150,14 +150,14 @@
     function nanrange(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 extr = extrema(A[i,t]);
                 out[i] = extr[2] - extr[1]
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 extr = extrema(A[t,i]);
@@ -176,13 +176,13 @@
     function nanmean(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = mean(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = mean(A[t,i]);
@@ -199,13 +199,13 @@
     function nanstd(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = std(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = std(A[t,i]);
@@ -222,13 +222,13 @@
     function nanmedian(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = median(A[i,t]);
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = median(A[t,i]);
@@ -246,13 +246,13 @@
     function nanmad(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = median(abs.( A[i,t] - median(A[i,t]) ));
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = median(abs.( A[t,i] - median(A[t,i]) ));
@@ -270,13 +270,13 @@
     function nanaad(A;dim=0)
         s = size(A);
         if dim==2
-            out = Array{typeof(A[1])}(s[1])
+            out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 out[i] = mean(abs.( A[i,t] - mean(A[i,t]) ));
             end
         elseif dim==1
-            out = Array{typeof(A[1])}(s[2])
+            out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = mean(abs.( A[t,i] - mean(A[t,i]) ));
@@ -319,7 +319,7 @@
     function movmean(x, n::Number)
         # Simple moving average
         halfspan = ceil((n-1)/2);
-        m = Array{Float64}(size(x))
+        m = Array{Float64}(undef,size(x))
 
         # 2-D case
         if length(size(x)) == 2
@@ -347,7 +347,7 @@
 
     # Return the index of the closest value of Target for each value in Source
     function findclosest(source, target)
-        index=Array{Int64}(size(source));
+        index=Array{Int64}(undef,size(source));
         for i=1:length(source)
             index[i]=indmin((target-source[i]).^2);
         end
@@ -358,7 +358,7 @@
     # Return the index of the closest value of the vector 'target' below each
     # value in 'source'
     function findclosestbelow(source, target)
-        index=Array{Int64}(size(source));
+        index=Array{Int64}(undef,size(source));
         for i=1:length(source)
             t = find(target.<source[i]);
             ti = indmin((target[t]-source[i]).^2);
@@ -371,7 +371,7 @@
     # Return the index of the closest value of the vector 'target' above each
     # value in 'source'
     function findclosestabove(source, target)
-        index=Array{Int64}(size(source));
+        index=Array{Int64}(undef,size(source));
         for i=1:length(source)
             t = find(target.>source[i]);
             ti = indmin((target[t]-source[i]).^2);
@@ -387,7 +387,7 @@
     # defining the PDF curve
     function draw_from_distribution(dist::Array{Float64}, n::Int)
         # Draw n random numbers from the distribution 'dist'
-        x = Array{Float64}(n);
+        x = Array{Float64}(undef,n);
         dist_ymax = maximum(dist);
         dist_xmax = length(dist)-1.0;
 

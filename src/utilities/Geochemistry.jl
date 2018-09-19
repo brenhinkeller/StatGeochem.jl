@@ -31,8 +31,8 @@
         data = hcat(x,Hf176_Hf177,Lu176_Hf177,age)
         sigma = hcat(x_sigma,Hf176_Hf177_sigma,Lu176_Hf177_sigma,age_sigma)
 
-        means = Array{Float64}(nbins,nresamples)
-        c = Array{Float64}(nbins)
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(age))
             eHf_resampled = eHf(dbs[:,2], dbs[:,3], dbs[:,4])
