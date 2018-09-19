@@ -14,6 +14,14 @@ module StatGeochem
 
     # Backwards compatibility
     using Compat
+    # Forwards compatibility
+    if VERSION>=v"0.7"
+        using Statistics
+    end
+    if VERSION>=v"1.0"
+        linspace(a,b,c) = range(a,stop=b,length=c)
+        export linspace
+    end
 
     include("utilities/System.jl");
     include("utilities/Math.jl");
