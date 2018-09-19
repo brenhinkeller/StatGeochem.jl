@@ -93,7 +93,7 @@
 
     function binmeans(x,y,min,max,nbins; resamplingratio=1)
         binwidth=(max-min)/nbins
-        binedges=linspace(min,max,nbins+1)
+        binedges=linsp(min,max,nbins+1)
         bincenters=(min+binwidth/2):binwidth:(max-binwidth/2)
 
         averages=Array{Float64}(undef,nbins)

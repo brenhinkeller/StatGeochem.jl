@@ -289,6 +289,16 @@
     end
     export nanaad
 
+## --- Array construction
+
+    # Construct linearly spaced array with n points between l and u
+    # (linspace replacement )
+    function linsp(l::Number,u::Number,n::Number)
+        sp = (u-l)/(n-1)
+        return l:sp:n
+    end
+    export linsp
+
 ## --- Interpolating arrays
 
     # Return a vector of bin centers if given a vector of bin edges

@@ -36,17 +36,17 @@
 
     # Fire colormap
     fire = RGB{N0f8}.(
-        vcat(fill(1,120),linspace(0.992,0.05,136)), # r
-        vcat(linspace(0.9,0,120),fill(0,136)), # g
-        vcat(linspace(0.9,0,120),fill(0,136)) #b
+        vcat(fill(1,120),linsp(0.992,0.05,136)), # r
+        vcat(linsp(0.9,0,120),fill(0,136)), # g
+        vcat(linsp(0.9,0,120),fill(0,136)) #b
         )
     export fire
 
     # Water colormap
     water = RGB{N0f8}.(
-        vcat(linspace(0.9,0,136),fill(0,120)), # r
-        vcat(linspace(0.9,0,136),fill(0,120)), # g
-        vcat(fill(1,136),linspace(0.992,0.05,120)) #b
+        vcat(linsp(0.9,0,136),fill(0,120)), # r
+        vcat(linsp(0.9,0,136),fill(0,120)), # g
+        vcat(fill(1,136),linsp(0.992,0.05,120)) #b
         )
     export water
 
@@ -69,7 +69,7 @@
 
     function resize_colormap(cmap,n)
         cNum = length(cmap)
-        return linterp_colormap(1:cNum,cmap,linspace(1,cNum,n))
+        return linterp_colormap(1:cNum,cmap,linsp(1,cNum,n))
     end
     export resize_colormap
 
