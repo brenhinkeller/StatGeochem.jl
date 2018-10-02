@@ -17,6 +17,8 @@ module StatGeochem
     # Forwards compatibility
     if VERSION>=v"0.7"
         using Statistics
+        using DelimitedFiles
+        using SpecialFunctions
     end
 
     include("utilities/System.jl");

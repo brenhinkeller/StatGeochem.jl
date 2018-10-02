@@ -1,14 +1,42 @@
 ## -- Establish path
-    resourcepath = joinpath(Pkg.dir("StatGeochem"),"resources");
+    resourcepath = joinpath(homedir(),"resources")
     export resourcepath
 
 ## --- CRUST 1.0
+
+    # Download CRUST 1.0 data and references from cloud
+    function get_crust1()
+        # Available variable names: "seafloorage", "seafloorage_sigma",
+        # "seafloorrate", "information", and "reference".
+
+        # Construct file paths
+        filedir = joinpath(resourcepath,"crust1")
+        referencepath = joinpath(filedir,"crust1.references.txt")
+        vppath = joinpath(filedir,"crust1.vp")
+        vspath = joinpath(filedir,"crust1.vs")
+        rhopath = joinpath(filedir,"crust1.rho")
+        bndpath = joinpath(filedir,"crust1.bnds")
+
+        # Download HDF5 file from Google Cloud if necessary
+        if ~isfile(referencepath)
+            print("Downloading crust1 files from google cloud storage\n")
+            run(`mkdir -p $filedir`)
+            download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
+            download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
+            download("https://storage.googleapis.com/statgeochem/crust1.vs", vspath)
+            download("https://storage.googleapis.com/statgeochem/crust1.rho", rhopath)
+            download("https://storage.googleapis.com/statgeochem/crust1.bnds", bndpath)
+        end
+
+        return 0 # Success
+    end
+    export get_crust1
 
     # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
-        if length(lat) != length(lon)
+        if length(lat) != length(ln)
             error("lat and lon must be equal length\n")
         end
 
@@ -320,11 +348,14 @@
         # elevation and decimal degrees of latitude and longitude
 
         # Construct file path
-        filepath = joinpath(resourcepath,"etopo","etopo1.h5")
+        filedir = joinpath(resourcepath,"etopo")
+        filepath = joinpath(filedir,"etopo1.h5")
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
             print("Downloading etopo1.h5 from google cloud storage\n")
+            run(`mkdir -p $filedir`)
+            download("https://storage.googleapis.com/statgeochem/etopo1.references.txt", joinpath(filedir,"etopo1.references.txt"))
             download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
         end
 
@@ -390,11 +421,14 @@
         # meters of elevation and decimal degrees of latitude and longitude
 
         # Construct file path
-        filepath = joinpath(resourcepath,"srtm15plus","srtm15plus.h5")
+        filedir = joinpath(resourcepath,"srtm15plus")
+        filepath = joinpath(filedir,"srtm15plus.h5")
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
             print("Downloading srtm15plus.h5 from google cloud storage\n")
+            run(`mkdir -p $filedir`)
+            download("https://storage.googleapis.com/statgeochem/srtm15plus.references.txt", joinpath(filedir,"srtm15plus.references.txt"))
             download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)
         end
 
@@ -455,11 +489,14 @@
         # "seafloorrate", "information", and "reference".
 
         # Construct file path
-        filepath = joinpath(resourcepath,"seafloorage","seafloorage.h5")
+        filedir = joinpath(resourcepath,"seafloorage")
+        filepath = joinpath(filedir,"seafloorage.h5")
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
             print("Downloading seafloorage.h5 from google cloud storage\n")
+            run(`mkdir -p $filedir`)
+            download("https://storage.googleapis.com/statgeochem/seafloorage.references.txt", joinpath(filedir,"seafloorage.references.txt"))
             download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
         end
 
