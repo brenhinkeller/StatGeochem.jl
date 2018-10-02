@@ -65,22 +65,22 @@
 
 ## --- Approach 1: use the bulk-resampled dataset we just created
 
-# Calculate mean MgO for 8 bins between 40% SiO2 and 80% SiO2 from resampled dataset
-# (c = bin centers, m = means, e = 1-sigma S.E.M)
-(c,m,e) = binmeans(mctest["SiO2"],mctest["MgO"],40,80,8; resamplingratio=nresamplings)
+    # Calculate mean MgO for 8 bins between 40% SiO2 and 80% SiO2 from resampled dataset
+    # (c = bin centers, m = means, e = 1-sigma S.E.M)
+    (c,m,e) = binmeans(mctest["SiO2"],mctest["MgO"],40,80,8; resamplingratio=nresamplings)
 
-# Plot results
-plot(c,m,yerror=2*e,label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80),framestyle=:box)
+    # Plot results
+    plot(c,m,yerror=2*e,label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80),framestyle=:box)
 
 ## --- Approach 2: resample the binned means for one element at a time (Can resample many times)
-nresamplings=10000
+    nresamplings=10000
 
-# Calculate binned means and uncertainties
-# (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-(c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8,test["SiO2_sigma"],nresamplings,p)
+    # Calculate binned means and uncertainties
+    # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8,test["SiO2_sigma"],nresamplings,p)
 
-# Plot results
-plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
+    # Plot results
+    plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
 
 ## --- Download and unzip Keller and Schoene (2012) dataset
 download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
