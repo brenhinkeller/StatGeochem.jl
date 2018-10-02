@@ -19,6 +19,10 @@ module StatGeochem
         using Statistics
         using DelimitedFiles
         using SpecialFunctions
+    else
+        # Other compatibility not covered by Compat.jl
+        import Base.trunc
+        trunc(x; digits::Int=0) = trunc(x,digits)
     end
 
     include("utilities/System.jl");

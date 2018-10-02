@@ -1,13 +1,14 @@
 
 ## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
-    try
-        using StatGeochem
-    catch
-        Pkg.clone("https://github.com/brenhinkeller/StatGeochem.jl")
-        using StatGeochem
-    end
 
-    using Plots; gr();
+    using StatGeochem
+    using Plots; gr(); default(fmt = :svg);
+
+    if VERSION>=v"0.7"
+        using Statistics
+        using DelimitedFiles
+        using SpecialFunctions
+    end
 
 ## --- Input dataset
 
@@ -83,59 +84,59 @@
     plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
 
 ## --- Download and unzip Keller and Schoene (2012) dataset
-download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
-run(`gunzip -f ign.h5.gz`) # Unzip file
+    download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
+    run(`gunzip -f ign.h5.gz`) # Unzip file
 
-# Read HDF5 file
-using HDF5
-ign = h5read("ign.h5","vars")
+    # Read HDF5 file
+    using HDF5
+    ign = h5read("ign.h5","vars")
 
 ## --- Compute proximity coefficients (inverse weights)
-# Since this is pretty computatually intensive, let's load a precomputed version instead
+    # Since this is pretty computatually intensive, let's load a precomputed version instead
 
-# k = invweight(ign["Latitude"], ign["Longitude"], ign["Age"])
-k = ign["k"]
+    # k = invweight(ign["Latitude"], ign["Longitude"], ign["Age"])
+    k = ign["k"]
 
-# Probability of keeping a given data point when sampling
-p = 1.0./((k.*median(5.0./k))+1.0); # Keep rougly one-fith of the data in each resampling
+    # Probability of keeping a given data point when sampling
+    p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
 
-# Calculate age uncertainty
-ign["Age_sigma"] = (ign["Age_Max"]-ign["Age_Min"])/2;
-t = (ign["Age_sigma"] .< 50) .| isnan.(ign["Age_sigma"]) # Find points with < 50 Ma absolute uncertainty
-ign["Age_sigma"][t] = 50; # Set 50 Ma minimum age uncertainty (1-sigma)
+    # Calculate age uncertainty
+    ign["Age_sigma"] = (ign["Age_Max"]-ign["Age_Min"])/2;
+    t = (ign["Age_sigma"] .< 50) .| isnan.(ign["Age_sigma"]) # Find points with < 50 Ma absolute uncertainty
+    ign["Age_sigma"][t] .= 50; # Set 50 Ma minimum age uncertainty (1-sigma)
 
 ## --- Try resampling a single variable to reproduce the MgO trend from K&S 2012
-nresamplings=1000
-xmin = 0
-xmax = 3900
-nbins = 39
+    nresamplings=1000
+    xmin = 0
+    xmax = 3900
+    nbins = 39
 
-# Look only at samples in the basaltic silica range
-# (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
-t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
+    # Look only at samples in the basaltic silica range
+    # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
+    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
 
-# Calculate binned means and uncertainties
-# (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-(c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["MgO"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    # Calculate binned means and uncertainties
+    # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["MgO"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
 
-# Plot results
-plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
-plot!(xlabel="Age (Ma)", ylabel="MgO (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
+    # Plot results
+    plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
+    plot!(xlabel="Age (Ma)", ylabel="MgO (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 ## --- Same as above, but for Na2O
-nresamplings=1000
-xmin = 0
-xmax = 3900
-nbins = 39
+    nresamplings=1000
+    xmin = 0
+    xmax = 3900
+    nbins = 39
 
-# Look only at samples in the basaltic silica range
-# (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
-t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
+    # Look only at samples in the basaltic silica range
+    # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
+    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
 
-# Calculate binned means and uncertainties
-# (c = bincenter, m = mean, el = lower 95% CI, eu = upper 95% CI)
-(c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["Na2O"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    # Calculate binned means and uncertainties
+    # (c = bincenter, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["Na2O"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
 
-# Plot results
-plot(c,m,yerror=(el,eu),seriestype=:scatter,markerstrokecolor=:auto,label="")
-plot!(xlabel="Age (Ma)", ylabel="Na2O (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
+    # Plot results
+    plot(c,m,yerror=(el,eu),seriestype=:scatter,markerstrokecolor=:auto,label="")
+    plot!(xlabel="Age (Ma)", ylabel="Na2O (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot

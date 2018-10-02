@@ -4,7 +4,13 @@
 
 ## --- Import some useful packages
     using StatGeochem
-    using Plots
+    using Plots; gr(); default(fmt = :svg);
+
+    if VERSION>=v"0.7"
+        using Statistics
+        using DelimitedFiles
+        using SpecialFunctions
+    end
 
 ## --- Configure
     # Absolute paths to perplex resources

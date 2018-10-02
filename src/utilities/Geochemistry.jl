@@ -130,13 +130,13 @@
         # Make .melts file containing the starting composition you want to run simulations on
         fp = open(prefix*"sc.melts", "w")
         for i = 1:length(elements)
-            write(fp,"Initial Composition: $(elements[i]) $(trunc(composition[i],4))\n")
+            write(fp,"Initial Composition: $(elements[i]) $(trunc(composition[i],digits=4))\n")
         end
         for i = 1:length(telements)
-            write(fp, "Initial Trace: $(telements[i]) $(trunc(tsc[i],4))\n")
+            write(fp, "Initial Trace: $(telements[i]) $(trunc(tsc[i],digits=4))\n")
         end
 
-        write(fp, "Initial Temperature: $(trunc(T_range[1],2))\nInitial Pressure: $(trunc(P_range[1],2))\nlog fo2 Path: $fo2path\n")
+        write(fp, "Initial Temperature: $(trunc(T_range[1],digits=2))\nInitial Pressure: $(trunc(P_range[1],digits=2))\nlog fo2 Path: $fo2path\n")
 
         for i = 1:length(fractionate)
             write(fp,"Fractionate: $(fractionate[i])\n")
@@ -162,12 +162,12 @@
             "! isothermal, isobaric, isentropic, isenthalpic, isochoric, geothermal or PTPath\n"  *
             "ALPHAMELTS_MODE			$mode\n"  *
             "!ALPHAMELTS_PTPATH_FILE		ptpath.txt\n\n"  *
-            "! need to set DELTAP for polybaric paths; DELTAT for isobaric paths\nALPHAMELTS_DELTAP	$(trunc(dP,1))\n"  *
+            "! need to set DELTAP for polybaric paths; DELTAT for isobaric paths\nALPHAMELTS_DELTAP	$(trunc(dP,digits=1))\n"  *
             "ALPHAMELTS_DELTAT	$(trunc(dT,1))\n"  *
-            "ALPHAMELTS_MAXP		$(trunc(Pmax,1))\n"  *
-            "ALPHAMELTS_MINP		$(trunc(Pmin,1))\n"  *
-            "ALPHAMELTS_MAXT		$(trunc(Tmax,1))\n"  *
-            "ALPHAMELTS_MINT		$(trunc(Tmin,1))\n\n"  *
+            "ALPHAMELTS_MAXP		$(trunc(Pmax,digits=1))\n"  *
+            "ALPHAMELTS_MINP		$(trunc(Pmin,digits=1))\n"  *
+            "ALPHAMELTS_MAXT		$(trunc(Tmax,digits=1))\n"  *
+            "ALPHAMELTS_MINT		$(trunc(Tmin,digits=1))\n\n"  *
             "! this one turns on fractional crystallization for all solids\n! use Fractionate: in the melts file instead for selective fractionation\n"  *
             "$(fractionatesolids)ALPHAMELTS_FRACTIONATE_SOLIDS	true\n"  *
             "$(fractionatesolids)ALPHAMELTS_MASSIN		$massin\n\n"  *
