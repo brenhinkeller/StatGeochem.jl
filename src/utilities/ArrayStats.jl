@@ -295,7 +295,7 @@
     # (linspace replacement )
     function linsp(l::Number,u::Number,n::Number)
         sp = (u-l)/(n-1)
-        return l:sp:n
+        return l:sp:u
     end
     export linsp
 
