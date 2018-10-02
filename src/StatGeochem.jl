@@ -28,7 +28,7 @@ module StatGeochem
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 
-    using Colors: ColorTypes, N0f8
+    using Colors: ColorTypes, RGB, N0f8
     include("utilities/Colormaps.jl");
 
     include("utilities/Geochemistry.jl");
