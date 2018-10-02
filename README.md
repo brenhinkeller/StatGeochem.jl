@@ -5,7 +5,7 @@ Some computational tools for geochemistry
 
 ## Installation
 
-In the Julia package manager (type `]` in the REPL)
+In the Julia package manager (type `]` in the REPL to enter)
 ```
 (v1.0) pkg> add "https://github.com/brenhinkeller/StatGeochem.jl"
 ```
