@@ -20,9 +20,20 @@ module StatGeochem
         using DelimitedFiles
         using SpecialFunctions
     else
-        # Other compatibility not covered by Compat.jl
+        # Other compatibility not covered by Compat.jl:
+        # New syntax for trunc
         import Base.trunc
         trunc(x; digits::Int=0) = trunc(x,digits)
+
+        # New result for tryparse independent of nullables
+        import Base.tryparse
+        function tryparse(Float64,x)
+            try
+               return parse(Float64,x)
+            catch
+               return nothing
+            end
+        end
     end
 
     include("utilities/System.jl");
