@@ -557,8 +557,8 @@
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
-                elements = replace(elements, ",%" => "_pct") # substutue _pct for ,% in column names
-                elements = replace(elements, ",wt%" => "") # Remove units on major oxides
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
             end
             # Convert to a dictionary
             data = elementify(data,elements)
@@ -639,8 +639,8 @@
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
             if clean_units
-                elements = replace(elements, ",%" => "_pct") # substutue _pct for ,% in column names
-                elements = replace(elements, ",wt%" => "") # Remove units on major oxides
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
             end
             # Convert to a dictionary
             data = elementify(data,elements)
