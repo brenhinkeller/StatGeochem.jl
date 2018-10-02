@@ -180,12 +180,8 @@
         arg = sin.(lat_i .* pi/180) .* sin.(lat .* pi/180) .+ cos.(lat_i*pi/180) .* cos.(lat .* pi/180).*cos.((lon_i .- lon) .* pi/180)
 
         # Avoid domain errors from imprecise sine and cosine math
-        if sum(arg .> 1.0) > 0
-            arg[arg .> 1.0] = 1.0
-        end
-        if sum(arg .< -1.0) > 0
-            arg[arg .< -1.0] = -1.0
-        end
+        arg[arg .> 1.0] .= 1.0
+        arg[arg .< -1.0] .= -1.0
 
         # Calculate angular distance
         theta = 180/pi .* acos.(arg)

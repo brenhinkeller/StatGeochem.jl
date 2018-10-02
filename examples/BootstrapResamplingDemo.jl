@@ -73,7 +73,7 @@
     plot(c,m,yerror=2*e,label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80),framestyle=:box)
 
 ## --- Approach 2: resample the binned means for one element at a time (Can resample many times)
-    nresamplings=10000
+    nresamplings = 10000
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
