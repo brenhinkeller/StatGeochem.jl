@@ -92,13 +92,13 @@
 ## --- Bin a dataset by a given independent variable
 
     function binmeans(x,y,min,max,nbins; resamplingratio=1)
-        binwidth=(max-min)/nbins
-        binedges=linsp(min,max,nbins+1)
-        bincenters=(min+binwidth/2):binwidth:(max-binwidth/2)
+        binwidth = (max-min)/nbins
+        binedges = linsp(min,max,nbins+1)
+        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
-        averages=Array{Float64}(undef,nbins)
-        errors=Array{Float64}(undef,nbins)
-        for i=1:nbins
+        averages = Array{Float64}(undef,nbins)
+        errors = Array{Float64}(undef,nbins)
+        for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
             averages[i] = mean(y[t])
             errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
@@ -123,8 +123,8 @@
         end
 
         m = nanmean(means,dim=2)
-        el = m - pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) - m
+        el = m .- pctile(means,2.5,dim=2)
+        eu = pctile(means,97.5,dim=2) .- m
 
         return (c, m, el, eu)
     end
@@ -134,8 +134,8 @@
 
     function downsample(matrix::Array,factor::Int,jfactor=factor::Int)
         if ndims(matrix)==2
-            rows = floor(Int,size(matrix,1)/factor);
-            cols = floor(Int,size(matrix,2)/jfactor);
+            rows = floor(Int,size(matrix,1)/factor)
+            cols = floor(Int,size(matrix,2)/jfactor)
 
             downsampled = typeof(matrix)(rows,cols)
             for i=1:rows
@@ -165,7 +165,7 @@
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( 1.0./((arcdistance(lat[i],lon[i],lat,lon)/1.8).^lp + 1.0) + 1.0./((abs.(age[i]-age)/38.0).^lp + 1.0) )
+                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)./1.8).^lp .+ 1.0) .+ 1.0./((abs.(age[i] .- age)./38.0).^lp .+ 1.0) )
             end
         end
         return k
@@ -185,7 +185,7 @@
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( 1.0./((arcdistance(lat[i],lon[i],lat,lon)/1.8).^lp + 1.0) )
+                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)/1.8).^lp .+ 1.0) )
             end
         end
         return k
@@ -205,7 +205,7 @@
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum(1.0./((abs.(age[i]-age)/38.0).^lp + 1.0) )
+                k[i] = nansum(1.0 ./ ( (abs.(age[i] .- age)./38.0).^lp .+ 1.0) )
             end
         end
         return k
