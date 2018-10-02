@@ -5,7 +5,7 @@
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1]==delim
+        if str[1] == delim
             last_delim_pos = 1
         end
 
@@ -13,36 +13,36 @@
         delim_pos = 0
         n = offset
         if merge
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos+1
-                        n += 1;
-                        if delim_pos>last_delim_pos+1
+                    delim_pos = i
+                    if delim_pos > last_delim_pos+1
+                        n += 1
+                        if delim_pos > last_delim_pos+1
                             parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
                     end
-                    last_delim_pos = delim_pos;
+                    last_delim_pos = delim_pos
                 end
             end
         else
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos
-                        n += 1;
-                        if delim_pos>last_delim_pos+1
+                    delim_pos = i
+                    if delim_pos > last_delim_pos
+                        n += 1
+                        if delim_pos > last_delim_pos+1
                             parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
-                        last_delim_pos = delim_pos;
+                        last_delim_pos = delim_pos
                     end
                 end
             end
         end
 
         # Check for final value after last delim
-        if length(str)>last_delim_pos
-            n += 1;
+        if length(str) > last_delim_pos
+            n += 1
             parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 
@@ -56,33 +56,33 @@
         parsed = Array{parseType}(undef,ceil(Int,length(str)/2));
 
         # Ignore initial delimiter
-        last_delim_pos=0;
-        if str[1]==delim
-            last_delim_pos=1;
+        last_delim_pos = 0
+        if str[1] == delim
+            last_delim_pos = 1
         end
 
         # Cycle through string parsing text betweeen delims
-        delim_pos=0;
-        n = 0;
+        delim_pos = 0
+        n = 0
         if merge
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos+1
-                        n += 1;
-                        if delim_pos>last_delim_pos+1
+                    delim_pos = i
+                    if delim_pos > last_delim_pos+1
+                        n += 1
+                        if delim_pos > last_delim_pos+1
                             parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
                     end
-                    last_delim_pos = delim_pos;
+                    last_delim_pos = delim_pos
                 end
             end
         else
             for i=1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos
-                        n += 1;
+                    delim_pos = i
+                    if delim_pos > last_delim_pos
+                        n += 1
                         if delim_pos>last_delim_pos+1
                             parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
@@ -94,7 +94,7 @@
 
         # Check for final value after last delim
         if length(str)>last_delim_pos
-            n += 1;
+            n += 1
             parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 
@@ -107,10 +107,10 @@
         # parsed = delim_string(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
 
         # Max number of delimted values
-        ndelims = 2;
-        for i=1:length(str)
+        ndelims = 2
+        for i = 1:length(str)
             if str[i] == delim
-                ndelims +=1
+                ndelims += 1
             end
         end
 
@@ -118,37 +118,37 @@
         parsed = Array{outType}(undef,ceil(Int,ndelims));
 
         # Ignore initial delimiter
-        last_delim_pos=0;
-        if str[1]==delim
-            last_delim_pos=1;
+        last_delim_pos = 0
+        if str[1] == delim
+            last_delim_pos = 1
         end
 
         # Cycle through string parsing text betweeen delims
-        delim_pos=0;
-        n = 0;
+        delim_pos = 0
+        n = 0
         if merge
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos+1
-                        n += 1;
-                        if delim_pos>last_delim_pos+1
+                    delim_pos = i
+                    if delim_pos > last_delim_pos+1
+                        n += 1
+                        if delim_pos > last_delim_pos+1
                             parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
                     end
-                    last_delim_pos = delim_pos;
+                    last_delim_pos = delim_pos
                 end
             end
         else
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
-                    delim_pos = i;
-                    if delim_pos>last_delim_pos
-                        n += 1;
-                        if delim_pos>last_delim_pos+1
+                    delim_pos = i
+                    if delim_pos > last_delim_pos
+                        n += 1
+                        if delim_pos > last_delim_pos+1
                             parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
-                        last_delim_pos = delim_pos;
+                        last_delim_pos = delim_pos
                     end
                 end
             end
@@ -156,7 +156,7 @@
 
         # Check for final value after last delim
         if length(str)>last_delim_pos
-            n += 1;
+            n += 1
             parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 

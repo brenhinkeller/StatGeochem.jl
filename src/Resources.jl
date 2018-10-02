@@ -88,8 +88,8 @@
         close(bndfile)
 
         # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon+180, 360) - 180
-        ilat = max.(lat,-90+1e-9)
+        ilon = mod.(lon .+ 180, 360) .- 180
+        ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
         ilat = 90 - ceil.(Int,ilat) + 1
@@ -112,7 +112,7 @@
                 vpout[j] = vp[layer,ilat[j],ilon[j]]
                 vsout[j] = vs[layer,ilat[j],ilon[j]]
                 rhoout[j] = rho[layer,ilat[j],ilon[j]]
-                thkout[j] = bnd[layer,ilat[j],ilon[j]]-bnd[layer+1,ilat[j],ilon[j]]
+                thkout[j] = bnd[layer,ilat[j],ilon[j]] - bnd[layer+1,ilat[j],ilon[j]]
             end
         end
 
@@ -174,8 +174,8 @@
         close(rhofile)
 
         # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon+180, 360) - 180
-        ilat = max.(lat,-90+1e-9)
+        ilon = mod.(lon .+ 180, 360) .- 180
+        ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
         ilat = 90 - ceil.(Int,ilat) + 1

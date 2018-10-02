@@ -30,16 +30,16 @@
                     markernumber += 1;
                     imin[markernumber] = minimum(list)
                     imax[markernumber] = maximum(list)
-                    jmin[markernumber] = j;
-                    jmax[markernumber] = j;
+                    jmin[markernumber] = j
+                    jmax[markernumber] = j
                 else
                     imin[markernumber] = min(imin[markernumber],minimum(list))
                     imax[markernumber] = max(imax[markernumber],maximum(list))
-                    jmax[markernumber] = j;
+                    jmax[markernumber] = j
                 end
-                found = true;
+                found = true
             else
-                found = false;
+                found = false
             end
         end
 
