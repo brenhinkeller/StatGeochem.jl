@@ -171,7 +171,7 @@
     function plausiblynumeric(x)
         if isa(x,Number)
             return true
-        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
             return true
         else
             return false
@@ -183,7 +183,7 @@
     function nonnumeric(x)
         if isa(x,Number)
             return false
-        elseif isa(x,AbstractString) && (~isnull(tryparse(Float64,x)) || x == "")
+        elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
             return false
         else
             return true
@@ -197,7 +197,7 @@
     function floatify(x)
         if isa(x,Number)
             return Float64(x)
-        elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
             return parse(Float64,x)
         else
             return NaN
