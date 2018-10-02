@@ -209,21 +209,24 @@
     function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
         # Output as dictionary
         out = Dict()
-        out["elements"] = elements
+        if skipnameless
+            out["elements"] = elements[elements .!= ""]
+        else
+            out["elements"] = elements
+        end
 
         # Parse the input array, minus empty-named columns
         for i=1:length(elements)
             thiscol = in[(1+skipstart):end,i]
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
-            includecol = ~skipnameless || (elements[i] .!= "")
 
-            if haskey(out,elements[i]) && ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol)) ) && floatcol && includecol
+            if haskey(out,elements[i]) && ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol)) ) && floatcol
                 # If key already exists and is numeric
                 out[elements[i]] = nanmean.( hcat( floatify.(out[elements[i]]), floatify.(thiscol) ) )
-            elseif floatcol && includecol
+            elseif floatcol
                 # If key is numeric
                 out[elements[i]] = floatify.(thiscol)
-            elseif includecol
+            else
                 # If key is non-numeric
                 out[elements[i]] = thiscolumn
             end
