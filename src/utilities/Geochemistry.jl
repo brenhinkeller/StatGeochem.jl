@@ -163,7 +163,7 @@
             "ALPHAMELTS_MODE			$mode\n"  *
             "!ALPHAMELTS_PTPATH_FILE		ptpath.txt\n\n"  *
             "! need to set DELTAP for polybaric paths; DELTAT for isobaric paths\nALPHAMELTS_DELTAP	$(trunc(dP,digits=1))\n"  *
-            "ALPHAMELTS_DELTAT	$(trunc(dT,1))\n"  *
+            "ALPHAMELTS_DELTAT	$(trunc(dT,digits=1))\n"  *
             "ALPHAMELTS_MAXP		$(trunc(Pmax,digits=1))\n"  *
             "ALPHAMELTS_MINP		$(trunc(Pmin,digits=1))\n"  *
             "ALPHAMELTS_MAXT		$(trunc(Tmax,digits=1))\n"  *
