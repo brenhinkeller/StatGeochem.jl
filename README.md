@@ -5,12 +5,12 @@ Some computational tools for geochemistry
 
 ## Installation
 
-In the Julia package manager (type "]" in the REPL)
-```Julia
+In the Julia package manager (type `]` in the REPL)
+```
 (v1.0) pkg> add "https://github.com/brenhinkeller/StatGeochem.jl"
 ```
 or for previous versions of Julia, in the REPL
-```Julia
+```
 julia> Pkg.clone("https://github.com/brenhinkeller/StatGeochem.jl")
 ```
 

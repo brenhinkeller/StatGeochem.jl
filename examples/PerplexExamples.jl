@@ -10,7 +10,7 @@
         using DelimitedFiles
         using SpecialFunctions
     end
-    
+
 ## --- Configure
     # Absolute paths to perplex resources
     perplexdir = "/Users/cbkeller/Applications/perplex-stable/" # Location of executables and solution models to use
