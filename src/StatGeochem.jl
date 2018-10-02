@@ -23,12 +23,12 @@ module StatGeochem
     include("utilities/Math.jl");
     include("utilities/Import.jl");
 
-    using StatsBase.percentile
-    using Interpolations
+    using StatsBase: percentile
+    using Interpolations: interpolate, Gridded, Linear
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 
-    using Colors, Colors.N0f8
+    using Colors: ColorTypes, N0f8
     include("utilities/Colormaps.jl");
 
     include("utilities/Geochemistry.jl");
