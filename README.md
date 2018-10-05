@@ -1,5 +1,3 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/brenhinkeller/StatGeochem.jl/master?filepath=examples/BootstrapResamplingDemo.ipynb)
-
 # StatGeochem.jl
 Some computational tools for geochemistry
 
@@ -15,6 +13,7 @@ julia> Pkg.clone("https://github.com/brenhinkeller/StatGeochem.jl")
 ```
 
 ## Usage
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/brenhinkeller/StatGeochem.jl/master?filepath=examples/BootstrapResamplingDemo.ipynb)
 
 This package can be used in the [Julia](https://julialang.org) REPL, in scripts or functions in Julia `.jl` files, in the [Juno/Atom IDE](http://junolab.org/), or in a Jupyter notebook. There aren't examples yet for most of the code in this repository, but for a quick demonstration, try the interactive Jupyter notebooks (it may take a few minutes for these to launch)
 * Weighted bootstrap resampling: [BootstrapResamplingDemo.ipynb](https://mybinder.org/v2/gh/brenhinkeller/StatGeochem.jl/master?filepath=examples/BootstrapResamplingDemo.ipynb)
