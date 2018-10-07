@@ -228,7 +228,7 @@
                 out[elements[i]] = floatify.(thiscol)
             else
                 # If key is non-numeric
-                out[elements[i]] = thiscolumn
+                out[elements[i]] = thiscol
             end
         end
         return out
