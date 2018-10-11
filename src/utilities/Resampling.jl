@@ -7,7 +7,7 @@
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
         # Resample
-        i = 1;
+        i = 1
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -50,6 +50,56 @@
         return elementify(sdata, elements)
     end
     export bsresample
+
+    # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma
+    function bsresample_unif(data::Array{<:Number}, sigma, nrows::Number, p = min(0.5,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(undef,nrows,size(data,2))
+
+        # Resample
+        i = 1
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+
+                # Corresponing uncertainty (either blanket or for each datum)
+                if size(sigma,1) > 1
+                    serr = sigma[t,:]
+                else
+                    serr = ones(size(sdata)) .* sigma
+                end
+            else # If only one sample
+                sdata = data
+                serr = sigma
+            end
+
+            # Randomize data over uncertainty interval
+            sdata += (2 .* rand(size(sdata)) .* serr) .- serr
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return resampled
+    end
+
+    # Second method for bsresample_unif that takes a dictionary as input
+    function bsresample_unif(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+        data = unelementify(in, elements, floatout=true)
+        sigma = unelementify(in, elements.*"_sigma", floatout=true)
+        sdata = bsresample_unif(data, sigma, nrows, p)
+        return elementify(sdata, elements)
+    end
+    export bsresample_unif
 
     # Bootstrap resample (without uncertainty) a variable to size nrows.
     # Optionally provide weights in p
