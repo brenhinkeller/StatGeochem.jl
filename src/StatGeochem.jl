@@ -25,6 +25,10 @@ module StatGeochem
         import Base.trunc
         trunc(x; digits::Int=0) = trunc(x,digits)
     end
+    if VERSION>=v"1.0"
+        linspace = linsp
+        export linspace
+    end
 
     include("utilities/System.jl");
     include("utilities/Math.jl");
