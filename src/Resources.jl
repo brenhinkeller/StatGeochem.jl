@@ -19,7 +19,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(referencepath)
-            print("Downloading crust1 files from google cloud storage\n")
+            print("Downloading crust1 files from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
             download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
             download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
@@ -353,7 +353,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading etopo1.h5 from google cloud storage\n")
+            print("Downloading etopo1.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
             download("https://storage.googleapis.com/statgeochem/etopo1.references.txt", joinpath(filedir,"etopo1.references.txt"))
             download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
@@ -426,7 +426,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading srtm15plus.h5 from google cloud storage\n")
+            print("Downloading srtm15plus.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
             download("https://storage.googleapis.com/statgeochem/srtm15plus.references.txt", joinpath(filedir,"srtm15plus.references.txt"))
             download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)
@@ -494,7 +494,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading seafloorage.h5 from google cloud storage\n")
+            print("Downloading seafloorage.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
             download("https://storage.googleapis.com/statgeochem/seafloorage.references.txt", joinpath(filedir,"seafloorage.references.txt"))
             download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
