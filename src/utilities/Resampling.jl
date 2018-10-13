@@ -2,7 +2,7 @@
 
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
-    function bsresample(data::Array{<:Number}, sigma, nrows::Number, p = min(0.5,nrows/size(data,1)))
+    function bsresample(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -41,9 +41,8 @@
         end
         return resampled
     end
-
     # Second method for bsresample that takes a dictionary as input
-    function bsresample(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+    function bsresample(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
         data = unelementify(in, elements, floatout=true)
         sigma = unelementify(in, elements.*"_sigma", floatout=true)
         sdata = bsresample(data, sigma, nrows, p)
@@ -52,7 +51,7 @@
     export bsresample
 
     # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma
-    function bsresample_unif(data::Array{<:Number}, sigma, nrows::Number, p = min(0.5,nrows/size(data,1)))
+    function bsresample_unif(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -91,9 +90,8 @@
         end
         return resampled
     end
-
     # Second method for bsresample_unif that takes a dictionary as input
-    function bsresample_unif(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+    function bsresample_unif(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
         data = unelementify(in, elements, floatout=true)
         sigma = unelementify(in, elements.*"_sigma", floatout=true)
         sdata = bsresample_unif(data, sigma, nrows, p)
@@ -101,9 +99,202 @@
     end
     export bsresample_unif
 
+    # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma, AND a gaussian component
+    function bsresample_unif_norm(data::Array{<:Number}, sigma_unif, sigma_norm, nrows::Number, p = min(0.2,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(undef,nrows,size(data,2))
+
+        # Resample
+        i = 1
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+
+                # Corresponing uncertainty (either blanket or for each datum)
+                if size(sigma_unif,1) > 1
+                    serr_unif = sigma_unif[t,:]
+                    serr_norm = sigma_norm[t,:]
+                else
+                    serr_unif = ones(size(sdata)) .* sigma_unif
+                    serr_norm = ones(size(sdata)) .* sigma_norm
+                end
+            else # If only one sample
+                sdata = data
+                serr_unif = sigma_unif
+                serr_norm = sigma_norm
+            end
+
+            # Randomize data over uncertainty interval
+            sdata += (2 .* rand(size(sdata)) .* serr_unif) .- serr_unif # Uniform component
+            sdata += randn(size(sdata)) .* serr_norm # Gaussian component
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return resampled
+    end
+    export bsresample_unif_norm
+
+    # As bsresample, but also return an index of the rows included from data
+    function bsresample_index(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(undef,nrows,size(data,2))
+        index = Array{Int}(undef,nrows)
+
+        # Resample
+        i = 1
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+                sindex = find(t)
+
+                # Corresponing uncertainty (either blanket or for each datum)
+                if size(sigma,1) > 1
+                    serr = sigma[t,:]
+                else
+                    serr = ones(size(sdata)) .* sigma
+                end
+            else # If only one sample
+                sdata = data
+                serr = sigma
+                sindex = 1
+            end
+
+            # Randomize data over uncertainty interval
+            sdata += randn(size(sdata)) .* serr
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+                index[i:i+size(sdata,1)-1] = sindex
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+                index[i:end] = sindex[1:nrows-i+1]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return (resampled, index)
+    end
+    export bsresample_index
+
+    # As bsresample_unif, but also return an index of the rows included from data
+    function bsresample_unif_index(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(undef,nrows,size(data,2))
+        index = Array{Int}(undef,nrows)
+
+        # Resample
+        i = 1
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+                sindex = find(t)
+
+                # Corresponing uncertainty (either blanket or for each datum)
+                if size(sigma,1) > 1
+                    serr = sigma[t,:]
+                else
+                    serr = ones(size(sdata)) .* sigma
+                end
+            else # If only one sample
+                sdata = data
+                serr = sigma
+                sindex = 1
+            end
+
+            # Randomize data over uncertainty interval (uniform distribution)
+            sdata += (2 .* rand(size(sdata)) .* serr) .- serr
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+                index[i:i+size(sdata,1)-1] = sindex
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+                index[i:end] = sindex[1:nrows-i+1]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return (resampled, index)
+    end
+    export bsresample_unif_index
+
+    # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma, AND a gaussian component
+    function bsresample_unif_norm_index(data::Array{<:Number}, sigma_unif, sigma_norm, nrows::Number, p = min(0.2,nrows/size(data,1)))
+        # Allocate output array
+        resampled = Array{Float64}(undef,nrows,size(data,2))
+        index = Array{Int}(undef,nrows)
+
+        # Resample
+        i = 1
+        while i <= nrows
+            # If we have more than one sample
+            if size(data,1) > 1
+                # Select weighted sample of data
+                t = rand(size(data,1)) .< p
+                sdata = data[t,:]
+                sindex = find(t)
+
+                # Corresponing uncertainty (either blanket or for each datum)
+                if size(sigma_unif,1) > 1
+                    serr_unif = sigma_unif[t,:]
+                    serr_norm = sigma_norm[t,:]
+                else
+                    serr_unif = ones(size(sdata)) .* sigma_unif
+                    serr_norm = ones(size(sdata)) .* sigma_norm
+                end
+            else # If only one sample
+                sdata = data
+                serr_unif = sigma_unif
+                serr_norm = sigma_norm
+                sindex = 1
+            end
+
+            # Randomize data over uncertainty interval
+            sdata += (2 .* rand(size(sdata)) .* serr_unif) .- serr_unif # Uniform component
+            sdata += randn(size(sdata)) .* serr_norm # Gaussian component
+
+            # Figure out how much of our resampled data to output
+            if (i+size(sdata,1)-1) <= nrows
+                resampled[i:i+size(sdata,1)-1,:] = sdata
+                index[i:i+size(sdata,1)-1] = sindex
+            else
+                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+                index[i:end] = sindex[1:nrows-i+1]
+            end
+
+            # Keep track of current filled rows
+            i += size(sdata,1)
+        end
+        return (resampled, index)
+    end
+    export bsresample_unif_norm_index
+
+
+
     # Bootstrap resample (without uncertainty) a variable to size nrows.
     # Optionally provide weights in p
-    function randsample(data::Array{<:Number}, nrows::Number, p = min(0.5,nrows/size(data,1)))
+    function randsample(data::Array{<:Number}, nrows::Number, p = min(0.2,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -133,7 +324,7 @@
     end
 
     # Second method for randsample that takes a dictionary as input
-    function randsample(in::Dict, nrows, elements=in["elements"], p=min(0.5,nrows/length(in[elements[1]])))
+    function randsample(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
         data = unelementify(in, elements, floatout=true)
         sdata = randsample(data, nrows, p)
         return elementify(sdata, elements)
@@ -160,7 +351,7 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr_means(x,y,min,max,nbins,x_sigma,nresamples,p=0.5)
+    function bin_bsr_means(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
