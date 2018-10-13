@@ -9,4 +9,22 @@
     end
     export system
 
+## --- Retain deprecated functions with matlab-like syntax, to avoid breakages
+
+    if VERSION>=v"1.0"
+        function linspace(l::Number,u::Number,n::Number)
+            sp = (u-l)/(n-1)
+            return l:sp:u
+        end
+        export linspace
+
+        function repmat(A::AbstractArray, vert::Integer)
+            return repeat(A, outer=vert)
+        end
+        function repmat(A::AbstractArray, vert::Integer, horiz::Integer)
+            return repeat(A, outer=(vert, horiz))
+        end
+        export repmat
+    end
+
 ## --- End of File
