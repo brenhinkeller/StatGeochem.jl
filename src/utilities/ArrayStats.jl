@@ -404,12 +404,12 @@
         for i = 1:n
             while true
                 # Pick random x value
-                rx = rand() * dist_xmax
+                rx = rand(Float64) * dist_xmax
                 # Interpolate corresponding distribution value
                 f = floor(Int,rx)
                 y = dist[f+2]*(rx-f) + dist[f+1]*(1-(rx-f))
                 # See if x value is accepted
-                ry = rand() * dist_ymax
+                ry = rand(Float64) * dist_ymax
                 if (y > ry)
                     x[i] = rx / dist_xmax
                     break
@@ -430,12 +430,12 @@
         for i=1:length(x)
             while true
                 # Pick random x value
-                rx = rand() * dist_xmax
+                rx = rand(Float64) * dist_xmax
                 # Interpolate corresponding distribution value
                 f = floor(Int,rx)
                 y = dist[f+2]*(rx-f) + dist[f+1]*(1-(rx-f))
                 # See if x value is accepted
-                ry = rand() * dist_ymax
+                ry = rand(Float64) * dist_ymax
                 if (y > ry)
                     x[i] = rx / dist_xmax
                     break

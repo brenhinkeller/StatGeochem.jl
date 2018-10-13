@@ -12,7 +12,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
 
                 # Corresponing uncertainty (either blanket or for each datum)
@@ -27,7 +27,7 @@
             end
 
             # Randomize data over uncertainty interval
-            sdata += randn(size(sdata)) .* serr
+            sdata += randn(Float64, size(sdata)) .* serr
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -61,7 +61,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
 
                 # Corresponing uncertainty (either blanket or for each datum)
@@ -76,7 +76,7 @@
             end
 
             # Randomize data over uncertainty interval
-            sdata += (2 .* rand(size(sdata)) .* serr) .- serr
+            sdata += (2 .* rand(Float64, size(sdata)) .* serr) .- serr
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -110,7 +110,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
 
                 # Corresponing uncertainty (either blanket or for each datum)
@@ -128,8 +128,8 @@
             end
 
             # Randomize data over uncertainty interval
-            sdata += (2 .* rand(size(sdata)) .* serr_unif) .- serr_unif # Uniform component
-            sdata += randn(size(sdata)) .* serr_norm # Gaussian component
+            sdata += (2 .* rand(Float64, size(sdata)) .* serr_unif) .- serr_unif # Uniform component
+            sdata += randn(Float64, size(sdata)) .* serr_norm # Gaussian component
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -157,7 +157,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
                 sindex = findall(t)
 
@@ -174,7 +174,7 @@
             end
 
             # Randomize data over uncertainty interval
-            sdata += randn(size(sdata)) .* serr
+            sdata += randn(Float64, size(sdata)) .* serr
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -204,7 +204,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
                 sindex = findall(t)
 
@@ -221,7 +221,7 @@
             end
 
             # Randomize data over uncertainty interval (uniform distribution)
-            sdata += (2 .* rand(size(sdata)) .* serr) .- serr
+            sdata += (2 .* rand(Float64, size(sdata)) .* serr) .- serr
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -251,7 +251,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
                 sindex = findall(t)
 
@@ -271,8 +271,8 @@
             end
 
             # Randomize data over uncertainty interval
-            sdata += (2 .* rand(size(sdata)) .* serr_unif) .- serr_unif # Uniform component
-            sdata += randn(size(sdata)) .* serr_norm # Gaussian component
+            sdata += (2 .* rand(Float64, size(sdata)) .* serr_unif) .- serr_unif # Uniform component
+            sdata += randn(Float64, size(sdata)) .* serr_norm # Gaussian component
 
             # Figure out how much of our resampled data to output
             if (i+size(sdata,1)-1) <= nrows
@@ -304,7 +304,7 @@
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
-                t = rand(size(data,1)) .< p
+                t = rand(Float64, size(data,1)) .< p
                 sdata = data[t,:]
             else # If only one sample
                 sdata = data
