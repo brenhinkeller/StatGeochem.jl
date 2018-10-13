@@ -39,14 +39,14 @@ module StatGeochem
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 
-    using Colors: ColorTypes, RGB, N0f8
+    using Colors: ColorTypes, RGB4, RGB, N0f8
     include("utilities/Colormaps.jl");
 
     include("utilities/Geochemistry.jl");
     include("utilities/GIS.jl");
     include("utilities/Etc.jl");
 
-    using HDF5
+    using FileIO, HDF5
     include("Resources.jl")
 
 end # module

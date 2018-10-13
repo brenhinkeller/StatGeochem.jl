@@ -2,6 +2,61 @@
     resourcepath = joinpath(homedir(),"resources")
     export resourcepath
 
+## --- Geolcont
+
+    function find_geolcont(lat,lon)
+        # Interpret user input
+        if length(lat) != length(lon)
+            error("lat and lon must be equal length\n")
+        end
+
+        # Construct file path
+        filedir = joinpath(resourcepath,"maps")
+        filepath = joinpath(filedir,"geolcontwshelf.png")
+
+        # Download png map from Google Cloud if necessary
+        if ~isfile(filepath)
+            print("Downloading map to $filedir\n")
+            run(`mkdir -p $filedir`)
+            download("https://storage.googleapis.com/statgeochem/geolcontwshelf.png", filepath)
+        end
+
+        img = load(filepath)
+
+        colors = [RGB4{N0f8}(0.2,0.2,0.6)
+                  RGB4{N0f8}(0.0,0.4,0.8)
+                  RGB4{N0f8}(0.024,0.663,0.757)
+                  RGB4{N0f8}(0.4,0.8,0.4)
+                  RGB4{N0f8}(1.0,0.8,0.2)
+                  RGB4{N0f8}(1.0,1.0,0.0)
+         ]
+
+         continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
+
+         ind = fill(7,size(img))
+         for i=1:6
+             ind[img .== colors[i]] .= i
+         end
+
+         # Create and fill output vector
+         contindex = Array{Int}(undef,size(lat))
+         for i=1:length(lat)
+             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
+                 # Result is unknown if either input is NaN or out of bounds
+                 contindex[i] = 7
+             else
+                 # Convert latitude and longitude into indicies of the elevation map array
+                 # Note that STRTM15 plus has N+1 columns where N = 360*sf
+                 row = 1 + trunc(Int,(90-lat[i])*512/180)
+                 col = 1 + trunc(Int,(180+lon[i])*512/180)
+                 # Find result by indexing
+                 contindex[i] = ind[row,col]
+             end
+         end
+
+         return (contindex, continents)
+    end
+
 ## --- CRUST 1.0
 
     # Download CRUST 1.0 data and references from cloud
@@ -386,7 +441,7 @@
         maxcol = 360 * sf
 
         # Create and fill output vector
-        out=Array{Float64}(undef,size(lat));
+        out = Array{Float64}(undef,size(lat))
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
@@ -457,7 +512,7 @@
         sf = 240
 
         # Create and fill output vector
-        out=Array{Float64}(undef,size(lat));
+        out = Array{Float64}(undef,size(lat))
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
