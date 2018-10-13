@@ -4,6 +4,7 @@
 
 ## --- Geolcont
 
+    # Find which continent a sample originates from
     function find_geolcont(lat,lon)
         # Interpret user input
         if length(lat) != length(lon)
@@ -56,6 +57,7 @@
 
          return (contindex, continents)
     end
+    export find_geolcont
 
 ## --- CRUST 1.0
 
