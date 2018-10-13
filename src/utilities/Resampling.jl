@@ -159,7 +159,7 @@
                 # Select weighted sample of data
                 t = rand(size(data,1)) .< p
                 sdata = data[t,:]
-                sindex = find(t)
+                sindex = findall(t)
 
                 # Corresponing uncertainty (either blanket or for each datum)
                 if size(sigma,1) > 1
@@ -206,7 +206,7 @@
                 # Select weighted sample of data
                 t = rand(size(data,1)) .< p
                 sdata = data[t,:]
-                sindex = find(t)
+                sindex = findall(t)
 
                 # Corresponing uncertainty (either blanket or for each datum)
                 if size(sigma,1) > 1
@@ -253,7 +253,7 @@
                 # Select weighted sample of data
                 t = rand(size(data,1)) .< p
                 sdata = data[t,:]
-                sindex = find(t)
+                sindex = findall(t)
 
                 # Corresponing uncertainty (either blanket or for each datum)
                 if size(sigma_unif,1) > 1

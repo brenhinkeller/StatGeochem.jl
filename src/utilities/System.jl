@@ -25,6 +25,11 @@
             return repeat(A, outer=(vert, horiz))
         end
         export repmat
+
+        # function contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
+        #     return occursin(needle::Union{AbstractString,Regex,AbstractChar}, haystack::AbstractString)
+        # end
+        # export contains
     end
 
 ## --- End of File
