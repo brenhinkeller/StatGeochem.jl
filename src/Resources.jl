@@ -4,6 +4,19 @@
 
 ## --- Geolcont
 
+    continentcolors = [RGB4{N0f8}(0.2,0.2,0.6)
+              RGB4{N0f8}(0.0,0.4,0.8)
+              RGB4{N0f8}(0.024,0.663,0.757)
+              RGB4{N0f8}(0.4,0.8,0.4)
+              RGB4{N0f8}(1.0,0.8,0.2)
+              RGB4{N0f8}(1.0,1.0,0.0)
+              RGB4{N0f8}(1.0,1.0,1.0)
+    ]
+    export continentcolors
+
+    continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
+    export continents
+
     # Find which continent a sample originates from
     function find_geolcont(lat,lon)
         # Interpret user input
@@ -24,40 +37,31 @@
 
         img = load(filepath)
 
-        colors = [RGB4{N0f8}(0.2,0.2,0.6)
-                  RGB4{N0f8}(0.0,0.4,0.8)
-                  RGB4{N0f8}(0.024,0.663,0.757)
-                  RGB4{N0f8}(0.4,0.8,0.4)
-                  RGB4{N0f8}(1.0,0.8,0.2)
-                  RGB4{N0f8}(1.0,1.0,0.0)
-         ]
+        ind = fill(7,size(img))
+        for i=1:6
+         ind[img .== continentcolors[i]] .= i
+        end
 
-         continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
-
-         ind = fill(7,size(img))
-         for i=1:6
-             ind[img .== colors[i]] .= i
+        # Create and fill output vector
+        contindex = Array{Int}(undef,size(lat))
+        for i=1:length(lat)
+         if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
+             # Result is unknown if either input is NaN or out of bounds
+             contindex[i] = 7
+         else
+             # Convert latitude and longitude into indicies of the elevation map array
+             # Note that STRTM15 plus has N+1 columns where N = 360*sf
+             row = 1 + trunc(Int,(90-lat[i])*512/180)
+             col = 1 + trunc(Int,(180+lon[i])*512/180)
+             # Find result by indexing
+             contindex[i] = ind[row,col]
          end
+        end
 
-         # Create and fill output vector
-         contindex = Array{Int}(undef,size(lat))
-         for i=1:length(lat)
-             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
-                 # Result is unknown if either input is NaN or out of bounds
-                 contindex[i] = 7
-             else
-                 # Convert latitude and longitude into indicies of the elevation map array
-                 # Note that STRTM15 plus has N+1 columns where N = 360*sf
-                 row = 1 + trunc(Int,(90-lat[i])*512/180)
-                 col = 1 + trunc(Int,(180+lon[i])*512/180)
-                 # Find result by indexing
-                 contindex[i] = ind[row,col]
-             end
-         end
-
-         return (contindex, continents)
+        return contindex
     end
     export find_geolcont
+
 
 ## --- CRUST 1.0
 
