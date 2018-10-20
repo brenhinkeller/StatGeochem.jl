@@ -31,7 +31,7 @@ module StatGeochem
     include("utilities/Import.jl");
 
     using StatsBase: percentile
-    using Interpolations: interpolate, Gridded, Linear
+    using Interpolations
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 

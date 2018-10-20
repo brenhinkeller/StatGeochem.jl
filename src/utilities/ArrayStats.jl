@@ -308,20 +308,39 @@
     end
     export cntr
 
+
     # Interpolate y-value at xq
-    function linterp1(x,y,xq)
-        itp = interpolate((x,), y, Gridded(Linear()))
-        yq = itp[xq] # Interpolate value of y at queried x values
-        return yq
+    # Linear interpolation, sorting inputs
+    if VERSION>v"0.7"
+        function linterp1(x,y,xq)
+            itp = LinearInterpolation(x,y, extrapolation_bc = Line())
+            yq = itp(collect(xq)) # Interpolate value of y at queried x values
+            return yq
+        end
+    else
+        function linterp1(x,y,xq)
+            itp = interpolate((x,),y, Gridded(Linear()))
+            yq = itp(collect(xq)) # Interpolate value of y at queried x values
+            return yq
+        end
     end
     export linterp1
 
     # Sort x and interpolate y-value at xq
-    function linterp1s(x,y,xq)
-        sI = sortperm(x) # indices to construct sorted array
-        itp = interpolate((x[sI],), y[sI], Gridded(Linear()))
-        yq = itp[xq] # Interpolate value of y at queried x values
-        return yq
+    if VERSION>v"0.7"
+        function linterp1s(x,y,xq)
+            sI = sortperm(x) # indices to construct sorted array
+            itp = LinearInterpolation(x[sI], y[sI], extrapolation_bc = Line())
+            yq = itp(xq) # Interpolate value of y at queried x values
+            return yq
+        end
+    else
+        function linterp1s(x,y,xq)
+            sI = sortperm(x) # indices to construct sorted array
+            itp = interpolate((x[sI],), y[sI], Gridded(Linear()))
+            yq = itp(xq) # Interpolate value of y at queried x values
+            return yq
+        end
     end
     export linterp1s
 
@@ -359,7 +378,7 @@
     function findclosest(source, target)
         index=Array{Int64}(undef,size(source))
         for i = 1:length(source)
-            index[i] = indmin((target .- source[i]).^2)
+            index[i] = argmin((target .- source[i]).^2)
         end
         return index
     end
@@ -371,7 +390,7 @@
         index=Array{Int64}(undef, size(source))
         for i = 1:length(source)
             t = find(target .< source[i])
-            ti = indmin((target[t] .- source[i]).^2)
+            ti = argmin((target[t] .- source[i]).^2)
             index[i] = t[ti]
         end
         return index;
@@ -384,7 +403,7 @@
         index=Array{Int64}(undef, size(source))
         for i=1:length(source)
             t = find(target .> source[i])
-            ti = indmin((target[t] .- source[i]).^2)
+            ti = argmin((target[t] .- source[i]).^2)
             index[i] = t[ti]
         end
         return index;
