@@ -5,7 +5,7 @@
     # annoying. Is it really that common to be running shell commands from an
     # untrusted source?
     function system(cmdstr)
-        return ccall((:system, "libc"), Int, (Cstring,), cmdstr)
+        return ccall((:system,), Int, (Cstring,), cmdstr)
     end
     export system
 
