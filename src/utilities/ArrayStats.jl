@@ -79,7 +79,7 @@
     export pctile
 
     function nansum(A; dim=0)
-        s = size(A);
+        s = size(A)
         if dim == 2
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
@@ -166,7 +166,7 @@
         else
             t = .~ isnan.(A)
             extr = extrema(A[t])
-            out = extr[2] - extr[1];
+            out = extr[2] - extr[1]
         end
         return out
     end
@@ -174,12 +174,12 @@
 
     # Mean, ignoring NaNs
     function nanmean(A; dim=0)
-        s = size(A);
+        s = size(A)
         if dim == 2
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = mean(A[i,t]);
+                out[i] = mean(A[i,t])
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
@@ -368,7 +368,7 @@
                 m[i] = mean(x[t])
             end
         end
-        return m;
+        return m
     end
     export movmean
 
@@ -389,11 +389,11 @@
     function findclosestbelow(source, target)
         index=Array{Int64}(undef, size(source))
         for i = 1:length(source)
-            t = find(target .< source[i])
+            t = findall(target .< source[i])
             ti = argmin((target[t] .- source[i]).^2)
             index[i] = t[ti]
         end
-        return index;
+        return index
     end
     export findclosestbelow
 
@@ -402,11 +402,11 @@
     function findclosestabove(source, target)
         index=Array{Int64}(undef, size(source))
         for i=1:length(source)
-            t = find(target .> source[i])
+            t = findall(target .> source[i])
             ti = argmin((target[t] .- source[i]).^2)
             index[i] = t[ti]
         end
-        return index;
+        return index
     end
     export findclosestabove
 

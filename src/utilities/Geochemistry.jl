@@ -17,7 +17,7 @@
         CHUR_Hf176_Hf177_t = CHUR_Hf176_Hf177 .- CHUR_Lu176_Hf177.*(exp.(t .* 10^6*lambda) .- 1)
 
         # Calculate corresponding epsilon Hf
-        eHf=(Hf176_Hf177_t ./ CHUR_Hf176_Hf177_t .- 1) .* 10^4;
+        eHf=(Hf176_Hf177_t ./ CHUR_Hf176_Hf177_t .- 1) .* 10^4
 
         if eHfOnly
             return eHf
@@ -37,7 +37,7 @@
             dbs = bsresample(data,sigma,length(age))
             eHf_resampled = eHf(dbs[:,2], dbs[:,3], dbs[:,4])
             (c,m,s) = binmeans(dbs[:,1], eHf_resampled, min, max, nbins)
-            means[:,i] = m;
+            means[:,i] = m
         end
 
         m = nanmean(means,dim=2)
@@ -87,7 +87,7 @@
         # Treat water as a trace element
         dotraceh2o = "!"
         # Initial trace compositionT
-        tsc = [];
+        tsc = []
         # Initial trace elements
         telements = []
         # Default global constraints

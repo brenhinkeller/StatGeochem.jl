@@ -116,9 +116,9 @@
             """)
         end
 
-        nlayers=9;
-        nlon=360;
-        nlat=180;
+        nlayers=9
+        nlon=360
+        nlat=180
 
         # Allocate data arrays
         vp = Array{Float64,3}(undef,nlayers,nlat,nlon)
@@ -157,10 +157,10 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        vpout = Array{Float64}(undef,size(lat));
-        vsout = Array{Float64}(undef,size(lat));
-        rhoout = Array{Float64}(undef,size(lat));
-        thkout = Array{Float64}(undef,size(lat));
+        vpout = Array{Float64}(undef,size(lat))
+        vsout = Array{Float64}(undef,size(lat))
+        rhoout = Array{Float64}(undef,size(lat))
+        thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
         for j=1:length(lat)
@@ -206,9 +206,9 @@
             """)
         end
 
-        nlayers=9;
-        nlon=360;
-        nlat=180;
+        nlayers=9
+        nlon=360
+        nlat=180
 
         # Allocate data arrays
         vp = Array{Float64,3}(undef,nlayers,nlat,nlon)
@@ -243,9 +243,9 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        vpout = Array{Float64}(undef,size(lat));
-        vsout = Array{Float64}(undef,size(lat));
-        rhoout = Array{Float64}(undef,size(lat));
+        vpout = Array{Float64}(undef,size(lat))
+        vsout = Array{Float64}(undef,size(lat))
+        rhoout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
         for j=1:length(lat)
@@ -288,9 +288,9 @@
             """)
         end
 
-        nlayers=9;
-        nlon=360;
-        nlat=180;
+        nlayers=9
+        nlon=360
+        nlat=180
 
         # Allocate data arrays
         bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
@@ -317,7 +317,7 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        thkout = Array{Float64}(undef,size(lat));
+        thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
         for j=1:length(lat)
@@ -355,9 +355,9 @@
             Result is depth from sea level to base of the requested layer
             """)
         end
-        nlayers=9;
-        nlon=360;
-        nlat=180;
+        nlayers=9
+        nlon=360
+        nlat=180
 
         # Allocate data arrays
         bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
@@ -384,7 +384,7 @@
         ilon = 180 + floor.(Int,ilon) + 1
 
         # Allocate output arrays
-        baseout = Array{Float64}(undef,size(lat));
+        baseout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
         for j=1:length(lat)
@@ -456,12 +456,12 @@
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)
                 if row == (maxrow+1) # Edge case
-                    row = maxrow;
+                    row = maxrow
                 end
 
                 col = 1 + trunc(Int,(180+lon[i])*sf)
                 if col == (maxcol+1) # Edge case
-                    col = maxcol;
+                    col = maxcol
                 end
 
                 # Find result by indexing
@@ -588,7 +588,7 @@
         y = 4320 - floor.(Int, 8640 * asinh.(tan.(lat*pi/180)) / asinh.(tan.(80.738*pi/180)) / 2 ) + 1
 
         # Make and fill output array
-        out=Array{Float64}(undef,size(x));
+        out=Array{Float64}(undef,size(x))
         for i=1:length(x)
             # If there is out data for row(i), col(i)
             if isnan(x[i]) || isnan(y[i]) || x[i]<1 || x[i]>10800 || y[i]<1 || y[i]>8640

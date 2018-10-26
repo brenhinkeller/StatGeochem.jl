@@ -76,7 +76,7 @@
 ## --- Map colormaps to images
 
     function imsc(matrix::Array,colormap::Array,cmin::Number=0,cmax::Number=0)
-        Nc = length(colormap)-1;
+        Nc = length(colormap) - 1
         if cmin>=cmax
             cmin = nanminimum(matrix)
             cmax = nanmaximum(matrix)
@@ -87,7 +87,7 @@
     export imsc
 
     function imsc_log10f(matrix::Array,from::Number,colormap::Array,cmin::Number=0,cmax::Number=0)
-        Nc = length(colormap)-1;
+        Nc = length(colormap) - 1
         if cmin>=cmax
             cmin = log10f(nanminimum(matrix),from)
             cmax = log10f(nanmaximum(matrix),from)

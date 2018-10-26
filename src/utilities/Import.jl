@@ -53,7 +53,7 @@
 
     # Parse a delimited string, return an array as output
     function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge=false)
-        parsed = Array{parseType}(undef,ceil(Int,length(str)/2));
+        parsed = Array{parseType}(undef,ceil(Int,length(str)/2))
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -86,7 +86,7 @@
                         if delim_pos>last_delim_pos+1
                             parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
-                        last_delim_pos = delim_pos;
+                        last_delim_pos = delim_pos
                     end
                 end
             end
@@ -115,7 +115,7 @@
         end
 
         # Allocate output array
-        parsed = Array{outType}(undef,ceil(Int,ndelims));
+        parsed = Array{outType}(undef,ceil(Int,ndelims))
 
         # Ignore initial delimiter
         last_delim_pos = 0

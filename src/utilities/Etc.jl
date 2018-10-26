@@ -21,13 +21,13 @@
         jmax = Array{Float64}(undef,round(Int,xrows/2))
 
         # Fill index arrays
-        found = false;
+        found = false
         markernumber = 0
         for j=1:xrows
             if sum(t[:,j])>0
                 list = find(t[:,j])
                 if ~found
-                    markernumber += 1;
+                    markernumber += 1
                     imin[markernumber] = minimum(list)
                     imax[markernumber] = maximum(list)
                     jmin[markernumber] = j

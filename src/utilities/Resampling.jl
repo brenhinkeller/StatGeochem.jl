@@ -299,7 +299,7 @@
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
         # Resample
-        i = 1;
+        i = 1
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -360,7 +360,7 @@
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
             (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins)
-            means[:,i] = m;
+            means[:,i] = m
         end
 
         m = nanmean(means,dim=2)

@@ -45,7 +45,7 @@
             # Distance between grid cell centers
             km_per_lon = cos(y_lat_cntr[i] * pi/180) * km_per_lat
             distEW = 2 * cellsize * km_per_lon
-            distDiag = sqrt(distNS^2+distEW^2);
+            distDiag = sqrt(distNS^2 + distEW^2)
 
             for j = 2:(size(matrix,2)-1)
                 # Gradients, in matrix units per km
@@ -134,7 +134,7 @@
 
         # Top row
         km_per_lon = cos(y_lat_cntr[1]*pi/180) * km_per_lat
-        distEW = 2*cellsize*km_per_lon;
+        distEW = 2*cellsize*km_per_lon
         distDiag = sqrt(distNS^2+(distEW/2)^2)
 
         for j = 2:(size(matrix,2)-1)
@@ -166,7 +166,7 @@
 
         # Bottom row
         km_per_lon = cos(y_lat_cntr[end] * pi/180) * km_per_lat
-        distEW = 2 * cellsize * km_per_lon;
+        distEW = 2 * cellsize * km_per_lon
         distDiag = sqrt(distNS^2 + (distEW/2)^2)
         for j = 2:(size(matrix,2)-1)
             # Gradients, in meters per Km
