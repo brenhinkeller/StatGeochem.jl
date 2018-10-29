@@ -9,12 +9,12 @@
     end
     export system
 
-## --- Retain deprecated functions with matlab-like syntax, to avoid breakages
+## --- Retain deprecated functions with matlab-like syntax,
+    # to avoid breakages in user scripts that may depend on them
 
     if VERSION>=v"1.0"
         function linspace(l::Number,u::Number,n::Number)
-            sp = (u-l)/(n-1)
-            return l:sp:u
+            return range(l,stop=u,length=n)
         end
         export linspace
 
@@ -26,10 +26,10 @@
         end
         export repmat
 
-        # function contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
-        #     return occursin(needle::Union{AbstractString,Regex,AbstractChar}, haystack::AbstractString)
-        # end
-        # export contains
+        function contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
+            return occursin(needle::Union{AbstractString,Regex,AbstractChar}, haystack::AbstractString)
+        end
+        export contains
     end
 
 ## --- End of File
