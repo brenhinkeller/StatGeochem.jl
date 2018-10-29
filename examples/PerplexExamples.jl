@@ -6,11 +6,9 @@
     using Plots; gr(); default(fmt = :svg);
 
     if VERSION>=v"0.7"
-        using Statistics
-        using DelimitedFiles
-        using SpecialFunctions
+        using Statistics, DelimitedFiles, SpecialFunctions
     end
-
+    
 ## --- Configure
     # Absolute paths to perplex resources
     perplexdir = "/Users/cbkeller/Applications/perplex-stable/" # Location of executables and solution models to use

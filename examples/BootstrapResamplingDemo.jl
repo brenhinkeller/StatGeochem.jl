@@ -5,9 +5,7 @@
     using Plots; gr(); default(fmt = :svg);
 
     if VERSION>=v"0.7"
-        using Statistics
-        using DelimitedFiles
-        using SpecialFunctions
+        using Statistics, DelimitedFiles, SpecialFunctions
     end
 
 ## --- Input dataset
