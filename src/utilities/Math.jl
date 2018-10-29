@@ -150,8 +150,8 @@
         (ymin, ymax) = extrema(poly_y)
 
         # Find the matrix indices within the range of the polygon (if any)
-        column_inrange = find((grid_x .>= xmin) .& (grid_x .<= xmax))
-        row_inrange = find((grid_y .>= ymin) .& (grid_y .<= ymax))
+        column_inrange = findall((grid_x .>= xmin) .& (grid_x .<= xmax))
+        row_inrange = findall((grid_y .>= ymin) .& (grid_y .<= ymax))
 
         # Keep a list of matrix indexes in the polygon
         row = Array{Int}(undef,length(column_inrange) * length(row_inrange))
