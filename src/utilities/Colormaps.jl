@@ -69,7 +69,7 @@
 
     function resize_colormap(cmap,n)
         cNum = length(cmap)
-        return linterp_colormap(1:cNum,cmap,linsp(1,cNum,n))
+        return linterp_colormap(1:cNum,cmap,collect(linsp(1,cNum,n)))
     end
     export resize_colormap
 
