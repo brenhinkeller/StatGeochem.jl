@@ -52,6 +52,14 @@
     end
     export norm_quantile
 
+    # How dispersed (in units of sigma) should we expect a sample of N numbers
+    # drawn from a Normal (Gaussian) distribution to be?
+    function norm_width(N::Number)
+        F = 1 - 1/(N+1)
+        return 2*norm_quantile(F)
+    end
+    export norm_width
+
 ## --- Geometry
 
     # Check if a 2D polygon defined by the arrays x, y contains a point.
