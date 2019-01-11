@@ -378,7 +378,7 @@
             rows = floor(Int,size(matrix,1)/factor)
             cols = floor(Int,size(matrix,2)/jfactor)
 
-            downsampled = typeof(matrix)(rows,cols)
+            downsampled = typeof(matrix)(undef,rows,cols)
             for i=1:rows
                 for j=1:cols
                     downsampled[i,j]=matrix[i*factor,j*jfactor]
