@@ -337,19 +337,57 @@
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
-        averages = Array{Float64}(undef,nbins)
+        means = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-            averages[i] = mean(y[t])
+            means[i] = mean(y[t])
             errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
         end
 
-        return(bincenters, averages, errors)
+        return(bincenters, means, errors)
     end
     export binmeans
 
+
+    function binmedians(x,y,min,max,nbins; resamplingratio=1)
+        binwidth = (max-min)/nbins
+        binedges = linsp(min,max,nbins+1)
+        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
+
+        medians = Array{Float64}(undef,nbins)
+        errors = Array{Float64}(undef,nbins)
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
+            medians[i] = median(y[t])
+            errors[i] = 1.4826 * nanmad(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
+        end
+
+        return(bincenters, medians, errors)
+    end
+    export binmedians
+
 ## --- Bin bootstrap resampled data
+
+    function bin_bsr(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
+        data = hcat(x, y)
+        sigma = hcat(x_sigma, zeros(size(x_sigma)))
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins)
+            means[:,i] = m
+        end
+
+        m = nanmean(means,dim=2)
+        e = nanstd(means,dim=2)
+
+        return (c, m, e)
+    end
+    export bin_bsr
+
 
     function bin_bsr_means(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
         data = hcat(x, y)
@@ -370,6 +408,29 @@
         return (c, m, el, eu)
     end
     export bin_bsr_means
+
+
+    function bin_bsr_medians(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
+        data = hcat(x, y)
+        sigma = hcat(x_sigma, zeros(size(x_sigma)))
+
+        medians = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmedians(dbs[:,1], dbs[:,2], min, max, nbins)
+            medians[:,i] = m
+        end
+
+        m = nanmedian(medians,dim=2)
+        el = m .- pctile(medians,2.5,dim=2)
+        eu = pctile(medians,97.5,dim=2) .- m
+
+        return (c, m, el, eu)
+    end
+    export bin_bsr_medians
+
+
 
 ## --- Downsample an image / array
 
