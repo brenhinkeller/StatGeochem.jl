@@ -313,4 +313,17 @@
     end
     export unelementify
 
+## --- High-level import/export functions
+
+    function importdataset(filepath::AbstractString, delim::AbstractChar)
+        return elementify(readdlm(filepath, delim))
+    end
+    export importdataset
+
+    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar)
+        return writedlm(filepath, unelementify(dataset), delim)
+    end
+    export exportdataset
+
+
 ## --- End of File
