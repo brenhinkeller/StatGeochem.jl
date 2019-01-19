@@ -306,7 +306,11 @@
             # Parse the input dict
             for i=1:length(elements)
                 out[1,i] = elements[i]
-                out[2:end,i] = in[elements[i]]
+                if length(in[elements[i]]) == 1
+                    out[2,i] = in[elements[i]]
+                else
+                    out[2:end,i] = in[elements[i]]
+                end
             end
         end
         return out
@@ -324,6 +328,5 @@
         return writedlm(filepath, unelementify(dataset), delim)
     end
     export exportdataset
-
 
 ## --- End of File
