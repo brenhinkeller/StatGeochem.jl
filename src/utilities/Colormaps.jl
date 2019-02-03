@@ -75,6 +75,7 @@
 
 ## --- Map colormaps to images
 
+    # Convert matrix to image using colormap
     function imsc(matrix::Array,colormap::Array,cmin::Number=0,cmax::Number=0)
         Nc = length(colormap) - 1
         if cmin>=cmax
@@ -86,6 +87,19 @@
     end
     export imsc
 
+    # Convert matrix to indirect array image using colormap
+    function imsci(matrix::Array,colormap::Array,cmin::Number=0,cmax::Number=0)
+        Nc = length(colormap) - 1
+        if cmin>=cmax
+            cmin = nanminimum(matrix)
+            cmax = nanmaximum(matrix)
+        end
+        crange = cmax - cmin
+        return IndirectArray(matrix .|> x -> isnan(x) ? 1 : floor(UInt, min(max((x-cmin)/crange*Nc,0), Nc))+1, colormap)
+    end
+    export imsci
+
+    # Convert log10 of matrix to image using colormap
     function imsc_log10f(matrix::Array,from::Number,colormap::Array,cmin::Number=0,cmax::Number=0)
         Nc = length(colormap) - 1
         if cmin>=cmax

@@ -6,5 +6,6 @@ Interpolations
 FileIO
 HDF5
 Colors
+IndirectArrays
 Plots
 GR
