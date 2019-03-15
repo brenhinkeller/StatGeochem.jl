@@ -379,7 +379,24 @@
 
 ## --- Searching arrays
 
-    # Return the index of the closest value of Target for each value in Source
+    # Find the index of the first value in 'target' (if any) that matches
+    # a given value in 'source' for each value in 'source' (else 0)
+    function findmatches(source, target)
+        # Allocate output array, initializing with zeros
+        index = fill(0, size(source))
+        # Loop through source and find first match for each (if any)
+        for i = 1:length(source)
+            t = source[i] .== target
+            if any(t)
+                index[i] = findfirst(t)
+            end
+        end
+        return index
+    end
+    export findmatches
+
+    # Return the index of the closest value in 'target' for each value in 'source'
+    # If muliple values are equally close, the first one is used
     function findclosest(source, target)
         index=Array{Int64}(undef,size(source))
         for i = 1:length(source)
@@ -389,8 +406,8 @@
     end
     export findclosest
 
-    # Return the index of the closest value of the vector 'target' below each
-    # value in 'source'
+    # Return the index of the closest value of array 'target' below (less than)
+    # each value in 'source'
     function findclosestbelow(source, target)
         index=Array{Int64}(undef, size(source))
         for i = 1:length(source)
@@ -402,8 +419,8 @@
     end
     export findclosestbelow
 
-    # Return the index of the closest value of the vector 'target' above each
-    # value in 'source'
+    # Return the index of the closest value of the vector 'target' above (greater
+    # than) each value in 'source'
     function findclosestabove(source, target)
         index=Array{Int64}(undef, size(source))
         for i=1:length(source)
