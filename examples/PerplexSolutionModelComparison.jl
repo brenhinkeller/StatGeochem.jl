@@ -70,13 +70,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
-        solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
+        solid[e] = (bulk[e] .- (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + G")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(G) + G")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + G_solution_phases, $P bar")
@@ -112,13 +112,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + W")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(G) + W")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + W_solution_phases, $P bar")
@@ -155,13 +155,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(G) + JH")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(G) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(G) + JH_solution_phases, $P bar")
@@ -197,13 +197,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="pMELTS(G) + JH")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="pMELTS(G) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="pMELTS(G) + JH_solution_phases, $P bar")
@@ -239,13 +239,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + W")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(W) + W")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + W_solution_phases, $P bar")
@@ -281,13 +281,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + G")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(W) + G")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + G_solution_phases, $P bar")
@@ -323,13 +323,13 @@
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
 
     # Add results to melt % vs temperature figure
-    plot!(h0, melt["T(K)"]-273.15, melt["wt_pct"], label="melt(W) + JH")
+    plot!(h0, melt["T(K)"] .- 273.15, melt["wt_pct"], label="melt(W) + JH")
 
     # Plot melt composition as a function of melt percent
     h = plot(xlabel="Percent melt", ylabel="Wt. % in melt", title="melt(W) + JH_solution_phases, $P bar")
