@@ -8,7 +8,7 @@
     if VERSION>=v"0.7"
         using Statistics, DelimitedFiles, SpecialFunctions
     end
-    
+
 ## --- Configure
     # Absolute paths to perplex resources
     perplexdir = "/Users/cbkeller/Applications/perplex-stable/" # Location of executables and solution models to use
@@ -63,16 +63,16 @@
     data_isobaric = perplex_query_isobar(perplexdir, scratchdir, T)
     print(data_isobaric)
 
-## --- Query the full isobar -- results returned as pandas DataFrames
+## --- Query the full isobar -- results returned as dict
     T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
     npoints = T_range_inc[2] - T_range_inc[1] + 1
     bulk = perplex_query_isobar_system(perplexdir, scratchdir, T_range_inc, npoints)             # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
-    modes = perplex_query_isobar_modes(perplexdir, scratchdir, T_range, npoints)                 # || phase modes
+    modes = perplex_query_isobar_modes(perplexdir, scratchdir, T_range_inc, npoints)                 # || phase modes
     melt = perplex_query_isobar_phase(perplexdir, scratchdir, T_range_inc, npoints, melt_model)  # || melt data
 
     # Create dictionary to hold solid composition and fill it using what we know from system and melt
     solid = Dict()
-    solid["wt_pct"] = 100 - melt["wt_pct"]
+    solid["wt_pct"] = 100 .- melt["wt_pct"]
     for e in ["SIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O"]
         solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
     end
@@ -104,7 +104,7 @@
 ## --- Plot modes of all phases as a function of temperature
     h = plot(xlabel="T (C)", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
     for m in modes["elements"][3:end]
-        plot!(h, modes["T(K)"]-273.15, modes[m], label=m)
+        plot!(h, modes["T(K)"] .- 273.15, modes[m], label=m)
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     # savefig(h,"PhaseModes.pdf")
