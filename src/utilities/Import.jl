@@ -276,6 +276,10 @@
                 out[elements[i]] = thiscol
             end
         end
+
+        # Return only unique elements, since dictionary keys must be unique
+        out["elements"] = unique(elements)
+
         return out
     end
     export elementify
