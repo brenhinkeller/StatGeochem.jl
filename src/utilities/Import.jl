@@ -259,14 +259,20 @@
             thiscol = in[(1+skipstart):end,i]
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
 
-            if haskey(out,elements[i]) && ( (sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(thiscol))) || floatcol )
-                # If key already exists and is plausibly numeric, average the two
-                out[elements[i]] = nanmean(hcat(floatify.(out[elements[i]]), floatify.(thiscol)), dim=2)
+            if haskey(out,elements[i])
+                # If key already exists
+                if floatcol || ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(out[elements[i]])) )
+                    # If either this column or the existing one is plausibly numeric, average the two
+                    out[elements[i]] = nanmean( hcat(floatify.(out[elements[i]]), floatify.(thiscol)), dim=2 )
+                else
+                    # If neither is plausibly numeric, just contatenate the columns and move on
+                    out[elements[i]] = hcat(out[elements[i]], thiscol)
+                end
             elseif floatcol
-                # If key is numeric
+                # If column is numeric
                 out[elements[i]] = floatify.(thiscol)
             else
-                # If key is non-numeric
+                # If column is non-numeric
                 out[elements[i]] = thiscol
             end
         end
