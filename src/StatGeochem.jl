@@ -36,7 +36,7 @@ module StatGeochem
     include("utilities/Resampling.jl");
 
     using IndirectArrays: IndirectArray
-    using Colors: ColorTypes, RGB4, RGB, N0f8
+    using Colors: Colorant, ColorTypes, RGB4, RGB, N0f8
     include("utilities/Colormaps.jl");
 
     include("utilities/Geochemistry.jl");
