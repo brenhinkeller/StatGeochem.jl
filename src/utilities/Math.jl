@@ -38,6 +38,12 @@
     end
     export normpdf
 
+    # Fast Log Likelihood corresponding to a Normal (Gaussian) distribution
+    function normpdf_LL(mu::Number,sigma::Number,x::Number)
+        return -(x-mu)*(x-mu) / (2*sigma*sigma)
+    end
+    export normpdf_LL
+
     # Cumulative density function of the Normal (Gaussian) distribution
     # Not precise enough for many uses, unfortunately
     function normcdf(mu::Number,sigma::Number,x::Number)
@@ -59,6 +65,22 @@
         return 2*norm_quantile(F)
     end
     export norm_width
+
+    # Integral of the product of two normal distributions N(μ1,σ1) * N(μ2,σ2)
+    function normproduct(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
+        # The integral of the product of two normal distributions is itself just
+        # another Normal distribution! Specifically, one with variance σ1^2 + σ2^2
+        normpdf(μ1, sqrt(σ1^2 + σ2^2), μ2)
+    end
+    export normproduct
+
+    # Log likelihood corresponding to the integral of N(μ1,σ1) * N(μ2,σ2)
+    function normproduct_LL(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
+        # As above, but using the fast log likelihood of a Normal distribution
+        normpdf_LL(μ1, sqrt(σ1^2 + σ2^2), μ2)
+    end
+    export normproduct_LL
+
 
 ## --- Geometry
 
@@ -228,6 +250,16 @@
         return f
     end
     export bilinear_exponential_LL
+
+    # Interpolate log likelihood from an array
+    function interpolate_LL(x,p)
+        ll = Array{Float64}(undef, size(x))
+        for i = 1:length(x)
+            ll[i] = linterp_at_index(p[:,i], x[i], -Inf)
+        end
+        return ll
+    end
+    export interpolate_LL
 
     UniformDistribution = [1.0, 1.0]
     export UniformDistribution
