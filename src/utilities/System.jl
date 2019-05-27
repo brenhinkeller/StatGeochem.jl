@@ -18,6 +18,9 @@
         end
         export linspace
 
+        linreg(x, y) = hcat(fill!(similar(x), 1), x) \ y
+        export linreg
+        
         function repmat(A::AbstractArray, vert::Integer)
             return repeat(A, outer=vert)
         end
