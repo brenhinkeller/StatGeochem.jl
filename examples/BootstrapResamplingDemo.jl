@@ -82,8 +82,10 @@
     plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
 
 ## --- Download and unzip Keller and Schoene (2012) dataset
-    download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
-    run(`gunzip -f ign.h5.gz`) # Unzip file
+    if ~isfile("ign.h5") # Unless it already exists
+        download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
+        run(`gunzip -f ign.h5.gz`) # Unzip file
+    end
 
     # Read HDF5 file
     using HDF5
