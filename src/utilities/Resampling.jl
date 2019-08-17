@@ -50,7 +50,7 @@
     end
     export bsresample
 
-    # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma
+    # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma
     function bsresample_unif(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -99,7 +99,7 @@
     end
     export bsresample_unif
 
-    # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma, AND a gaussian component
+    # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma, AND a gaussian component
     function bsresample_unif_norm(data::Array{<:Number}, sigma_unif, sigma_norm, nrows::Number, p = min(0.2,nrows/size(data,1)))
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -430,6 +430,26 @@
     end
     export bin_bsr_medians
 
+
+    function bin_bsr_ratios(x,num,denom,min,max,nbins,x_sigma,num_sigma,denom_sigma,nresamples,p=0.2)
+        data = hcat(x, num, denom)
+        sigma = hcat(x_sigma, num_sigma, denom_sigma)
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins)
+            means[:,i] = m ./ (1 .- m)
+        end
+
+        m = nanmean(means,dim=2)
+        el = m .- pctile(means,2.5,dim=2)
+        eu = pctile(means,97.5,dim=2) .- m
+
+        return (c, m, el, eu)
+    end
+    export bin_bsr_ratios
 
 
 ## --- Downsample an image / array
