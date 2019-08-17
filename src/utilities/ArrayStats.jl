@@ -63,16 +63,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = percentile(A[i,t],p)
+                out[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = percentile(A[t,i],p)
+                out[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
-            out = percentile(A[:],p)
+            t = .~ isnan.(A)
+            out = any(t) ? percentile(A[t],p) : typeof(A[1])(NaN)
         end
         return out
     end
@@ -84,17 +85,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = sum(A[i,t])
+                out[i] = any(t) ? sum(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = sum(A[t,i])
+                out[i] = any(t) ? sum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = sum(A[t])
+            out = any(t) ? sum(A[t]) : NaN
         end
         return out
     end
@@ -107,17 +108,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = minimum(A[i,t])
+                out[i] = any(t) ? minimum(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = minimum(A[t,i])
+                out[i] = any(t) ? minimum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = minimum(A[t])
+            out = any(t) ? minimum(A[t]) : NaN
         end
         return out
     end
@@ -130,17 +131,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = maximum(A[i,t])
+                out[i] = any(t) ? maximum(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = maximum(A[t,i])
+                out[i] = any(t) ? maximum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = maximum(A[t])
+            out = any(t) ? maximum(A[t]) : NaN
         end
         return out
     end
@@ -179,17 +180,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = mean(A[i,t])
+                out[i] = any(t) ? mean(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = mean(A[t,i])
+                out[i] = any(t) ? mean(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = mean(A[t])
+            out = any(t) ? mean(A[t]) : NaN
         end
         return out
     end
@@ -202,17 +203,17 @@
             out = Array{typeof(A[1])}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = std(A[i,t])
+                out[i] = any(t) ? std(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef,s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = std(A[t,i])
+                out[i] = any(t) ? std(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = std(A[t])
+            out = any(t) ? std(A[t]) : NaN
         end
         return out
     end
@@ -225,17 +226,17 @@
             out = Array{typeof(A[1])}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = median(A[i,t])
+                out[i] = any(t) ? median(A[i,t]) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = median(A[t,i])
+                out[i] = any(t) ? median(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = median(A[t])
+            out = any(t) ? median(A[t]) : NaN
         end
         return out
     end
@@ -249,17 +250,17 @@
             out = Array{typeof(A[1])}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = median(abs.( A[i,t] .- median(A[i,t]) ))
+                out[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = median(abs.( A[t,i] .- median(A[t,i]) ))
+                out[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = median(abs.( A[t] .- median(A[t]) ))
+            out = any(t) ? median(abs.( A[t] .- median(A[t]) )) : NaN
         end
         return out
     end
@@ -273,17 +274,17 @@
             out = Array{typeof(A[1])}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = mean(abs.( A[i,t] .- mean(A[i,t]) ))
+                out[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : NaN
             end
         elseif dim == 1
             out = Array{typeof(A[1])}(undef, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = mean(abs.( A[t,i] .- mean(A[t,i]) ))
+                out[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = mean(abs.( A[t] .- mean(A[t]) ))
+            out = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : NaN
         end
         return out
     end
