@@ -50,7 +50,7 @@
 
 ## --- Fe oxide conversions
 
-    function feconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
+    function feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
         # Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into
         # a single FeOT value.
 
@@ -68,7 +68,7 @@
 
         return FeOT
     end
-    export feconversion
+    export feoconversion
 
 ## --- MELTS interface
 
