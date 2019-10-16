@@ -48,6 +48,28 @@
     end
     export bin_bsr_eHf
 
+## --- Fe oxide conversions
+
+    function feconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
+        # Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into
+        # a single FeOT value.
+
+        # To convert from Fe2O3 wt % to FeO wt %, multiply by
+        conversionfactor = (55.845+15.999) / (55.845+1.5*15.999)
+
+        # If FeOT or Fe2O3T already exists, use that
+        if isnan(FeOT)
+            if isnan(Fe2O3T)
+                FeOT=nansum([Fe2O3*conversionfactor, FeO])
+            else
+                FeOT=Fe2O3T*conversionfactor
+            end
+         end
+
+        return FeOT
+    end
+    export feconversion
+
 ## --- MELTS interface
 
     # Configure and run MELTS simulation
