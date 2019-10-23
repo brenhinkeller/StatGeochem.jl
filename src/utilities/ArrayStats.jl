@@ -6,7 +6,7 @@
 
         if n == 1
             wx = x[1]
-            mswd = 0
+            mswd = NaN
             wsigma = sigma[1]
         else
             s1 = 0.0; s2 = 0.0; s3 = 0.0;
@@ -26,7 +26,6 @@
     end
     export awmean
 
-
     function gwmean(x, sigma)
         # Geochronologist's weigted mean, including MSWD, with MSWD correction to uncertainty.
 
@@ -34,7 +33,7 @@
 
         if n == 1
             wx = x[1]
-            mswd = 0
+            mswd = NaN
             wsigma = sigma[1]
         else
             s1 = 0.0; s2 = 0.0; s3 = 0.0;
@@ -53,6 +52,26 @@
         return wx, wsigma, mswd
     end
     export gwmean
+
+    # Calculate MSWD of a dataset
+    function MSWD(x, sigma)
+
+        n = length(x)
+
+        s1 = 0.0; s2 = 0.0; s3 = 0.0;
+        for i=1:n
+            s1 += x[i] / (sigma[i]*sigma[i])
+            s2 += 1 / (sigma[i]*sigma[i])
+        end
+        wx = s1/s2
+
+        for i=1:n
+            s3 += (x[i] - wx) * (x[i] - wx) / (sigma[i]*sigma[i])
+        end
+
+        return s3 / (n-1)
+    end
+    export MSWD
 
 ## --- Statistics of arrays with NaNs
 
