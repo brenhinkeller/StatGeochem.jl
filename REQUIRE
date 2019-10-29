@@ -2,10 +2,11 @@ julia 1.0
 
 Compat
 StatsBase
+ProgressMeter
 Interpolations
+IndirectArrays
+Colors
 FileIO
 HDF5
-Colors
-IndirectArrays
 Plots
 GR
