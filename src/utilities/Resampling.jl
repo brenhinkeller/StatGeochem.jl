@@ -483,7 +483,7 @@
         nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
 
         k = Array{Float64}(undef,length(lat))
-        @showprogress 1 for i=1:length(lat)
+        @showprogress 1 "Calculating weights:" for i=1:length(lat)
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
