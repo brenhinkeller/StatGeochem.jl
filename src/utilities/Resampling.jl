@@ -10,6 +10,9 @@
         i = 1
         pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
+            # Update progress
+            update!(pm, i)
+
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
@@ -39,9 +42,11 @@
 
             # Keep track of current filled rows
             i += size(sdata,1)
-            update!(pm, i)
         end
+
+        # Complete progress meter
         update!(pm, nrows)
+
         return resampled
     end
 
@@ -72,6 +77,9 @@
         i = 1
         pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
+            # Update progress
+            update!(pm, i)
+
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
@@ -101,9 +109,11 @@
 
             # Keep track of current filled rows
             i += size(sdata,1)
-            update!(pm, i)
         end
+
+        # Complete progress meter
         update!(pm, nrows)
+
         return resampled
     end
 
