@@ -8,6 +8,7 @@
 
         # Resample
         i = 1
+        pm = Progress(nrows, 1)
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -38,6 +39,7 @@
 
             # Keep track of current filled rows
             i += size(sdata,1)
+            update!(pm, i)
         end
         return resampled
     end
@@ -67,6 +69,7 @@
 
         # Resample
         i = 1
+        pm = Progress(nrows, 1)
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -97,6 +100,7 @@
 
             # Keep track of current filled rows
             i += size(sdata,1)
+            update!(pm, i)
         end
         return resampled
     end

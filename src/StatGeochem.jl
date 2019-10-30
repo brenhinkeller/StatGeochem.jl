@@ -31,7 +31,7 @@ module StatGeochem
     include("utilities/Import.jl");
 
     using StatsBase: percentile
-    using ProgressMeter: @showprogress
+    using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
