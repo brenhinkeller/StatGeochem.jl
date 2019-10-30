@@ -8,7 +8,7 @@
 
         # Resample
         i = 1
-        pm = Progress(nrows, 1)
+        pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -41,6 +41,7 @@
             i += size(sdata,1)
             update!(pm, i)
         end
+        update!(pm, nrows)
         return resampled
     end
 
@@ -69,7 +70,7 @@
 
         # Resample
         i = 1
-        pm = Progress(nrows, 1)
+        pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
             # If we have more than one sample
             if size(data,1) > 1
@@ -102,6 +103,7 @@
             i += size(sdata,1)
             update!(pm, i)
         end
+        update!(pm, nrows)
         return resampled
     end
 
