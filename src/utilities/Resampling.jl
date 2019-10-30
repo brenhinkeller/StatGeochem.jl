@@ -41,10 +41,20 @@
         end
         return resampled
     end
-    # Second method for bsresample that takes a dictionary as input
+
+    # Second method for bsresample that takes a dictionary as input. Yay multiple dispatch!
     function bsresample(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+        # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
-        sigma = unelementify(in, elements.*"_sigma", floatout=true)
+
+        # 2d array of absolute 1-sigma uncertainties
+        if haskey(in,"err") && isa(in["err"], Dict)
+            sigma = unelementify(in["err"], elements, floatout=true)
+        else
+            sigma = unelementify(in, elements.*"_sigma", floatout=true)
+        end
+
+        # Resample
         sdata = bsresample(data, sigma, nrows, p)
         return elementify(sdata, elements)
     end
@@ -90,10 +100,20 @@
         end
         return resampled
     end
+
     # Second method for bsresample_unif that takes a dictionary as input
     function bsresample_unif(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+        # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
-        sigma = unelementify(in, elements.*"_sigma", floatout=true)
+
+        # 2d array of absolute uncertainties
+        if haskey(in,"err") && isa(in["err"], Dict)
+            sigma = unelementify(in["err"], elements, floatout=true)
+        else
+            sigma = unelementify(in, elements.*"_sigma", floatout=true)
+        end
+
+        # Resample
         sdata = bsresample_unif(data, sigma, nrows, p)
         return elementify(sdata, elements)
     end
@@ -483,7 +503,7 @@
         nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
 
         k = Array{Float64}(undef,length(lat))
-        @showprogress 1 "Calculating weights:" for i=1:length(lat)
+        @showprogress 1 "Calculating weights: " for i=1:length(lat)
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
