@@ -352,7 +352,8 @@
         system("cp $(perplexdir)perplex_option.dat $prefix")
         system("cp $(perplexdir)solution_model.dat $prefix")
 
-        # Create build batch file
+        # Create build batch file.
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"build.bat", "w")
         # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
         elementstring = ""
@@ -409,6 +410,7 @@
         system("cp $(perplexdir)solution_model.dat $prefix")
 
         # Create build batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"build.bat", "w")
         # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
         elementstring = ""
@@ -448,6 +450,7 @@
         end
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n1\n$P\n999\n0\n")
         close(fp)
@@ -480,6 +483,7 @@
         prefix = scratchdir * "out_$index/" # path to data files
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n3\n1\n$(P_range[1])\n$(P_range[2])\n$npoints\n2\nn\nn\n13\nn\nn\n15\nn\nn\n0\n0\n")
         close(fp)
@@ -522,6 +526,7 @@
         end
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n1\n$T\n999\n0\n")
         close(fp)
@@ -557,6 +562,7 @@
         prefix = scratchdir * "out_$index/" # path to data files
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
         close(fp)
@@ -599,6 +605,7 @@
         prefix = scratchdir * "out_$index/" # path to data files
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n25\nn\n$include_fluid\n0\n")
         close(fp)
@@ -639,6 +646,7 @@
         prefix = scratchdir * "out_$index/" # path to data files
 
         # Create werami batch file
+        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n36\n1\n$include_fluid\n0\n")
         close(fp)

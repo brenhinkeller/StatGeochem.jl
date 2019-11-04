@@ -123,17 +123,17 @@
     P_range = [280, 28000] # Pressure range to explore, bar (1-100 km)
     T_surf = 273.15 # Temperature of surface (K)
     geotherm = 0.1 # Geothermal gradient of 0.1 K/bar == about 28.4 K/km
-    melt_model = "melt(G)"
+    melt_model = ""
 
     # Configure (run build and vertex)
-    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm, dataset="hp11ver.dat", solution_phases=melt_model*"\n"*G_solution_phases, excludes=G_excludes)
+    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm, dataset="hp02ver.dat", solution_phases=HP_solution_phases, excludes=HP_excludes)
 
     # Query seismic properties along the whole geotherm
     geotherm_sesimic = perplex_query_geotherm_seismic(perplexdir, scratchdir, P_range, 100)
 
-    # Query all properties at a single pressure
-    P = 10000
-    data_geotherm = perplex_query_geotherm(perplexdir, scratchdir, P)
-    print data_geotherm
+    # # Query all properties at a single pressure
+    # P = 10000
+    # data_geotherm = perplex_query_geotherm(perplexdir, scratchdir, P)
+    # print data_geotherm
 
 ## --- End of File
