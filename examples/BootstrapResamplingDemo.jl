@@ -110,6 +110,8 @@
     xmin = 0
     xmax = 3900
     nbins = 39
+    elem = "SiO2"
+    unit = "wt. %"
 
     # Look only at samples in the basaltic silica range
     # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
@@ -117,17 +119,19 @@
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["MgO"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
-    plot!(xlabel="Age (Ma)", ylabel="MgO (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
+    plot!(xlabel="Age (Ma)", ylabel="$elem ($unit)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 ## --- Same as above, but for Na2O
     nresamplings=1000
     xmin = 0
     xmax = 3900
     nbins = 39
+    elem = "Na2O"
+    unit = "wt. %"
 
     # Look only at samples in the basaltic silica range
     # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
@@ -135,8 +139,8 @@
 
     # Calculate binned means and uncertainties
     # (c = bincenter, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign["Na2O"][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,markerstrokecolor=:auto,label="")
-    plot!(xlabel="Age (Ma)", ylabel="Na2O (wt. %)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
+    plot!(xlabel="Age (Ma)", ylabel="$elem ($unit)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
