@@ -1,3 +1,10 @@
+## --- Linear least-squares regression
+
+    function linreg(x,y)
+        return hcat(fill!(similar(x), 1), x) \ y
+    end
+    export linreg
+
 ## --- Fast inverse square-root
     # This is mostly just for fun: while it can be 1.5x faster than 1/sqrt(x)
     # I'm not sure there's any realistic scientific application where it's
