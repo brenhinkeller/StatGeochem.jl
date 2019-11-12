@@ -48,6 +48,34 @@
     end
     export bin_bsr_eHf
 
+## --- Calculate Eu*
+
+    # Full four-element log-linear interpolation, using ionic radii
+    function eustar(Nd, Sm, Gd, Tb)
+        # Ionic radii, in pm [Tb, Gd, Sm, Nd]
+        r = [106.3, 107.8, 109.8, 112.3] # or x = [1, 2, 4, 6]
+        # Normalize to chondrite
+        y = log.([Tb/0.0374, Gd/0.2055, Sm/0.1530, Nd/0.4670])
+        values = .~ isnan.(y)
+        if sum(values) > 1
+            # Fit a straight line through the chondrite-normalized values
+            (a,b) = linreg(x[values], r[values])
+            # De-dormalize output for Eu, interpolating at r = 108.7 pm or x = 3
+            eu_interp = 0.0580*exp(a + b*108.7)
+        else
+            eu_interp = NaN
+        end
+        return eu_interp
+    end
+    
+    # Simple geometric mean interpolation from Sm and Gd alone
+    function eustar(Sm, Gd)
+        # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
+        return 0.0580*sqrt(Sm/0.1530 * Gd/0.2055)
+    end
+
+    export eustar
+
 ## --- Fe oxide conversions
 
     function feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
