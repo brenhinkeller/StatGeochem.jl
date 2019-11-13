@@ -62,7 +62,7 @@
         notnan = .~ isnan.(y)
         if sum(notnan) > 1
             # Fit a straight line through the chondrite-normalized values
-            (a,b) = linreg(x[notnan], r[notnan])
+            (a,b) = linreg(r[notnan], y[notnan])
             # De-dormalize output for Eu, interpolating at r = 108.7 pm or x = 3
             eu_interp = 0.0580*exp(a + b*108.7)
         else
