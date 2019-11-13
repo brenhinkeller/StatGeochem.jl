@@ -101,6 +101,30 @@
     end
     export feoconversion
 
+## --- Chemical Index of Alteration
+
+    # Chemical Index of Alteration as defined by Nesbitt and Young, 1982
+    # Note that CaO should be only igneous CaO excluding any Ca from calcite or apatite
+    function CIA(Al2O3::Number, CaO::Number, Na2O::Number, K2O::Number)
+        A = Al2O3 / 101.96007714
+        C = CaO / 56.0774
+        N = Na2O / 61.978538564
+        K = K2O / 94.19562
+        return A / (A + C + N + K) * 100
+    end
+    export CIA
+
+    # "Weathering Index of Parker" as defined by Parker, 1970
+    function WIP(Na2O::Number, MgO::Number, K2O::Number, CaO::Number)
+        Na = Na2O / 30.9895
+        Mg = MgO / 40.3044
+        K = K2O / 47.0980
+        Ca = CaO / 56.0774
+        # Denominator for each element is a measure of Nicholls' bond strengths
+        return (Na/0.35 + Mg/0.9 + K/0.25 + Ca/0.7) * 100
+    end
+    export WIP
+
 ## --- MELTS interface
 
     # Configure and run MELTS simulation
