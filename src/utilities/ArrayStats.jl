@@ -73,7 +73,7 @@
     end
     export MSWD
 
-## --- Statistics of arrays with NaNs
+## --- Percentile statistics, excluding NaNs
 
     # Percentile of an array along a specified dimension, ignoring NaNs
     function pctile(A,p; dim=0)
@@ -97,6 +97,15 @@
         return out
     end
     export pctile
+
+    # Return a boolean mask for samples within the central nth percentile, optionally along a specified dimension
+    function inpctile(A,p; dim=0)
+        offset = (100 - p) / 2
+        return (A .> pctile(A, offset, dim=dim)) .& (A .< pctile(A, 100-offset, dim=dim))
+    end
+    export inpctile
+
+## --- Summary statistics of arrays with NaNs
 
     function nansum(A; dim=0)
         s = size(A)
