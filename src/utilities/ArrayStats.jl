@@ -85,7 +85,7 @@
                 out[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? percentile(A[t,i],p) : NaN
@@ -107,7 +107,7 @@
                 out[i] = any(t) ? sum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? sum(A[t,i]) : NaN
@@ -130,7 +130,7 @@
                 out[i] = any(t) ? minimum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? minimum(A[t,i]) : NaN
@@ -153,7 +153,7 @@
                 out[i] = any(t) ? maximum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? maximum(A[t,i]) : NaN
@@ -177,7 +177,7 @@
                 out[i] = extr[2] - extr[1]
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 extr = extrema(A[t,i])
@@ -202,7 +202,7 @@
                 out[i] = any(t) ? mean(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? mean(A[t,i]) : NaN
@@ -225,7 +225,7 @@
                 out[i] = any(t) ? std(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef,s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? std(A[t,i]) : NaN
@@ -248,7 +248,7 @@
                 out[i] = any(t) ? median(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? median(A[t,i]) : NaN
@@ -272,7 +272,7 @@
                 out[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : NaN
@@ -296,7 +296,7 @@
                 out[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, s[2])
+            out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 out[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : NaN
