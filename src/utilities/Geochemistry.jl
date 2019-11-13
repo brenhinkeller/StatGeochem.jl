@@ -57,10 +57,10 @@
 
         # Normalize to chondrite
         y = log.([Tb/0.0374, Gd/0.2055, Sm/0.1530, Nd/0.4670])
-
-        # Interpolate for samples with at least two elements defined
         notnan = .~ isnan.(y)
-        if sum(notnan) > 1
+
+        # Make sure we're interpolating and not extrapolating
+        if any(notnan[1:2]) && any(notnan[3:4])
             # Fit a straight line through the chondrite-normalized values
             (a,b) = linreg(r[notnan], y[notnan])
             # De-dormalize output for Eu, interpolating at r = 108.7 pm or x = 3
