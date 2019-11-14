@@ -97,7 +97,7 @@
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
-        if length(lat) != length(ln)
+        if length(lat) != length(lon)
             error("lat and lon must be equal length\n")
         end
 
