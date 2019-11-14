@@ -513,7 +513,7 @@
     # Produce a weighting coefficient for each row of data corresponding
     # to the input lat, lon, and age that is inversely proportional to the
     # spatiotemporal data concentration
-    function invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number}; lp=2)
+    function invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number}; lp=2, spatialscale=1.8, agescale=38.0)
 
         # Check if there is lat, lon, and age data
         nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
@@ -523,7 +523,7 @@
             if nodata[i] # If there is no data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)./1.8).^lp .+ 1.0) .+ 1.0./((abs.(age[i] .- age)./38.0).^lp .+ 1.0) )
+                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)./spatialscale).^lp .+ 1.0) .+ 1.0./((abs.(age[i] .- age)./agescale).^lp .+ 1.0) )
             end
         end
         return k
