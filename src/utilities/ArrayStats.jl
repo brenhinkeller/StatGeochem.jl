@@ -182,20 +182,32 @@
             out = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                extr = extrema(A[i,t])
-                out[i] = extr[2] - extr[1]
+                if any(t)
+                    extr = extrema(A[i,t])
+                    out[i] = extr[2] - extr[1]
+                else
+                    out[i] = 0
+                end
             end
         elseif dim == 1
             out = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                extr = extrema(A[t,i])
-                out[i] = extr[2] - extr[1]
+                if any(t)
+                    extr = extrema(A[t,i])
+                    out[i] = extr[2] - extr[1]
+                else
+                    out[i] = 0
+                end
             end
         else
             t = .~ isnan.(A)
-            extr = extrema(A[t])
-            out = extr[2] - extr[1]
+            if any(t)
+                extr = extrema(A[t])
+                out = extr[2] - extr[1]
+            else
+                out = 0
+            end
         end
         return out
     end
