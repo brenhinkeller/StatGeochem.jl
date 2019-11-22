@@ -79,22 +79,22 @@
     function pctile(A,p; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? percentile(A[i,t],p) : NaN
+                result[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? percentile(A[t,i],p) : NaN
+                result[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? percentile(A[t],p) : eltype(A)(NaN)
+            result = any(t) ? percentile(A[t],p) : eltype(A)(NaN)
         end
-        return out
+        return result
     end
     export pctile
 
@@ -109,23 +109,24 @@
 
     function nansum(A; dim=0)
         s = size(A)
+        s[dim] = 1
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? sum(A[i,t]) : NaN
+                result[i] = any(t) ? sum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? sum(A[t,i]) : NaN
+                result[i] = any(t) ? sum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? sum(A[t]) : NaN
+            result = any(t) ? sum(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nansum
 
@@ -133,22 +134,22 @@
     function nanminimum(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? minimum(A[i,t]) : NaN
+                result[i] = any(t) ? minimum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? minimum(A[t,i]) : NaN
+                result[i] = any(t) ? minimum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? minimum(A[t]) : NaN
+            result = any(t) ? minimum(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nanminimum
 
@@ -156,22 +157,22 @@
     function nanmaximum(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? maximum(A[i,t]) : NaN
+                result[i] = any(t) ? maximum(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? maximum(A[t,i]) : NaN
+                result[i] = any(t) ? maximum(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? maximum(A[t]) : NaN
+            result = any(t) ? maximum(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nanmaximum
 
@@ -179,37 +180,37 @@
     function nanrange(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 if any(t)
                     extr = extrema(A[i,t])
-                    out[i] = extr[2] - extr[1]
+                    result[i] = extr[2] - extr[1]
                 else
-                    out[i] = 0
+                    result[i] = 0
                 end
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 if any(t)
                     extr = extrema(A[t,i])
-                    out[i] = extr[2] - extr[1]
+                    result[i] = extr[2] - extr[1]
                 else
-                    out[i] = 0
+                    result[i] = 0
                 end
             end
         else
             t = .~ isnan.(A)
             if any(t)
                 extr = extrema(A[t])
-                out = extr[2] - extr[1]
+                result = extr[2] - extr[1]
             else
-                out = 0
+                result = 0
             end
         end
-        return out
+        return result
     end
     export nanrange
 
@@ -217,22 +218,22 @@
     function nanmean(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? mean(A[i,t]) : NaN
+                result[i] = any(t) ? mean(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? mean(A[t,i]) : NaN
+                result[i] = any(t) ? mean(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? mean(A[t]) : NaN
+            result = any(t) ? mean(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nanmean
 
@@ -240,22 +241,22 @@
     function nanstd(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef,s[1])
+            result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? std(A[i,t]) : NaN
+                result[i] = any(t) ? std(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? std(A[t,i]) : NaN
+                result[i] = any(t) ? std(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? std(A[t]) : NaN
+            result = any(t) ? std(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nanstd
 
@@ -263,22 +264,22 @@
     function nanmedian(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef, s[1])
+            result = Array{eltype(A)}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? median(A[i,t]) : NaN
+                result[i] = any(t) ? median(A[i,t]) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? median(A[t,i]) : NaN
+                result[i] = any(t) ? median(A[t,i]) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? median(A[t]) : NaN
+            result = any(t) ? median(A[t]) : NaN
         end
-        return out
+        return result
     end
     export nanmedian
 
@@ -287,22 +288,22 @@
     function nanmad(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef, s[1])
+            result = Array{eltype(A)}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : NaN
+                result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : NaN
+                result[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? median(abs.( A[t] .- median(A[t]) )) : NaN
+            result = any(t) ? median(abs.( A[t] .- median(A[t]) )) : NaN
         end
-        return out
+        return result
     end
     export nanmad
 
@@ -311,22 +312,22 @@
     function nanaad(A; dim=0)
         s = size(A)
         if dim == 2
-            out = Array{eltype(A)}(undef, s[1])
+            result = Array{eltype(A)}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                out[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : NaN
+                result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : NaN
             end
         elseif dim == 1
-            out = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{eltype(A)}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                out[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : NaN
+                result[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : NaN
             end
         else
             t = .~ isnan.(A)
-            out = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : NaN
+            result = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : NaN
         end
-        return out
+        return result
     end
     export nanaad
 
@@ -354,7 +355,7 @@
     end
     export cntr
 
-    # Linearly interpolate vector y at index i, returning outboundsval if out of bounds
+    # Linearly interpolate vector y at index i, returning outboundsval if outside of bounds
     function linterp_at_index(y::AbstractArray, i::Number, outboundsval=NaN)
         if i > 1 && i < length(y)
             i_below = floor(Int, i)
