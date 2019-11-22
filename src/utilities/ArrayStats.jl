@@ -130,6 +130,7 @@
     end
     export nansum
 
+
     # Smallest non-NaN value of an array
     function nanminimum(A; dim=0)
         s = size(A)
@@ -153,6 +154,7 @@
     end
     export nanminimum
 
+
     # Largest non-NaN value of an array
     function nanmaximum(A; dim=0)
         s = size(A)
@@ -175,6 +177,15 @@
         return result
     end
     export nanmaximum
+
+
+    # Extrema of an array, ignoring NaNs
+    function nanextrema(A)
+        t = .~ isnan.(A)
+        return extrema(A[t])
+    end
+    export nanextrema
+
 
     # Range (max-min) of an array, ignoring NaNs
     function nanrange(A; dim=0)
@@ -214,6 +225,7 @@
     end
     export nanrange
 
+
     # Mean, ignoring NaNs
     function nanmean(A; dim=0)
         s = size(A)
@@ -236,6 +248,7 @@
         return result
     end
     export nanmean
+
 
     # Standard deviation, ignoring NaNs
     function nanstd(A; dim=0)
@@ -260,6 +273,7 @@
     end
     export nanstd
 
+
     # Median, ignoring NaNs
     function nanmedian(A; dim=0)
         s = size(A)
@@ -282,6 +296,7 @@
         return result
     end
     export nanmedian
+
 
     # Median absolute deviation from the median, ignoring NaNs
     # For a Normal distribution, sigma = 1.4826 * MAD
@@ -307,6 +322,7 @@
     end
     export nanmad
 
+
     # Mean (average) absolute deviation from the mean, ignoring NaNs
     # For a Normal distribution, sigma = 1.253 * AAD
     function nanaad(A; dim=0)
@@ -330,6 +346,7 @@
         return result
     end
     export nanaad
+
 
 ## --- Array construction
 
