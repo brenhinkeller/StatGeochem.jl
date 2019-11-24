@@ -2,7 +2,7 @@
     resourcepath = joinpath(homedir(),"resources")
     export resourcepath
 
-    localresourcepath = joinpath(Base.source_dir(),"src","resources")
+    localresourcepath = joinpath(Base.source_dir(),"resources")
     export localresourcepath
 
 
