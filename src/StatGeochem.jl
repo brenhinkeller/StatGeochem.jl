@@ -45,6 +45,9 @@ module StatGeochem
     include("utilities/Etc.jl");
 
     using FileIO, HDF5
+    tc1_550 = readdlm("resources/tc1_550.csv", ',')
+    tc1_1300 = readdlm("resources/tc1_1300.csv", ',')
+    tc1_age = readdlm("resources/tc1_age.csv", ',', Int)
     include("Resources.jl")
 
 end # module
