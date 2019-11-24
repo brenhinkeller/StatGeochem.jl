@@ -2,6 +2,10 @@
     resourcepath = joinpath(homedir(),"resources")
     export resourcepath
 
+    localresourcepath = joinpath(Base.source_dir(),"src","resources")
+    export localresourcepath
+
+
 ## --- Geolcont
 
     continentcolors = [RGB4{N0f8}(0.2,0.2,0.6)
@@ -64,9 +68,9 @@
 
 ## --- TC1
 
-    tc1_550 = readdlm("tc1_550.csv", ',')
-    tc1_1300 = readdlm("tc1_1300.csv", ',')
-    tc1_age = readdlm("tc1_age.csv", ',', Int)
+    tc1_550 = readdlm(joinpath(localresourcepath,"tc1_550.csv"), ',')
+    tc1_1300 = readdlm(joinpath(localresourcepath,"tc1_1300.csv"), ',')
+    tc1_age = readdlm(joinpath(localresourcepath,"tc1_age.csv"), ',', Int)
 
     function find_tc1_crust(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
