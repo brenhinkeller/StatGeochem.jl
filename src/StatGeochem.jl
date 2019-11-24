@@ -44,7 +44,13 @@ module StatGeochem
     include("utilities/GIS.jl");
     include("utilities/Etc.jl");
 
+    resourcepath = joinpath(homedir(),"resources")
+    export resourcepath
+
+    moduleresourcepath = joinpath(Base.source_dir(),"resources")
+    export moduleresourcepath
+
     using FileIO, HDF5
-    include("Resources.jl")
+    include("resources/Resources.jl")
 
 end # module
