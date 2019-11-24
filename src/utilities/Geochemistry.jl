@@ -229,7 +229,7 @@
         composition = composition./sum(composition)*100
 
         # output prefixectory name
-        prefix = scratchdir*"out$index/"
+        prefix = joinpath(scratchdir, "out$(index)/")
         # Ensure directory exists and is empty
         system("rm -rf $prefix; mkdir -p $prefix")
 
@@ -312,7 +312,7 @@
 
     # Get melts results, return as string
     function melts_query(scratchdir::String; index=1)
-        prefix = scratchdir*"out$index/" # path to data files
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
         data = ""
@@ -331,7 +331,7 @@
 
     # Get modal phase proportions, return as elementified dictionary
     function melts_query_modes(scratchdir::String; index=1)
-        prefix = scratchdir*"out$index/" # path to data files
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
         data = Dict()
@@ -350,7 +350,7 @@
 
     # Get liquid composition, return as elementified dictionary
     function melts_query_liquid(scratchdir::String; index=1)
-        prefix = scratchdir*"out$index/" # path to data files
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
         data = Dict()
@@ -369,7 +369,7 @@
 
     # Read solid composition, return as elementified dictionary
     function melts_query_solid(scratchdir::String; index=1)
-        prefix = scratchdir*"out$index/" # path to data files
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
         data = Dict()
@@ -388,7 +388,7 @@
 
     # Read system thermodynamic data, return as elementified dictionary
     function melts_query_system(scratchdir::String; index=1)
-        prefix = scratchdir*"out$index/" # path to data files
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
         data = Dict()
@@ -424,17 +424,17 @@
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
 
-        build = perplexdir * "build" # path to PerpleX build
-        vertex = perplexdir * "vertex" # path to PerpleX vertex
+        build = joinpath(perplexdir, "build")# path to PerpleX build
+        vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
 
         #Configure working directory
-        prefix = scratchdir * "out_$index/"
+        prefix = joinpath(scratchdir, "out$(index)/")
         system("rm -rf $prefix; mkdir -p $prefix")
 
         # Place required data files
-        system("cp $perplexdir$dataset $prefix")
-        system("cp $(perplexdir)perplex_option.dat $prefix")
-        system("cp $(perplexdir)solution_model.dat $prefix")
+        system("cp $(joinpath(perplexdir,dataset)) $prefix")
+        system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
+        system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
         # Create build batch file.
         # Options based on Perplex v6.7.2
@@ -481,17 +481,17 @@
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
 
-        build = perplexdir * "build" # path to PerpleX build
-        vertex = perplexdir * "vertex" # path to PerpleX vertex
+        build = joinpath(perplexdir, "build")# path to PerpleX build
+        vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
 
         #Configure working directory
-        prefix = scratchdir * "out_$index/"
+        prefix = joinpath(scratchdir, "out$(index)/")
         system("rm -rf $prefix; mkdir -p $prefix")
 
         # Place required data files
-        system("cp $perplexdir$dataset $prefix")
-        system("cp $(perplexdir)perplex_option.dat $prefix")
-        system("cp $(perplexdir)solution_model.dat $prefix")
+        system("cp $(joinpath(perplexdir,dataset)) $prefix")
+        system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
+        system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
         # Create build batch file
         # Options based on Perplex v6.7.2
@@ -525,8 +525,8 @@
     # Query perplex results at a single pressure on a geotherm. Results are returned
     # as string read from perplex text file output
     function perplex_query_geotherm(perplexdir::String, scratchdir::String, P::Number; index::Int=1)
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Sanitize P inputs to avoid PerpleX escape sequence
         if P == 999
@@ -563,8 +563,8 @@
     # Query perplex seismic results along a geotherm. Results are returned as
     # a dictionary
     function perplex_query_geotherm_seismic(perplexdir::String, scratchdir::String, P_range::Array{<:Number}=[284.2, 28420], npoints::Int=100; index::Int=1)
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
         # Options based on Perplex v6.7.2
@@ -601,8 +601,8 @@
     # Query perplex results at a single temperature on an isobar. Results are
     # returned as string.
     function perplex_query_isobar(perplexdir::String, scratchdir::String, T::Number; index::Int=1)
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Sanitize T inputs to avoid PerpleX escape sequence
         if T == 999
@@ -642,8 +642,8 @@
         T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)"; index::Int=1,
         include_fluid="y", clean_units::Bool=true)
 
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
         # Options based on Perplex v6.7.2
@@ -685,8 +685,8 @@
     # Query modal mineralogy along a given isobar. Results are returned as a
     # dictionary
     function perplex_query_isobar_modes(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1, include_fluid="y")
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
         # Options based on Perplex v6.7.2
@@ -726,8 +726,8 @@
         T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1,
         include_fluid="y", clean_units::Bool=true)
 
-        werami = perplexdir * "werami" # path to PerpleX werami
-        prefix = scratchdir * "out_$index/" # path to data files
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
         # Options based on Perplex v6.7.2
