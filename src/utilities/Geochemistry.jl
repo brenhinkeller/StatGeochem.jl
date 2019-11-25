@@ -437,7 +437,7 @@
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
         # Edit data files
-        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i .backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
@@ -493,7 +493,7 @@
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
         # Edit data files
-        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i .backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
         fp = open(prefix*"build.bat", "w")
@@ -580,9 +580,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
@@ -623,9 +623,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
@@ -683,9 +683,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
@@ -722,9 +722,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
