@@ -109,7 +109,6 @@
 
     function nansum(A; dim=0)
         s = size(A)
-        s[dim] = 1
         if dim == 2
             result = Array{eltype(A)}(undef,s[1])
             for i=1:s[1]
