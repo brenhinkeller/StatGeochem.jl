@@ -501,9 +501,11 @@
         for e in elements
             elementstring = elementstring * uppercase(e) * "\n"
         end
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n")
-        # Pressure gradient details
-        write(fp,"3\nn\nn\n2\n$(T_range[1])\n$(T_range[2])\n$P\ny\n")
+
+        # Write index, dataset, elements, and P-T data to batch file
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\nn\n2\n$(T_range[1])\n$(T_range[2])\n$P\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\nn\n2\n$(T_range[1])\n$(T_range[2])\n$P\ny\n") # v6.8.1
+
         # Whole-rock composition
         for i = 1:length(composition)
             write(fp,"$(composition[i]) ")
@@ -636,23 +638,25 @@
     end
     export perplex_query_isobar
 
-    # Query perplex results for a specified phase along an entire isobar.
-    # Results are returned as a dictionary
-    function perplex_query_isobar_phase(perplexdir::String, scratchdir::String,
-        T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000, phase="melt(G)"; index::Int=1,
-        include_fluid="y", clean_units::Bool=true)
+	# --- Query Perplex results along a given isobar or geotherm
+
+    molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
+
+    # Query perplex results for a specified phase along an entire isobar or
+    # geotherm. Results are returned as a dictionary
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase="melt(G)";
+        index::Int=1, include_fluid="y", clean_units::Bool=true)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
-        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
+        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n0\n") # v6.7.8
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $(prefix)$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab*")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
@@ -663,39 +667,56 @@
         system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        data = Dict()
+        result = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+			# Check if perplex is messing up and outputting mole proportions
+            if nanmean(total_weight) < 50
+				@warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
+                for col = findall(t)
+                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+				end
+				total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+			end
+			data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
             if clean_units
                 elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
                 elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
             end
+
             # Convert to a dictionary
-            data = elementify(data,elements)
+            result = elementify(data,elements)
         catch
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
         end
-        return data
+        return result
     end
-    export perplex_query_isobar_phase
+    export perplex_query_phase
 
-    # Query modal mineralogy along a given isobar. Results are returned as a
-    # dictionary
-    function perplex_query_isobar_modes(perplexdir::String, scratchdir::String, T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1, include_fluid="y")
+    # Query modal mineralogy along a given isobar or geotherm. Results are
+    # returned as a dictionary
+    function perplex_query_modes(perplexdir::String, scratchdir::String;
+        index::Int=1, include_fluid="y")
+
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
-        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n25\nn\n$include_fluid\n0\n")
+        write(fp,"$index\n3\n25\nn\n$include_fluid\n0\n") # v6.7.8
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $(prefix)$(index)_1.tab")
+        system("rm -f $(prefix)$(index)_1.tab*")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
@@ -706,37 +727,35 @@
         system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        data = Dict()
+        result = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary
-            data = elementify(data)
+            result = elementify(data)
         catch
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
         end
-        return data
+        return result
     end
-    export perplex_query_isobar_modes
+    export perplex_query_modes
 
-    # Query calculated system properties along an entire isobar. Results are
-    # returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
-    function perplex_query_isobar_system(perplexdir::String, scratchdir::String,
-        T_range::Array{<:Number}=[773.15,1773.15], npoints::Int=1000; index::Int=1,
-        include_fluid="y", clean_units::Bool=true)
+    # Query calculated system properties along an entire isobar or geotherm. Results
+    # are returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
+    function perplex_query_system(perplexdir::String, scratchdir::String;
+        index::Int=1, include_fluid="y", clean_units::Bool=true)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
-        # Options based on Perplex v6.7.2
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n1\n$(T_range[1])\n$(T_range[2])\n$npoints\n36\n1\n$include_fluid\n0\n")
+        write(fp,"$index\n3\n36\n1\n$include_fluid\n0\n") # v6.7.8
         close(fp)
 
-        # Make sure there isn"t already an output
-        system("rm -f $(prefix)$(index)_1.tab")
+        # Make sure there isn't already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
@@ -747,23 +766,32 @@
         system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        data = Dict()
+        result = Dict()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
             if clean_units
                 elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
                 elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
             end
+
             # Convert to a dictionary
-            data = elementify(data,elements)
+            result = elementify(data,elements)
         catch
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
         end
-        return data
+        return result
     end
-    export perplex_query_isobar_system
+    export perplex_query_system
+
 
 ## --- End of File

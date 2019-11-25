@@ -327,6 +327,22 @@
     end
     export unelementify
 
+## --- Renormalization of imported datasets
+
+    function renormalize(dataset::Dict, elements::Array=sort(collect(keys(dataset))); total::Number=1)
+        current_sum = zeros(size(dataset[elements[1]]))
+        for e in elements
+            current_sum .+= dataset[e] .|> x -> isnan(x) ? 0 : x
+        end
+        current_sum[current_sum .== 0] .= NaN
+
+        for e in elements
+            dataset[e] .*= total ./ current_sum
+        end
+
+        return dataset
+    end
+
 ## --- High-level import/export functions
 
     function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
