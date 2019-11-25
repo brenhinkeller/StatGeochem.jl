@@ -418,9 +418,9 @@
     geothermal gradient and pressure (depth) range. P specified in bar and T_surf
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
-    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number};
         elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
+        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1, dataset::String="hp02ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
 
@@ -452,11 +452,17 @@
             write(fp,"$(composition[i]) ")
         end
         # Solution model
-        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nGeothermal")
+        if length(excludes) > 0
+            write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nGeothermal")
+        else
+            write(fp,"\nn\nn\ny\nsolution_model.dat\n$(solution_phases)\nGeothermal")
+        end
         close(fp)
 
         # build PerpleX problem definition
         system("cd $prefix; $build < build.bat > build.log")
+
+        println("Built problem definition")
 
         # Run PerpleX vertex calculations
         result = system("cd $prefix; echo $index | $vertex > vertex.log")
@@ -496,6 +502,7 @@
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
+        # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
         # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
