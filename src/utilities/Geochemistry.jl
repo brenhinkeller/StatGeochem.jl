@@ -476,7 +476,7 @@
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
     function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
