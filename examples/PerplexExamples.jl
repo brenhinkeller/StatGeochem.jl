@@ -23,7 +23,7 @@
         # Download Perplex v6.8.7 -- known to work with interface used here
         file = download("https://storage.googleapis.com/statgeochem/perplex-stable-6.8.7.zip", joinpath(resourcepath,"perplex-stable.zip"))
 
-        # # For a more updated perplex version, also try
+        # # For a more updated perplex version, you might also try
         # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
 
         run(`unzip -u $file -d $resourcepath`) # Extract
