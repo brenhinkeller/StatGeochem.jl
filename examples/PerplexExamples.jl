@@ -20,15 +20,27 @@
         # Make sure resourcepath exists
         run(`mkdir -p $resourcepath`)
 
-        # Download Perplex v6.8.7 -- known to work with interface used here
-        file = download("https://storage.googleapis.com/statgeochem/perplex-stable-6.8.7.zip", joinpath(resourcepath,"perplex-stable.zip"))
+        # Try to compile PerpleX from source; if that fails, try to download linux binaries
+        try
+            # Check if there is a fortran compiler
+            run(`gfortran -v`)
 
-        # # For a more updated perplex version, you might also try
-        # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
+            # Download Perplex v6.8.7 -- known to work with interface used here
+            file = download("https://storage.googleapis.com/statgeochem/perplex-6.8.7-source.zip", joinpath(resourcepath,"perplex-stable.zip"))
 
-        run(`unzip -u $file -d $resourcepath`) # Extract
-        system("cd $perplexdir; make") # Compile
+            # # For a more updated perplex version, you might also try
+            # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
+
+            run(`unzip -u $file -d $resourcepath`) # Extract
+            system("cd $perplexdir; make") # Compile
+        catch
+            @warn "Failed to compile from source, trying precompiled linux binaries instead"
+            run(`mkdir -p $perplexdir`)
+            file = download("https://petrol.natur.cuni.cz/~ondro/Perple_X_6.8.7_Linux_64_gfortran.tar.gz","perplex-6.8.7-linux.tar.gz")
+            run(`tar -xzf $file -C $perplexdir`)
+        end
     end
+
 ## --- # # # # # # # # # # # # # Initial composition # # # # # # # # # # # # # #
 
     ## McDonough Pyrolite
