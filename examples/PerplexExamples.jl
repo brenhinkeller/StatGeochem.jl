@@ -10,11 +10,25 @@
     end
 
 ## --- Configure
+
     # Absolute paths to perplex resources
-    perplexdir = "/Users/cbkeller/Applications/perplex-stable-6.8.7/" # Location of executables and solution models to use
+    perplexdir = joinpath(resourcepath,"perplex-stable")
     scratchdir = "./scratch/" # Location of directory to store output files
 
+## --- Attempt to install perplex, if not already extant
+
+    if !isfile(joinpath(perplexdir,"vertex"))
+        # Download Perplex v6.8.7 -- known to work with interface used here
+        file = download("https://storage.googleapis.com/statgeochem/perplex-stable-6.8.7.zip", joinpath(resourcepath,"perplex-stable.zip"))
+
+        # # For a more updated perplex version, also try
+        # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
+
+        run(`unzip -u $file -d $resourcepath`) # Extract
+        system("cd $perplexdir; make") # Compile
+    end
 ## --- # # # # # # # # # # # # # Initial composition # # # # # # # # # # # # # #
+
     ## McDonough Pyrolite
     #elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO",  "MNO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
     #composition = [45.1242, 0.2005, 4.4623, 8.0723, 0.1354, 37.9043, 3.5598, 0.3610, 0.0291, 0.1511, 0.0440,]
