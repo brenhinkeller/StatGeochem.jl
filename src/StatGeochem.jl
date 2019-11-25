@@ -53,7 +53,7 @@ module StatGeochem
     using FileIO, HDF5
     include("resources/tc1/tc1.jl")
     include("resources/Crust1.jl")
-    include("resources/Resources.jl")
+    include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
 
 
