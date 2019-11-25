@@ -36,7 +36,7 @@
     G_solution_phases = "Augite(G)\nOpx(JH)\ncAmph(G)\noAmph(DP)\nO(JH)\nSp(JH)\nGrt(JH)\nfeldspar_B\nMica(W)\nBio(TCC)\nChl(W)\nCtd(W)\nCrd(W)\nSa(WP)\nSt(W)\nIlm(WPH)\nAtg(PN)\nT\nB\nF\nDo(HP)\nScap\nChum\nNeph(FB)\n"
     G_excludes ="ged\nfanth\ngl\n"
 
-    # Emphasis on phases from White (2014) -- developed for metapelites. Use with hp11ver.dat
+    # Emphasis on phases from White (2014) -- developed for metapelites. Use with hp11ver.dat (though can apparenty run with hp02ver.dat without crashing)
     W_solution_phases = "Omph(HP)\nOpx(W)\ncAmph(DP)\noAmph(DP)\nO(JH)\nSp(JH)\nGt(W)\nfeldspar_B\nMica(W)\nBi(W)\nChl(W)\nCtd(W)\nCrd(W)\nSa(WP)\nSt(W) \nIlm(WPH)\nAtg(PN)\nT\nB\nF\nDo(HP)\nScap\nChum\nPu(M)\n"
     W_excludes = "andr\nts\nparg\ngl\nged\nfanth\n"
 
@@ -150,21 +150,27 @@
         P_range, T_surf, geotherm, dataset="hp02ver.dat", excludes=HP_excludes,
         solution_phases=HP_solution_phases, npoints=200, index=2)
 
-## --- Query all properties at a single pressure
+    # # Alternative configuration, using hpha02ver.dat
+    # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+    #     P_range, T_surf, geotherm, dataset="hpha02ver.dat", excludes="qGL\n"*HP_excludes,
+    #     solution_phases=HP_solution_phases, npoints=200, index=2)
 
-    P = 10000
-    data_geotherm = perplex_query_1d(perplexdir, scratchdir, P, index=2) |> print
+    # # Alternative configuration, using hpha02ver.dat and new phases for metapelites
+    # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+    #     P_range, T_surf, geotherm, dataset="hpha02ver.dat", excludes="qGL\n"*W_excludes,
+    #     solution_phases=W_solution_phases, npoints=200, index=2)
 
 ## --- Plot seismic properties
 
     # Query seismic properties along the whole profile
-    sesimic = perplex_query_seismic(perplexdir, scratchdir, index=2)
+    seismic = perplex_query_seismic(perplexdir, scratchdir, index=2)
+    seismic["vp/vs"][seismic["vp/vs"] .> 100] .= NaN # Exclude cases where vs drops to zero
 
     h = plot(xlabel="Pressure", ylabel="Property")
-    plot!(h,sesimic["P(bar)"],sesimic["vp,km/s"], label="vp,km/s")
-    plot!(h,sesimic["P(bar)"],sesimic["vp/vs"], label="vp/vs")
-    plot!(h,sesimic["P(bar)"],sesimic["rho,kg/m3"]/1000, label="rho, g/cc")
-    plot!(h,sesimic["P(bar)"],sesimic["T(K)"]/1000, label="T(K)/1000")
+    plot!(h,seismic["P(bar)"],seismic["vp,km/s"], label="vp,km/s")
+    plot!(h,seismic["P(bar)"],seismic["vp/vs"], label="vp/vs")
+    plot!(h,seismic["P(bar)"],seismic["rho,kg/m3"]/1000, label="rho, g/cc")
+    plot!(h,seismic["P(bar)"],seismic["T(K)"]/1000, label="T(K)/1000")
     savefig(h,"GeothermSeismicProperties.pdf")
     display(h)
 
@@ -179,5 +185,10 @@
     plot!(h,fg_color_legend=:white, framestyle=:box)
     savefig(h,"GeothermPhaseModes.pdf")
     display(h)
+
+## --- Query all properties at a single pressure
+
+    P = 10000
+    data_geotherm = perplex_query_1d(perplexdir, scratchdir, P, index=2) |> print
 
 ## --- End of File
