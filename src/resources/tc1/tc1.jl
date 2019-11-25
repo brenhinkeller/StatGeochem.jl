@@ -4,6 +4,18 @@
     tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',')
     tc1_age = readdlm(joinpath(moduleresourcepath,"tc1","tc1_age.csv"), ',', Int)
 
+    """
+    `find_tc1_crust(lat::Number,lon::Number)`
+
+    Find the depth to the 550C isotherm for the 1x1 arc degree grid cell
+    containing `lat` and `lon`
+
+    `find_tc1_crust(lat::AbstractArray,lon::AbstractArray)`
+
+    For each pair of latitudes and longitudes given by lat and lon, find the
+    depth to the 550C isotherm for the 1x1 arc degree grid cell containing
+    `lat[i]` and `lon[i]`
+    """
     function find_tc1_crust(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
             i = round(Int, 91-lat)
