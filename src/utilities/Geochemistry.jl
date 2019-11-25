@@ -475,11 +475,11 @@
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
-    function perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P::Number=10000, T_range::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+    function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"];
+        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15], dataset::String="hp11ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -493,8 +493,10 @@
         system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
+        # Edit data files
+        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i .backup $(prefix)perplex_option.dat")
+
         # Create build batch file
-        # Options based on Perplex v6.7.2
         fp = open(prefix*"build.bat", "w")
         # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
         elementstring = ""
@@ -503,8 +505,8 @@
         end
 
         # Write index, dataset, elements, and P-T data to batch file
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\nn\n2\n$(T_range[1])\n$(T_range[2])\n$P\ny\n") # v6.8.7
-        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\nn\n2\n$(T_range[1])\n$(T_range[2])\n$P\ny\n") # v6.8.1
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
         # Whole-rock composition
         for i = 1:length(composition)
@@ -522,7 +524,7 @@
 
         return 0
     end
-    export perplex_configure_isobaric
+    export perplex_configure_isobar
 
     # Query perplex results at a single pressure on a geotherm. Results are returned
     # as string read from perplex text file output
@@ -581,9 +583,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         data = Dict()
@@ -638,7 +640,7 @@
     end
     export perplex_query_isobar
 
-	# --- Query Perplex results along a given isobar or geotherm
+    # --- Query Perplex results along a given isobar or geotherm
 
     molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
 
@@ -662,9 +664,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
@@ -676,15 +678,15 @@
             # Renormalize weight percentages
             t = contains.(elements,"wt%")
             total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-			# Check if perplex is messing up and outputting mole proportions
+            # Check if perplex is messing up and outputting mole proportions
             if nanmean(total_weight) < 50
-				@warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
                 for col = findall(t)
                     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-				end
-				total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-			end
-			data[2:end,t] .*= 100 ./ total_weight
+                end
+                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            end
+            data[2:end,t] .*= 100 ./ total_weight
 
             # Clean up element names
             if clean_units
@@ -722,9 +724,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
@@ -761,9 +763,9 @@
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i .backup $(prefix)$(index)_1.tab")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i .backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
         result = Dict()
