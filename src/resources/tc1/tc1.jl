@@ -1,8 +1,8 @@
 ## --- Query TC1 properties
 
-    tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1_550.csv"), ',')
-    tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1_1300.csv"), ',')
-    tc1_age = readdlm(joinpath(moduleresourcepath,"tc1_age.csv"), ',', Int)
+    tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_550.csv"), ',')
+    tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',')
+    tc1_age = readdlm(joinpath(moduleresourcepath,"tc1","tc1_age.csv"), ',', Int)
 
     function find_tc1_crust(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
