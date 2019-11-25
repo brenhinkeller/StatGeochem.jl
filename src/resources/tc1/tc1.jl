@@ -45,6 +45,18 @@
     end
     export find_tc1_crust
 
+    """
+    `find_tc1_lith(lat::Number,lon::Number)`
+
+    Find the depth to the 1300C isotherm for the 1x1 arc degree grid cell
+    containing `lat` and `lon`
+
+    `find_tc1_lith(lat::AbstractArray,lon::AbstractArray)`
+
+    For each pair of latitudes and longitudes given by lat and lon, find the
+    depth to the 1300C isotherm for the 1x1 arc degree grid cell containing
+    `lat[i]` and `lon[i]`
+    """
     function find_tc1_lith(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
             i = round(Int, 91-lat)
@@ -74,6 +86,20 @@
     end
     export find_tc1_lith
 
+
+    """
+    `find_tc1_age(lat::Number,lon::Number)`
+
+    Return a tuple `(age, age_min, age_max)` containing the nominal, upper, and
+    lower tc1 age bounds for the 1x1 arc degree grid cell containing `lat`
+    and `lon`
+
+    `find_tc1_age(lat::AbstractArray,lon::AbstractArray)`
+
+    Return a tuple `(age, age_min, age_max)` where `age`, `age_min`, and
+    `age_max` are arrays containing the nominal, upper and lower tc1 age bounds
+    for each location pair `lat[i]`, `lon[i]`
+    """
     function find_tc1_age(lat::Number,lon::Number)
         ages=[ NaN  NaN  NaN
                 25    0   50
