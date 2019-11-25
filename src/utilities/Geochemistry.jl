@@ -418,9 +418,9 @@
     geothermal gradient and pressure (depth) range. P specified in bar and T_surf
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
-    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number};
         elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
+        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1, dataset::String="hp02ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1)
 
@@ -428,6 +428,7 @@
         vertex = perplexdir * "vertex" # path to PerpleX vertex
 
         #Configure working directory
+        println("Configuring working dir $(scratchdir)out_$index")
         prefix = scratchdir * "out_$index/"
         system("rm -rf $prefix; mkdir -p $prefix")
 
@@ -444,19 +445,25 @@
         for e in elements
             elementstring = elementstring * uppercase(e) * "\n"
         end
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\n")
         # Pressure gradient details
-        write(fp,"3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n")
+        write(fp,"n\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n")
         # Whole-rock composition
         for i = 1:length(composition)
             write(fp,"$(composition[i]) ")
         end
         # Solution model
-        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nGeothermal")
+        if length(excludes) > 0
+            write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nGeothermal")
+        else
+            write(fp,"\nn\nn\ny\nsolution_model.dat\n$(solution_phases)\nGeothermal")
+        end
         close(fp)
 
         # build PerpleX problem definition
         system("cd $prefix; $build < build.bat > build.log")
+
+        println("Built problem definition")
 
         # Run PerpleX vertex calculations
         system("cd $prefix; echo $index | $vertex > vertex.log")
@@ -494,7 +501,7 @@
         system("cp $(perplexdir)solution_model.dat $prefix")
 
         # Create build batch file
-        # Options based on Perplex v6.7.2
+        # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
         # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
         elementstring = ""
@@ -562,14 +569,15 @@
 
     # Query perplex seismic results along a geotherm. Results are returned as
     # a dictionary
-    function perplex_query_geotherm_seismic(perplexdir::String, scratchdir::String, P_range::Array{<:Number}=[284.2, 28420], npoints::Int=100; index::Int=1)
+    # TODO multiple dispatch for perplex version?
+    function perplex_query_geotherm_seismic(perplexdir::String, scratchdir::String, index::Int=1)
         werami = perplexdir * "werami" # path to PerpleX werami
         prefix = scratchdir * "out_$index/" # path to data files
 
         # Create werami batch file
-        # Options based on Perplex v6.7.2
+        # Options based on Perplex v6.8.7, which no longer allows querying specific # pts
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n1\n$(P_range[1])\n$(P_range[2])\n$npoints\n2\nn\nn\n13\nn\nn\n15\nn\nn\n0\n0\n")
+        write(fp,"$index\n3\n2\nn\nn\n13\nn\nn\n15\nn\nn\n0\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -597,6 +605,45 @@
         return data
     end
     export perplex_query_geotherm_seismic
+
+    # Query perplex results for a specified phase along an entire isobar.
+    # Results are returned as a dictionary
+    # TODO almost identical to perplex_query_isobar_phase, should fix that
+    function perplex_query_geotherm_modes(perplexdir::String, scratchdir::String, index::Int=1)
+        werami = perplexdir * "werami" # path to PerpleX werami
+        prefix = scratchdir * "out_$index/" # path to data files
+
+        # Create werami batch file
+        # Options based on Perplex v6.7.2
+        fp = open(prefix*"werami.bat", "w")
+        write(fp,"$index\n3\n25\nn\nn\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i 0 $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i 0 $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        data = Dict()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
+            data = elementify(data)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
+        end
+        return data
+    end
+    export perplex_query_geotherm_modes
 
     # Query perplex results at a single temperature on an isobar. Results are
     # returned as string.
