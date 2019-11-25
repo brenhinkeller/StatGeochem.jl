@@ -329,7 +329,7 @@
 
 ## --- Renormalization of imported datasets
 
-    function renormalize(dataset::Dict, elements::Array=sort(collect(keys(dataset))); total::Number=1)
+    function renormalize!(dataset::Dict, elements::Array=sort(collect(keys(dataset))); total::Number=1)
         current_sum = zeros(size(dataset[elements[1]]))
         for e in elements
             current_sum .+= dataset[e] .|> x -> isnan(x) ? 0 : x
@@ -339,9 +339,12 @@
         for e in elements
             dataset[e] .*= total ./ current_sum
         end
-
-        return dataset
     end
+    function renormalize!(A::Array{<:AbstractFloat}; dim::Number=0, total::Number=1)
+        current_sum = nansum(A, dim=dim)
+        A .*= total ./ current_sum
+    end
+    export renormalize!
 
 ## --- High-level import/export functions
 
