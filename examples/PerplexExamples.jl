@@ -15,8 +15,7 @@
     perplexdir = joinpath(resourcepath,"perplex-stable")
     scratchdir = "./scratch/" # Location of directory to store output files
 
-## --- Attempt to install perplex, if not already extant
-
+    # Attempt to install perplex, if not already extant
     if !isfile(joinpath(perplexdir,"vertex"))
         # Download Perplex v6.8.7 -- known to work with interface used here
         file = download("https://storage.googleapis.com/statgeochem/perplex-stable-6.8.7.zip", joinpath(resourcepath,"perplex-stable.zip"))
