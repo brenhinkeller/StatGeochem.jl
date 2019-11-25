@@ -436,17 +436,17 @@
         system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
+        # Edit data files
+        system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i .backup $(prefix)perplex_option.dat")
+
         # Create build batch file.
-        # Options based on Perplex v6.7.2
         fp = open(prefix*"build.bat", "w")
-        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
-        elementstring = ""
-        for e in elements
-            elementstring = elementstring * uppercase(e) * "\n"
-        end
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n")
-        # Pressure gradient details
-        write(fp,"3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n")
+
+        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        elementstring = join(uppercase.(elements) .* "\n")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
+
         # Whole-rock composition
         for i = 1:length(composition)
             write(fp,"$(composition[i]) ")
@@ -476,8 +476,8 @@
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
     function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"];
-        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15], dataset::String="hp11ver.dat",
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
 
@@ -498,13 +498,9 @@
 
         # Create build batch file
         fp = open(prefix*"build.bat", "w")
-        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state.
-        elementstring = ""
-        for e in elements
-            elementstring = elementstring * uppercase(e) * "\n"
-        end
 
-        # Write index, dataset, elements, and P-T data to batch file
+        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        elementstring = join(uppercase.(elements) .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
