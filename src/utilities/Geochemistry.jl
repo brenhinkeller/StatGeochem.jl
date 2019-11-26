@@ -659,14 +659,6 @@
 
     Query perplex seismic results along a previously configured 1-d path (isobar
     or geotherm). Results are returned as a dictionary.
-
-    ```julia
-    perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        \tindex::Int=1, npoints::Int=200, include_fluid="n")
-    ```
-
-    Query perplex seismic results along a specified P-T path using a pre-computed
-    pseudosection. Results are returned as a dictionary.
     """
     function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")
         # Query a pre-defined path (isobar or geotherm)
@@ -704,6 +696,15 @@
         end
         return data
     end
+    """
+    ```julia
+    perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="n")
+    ```
+
+    Query perplex seismic results along a specified P-T path using a pre-computed
+    pseudosection. Results are returned as a dictionary.
+    """
     function perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="n")
         # Query a new path from a pseudosection
@@ -753,17 +754,6 @@
 
     Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
     along a previously configured 1-d path (isobar or geotherm). Results are
-    returned as a dictionary.
-
-    ***
-
-    ```julia
-    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
-        \tindex::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
-    ```
-
-    Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
-    along a specified P-T path using a pre-computed pseudosection. Results are
     returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
@@ -823,6 +813,16 @@
         end
         return result
     end
+    """
+    ```julia
+    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
+    ```
+
+    Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
+    along a specified P-T path using a pre-computed pseudosection. Results are
+    returned as a dictionary.
+    """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
         # Query a new path from a pseudosection
@@ -893,19 +893,7 @@
     Query modal mineralogy (mass proportions) along a previously configured 1-d
     path (isobar or geotherm). Results are
     returned as a dictionary.
-
-    ***
-
-    ```julia
-    perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        \tindex::Int=1, npoints::Int=200, include_fluid="y")
-    ```
-
-    Query modal mineralogy (mass proportions) along a specified P-T path using a
-    pre-computed pseudosection. Results are returned as a dictionary.
     """
-    # Query modal mineralogy along a given isobar or geotherm. Results are
-    # returned as a dictionary
     function perplex_query_modes(perplexdir::String, scratchdir::String;
         index::Int=1, include_fluid="y")
         # Query a pre-defined path (isobar or geotherm)
@@ -942,6 +930,15 @@
         end
         return result
     end
+    """
+    ```julia
+    perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y")
+    ```
+
+    Query modal mineralogy (mass proportions) along a specified P-T path using a
+    pre-computed pseudosection. Results are returned as a dictionary.
+    """
     function perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="y")
         # Query a new path from a pseudosection
@@ -990,17 +987,6 @@
 
     Query all perplex-calculated properties for the system (with or without fluid)
     along a previously configured 1-d path (isobar or geotherm). Results are
-    returned as a dictionary. Set include_fluid="n" to return solid+melt only.
-
-    ***
-
-    ```julia
-    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        \tindex::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
-    ```
-
-    Query all perplex-calculated properties for the system (with or without fluid)
-    along a specified P-T path using a pre-computed pseudosection. Results are
     returned as a dictionary. Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String;
@@ -1052,6 +1038,16 @@
         end
         return result
     end
+    """
+    ```julia
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
+    ```
+
+    Query all perplex-calculated properties for the system (with or without fluid)
+    along a specified P-T path using a pre-computed pseudosection. Results are
+    returned as a dictionary. Set include_fluid="n" to return solid+melt only.
+    """
     function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
         # Query a new path from a pseudosection
