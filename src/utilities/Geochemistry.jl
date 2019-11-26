@@ -436,7 +436,7 @@
         system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
-        # Edit data files
+        # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file.
@@ -498,7 +498,7 @@
         system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
 
-        # Edit data files
+        # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
@@ -571,13 +571,14 @@
 
     # Query perplex seismic results along a geotherm or isobar. Results are
     # returned as a dictionary
-    function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1)
+    function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n2\nn\nn\n13\nn\nn\n15\nn\nn\n0\n0\n") # v6.7.8
+        # v6.7.8 1d-path
+        write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
