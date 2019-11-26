@@ -408,12 +408,14 @@
 ## -- Perplex interface: 1. Configuration
 
     """
-    `perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    ```julia
+    perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
         \tdataset::String="hp02ver.dat", index::Int=1, npoints::Int=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n")`
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Int=5)
+    ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
     geothermal gradient and pressure (depth) range. P specified in bar and T_surf
@@ -421,9 +423,10 @@
     """
     function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1; dataset::String="hp02ver.dat",
+        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
+        dataset::String="hp02ver.dat", index::Int=1, npoints::Int=100,
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Int=5)
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -443,9 +446,10 @@
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
 
-        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        # Name, components, and basic options. P-T conditions.
+        # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(uppercase.(elements) .* "\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
 
         # Whole-rock composition
@@ -472,12 +476,14 @@
     export perplex_configure_geotherm
 
     """
-    `perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    ```julia
+    perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
         \tP::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
         \tdataset::String="hp11ver.dat", index::Int=1, npoints::Int=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n")`
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Int=5)
+    ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
@@ -487,7 +493,7 @@
         P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
         dataset::String="hp11ver.dat", index::Int=1, npoints::Int=100,
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n")
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Int=5)
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -508,10 +514,11 @@
         # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
-        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        # Name, components, and basic options. P-T conditions.
+        # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(uppercase.(elements) .* "\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
-        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
         # Whole-rock composition
         for i = 1:length(composition)
@@ -531,12 +538,14 @@
     export perplex_configure_isobar
 
     """
-    `perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    ```julia
+    perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
         \tdataset::String="hp11ver.dat", index::Int=1, xnodes::Int=42, ynodes::Int=42,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Number=5)`
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Number=5)
+    ```
 
     Set up a PerpleX calculation for a single bulk composition across an entire
     2d P-T space. P specified in bar and T in Kelvin
@@ -568,7 +577,8 @@
         # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
-        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        # Name, components, and basic options. P-T conditions.
+        # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(uppercase.(elements) .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
 
@@ -592,7 +602,9 @@
 ## -- Perplex interface: 2. 0d queries
 
     """
-    `perplex_query_point(perplexdir::String, scratchdir::String, indvar::Number; index::Int=1)`
+    ```julia
+    perplex_query_point(perplexdir::String, scratchdir::String, indvar::Number; index::Int=1)
+    ```
 
     Query perplex results at a single temperature on an isobar or single pressure
     on a geotherm. Results are returned as string.
@@ -640,17 +652,21 @@
     molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
 
     """
-    Query perplex seismic results along a geotherm or isobar. Results are returned
-    as a dictionary
+    ```julia
+    perplex_query_seismic(perplexdir::String, scratchdir::String;
+        \tindex::Int=1, include_fluid="n")
+    ```
 
-    `perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")`
+    Query perplex seismic results along a previously configured 1-d path (isobar
+    or geotherm). Results are returned as a dictionary.
 
-    Query a pre-defined path (isobar or geotherm)
+    ```julia
+    perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="n")
+    ```
 
-    `perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        index::Int=1, npoints::Int=200, include_fluid="n")`
-
-    Query a new path from a pseudosection
+    Query perplex seismic results along a specified P-T path using a pre-computed
+    pseudosection. Results are returned as a dictionary.
     """
     function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")
         # Query a pre-defined path (isobar or geotherm)
@@ -729,11 +745,30 @@
     export perplex_query_seismic
 
 
-    # Query perplex results for a specified phase along an entire isobar or
-    # geotherm. Results are returned as a dictionary
-    # Query a pre-defined path (isobar or geotherm)
-    function perplex_query_phase(perplexdir::String, scratchdir::String, phase="melt(G)";
+    """
+    ```julia
+    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
+        \tindex::Int=1, include_fluid="y", clean_units::Bool=true)
+    ```
+
+    Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
+    along a previously configured 1-d path (isobar or geotherm). Results are
+    returned as a dictionary.
+
+    ***
+
+    ```julia
+    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
+    ```
+
+    Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
+    along a specified P-T path using a pre-computed pseudosection. Results are
+    returned as a dictionary.
+    """
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
         index::Int=1, include_fluid="y", clean_units::Bool=true)
+        # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
@@ -788,9 +823,9 @@
         end
         return result
     end
-    # Query a new path from a pseudosection
-    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String="melt(G)", P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
+        # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
@@ -848,6 +883,27 @@
     end
     export perplex_query_phase
 
+
+    """
+    ```julia
+    perplex_query_modes(perplexdir::String, scratchdir::String;
+        \tindex::Int=1, include_fluid="y")
+    ```
+
+    Query modal mineralogy (mass proportions) along a previously configured 1-d
+    path (isobar or geotherm). Results are
+    returned as a dictionary.
+
+    ***
+
+    ```julia
+    perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y")
+    ```
+
+    Query modal mineralogy (mass proportions) along a specified P-T path using a
+    pre-computed pseudosection. Results are returned as a dictionary.
+    """
     # Query modal mineralogy along a given isobar or geotherm. Results are
     # returned as a dictionary
     function perplex_query_modes(perplexdir::String, scratchdir::String;
@@ -925,11 +981,31 @@
     end
     export perplex_query_modes
 
-    # Query calculated system properties along an entire isobar or geotherm. Results
-    # are returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
-    # Query a pre-defined path (isobar or geotherm)
+
+    """
+    ```julia
+    perplex_query_system(perplexdir::String, scratchdir::String;
+        \tindex::Int=1, include_fluid="y", clean_units::Bool=true)
+    ```?
+
+    Query all perplex-calculated properties for the system (with or without fluid)
+    along a previously configured 1-d path (isobar or geotherm). Results are
+    returned as a dictionary. Set include_fluid="n" to return solid+melt only.
+
+    ***
+
+    ```julia
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+        \tindex::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
+    ```
+
+    Query all perplex-calculated properties for the system (with or without fluid)
+    along a specified P-T path using a pre-computed pseudosection. Results are
+    returned as a dictionary. Set include_fluid="n" to return solid+melt only.
+    """
     function perplex_query_system(perplexdir::String, scratchdir::String;
         index::Int=1, include_fluid="y", clean_units::Bool=true)
+        # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
@@ -976,9 +1052,9 @@
         end
         return result
     end
-    # Query a new path from a pseudosection
     function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
         index::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
+        # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
