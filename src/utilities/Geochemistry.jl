@@ -405,7 +405,7 @@
     end
     export melts_query_system
 
-## -- Perplex interface
+## -- Perplex interface: 1. Configuration
 
     """
     perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
@@ -471,9 +471,9 @@
     export perplex_configure_geotherm
 
     """
-    perplex_configure_isobaric(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         elements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
-        P::Number=10000, T_range::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15]; dataset::String="hp11ver.dat",
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
         excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, npoints::Int=100)
 
@@ -527,10 +527,68 @@
     end
     export perplex_configure_isobar
 
+    """
+    perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, xnodes::Int=42, ynodes::Int=42, fluid_eos::Number=5)
+
+    Set up a PerpleX calculation for a single bulk composition across an entire
+    2d P-T space. P specified in bar and T in Kelvin
+    """
+    function perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15]; dataset::String="hp11ver.dat",
+        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", index::Int=1, xnodes::Int=42, ynodes::Int=42, fluid_eos::Number=5)
+
+        build = joinpath(perplexdir, "build")# path to PerpleX build
+        vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
+
+        #Configure working directory
+        prefix = joinpath(scratchdir, "out$(index)/")
+        system("rm -rf $prefix; mkdir -p $prefix")
+
+        # Place required data files
+        system("cp $(joinpath(perplexdir,dataset)) $prefix")
+        system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
+        system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
+
+        # Edit data files to specify number of nodes at which to solve
+        system("sed -e \"s/x_nodes .*|/x_nodes                   $xnodes $xnodes |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/y_nodes .*|/y_nodes                   $ynodes $ynodes |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # Create build batch file
+        # Options based on Perplex v6.8.7
+        fp = open(prefix*"build.bat", "w")
+
+        # Name, components, and basic options. Holland and Powell (1998) "CORK" fluid equation state. P-T conditions.
+        elementstring = join(uppercase.(elements) .* "\n")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
+
+        # Whole-rock composition
+        for i = 1:length(composition)
+            write(fp,"$(composition[i]) ")
+        end
+        # Solution model
+        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nPseudosection")
+        close(fp)
+
+        # build PerpleX problem definition
+        system("cd $prefix; $build < build.bat > build.log")
+
+        # Run PerpleX vertex calculations
+        result = system("cd $prefix; echo $index | $vertex > vertex.log")
+        return result
+    end
+    export perplex_configure_pseudosection
+
+## -- Perplex interface: 2. 0d queries
 
     # Query perplex results at a single temperature on an isobar or single pressure
     # on a geotherm. Results are returned as string.
-    function perplex_query_1d(perplexdir::String, scratchdir::String, indvar::Number; index::Int=1)
+    function perplex_query_point(perplexdir::String, scratchdir::String, indvar::Number; index::Int=1)
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
@@ -565,12 +623,16 @@
         end
         return data
     end
-    export perplex_query_1d
+    export perplex_query_point
 
-    # --- Query Perplex seismic results along a given isobar or geotherm
+## --- Perplex interface: 3. 1d queries
+
+    # We'll need this for when perplex messes up
+    molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
 
     # Query perplex seismic results along a geotherm or isobar. Results are
     # returned as a dictionary
+    # Query a pre-defined path (isobar or geotherm)
     function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
@@ -605,14 +667,50 @@
         end
         return data
     end
+    # Query a new path from a pseudosection
+    function perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}=[280, 28000],
+        T::Array{<:Number}=[273.15, 1500+273.15]; index::Int=1, npoints::Int=200, include_fluid="n")
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n2\nn
+                $include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        data = Dict()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
+            data = elementify(data)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = Dict()
+        end
+        return data
+    end
     export perplex_query_seismic
 
-    # --- Query Perplex compositional results along a given isobar or geotherm
-
-    molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
 
     # Query perplex results for a specified phase along an entire isobar or
     # geotherm. Results are returned as a dictionary
+    # Query a pre-defined path (isobar or geotherm)
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase="melt(G)";
         index::Int=1, include_fluid="y", clean_units::Bool=true)
 
@@ -669,10 +767,69 @@
         end
         return result
     end
+    # Query a new path from a pseudosection
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String="melt(G)", P::Array{<:Number}=[280, 28000],
+        T::Array{<:Number}=[273.15, 1500+273.15]; index::Int=1, npoints::Int=200, include_fluid="y", clean_units::Bool=true)
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = Dict()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            # Check if perplex is messing up and outputting mole proportions
+            if nanmean(total_weight) < 50
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
+                for col = findall(t)
+                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                end
+                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            end
+            data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
+            if clean_units
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
+            end
+
+            # Convert to a dictionary
+            result = elementify(data,elements)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
     export perplex_query_phase
 
     # Query modal mineralogy along a given isobar or geotherm. Results are
     # returned as a dictionary
+    # Query a pre-defined path (isobar or geotherm)
     function perplex_query_modes(perplexdir::String, scratchdir::String;
         index::Int=1, include_fluid="y")
 
@@ -708,10 +865,48 @@
         end
         return result
     end
+    # Query a new path from a pseudosection
+    function perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}=[280, 28000],
+        T::Array{<:Number}=[273.15, 1500+273.15]; index::Int=1, npoints::Int=200, include_fluid="y")
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n25\nn\n$include_fluid\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = Dict()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
+            result = elementify(data)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
     export perplex_query_modes
 
     # Query calculated system properties along an entire isobar or geotherm. Results
     # are returned as a dictionary. Set include_fluid = "n" to get solid+melt only.
+    # Query a pre-defined path (isobar or geotherm)
     function perplex_query_system(perplexdir::String, scratchdir::String;
         index::Int=1, include_fluid="y", clean_units::Bool=true)
 
@@ -721,6 +916,56 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         write(fp,"$index\n3\n36\n1\n$include_fluid\n0\n") # v6.7.8
+        close(fp)
+
+        # Make sure there isn't already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = Dict()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
+            if clean_units
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
+            end
+
+            # Convert to a dictionary
+            result = elementify(data,elements)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
+    # Query a new path from a pseudosection
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}=[280, 28000],
+        T::Array{<:Number}=[273.15, 1500+273.15]; index::Int=1, npoints::Int=200, include_fluid="y",clean_units::Bool=true)
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n36\n1\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn't already an output
