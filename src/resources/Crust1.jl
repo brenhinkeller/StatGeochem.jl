@@ -88,8 +88,8 @@
         ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
-        ilat = 90 - ceil.(Int,ilat) + 1
-        ilon = 180 + floor.(Int,ilon) + 1
+        ilat = 91 .- ceil.(Int,ilat)
+        ilon = 181 .+ floor.(Int,ilon)
 
         # Allocate output arrays
         vpout = Array{Float64}(undef,size(lat))
@@ -174,8 +174,8 @@
         ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
-        ilat = 90 - ceil.(Int,ilat) + 1
-        ilon = 180 + floor.(Int,ilon) + 1
+        ilat = 91 .- ceil.(Int,ilat)
+        ilon = 181 .+ floor.(Int,ilon)
 
         # Allocate output arrays
         vpout = Array{Float64}(undef,size(lat))
@@ -244,12 +244,12 @@
         close(bndfile)
 
         # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon+180, 360) - 180
-        ilat = max.(lat,-90+1e-9)
+        ilon = mod.(lon .+ 180, 360) .- 180
+        ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
-        ilat = 90 - ceil.(Int,ilat) + 1
-        ilon = 180 + floor.(Int,ilon) + 1
+        ilat = 91 .- ceil.(Int,ilat)
+        ilon = 181 .+ floor.(Int,ilon)
 
         # Allocate output arrays
         thkout = Array{Float64}(undef,size(lat))
@@ -311,12 +311,12 @@
         close(bndfile)
 
         # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon+180, 360) - 180
-        ilat = max.(lat,-90+1e-9)
+        ilon = mod.(lon .+ 180, 360) .- 180
+        ilat = max.(lat, -90+1e-9)
 
         # Convert lat and lon to index
-        ilat = 90 - ceil.(Int,ilat) + 1
-        ilon = 180 + floor.(Int,ilon) + 1
+        ilat = 91 .- ceil.(Int,ilat)
+        ilon = 181 .+ floor.(Int,ilon)
 
         # Allocate output arrays
         baseout = Array{Float64}(undef,size(lat))
