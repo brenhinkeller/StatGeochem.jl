@@ -1,14 +1,14 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type; offset::Int=0, merge::Bool=false, undefval=NaN)
+    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type=eltype(result); offset::Int=0, merge::Bool=false, undefval=NaN)
 
         # Make sure the output data type allows our chosen value for undefined data
         undefval = convert(parseType, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1] == delim
+        if ~isempty(str) && str[1] == delim
             last_delim_pos = 1
         end
 
@@ -50,13 +50,8 @@
         # Check for final value after last delim
         if length(str) > last_delim_pos
             n += 1
-            if floatout
-                parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
-                parsed = isnothing(parsed) ? undefval : parsed
-            else
-                parsed = parse(parseType, str[(last_delim_pos+1):length(str)])
-            end
-            result[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = isnothing(parsed) ? undefval : parsed
         end
 
         # Return the number of result values
@@ -65,7 +60,7 @@
     export delim_string_parse!
 
     # Parse a delimited string, return an array as output
-    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge::Bool=false, undefval=NaN)
+    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type=Float64; merge::Bool=false, undefval=NaN)
 
         # Allocate an array to hold our parsed results
         result = Array{parseType}(undef,ceil(Int,length(str)/2))
@@ -75,7 +70,7 @@
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1] == delim
+        if ~isempty(str) && str[1] == delim
             last_delim_pos = 1
         end
 
