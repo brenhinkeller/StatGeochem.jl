@@ -1,7 +1,10 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(parsed::Array, str::AbstractString, delim::Char, parseType::Type; offset::Int=0, merge::Bool=false)
+    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type; offset::Int=0, merge::Bool=false, undefval=NaN)
+
+        # Make sure the output data type allows our chosen value for undefined data
+        undefval = convert(parseType, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -18,9 +21,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                     end
                     last_delim_pos = delim_pos
                 end
@@ -31,9 +36,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                         last_delim_pos = delim_pos
                     end
                 end
@@ -43,17 +50,28 @@
         # Check for final value after last delim
         if length(str) > last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            if floatout
+                parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+                parsed = isnothing(parsed) ? undefval : parsed
+            else
+                parsed = parse(parseType, str[(last_delim_pos+1):length(str)])
+            end
+            result[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 
-        # Return the number of parsed values
+        # Return the number of result values
         return n-offset
     end
     export delim_string_parse!
 
     # Parse a delimited string, return an array as output
-    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge=false)
-        parsed = Array{parseType}(undef,ceil(Int,length(str)/2))
+    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge::Bool=false, undefval=NaN)
+
+        # Allocate an array to hold our parsed results
+        result = Array{parseType}(undef,ceil(Int,length(str)/2))
+
+        # Make sure the output data type allows our chosen value for undefined data
+        undefval = convert(parseType, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -70,9 +88,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                     end
                     last_delim_pos = delim_pos
                 end
@@ -83,9 +103,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos
                         n += 1
+                        parsed = nothing
                         if delim_pos>last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                         last_delim_pos = delim_pos
                     end
                 end
@@ -95,16 +117,17 @@
         # Check for final value after last delim
         if length(str)>last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = isnothing(parsed) ? undefval : parsed
         end
 
-        # Return the parsed values
-        return parsed[1:n]
+        # Return the result values
+        return result[1:n]
     end
     export delim_string_parse
 
     function delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge::Bool=false)
-        # parsed = delim_string(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
+        # result = delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
 
         # Max number of delimted values
         ndelims = 2
@@ -115,7 +138,7 @@
         end
 
         # Allocate output array
-        parsed = Array{outType}(undef,ceil(Int,ndelims))
+        result = Array{outType}(undef,ceil(Int,ndelims))
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -133,7 +156,7 @@
                     if delim_pos > last_delim_pos+1
                         n += 1
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
+                            result[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
                     end
                     last_delim_pos = delim_pos
@@ -146,7 +169,7 @@
                     if delim_pos > last_delim_pos
                         n += 1
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
+                            result[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
                         last_delim_pos = delim_pos
                     end
@@ -157,11 +180,11 @@
         # Check for final value after last delim
         if length(str)>last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 
-        # Return the parsed values
-        return parsed[1:n]
+        # Return the result values
+        return result[1:n]
     end
     export delim_string_function
 
