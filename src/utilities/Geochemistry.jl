@@ -607,7 +607,7 @@
     ```
 
     Query perplex results at a single temperature on an isobar or single pressure
-    on a geotherm. Results are returned as string.
+    on a geotherm. Results are returned as a string.
     """
     function perplex_query_point(perplexdir::String, scratchdir::String, indvar::Number; index::Int=1)
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -644,6 +644,52 @@
         end
         return data
     end
+    """
+    ```julia
+    perplex_query_point(perplexdir::String, scratchdir::String, P::Number, T::Number; index::Int=1)
+    ```
+
+    Query perplex results at a single P,T point in a pseudosection.
+    Results are returned as a string.
+    """
+    function perplex_query_point(perplexdir::String, scratchdir::String, P::Number, T::Number; index::Int=1)
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Sanitize T inputs to avoid PerpleX escape sequence
+        if P == 99
+            P = 99.001
+        end
+        if T == 99
+            T = 99.001
+        end
+
+        # Create werami batch file
+        # Options based on Perplex v6.7.2
+        fp = open(prefix*"werami.bat", "w")
+        write(fp,"$index\n1\n$T\n$P\n99\n99\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.txt")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Read results and return them if possible
+        data = ""
+        try
+            # Read entire output file as a string
+            fp = open("$(prefix)$(index)_1.txt", "r")
+            data = read(fp, String)
+            close(fp)
+        catch
+            # Return empty string if file doesn't exist
+            @warn "$(prefix)$(index)_1.txt could not be parsed, perplex may not have run"
+
+        end
+        return data
+    end
     export perplex_query_point
 
 ## --- Perplex interface: 3. 1d queries
@@ -654,13 +700,15 @@
     """
     ```julia
     perplex_query_seismic(perplexdir::String, scratchdir::String;
-        \tindex::Int=1, include_fluid="n")
+        \tdof::Int=1, index::Int=1, include_fluid="n")
     ```
 
-    Query perplex seismic results along a previously configured 1-d path (isobar
-    or geotherm). Results are returned as a dictionary.
+    Query perplex seismic results along a previously configured 1-d path (dof=1,
+    isobar or geotherm) or 2-d grid / pseudosection (dof=2).
+    Results are returned as a dictionary.
     """
-    function perplex_query_seismic(perplexdir::String, scratchdir::String; index::Int=1, include_fluid="n")
+    function perplex_query_seismic(perplexdir::String, scratchdir::String;
+        dof::Int=1, index::Int=1, include_fluid::String="n")
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -668,8 +716,15 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        # v6.7.8 1d-path
-        write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+        if dof == 1
+            # v6.7.8 1d path
+            write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+        elseif dof == 2
+            # v6.7.8 2d grid
+            write(fp,"$index\n2\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
         close(fp)
 
         # Make sure there isn"t already an output
@@ -749,15 +804,15 @@
     """
     ```julia
     perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
-        \tindex::Int=1, include_fluid="y", clean_units::Bool=true)
+        \tdof::Int=1, index::Int=1, include_fluid="y", clean_units::Bool=true)
     ```
 
     Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
-    along a previously configured 1-d path (isobar or geotherm). Results are
-    returned as a dictionary.
+    along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
+    grid / pseudosection (dof=2). Results are returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
-        index::Int=1, include_fluid="y", clean_units::Bool=true)
+        dof::Int=1, index::Int=1, include_fluid="y", clean_units::Bool=true)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -765,7 +820,15 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n0\n") # v6.7.8
+        if dof == 1
+            # v6.7.8, 1d path
+            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n0\n")
+        elseif dof == 2
+            # v6.7.8, 2d grid
+            write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
         close(fp)
 
         # Make sure there isn"t already an output
@@ -887,15 +950,15 @@
     """
     ```julia
     perplex_query_modes(perplexdir::String, scratchdir::String;
-        \tindex::Int=1, include_fluid="y")
+        \tdof::Int=1, index::Int=1, include_fluid="y")
     ```
 
     Query modal mineralogy (mass proportions) along a previously configured 1-d
-    path (isobar or geotherm). Results are
-    returned as a dictionary.
+    path (dof=1, isobar or geotherm) or 2-d grid / pseudosection (dof=2).
+    Results are returned as a dictionary.
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
-        index::Int=1, include_fluid="y")
+        dof::Int=1, index::Int=1, include_fluid="y")
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -903,7 +966,15 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n25\nn\n$include_fluid\n0\n") # v6.7.8
+        if dof == 1
+            # v6.7.8 1d path
+            write(fp,"$index\n3\n25\nn\n$include_fluid\n0\n")
+        elseif dof == 2
+            # v6.7.8 2d grid
+            write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
         close(fp)
 
         # Make sure there isn"t already an output
@@ -986,8 +1057,9 @@
     ```?
 
     Query all perplex-calculated properties for the system (with or without fluid)
-    along a previously configured 1-d path (isobar or geotherm). Results are
-    returned as a dictionary. Set include_fluid="n" to return solid+melt only.
+    along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
+    grid / pseudosection (dof=2). Results are returned as a dictionary.
+    Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String;
         index::Int=1, include_fluid="y", clean_units::Bool=true)
@@ -998,7 +1070,15 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        write(fp,"$index\n3\n36\n1\n$include_fluid\n0\n") # v6.7.8
+        if dof == 1
+            # v6.7.8, 1d path
+            write(fp,"$index\n3\n36\n1\n$include_fluid\n0\n")
+        elseif dof == 2
+            # v6.7.8, 2d grid
+            write(fp,"$index\n2\n36\n1\n$include_fluid\nn\n1\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
         close(fp)
 
         # Make sure there isn't already an output
