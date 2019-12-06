@@ -368,7 +368,7 @@
 
 ## --- Bin a dataset by a given independent variable
 
-    function binmeans(x,y,min,max,nbins; resamplingratio::Number=1)
+    function binmeans(x, y, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -383,7 +383,7 @@
 
         return (bincenters, means, errors)
     end
-    function binmeans(x,y,min,max,nbins; resamplingratio::Number=1, tally::Bool=true)
+    function binmeans(x, y, min::Number, max::Number, nbins::Integer, tally::Bool; resamplingratio::Number=1)
         # As binmeans, but tally the number of samples (either resampled or corrected/original) that fall into bin
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
@@ -413,7 +413,7 @@
     export binmeans
 
 
-    function binmedians(x,y,min,max,nbins; resamplingratio::Number=1)
+    function binmedians(x, y, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -428,7 +428,7 @@
 
         return (bincenters, medians, errors)
     end
-    function binmedians(x,y,min,max,nbins; resamplingratio::Number=1, tally::Bool=true)
+    function binmedians(x, y, min::Number, max::Number, nbins::Ingeger, tally::Bool; resamplingratio::Number=1)
         # As binmedians, but tally the number of samples (either resampled or corrected/original) that fall into bin
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
@@ -459,7 +459,7 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
+    function bin_bsr(x, y, min::Number, max::Number, nbins::Integer,x_sigma, nresamples::Integer, p::Number=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -478,8 +478,7 @@
     end
     export bin_bsr
 
-
-    function bin_bsr_means(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
+    function bin_bsr_means(x, y, min::Number, max::Number, nbins::Integer, x_sigma, nresamples::Integer, p::Number=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -499,8 +498,7 @@
     end
     export bin_bsr_means
 
-
-    function bin_bsr_medians(x,y,min,max,nbins,x_sigma,nresamples,p=0.2)
+    function bin_bsr_medians(x, y, min::Number, max::Number, nbins::Integer, x_sigma, nresamples::Integer, p::Number=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -520,8 +518,7 @@
     end
     export bin_bsr_medians
 
-
-    function bin_bsr_ratios(x,num,denom,min,max,nbins,x_sigma,num_sigma,denom_sigma,nresamples,p=0.2)
+    function bin_bsr_ratios(x, num, denom, min::Number, max::Number, nbins::Integer, x_sigma, num_sigma, denom_sigma, nresamples::Integer, p::Number=0.2)
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
 
