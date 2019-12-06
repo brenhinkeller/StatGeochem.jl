@@ -2,7 +2,7 @@
 
     """
     ```julia
-    function system(cmdstr::AbstractString)
+    system(cmdstr::AbstractString)
     ```
 
     Direct access to the command line through C's `system` function -- without
