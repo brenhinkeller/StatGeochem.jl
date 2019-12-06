@@ -428,7 +428,7 @@
 
         return (bincenters, medians, errors)
     end
-    function binmedians(x, y, min::Number, max::Number, nbins::Ingeger, tally::Bool; resamplingratio::Number=1)
+    function binmedians(x, y, min::Number, max::Number, nbins::Integer, tally::Bool; resamplingratio::Number=1)
         # As binmedians, but tally the number of samples (either resampled or corrected/original) that fall into bin
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
