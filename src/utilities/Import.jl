@@ -343,7 +343,7 @@
                 # an empty string ("") such that it is empty when printed to file
                 # with dlmwrite or similar
                 if skipnan
-                    for n = (1:length(in[elements[i]]))+1
+                    for n = 2:length(result[:,i])
                         if isa(result[n,i], AbstractFloat) && isnan(result[n,i])
                             result[n,i] = ""
                         end
