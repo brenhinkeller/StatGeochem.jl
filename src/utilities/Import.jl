@@ -303,7 +303,7 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false)
+    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
         # Find the elements in the input dict
         if any(elements .== "elements")
@@ -334,10 +334,13 @@
             # Parse the input dict
             for i=1:length(elements)
                 out[1,i] = elements[i]
-                if length(in[elements[i]]) == 1
-                    out[2,i] = in[elements[i]]
-                else
-                    out[2:end,i] = in[elements[i]]
+                out[2:end,i] = in[elements[i]]
+                if skipnan
+                    for n = (1:length(in[elements[i]]))+1
+                        if isa(out[n,i],AbstractFloat) && isnan(out[n,i])
+                            out[n,i] = ""
+                        end
+                    end
                 end
             end
         end
@@ -371,8 +374,13 @@
     end
     export importdataset
 
-    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar)
-        return writedlm(filepath, unelementify(dataset), delim)
+    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar, skipnan::Bool=true)
+        if skipnan
+            result = writedlm(filepath, unelementify(dataset, skipnan=true), delim)
+        else
+            result = writedlm(filepath, unelementify(dataset), delim)
+        end
+        return result
     end
     export exportdataset
 
