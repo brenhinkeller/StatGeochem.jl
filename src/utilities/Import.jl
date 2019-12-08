@@ -93,7 +93,7 @@
                 end
             end
         else
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos
@@ -265,86 +265,93 @@
     # Convert a flat array into a dict with each column as a variable
     function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
         # Output as dictionary
-        out = Dict()
+        result = Dict()
         if skipnameless
-            out["elements"] = elements[elements .!= ""]
+            result["elements"] = elements[elements .!= ""]
         else
-            out["elements"] = elements
+            result["elements"] = elements
         end
 
         # Parse the input array, minus empty-named columns
-        for i=1:length(elements)
+        for i = 1:length(elements)
             thiscol = in[(1+skipstart):end,i]
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
 
-            if haskey(out,elements[i])
+            if haskey(result,elements[i])
                 # If key already exists
-                if floatcol || ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(out[elements[i]])) )
+                if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
                     # If either this column or the existing one is plausibly numeric, average the two
-                    out[elements[i]] = nanmean( hcat(floatify.(out[elements[i]]), floatify.(thiscol)), dim=2 )
+                    result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
                 else
                     # If neither is plausibly numeric, just contatenate the columns and move on
-                    out[elements[i]] = hcat(out[elements[i]], thiscol)
+                    result[elements[i]] = hcat(result[elements[i]], thiscol)
                 end
             elseif floatcol
                 # If column is numeric
-                out[elements[i]] = floatify.(thiscol)
+                result[elements[i]] = floatify.(thiscol)
             else
                 # If column is non-numeric
-                out[elements[i]] = thiscol
+                result[elements[i]] = thiscol
             end
         end
 
         # Return only unique elements, since dictionary keys must be unique
-        out["elements"] = unique(elements)
+        result["elements"] = unique(elements)
 
-        return out
+        return result
     end
     export elementify
 
     # Convert a dict into a flat array with variables as columns
     function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
-        # Find the elements in the input dict
+        # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
             elements = in["elements"]
         end
 
-        # Figure out how many are numeric (if necessary)
+        # Figure out how many are numeric (if necessary), so we can export only
+        # those if `findnumeric` is set
         if findnumeric
-            numericelements = Array{Bool}(undef,length(elements))
-            for i=1:length(elements)
-                numericelements = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
+            is_numeric_element = Array{Bool}(undef,length(elements))
+            for i = 1:length(elements)
+                is_numeric_element = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
             end
-            elements = elements[numericelements]
+            elements = elements[is_numeric_element]
         end
 
+        # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            out=Array{Float64}(undef,length(in[elements[1]]),length(elements))
+            result = Array{Float64}(undef,length(in[elements[1]]),length(elements))
 
-            # Parse the input dict
-            for i=1:length(elements)
-                out[:,i] = floatify.(in[elements[i]])
+            # Parse the input dict. No column names if `floatout` is set
+            for i = 1:length(elements)
+                result[:,i] = floatify.(in[elements[i]])
             end
         else
             # Allocate output Array{Any}
-            out=Array{Any}(undef,length(in[elements[1]])+1,length(elements))
+            result = Array{Any}(undef,length(in[elements[1]])+1,length(elements))
 
             # Parse the input dict
-            for i=1:length(elements)
-                out[1,i] = elements[i]
-                out[2:end,i] = in[elements[i]]
+            for i = 1:length(elements)
+                # Column name goes in the first row, everything else after that
+                result[1,i] = elements[i]
+                result[2:end,i] = in[elements[i]]
+
+                # if `skipnan` is set, replace each NaN in the output array with
+                # an empty string ("") such that it is empty when printed to file
+                # with dlmwrite or similar
                 if skipnan
                     for n = (1:length(in[elements[i]]))+1
-                        if isa(out[n,i],AbstractFloat) && isnan(out[n,i])
-                            out[n,i] = ""
+                        if isa(result[n,i], AbstractFloat) && isnan(result[n,i])
+                            result[n,i] = ""
                         end
                     end
                 end
             end
         end
-        return out
+        return result
     end
     export unelementify
 
