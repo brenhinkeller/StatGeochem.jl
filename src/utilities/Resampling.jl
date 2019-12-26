@@ -2,7 +2,9 @@
 
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
-    function bsresample(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -51,7 +53,9 @@
     end
 
     # Second method for bsresample that takes a dictionary as input. Yay multiple dispatch!
-    function bsresample(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+    function bsresample(in::Dict, nrows::Integer, elements=in["elements"],
+        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+
         # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
 
@@ -69,7 +73,9 @@
     export bsresample
 
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma
-    function bsresample_unif(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample_unif(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -118,7 +124,9 @@
     end
 
     # Second method for bsresample_unif that takes a dictionary as input
-    function bsresample_unif(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+    function bsresample_unif(in::Dict, nrows::Integer, elements=in["elements"],
+        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+
         # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
 
@@ -136,7 +144,10 @@
     export bsresample_unif
 
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma, AND a gaussian component
-    function bsresample_unif_norm(data::Array{<:Number}, sigma_unif, sigma_norm, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample_unif_norm(data::Array{<:Number},
+        sigma_unif::Union{Number,Array{<:Number}}, sigma_norm::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -182,7 +193,9 @@
     export bsresample_unif_norm
 
     # As bsresample, but also return an index of the rows included from data
-    function bsresample_index(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
         index = Array{Int}(undef,nrows)
@@ -229,7 +242,9 @@
     export bsresample_index
 
     # As bsresample_unif, but also return an index of the rows included from data
-    function bsresample_unif_index(data::Array{<:Number}, sigma, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample_unif_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
         index = Array{Int}(undef,nrows)
@@ -276,7 +291,10 @@
     export bsresample_unif_index
 
     # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma, AND a gaussian component
-    function bsresample_unif_norm_index(data::Array{<:Number}, sigma_unif, sigma_norm, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function bsresample_unif_norm_index(data::Array{<:Number},
+        sigma_unif::Union{Number,Array{<:Number}}, sigma_norm::Union{Number,Array{<:Number}},
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
         index = Array{Int}(undef,nrows)
@@ -329,7 +347,9 @@
 
     # Bootstrap resample (without uncertainty) a variable to size nrows.
     # Optionally provide weights in p
-    function randsample(data::Array{<:Number}, nrows::Number, p = min(0.2,nrows/size(data,1)))
+    function randsample(data::Array{<:Number}, nrows::Integer,
+        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
@@ -358,9 +378,12 @@
         return resampled
     end
     # Second method for randsample that takes a dictionary as input
-    function randsample(in::Dict, nrows, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+    function randsample(in::Dict, nrows::Integer, elements=in["elements"],
+        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+
         data = unelementify(in, elements, floatout=true)
         sdata = randsample(data, nrows, p)
+
         return elementify(sdata, elements, skipstart=0)
     end
     export randsample
@@ -391,7 +414,7 @@
 
         means = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
-        if tally
+        if tally # Raw tally of points included in each bin
             N = Array{Int64}(undef,nbins)
             for i = 1:nbins
                 t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
@@ -399,7 +422,7 @@
                 errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
                 N[i] = count(t)
             end
-        else
+        else # Count corrected for resampling ratio
             N = Array{Float64}(undef,nbins)
             for i = 1:nbins
                 t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
@@ -436,7 +459,7 @@
 
         medians = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
-        if tally
+        if tally # Raw tally of points included in each bin
             N = Array{Int64}(undef,nbins)
             for i = 1:nbins
                 t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
@@ -444,7 +467,7 @@
                 errors[i] = 1.4826 * nanmad(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
                 N[i] = count(t)
             end
-        else
+        else # Count corrected for resampling ratio
             N = Array{Float64}(undef,nbins)
             for i = 1:nbins
                 t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
@@ -459,7 +482,9 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr(x, y, min::Number, max::Number, nbins::Integer,x_sigma, nresamples::Integer, p=0.2)
+    function bin_bsr(x, y, min::Number, max::Number, nbins::Integer, x_sigma,
+        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -478,7 +503,9 @@
     end
     export bin_bsr
 
-    function bin_bsr_means(x, y, min::Number, max::Number, nbins::Integer, x_sigma, nresamples::Integer, p=0.2)
+    function bin_bsr_means(x, y, min::Number, max::Number, nbins::Integer, x_sigma,
+        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -498,7 +525,9 @@
     end
     export bin_bsr_means
 
-    function bin_bsr_medians(x, y, min::Number, max::Number, nbins::Integer, x_sigma, nresamples::Integer, p=0.2)
+    function bin_bsr_medians(x, y, min::Number, max::Number, nbins::Integer,
+        x_sigma, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -518,7 +547,9 @@
     end
     export bin_bsr_medians
 
-    function bin_bsr_ratios(x, num, denom, min::Number, max::Number, nbins::Integer, x_sigma, num_sigma, denom_sigma, nresamples::Integer, p=0.2)
+    function bin_bsr_ratios(x, num, denom, min::Number, max::Number, nbins::Integer,
+        x_sigma, num_sigma, denom_sigma, nresamples::Integer, p=0.2)
+
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
 
@@ -541,7 +572,7 @@
 
 ## --- Downsample an image / array
 
-    function downsample(matrix::Array,factor::Int,jfactor=factor::Int)
+    function downsample(matrix::Array, factor::Integer, jfactor=factor::Integer)
         if ndims(matrix)==2
             rows = floor(Int,size(matrix,1)/factor)
             cols = floor(Int,size(matrix,2)/jfactor)
