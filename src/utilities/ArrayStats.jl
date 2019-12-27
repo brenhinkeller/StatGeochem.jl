@@ -246,6 +246,26 @@
         end
         return result
     end
+    function nanmean(A, W; dim=0)
+        s = size(A)
+        if dim == 2
+            result = Array{eltype(A)}(undef,s[1])
+            for i=1:s[1]
+                t = .~ isnan.(A[i,:])
+                result[i] = any(t) ? mean(A[i,t], ProbabilityWeights(W[i,t])) : NaN
+            end
+        elseif dim == 1
+            result = Array{eltype(A)}(undef, 1, s[2])
+            for i=1:s[2]
+                t = .~ isnan.(A[:,i])
+                result[i] = any(t) ? mean(A[t,i], ProbabilityWeights(W[t,i])) : NaN
+            end
+        else
+            t = .~ isnan.(A)
+            result = any(t) ? mean(A[t], ProbabilityWeights(W[t])) : NaN
+        end
+        return result
+    end
     export nanmean
 
 
@@ -267,6 +287,26 @@
         else
             t = .~ isnan.(A)
             result = any(t) ? std(A[t]) : NaN
+        end
+        return result
+    end
+    function nanstd(A, W; dim=0)
+        s = size(A)
+        if dim == 2
+            result = Array{eltype(A)}(undef,s[1])
+            for i=1:s[1]
+                t = .~ isnan.(A[i,:])
+                result[i] = any(t) ? std(A[i,t], ProbabilityWeights(W[i,t]), corrected=false) : NaN
+            end
+        elseif dim == 1
+            result = Array{eltype(A)}(undef, 1, s[2])
+            for i=1:s[2]
+                t = .~ isnan.(A[:,i])
+                result[i] = any(t) ? std(A[t,i], ProbabilityWeights(W[t,i]), corrected=false) : NaN
+            end
+        else
+            t = .~ isnan.(A)
+            result = any(t) ? std(A[t], ProbabilityWeights(W[t]), corrected=false) : NaN
         end
         return result
     end
