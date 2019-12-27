@@ -391,6 +391,21 @@
 
 ## --- Bin a dataset by a given independent variable
 
+    function bincounts(x, y, min::Number, max::Number, nbins::Integer)
+        # Tally the number of samples (either resampled or corrected/original) that fall into each bin
+        binwidth = (max-min)/nbins
+        binedges = linsp(min,max,nbins+1)
+        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
+
+        N = Array{Int64}(undef,nbins)
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            N[i] = count(t)
+        end
+        return (bincenters, N)
+    end
+    export bincounts
+
     function binmeans(x, y, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
@@ -401,37 +416,26 @@
         for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
             means[i] = mean(y[t])
-            errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
+            errors[i] = std(y[t]) * sqrt(resamplingratio) / sqrt(count(t))
         end
 
         return (bincenters, means, errors)
     end
-    function binmeans(x, y, min::Number, max::Number, nbins::Integer, tally::Bool; resamplingratio::Number=1)
-        # As binmeans, but tally the number of samples (either resampled or corrected/original) that fall into bin
+    function binmeans(x, y, min::Number, max::Number, nbins::Integer, weight::AbstractArray{<:Number}; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
         means = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
-        if tally # Raw tally of points included in each bin
-            N = Array{Int64}(undef,nbins)
-            for i = 1:nbins
-                t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-                means[i] = mean(y[t])
-                errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
-                N[i] = count(t)
-            end
-        else # Count corrected for resampling ratio
-            N = Array{Float64}(undef,nbins)
-            for i = 1:nbins
-                t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-                means[i] = mean(y[t])
-                errors[i] = std(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
-                N[i] = count(t) / resamplingratio
-            end
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            w = ProbabilityWeights(weight[t])
+            means[i] = mean(y[t], w)
+            errors[i] = std(y[t], w, corrected=true) * sqrt(resamplingratio) / sqrt(count(t))
         end
-        return (bincenters, means, errors, N)
+
+        return (bincenters, means, errors)
     end
     export binmeans
 
@@ -444,39 +448,12 @@
         medians = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
             medians[i] = median(y[t])
-            errors[i] = 1.4826 * nanmad(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
+            errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio) / sqrt(count(t))
         end
 
         return (bincenters, medians, errors)
-    end
-    function binmedians(x, y, min::Number, max::Number, nbins::Integer, tally::Bool; resamplingratio::Number=1)
-        # As binmedians, but tally the number of samples (either resampled or corrected/original) that fall into bin
-        binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
-        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
-
-        medians = Array{Float64}(undef,nbins)
-        errors = Array{Float64}(undef,nbins)
-        if tally # Raw tally of points included in each bin
-            N = Array{Int64}(undef,nbins)
-            for i = 1:nbins
-                t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-                medians[i] = median(y[t])
-                errors[i] = 1.4826 * nanmad(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
-                N[i] = count(t)
-            end
-        else # Count corrected for resampling ratio
-            N = Array{Float64}(undef,nbins)
-            for i = 1:nbins
-                t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-                medians[i] = median(y[t])
-                errors[i] = 1.4826 * nanmad(y[t]) ./ sqrt(sum(t)) .* sqrt(resamplingratio)
-                N[i] = count(t) / resamplingratio
-            end
-        end
-        return (bincenters, medians, errors, N)
     end
     export binmedians
 
