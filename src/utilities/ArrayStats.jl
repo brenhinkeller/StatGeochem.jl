@@ -506,8 +506,8 @@
 
     # Draw random numbers from a distribution specified by a vector of points
     # defining the PDF curve
-    function draw_from_distribution(dist::Array{Float64}, n::Int)
-        # Draw n random numbers from the distribution 'dist'
+    function draw_from_distribution(dist::Array{Float64}, n::Integer)
+        # Draw n random floating-point numbers from the distribution 'dist'
         x = Array{Float64}(undef, n)
         dist_ymax = maximum(dist)
         dist_xmax = length(dist) - 1.0

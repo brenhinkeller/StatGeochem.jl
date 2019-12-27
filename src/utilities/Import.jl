@@ -1,7 +1,7 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type=eltype(result); offset::Int=0, merge::Bool=false, undefval=NaN)
+    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type=eltype(result); offset::Integer=0, merge::Bool=false, undefval=NaN)
 
         # Make sure the output data type allows our chosen value for undefined data
         undefval = convert(parseType, undefval)
@@ -263,7 +263,7 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
+    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         # Output as dictionary
         result = Dict()
         if skipnameless
@@ -376,7 +376,7 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         return elementify(readdlm(filepath, delim), floatout=floatout, skipstart=skipstart, skipnameless=skipnameless)
     end
     export importdataset
