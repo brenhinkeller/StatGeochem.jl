@@ -459,8 +459,7 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr(x, y, min::Number, max::Number, nbins::Integer, x_sigma,
-        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
@@ -478,10 +477,27 @@
 
         return (c, m, e)
     end
+    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+
+        data = hcat(x, y, w)
+        sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins, dbs[:,3])
+            means[:,i] = m
+        end
+
+        m = nanmean(means,dim=2)
+        e = nanstd(means,dim=2)
+
+        return (c, m, e)
+    end
     export bin_bsr
 
-    function bin_bsr_means(x, y, min::Number, max::Number, nbins::Integer, x_sigma,
-        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
@@ -500,10 +516,28 @@
 
         return (c, m, el, eu)
     end
+    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+
+        data = hcat(x, y, w)
+        sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins, dbs[:,3])
+            means[:,i] = m
+        end
+
+        m = nanmean(means,dim=2)
+        el = m .- pctile(means,2.5,dim=2)
+        eu = pctile(means,97.5,dim=2) .- m
+
+        return (c, m, el, eu)
+    end
     export bin_bsr_means
 
-    function bin_bsr_medians(x, y, min::Number, max::Number, nbins::Integer,
-        x_sigma, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_medians(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
@@ -524,8 +558,10 @@
     end
     export bin_bsr_medians
 
-    function bin_bsr_ratios(x, num, denom, min::Number, max::Number, nbins::Integer,
-        x_sigma, num_sigma, denom_sigma, nresamples::Integer, p=0.2)
+    function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+        min::Number, max::Number, nbins::Integer,
+        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
+        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
@@ -535,6 +571,29 @@
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
             (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins)
+            means[:,i] = m ./ (1 .- m)
+        end
+
+        m = nanmean(means,dim=2)
+        el = m .- pctile(means,2.5,dim=2)
+        eu = pctile(means,97.5,dim=2) .- m
+
+        return (c, m, el, eu)
+    end
+
+    function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+        min::Number, max::Number, nbins::Integer,
+        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
+        nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+
+        data = hcat(x, num, denom, w)
+        sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins, dbs[:,3])
             means[:,i] = m ./ (1 .- m)
         end
 
