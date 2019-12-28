@@ -376,8 +376,8 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
-        return elementify(readdlm(filepath, delim), floatout=floatout, skipstart=skipstart, skipnameless=skipnameless)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true)
+        return elementify(readdlm(filepath, delim, skipstart=skipstart), floatout=floatout, skipnameless=skipnameless)
     end
     export importdataset
 
