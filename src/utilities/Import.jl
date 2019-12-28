@@ -380,7 +380,7 @@
         data = readdlm(filepath, delim, skipstart=skipstart)
         if mindefinedcolumns > 0
             definedcolumns = vec(sum(.~ isempty.(data), dims=2))
-            t = definedcolumns .< mindefinedcolumns
+            t = definedcolumns .>= mindefinedcolumns
             data = data[t,:]
         end
         return elementify(data, floatout=floatout, skipnameless=skipnameless)
