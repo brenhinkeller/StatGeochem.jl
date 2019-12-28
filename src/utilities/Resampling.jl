@@ -593,7 +593,7 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins, dbs[:,3])
+            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins, dbs[:,4])
             means[:,i] = m ./ (1 .- m)
         end
 
