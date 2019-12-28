@@ -376,8 +376,14 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true)
-        return elementify(readdlm(filepath, delim, skipstart=skipstart), floatout=floatout, skipnameless=skipnameless)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+        data = readdlm(filepath, delim, skipstart=skipstart)
+        if mindefinedcolumns > 0
+            definedcolumns = vec(sum(.~ isempty.(data), dims=2))
+            t = definedcolumns .< mindefinedcolumns
+            data = data[t,:]
+        end
+        return elementify(data, floatout=floatout, skipnameless=skipnameless)
     end
     export importdataset
 
