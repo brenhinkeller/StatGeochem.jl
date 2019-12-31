@@ -499,7 +499,7 @@
         # Loop through source and find first match for each (if any)
         for i = 1:length(index)
             for j = 1:length(target)
-                t[j] = (source[i] == target[j])
+                t[j] = isequal(source[i], target[j])
             end
             if any(t)
                 index[i] = findfirst(t)
