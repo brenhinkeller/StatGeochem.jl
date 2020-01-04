@@ -1,13 +1,12 @@
 ## --- Geolcont
 
-    continentcolors = [RGB4{N0f8}(0.2,0.2,0.6)
-              RGB4{N0f8}(0.0,0.4,0.8)
-              RGB4{N0f8}(0.024,0.663,0.757)
-              RGB4{N0f8}(0.4,0.8,0.4)
-              RGB4{N0f8}(1.0,0.8,0.2)
-              RGB4{N0f8}(1.0,1.0,0.0)
-              RGB4{N0f8}(1.0,1.0,1.0)
-    ]
+    continentcolors = [ [0.2,0.2,0.6],
+                        [0.0,0.4,0.8],
+                        [0.024,0.663,0.757],
+                        [0.4,0.8,0.4],
+                        [1.0,0.8,0.2],
+                        [1.0,1.0,0.0],
+                        [1.0,1.0,1.0], ] .|> x -> RGBX{N0f8}(x...)
     export continentcolors
 
     continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]

@@ -246,6 +246,26 @@
         end
         return result
     end
+    function nanmean(A, W; dim=0)
+        s = size(A)
+        if dim == 2
+            result = Array{eltype(A)}(undef,s[1])
+            for i=1:s[1]
+                t = .~ isnan.(A[i,:])
+                result[i] = any(t) ? mean(A[i,t], ProbabilityWeights(W[i,t])) : NaN
+            end
+        elseif dim == 1
+            result = Array{eltype(A)}(undef, 1, s[2])
+            for i=1:s[2]
+                t = .~ isnan.(A[:,i])
+                result[i] = any(t) ? mean(A[t,i], ProbabilityWeights(W[t,i])) : NaN
+            end
+        else
+            t = .~ isnan.(A)
+            result = any(t) ? mean(A[t], ProbabilityWeights(W[t])) : NaN
+        end
+        return result
+    end
     export nanmean
 
 
@@ -267,6 +287,26 @@
         else
             t = .~ isnan.(A)
             result = any(t) ? std(A[t]) : NaN
+        end
+        return result
+    end
+    function nanstd(A, W; dim=0)
+        s = size(A)
+        if dim == 2
+            result = Array{eltype(A)}(undef,s[1])
+            for i=1:s[1]
+                t = .~ isnan.(A[i,:])
+                result[i] = any(t) ? std(A[i,t], ProbabilityWeights(W[i,t]), corrected=false) : NaN
+            end
+        elseif dim == 1
+            result = Array{eltype(A)}(undef, 1, s[2])
+            for i=1:s[2]
+                t = .~ isnan.(A[:,i])
+                result[i] = any(t) ? std(A[t,i], ProbabilityWeights(W[t,i]), corrected=false) : NaN
+            end
+        else
+            t = .~ isnan.(A)
+            result = any(t) ? std(A[t], ProbabilityWeights(W[t]), corrected=false) : NaN
         end
         return result
     end
@@ -454,9 +494,13 @@
     function findmatches(source, target)
         # Allocate output array, initializing with zeros
         index = fill(0, size(source))
+        # Allocate match-test array
+        t = Array{Bool}(undef,length(target))
         # Loop through source and find first match for each (if any)
-        for i = 1:length(source)
-            t = source[i] .== target
+        for i = 1:length(index)
+            for j = 1:length(target)
+                t[j] = isequal(source[i], target[j])
+            end
             if any(t)
                 index[i] = findfirst(t)
             end
@@ -468,35 +512,84 @@
     # Return the index of the closest value in 'target' for each value in 'source'
     # If muliple values are equally close, the first one is used
     function findclosest(source, target)
-        index=Array{Int64}(undef,size(source))
+        # Allocate index and difference arrays
+        index = Array{Int64}(undef, size(source))
+        diff_type = promote_type(eltype(source), eltype(target))
+        diff = Array{diff_type}(undef, length(target))
+        # Find closest (numerical) match in target for each value in source
         for i = 1:length(source)
-            index[i] = argmin((target .- source[i]).^2)
+            for j = 1:length(diff)
+                diff[j] = abs(target[j] - source[i])
+            end
+            index[i] = argmin(diff)
         end
         return index
     end
     export findclosest
 
     # Return the index of the closest value of array 'target' below (less than)
-    # each value in 'source'
+    # each value in 'source'. Returns an index of 0 no such values exist
     function findclosestbelow(source, target)
-        index=Array{Int64}(undef, size(source))
+        # Allocate output array
+        index = Array{Int64}(undef, size(source))
+        diff_type = promote_type(eltype(source), eltype(target))
+        diff = Array{diff_type}(undef, length(target))
+        t = Array{Bool}(undef,length(target))
         for i = 1:length(source)
-            t = findall(target .< source[i])
-            ti = argmin((target[t] .- source[i]).^2)
-            index[i] = t[ti]
+            j = 0
+            closestbelow = 0
+            while j < length(diff)
+                j += 1
+                if target[j] < source[i]
+                    diff[j] = source[i] - target[j]
+                    closestbelow = j
+                    break
+                end
+            end
+            while j < length(diff)
+                j += 1
+                if target[j] < source[i]
+                    diff[j] = source[i] - target[j]
+                    if diff[j] < diff[closestbelow]
+                        closestbelow = j
+                    end
+                end
+            end
+            index[i] = closestbelow
         end
         return index
     end
     export findclosestbelow
 
     # Return the index of the closest value of the vector 'target' above (greater
-    # than) each value in 'source'
+    # than) each value in 'source'. Returns an index of 0 if no values exist
     function findclosestabove(source, target)
-        index=Array{Int64}(undef, size(source))
-        for i=1:length(source)
-            t = findall(target .> source[i])
-            ti = argmin((target[t] .- source[i]).^2)
-            index[i] = t[ti]
+        # Allocate output array
+        index = Array{Int64}(undef, size(source))
+        diff_type = promote_type(eltype(source), eltype(target))
+        diff = Array{diff_type}(undef, length(target))
+        t = Array{Bool}(undef,length(target))
+        for i = 1:length(source)
+            j = 0
+            closestabove = 0
+            while j < length(diff)
+                j += 1
+                if target[j] > source[i]
+                    diff[j] = target[j] - source[i]
+                    closestabove = j
+                    break
+                end
+            end
+            while j < length(diff)
+                j += 1
+                if target[j] > source[i]
+                    diff[j] = target[j] - source[i]
+                    if diff[j] < diff[closestabove]
+                        closestabove = j
+                    end
+                end
+            end
+            index[i] = closestabove
         end
         return index
     end
@@ -506,9 +599,9 @@
 
     # Draw random numbers from a distribution specified by a vector of points
     # defining the PDF curve
-    function draw_from_distribution(dist::Array{Float64}, n::Int)
-        # Draw n random numbers from the distribution 'dist'
-        x = Array{Float64}(undef, n)
+    function draw_from_distribution(dist::Array{<:AbstractFloat}, n::Integer)
+        # Draw n random floating-point numbers from the distribution 'dist'
+        x = Array{eltype(dist)}(undef, n)
         dist_ymax = maximum(dist)
         dist_xmax = length(dist) - 1.0
 
@@ -533,7 +626,7 @@
 
     # Fill an existing variable with random numbers from a distribution specified
     # by a vector of points defining the PDF curve
-    function fill_from_distribution(dist::Array{Float64}, x::Array{Float64})
+    function fill_from_distribution(dist::Array{<:AbstractFloat}, x::Array{<:AbstractFloat})
         # Fill the array x with random numbers from the distribution 'dist'
         dist_ymax = maximum(dist)
         dist_xmax = length(dist) - 1.0

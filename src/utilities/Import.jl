@@ -1,11 +1,14 @@
 ## --- Parse a delimited string
 
     # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(parsed::Array, str::AbstractString, delim::Char, parseType::Type; offset::Int=0, merge::Bool=false)
+    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type=eltype(result); offset::Integer=0, merge::Bool=false, undefval=NaN)
+
+        # Make sure the output data type allows our chosen value for undefined data
+        undefval = convert(parseType, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1] == delim
+        if ~isempty(str) && str[1] == delim
             last_delim_pos = 1
         end
 
@@ -18,9 +21,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                     end
                     last_delim_pos = delim_pos
                 end
@@ -31,9 +36,11 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                         last_delim_pos = delim_pos
                     end
                 end
@@ -43,21 +50,27 @@
         # Check for final value after last delim
         if length(str) > last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = isnothing(parsed) ? undefval : parsed
         end
 
-        # Return the number of parsed values
+        # Return the number of result values
         return n-offset
     end
     export delim_string_parse!
 
     # Parse a delimited string, return an array as output
-    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type; merge=false)
-        parsed = Array{parseType}(undef,ceil(Int,length(str)/2))
+    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type=Float64; merge::Bool=false, undefval=NaN)
+
+        # Allocate an array to hold our parsed results
+        result = Array{parseType}(undef,ceil(Int,length(str)/2))
+
+        # Make sure the output data type allows our chosen value for undefined data
+        undefval = convert(parseType, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1] == delim
+        if ~isempty(str) && str[1] == delim
             last_delim_pos = 1
         end
 
@@ -70,22 +83,26 @@
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
                         n += 1
+                        parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                     end
                     last_delim_pos = delim_pos
                 end
             end
         else
-            for i=1:length(str)
+            for i = 1:length(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos
                         n += 1
+                        parsed = nothing
                         if delim_pos>last_delim_pos+1
-                            parsed[n] = parse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
                         end
+                        result[n] = isnothing(parsed) ? undefval : parsed
                         last_delim_pos = delim_pos
                     end
                 end
@@ -95,16 +112,17 @@
         # Check for final value after last delim
         if length(str)>last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = isnothing(parsed) ? undefval : parsed
         end
 
-        # Return the parsed values
-        return parsed[1:n]
+        # Return the result values
+        return result[1:n]
     end
     export delim_string_parse
 
     function delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge::Bool=false)
-        # parsed = delim_string(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
+        # result = delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
 
         # Max number of delimted values
         ndelims = 2
@@ -115,7 +133,7 @@
         end
 
         # Allocate output array
-        parsed = Array{outType}(undef,ceil(Int,ndelims))
+        result = Array{outType}(undef,ceil(Int,ndelims))
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -133,7 +151,7 @@
                     if delim_pos > last_delim_pos+1
                         n += 1
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
+                            result[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
                     end
                     last_delim_pos = delim_pos
@@ -146,7 +164,7 @@
                     if delim_pos > last_delim_pos
                         n += 1
                         if delim_pos > last_delim_pos+1
-                            parsed[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
+                            result[n] = f(str[(last_delim_pos+1):(delim_pos-1)])
                         end
                         last_delim_pos = delim_pos
                     end
@@ -157,11 +175,11 @@
         # Check for final value after last delim
         if length(str)>last_delim_pos
             n += 1
-            parsed[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
         end
 
-        # Return the parsed values
-        return parsed[1:n]
+        # Return the result values
+        return result[1:n]
     end
     export delim_string_function
 
@@ -245,85 +263,95 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
+    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         # Output as dictionary
-        out = Dict()
+        result = Dict()
         if skipnameless
-            out["elements"] = elements[elements .!= ""]
+            result["elements"] = elements[elements .!= ""]
         else
-            out["elements"] = elements
+            result["elements"] = elements
         end
 
         # Parse the input array, minus empty-named columns
-        for i=1:length(elements)
+        for i = 1:length(elements)
             thiscol = in[(1+skipstart):end,i]
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
 
-            if haskey(out,elements[i])
+            if haskey(result,elements[i])
                 # If key already exists
-                if floatcol || ( sum(plausiblynumeric.(out[elements[i]])) >= sum(nonnumeric.(out[elements[i]])) )
+                if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
                     # If either this column or the existing one is plausibly numeric, average the two
-                    out[elements[i]] = nanmean( hcat(floatify.(out[elements[i]]), floatify.(thiscol)), dim=2 )
+                    result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
                 else
                     # If neither is plausibly numeric, just contatenate the columns and move on
-                    out[elements[i]] = hcat(out[elements[i]], thiscol)
+                    result[elements[i]] = hcat(result[elements[i]], thiscol)
                 end
             elseif floatcol
                 # If column is numeric
-                out[elements[i]] = floatify.(thiscol)
+                result[elements[i]] = floatify.(thiscol)
             else
                 # If column is non-numeric
-                out[elements[i]] = thiscol
+                result[elements[i]] = thiscol
             end
         end
 
         # Return only unique elements, since dictionary keys must be unique
-        out["elements"] = unique(elements)
+        result["elements"] = unique(elements)
 
-        return out
+        return result
     end
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false)
+    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
-        # Find the elements in the input dict
+        # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
             elements = in["elements"]
         end
 
-        # Figure out how many are numeric (if necessary)
+        # Figure out how many are numeric (if necessary), so we can export only
+        # those if `findnumeric` is set
         if findnumeric
-            numericelements = Array{Bool}(undef,length(elements))
-            for i=1:length(elements)
-                numericelements = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
+            is_numeric_element = Array{Bool}(undef,length(elements))
+            for i = 1:length(elements)
+                is_numeric_element = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
             end
-            elements = elements[numericelements]
+            elements = elements[is_numeric_element]
         end
 
+        # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            out=Array{Float64}(undef,length(in[elements[1]]),length(elements))
+            result = Array{Float64}(undef,length(in[elements[1]]),length(elements))
 
-            # Parse the input dict
-            for i=1:length(elements)
-                out[:,i] = floatify.(in[elements[i]])
+            # Parse the input dict. No column names if `floatout` is set
+            for i = 1:length(elements)
+                result[:,i] = floatify.(in[elements[i]])
             end
         else
             # Allocate output Array{Any}
-            out=Array{Any}(undef,length(in[elements[1]])+1,length(elements))
+            result = Array{Any}(undef,length(in[elements[1]])+1,length(elements))
 
             # Parse the input dict
-            for i=1:length(elements)
-                out[1,i] = elements[i]
-                if length(in[elements[i]]) == 1
-                    out[2,i] = in[elements[i]]
-                else
-                    out[2:end,i] = in[elements[i]]
+            for i = 1:length(elements)
+                # Column name goes in the first row, everything else after that
+                result[1,i] = elements[i]
+                result[2:end,i] = in[elements[i]]
+
+                # if `skipnan` is set, replace each NaN in the output array with
+                # an empty string ("") such that it is empty when printed to file
+                # with dlmwrite or similar
+                if skipnan
+                    for n = 2:length(result[:,i])
+                        if isa(result[n,i], AbstractFloat) && isnan(result[n,i])
+                            result[n,i] = ""
+                        end
+                    end
                 end
             end
         end
-        return out
+        return result
     end
     export unelementify
 
@@ -348,13 +376,24 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Int=1, skipnameless::Bool=true)
-        return elementify(readdlm(filepath, delim), floatout=floatout, skipstart=skipstart, skipnameless=skipnameless)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+        data = readdlm(filepath, delim, skipstart=skipstart)
+        if mindefinedcolumns > 0
+            definedcolumns = vec(sum(.~ isempty.(data), dims=2))
+            t = definedcolumns .>= mindefinedcolumns
+            data = data[t,:]
+        end
+        return elementify(data, floatout=floatout, skipnameless=skipnameless)
     end
     export importdataset
 
-    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar)
-        return writedlm(filepath, unelementify(dataset), delim)
+    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar, skipnan::Bool=true)
+        if skipnan
+            result = writedlm(filepath, unelementify(dataset, skipnan=true), delim)
+        else
+            result = writedlm(filepath, unelementify(dataset), delim)
+        end
+        return result
     end
     export exportdataset
 
