@@ -55,6 +55,8 @@ module StatGeochem
     include("resources/Crust1.jl")
     include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
+    include("resources/PartitionCoefficients/PartitionCoefficients.jl")
+
 
 
 end # module

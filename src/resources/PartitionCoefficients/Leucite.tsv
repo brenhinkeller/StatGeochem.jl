@@ -1,0 +1,81 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Leucitite	Leucite	25	Mn				.0069	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	26	Fe	.018				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	28	Ni	.28				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	29	Cu	.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	30	Zn	.03				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	31	Ga	.42				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	32	Ge			.8		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	37	Rb	7.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	38	Sr	.0059				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	39	Y				.035	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	40	Zr	.36				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	41	Nb	.079				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	56	Ba	.23				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	82	Pb	.09				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	90	Th	.23				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Leucite	92	U	.58				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Lamproite	Leucite	21	Sc	.072				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	22	Ti	.0321				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	23	V	.027				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	25	Mn	.016				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	27	Co	.098				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	28	Ni	.249				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	31	Ga	.347				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	37	Rb	5.46				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	38	Sr	.0011				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	39	Y	.0034				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	40	Zr	.0006				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	41	Nb	.005				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	55	Cs	9.79				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	56	Ba	.046				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	57	La	.0005				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	58	Ce	.0007				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	59	Pr	.0008				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	60	Nd	.0006				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	63	Eu	.0015				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	66	Dy	.0018				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	68	Er	.0199				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	70	Yb	.0156				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	72	Hf	.0018				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	73	Ta	.0078				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	90	Th	.0008				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Leucite	92	U	.005				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	3	Li	.032	.004			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	38	Sr	.0107	.0004			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	40	Zr	.0008	.0003			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	56	Ba	.37	.03			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	57	La	.0003	.0002			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	72	Hf	1.97	.17			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	73	Ta	.27	.07			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+Alkali Basalt	Leucite	92	U	.013	.007			Experimental	Wood & Trigila 2001	Solid-Melt		08-DEC-2008
+
+LINKS TO REFERENCES:
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Foley & Jenner 2004 - http://earthref.org/cgi-bin/err.cgi?n=99693
+Wood & Trigila 2001 - http://earthref.org/cgi-bin/err.cgi?n=99711
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:28:27 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=leucite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  leucite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Ewart & Griffin 1994
+Sort by: Reference
+

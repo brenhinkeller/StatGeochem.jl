@@ -1,0 +1,51 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Per-Alkaline Trachyte	Nepheline	37	Rb	.44				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	38	Sr	.24				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	39	Y	.01				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	40	Zr	.005				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	41	Nb	.011				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	55	Cs	.413				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	56	Ba	.09				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	57	La	.01				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	58	Ce	.011				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	59	Pr	.013				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	60	Nd	.013				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	62	Sm	.012				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	63	Eu	.043				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	64	Gd	.013				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	65	Tb	.014				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	67	Ho	.012				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	68	Er	.014				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	70	Yb	.016				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	72	Hf	.008				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	82	Pb	.149				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	90	Th	.014				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Nepheline	92	U	.012				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Larsen 1979 - http://earthref.org/cgi-bin/err.cgi?n=154
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:34:18 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=nepheline&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=rock_type
+
+SEARCH VALUES:
+Search Term(s):  nepheline (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Larsen 1979
+Sort by: Rock Type
+

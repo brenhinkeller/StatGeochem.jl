@@ -1,0 +1,55 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Carbonatite	Baddeleyite	3	Li	.009				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	4	Be	.008				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	5	B	.018				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	14	Si	.019				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	15	P	.05				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	19	K	.11				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	22	Ti			.8	1.4	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	37	Rb	.011				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	38	Sr	.013				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	39	Y	4.3				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	39	Y	6.4				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	40	Zr	198				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	41	Nb			1.6	1.8	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	55	Cs	.013				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	56	Ba	.01				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	57	La			.09		Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	58	Ce			.39	.4	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	59	Pr			.59	.5	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	62	Sm			1.5	2.5	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	64	Gd			2.1	3.9	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	71	Lu			7.7	13	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	72	Hf	140				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	73	Ta			7.7	9	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	82	Pb	1.2				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	90	Th			7	9	Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+Carbonatite	Baddeleyite	92	U	37				Experimental	Klemme 2003	Solid-Melt		08-DEC-2008
+
+LINKS TO REFERENCES:
+Klemme 2003 - http://earthref.org/cgi-bin/err.cgi?n=98601
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:16:59 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=baddeleyite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  baddeleyite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Klemme 2003
+Sort by: Reference
+

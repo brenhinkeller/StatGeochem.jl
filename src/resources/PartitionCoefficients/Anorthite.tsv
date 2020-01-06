@@ -1,0 +1,988 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Basalt	Plagioclase	3	Li			.367	.678	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	12	Mg			.039	.053	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	19	K			.22	.245	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	21	Sc			.016	.114	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	22	Ti			.039	.123	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	24	Cr			.038	.064	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	25	Mn			.027	.184	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	26	Fe			.023	.665	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	37	Rb			.093	.122	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	38	Sr			1.715	1.568	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	39	Y			.008	.009	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	40	Zr			.003	.009	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	41	Nb			.029	.139	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	55	Cs			.771	1.093	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	56	Ba			.301	.277	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	57	La			.065	.071	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	58	Ce			.049	.045	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	59	Pr			.049	.133	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	60	Nd			.04	.104	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	62	Sm			.044	.065	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	63	Eu			.156	.86	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	64	Gd			.03	.153	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	65	Tb			.029	.102	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	66	Dy			.017	.128	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	67	Ho			.02	.106	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	68	Er			.024	.137	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	69	Tm			.049	.122	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	70	Yb			.03	.141	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	71	Lu			.024	.19	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	72	Hf			.026	.153	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	73	Ta			.042	.17	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	82	Pb			2.453	2.721	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	90	Th			.173	.382	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	92	U			.43	.105	Experimental	Aignertorres et al. 2007	Solid-Melt		08-DEC-2008
+Sub-Alkaline Andesite-Basalt	Plagioclase	15	P	.014				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Sub-Alkaline Basalt	Plagioclase	15	P	.024				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	21	Sc	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	24	Cr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	27	Co	.07				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	30	Zn	.44				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	37	Rb	.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	38	Sr	3.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	40	Zr	.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	55	Cs	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	56	Ba	.27				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	57	La	.18				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	58	Ce	.12				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	60	Nd	.09				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	62	Sm	.06				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	63	Eu	.75				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	65	Tb	.15				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	70	Yb	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	71	Lu	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	72	Hf	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	73	Ta	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	90	Th	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	21	Sc	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	24	Cr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	27	Co	.15				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	30	Zn	.48				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	37	Rb	.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	38	Sr	4.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	40	Zr	.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	55	Cs	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	56	Ba	.48				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	57	La	.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	58	Ce	.22				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	60	Nd	.19				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	62	Sm	.12				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	63	Eu	2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	65	Tb	.14				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	70	Yb	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	71	Lu	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	72	Hf	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	73	Ta	.03				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	90	Th	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	3	Li	.72				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	4	Be	3.13				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	21	Sc	1.62				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	23	V	.13				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	24	Cr	.31				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	28	Ni	.17				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	29	Cu	.14				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	30	Zn	.07				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	37	Rb	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	38	Sr	1.25				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	39	Y	.78				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	41	Nb	.04				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	42	Mo	.2				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	55	Cs	.44				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	56	Ba	.19		.19		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	57	La	4.61				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	58	Ce	3.87				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	59	Pr	4.22				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	60	Nd	2.56				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	62	Sm	1.45				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	63	Eu	2.99				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	64	Gd	2.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	65	Tb	2.93				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	66	Dy	1.94				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	67	Ho	1.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	68	Er	1.94				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	69	Tm	1.63				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	70	Yb	.82				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	71	Lu	1.32				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	73	Ta	.13				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	81	Tl	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	82	Pb	.77				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	90	Th	.11				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Plagioclase	92	U	.71				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	3	Li			.225	.317	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	4	Be			.288	1.04	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	5	B			.064	.267	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	11	Na			.754	.981	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	12	Mg			.0342	.046	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	15	P			.071	.145	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	19	K			.117	.154	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	22	Ti			.0482	.0962	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	26	Fe			.157	.279	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	37	Rb			.024	.059	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	38	Sr			1.5	3.34	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	39	Y			.0227	.042	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	40	Zr			.0022	.0146	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	56	Ba			.183	.661	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	57	La			.141	.27	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	58	Ce			.095	.167	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	59	Pr			.063	.139	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	60	Nd			.074	.122	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	62	Sm			.062	.139	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	63	Eu			.067	.123	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	64	Gd			.0461	.0502	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	66	Dy			.0293	.0318	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	68	Er			.0181	.0206	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	71	Lu			.0069	.0296	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	92	U			.0107	.073	Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	3	Li	.317	.019			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	4	Be	.88	.12			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	5	B	.122	.226			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	12	Mg	.042	.01			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	15	P	.103	.017			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	19	K	.154				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	22	Ti	.0891	.0064			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	26	Fe	.279				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	37	Rb	.031	.0084			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	38	Sr	3.17				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	39	Y	.0289	.01			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	40	Zr	.0044	.00078			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	56	Ba	.389	.023			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	57	La	.256	.019			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	58	Ce	.159	.009			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	59	Pr	.146	.043			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	60	Nd	.123	.004			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	62	Sm	.098	.068			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	63	Eu	.148	.056			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	64	Gd	.0461				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	66	Dy	.032				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	68	Er	.0185	.0013			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	71	Lu	.00687				Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Synthetic Basaltic Andesite	Plagioclase	92	U	.073	.015			Experimental	Bindeman & Davis 2000	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	3	Li			.138	.257	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	4	Be			.172	.576	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	5	B			.057	.898	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	9	F			.33	4.88	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	12	Mg			.028	.046	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	15	P			.065	.429	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	17	Cl			.427	1.575	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	19	K			.093	.186	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	21	Sc			.072	1.458	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	22	Ti			.055	.197	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	23	V			.01	.27	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	24	Cr			.029	.191	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	25	Mn			.025	.092	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	26	Fe			.098	1.1	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	27	Co			.09	1.03	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	28	Ni			.122	1.16	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	37	Rb			.021	.623	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	38	Sr			1.504	2.845	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr			1.44	3.08	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	39	Y			.043	.282	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	39	Y			.023	.031	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	40	Zr			.0013	.0127	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	41	Nb			.002	.0925	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	55	Cs			.0626	.1091	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	56	Ba			.208	.692	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	56	Ba			.183	.504	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	57	La			.141	.258	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	57	La			.176	.263	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	58	Ce			.166	.233	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	59	Pr			.063	.142	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	59	Pr			.136	.282	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	60	Nd			.124	.276	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	60	Nd			.074	.168	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	62	Sm			.183	.285	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	62	Sm			.063	.106	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu			.062	.094	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu			.061	.616	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	64	Gd			.046	.05	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	66	Dy			.0293	.314	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	68	Er			.018	.0194	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	71	Lu			.0069	.0093	Experimental	Bindeman et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	82	Pb			.431	.901	Experimental	Bindeman et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	3	Li	.151	.002			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	21	Sc					Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	22	Ti	.06	.005			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	23	V					Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	31	Ga	.36	.08			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	38	Sr	2.21	.02			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	39	Y	.019	.005			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	40	Zr	.006	.005			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	41	Nb	.007	.006			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	57	La	.151	.008			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	58	Ce	.117	.014			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	60	Nd	.081	.011			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	62	Sm	.053	.012			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	63	Eu	1.04	.11			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	64	Gd	.045	.005			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	68	Er	.012	.006			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	70	Yb					Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	71	Lu	.0013	.009			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	72	Hf	.01	.008			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+High Na-Al Basalt	Plagioclase	73	Ta	.023	.01			Experimental	Blundy et al. 1998	Solid-Melt		08-DEC-2008
+Basalt	Plagioclase	22	Ti	.038				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	23	V	.1				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	24	Cr	.02				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	25	Mn	.07				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	26	Fe	.1				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	27	Co	.1				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	28	Ni	.06				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	29	Cu	.17				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	30	Zn	.11				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	37	Rb			.05	.1	Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	38	Sr	2				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	58	Ce			.02	.06	Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	60	Nd	.04				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	62	Sm	.02				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	63	Eu	1				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	70	Yb	.01				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	3	Li	.3				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	37	Rb	.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr	1.67				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	58	Ce	.07				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	62	Sm	.03				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	63	Eu	.18				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	65	Tb	.05				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	70	Yb	.02				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	72	Hf	.02				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	90	Th	.01				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	92	U	.01				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	20	Ca			1.1	2.46	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr			1.18	3.06	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	39	Y			.014	.032	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	56	Ba			.16	.56	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	57	La			.109	.227	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	58	Ce			.085	.138	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	60	Nd			.084	.114	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	62	Sm			.065	.083	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	63	Eu			.066	.078	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	64	Gd			.053	.054	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	66	Dy			.041	.052	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	68	Er			.035	.056	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	71	Lu			.031	.043	Experimental	Drake & Weill 1975	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	11	Na			1.21	3.08	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	12	Mg			.032	.45	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	13	Al			.96	1.69	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	19	K			.16	1.6	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	20	Ca			1.8	4.9	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	21	Sc			.03	.197	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	24	Cr			.06	.67	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	25	Mn			.033	.31	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	27	Co			.055	.51	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	30	Zn			.26	.51	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	37	Rb			.06	.46	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr			4.5	24.3	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	55	Cs			.03	.78	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba			.34	1.43	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	57	La			.28	.49	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	58	Ce			.164	.4	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	60	Nd			.14	.29	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	62	Sm			.11	.168	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	63	Eu			.75	4.2	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	64	Gd			.11	.24	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	65	Tb			.12	.21	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	70	Yb			.07	.11	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	71	Lu			.06	.11	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	72	Hf			.07	.17	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	73	Ta			.027	.092	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	90	Th			.032	.088	Phenocryst-Matrix	Dudas et al. 1971	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	3	Li			.023	.85	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	4	Be			.36	1.3	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	22	Ti			.04	.057	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	23	V			.022	.032	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	24	Cr	.075				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	37	Rb			.008	.056	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr			1.4	3.5	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	39	Y			.01	.038	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	40	Zr	.0009				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	41	Nb			.008	.045	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	42	Mo	.39				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	55	Cs			.022	.067	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	56	Ba			.38	1.45	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	57	La			.075	.18	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	58	Ce			.062	.14	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	59	Pr			.035	.13	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	60	Nd			.026	.12	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	62	Sm			.017	.083	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	63	Eu			.48	.79	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	64	Gd			.016	.067	Phenocryst-Matrix	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	65	Tb			.04	.061	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	66	Dy			.011	.034	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	68	Er			.005	.019	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	70	Yb			.004	.014	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	73	Ta			.027	.11	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	82	Pb			.18	1.07	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	90	Th			.13	.19	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	92	U			.051	.34	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	25	Mn				.038	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	26	Fe	.19				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	29	Cu	.37				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	30	Zn	.17				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	31	Ga	1.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	33	As				.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	37	Rb	.16				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	38	Sr	5.28				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	39	Y				.066	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	40	Zr	.15				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	41	Nb				1.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	56	Ba	.56				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	82	Pb	.61				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	25	Mn	.17				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	26	Fe	.47				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	28	Ni	1.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	29	Cu	1.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	30	Zn	.82				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	31	Ga	3.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	32	Ge				1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	37	Rb	.24				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr	10.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	39	Y	.51				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	40	Zr	.55				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	41	Nb				2.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba	1.05				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	82	Pb	1.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	25	Mn			.09	.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	26	Fe			.12	.28	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	28	Ni				.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	29	Cu			.5	1.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	30	Zn			.12	.23	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	31	Ga			.59	1.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	33	As			.02	.12	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	37	Rb			.011	.029	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	38	Sr			4.04	12.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	39	Y			.022	.084	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	40	Zr			.036	.16	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	41	Nb			.07	.27	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	56	Ba			1	1.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	82	Pb			.35	.97	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	25	Mn				.013	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	26	Fe	.04				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	28	Ni				.27	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	29	Cu	.034				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	30	Zn	.035				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	31	Ga	.56				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	33	As	.056				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	37	Rb	.11				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	38	Sr	1.39				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	39	Y				.05	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	40	Zr	.073				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	41	Nb				.033	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	56	Ba	.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Plagioclase	82	Pb	.047				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	25	Mn			.11	.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	26	Fe			.21	.34	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	28	Ni			.7	1.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	29	Cu			.41	1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	30	Zn			.24	.49	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	31	Ga			1.26	2.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	32	Ge			.45	1.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	33	As				.05	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	37	Rb			.023	.17	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	38	Sr			5.83	7.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	39	Y			.083	.55	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	40	Zr			.1	.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	41	Nb			.26	.88	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	56	Ba			.28	.47	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Plagioclase	82	Pb			.35	.84	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	25	Mn			.043	.27	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	26	Fe			.28	1.36	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	29	Cu			.08	.29	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	30	Zn			.36	.96	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	31	Ga			2.4	4.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	33	As			.1	.39	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	37	Rb			.008	.11	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	38	Sr			9	12	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	39	Y			.039	.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	40	Zr			.21	.53	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	41	Nb			.09	.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	56	Ba			.44	1.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	82	Pb			.19	.38	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	12	Mg			.05	.09	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	19	K			.06	.2	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	19	K			.07	.2	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	26	Fe			.07	.09	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	29	Cu			.08	.24	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	29	Cu			.07	.38	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	31	Ga			.71	1.1	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr			1.4	1.8	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr			1.5	2	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	56	Ba			.12	.19	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	56	Ba			.12	.2	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	12	Mg			.05	.15	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	19	K			.04	.09	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	19	K			.04	.1	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	26	Fe			.08	.18	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	29	Cu			.15	.32	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	29	Cu			.17	.34	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	31	Ga			1.1	1.7	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr			1.9	2.6	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr			2	2.9	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba			.11	.17	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba			.1	.17	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	40	Zr			.0101	.0141	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	57	La			.1325	.3017	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	58	Ce			.0721	.2214	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	60	Nd			.0478	.1487	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	62	Sm			.0341	.1024	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	63	Eu			.9249	1.326	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	64	Gd			.0253	.0665	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	66	Dy			.0168	.0498	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	68	Er			.0153	.0448	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	70	Yb			.0144	.041	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	71	Lu			.0148	.0389	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Plagioclase	72	Hf			.009	.0151	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	40	Zr	.0406				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	57	La	.3926				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	58	Ce	.2511				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	60	Nd	.189				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	62	Sm	.1366				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	63	Eu	1.113				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	64	Gd	.1202				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	66	Dy	.1116				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	68	Er	.1216				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	70	Yb	.1323				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	71	Lu	.1384				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Plagioclase	72	Hf	.0391				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	40	Zr	.0866				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	57	La	.3448				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	58	Ce	.1942				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	60	Nd	.1617				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	62	Sm	.1308				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	63	Eu	.864				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	64	Gd	.1294				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	66	Dy	.1157				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	68	Er	.1019				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	70	Yb	.0966				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	71	Lu	.0939				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Plagioclase	72	Hf	.0923				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	40	Zr	.0094				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	57	La	.0348				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	58	Ce	.0278				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	60	Nd	.0179				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	62	Sm	.0132				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	63	Eu	.0221				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	64	Gd	.0125				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	66	Dy	.0112				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	68	Er	.0116				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	70	Yb	.0155				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	71	Lu	.012				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Plagioclase	72	Hf	.0092				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	19	K	.18				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	37	Rb	.0262				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	38	Sr	2.04				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	55	Cs	.0248				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	56	Ba	.329				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	11	Na	1.21				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	13	Al	1.63				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	14	Si	1.13				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	19	K	.301				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	20	Ca	1.11				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	25	Mn	.05				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	37	Rb	.016				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr	2.87				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	56	Ba	.3				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	57	La	.135				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	58	Ce	.09				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	60	Nd	.04				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	62	Sm	.036				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu	.32				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	64	Gd	.04				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	65	Tb	.026				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	70	Yb	.016				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	3	Li	.42				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	12	Mg	.04				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	19	K	.3				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	25	Mn	.04				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	27	Co	.58				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	30	Zn	.18				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	37	Rb	.07				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr	1.8				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	55	Cs			1		Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	56	Ba	.26				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	82	Pb	.76				Phenocryst-Matrix	Kravuchuk et al. 1981	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	82	Pb	.29				Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Hawaiite	Plagioclase	82	Pb	.1				Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Quartz Latite	Plagioclase	82	Pb			.41	.53	Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	82	Pb			.31	.78	Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Plagioclase	82	Pb	.3				Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Tholeiite	Plagioclase	82	Pb			.11	.67	Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	21	Sc	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	27	Co	.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	37	Rb	.39				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	40	Zr	.09				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	57	La	.12				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	63	Eu	.21				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	65	Tb	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	72	Hf	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	73	Ta	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	90	Th	.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Basanite-Hawaiite	Plagioclase	92	U	.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	21	Sc	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	27	Co	.08				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	37	Rb	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	40	Zr	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	57	La	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	63	Eu	.18				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	65	Tb	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	72	Hf	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	73	Ta	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	90	Th	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Plagioclase	92	U	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	21	Sc	.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	27	Co	.08				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	37	Rb	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	40	Zr	.16				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	57	La	.23				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	63	Eu	1.34				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	65	Tb	.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	72	Hf	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	73	Ta	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	90	Th	.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	92	U	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	21	Sc			.01	.03	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	23	V			.07	.47	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	24	Cr			.02	.25	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	28	Ni			.06	.61	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	30	Zn			.13	.25	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	55	Cs			.04	.31	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	56	Ba			.08	.36	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	57	La			.13	.21	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	58	Ce			.12	.18	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	60	Nd			.08	.16	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	62	Sm			.07	.1	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	63	Eu			.36	.73	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	65	Tb			.05	.08	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	66	Dy			.03	.09	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	70	Yb			.01	.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	71	Lu			.05	.1	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	72	Hf			.01	.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	90	Th			.004	.013	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	21	Sc	.083				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	24	Cr	.5				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	27	Co	.12				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	30	Zn	1.4				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	56	Ba	.27				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	57	La	.16				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	58	Ce	.12				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	60	Nd	.07				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	62	Sm	.061				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	63	Eu	.79				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	65	Tb	.05				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	66	Dy				.09	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	70	Yb	.026				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	71	Lu				.1	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	72	Hf	.064				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	73	Ta	.027				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	74	W				.1	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	90	Th	.008				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Plagioclase	92	U	.014				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	11	Na			1	1.3	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	21	Sc			.006	.009	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	24	Cr				.3	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	26	Fe			.04	.1	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	27	Co			.02	.04	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	37	Rb			.11	.25	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	38	Sr			.9	10	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	55	Cs				.015	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	56	Ba			1.2	5.9	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	57	La			.0007	.071	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	58	Ce			.0005	.035	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	62	Sm			.0004	.0086	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	63	Eu			.024	2.5	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	65	Tb			.0004	.0035	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	70	Yb				.004	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	71	Lu			.0001	.0024	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	72	Hf				.0001	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	73	Ta				.001	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	90	Th				.001	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Pantellerite-Trachyte	Plagioclase	92	U				.003	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	3	Li	.2				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	25	Mn	.053				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	37	Rb	.016				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	38	Sr	2.94				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	56	Ba	.3				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	57	La	.135				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	58	Ce	.09				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	60	Nd	.04				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	62	Sm	.036				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	63	Eu	.32				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	64	Gd	.04				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	65	Tb	.026				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Plagioclase	70	Yb	.016				Experimental	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	40	Zr				.01	Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	41	Nb				.01	Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Plagioclase	37	Rb	.017				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Plagioclase	56	Ba	.15				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	19	K	.2				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	37	Rb	.08				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	38	Sr	1.87				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	56	Ba	.16				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	58	Ce	.047				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	62	Sm	.033				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	63	Eu	1.2				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	70	Yb	.035				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	38	Sr	1.554				Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	57	La	.022				Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	58	Ce	.016				Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	60	Nd	.014				Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	62	Sm			.009	.014	Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	63	Eu			.11	.503	Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	64	Gd			.004	.011	Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Angrite, Achondrite	Plagioclase	70	Yb	.004				Experimental	McKay et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	22	Ti	.04				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	37	Rb	.1				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr	2				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	41	Nb	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	57	La	.27				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	58	Ce	.2				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	59	Pr	.17				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	60	Nd	.14				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	62	Sm	.11				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu	.73				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	64	Gd	.066				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	65	Tb	.06				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	66	Dy	.055				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	67	Ho	.048				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	68	Er	.041				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	69	Tm	.036				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	70	Yb	.031				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	71	Lu	.025				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	72	Hf	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	82	Pb	.36				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	90	Th	.05				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	92	U	.11				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	38	Sr			.94	3.18	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	56	Ba			.265	3.4	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	58	Ce			.0115	.223	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	60	Nd			.0078	.219	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	62	Sm			.006	.221	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	63	Eu			1.52	2.35	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	66	Dy			.0043	.22	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	68	Er			.0037	.219	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	70	Yb			.0032	.227	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	71	Lu			.0033	.23	Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	38	Sr	2.2				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	56	Ba	.57				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	58	Ce	.57				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	60	Nd	.192				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	62	Sm	.146				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	63	Eu	.96				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	66	Dy	.114				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	68	Er	.099				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Trachyte-Andesite	Plagioclase	70	Yb	.098				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	3	Li			.27	.66	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	11	Na			1.59	1.66	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	19	K			.076	.1	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	20	Ca			3.85	4.25	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	37	Rb			.016	.041	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr			1.45	4.4	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba			.304	.308	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	58	Ce			.109	.347	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	60	Nd			.061	.29	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	62	Sm			.05	.153	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	63	Eu			.82	2.81	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	64	Gd	.129				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	66	Dy			.059	.452	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	68	Er			.029	.38	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	70	Yb			.022	.302	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	71	Lu			.022	.29	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	21	Sc			.02	.06	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	25	Mn			.12	.76	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	30	Zn			1	6.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	37	Rb			.06	.19	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	38	Sr			6.8	33	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	39	Y			.04	.21	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	40	Zr			.04	.36	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	55	Cs			.02	.18	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	56	Ba			.56	3.3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	57	La			.3	.45	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	58	Ce			.21	.34	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	60	Nd			.14	.29	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	62	Sm			.11	.23	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	63	Eu			3.8	7.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	65	Tb			.09	.19	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	66	Dy			.07	.18	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	70	Yb			.06	.13	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	71	Lu			.06	.13	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	72	Hf			.06	.29	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	73	Ta			.02	.05	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	82	Pb			.42	2.2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	90	Th			.03	.08	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Plagioclase	92	U			.05	.13	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Fo-An-En	Plagioclase	38	Sr			1.3	1.6	Model	Nielsen 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	11	Na	1.08				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	12	Mg	.089				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	19	K	.112				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	20	Ca	2.88				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	21	Sc	.033				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	22	Ti	.083				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	24	Cr	.016				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	25	Mn	.078				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	26	Fe	.2				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	27	Co	.14				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	38	Sr	2.41				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	56	Ba	.21				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	57	La	.28				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	58	Ce	.19				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	62	Sm	.11				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	63	Eu	1.27				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	65	Tb	.085				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	70	Yb	.041				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	71	Lu	.032				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	72	Hf	.017				Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Plagioclase	90	Th				.04	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	21	Sc	.008				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	25	Mn	.016				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	27	Co	.026				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	29	Cu	.004				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	30	Zn	.13				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	31	Ga	1.7				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	56	Ba	.68				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	57	La	.069				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	58	Ce	.062				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	60	Nd	.028				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	62	Sm	.017				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu	.68				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	64	Gd	.014				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	65	Tb	.013				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	67	Ho	.011				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	70	Yb	.009				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	19	K			.0837	.137	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	37	Rb			.039	.0705	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	38	Sr			1.31	1.83	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	56	Ba			.137	.197	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	19	K	.151				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	37	Rb	.188				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	38	Sr	1.55				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	56	Ba	.242				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	19	K	.231				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	37	Rb	.058				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	38	Sr	1.77				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Plagioclase	56	Ba	.263				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	19	K			.156	.361	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	37	Rb			.0294	.138	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr			1.36	2.75	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	56	Ba			.151	.589	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	19	K	.263				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	37	Rb	.0479				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	38	Sr	2.84				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	56	Ba	.363				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Tholeiite-Andesite	Plagioclase	19	K			.0188	.0196	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Tholeiite-Andesite	Plagioclase	37	Rb			.025	.0463	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Tholeiite-Andesite	Plagioclase	38	Sr			1.27	1.31	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Tholeiite-Andesite	Plagioclase	56	Ba	.0537				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	37	Rb			.02	.19	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	38	Sr			1.3	3.2	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	56	Ba			.03	.21	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	58	Ce			.06	.3	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	60	Nd	.15				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	62	Sm	.11				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	63	Eu			.06	.73	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	64	Gd	.08				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	66	Dy	.06				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Plagioclase	70	Yb			.02	.3	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Plagioclase	38	Sr	1.5				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Plagioclase	56	Ba	.16				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Plagioclase	63	Eu	1				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Plagioclase	70	Yb				.04	Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Basaltic Andesite	Plagioclase	22	Ti	.04	.01			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	24	Cr	.11	.02			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	37	Rb	.3	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	38	Sr	1.4	.4			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	39	Y	.2	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	40	Zr	.01	.01			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	57	La	.13	.04			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	58	Ce	.08	.02			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	60	Nd	.14	.06			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	62	Sm	.3	.2			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	66	Dy	.3	.2			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	68	Er	.4	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Plagioclase	70	Yb	.4	.2			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Alkali Basalt	Plagioclase	58	Ce	.113				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	60	Nd	.069				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	62	Sm	.035				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	63	Eu	.392				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	64	Gd	.026				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	66	Dy	.019				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	68	Er	.01				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	70	Yb	.006				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	58	Ce			.062	.295	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	60	Nd			.023	.24	Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	62	Sm			.026	.203	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	63	Eu			.055	.732	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	64	Gd			.017	.066	Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	66	Dy			.01	.293	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	68	Er			.027	.041	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	70	Yb			.024	.033	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Plagioclase	71	Lu			.027	.034	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	58	Ce	.278				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	60	Nd	.199				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	62	Sm	.166				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	63	Eu	.438				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	64	Gd	.214				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	66	Dy	.199				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	68	Er	.242				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	70	Yb	.299				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Plagioclase	71	Lu	.241				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	58	Ce	.023				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	60	Nd	.023				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	62	Sm	.024				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu	.232				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	64	Gd	.017				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	66	Dy	.018				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	68	Er	.02				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	70	Yb	.03				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	71	Lu	.037				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	58	Ce	.241				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	60	Nd	.172				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	62	Sm	.125				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	63	Eu	2.11				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	64	Gd	.09				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	66	Dy	.086				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	68	Er	.084				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	70	Yb	.077				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Plagioclase	71	Lu	.062				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	38	Sr			2.536	3.715	Phenocryst-Matrix	Sun et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Plagioclase	63	Eu			.184	1.526	Experimental	Sun et al. 1974	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	21	Sc	.03				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	28	Ni	.1				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	37	Rb	.9				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	38	Sr	1.3				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	40	Zr	.17				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	51	Sb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	55	Cs	.07				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	56	Ba	1.77				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	57	La	.1				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	63	Eu	.62				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	65	Tb	.03				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	72	Hf	.19				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	73	Ta	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	90	Th	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Plagioclase	92	U	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	21	Sc			.03	.07	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	24	Cr			.06	4	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	27	Co			.02	.04	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	28	Ni			.1	.18	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	37	Rb			.7	.97	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	38	Sr			2	6.6	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	40	Zr			.08	.17	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	51	Sb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	55	Cs			.08	.12	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	56	Ba			1.13	16.6	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	57	La			.08	.1	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	63	Eu			.85	1.06	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	65	Tb			.02	.03	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	72	Hf			.02	.38	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	73	Ta			.01	.03	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	90	Th			.01	.03	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte	Plagioclase	92	U			.01	.03	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	21	Sc	.26				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	37	Rb	.52				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	40	Zr	.09				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	51	Sb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	55	Cs	.04				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	56	Ba	9.5				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	57	La	.09				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	63	Eu	1.17				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	65	Tb	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	72	Hf	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	90	Th	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Phonolite	Plagioclase	92	U	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	21	Sc			.04	.1	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	24	Cr			.08	.6	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	27	Co			.07	.5	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	28	Ni			.04	.5	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	37	Rb			.13	.3	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	38	Sr			2.7	10	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	40	Zr			.13	.27	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	55	Cs			.13	.14	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	56	Ba			.56	3.6	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	57	La			.2	.24	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	63	Eu			.5	1.23	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	65	Tb			.1	.11	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	72	Hf			.05	.13	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	73	Ta			.04	.08	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	90	Th			.05	.09	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Plagioclase	92	U			.06	.1	Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	38	Sr			1.53	1.63	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	58	Ce			.048	.062	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	62	Sm			.032	.044	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	63	Eu			1	1.1	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Plagioclase	70	Yb			.0028	.031	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Synthethic Qz-Ab-An-H2O-O2	Plagioclase	26	Fe			.085	.791	Experimental	Wilke & Behrens 1999	Solid-Melt		08-DEC-2008
+Synthethic Qz-Ab-An-H2O-O2	Plagioclase	62	Sm			.051	.098	Experimental	Wilke & Behrens 1999	Solid-Melt		08-DEC-2008
+Synthethic Qz-Ab-An-H2O-O2	Plagioclase	63	Eu			.095	2.09	Experimental	Wilke & Behrens 1999	Solid-Melt		08-DEC-2008
+
+LINKS TO REFERENCES:
+Aignertorres et al. 2007 - http://earthref.org/cgi-bin/err.cgi?n=99713
+Anderson & Greenland 1969 - http://earthref.org/cgi-bin/err.cgi?n=95
+Bacon & Druitt 1988 - http://earthref.org/cgi-bin/err.cgi?n=124
+Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168
+Bindeman & Davis 2000 - http://earthref.org/cgi-bin/err.cgi?n=99682
+Bindeman et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=276
+Blundy et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=99684
+Bougault & Hekinian 1974 - http://earthref.org/cgi-bin/err.cgi?n=304
+Cawthorn 1996 - http://earthref.org/cgi-bin/err.cgi?n=311
+Dostal et al. 1983 - http://earthref.org/cgi-bin/err.cgi?n=324
+Drake & Weill 1975 - http://earthref.org/cgi-bin/err.cgi?n=327
+Dudas et al. 1971 - http://earthref.org/cgi-bin/err.cgi?n=330
+Dunn & Sen 1994 - http://earthref.org/cgi-bin/err.cgi?n=332
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Ewart et al. 1973 - http://earthref.org/cgi-bin/err.cgi?n=338
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Hart & Brooks 1974 - http://earthref.org/cgi-bin/err.cgi?n=105
+Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112
+Kravuchuk et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=152
+Leeman 1979 - http://earthref.org/cgi-bin/err.cgi?n=165
+Lemarchand et al. 1987 - http://earthref.org/cgi-bin/err.cgi?n=166
+Luhr & Carmichael 1980 - http://earthref.org/cgi-bin/err.cgi?n=181
+Luhr et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=182
+Mahood & Stimac 1990 - http://earthref.org/cgi-bin/err.cgi?n=187
+Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190
+McCallum & Charette 1978 - http://earthref.org/cgi-bin/err.cgi?n=191
+McKay & Weill 1976 - http://earthref.org/cgi-bin/err.cgi?n=197
+McKay & Weill 1977 - http://earthref.org/cgi-bin/err.cgi?n=198
+McKay et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=193
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
+Nagasawa & Schnetzler 1971 - http://earthref.org/cgi-bin/err.cgi?n=210
+Nagasawa 1973 - http://earthref.org/cgi-bin/err.cgi?n=211
+Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217
+Nielsen 1988 - http://earthref.org/cgi-bin/err.cgi?n=222
+Okamoto 1979 - http://earthref.org/cgi-bin/err.cgi?n=227
+Paster et al. 1974 - http://earthref.org/cgi-bin/err.cgi?n=230
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
+Reid 1983 - http://earthref.org/cgi-bin/err.cgi?n=237
+Ringwood 1970 - http://earthref.org/cgi-bin/err.cgi?n=238
+Ronov & Yaroshevskiy 1976 - http://earthref.org/cgi-bin/err.cgi?n=916
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
+Streck & Grunder 1997 - http://earthref.org/cgi-bin/err.cgi?n=267
+Sun et al. 1974 - http://earthref.org/cgi-bin/err.cgi?n=268
+Villemant 1988 - http://earthref.org/cgi-bin/err.cgi?n=278
+Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277
+Weill & McKay 1975 - http://earthref.org/cgi-bin/err.cgi?n=286
+Wilke & Behrens 1999 - http://earthref.org/cgi-bin/err.cgi?n=289
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:42:22 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=plagioclase&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  plagioclase (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Aignertorres et al. 2007
+Sort by: Reference
+

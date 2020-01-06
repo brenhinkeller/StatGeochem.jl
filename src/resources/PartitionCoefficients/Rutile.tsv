@@ -1,0 +1,112 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Synthetic Basalt	Rutile	40	Zr	2.8				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	41	Nb	28				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	73	Ta	36				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Basalt	Rutile	23	V	118				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	25	Mn				.34	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	37	Rb	.0076				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	38	Sr	.036				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	39	Y				.076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	40	Zr	3.07				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	41	Nb	136				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	56	Ba	.0137				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	58	Ce				.087	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	60	Nd				.277	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	63	Eu	.00037				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	64	Gd				.0037	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	66	Dy				.00076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	70	Yb	.0093				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	71	Lu	.0124				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	72	Hf	4.98				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	73	Ta			8.82		Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Basalt	Rutile	90	Th				.54	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	23	V			118	124	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	25	Mn				.34	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	37	Rb			.0076	.019	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	38	Sr			.036	.048	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	39	Y			.076	.459	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	40	Zr			3.07	3.79	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	41	Nb			136	540	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	56	Ba			.0137	.02	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	57	La				.237	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	58	Ce			.087	.296	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	60	Nd			.277	.684	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	62	Sm				2.4	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	63	Eu			.0004	.0044	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	64	Gd			.0037	.018	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	66	Dy				.0008	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	68	Er				.675	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	70	Yb			.0093	.0158	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	71	Lu			.0124	.016	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	72	Hf			4.98	4.61	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	73	Ta			8.03	24.9	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	82	Pb				.0154	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Tonalite	Rutile	90	Th				.54	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
+Andesite	Rutile	41	Nb	26.5				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Andesite	Rutile	73	Ta	44				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Trachyte	Rutile	41	Nb	29.8				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Trachyte	Rutile	73	Ta	44.7				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	38	Sr	.518				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	40	Zr	4.76				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	41	Nb	52.6				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	58	Ce	.73				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Rutile	73	Ta	99.5				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Rutile	23	V			.19	4.3	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	24	Cr			4.8	108	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	27	Co			.011	.058	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	29	Cu			3.2	4.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	30	Zn			3	10	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	38	Sr			.003	.0038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	40	Zr			1.1	8.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	41	Nb			14.4	96	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	51	Sb			.32	2.1	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	57	La			.0001	.0031	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	58	Ce			.0001	.0007	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	59	Pr			.0001	.00024	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	62	Sm			.0007	.002	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	64	Gd			.0007	.0011	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	71	Lu			.018	.038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	72	Hf			1.6	12	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	73	Ta			24	195	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	74	W			.5	14.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	90	Th			.0001	.00017	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Rutile	92	U			.2	3.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
+Basalt	Rutile	41	Nb	16				Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
+Haplobasalt, Basalt	Rutile	41	Nb	13.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
+Haplobasalt, Basalt	Rutile	41	Nb	2.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
+Haplobasalt, Basalt	Rutile	73	Ta	5				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
+Haplobasalt, Basalt	Rutile	73	Ta	16.6				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Bennett et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99681
+Foley et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=341
+Green & Pearson 1987 - http://earthref.org/cgi-bin/err.cgi?n=94
+Jenner et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=129
+Klemme et al. 2005 - http://earthref.org/cgi-bin/err.cgi?n=98600
+McCallum & Charette 1978 - http://earthref.org/cgi-bin/err.cgi?n=191
+Wendlandt 1990 - http://earthref.org/cgi-bin/err.cgi?n=287
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:46:44 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=rutile&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  rutile (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Bennett et al. 2004
+Sort by: Reference
+

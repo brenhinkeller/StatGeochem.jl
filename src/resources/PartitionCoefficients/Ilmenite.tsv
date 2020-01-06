@@ -1,0 +1,224 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Sub-Alkaline Andesite-Basalt	Ilmenite	15	P	.05				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Ilmenite	28	Ni				3.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	25	Mn			26.6	45.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	26	Fe			43	45.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	29	Cu			3.3	6.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	30	Zn			8.3	12.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	31	Ga			.21	.32	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	32	Ge				2.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	38	Sr			.17	.66	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	39	Y			.21	.42	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	40	Zr			1.98	10.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	41	Nb			65.6	144	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	82	Pb			.54	1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	25	Mn			11.2	33.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	26	Fe			25.6	81.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	29	Cu			1.3	3.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	30	Zn			4.7	24.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	31	Ga			.62	12.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	32	Ge			3.2	7.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	38	Sr			.034	1.07	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	39	Y			.27	5.09	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	40	Zr			.49	1.38	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	41	Nb			6.58	89.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Ilmenite	82	Pb			.56	.98	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	25	Mn	12.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	26	Fe	8.16				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	28	Ni				6.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	29	Cu				3.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	30	Zn	1.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	31	Ga				.22	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	38	Sr				.74	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	39	Y				.024	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	40	Zr	.074				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	41	Nb	11.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Ilmenite	82	Pb				.34	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	40	Zr	3.002				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	57	La	.0064				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	58	Ce	.0064				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	60	Nd	.0079				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	62	Sm	.0104				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	64	Gd	.0146				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	66	Dy	.02				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	68	Er	.0275				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	70	Yb	.0469				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	71	Lu	.0562				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Ilmenite	72	Hf	1.817				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Andesite	Ilmenite	41	Nb	4.6				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Andesite	Ilmenite	73	Ta	6.6				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	41	Nb	2.3				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	73	Ta	2.7				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
+Lunar Basalt	Ilmenite	21	Sc			2.2	3.04	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	23	V			1.4		Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	24	Cr			11.7	40	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	27	Co			1.36	3.3	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	29	Cu			.68	4.8	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	30	Zn			.61	11	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	38	Sr			.0012	.008	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	39	Y			.021	.036	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	40	Zr			.6	.8	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	41	Nb			.55	1.9	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	42	Mo				.026	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	50	Sn				5.1	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	51	Sb				.05	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	58	Ce				.0004	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	64	Gd			.006	.013	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	71	Lu			.031	.17	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	72	Hf			.77	1.24	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	73	Ta			.76	2.7	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	74	W			.029	.12	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	90	Th			.0006	.0027	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Ilmenite	92	U			.0039	.01	Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	12	Mg	9.5				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	13	Al	.025				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	14	Si	.0006				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	23	V	80				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	24	Cr	225				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+Granodiorite	Ilmenite	25	Mn	8				phenocryst-matrix	Latourrette et al. 1991	Solid-Melt		08-DEC-2008
+High Silica Rhyolite	Ilmenite	21	Sc	18.5				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	25	Mn	27				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	27	Co	26				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	30	Zn	7.8				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	42	Mo	11				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	57	La	1.31				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	58	Ce	1.19				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	60	Nd	.96				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	62	Sm	.684				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	63	Eu	.4				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	65	Tb	.36				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	66	Dy	.37				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	70	Yb	.55				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	71	Lu	.74				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	72	Hf	.65				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	73	Ta	18				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	90	Th	.427				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Ilmenite	92	U	.063				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	40	Zr	.28				Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	41	Nb	.8				Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Ilmenite	58	Ce	.006				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Ilmenite	62	Sm	.01				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Ilmenite	63	Eu	.007				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Ilmenite	70	Yb	.075				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	40	Zr			.316	.347	Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	64	Gd	.0061				Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	71	Lu	.088				Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	72	Hf			.385	.442	Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	21	Sc	5.9				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	24	Cr	3				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	25	Mn	115				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	30	Zn	125				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	42	Mo	3				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	57	La	7.1				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	58	Ce	7.8				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	60	Nd	7.6				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	62	Sm	6.9				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	63	Eu	2.5				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	65	Tb	6.5				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	66	Dy	4.9				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	70	Yb	4.1				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	71	Lu	3.6				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	72	Hf	3.1				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	73	Ta	106				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	90	Th	7.5				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	92	U	3.2				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	39	Y	.0045				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	57	La	.0072				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	62	Sm	.0091				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	64	Gd	.0077				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	67	Ho	.012				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Ilmenite	71	Lu	.029				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	21	Sc	1.8				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	25	Mn	1.9				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	27	Co	2.2				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	29	Cu	1.46				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	30	Zn	.38				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	31	Ga	.14				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	57	La	.098				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	58	Ce	.11				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	60	Nd	.14				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	62	Sm	.15				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	63	Eu	.1				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	64	Gd	.14				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	65	Tb	.14				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	67	Ho	.13				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Ilmenite	70	Yb	.17				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	23	V	12				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Ilmenite	24	Cr	6				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	22	Ti			150	235	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	25	Mn			15	35	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	26	Fe			34	38	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	30	Zn			10	11	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	39	Y			.2	1.6	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	41	Nb			50.9	64.2	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	42	Mo			3		Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Ilmenite	73	Ta			64	85	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	21	Sc	.58				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	23	V	11				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	27	Co	1.9				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	29	Cu	.79				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	30	Zn	3				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	31	Ga	.4				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	40	Zr	.29				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	41	Nb	2				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	56	Ba	.00034				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	57	La	.000029				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	58	Ce	.000054				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	59	Pr	.00019				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	60	Nd	.00048				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	62	Sm	.00059				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	63	Eu	.0011				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	64	Gd	.0034				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	65	Tb	.0067				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	66	Dy	.01				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	67	Ho	.011				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	69	Tm	.1				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	70	Yb	.17				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	71	Lu	.084				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	72	Hf	.38				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	73	Ta	1.7				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	90	Th	.00055				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+Alkali Basalt	Ilmenite	92	U	.0082				Phenocryst-Matrix	Zack & Brumm 1998	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Anderson & Greenland 1969 - http://earthref.org/cgi-bin/err.cgi?n=95
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Green & Pearson 1987 - http://earthref.org/cgi-bin/err.cgi?n=94
+Klemme et al. 2006 - http://earthref.org/cgi-bin/err.cgi?n=98595
+Latourrette et al. 1991 - http://earthref.org/cgi-bin/err.cgi?n=157
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
+McCallum & Charette 1978 - http://earthref.org/cgi-bin/err.cgi?n=191
+McKay & Weill 1976 - http://earthref.org/cgi-bin/err.cgi?n=197
+McKay et al. 1986 - http://earthref.org/cgi-bin/err.cgi?n=199
+Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217
+Nielsen et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=223
+Paster et al. 1974 - http://earthref.org/cgi-bin/err.cgi?n=230
+Ringwood 1970 - http://earthref.org/cgi-bin/err.cgi?n=238
+Stimac & Hickmott 1994 - http://earthref.org/cgi-bin/err.cgi?n=265
+Zack & Brumm 1998 - http://earthref.org/cgi-bin/err.cgi?n=295
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:23:33 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=ilmenite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  ilmenite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Anderson & Greenland 1969
+Sort by: Reference
+

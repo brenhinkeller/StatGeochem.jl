@@ -1,0 +1,21 @@
+NON-GERM DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
+SW3 Granite	Xenotime		La	12.6322873116	8.9323760199			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Ce	30.0395850119	17.8873214871			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Nd	185.0873273844	6.7116156054			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Sm	2028.0977314688	93.2736038264			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Gd	4999.77855323	290.2949118585			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Ho	12599.9977236599	134.9930883839			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Y	7475.2875146506	167.4964005878			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		Th	193.3373731253	107.7110411344			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+SW3 Granite	Xenotime		U	15135.7647790506	6902.6553059114			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.7	5
+'SW5 Aplite	Xenotime		La	22.052053281	10.3954376094			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Ce	88.932981943	5.0308091682			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Nd	498.4682894014	26.6015326522			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Sm	3265.530747743	224.1824209614			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Gd	6416.5867666026	484.8928870711			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Ho	11144.3948367978	278.9478641175			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Yb	13010.3306717192	1011.9662347797			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Y	11293.6761997064	96.6197820004			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		Th	1387.1353419417	36.553520747			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
+'SW5 Aplite	Xenotime		U	48604.7201373818	6288.7458293325			Phenocryst-Matrix	Wark and Miller 1993 10.1016/0009-2541(93)90247-G	Solid-Melt	CBK addition	15-MAY-2014	73.6	5
