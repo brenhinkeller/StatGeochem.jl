@@ -119,7 +119,6 @@
 
     # Get seismic data (Vp, Vs, Rho) for crust 1.0 layer
     function find_crust1_seismic(lat,lon,layer)
-        # Get Vp, Vs, and Rho for a given lat, lon, and crustal layer.
 
         if length(lat) != length(lon)
             error("lat and lon must be equal length\n")

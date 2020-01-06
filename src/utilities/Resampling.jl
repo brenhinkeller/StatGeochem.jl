@@ -708,23 +708,30 @@
     end
     export invweight_location
 
+    """
+    Find inverse weight for any one array with some scale
+    """
+    function invweight(nums::Array{<:Number}, scale::Number; lp=2)
+        # Check if there is lat, lon, and age data
+        nodata = isnan.(nums)
+
+        k = Array{Float64}(undef,length(nums))
+        @showprogress 1 "Calculating weights: " for i=1:length(nums)
+            if nodata[i] # If there is no data, set k=inf for weight=0
+                k[i] = Inf
+            else # Otherwise, calculate weight
+                k[i] = nansum(1.0 ./ ( (abs.(nums[i] .- nums)./scale).^lp .+ 1.0) )
+            end
+        end
+        return k
+    end
+    export invweight
+
     # Produce a weighting coefficient for each row of data corresponding
     # to the input age that is inversely proportional to the
     # temporal data concentration
     function invweight_age(age::Array{<:Number}; lp::Number=2, agescale::Number=38.0)
-
-        # Check if there is lat, lon, and age data
-        nodata = isnan.(age)
-
-        k = Array{Float64}(undef,length(age))
-        @showprogress 1 "Calculating weights: " for i=1:length(age)
-            if nodata[i] # If there is no data, set k=inf for weight=0
-                k[i] = Inf
-            else # Otherwise, calculate weight
-                k[i] = nansum(1.0 ./ ( (abs.(age[i] .- age)./agescale).^lp .+ 1.0) )
-            end
-        end
-        return k
+        return invweight(age, agescale, lp=lp)
     end
     export invweight_age
 
