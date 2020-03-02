@@ -1,0 +1,744 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Basanite	Orthopyroxene	3	Li	.28	.02			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	4	Be	.06	.02			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	5	B				.0003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	12	Mg	3.4	.12			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	13	Al	.43	.02			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	15	P	.007	.002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	20	Ca	.19	0			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	21	Sc	.64	0			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	22	Ti	.1	0			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	23	V	1.65	.06			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	24	Cr	7.78	.65			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	27	Co	2.06	.08			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	28	Ni	11.3	1.7			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	29	Cu	2.8	0			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	30	Zn	.66	.03			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	31	Ga	.38	.02			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	32	Ge	1.36	.07			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	33	As				.006	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	37	Rb	.0038	.0004			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	38	Sr	.0019	.0001			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	39	Y	.046	.003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	40	Zr	.0099	.0005			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	41	Nb	.0007	.0001			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	42	Mo	.0039	.0003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	47	Ag				.008	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	48	Cd	.48	.08			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	49	In	.24	.01			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	50	Sn	.015	.003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	51	Sb	.0011	.0002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	55	Cs	.0009	.0002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	56	Ba	.0036	.0003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	57	La	.0006	.0001			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	58	Ce	.0017	.0002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	60	Nd	.004	.0007			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	62	Sm	.011	0			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	65	Tb	.03	.002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	67	Ho	.048	.002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	69	Tm	.071	.003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	70	Yb	.077	.035			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	71	Lu	.09	.004			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	72	Hf	.017	.002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	73	Ta	.0008	.0002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	74	W	.0002	.0001			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	81	Tl		.01			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	82	Pb		.0001			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	83	Bi	.001				Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	90	Th	.0005	.0002			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Orthopyroxene	92	U	.0007	.0003			Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basalt	Orthopyroxene	15	P	.03				Experimental	Brunet & Chazot 2001	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	38	Sr	.0012	.0003			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	39	Y	.095	.0031			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	40	Zr	.032	.0008			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	41	Nb	.0013	.0003			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	57	La	.0008	.0003			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	58	Ce	.0016	.0002			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	59	Pr	.0032	.0011			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	60	Nd	.0056	.0005			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	62	Sm	.015	.0018			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	63	Eu	.03	.0039			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	64	Gd	.034	.012			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	65	Tb	.054	.0052			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	66	Dy	.077	.0042			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	67	Ho	.1	.005			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	68	Er	.12	.0066			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	70	Yb	.22	.046			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	71	Lu	.22	.017			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	72	Hf	.06	.0025			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Orthopyroxene	73	Ta	.0025	.0004			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	21	Sc	2.6	.3			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	23	V	.37	.01			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	24	Cr	4	2.8			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	27	Co	4.4	.2			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	29	Cu	.22	.09			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	30	Zn	2.1	.3			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	38	Sr	.0012	.0001			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	39	Y	.161	.005			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	40	Zr	.074	.01			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	41	Nb	.001				Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	50	Sn	.92	.03			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	57	La	.0007	.0002			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	58	Ce	.0018	.0005			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	62	Sm	.015	.003			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	64	Gd	.046	.002			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	71	Lu	.4	.02			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	72	Hf	.15	.02			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	73	Ta	.008	.0007			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	74	W	.004				Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	90	Th	.0006				Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Orthopyroxene	92	U	.0001				Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	39	Y			.6	.168	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	40	Zr			.014	.036	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	41	Nb			0	.0033	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	58	Ce			0	.005	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	60	Nd			.009	.025	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	62	Sm			.016	.039	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	68	Er			.07	.152	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	70	Yb			.092	.227	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	71	Lu			.119	.255	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	72	Hf			.029	.08	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	90	Th			.0002	.0012	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Orthopyroxene	92	U			.0005	.0046	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt	Bronzite	11	Na	.075	.002			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	21	Sc	1.23	.1			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	25	Mn	1.44	.09			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	27	Co	2.08	.13			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	58	Ce	.0026	.0003			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	62	Sm	.014	.02			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	63	Eu	.023	.002			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	65	Tb	.046	.05			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	70	Yb	.107	.028			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Basalt	Bronzite	71	Lu	.111	.018			Phenocryst-Matrix	Onuma et al. 1968	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	21	Sc	4.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	24	Cr	10				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	27	Co	12				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	30	Zn	3.7				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	37	Rb	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	38	Sr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	40	Zr	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	55	Cs	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	56	Ba	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	57	La	.26				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	58	Ce	.31				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	60	Nd	.47				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	62	Sm	.46				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	63	Eu	.34				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	65	Tb	.69				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	70	Yb	.77				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	71	Lu	.71				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	72	Hf	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	73	Ta	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	90	Th	.14				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	21	Sc	7.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	24	Cr	10				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	27	Co	38				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	30	Zn	6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	37	Rb	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	38	Sr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	40	Zr	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	55	Cs	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	56	Ba	.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	57	La	.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	58	Ce	.46				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	60	Nd	.6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	62	Sm	.78				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	63	Eu	.61				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	65	Tb	.85				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	70	Yb	.91				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	71	Lu	.9				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	72	Hf	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	73	Ta	.11				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	90	Th	.14				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
+Synthetic U Type Layered Intrusion Basalt	Low Calcium Pyroxene	24	Cr			1.1	11.7	Experimental	Barnes 1986	Solid-Melt		08-DEC-2008
+Basalt	Low Calcium Pyroxene	38	Sr			.000511	.000924	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	56	Ba			.0000013	.0000111	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	90	Th			.0000157	.0000293	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	92	U			.0000362	.0000433	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	23	V			.08	.44	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	24	Cr			.19	.395	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic Komatiite, Basalt	Low Calcium Pyroxene	23	V	.38				Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic Komatiite, Basalt	Low Calcium Pyroxene	24	Cr	1.15				Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Tholeiite	Low Calcium Pyroxene	37	Rb			.001	.005	Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	38	Sr	.01				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	58	Ce			.002	.003	Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	60	Nd	.006				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	62	Sm	.01				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	63	Eu	.01				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Tholeiite	Low Calcium Pyroxene	70	Yb	.04				Model	Cawthorn 1996	Solid-Melt		12-DEC-2000
+Synthetic	Low Calcium Pyroxene	13	Al			.1	.43	Experimental	Colson & Gust 1989	Solid-Melt		12-DEC-2000
+Synthetic	Low Calcium Pyroxene	20	Ca			.13	.15	Experimental	Colson & Gust 1989	Solid-Melt		12-DEC-2000
+Synthetic	Low Calcium Pyroxene	21	Sc			.26	.79	Experimental	Colson & Gust 1989	Solid-Melt		12-DEC-2000
+Synthetic	Low Calcium Pyroxene	70	Yb			.048	.124	Experimental	Colson & Gust 1989	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	13	Al			.028	.33	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	20	Ca			.0295	.1268	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	21	Sc			.213	1.501	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	25	Mn			.409	1.083	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	62	Sm			.0023	.0045	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	64	Gd			.0042	.477	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Low Calcium Pyroxene	70	Yb			.0202	.2126	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	3	Li			.11	1.32	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	4	Be			.34	2.82	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	23	V	1				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	24	Cr			.95	2.6	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	38	Sr			.0034	.0074	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	39	Y			.19	.54	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	40	Zr			.021	.04	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	41	Nb	.27				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	42	Mo			.27	2.2	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	57	La			.0019	.0023	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	58	Ce			.0035	.0069	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	59	Pr			.0034	.0059	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	60	Nd			.013	.027	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	62	Sm			.063	.089	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	63	Eu			.025	.086	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	64	Gd			.069	.24	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	65	Tb			.16	.32	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	66	Dy			.14	.4	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	67	Ho			.3	.52	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	68	Er			.24	.65	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	70	Yb			.39	.92	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	71	Lu			.67	1.4	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	73	Ta	.048				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	82	Pb	.29				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	90	Th	.01				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	92	U			.0013	.023	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	25	Mn	7.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	26	Fe	5.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	29	Cu				.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	30	Zn	3.39				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	31	Ga	.32				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	32	Ge	2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	33	As	.14				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	37	Rb	.062				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	38	Sr	.13				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	39	Y	.46				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	40	Zr	.13				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	41	Nb				.78	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	56	Ba	.13				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	82	Pb				.52	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	25	Mn	71.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	26	Fe	40.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	29	Cu				1.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	30	Zn	15.8				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	31	Ga	.21				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	32	Ge	3.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	33	As	.23				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	37	Rb				.013	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	38	Sr				.17	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	39	Y	1.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	40	Zr	.053				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	41	Nb				.31	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	56	Ba				.56	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	82	Pb				.37	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	25	Mn			13.6	43.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	26	Fe			12.2	32.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	28	Ni			4.9	8.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	29	Cu			.47	1.46	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	30	Zn			6.23	14.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	31	Ga			.18	4.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	32	Ge			1.5		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	33	As			.45	.83	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	37	Rb			.028	.05	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	38	Sr			.068	.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	39	Y			.44	1.07	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	40	Zr			.075	.086	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	41	Nb			.54	.73	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	56	Ba			.063	.084	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Low Calcium Pyroxene	82	Pb			.028	7.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	25	Mn			11	34.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	26	Fe			7.5	23.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	28	Ni			11.7	15	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	29	Cu			.099	.16	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	30	Zn			5.1	12.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	31	Ga			.22	.45	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	32	Ge			3.4	3.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	33	As			.25	.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	37	Rb			.0031	.039	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	38	Sr			.032	.42	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	39	Y			.49	.62	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	40	Zr			.026	.14	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	41	Nb			.09	.12	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	56	Ba			.02	.11	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Quartz Latite	Low Calcium Pyroxene	82	Pb			.1	.17	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	21	Sc			1.2	1.9	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	21	Sc			1.4	1.9	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	22	Ti			.14	.27	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	23	V			.47	.6	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	24	Cr			10	36	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	24	Cr			3.7	17	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	25	Mn			1.8	2.4	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	25	Mn			1.6	2.3	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	27	Co			3.3	4.4	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	27	Co			3.4	4.5	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	28	Ni			7.3	11	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	28	Ni			8.6	13	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	29	Cu			.16	.92	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	29	Cu			.13	1.4	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	21	Sc			1.9	6.2	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	21	Sc			2	4.6	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	23	V			.64	2.3	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	24	Cr			.65	4.3	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	24	Cr			1	4	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	25	Mn			2.8	7.8	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	25	Mn			.31	.5	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	27	Co			6.1	9.4	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	27	Co			6.8	14	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	29	Cu			.5	1.3	Model	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	29	Cu			.45	1.2	Phenocryst-Matrix	Ewart et al. 1973	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	22	Ti			.09	.26	Experimental	Forsythe et al. 1994	Solid-Melt		08-DEC-2008
+Basalt-Andesite	Low Calcium Pyroxene	40	Zr			.004	.13	Experimental	Forsythe et al. 1994	Solid-Melt		08-DEC-2008
+Basalt-Andesite	Low Calcium Pyroxene	41	Nb			.004	.018	Experimental	Forsythe et al. 1994	Solid-Melt		08-DEC-2008
+Basalt-Andesite	Low Calcium Pyroxene	73	Ta			.004	.081	Experimental	Forsythe et al. 1994	Solid-Melt		08-DEC-2008
+Basalt	Low Calcium Pyroxene	57	La	.001				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	58	Ce	.002				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	59	Pr	.002				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	60	Nd	.005				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	62	Sm	.015				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	63	Eu	.024				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	64	Gd	.03				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	65	Tb	.041				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	67	Ho	.076				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	68	Er	.081				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	69	Tm	.12				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	70	Yb	.14				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	71	Lu	.17				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	40	Zr	.0465				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	57	La	.031				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	58	Ce	.0277				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	60	Nd	.0279				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	62	Sm	.0278				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	63	Eu	.0276				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	64	Gd	.0388				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	66	Dy	.0762				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	68	Er	.1526				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	70	Yb	.254				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	71	Lu	.323				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Low Calcium Pyroxene	72	Hf	.0465				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	40	Zr	.0333				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	57	La	.0146				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	58	Ce	.0163				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	60	Nd	.0162				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	62	Sm	.0174				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	64	Gd	.027				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	66	Dy	.0412				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	68	Er	.0725				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	70	Yb	.1149				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	71	Lu	.154				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Calc-Alkaline Dacite	Low Calcium Pyroxene	72	Hf	.0308				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	40	Zr	.0005				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	57	La	.0127				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	58	Ce	.0109				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	60	Nd	.0117				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	62	Sm	.0155				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	63	Eu	.0172				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	64	Gd	.024				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	66	Dy	.0462				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	68	Er	.079				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	70	Yb	.1195				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	71	Lu	.163				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Low Calcium Pyroxene	72	Hf	.0063				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	37	Rb	.02				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	38	Sr	.09				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	39	Y	1.1				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	40	Zr	.22				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	41	Nb	.01				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	56	Ba	.02				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Low Calcium Pyroxene	73	Ta	.02				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	37	Rb	.004				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	38	Sr	.03				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	39	Y	.22				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	40	Zr	.29				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	41	Nb	.01				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	56	Ba	.006				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Low Calcium Pyroxene	73	Ta	.03				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Low Calcium Pyroxene	38	Sr	.04				Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Low Calcium Pyroxene	39	Y	.18				Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Low Calcium Pyroxene	40	Zr	.18				Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	57	La			.002	.02	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	58	Ce			.002	.02	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	59	Pr			.003	.02	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	60	Nd			.005	.02	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	61	Pm			.008	.03	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	62	Sm			.01	.03	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	63	Eu			.02	.03	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	64	Gd			.02	.04	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	65	Tb			.03	.08	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	66	Dy			.03	.09	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	67	Ho			.04	.1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	68	Er			.05	.1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	69	Tm			.07	.3	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	70	Yb			.09	.3	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	71	Lu			.01	.3	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	11	Na	.016				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	13	Al	.07				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	13	Al			.018	.022	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	20	Ca	1				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	20	Ca			.073	.11	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	22	Ti	.2				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	22	Ti			.068	.11	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	24	Cr	20				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	24	Cr			14.6	29	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	25	Mn	1.6				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	25	Mn			.98	1.9	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	26	Fe	1.32				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	26	Fe			.94	1.46	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	38	Sr	.02				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	38	Sr	.001				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	39	Y	.074				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	39	Y			.008	.021	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	40	Zr	.013				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	40	Zr	.002				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	57	La	.006				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	57	La	.001				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	58	Ce	.009				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	58	Ce	.001				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	60	Nd	.009				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	60	Nd	.003				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	62	Sm	.004				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	64	Gd	.008				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	66	Dy	.033				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	66	Dy			.011	.018	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	68	Er	.065				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	68	Er			.012	.022	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	70	Yb	.065				Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	70	Yb			.013	.024	Phenocryst-Matrix	Jones & Layne 1997	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	19	K	.0003				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	38	Sr	.002				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	40	Zr	.02				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	41	Nb	.003				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	57	La	.0005				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	58	Ce	.001				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	13	Al			.019	.063	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	14	Si			.89	1.1	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	21	Sc			.48	1.5	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	22	Ti			.061	.063	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	23	V			.52	2.9	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	24	Cr			.58	2.2	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	25	Mn			.37	.67	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	26	Fe			.37	.65	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	27	Co			.71	1.5	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	28	Ni			.72	2	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	32	Ge			.065	.35	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	38	Sr			.00051	.15	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	39	Y			.0096	.079	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	40	Zr			.0033	.069	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	41	Nb			.0014	.079	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	56	Ba			.00017	.47	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	57	La			.00009	.062	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	58	Ce			.00014	.063	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	59	Pr			.00027	.063	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	60	Nd			.00049	.065	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	62	Sm			.0016	.064	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	63	Eu			.00064	.064	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	64	Gd			.0016	.068	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	65	Tb			.0044	.069	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	66	Dy			.007	.075	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	67	Ho			.0078	.078	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	68	Er			.016	.085	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	69	Tm			.016	.091	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	70	Yb			.032	.096	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	71	Lu			.042	.11	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	72	Hf			.0044	.08	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	90	Th			.00011	.058	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Low Calcium Pyroxene	92	U			.000059	.079	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	21	Sc			2.2	4.7	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	23	V			.47	2.2	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	24	Cr			21	143	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	28	Ni			.79	24	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	30	Zn			2.6	4.4	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	55	Cs			.31	.45	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	56	Ba			.03	.23	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	57	La			.03	.3	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	58	Ce			.02	.33	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	60	Nd			.05	.43	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	62	Sm			.06	.43	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	63	Eu			.07	.42	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	65	Tb			.15	.48	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	66	Dy			.21	.56	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	70	Yb			.29	.56	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	71	Lu			.31	.68	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	72	Hf			.02	.22	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	90	Th			.04	.22	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	21	Sc	56.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	24	Cr	2				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	27	Co	17				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	30	Zn	8.5				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	56	Ba				.03	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	57	La	.33				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	58	Ce	.56				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	60	Nd	1.1				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	62	Sm	1.76		1.76		Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	63	Eu	1.55				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	65	Tb	2.6				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	66	Dy	2.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	70	Yb	1.56				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	71	Lu	1.9				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	72	Hf	.6				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	73	Ta	.159				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	74	W				.3	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	90	Th	.018				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+Trachyandesite	Low Calcium Pyroxene	92	U	.028				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	21	Sc			18.1	96	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	25	Mn			25.4	57	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	27	Co			56	196	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	30	Zn			7.5	19	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	56	Ba			35	2.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	57	La			10.8	18	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	58	Ce			9	15.6	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	60	Nd			7.8	14	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	62	Sm			6.47	11.75	Experimental	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	63	Eu			2.4	5.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	65	Tb			4.7	10.5	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	66	Dy			3.3	10.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	70	Yb			2.1	5	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	71	Lu			2.1	4.8	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	73	Ta			.72	1.29	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	90	Th			5.3	7.76	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Low Calcium Pyroxene	92	U			.07	.35	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Low Calcium Pyroxene	24	Cr	5.2				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Low Calcium Pyroxene	56	Ba	.011				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	21	Sc	1.4				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Low Calcium Pyroxene	72	Hf			.034	.085	Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	22	Ti	.024				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	37	Rb	.0006				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	38	Sr	.007				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	57	La	.002				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	58	Ce	.003				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	59	Pr	.0048				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	60	Nd	.0068				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	62	Sm	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	63	Eu	.013				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	64	Gd	.016				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	65	Tb	.019				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	66	Dy	.022				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	67	Ho	.026				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	68	Er	.03				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	69	Tm	.04				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	70	Yb	.049				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	71	Lu	.06				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	72	Hf	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	82	Pb	.0013				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	90	Th	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	92	U	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Low Calcium Pyroxene	28	Ni	1.1				Experimental	Mysen 1978	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-Qtz-H2O	Low Calcium Pyroxene	28	Ni			.6	1.39	Experimental	Mysen 1976	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-Qtz-H2O	Low Calcium Pyroxene	62	Sm			.018	.57	Experimental	Mysen 1976	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	3	Li			.16	.21	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	12	Mg			48.5	50.6	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	19	K			.00055	.0023	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	20	Ca			.55	1.04	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	25	Mn			29.2	33.7	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	37	Rb			.00048	.0027	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	38	Sr			.0085	.046	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	56	Ba			.0025	.0029	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	58	Ce			.082	.262	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	58	Ce	.362				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	60	Nd			.113	.348	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	60	Nd	.94				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	62	Sm			.133	.384	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	62	Sm	1.52				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	63	Eu	1.11				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	63	Eu			.093	.27	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	64	Gd			.17	.276	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	66	Dy	2.63				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	66	Dy			.26	.55	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	68	Er	2.25				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	68	Er			.431	.73	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	70	Yb			.73	.99	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	70	Yb	2.01				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	71	Lu	1.81				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Low Calcium Pyroxene	71	Lu			.76	1.14	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	21	Sc	18				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	25	Mn			41	50	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	55	Cs			.44	.77	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	57	La			.72	.84	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	58	Ce			.87	.99	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	60	Nd			1.2	1.3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	62	Sm			1.5	1.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	63	Eu			.81	.84	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	65	Tb			1.8	1.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	66	Dy	1.8				Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	70	Yb			2	2.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	71	Lu			2.1	2.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	72	Hf			.18	.22	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	73	Ta			.13	.2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	90	Th			.11	.15	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	92	U			.12	.17	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	21	Sc			.6	2.3	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	62	Sm			.03	.16	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	64	Gd			.03	.23	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	70	Yb			.07	.38	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	11	Na			.088	.099	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	12	Mg			13.4	18.9	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	19	K			.016	.056	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	20	Ca			.64	4.13	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	21	Sc			5.68	9.71	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	22	Ti			.49	.83	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	24	Cr			11.2	19.2	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	25	Mn			4.72	7.81	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	26	Fe			3.14	5.69	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	27	Co			8.99	14.9	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	38	Sr			.1	.21	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	56	Ba			.016	.11	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	57	La			.083	.26	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	58	Ce			.11	.47	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	62	Sm			.14	1.36	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	63	Eu			.17	.89	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	65	Tb			.31	1.98	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	70	Yb			.57	1.51	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	71	Lu			.78	1.41	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	72	Hf			.12	.18	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Low Calcium Pyroxene	90	Th			.041	.048	Phenocryst-Matrix	Okamoto 1979	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	37	Rb			.0148	.0287	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	38	Sr			.0104	.0241	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	56	Ba			.0121	.0141	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Low Calcium Pyroxene	19	K			.00908	.019	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	23	V			.5	7.2	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	24	Cr			7	23	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	37	Rb			.01	.03	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	38	Sr			.01	.04	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	56	Ba			.01	.06	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	58	Ce			.03	.04	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	60	Nd	.07				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	62	Sm	.1				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	63	Eu			.06	.08	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	64	Gd	.1				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	66	Dy	.3				Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Low Calcium Pyroxene	70	Yb			.24	.67	Phenocryst-Matrix	Reid 1983	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	58	Ce			.031	.043	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	58	Ce	.02				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	60	Nd			.034	.058	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	60	Nd	.049				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	62	Sm			.047	.1	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	62	Sm	.1				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	63	Eu	.068				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	63	Eu			.06	.079	Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	64	Gd			.07	.875	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	64	Gd	.155				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	66	Dy			.117	.98	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	66	Dy	.225				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	68	Er	.318				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	68	Er			.164	.932	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	70	Yb			.244	.896	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	70	Yb	.4				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	71	Lu			.693	.838	Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Andesite	Low Calcium Pyroxene	71	Lu	.453				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	57	La			.0003	.0006	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	58	Ce			.0008	.0014	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	60	Nd			.0029	.0049	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	62	Sm			.0083	.0136	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	63	Eu			.0033	.0046	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	66	Dy			.037	.054	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	68	Er			.069	.098	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	70	Yb			.08	.114	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Eucrite, Achondrite, Basalt	Low Calcium Pyroxene	71	Lu			.082	.114	Experimental	Schwandt & McKay 1998	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	21	Sc	26				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	22	Ti	.7				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	23	V	5.8				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	24	Cr	76				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	39	Y	.5				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	40	Zr	.009				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	57	La	.002				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	58	Ce	.006				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	60	Nd	.03				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	62	Sm	.09				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	66	Dy	.52				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	68	Er	.85				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	70	Yb	.48				Phenocryst-Matrix	Sisson 1991	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	22	Ti			.7	1.1	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	25	Mn			23	28	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	26	Fe			23	26	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	28	Ni			11		Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	30	Zn			14	16	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	39	Y			.4	1.2	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Rhyolite	Low Calcium Pyroxene	40	Zr			.01	.03	Phenocryst-Matrix, PIXE	Stimac & Hickmott 1994	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	15	P	.03				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	21	Sc	.33				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	22	Ti	.1				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	23	V	.9				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	39	Y				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	40	Zr	.03				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	41	Nb				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	72	Hf	.14				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Low Calcium Pyroxene	73	Ta				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	38	Sr			.009	.018	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	58	Ce			.006	.009	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	62	Sm			.013	.022	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	63	Eu			.014	.022	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Lunar Basalt	Low Calcium Pyroxene	70	Yb			.056	.17	Experimental	Weill & McKay 1975	Solid-Melt		12-DEC-2000
+Sub-Alkaline Andesite-Basalt	Low Calcium Pyroxene	15	P	.009				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Sub-Alkaline Basalt	Low Calcium Pyroxene	15	P	.014				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679
+Brunet & Chazot 2001 - http://earthref.org/cgi-bin/err.cgi?n=99686
+Green et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99695
+Klemme et al. 2006 - http://earthref.org/cgi-bin/err.cgi?n=98595
+Salters & Longhi 1999 - http://earthref.org/cgi-bin/err.cgi?n=99703
+Anderson & Greenland 1969 - http://earthref.org/cgi-bin/err.cgi?n=95
+Bacon & Druitt 1988 - http://earthref.org/cgi-bin/err.cgi?n=124
+Barnes 1986 - http://earthref.org/cgi-bin/err.cgi?n=160
+Beattie 1993 - http://earthref.org/cgi-bin/err.cgi?n=201
+Canil 1999 - http://earthref.org/cgi-bin/err.cgi?n=412
+Cawthorn 1996 - http://earthref.org/cgi-bin/err.cgi?n=311
+Colson & Gust 1989 - http://earthref.org/cgi-bin/err.cgi?n=314
+Colson et al. 1988 - http://earthref.org/cgi-bin/err.cgi?n=315
+Dunn & Sen 1994 - http://earthref.org/cgi-bin/err.cgi?n=332
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Ewart et al. 1973 - http://earthref.org/cgi-bin/err.cgi?n=338
+Forsythe et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=343
+Frey 1969 - http://earthref.org/cgi-bin/err.cgi?n=345
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Green et al. 1989 - http://earthref.org/cgi-bin/err.cgi?n=100
+Green et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=98
+Irving & Frey 1984 - http://earthref.org/cgi-bin/err.cgi?n=127
+Jones & Layne 1997 - http://earthref.org/cgi-bin/err.cgi?n=139
+Keleman & Dunn 1992 - http://earthref.org/cgi-bin/err.cgi?n=143
+Kennedy et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=144
+Luhr & Carmichael 1980 - http://earthref.org/cgi-bin/err.cgi?n=181
+Luhr et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=182
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
+McKay & Weill 1976 - http://earthref.org/cgi-bin/err.cgi?n=197
+McKay & Weill 1977 - http://earthref.org/cgi-bin/err.cgi?n=198
+McKay et al. 1986 - http://earthref.org/cgi-bin/err.cgi?n=199
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
+Mysen 1976 - http://earthref.org/cgi-bin/err.cgi?n=204
+Mysen 1978 - http://earthref.org/cgi-bin/err.cgi?n=205
+Nagasawa & Schnetzler 1971 - http://earthref.org/cgi-bin/err.cgi?n=210
+Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217
+Nielsen et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=223
+Okamoto 1979 - http://earthref.org/cgi-bin/err.cgi?n=227
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
+Reid 1983 - http://earthref.org/cgi-bin/err.cgi?n=237
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
+Schwandt & McKay 1998 - http://earthref.org/cgi-bin/err.cgi?n=244
+Sisson 1991 - http://earthref.org/cgi-bin/err.cgi?n=257
+Stimac & Hickmott 1994 - http://earthref.org/cgi-bin/err.cgi?n=265
+Ulmer 1989 - http://earthref.org/cgi-bin/err.cgi?n=275
+Weill & McKay 1975 - http://earthref.org/cgi-bin/err.cgi?n=286
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 29 January 2013 12:11:06 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=orthopyroxene&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  orthopyroxene (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Adam & Green 2006
+Sort by: Reference
+

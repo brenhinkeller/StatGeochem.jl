@@ -1,0 +1,753 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Basanite	Garnet	3	Li			.041	.035	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	4	Be				.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	5	B			.006	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	12	Mg			1.88	2.32	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	13	Al			1.97	2.01	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	15	P			.034	.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	20	Ca			.87	.91	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	21	Sc			4.01	5.79	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	22	Ti			.2	.15	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	23	V			1.92	1.93	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	24	Cr			8.1	36	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	27	Co			3.7	3.7	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	28	Ni			4.93	8.78	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	29	Cu			.69	.41	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	30	Zn			1.61	1.63	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	31	Ga			1.02	1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	32	Ge				.55	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	33	As			.18	.13	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	37	Rb			.0003	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	38	Sr			.0005	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	39	Y			.19	.267	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	40	Zr			.14	.09	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	41	Nb			.001	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	42	Mo			.003	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	47	Ag			.22	.07	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	48	Cd			1.5	2.164	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	49	In			10.3	87	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	50	Sn			.86	.5	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	51	Sb				10	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	55	Cs			.0001	.001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	56	Ba			.0002	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	57	La			.0005	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	58	Ce			.0027	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	60	Nd			.028	.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	62	Sm			.17	.12	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	65	Tb			1.18	1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	67	Ho			2.66	2.75	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	69	Tm			4.24	5.26	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	70	Yb			5	6.25	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	71	Lu			5.5	8.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	72	Hf			.11	.06	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	73	Ta			.0017	.0022	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	74	W			.0007	.0021	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	81	Tl					Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	82	Pb			.02		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	83	Bi					Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	90	Th			.0008	.0014	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Garnet	92	U			.0036	.0035	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basalt	Garnet	38	Sr			.00048	.00125	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	56	Ba			.00001	.00006	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	82	Pb			.00001	.00067	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	90	Th			.001	.0032	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	92	U			.00918	.0179	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Garnet	3	Li			.061	.14	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	21	Sc			1.5	5.5	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	22	Ti			.28	.82	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	38	Sr			.0042	.0082	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	39	Y			3.2	3.4	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	40	Zr			.6	.96	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	41	Nb			.051	.065	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	57	La			.0034	.0124	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	58	Ce			.01	.025	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	60	Nd			.064	.134	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	62	Sm			.28	.498	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	69	Tm			5.6	6.6	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	71	Lu			7.7	10.7	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	72	Hf			.5	.87	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	73	Ta			.08	.108	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	90	Th			.007	.025	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	92	U			.032	.081	Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
+Basalt	Garnet	15	P	.15				Experimental	Brunet & Chazot 2001	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	21	Sc			1.27	2.49	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	38	Sr			.002	.18	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	39	Y			.52	1.28	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	40	Zr			.089	.4	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	56	Ba			.001	.088	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	60	Nd			.033	.22	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	62	Sm			.14	.4	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	66	Dy			.36	.89	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	70	Yb			1.06	2.41	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	72	Hf			.19	.51	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Picrite, Lunar Basalt	Magorite Garnet	90	Th			.065	.28	Experimental	Draper et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	21	Sc			1.3	2.49	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	38	Sr			.01	.19	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	39	Y			.54	1.3	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	40	Zr			.09	.29	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	56	Ba			.1	.16	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	60	Nd			.06	.2	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	62	Sm			.14	.42	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	66	Dy			.34	.84	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	70	Yb			1.07	2.26	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	72	Hf			.21	.39	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Garnet	90	Th			.21	.34	Experimental	Dwarzski et al. 2006	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Garnet	90	Th	.0032				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Garnet	92	U	.013				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Kimberlite	Garnet	40	Zr	.2398				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	57	La	.0001				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	58	Ce	.0051				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	60	Nd	.0254				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	62	Sm	.0879				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	63	Eu	.1309				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	64	Gd	.2596				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	66	Dy	1.111				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	68	Er	2.991				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	70	Yb	5.235				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	71	Lu	5.978				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	72	Hf	.207				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	40	Zr	.281				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	58	Ce	.0068				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	60	Nd	.0336				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	62	Sm	.1441				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	66	Dy	1.616				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	68	Er	3.485				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	70	Yb	7.237				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	71	Lu	8.054				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Garnet	72	Hf	.3049				Experimental	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Hydrous Peridotite	Garnet	3	Li	.02	.08			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	5	B	.0033	.19			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	19	K	.0006	.03			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	22	Ti	.28	.03			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	38	Sr	.006	.03			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	39	Y	4.1	.05			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	40	Zr	.47	.09			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	41	Nb	.05	.02			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	58	Ce	.01	.06			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	60	Nd	.071	.15			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	62	Sm	.35	.8			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	63	Eu	.44	.1			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	66	Dy	3.2	.1			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	68	Er	5	.19			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Hydrous Peridotite	Garnet	70	Yb	7.4	.11			Experimental	Gaetani et al. 2003	Solid-Melt		08-DEC-2008
+Basalt-Andesite	Garnet	38	Sr			.02	.04	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Garnet	39	Y			2.5	9.1	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Garnet	40	Zr			.4	.6	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Garnet	62	Sm	1.38				Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	38	Sr			.0011	.0017	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	39	Y			2.7	6	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	40	Zr			.15	.32	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	41	Nb			.0003	.2	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	57	La			.0009	.0017	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	58	Ce			.0027	.0076	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	59	Pr			.01	.024	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	60	Nd			.023	.067	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	62	Sm			.17	.36	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	63	Eu			.19	.76	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	64	Gd			.27	1.1	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	65	Tb			.75	1.9	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	66	Dy			1.5	3.1	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	67	Ho			2.6	5.2	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	68	Er			3.9	6.5	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	70	Yb			.14	9.7	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	71	Lu			.12	2.2	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	72	Hf			.2	.27	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Garnet	73	Ta			.044	.061	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	38	Sr				.02	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Garnet	38	Sr			.0023	.0051	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	39	Y			3.9	4.6	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	39	Y			7.4	11.4	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Garnet	40	Zr			.6	.7	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Garnet	40	Zr			.12	.61	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	41	Nb			.0005	.005	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	41	Nb			.02	.04	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Garnet	57	La			.0014	.0033	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	58	Ce			.0029	.015	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	59	Pr			.0083	.051	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	60	Nd			.03	.14	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	62	Sm			.18	.69	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	63	Eu			.33	1.3	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	64	Gd			.75	1.8	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	65	Tb			1.5	2.7	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	66	Dy			2.4	3.8	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	67	Ho			3.7	4.5	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	68	Er			4.4	5.2	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	70	Yb			6.1	6.5	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	71	Lu			6.7	7	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	72	Hf			.07	.41	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	73	Ta			.0025	.019	Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Tholeiitic Basalt	Garnet	73	Ta			.06	.15	Experimental	Green et al. 1989	Solid-Melt		12-DEC-2000
+Basalt	Garnet	21	Sc	2.62				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	22	Ti	.688				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	23	V	1.48				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	24	Cr	2.01				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	38	Sr	.0099				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	40	Zr	2.12				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	41	Nb	.0538				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	56	Ba	.0007				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	57	La	.0164				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.065				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	60	Nd	.363				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm	1.1				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	63	Eu	2.02				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	66	Dy	4.13				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	68	Er	3.95				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb	3.88				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	71	Lu	3.79				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	72	Hf	1.22				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	82	Pb	.00012				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	90	Th	.00137				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	92	U	.00588				Experimental	Hauri et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	21	Sc	5.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	24	Cr	.29				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	27	Co	.97				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	62	Sm	.074				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	63	Eu	.27				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	65	Tb	.87				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	67	Ho	1.24				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	70	Yb	4.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Garnet	71	Lu	5.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	21	Sc	3.9				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	27	Co	1.8				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	57	La	.076				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	62	Sm	1.25				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	63	Eu	1.52				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	64	Gd	5.2				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	65	Tb	7.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	67	Ho	23.8				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	70	Yb	53				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	71	Lu	57				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	72	Hf	.57				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.007				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	60	Nd	.026				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm	.131				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	63	Eu	.273				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	64	Gd	.68				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	66	Dy	1.94				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	68	Er	4.7				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb	8				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	21	Sc	11.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	24	Cr	2.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	27	Co	.94				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	57	La	.0005				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	62	Sm	.101				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	63	Eu	.185				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	65	Tb	.54				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	67	Ho	2.11				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	70	Yb	6.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	71	Lu	8.5				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Garnet	72	Hf	.14				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	21	Sc	10.8				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	21	Sc	27.6				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	24	Cr	17.2				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	27	Co	9				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	27	Co	1.7				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	42	Mo	.41				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	57	La	.37				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	57	La	.06				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	58	Ce	.53				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	58	Ce	.68				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	60	Nd	.81				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	60	Nd	1.5				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	62	Sm	5.1				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	62	Sm	5.5				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	63	Eu	1.37				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	63	Eu	5.4				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	64	Gd	13.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	65	Tb	19.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	65	Tb	14.3				Phenocryst-Matrix	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	67	Ho	31.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	70	Yb	234				Phenocryst-Matrix	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	70	Yb	26				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	71	Lu	23.5				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Dacite	Garnet	71	Lu	39				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	72	Hf	.53				Experimental	Irving & Frey 1976	Solid-Melt		12-DEC-2000
+Dacite	Garnet	72	Hf	3.3				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	21	Sc	2.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	24	Cr	.06				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	27	Co	.66				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	57	La	.026				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	58	Ce	.051				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	62	Sm	.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	63	Eu	1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	64	Gd	2.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	65	Tb	4.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	67	Ho	13.2				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	70	Yb	35.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	71	Lu	41				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Hawaiite	Garnet	72	Hf	.25				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	21	Sc	4.3				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	24	Cr	3.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	27	Co	.53				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	57	La	.0004				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	62	Sm	.115				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	63	Eu	.187				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	64	Gd	.46				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	65	Tb	.53				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	67	Ho	1.3				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	70	Yb	4.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	71	Lu	6.1				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Kimberlite	Garnet	72	Hf	.16				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	21	Sc			13.6	19.2	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	27	Co			2.2	3.6	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	57	La			.278	.54	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	58	Ce			.79	.93	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	60	Nd			.27	.73	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	62	Sm			.84	1.04	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	63	Eu			.167	.31	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	64	Gd			3.7	5.3	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	65	Tb			7.2	11.9	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	67	Ho			28.2	34.5	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	70	Yb			54	67	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	71	Lu			47	64	Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	21	Sc	20.2				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	24	Cr	3.7				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	27	Co	3				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	57	La	.37				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	58	Ce	.51				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	62	Sm	.76				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	63	Eu	.214				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	64	Gd	5.3				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	65	Tb	8.9				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	67	Ho	18.4				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	70	Yb	26.9				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	Garnet	71	Lu	24.6				Phenocryst-Matrix	Irving & Frey 1978	Solid-Melt		12-DEC-2000
+Basalt	Garnet	21	Sc			3.3	4.7	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	22	Ti			.65	1	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	23	V			3.45	3.75	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	38	Sr			.006	.01	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	39	Y			4.2	7.1	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	40	Zr			.41	.73	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	41	Nb			.015	.03	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce				.02	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm			.6	.9	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	73	Ta			.051	.126	Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Garnet	38	Sr	.031				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Garnet	39	Y	4.66				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Garnet	40	Zr	.36				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Garnet	58	Ce	.063				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Tonalite	Garnet	73	Ta	.22				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	22	Ti	.28				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	22	Ti	.29				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	23	V	3.8				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	24	Cr	9				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	38	Sr	.0025				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	38	Sr	.003				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	39	Y	2.8				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	39	Y	3.1				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	40	Zr	.27				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	40	Zr	.27				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	41	Nb	.0042				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	41	Nb	.24				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	57	La	.0016				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.0051				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.005				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	60	Nd	.052				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	60	Nd	.052				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	62	Sm	.25				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm	.25				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	63	Eu	.4				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	66	Dy	2.2				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	66	Dy	2.2				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	68	Er	3.6				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	68	Er	3.6				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	70	Yb	6.6				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb	6.6				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	71	Lu	7.1				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	71	Lu	7.1				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	72	Hf	.24				Experimental	Johnson 1994	Solid-Melt		12-DEC-2000
+Basalt	Garnet	72	Hf	.0031				Experimental	Johnson 1998	Solid-Melt		08-DEC-2008
+Basalt	Garnet	19	K				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	21	Sc	1.4				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	38	Sr				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	39	Y	.7				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	40	Zr	.15				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	56	Ba				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb	.7				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	72	Hf	.2				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	19	K				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	21	Sc	1.7				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	38	Sr				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	39	Y	1.3				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	40	Zr	.6				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	56	Ba				.1	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	62	Sm	.2				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	70	Yb	1.4				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Ultrabasic, Peridotite	Garnet	72	Hf	.8				Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Garnet	19	K				.0007	Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Garnet	38	Sr	.0005				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Garnet	40	Zr	.9				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Garnet	41	Nb	.01				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Garnet	57	La	.0015				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.008				Phenocryst-Matrix, Experimental	Keleman & Dunn 1992	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Garnet	3	Li	.12	.03			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	4	Be	.004	.0003			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	5	B	.014	.007			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	15	P	.18	.07			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	19	K	.0003	.0001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	22	Ti	.21	.02			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	37	Rb	.0007	.0003			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	38	Sr	.005	.001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	39	Y	2.9	.3			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	40	Zr	.4	.07			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	41	Nb	.008	.001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	55	Cs	.0001	.0001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	56	Ba	0	0			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	57	La	.0008	.0001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	58	Ce	.0034	.0002			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	59	Pr	.011	.002			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	62	Sm	.17	.02			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	64	Gd	.59	.09			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	71	Lu	7.9	.2			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	72	Hf	.31	.13			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	73	Ta	.004	.002			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	82	Pb	.18	.03			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	90	Th	.0015	.0003			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Garnet	92	U	.006	.001			Experimental	Klemme et al. 2002	Solid-Melt		08-DEC-2008
+Basalt	Garnet	62	Sm			.47	.49	Experimental	Latourrette et al. 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	90	Th	.0017				Experimental	Latourrette et al. 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	92	U	.015				Experimental	Latourrette et al. 1993	Solid-Melt		12-DEC-2000
+Basalt	Garnet	22	Ti	.1				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	37	Rb	.0007				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	38	Sr	.0011				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	57	La	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	58	Ce	.021				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	59	Pr	.054				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	60	Nd	.087				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm	.217				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	63	Eu	.32				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	64	Gd	.498				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	65	Tb	.75				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	66	Dy	1.06				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	67	Ho	1.53				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	68	Er	2				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	69	Tm	3				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb	4.03				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	71	Lu	5.5				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	72	Hf	.23				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	82	Pb	.0005				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	90	Th	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	92	U	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Garnet	28	Ni	5.1				Experimental	Mysen 1978	Solid-Melt		12-DEC-2000
+Andesite	Garnet	62	Sm			.6	2	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Andesite	Garnet	66	Dy			9.5	25	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Andesite	Garnet	67	Ho	5.5				Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Andesite	Garnet	70	Yb			10	44.6	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Basalt	Garnet	62	Sm			.7	1	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Basalt	Garnet	67	Ho			3.3	3.9	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Basalt	Garnet	70	Yb			4.6	8.7	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	11	Na	.05				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	13	Al	3.06				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	19	K	.04				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	20	Ca	.47				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	21	Sc	1.64				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	22	Ti	.63				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	23	V	1.45				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	24	Cr	2.33				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	25	Mn	.6				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	26	Fe	.42				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	28	Ni	.15				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	40	Zr	.46				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	57	La	.09				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	62	Sm	.2				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	64	Gd	.26				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	70	Yb	1.05				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Majorite, Garnet	72	Hf	.69				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Dacite	Garnet	19	K	.0198				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	37	Rb	.00851				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	38	Sr	.0154				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	56	Ba	.0172				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basaltic Andesite	Garnet	22	Ti	.5	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	24	Cr	9	2			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	37	Rb	.9	.6			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	38	Sr	.02	.01			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	39	Y	6	3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	40	Zr	.8	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	57	La	.03	.01			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	58	Ce	.04	.01			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	60	Nd	.2	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	62	Sm	.8	.5			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	66	Dy	5	3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	68	Er	8	5			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basaltic Andesite	Garnet	70	Yb	14	8			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	39	Y			2.13	4.83	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	40	Zr			.349	1.027	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	41	Nb			.004	.038	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	58	Ce			.012	.049	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	60	Nd			.059	.155	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	62	Sm			.22	.52	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	68	Er			2.54	4.22	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	70	Yb			4.02	8.47	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	71	Lu			5.01	11.22	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	72	Hf			.353	1.1	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	90	Th			.006	.017	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Basalt, Peridotite	Garnet	92	U			.011	.044	Experimental	Salters & Longhi 1999	Solid-Melt		08-DEC-2008
+Dacite	Garnet	58	Ce	.348				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	60	Nd	.525				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	62	Sm	2.66				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	63	Eu	1.5				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	64	Gd	10.5				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	66	Dy	28.6				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	68	Er	42.8				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	70	Yb	39.9				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Dacite	Garnet	71	Lu	19.6				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	38	Sr	.117				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	56	Ba	.109				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	57	La	.121				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	58	Ce	.144				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	60	Nd	.232				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	62	Sm	.541				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	63	Eu	.623				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	64	Gd	1.19				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	66	Dy	2.56				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	68	Er	4.24				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	70	Yb	5.73				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Alkali Basalt	Garnet	71	Lu	6.3				Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	38	Sr			.146	.167	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	56	Ba			.0954	.278	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	57	La			.188	.236	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	58	Ce			.193	.223	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	60	Nd			.257	.286	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	62	Sm			.566	.635	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	63	Eu			.719	.845	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	64	Gd			1.27	1.43	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	66	Dy			2.89	3.23	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	68	Er			5.21	5.3	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	70	Yb			6.48	7.9	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+High Aluminium Basalt	Garnet	71	Lu			6.64	8.53	Experimental	Shimizu 1980	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	58	Ce	.021				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	60	Nd	.087				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	62	Sm	.217				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	63	Eu	.32				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	64	Gd	.498				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	66	Dy	1.06				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	68	Er	2				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Synthetic Di-Pyr	Garnet	70	Yb	4.03				Experimental	Shimizu & Kushiro 1975	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	21	Sc	63				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	22	Ti	5.6				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	23	V	7				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	24	Cr	4				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	38	Sr	.02				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	39	Y	130				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	40	Zr	.4				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	57	La	.001				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	58	Ce	.01				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	60	Nd	.4				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	62	Sm	6.4				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	63	Eu			9.3	13	Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	66	Dy	116				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	68	Er	170				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Rhyolite	Garnet	70	Yb	140				Phenocryst-Matrix	Sisson & Bacon 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	11	Na			.012	.016	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	19	K			.04	.15	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	22	Ti			.5	1.7	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	37	Rb			.004	.021	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	38	Sr			.0017	.019	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	39	Y			2.06	3.06	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	40	Zr			1.6	3.98	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	41	Nb			.012	.023	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	56	Ba			.02	.027	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	58	Ce			.017	.03	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	71	Lu			17.7	30	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Carbonatite	Garnet	73	Ta			.07	.095	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
+Aluminum Depleted Komatiite	Garnet	24	Cr	3.29				Experimental	Tronnes et al. 1992	Solid-Melt		08-DEC-2008
+Komatiite	Garnet	24	Cr			2.42	4	Experimental	Tronnes et al. 1992	Solid-Melt		08-DEC-2008
+Picrite	Garnet	21	Sc			1.741	4.285	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	22	Ti			.149	.278	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	38	Sr			.004	.032	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	39	Y			.978	2.483	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	40	Zr			.184	.324	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	41	Nb			.007	.017	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	56	Ba			.001	.007	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	57	La			.003	.007	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	58	Ce			.009	.016	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	59	Pr			.019	.035	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	60	Nd			.031	.074	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	62	Sm			.12	2.35	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	63	Eu			.224	.316	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	64	Gd			.221	.433	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	65	Tb			.457	.979	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	66	Dy			.826	1.642	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	67	Ho			.823	1.882	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	68	Er			1.022	2.084	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	70	Yb			1.653	3.921	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Picrite	Garnet	71	Lu			1.499	3.945	Experimental	Tuff & Gibson 2007	Solid-Melt		08-DEC-2008
+Calc Alkaline Picrite, Basalt	Garnet	15	P	.1				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	21	Sc	2.27				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	22	Ti	.28				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	23	V	1.57				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	39	Y	2.11				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	40	Zr	.32				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	41	Nb	.07				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	72	Hf	.44				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Garnet	73	Ta	.04				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+FCMAS	Garnet	3	Li			.0084	.022	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	12	Mg			1.19	1.21	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	13	Al			2.28	1.77	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	14	Si			.87	.92	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	19	K			.0013	.013	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	20	Ca			.52	.53	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	21	Sc			3.75	4.41	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	22	Ti			.19	.2	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	26	Fe			.83	.77	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	38	Sr			.0024	.02	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	39	Y			2.4	2.91	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	40	Zr			.31	.39	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	41	Nb			.0062	.017	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	57	La			.0029	.018	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	59	Pr			.026	.043	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	62	Sm			.21	.23	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	65	Tb			1.04	1.16	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	68	Er			2.97	2.4	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	70	Yb			4.36	5.14	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	71	Lu			4.95	6.29	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	72	Hf			.4	.38	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	73	Ta			.01	.024	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	75	Re			1.79	1.73	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	90	Th			.0075	.026	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+FCMAS	Garnet	92	U			.024	.038	Experimental	Vanwestrenen et al. 2000	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	3	Li			.018	.083	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	5	B			.018		Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	12	Mg			1.1	.34	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	13	Al			1.6	.89	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	14	Si			.91	1	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	19	K			.22	.13	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	20	Ca			.53	1.3	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	21	Sc			3.1	1.7	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	22	Ti			.2	.8	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	38	Sr			.009	.1	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	39	Y			2.4	2.7	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	40	Zr			.3	1.1	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	41	Nb			.03	.1	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	48	Cd			.8	1	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	49	In			2.4	2.5	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	57	La			.01	.19	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	59	Pr			.036	.44	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	62	Sm			.27	1.3	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	65	Tb			1.2	2.2	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	68	Er			2.8	2.5	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	69	Tm			3.5		Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	70	Yb			3.9	2.8	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	71	Lu			3.7	2.7	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	72	Hf			.48	1.3	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	73	Ta			.032	.12	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	90	Th			.013	.32	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Garnet 	Garnet 	92	U			.029	.42	Experimental	Vanwestrenen et al. 1999	Solid-Melt		08-DEC-2008
+Komatiite, Basalt	Garnet	3	Li			.38	.68	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	4	Be			2	2.3	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	5	B			.53	.57	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	11	Na	.05				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	12	Mg			.85	.89	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	13	Al			2.9	3.6	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	14	Si			1.07	1.14	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	19	K	.04				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	20	Ca			.35	.55	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	21	Sc	1.1				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	22	Ti			.54	.8	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	23	V			1.2	2.6	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	24	Cr			.92	1.67	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	25	Mn			.65	1.08	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	26	Fe			.29	.43	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	27	Co			.4	.9	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	28	Ni	.19				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	29	Cu	.6				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	30	Zn			.55	.8	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	39	Y			.4	1	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	40	Zr			.4	.5	Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	57	La	.14				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	62	Sm	.16				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	64	Gd	.31				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	70	Yb	.9				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Garnet	72	Hf	.4				Experimental	Yurimoto & Ohtani 1992	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	21	Sc	3.24				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	23	V	1.41				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	37	Rb				.002	Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	38	Sr	.0006				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	39	Y	3.08				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	40	Zr	.11				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	41	Nb	.0008				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	55	Cs				.003	Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	56	Ba				.0003	Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	57	La	.0003				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	58	Ce	.0022				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	59	Pr	.0072				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	60	Nd	.02				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	62	Sm	.14				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	63	Eu	.26				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	64	Gd	.61				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	65	Tb	1.03				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	66	Dy	1.65				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	68	Er	3.48				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	70	Yb	7.86				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	72	Hf	.092				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	73	Ta				.008	Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	90	Th	.001				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite	Garnet	92	U	.0048				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679
+Beattie 1993 - http://earthref.org/cgi-bin/err.cgi?n=188
+Bennett et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99681
+Brunet & Chazot 2001 - http://earthref.org/cgi-bin/err.cgi?n=99686
+Draper et al. 2006 - http://earthref.org/cgi-bin/err.cgi?n=99754
+Dwarzski et al. 2006 - http://earthref.org/cgi-bin/err.cgi?n=99689
+Elkins et al. 2008 - http://earthref.org/cgi-bin/err.cgi?n=99755
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Gaetani et al. 2003 - http://earthref.org/cgi-bin/err.cgi?n=99694
+Green et al. 1989 - http://earthref.org/cgi-bin/err.cgi?n=100
+Green et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99695
+Hauri et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=110
+Irving & Frey 1976 - http://earthref.org/cgi-bin/err.cgi?n=126
+Irving & Frey 1978 - http://earthref.org/cgi-bin/err.cgi?n=123
+Jenner et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=129
+Johnson 1994 - http://earthref.org/cgi-bin/err.cgi?n=132
+Johnson 1998 - http://earthref.org/cgi-bin/err.cgi?n=133
+Kato et al. 1988 - http://earthref.org/cgi-bin/err.cgi?n=141
+Keleman & Dunn 1992 - http://earthref.org/cgi-bin/err.cgi?n=143
+Klemme et al. 2002 - http://earthref.org/cgi-bin/err.cgi?n=98602
+Latourrette et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=158
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
+Mysen 1978 - http://earthref.org/cgi-bin/err.cgi?n=205
+Nicholls & Harris 1980 - http://earthref.org/cgi-bin/err.cgi?n=219
+Ohtani et al. 1989 - http://earthref.org/cgi-bin/err.cgi?n=226
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
+Ronov & Yaroshevskiy 1976 - http://earthref.org/cgi-bin/err.cgi?n=916
+Salters & Longhi 1999 - http://earthref.org/cgi-bin/err.cgi?n=99703
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
+Shimizu & Kushiro 1975 - http://earthref.org/cgi-bin/err.cgi?n=253
+Shimizu 1980 - http://earthref.org/cgi-bin/err.cgi?n=250
+Sisson & Bacon 1992 - http://earthref.org/cgi-bin/err.cgi?n=256
+Stalder et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=297
+Sweeney et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=271
+Tronnes et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=274
+Tuff & Gibson 2007 - http://earthref.org/cgi-bin/err.cgi?n=99706
+Ulmer 1989 - http://earthref.org/cgi-bin/err.cgi?n=275
+Vanwestrenen et al. 1999 - http://earthref.org/cgi-bin/err.cgi?n=99707
+Vanwestrenen et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99708
+Yurimoto & Ohtani 1992 - http://earthref.org/cgi-bin/err.cgi?n=294
+Zack et al. 1997 - http://earthref.org/cgi-bin/err.cgi?n=296
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:21:05 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=garnet&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  garnet (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Adam & Green 2006
+Sort by: Reference
+

@@ -1,0 +1,59 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Rhyolite	Alkali Feldspar	11	Na			.72	3.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	12	Mg			.18	.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	13	Al			1.24	1.62	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	14	Si			.87	.94	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	15	P			.22	1.16	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	19	K			.3	3.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	20	Ca			.21	6.58	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	26	Fe			.18	.64	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	37	Rb			.07	.76	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	38	Sr			7.96	23.05	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	55	Cs			.09	.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+Rhyolite	Alkali Feldspar	56	Ba			1.07	18.38	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	24	Cr			.48	2.35	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	25	Mn			.008	.023	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	27	Co			.5	1.42	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	37	Rb			.13	.34	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	38	Sr			10.5	13.1	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	51	Sb			.08	.22	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	55	Cs			.025	.084	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	56	Ba			6.95	19.55	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	57	La			.07	.17	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	58	Ce			.032	.104	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	62	Sm			.008	.019	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	63	Eu			3.75	5.62	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	65	Tb			.022	.027	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	70	Yb			.012	.026	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	71	Lu			.012	.023	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	72	Hf			.028	.046	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	73	Ta			.034	.063	Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Plagioclase	90	Th	.03				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Icenhower & London 1996 - http://earthref.org/cgi-bin/err.cgi?n=119
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:27:13 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=alkali%20feldspar&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  alkali feldspar (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Icenhower & London 1996
+Sort by: Reference
+

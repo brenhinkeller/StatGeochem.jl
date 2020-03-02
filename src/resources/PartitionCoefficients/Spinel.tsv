@@ -1,0 +1,118 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Lunar Basalt	Spinel	24	Cr			51	125	Experimental	Akella et al. 1976	Solid-Melt		12-DEC-2000
+Basalt	Spinel	15	P	0				Experimental	Brunet & Chazot 2001	Solid-Melt		08-DEC-2008
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Spinel	23	V			3.56	19.29	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic Komatiite, Basalt	Spinel	23	V			5.08	31.22	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+CaO-Al2O3-MgO-SiO2	Spinel	44	Ru			22	25	Experimental	Capobianco & Drake 1990	Solid-Melt		12-DEC-2000
+CaO-Al2O3-MgO-SiO2	Spinel	45	Rh			78	90	Experimental	Capobianco & Drake 1990	Solid-Melt		12-DEC-2000
+CaO-Al2O3-MgO-SiO2	Spinel	46	Pd				.02	Experimental	Capobianco & Drake 1990	Solid-Melt		12-DEC-2000
+Garnet Pyroxenite, Basalt	Spinel	4	Be	.1				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	5	B	.1				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	23	V	1.3				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	24	Cr	3.43	.08			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	37	Rb	.029				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	38	Sr	.0047				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	39	Y	.002	.001			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	40	Zr	.0081	.0009			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	41	Nb	.0006	.0002			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	56	Ba	.0006	.0004			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	57	La	.0002	.0001			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	60	Nd	.24				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	62	Sm	.18				Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	71	Lu	.0007	.0004			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	72	Hf	.003	.002			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	73	Ta	.0004	.0001			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	82	Pb	.0005	.0002			Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	90	Th			.01	.016	Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Garnet Pyroxenite, Basalt	Spinel	92	U			.014	.046	Experimental	Elkins et al. 2008	Solid-Melt		08-DEC-2008
+Alkali Olivine Basalt	Spinel	21	Sc			.36	.57	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	23	V			.02	1.62	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	27	Co			4.7	8.3	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	30	Zn			3.6	4.5	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	31	Ga			2.49	3.75	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	40	Zr			.03	.14	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	41	Nb			.02	.15	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	72	Hf			.03	.08	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Alkali Olivine Basalt	Spinel	73	Ta			.02	.14	Experimental	Horn et al. 1994	Solid-Melt		12-DEC-2000
+Lunar Basalt	Spinel	24	Cr	10.4	3.9			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	27	Co	2.1	.9			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	29	Cu	3.1	1.7			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	38	Sr	.003	.001			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	39	Y	.05	.02			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	40	Zr	.56	.18			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	41	Nb	.86	.23			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	57	La	.0012	.001			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	58	Ce	.0019	.0012			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	59	Pr	.0023	.0008			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	62	Sm	.007	.0004			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	64	Gd	.016	.0006			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	71	Lu	.28	.09			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	72	Hf	.65	.17			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	73	Ta	.95	.19			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	74	W	.1	.09			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	90	Th	.0024	.0013			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Spinel	92	U	.012	.005			Experimental	Klemme et al. 2006	Solid-Melt		08-DEC-2008
+Lunar Mare Basalt	Spinel	40	Zr			.046	.05	Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Spinel	72	Hf			.078	.92	Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Basalt	Spinel	22	Ti	.048				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	57	La	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	58	Ce	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	59	Pr	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	60	Nd	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	62	Sm	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	63	Eu	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	64	Gd	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	65	Tb	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	66	Dy	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	67	Ho	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	68	Er	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	69	Tm	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	70	Yb	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Spinel	71	Lu	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	21	Sc	.0478				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	57	La	.01				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	62	Sm	.0064				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	63	Eu	.0061				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	65	Tb	.0078				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	70	Yb	.0076				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Spinel	71	Lu	.0213				Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Spinel	23	V	38				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Spinel	24	Cr	77				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Akella et al. 1976 - http://earthref.org/cgi-bin/err.cgi?n=312
+Brunet & Chazot 2001 - http://earthref.org/cgi-bin/err.cgi?n=99686
+Canil 1999 - http://earthref.org/cgi-bin/err.cgi?n=412
+Capobianco & Drake 1990 - http://earthref.org/cgi-bin/err.cgi?n=310
+Elkins et al. 2008 - http://earthref.org/cgi-bin/err.cgi?n=99755
+Horn et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=118
+Klemme et al. 2006 - http://earthref.org/cgi-bin/err.cgi?n=98595
+McKay et al. 1986 - http://earthref.org/cgi-bin/err.cgi?n=199
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
+Nagasawa et al. 1980 - http://earthref.org/cgi-bin/err.cgi?n=213
+Ringwood 1970 - http://earthref.org/cgi-bin/err.cgi?n=238
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 29 January 2013 12:09:37 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=spinel&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  spinel (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Akella et al. 1976
+Sort by: Reference
+

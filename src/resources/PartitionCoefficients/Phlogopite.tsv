@@ -1,0 +1,117 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Kimberlite	Phlogopite	40	Zr	.2806				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	57	La	.0413				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	58	Ce	.0455				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	60	Nd	.0293				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	62	Sm	.0255				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	63	Eu	.0218				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	64	Gd	.0205				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	66	Dy	.0281				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	68	Er	.0303				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	70	Yb	.0484				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	71	Lu	.0471				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Phlogopite	72	Hf	.2703				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Basanite-Basalt	Phlogopite	38	Sr	.21	.027			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	39	Y	.018	.0019			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	40	Zr	.008	.0001			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	41	Nb	.021	.0012			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	56	Ba	3.3	.49			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	57	La	.007	.0004			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	62	Sm	.0017	.0009			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	72	Hf	.091	.0046			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Basanite-Basalt	Phlogopite	73	Ta	.11	.005			Experimental	Green et al. 2000	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	3	Li			.169	.46	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	22	Ti			.87	143	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	24	Cr			1.23	1.44	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	37	Rb			.0155	.058	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	38	Sr			.0087	.017	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	40	Zr			.065	.078	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	41	Nb			.47	.58	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	55	Cs			.56	1.61	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	56	Ba			.03	1.61	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	57	La			.000002	.00002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	58	Ce			.000002	.0002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	60	Nd			.000002	.0002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	62	Sm			.000002	.0002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	82	Pb			.017	.0445	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	90	Th			0	.0002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Lamproite	Phlogopite	92	U			.0001	.0002	Experimental	Schmidt et al. 1999	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	3	Li			.21	.19	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	4	Be			.07	.037	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	5	B			.024	.097	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	12	Mg			2.19	2.88	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	13	Al			1.33	1.643	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	15	P			.003	.0041	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	20	Ca			.0065	.01	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	21	Sc			.16	.247	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	22	Ti			.79	1.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	23	V			1.55	2.5	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	24	Cr			3.3	6.2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	27	Co			2.25	3.1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	28	Ni			68.47	79	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	29	Cu			.09	2.12	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	30	Zn			.52	.52	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	31	Ga			.66	.81	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	32	Ge			.51	1.08	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	33	As			.03	.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	37	Rb			5	7.5	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	38	Sr			.16	.178	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	39	Y			.003		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	40	Zr			.012	.011	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	41	Nb			.055	.07	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	42	Mo			.046	.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	47	Ag			.043	.35	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	48	Cd			.05	.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	49	In			.14	.3	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	50	Sn			.05	.28	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	51	Sb			.0013	.005	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	55	Cs			2.26	3.2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	56	Ba			3.1	4.1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	57	La			.0004	.0004	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	58	Ce			.0003	.00006	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	60	Nd			.0009	.0002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	62	Sm			.0007	.0007	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	65	Tb			.0007	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	67	Ho			.0009	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	69	Tm			.0014	.0005	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	70	Yb			.035	.035	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	71	Lu			.0017	.0017	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	72	Hf			.015	.016	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	73	Ta			.062	.078	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	74	W			.0014	.0006	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	81	Tl			3.03	5.2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	82	Pb			.089	.096	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	83	Bi			.016	.13	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	90	Th			.0004	.0002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Phlogopite	92	U			.0033	.0002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+
+LINKS TO REFERENCES:
+Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Green et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99695
+Schmidt et al. 1999 - http://earthref.org/cgi-bin/err.cgi?n=99704
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:39:21 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=phlogopite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  phlogopite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Fujimaki et al. 1984
+Sort by: Reference
+

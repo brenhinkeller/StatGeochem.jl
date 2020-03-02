@@ -1,0 +1,112 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Synthetic CATS, Doped	Ca_Perovskite	3	Li			.045	.052	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	11	Na			1.1	.42	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	12	Mg			.11	.1	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	13	Al			.5	.05	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	14	Si			.015	.01	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	19	K				.05	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	21	Sc			.3	.064	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	37	Rb			.05	.002	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	38	Sr			.74	.76	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	39	Y			.38	1.75	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	40	Zr			.48	.07	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	41	Nb			1.89	1.25	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	55	Cs			.025		Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	56	Ba			.04	.015	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	57	La			1.9	4.4	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	58	Ce			2.2	5.9	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	59	Pr			2.3	6.5	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	62	Sm			1.71	5.5	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	70	Yb			.24	1.06	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	72	Hf			1.1	.14	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	73	Ta			5.3	3.6	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	90	Th			1.22	7.6	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CATS, Doped	Ca_Perovskite	92	U			.097	1.57	Experimental	Corgne & Wood 2005	Solid-Liquid		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	3	Li			.05	.16	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	11	Na			.32	.32	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	12	Mg			.09	.11	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	13	Al				1.2	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	15	P			.2	.8	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	19	K			.1	.38	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	20	Ca			2.2	5.3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	21	Sc			1.25	2.2	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	22	Ti			1.1	1.1	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	24	Cr			.31		Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	25	Mn			.18	.37	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	26	Fe			.12		Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	27	Co			.14	.2	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	28	Ni			.33	.2	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	31	Ga			.18	.3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	32	Ge			1.5	1.3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	37	Rb			.23	.4	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	38	Sr			1.29	1.7	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	39	Y			7.3	22	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	40	Zr				3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	41	Nb			.33	.25	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	50	Sn			.32		Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	55	Cs			.3	.3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	56	Ba			.09	.2	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	57	La				6	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	58	Ce			5.9	11	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	59	Pr			6.9	13	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	60	Nd			6.7	16	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	62	Sm			8.4	20	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	63	Eu				22	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	64	Gd			8		Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	68	Er			6.1	21	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	70	Yb			6.1	19	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	71	Lu			5.8	16	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	72	Hf			1.4	2.1	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	73	Ta			.47	.3	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	82	Pb			.2		Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	90	Th			11.3	18	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Synthetic CMAST	Ca_Perovskite	92	U			9.7	15	Experimental	Corgne et al. 2005	Solid-Melt		08-DEC-2008
+Basalt	Ca_Perovskite	11	Na			.2	.6	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	19	K				.2	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	21	Sc			.1	.2	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	22	Ti			1.5	25	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	37	Rb				.2	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	38	Sr			1.8	7.7	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	39	Y			1.1	3.8	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	40	Zr			2	9	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	41	Nb			.1	2.3	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	55	Cs				.2	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	57	La			1.4	6	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	60	Nd			1.6	6.9	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	62	Sm			1.9	8.2	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	67	Ho			1.3	3.5	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	70	Yb			.8	1.4	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	72	Hf			2	11	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	82	Pb			3	14	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	90	Th			7	100	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Ca_Perovskite	92	U			6	70	Experimental	Kato et al. 1988	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Corgne & Wood 2005 - http://earthref.org/cgi-bin/err.cgi?n=99687
+Corgne et al. 2005 - http://earthref.org/cgi-bin/err.cgi?n=99475
+Kato et al. 1988 - http://earthref.org/cgi-bin/err.cgi?n=141
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:35:43 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=ca%20Ca_Perovskite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  ca Ca_Perovskite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Corgne & Wood 2005
+Sort by: Reference
+

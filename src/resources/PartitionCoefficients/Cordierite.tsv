@@ -1,0 +1,71 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Per-Aluminous Granite	Cordierite	3	Li	125				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	4	Be	29.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	21	Sc	2.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	23	V	.15				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	24	Cr	.92				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	28	Ni	3.92				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	29	Cu	.21				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	30	Zn	1.73				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	37	Rb	.08				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	38	Sr	.12				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	39	Y	.72				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	41	Nb	.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	42	Mo	2.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	55	Cs	31.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	56	Ba	.02				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	57	La	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	58	Ce	.07				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	59	Pr	.09				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	60	Nd	.09				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	62	Sm	.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	63	Eu	.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	64	Gd	.29				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	65	Tb	.95				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	66	Dy	.99				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	67	Ho	1.62				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	68	Er	3.03				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	69	Tm	2.9				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	70	Yb	1.77				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	71	Lu	4.43				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	73	Ta	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	81	Tl	.24				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	82	Pb	.03				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	90	Th	.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	Cordierite	92	U	1.61				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+High Aluminium Rhyolite	Cordierite	3	Li			.33	.31	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	4	Be			162	38.63	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	5	B			.06	.1	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	20	Ca			.25	.3	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	25	Mn			7.56	3.6	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	37	Rb			.09	.13	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+High Aluminium Rhyolite	Cordierite	55	Cs			.28	.34	Experimental	Evensen & London 2003	Solid-Melt		08-DEC-2008
+
+LINKS TO REFERENCES:
+Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168
+Evensen & London 2003 - http://earthref.org/cgi-bin/err.cgi?n=99690
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:18:17 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=cordierite&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  cordierite (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Bea et al. 1994
+Sort by: Reference
+

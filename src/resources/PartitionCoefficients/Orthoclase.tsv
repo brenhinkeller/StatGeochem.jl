@@ -1,0 +1,256 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Per-Aluminous Granite	K-Feldspar	3	Li	1.82		1.82		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	4	Be	3.05		3.05		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	21	Sc	1.25		1.25		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	23	V	.22		.22		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	24	Cr	1.15		1.15		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	28	Ni	.25		.25		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	29	Cu	.32		.32		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	30	Zn	.11		.11		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	37	Rb	2.85		2.85		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	38	Sr	.77		.77		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	39	Y	.5		.5		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	41	Nb	.27		.27		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	42	Mo	1.77		1.77		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	55	Cs	4.2		4.2		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	56	Ba	3.77		3.77		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	57	La	1.01		1.01		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	58	Ce	.86		.86		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	59	Pr	.87		.87		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	60	Nd	.51		.51		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	62	Sm	.42		.42		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	63	Eu	2.32		2.32		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	64	Gd	.6		.6		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	65	Tb	.92		.92		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	66	Dy	.77		.77		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	67	Ho	.88		.88		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	68	Er	1.14		1.14		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	69	Tm	1.12		1.12		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	70	Yb	.64		.64		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	71	Lu	.96		.96		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	73	Ta	.49		.49		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	81	Tl	3.67		3.67		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	82	Pb	1.46		1.46		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+Per-Aluminous Granite	K-Feldspar	90	Th	.3		.3		Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	25	Mn			.094	.26	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	26	Fe			.085	.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	28	Ni			.18	2.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	29	Cu			.41	2.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	30	Zn			.055	.23	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	31	Ga			.2	1.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	32	Ge			.24	1.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	37	Rb			.11	.72	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	38	Sr			2.11	22.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	39	Y			.015	.067	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	40	Zr			.005	.21	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	41	Nb			.039	.16	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	56	Ba			2.7	20.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	82	Pb			.1	1.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	25	Mn			.028	.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	26	Fe			.046	.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	28	Ni			1.1	1.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	29	Cu			.24	2.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	30	Zn			.042	.15	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	31	Ga			.45	2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	32	Ge			.6	2.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	33	As			.11	.41	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	37	Rb			.21	.62	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	38	Sr			1.48	8.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	39	Y			.017	.086	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	40	Zr			.018	.069	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	41	Nb			.01	.15	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	56	Ba			1.7	17	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	K-Feldspar	82	Pb			.12	.83	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	25	Mn			.039	.085	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	26	Fe			.12	.18	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	28	Ni			.51	1.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	29	Cu			.45	1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	30	Zn			.041	.061	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	31	Ga			.91	2.02	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	32	Ge			.68	1.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	37	Rb			.19	.26	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	38	Sr			1.6	1.68	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	39	Y			.021	.028	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	40	Zr			.003	.036	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	41	Nb			3.4	4.8	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	56	Ba			3.5	18.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	82	Pb			.1	.23	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	37	Rb	.32		.32		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	38	Sr	2.3		2.3		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	39	Y	.017		.017		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	40	Zr	.003		.003		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	41	Nb	.004		.004		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	50	Sn	.046		.046		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	55	Cs	.044		.044		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	56	Ba	3.409		3.409		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	57	La	.052		.052		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	58	Ce	.039		.039		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	59	Pr	.027		.027		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	60	Nd	.026		.026		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	62	Sm	.028		.028		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	63	Eu	1.261		1.261		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	64	Gd	.023		.023		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	65	Tb	.02		.02		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	66	Dy	.025		.025		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	67	Ho	.022		.022		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	68	Er	.017		.017		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	70	Yb	.028		.028		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	72	Hf	.009		.009		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	82	Pb	.208		.208		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	90	Th	.007		.007		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	K-Feldspar	92	U	.017		.017		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Quartz Latite	K-Feldspar	82	Pb			.98	1.1	Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	82	Pb			.84	1.37	Phenocryst-Matrix	Leeman 1979	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	21	Sc	.029		.029		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	37	Rb	.4		.4		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	40	Zr	.36		.36		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	55	Cs	.024		.024		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	56	Ba	22		22		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	57	La	.129		.129		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	58	Ce	.065		.065		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	60	Nd	.054		.054		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	62	Sm	.026		.026		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	63	Eu	9.06		9.06		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	65	Tb	.018		.018		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	70	Yb	.015		.015		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	71	Lu	.012		.012		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	72	Hf	.034		.034		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	73	Ta	.015		.015		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	90	Th	.022		.022		Phenocryst-Matrix	Leeman & Phelps 1981	Solid-Melt		12-DEC-2000
+Synthetic Granite	K-Feldspar	37	Rb			.77	1.1	Experimental	Long 1978	Solid-Melt		12-DEC-2000
+Synthetic Granite	K-Feldspar	38	Sr			1.2	5	Experimental	Long 1978	Solid-Melt		12-DEC-2000
+Synthetic Granite	K-Feldspar	56	Ba			6.4	14	Experimental	Long 1978	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	21	Sc			.024	.059	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	25	Mn			.011	.035	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	26	Fe			.11	.2	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	27	Co			.09	.39	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	30	Zn			.041	.09	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	37	Rb			.31	.74	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	55	Cs			.009	.061	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	56	Ba			1	6.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	57	La			.037	.111	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	58	Ce			.031	.095	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	60	Nd			.013	.093	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	62	Sm			.014	.0458	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	63	Eu			2	3.5	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	65	Tb			.012	.092	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	66	Dy			.006	.15	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	70	Yb			.005	.024	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	71	Lu			.008	.07	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	72	Hf			.0052	.031	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	73	Ta			.0045	.029	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	90	Th			.0095	.0253	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	92	U			.008	.037	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	21	Sc			.01	.04	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	37	Rb			1.2	2.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	38	Sr			4.5	7.3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	40	Zr			.01	.05	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	55	Cs			.11	.37	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	56	Ba			4.9	24	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	57	La			.07	.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	58	Ce			.02	.06	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	60	Nd			.03	.04	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	62	Sm			.02	.04	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	63	Eu			3.3	6.5	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	65	Tb			.01	.06	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	66	Dy			.04	.09	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	70	Yb			.03	.04	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	71	Lu			.02	.04	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	72	Hf			.02	.05	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	73	Ta			.001	.02	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	82	Pb			.99	4.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	90	Th			.02	.03	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	92	U			.04	.07	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	K-Feldspar	37	Rb	.38		.38		Phenocryst-Matrix	Noble & Hedge 1970	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Sanidine, K-Feldspar	37	Rb			.25	.45	Phenocryst-Matrix	Noble & Hedge 1970	Solid-Melt		12-DEC-2000
+Per-Aluminous Rhyolite	K-Feldspar	37	Rb			.27	.32	Phenocryst-Matrix	Noble & Hedge 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	37	Rb			.32	.38	Phenocryst-Matrix	Noble & Hedge 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	37	Rb	.39		.39		Phenocryst-Matrix	Noble & Hedge 1970	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	19	K	1.49		1.49		Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	37	Rb	.659		.659		Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	38	Sr	3.87		3.87		Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	56	Ba	6.12		6.12		Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	58	Ce	.044		.044		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	60	Nd	.025		.025		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	62	Sm	.018		.018		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	63	Eu	1.13		1.13		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	64	Gd	.011		.011		Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	66	Dy	.97		.97		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	68	Er	.162		.162		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Rhyolite	K-Feldspar	70	Yb	.012		.012		Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	20	Ca			.06	.92	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	30	Zn			.041	.098	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	37	Rb			.28	.74	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	38	Sr			2	6	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	42	Mo	.2		.2		Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	55	Cs			.002	.061	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	56	Ba			1	44	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	57	La			.026	.15	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	58	Ce			.017	.095	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	60	Nd			.009	.093	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	62	Sm			.0024	.046	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	63	Eu			1.6	9.6	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	65	Tb			.012	.092	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	70	Yb			.002	.024	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	71	Lu			.003	.07	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	72	Hf			.0052	.042	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	73	Ta			.0007	.029	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	90	Th			.0023	.028	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	K-Feldspar	92	U			.002	.037	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	20	Ca			.13	.25	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	37	Rb			1.2	1.8	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	38	Sr			4.5	7.3	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	55	Cs			.11	.16	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	56	Ba			7.2	24	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	57	La			.07	.08	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	58	Ce			.02	.04	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	60	Nd			.03	.04	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	62	Sm	.02		.02		Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	63	Eu			3.3	6.5	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	65	Tb			.01	.02	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	70	Yb	.03		.03		Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	71	Lu			.02	.04	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	72	Hf			.02	.05	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	73	Ta			.001	.01	Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	90	Th	.02		.02		Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+Rhyolite-Dacite	K-Feldspar	92	U	.04		.04		Phenocryst-Matrix	Stix & Gorton 1990	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Icenhower & London 1996 - http://earthref.org/cgi-bin/err.cgi?n=119
+Larsen 1979 - http://earthref.org/cgi-bin/err.cgi?n=154
+Leeman & Phelps 1981 - http://earthref.org/cgi-bin/err.cgi?n=162
+Leeman 1979 - http://earthref.org/cgi-bin/err.cgi?n=165
+Long 1978 - http://earthref.org/cgi-bin/err.cgi?n=178
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
+Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217
+Noble & Hedge 1970 - http://earthref.org/cgi-bin/err.cgi?n=225
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
+Stix & Gorton 1990 - http://earthref.org/cgi-bin/err.cgi?n=266
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 30 January 2013 05:26:45 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=k-feldspar&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  k-feldspar (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Bea et al. 1994
+Sort by: Reference
+

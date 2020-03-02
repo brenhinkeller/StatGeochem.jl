@@ -1,0 +1,832 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Basanite	Olivine	3	Li			.29	.42	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	4	Be			.003		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	5	B			.02	.18	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	12	Mg			.001	.001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	13	Al			.002	.006	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	15	P			.038	.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	20	Ca			.007	.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	21	Sc			.22	.32	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	22	Ti			.011	.015	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	23	V			.15	.23	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	24	Cr			.64	1.3	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	27	Co			4	6.6	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	28	Ni			32	47	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	29	Cu			1.19	4.1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	30	Zn			.88	1.4	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	31	Ga			.005	.012	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	32	Ge			.95		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	33	As			.002	.009	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	37	Rb			.0004	.0004	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	38	Sr			.00002	.001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	39	Y			0	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	40	Zr			.001	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	41	Nb			.00007	.00007	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	42	Mo			.001	.0007	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	47	Ag			.001	.008	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	48	Cd			.03	.04	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	49	In			.09	.2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	50	Sn			.002	.014	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	51	Sb			.0004	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	55	Cs			.0002	.0002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	56	Ba			.0001	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	57	La			.0001	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	58	Ce			.0001	.001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	60	Nd			.0005	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	62	Sm			.001	.002	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	65	Tb			.001	.004	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	67	Ho			.0031	.009	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	69	Tm			.0091	.018	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	70	Yb			.05	.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	71	Lu			.024	.041	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	72	Hf			.0008	.004	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	73	Ta			.0002	.0004	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	74	W			.0003	.0001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	81	Tl			.01		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	82	Pb			.001	.001	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	83	Bi			.0024		Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	90	Th			.0002	.0003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Basanite	Olivine	92	U			.0003	.0003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
+Lunar Basalt	Olivine	24	Cr			.58	.78	Experimental	Akella et al. 1976	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	15	P	.019				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Andesite	Olivine	15	P	.055				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	15	P	.055				Phenocryst-Matrix	Anderson & Greenland 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	12	Mg			1.96	4.44	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	13	Al			.0101	.0222	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	14	Si			.77	.91	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	20	Ca			.0192	.0375	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc			.12	.38	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr			.63	1.85	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			.5	1.07	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	26	Fe			.51	1.55	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			1.1	3.56	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	38	Sr			.0000154	.0000508	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Olivine	38	Sr			.000039	.00025	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	39	Y			.00494	.0125	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	56	Ba			.0000022	.0000087	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Olivine	56	Ba			.0000013	.000032	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	57	La			.0000037	.000012	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	59	Pr			.000026	.000084	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm			.00014	.00063	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb			.0016	.0041	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	67	Ho			.0047	.0118	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb			.0157	.0469	Experimental	Beattie 1994	Solid-Melt		12-DEC-2000
+Basalt	Olivine	82	Pb			.000069	.000479	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Olivine	90	Th			.0000024	.00001	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Basalt	Olivine	92	U			.0000056	.00001	Experimental	Beattie 1993	Solid-Melt		12-DEC-2000
+Carbonatite	Olivine	3	Li			.126	.127	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	12	Mg			4.04	4.1	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	13	Al			.24	.24	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	14	Si			8.6	8.93	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	20	Ca			.0109	.0112	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	22	Ti			.024	.026	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	31	Ga	.7				Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	39	Y	.0057				Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	40	Zr			.0006	.0031	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	62	Sm	.0004				Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	70	Yb			.03	.05	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Carbonatite	Olivine	82	Pb			.41	.69	Experimental	Blundy & Dalton 2000	Solid-Melt		08-DEC-2008
+Basalt	Olivine	22	Ti	.037				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	23	V	.088				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr	1.1				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn	.917				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	26	Fe	1.05				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co	3				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni	12.2				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	29	Cu	.11				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	30	Zn	.86				Phenocryst-Matrix	Bougault & Hekinian 1974	Solid-Melt		12-DEC-2000
+Carbonatite-Peridotite	Olivine	38	Sr			.00018	.00021	Experimental	Brenan & Watson 1991	Solid-Melt		12-DEC-2000
+Carbonatite-Peridotite	Olivine	70	Yb			.062	.164	Experimental	Brenan & Watson 1991	Solid-Melt		12-DEC-2000
+Synth MORB	Olivine	44	Ru			.67	2.19	Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synth MORB	Olivine	45	Rh			1.41	1.94	Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synth MORB	Olivine	46	Pd			.0061	.021	Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synth MORB	Olivine	75	Re		.0008			Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synth MORB	Olivine	76	Os				.001	Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synth MORB	Olivine	78	Pt				.009	Experimental	Brenan et al. 2003	Solid-Melt		08-DEC-2008
+Synthetic Basalt	Olivine	3	Li			.2	.43	Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	4	Be				.02	Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	5	B			.01	.044	Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000
+Basalt	Olivine	15	P	.1				Experimental	Brunet & Chazot 2001	Solid-Melt		08-DEC-2008
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	24	Cr			.64	1.29	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic Komatiite, Basalt	Olivine	24	Cr			.55	.826	Experimental	Canil 1999	Solid-Melt		08-DEC-2008
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	13	Al			.0029	.0092	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	20	Ca			.0141	.0597	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	21	Sc			.122	.302	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	25	Mn			.7	1.27	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	62	Sm			.0005	.0046	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	64	Gd			.002	.0055	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Synthetic CaO-FeO-MgO-Al2O3-SiO2	Olivine	70	Yb			.016	.0382	Experimental	Colson et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc			.13	.22	Phenocryst-Matrix	Dale & Henderson 1972	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			1.01	1.75	Phenocryst-Matrix	Dale & Henderson 1972	Solid-Melt		12-DEC-2000
+Basalt	Olivine	26	Fe			1.74	3	Phenocryst-Matrix	Dale & Henderson 1972	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			2.75	4.44	Phenocryst-Matrix	Dale & Henderson 1972	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			8.63	18.54	Phenocryst-Matrix	Dale & Henderson 1972	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	23	V	.06				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	24	Cr	.7				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	27	Co	6.6				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	28	Ni	22				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	30	Zn	1.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	29	Cu	.05				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
+Synthetic Di-Fo-Qtz	Olivine	28	Ni			4.3	6.2	Experimental	Drake & Holloway 1981	Solid-Melt		12-DEC-2000
+Synthetic Fo-Jd	Olivine	28	Ni			15.4	20.7	Experimental	Drake & Holloway 1981	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti			.03	.15	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	23	V			.02	.09	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr			1.1	5.2	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			.99	1.22	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			3.63	6.3	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			7.6	48	Experimental	Duke 1976	Solid-Melt		12-DEC-2000
+Basalt	Olivine	20	Ca			.034	.035	Experimental	Dunn 1987	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti			.015	.018	Experimental	Dunn 1987	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			1.38	1.53	Experimental	Dunn 1987	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu			.045	.081	Experimental	Dunn 1987	Solid-Melt		12-DEC-2000
+Andesite	Olivine	38	Sr			.008	.018	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	42	Mo			.061	.16	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	60	Nd			.0093	.011	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	92	U			.04	.081	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	3	Li			.41	1.3	Phenocryst-Matrix	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	4	Be			.035	.46	Phenocryst-Matrix	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	37	Rb			.001	.017	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	41	Nb			.0016	.0065	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	58	Ce			.0038	.0083	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	59	Pr			.002	.009	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	62	Sm			.0065	.028	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	63	Eu			.0057	.023	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	65	Tb			.008	.035	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	68	Er			.026	.045	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	70	Yb			.038	.071	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	71	Lu	.11				Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	73	Ta			.065	.17	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	82	Pb			.0076	.014	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	90	Th			.022	.039	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	66	Dy			.014	.034	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	39	Y			.018	.045	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	64	Gd			.005	.033	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	67	Ho			.018	.037	Phenocryst-Matrix, Experimental	Dunn & Sen 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	28	Ni	24.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	29	Cu				2.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	30	Zn	10				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	30	Zn	2.8				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	30	Zn	.91				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	31	Ga				.25	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	33	As	.11				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	37	Rb	.062				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	38	Sr	.07				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	41	Nb	.11				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Andesite	Olivine	82	Pb				.43	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	25	Mn	1.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	26	Fe	1.67				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	29	Cu	.055				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	39	Y	.072				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	41	Nb	.063				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Leucitite	Olivine	56	Ba	.05				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	25	Mn	35.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	26	Fe	26.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	31	Ga				.15	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	37	Rb				.022	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	38	Sr				.31	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	39	Y	.64				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Low Silica Rhyolite	Olivine	82	Pb				.43	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	25	Mn	23.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	26	Fe	11.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	28	Ni				4.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	29	Cu				2.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	37	Rb				.028	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	38	Sr				1.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	39	Y	.12				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Olivine	41	Nb				.049	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Lamproite	Olivine	21	Sc	.109				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	22	Ti	.004				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	23	V	.011				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	24	Cr	3.62				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	25	Mn	1.8				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	27	Co	6.43				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	28	Ni	82				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	38	Sr	.0001				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	39	Y	.0052				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	40	Zr	.0003				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	41	Nb	.0001				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	55	Cs	.0288				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	56	Ba	.0004				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	57	La	.0001				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	58	Ce	.0001				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	59	Pr	.0004				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	60	Nd	.0002				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	62	Sm	.0016				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	63	Eu	.0024				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	64	Gd	.004				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	65	Tb	.0077				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	66	Dy	.0052				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	67	Ho	.0079				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	68	Er	.0137				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	69	Tm	.0107				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	70	Yb	.0091				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	71	Lu	.0187				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	72	Hf	.0008				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	73	Ta	.0011				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	90	Th	.0002				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Lamproite	Olivine	92	U	.0012				Phenocryst-Matrix	Foley & Jenner 2004	Solid-Melt		08-DEC-2008
+Basalt	Olivine	57	La	.012				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	58	Ce	.009				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	59	Pr	.005				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	60	Nd	.004				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm	.003				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	63	Eu	.003				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	64	Gd	.004				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb	.004				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	67	Ho	.007				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	68	Er	.008				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	69	Tm	.009				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.013				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu	.018				Phenocryst-Matrix	Frey 1969	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	40	Zr	.0035				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	40	Zr	.011				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	57	La	.0028				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	57	La	.0101				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	58	Ce	.002				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	60	Nd	.0023				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	62	Sm	.0037				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	62	Sm	.0108				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	64	Gd	.0168				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	64	Gd	.0069				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	66	Dy	.0263				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	68	Er	.0188				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	70	Yb	.0691				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	70	Yb	.0313				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	71	Lu	.0383				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	40	Zr	.0005				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	57	La	.0005				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	58	Ce	.0005				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	60	Nd	.0003				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	62	Sm	.0006				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	63	Eu	.0006				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	66	Dy	.0029				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	68	Er	.0064				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	70	Yb	.0091				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	71	Lu	.0109				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	72	Hf	.011				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Kimberlite	Olivine	72	Hf	.0004				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Olivine	58	Ce	.0091				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Olivine	60	Nd	.0096				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Olivine	68	Er	.0519				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Olivine	71	Lu	.0694				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Per-Alkaline Basalt	Olivine	72	Hf	.0036				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Olivine	62	Sm			.0067	.0088	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiite	Olivine	66	Dy			.0094	.0148	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	40	Zr			.0172	.025	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	40	Zr	.0047				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	57	La			.0061	.0067	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	57	La	.008				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	58	Ce	.0076				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	58	Ce			.0046	.0066	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	60	Nd			.0046	.0069	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	60	Nd	.0061				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	62	Sm	.0049				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	63	Eu	.0052				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	63	Eu			.0075	.0096	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	64	Gd	.0053				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	64	Gd	.0108				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	66	Dy	.0095				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	66	Dy	.0049				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	68	Er			.0236	.0283	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	68	Er	.0058				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	70	Yb	.0468				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	71	Lu			.0473	.0587	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	71	Lu	.009				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	72	Hf			.0188	.0251	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	72	Hf	.0038				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
+Andesite	Olivine	27	Co			1.81	1.96	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Andesite	Olivine	28	Ni			4	7.46	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	23	V			.096	.34	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	25	Mn			.681	.847	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	26	Fe			.857	.957	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	29	Cu			.075	.19	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	74	W			.016	.054	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	26	Fe			1.07	1.2	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	24	Cr			.58	.657	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	28	Ni			4.5	7.1	Experimental	Gaetani & Grove 1997	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	19	K	.000177				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	37	Rb	.000179				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	38	Sr	.000191				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	55	Cs	.00043				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	56	Ba	.00011				Phenocryst-Matrix	Hart & Brooks 1974	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-An	Olivine	28	Ni			3.98	23.91	Experimental	Hart & Davis 1978	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	76	Os	200				phenocryst-matrix	Hart & Ravizza 1996	Solid-Melt		08-DEC-2008
+Picrite, Basalt	Olivine	76	Os	20	5			phenocryst-matrix	Hart & Ravizza 1996	Solid-Melt		08-DEC-2008
+Synthetic Na-Disilicate-Fo	Olivine	2	He			.00017	.00022	Experimental	Heber et al. 2007	Solid-Melt		08-DEC-2008
+Synthetic Na-Disilicate-Fo	Olivine	10	Ne			.00007	.00015	Experimental	Heber et al. 2007	Solid-Melt		08-DEC-2008
+Synthetic Na-Disilicate-Fo	Olivine	18	Ar			.0011	.0011	Experimental	Heber et al. 2007	Solid-Melt		08-DEC-2008
+Synthetic Na-Disilicate-Fo	Olivine	36	Kr			.00026	.00026	Experimental	Heber et al. 2007	Solid-Melt		08-DEC-2008
+Synthetic Na-Disilicate-Fo	Olivine	54	Xe			.0006	.0023	Experimental	Heber et al. 2007	Solid-Melt		08-DEC-2008
+Basalt	Olivine	12	Mg	8				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	20	Ca	.0094				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	57	La	.00263				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm	.0027				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	63	Eu	.00455				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb	.00518				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.0087				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu	.0139				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			1.35	1.73	Experimental	Irvine & Kushiro 1976	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	12	Mg			1.8	6.3	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	13	Al			.0042	.011	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	14	Si			.74	.78	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	20	Ca			.022	.033	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	21	Sc			.47	.78	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	22	Ti			.0084	.014	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	23	V			.054	.3	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	24	Cr			.45	1.3	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	25	Mn			.5	.72	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	26	Fe			.63	1	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	27	Co			2.4	3	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	28	Ni			7.6	11	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	32	Ge			.056	.45	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	38	Sr			.0015	.019	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	39	Y			.007	.018	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	40	Zr			.00068	.015	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	41	Nb			.000041	.029	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	56	Ba			.000043	.0082	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	57	La			.000028	.0061	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	58	Ce			.000038	.0059	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	60	Nd			.00042	.0062	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	62	Sm			.00062	.0082	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	63	Eu			.00015	.011	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	64	Gd			.00099	.0092	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	66	Dy			.0014	.01	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	68	Er			.0087	.015	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	70	Yb			.017	.03	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	71	Lu			.02	.039	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	72	Hf			.0011	.016	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	90	Th			.000052	.0063	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Olivine	92	U			.000018	.007	Experimental	Kennedy et al. 1993	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-Na2O-Na2O-FeO	Olivine	28	Ni			7.15	15.1	Experimental	Kinzler et al. 1990	Solid-Melt		12-DEC-2000
+Basalt	Olivine	12	Mg	6.6				Experimental	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	20	Ca	.025				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc	.23		.23		Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti	.019				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr	1.18				Experimental	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn	1.47				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	26	Fe	1.85				Experimental	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co	4.3				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			15		Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	29	Cu	.55				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	30	Zn	.8				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	31	Ga	.04				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	33	As	.3				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	51	Sb	.3				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.042				Experimental	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu	.062				Phenocryst-Matrix	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	79	Au	.7				Experimental	Kloeck & Palme 1988	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-An	Olivine	25	Mn			1.15	3.04	Experimental	Kohn & Schofield 1994	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-An	Olivine	30	Zn			.77	4.43	Experimental	Kohn & Schofield 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	37	Rb	.011				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	38	Sr	.053		.053		Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	39	Y	.138				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	40	Zr	.009				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	41	Nb	.009				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	42	Mo	.056				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	50	Sn	.119				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	55	Cs	.048				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	56	Ba	.023				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	57	La			.06	.1	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	58	Ce	.08				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	59	Pr	.076				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	60	Nd			.085	.11	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	62	Sm			.087	.12	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	63	Eu	.104				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	64	Gd			.092	.13	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	65	Tb	.127				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	66	Dy	.164				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	67	Ho			.17	.208	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	68	Er			.19	.257	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	70	Yb			.26	.395	Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	72	Hf	.011				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	82	Pb	.056				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	90	Th	.014				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Per-Alkaline Trachyte	Olivine	92	U	.009				Phenocryst-Matrix	Larsen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			5.9	29	Experimental	Leeman & Lindstrom 1978	Solid-Melt		08-DEC-2008
+Basalt	Olivine	11	Na			.012	.024	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	12	Mg			4.61	7.46	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	20	Ca			.02	.036	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc			.14	.22	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr			1.06	3.06	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			.73	1.67	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	26	Fe			1.19	1.87	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			2.75	4.19	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			8.25	23.5	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm			.003	.015	Phenocryst-Matrix	Leeman & Scheidegger 1977	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	21	Sc	.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	27	Co	4.51				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	37	Rb	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	37	Rb	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	40	Zr	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	63	Eu	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	65	Tb	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	72	Hf	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	73	Ta	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	90	Th	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Hawaiite	Olivine	92	U	.01				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	21	Sc	.24				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	27	Co	6.43				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	57	La	.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	65	Tb	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	72	Hf	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	73	Ta	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	90	Th	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Mugearite	Olivine	92	U	.03				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Tholeiite-Andesite	Olivine	40	Zr	.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	21	Sc	.18				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	27	Co	14.6				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	37	Rb	.08				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	40	Zr	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	57	La	.4				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	63	Eu	.21				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	63	Eu	.21				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	65	Tb	.52				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	72	Hf	.09				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	73	Ta	.14				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	90	Th	.12				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	92	U	.14				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2- X	Olivine	20	Ca			.017964072	.045849802	Experimental	Libourel 1999	Solid-Melt		08-DEC-2008
+Synthetic CaO-MgO-Al2O3-SiO2- X	Olivine	22	Ti			.007434944	.025	Experimental	Libourel 1999	Solid-Melt		08-DEC-2008
+Synthetic CaO-MgO-Al2O3-SiO2- X	Olivine	24	Cr			.138	.5	Experimental	Libourel 1999	Solid-Melt		08-DEC-2008
+Synthetic CMAS-Na2O-TiO2	Olivine	20	Ca	.02	.12			Experimental	Libourel 1999	Solid-Melt		08-DEC-2008
+Fo-An-Si	Olivine	71	Lu			.037	.069	Experimental	Lindstrom 1983	Solid-Melt		12-DEC-2000
+Synthetic Fo-An-Si	Olivine	13	Al			.006	.01	Experimental	Lindstrom 1983	Solid-Melt		12-DEC-2000
+Synthetic Fo-An-Si	Olivine	20	Ca			.016	.019	Experimental	Lindstrom 1983	Solid-Melt		12-DEC-2000
+Andesite	Olivine	21	Sc	.3				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	23	V	.08				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	24	Cr	34				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	28	Ni	58				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	30	Zn	1.5				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	55	Cs				.27	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	56	Ba				.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	57	La				.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	58	Ce				.01	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	60	Nd				.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	62	Sm	.01				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	63	Eu				.03	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	65	Tb				.11	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	66	Dy				.1	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	70	Yb	.03				Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	71	Lu				.08	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	72	Hf				.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	90	Th				.02	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	21	Sc			4.8	9.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	25	Mn			56	77	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	27	Co			6	23	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	30	Zn			10.4	11.1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	42	Mo			.1	1.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	57	La			1.08	23.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	58	Ce			.93	20.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	60	Nd			.77	14	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	62	Sm			.496	8.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	63	Eu			.09	5.8	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	65	Tb			.31	2.85	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	66	Dy			.9	3.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	70	Yb			.92	1.96	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	71	Lu			1.26	2.21	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	72	Hf			.12	1.78	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	73	Ta	.098				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	90	Th			.276	3.172	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	92	U			.12	.69	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	21	Sc	1.6				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	24	Cr	5				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	26	Fe	8.5				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	27	Co	22				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	57	La				.1	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	58	Ce				.1	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	62	Sm				.1	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	63	Eu				.1	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	65	Tb	.1				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	70	Yb	.35				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	71	Lu	.44				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	72	Hf				.01	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Trachyte	Olivine	73	Ta				.01	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	3	Li	.03				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	21	Sc	.178				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	23	V	.03				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	25	Mn	1.07				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	27	Co	5.17				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	30	Zn	.67				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	49	In	.061				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	57	La	.0026				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	62	Sm	.0027				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	63	Eu	.0046				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	65	Tb	.0051				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	70	Yb	.0087				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Tholeiitic Basalt	Olivine	71	Lu	.0139				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
+Lunar, LKFM, Basalt	Olivine	62	Sm	.00079				Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Lunar, LKFM, Basalt	Olivine	64	Gd	.00144				Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic LKFM Basalt	Olivine	70	Yb			.0244	.0306	Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic Lunar Basalt	Olivine	58	Ce				.0001	Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic Lunar Basalt	Olivine	60	Nd	.00007				Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic Lunar Basalt	Olivine	62	Sm	.00058	.00007			Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic Lunar Basalt	Olivine	64	Gd	.00102	.00008			Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Synthetic Lunar Basalt	Olivine	70	Yb	.0194	.003			Experimental	McKay 1986	Solid-Melt		12-DEC-2000
+Andesite	Olivine	21	Sc	.265				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	24	Cr	1.08				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	38	Sr	.003				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	56	Ba	.005				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	58	Ce	.012				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Olivine	24	Cr	1.2				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Olivine	58	Ce	.01				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Olivine	62	Sm	.015				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Olivine	63	Eu	.015				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+KREEP, Lunar Basalt	Olivine	70	Yb	.033				Experimental	McKay & Weill 1976	Solid-Melt		12-DEC-2000
+Lunar Basalt	Olivine	62	Sm	.01				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Olivine	63	Eu	.01				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Basalt	Olivine	70	Yb	.042				Experimental	McKay & Weill 1977	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Olivine	71	Lu	.025				Experimental	McKay et al. 1986	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti	.006				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	37	Rb	.00018				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	38	Sr	.00019				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	41	Nb	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	57	La	.0004				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	58	Ce	.0005				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	59	Pr	.0008				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	60	Nd	.001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm	.0013				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	63	Eu	.0016				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	64	Gd	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	66	Dy	.0017				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	67	Ho	.0016				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	68	Er	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	69	Tm	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu	.0015				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	72	Hf	.01				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	82	Pb	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	90	Th	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+Basalt	Olivine	92	U	.0001				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	21	Sc			6.3	11	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	24	Cr	0				Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	27	Co			14	16	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	30	Zn			7.2	7.8	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	57	La			4.9	44	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	58	Ce			3.5	29	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	60	Nd			2.6	24	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	62	Sm			2.2	13	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	63	Eu			1	11	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	65	Tb			1	4.2	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	70	Yb			1.4	3.7	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	71	Lu			1.8	4.7	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	72	Hf			.2	5.5	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	73	Ta			.5	1.6	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	90	Th			.9	5	Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+High Silica Rhyolite	Fayalite, Olivine	92	U	.7				Phenocryst-Matrix	Michael 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni	15.5				Experimental	Mysen 1978	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	28	Ni			2.2	19.5	Experimental	Mysen 1976	Solid-Melt		12-DEC-2000
+Synthetic Fo-Ab-Qtz-H2O	Olivine	62	Sm			.016	.027	Experimental	Mysen 1976	Solid-Melt		12-DEC-2000
+Synthetic Fo-Jd	Olivine	28	Ni			6.1	24.8	Experimental	Mysen 1979	Solid-Melt		12-DEC-2000
+Synthetic Ab-An-Fo	Olivine	28	Ni			4.3	7.2	Experimental	Mysen & Virgo 1980	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			9.3	12.8	Experimental	Nabelek 1980	Solid-Melt		12-DEC-2000
+Andesite	Olivine	28	Ni			9.4	24	Model	Nielsen 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc			.18	.29	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	39	Y	.0036				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	57	La				.0001	Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	58	Ce	.0001				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	59	Pr	.0002				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	60	Nd	.0003				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm	.0011				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	63	Eu	.001				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	64	Gd	.0029				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb	.0015				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	66	Dy	.002				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	67	Ho	.013				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	68	Er	.0025				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	69	Tm	.003				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.01				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	71	Lu	.051				Experimental	Nielsen et al. 1992	Solid-Melt		12-DEC-2000
+Basalt	Olivine	3	Li	.35				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti	.007				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr	.73				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Basalt	Olivine	39	Y	.009				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Basalt	Olivine	66	Dy	.007				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.021				Host-Melt Inclusion	Nikogosian & Sobolev 1997	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	11	Na	.13				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	13	Al	.05				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	19	K				.04	Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	23	V	.22				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	24	Cr	.26				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	25	Mn	.42				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	26	Fe	.59				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Komatiite, Basalt	Olivine	28	Ni	.94				Experimental	Ohtani et al. 1989	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc	.33				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn	2.6				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co	3.1				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	29	Cu	.023				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	30	Zn	1.8				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	31	Ga				.25	Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	56	Ba				.05	Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	57	La	.0084				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	58	Ce	.01				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	60	Nd	.008				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	62	Sm	.006				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	63	Eu	.008				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	64	Gd	.008				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	65	Tb	.01				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	67	Ho	.05				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	70	Yb	.28				Phenocryst-Matrix	Paster et al. 1974	Solid-Melt		12-DEC-2000
+Basalt	Olivine	21	Sc				.04	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	22	Ti			.04	.08	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	23	V			1	1.2	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	24	Cr			1	1.2	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	25	Mn			1.2	1.3	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			4.4	4.8	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co	52				Phenocryst-Matrix	Pedersen 1979	Sulfide-Liquid-Olivine		12-DEC-2000
+Basalt	Olivine	28	Ni			10.7	12.2	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni	351				Phenocryst-Matrix	Pedersen 1979	Sulfide-Liquid-Olivine		12-DEC-2000
+Basalt	Olivine	29	Cu	730				Phenocryst-Matrix	Pedersen 1979	Sulfide-Liquid-Olivine		12-DEC-2000
+Basalt	Olivine	29	Cu			.4	.5	Phenocryst-Matrix	Pedersen 1979	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	56	Ba			.00864	.0112	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Olivine	19	K			.0056	.00809	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Olivine	37	Rb			.00839	.0133	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Basalt	Olivine	38	Sr			.00937	.0185	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Olivine	23	V	1.3				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Lunar Mare Basalt	Olivine	24	Cr	.9				Phenocryst-Matrix	Ringwood 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	58	Ce	.009				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	60	Nd	.01				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	62	Sm	.011				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	63	Eu	.01				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	64	Gd	.012				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	66	Dy	.014				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	68	Er	.017				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Ankaramite, Basalt	Olivine	70	Yb	.023				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
+Basalt	Olivine	27	Co			1.6	2.22	Experimental	Seifert et al. 1988	Solid-Melt		12-DEC-2000
+Basalt	Olivine	28	Ni			4.36	5.05	Experimental	Seifert et al. 1988	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	38	Sr			.0993	.349	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	56	Ba			.127	.365	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	57	La			.124	.346	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	58	Ce			.115	.354	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	60	Nd			.109	.352	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	62	Sm			.105	.362	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	63	Eu			.104	.344	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	64	Gd			.111	.366	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	68	Er			.138	.385	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	70	Yb			.143	.394	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Picrite, Basalt	Olivine	71	Lu			.157	.393	Experimental	Shimizu et al. 1982	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	12	Mg			1.67	5.98	Experimental	Takahashi 1978	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	25	Mn			.54	1.79	Experimental	Takahashi 1978	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	26	Fe			.55	1.62	Experimental	Takahashi 1978	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	27	Co			1.21	3.94	Experimental	Takahashi 1978	Solid-Melt		12-DEC-2000
+Synthetic Basalt	Olivine	28	Ni			2.86	13.6	Experimental	Takahashi 1978	Solid-Melt		12-DEC-2000
+Komatiite	Olivine	24	Cr			.33	.48	Experimental	Tronnes et al. 1992	Solid-Melt		08-DEC-2008
+Calc Alkaline Picrite, Basalt	Olivine	15	P				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	21	Sc	.16				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	22	Ti	.02				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	23	V	.06				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	39	Y				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	40	Zr	.01				Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	41	Nb				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	72	Hf				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Calc Alkaline Picrite, Basalt	Olivine	73	Ta				.01	Experimental	Ulmer 1989	Solid-Melt		12-DEC-2000
+Andesite	Olivine	24	Cr			5.14	5.5	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	37	Rb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	38	Sr	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	55	Cs	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	56	Ba	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	57	La	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	57	La	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite	Olivine	66	Dy	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Andesite-Basalt	Olivine	63	Eu	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	21	Sc	3.05				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	27	Co			6.28	6.54	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	27	Co	11.8				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	28	Ni			28	36.4	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	40	Zr	.12				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	56	Ba	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	90	Th	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	37	Rb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	40	Zr			.01	.14	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	55	Cs	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Basalt-Andesite-Dacite	Olivine	72	Hf			.01	.02	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	63	Eu	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	73	Ta	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Calc-Alkaline Andesite	Olivine	90	Th			.01	.02	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	24	Cr	3				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	28	Ni	230				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	51	Sb	.04				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	66	Dy	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	72	Hf	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	73	Ta	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Latite	Olivine	92	U	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Basalt	Olivine	21	Sc			.21	.22	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Basalt	Olivine	38	Sr	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Basalt	Olivine	51	Sb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Trachyte-Basalt	Olivine	92	U	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	21	Sc	.22				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	24	Cr	2.8				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	27	Co	5.1				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	28	Ni	34				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	37	Rb	.04				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	38	Sr	.02				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	40	Zr	.06				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	55	Cs	.05				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	56	Ba	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	57	La	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	63	Eu	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	65	Tb	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	72	Hf	.04				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	73	Ta	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	90	Th	.03				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Alkali Basalt	Olivine	92	U	.04				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
+Basalt-Andesite	Olivine	25	Mn			.619	1.789	Experimental	Watson 1977	Solid-Melt		12-DEC-2000
+
+LINKS TO REFERENCES:
+Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679
+Akella et al. 1976 - http://earthref.org/cgi-bin/err.cgi?n=312
+Anderson & Greenland 1969 - http://earthref.org/cgi-bin/err.cgi?n=95
+Beattie 1993 - http://earthref.org/cgi-bin/err.cgi?n=201
+Beattie 1994 - http://earthref.org/cgi-bin/err.cgi?n=212
+Blundy & Dalton 2000 - http://earthref.org/cgi-bin/err.cgi?n=99683
+Bougault & Hekinian 1974 - http://earthref.org/cgi-bin/err.cgi?n=304
+Brenan & Watson 1991 - http://earthref.org/cgi-bin/err.cgi?n=307
+Brenan et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=308
+Brenan et al. 2003 - http://earthref.org/cgi-bin/err.cgi?n=99685
+Brunet & Chazot 2001 - http://earthref.org/cgi-bin/err.cgi?n=99686
+Canil 1999 - http://earthref.org/cgi-bin/err.cgi?n=412
+Colson et al. 1988 - http://earthref.org/cgi-bin/err.cgi?n=315
+Dale & Henderson 1972 - http://earthref.org/cgi-bin/err.cgi?n=318
+Dostal et al. 1983 - http://earthref.org/cgi-bin/err.cgi?n=324
+Drake & Holloway 1981 - http://earthref.org/cgi-bin/err.cgi?n=325
+Duke 1976 - http://earthref.org/cgi-bin/err.cgi?n=331
+Dunn & Sen 1994 - http://earthref.org/cgi-bin/err.cgi?n=332
+Dunn 1987 - http://earthref.org/cgi-bin/err.cgi?n=333
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
+Foley & Jenner 2004 - http://earthref.org/cgi-bin/err.cgi?n=99693
+Frey 1969 - http://earthref.org/cgi-bin/err.cgi?n=345
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
+Gaetani & Grove 1997 - http://earthref.org/cgi-bin/err.cgi?n=350
+Hart & Brooks 1974 - http://earthref.org/cgi-bin/err.cgi?n=105
+Hart & Davis 1978 - http://earthref.org/cgi-bin/err.cgi?n=106
+Hart & Ravizza 1996 - http://earthref.org/cgi-bin/err.cgi?n=108
+Heber et al. 2007 - http://earthref.org/cgi-bin/err.cgi?n=99761
+Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112
+Irvine & Kushiro 1976 - http://earthref.org/cgi-bin/err.cgi?n=121
+Kennedy et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=144
+Kinzler et al. 1990 - http://earthref.org/cgi-bin/err.cgi?n=146
+Kloeck & Palme 1988 - http://earthref.org/cgi-bin/err.cgi?n=149
+Kohn & Schofield 1994 - http://earthref.org/cgi-bin/err.cgi?n=150
+Larsen 1979 - http://earthref.org/cgi-bin/err.cgi?n=154
+Leeman & Lindstrom 1978 - http://earthref.org/cgi-bin/err.cgi?n=161
+Leeman & Scheidegger 1977 - http://earthref.org/cgi-bin/err.cgi?n=163
+Lemarchand et al. 1987 - http://earthref.org/cgi-bin/err.cgi?n=166
+Libourel 1999 - http://earthref.org/cgi-bin/err.cgi?n=172
+Lindstrom 1983 - http://earthref.org/cgi-bin/err.cgi?n=174
+Luhr & Carmichael 1980 - http://earthref.org/cgi-bin/err.cgi?n=181
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
+Mahood & Stimac 1990 - http://earthref.org/cgi-bin/err.cgi?n=187
+Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190
+McKay & Weill 1976 - http://earthref.org/cgi-bin/err.cgi?n=197
+McKay & Weill 1977 - http://earthref.org/cgi-bin/err.cgi?n=198
+McKay 1986 - http://earthref.org/cgi-bin/err.cgi?n=195
+McKay et al. 1986 - http://earthref.org/cgi-bin/err.cgi?n=199
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
+Michael 1988 - http://earthref.org/cgi-bin/err.cgi?n=202
+Mysen & Virgo 1980 - http://earthref.org/cgi-bin/err.cgi?n=207
+Mysen 1976 - http://earthref.org/cgi-bin/err.cgi?n=204
+Mysen 1978 - http://earthref.org/cgi-bin/err.cgi?n=205
+Mysen 1979 - http://earthref.org/cgi-bin/err.cgi?n=206
+Nabelek 1980 - http://earthref.org/cgi-bin/err.cgi?n=208
+Nielsen 1988 - http://earthref.org/cgi-bin/err.cgi?n=222
+Nielsen et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=223
+Nikogosian & Sobolev 1997 - http://earthref.org/cgi-bin/err.cgi?n=224
+Ohtani et al. 1989 - http://earthref.org/cgi-bin/err.cgi?n=226
+Paster et al. 1974 - http://earthref.org/cgi-bin/err.cgi?n=230
+Pedersen 1979 - http://earthref.org/cgi-bin/err.cgi?n=231
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
+Ringwood 1970 - http://earthref.org/cgi-bin/err.cgi?n=238
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
+Seifert et al. 1988 - http://earthref.org/cgi-bin/err.cgi?n=245
+Shimizu et al. 1982 - http://earthref.org/cgi-bin/err.cgi?n=251
+Takahashi 1978 - http://earthref.org/cgi-bin/err.cgi?n=272
+Tronnes et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=274
+Ulmer 1989 - http://earthref.org/cgi-bin/err.cgi?n=275
+Villemant 1988 - http://earthref.org/cgi-bin/err.cgi?n=278
+Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277
+Watson 1977 - http://earthref.org/cgi-bin/err.cgi?n=280
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 29 January 2013 12:10:17 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=olivine&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):  olivine (Mineral)
+Rock Type: Any Rock Type
+Mineral: Any Mineral
+Element Family: Any Element Family
+Reference: Adam & Green 2006
+Sort by: Reference
+
