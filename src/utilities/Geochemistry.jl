@@ -1071,7 +1071,7 @@
     Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String;
-        index::Integer=1, include_fluid="y", clean_units::Bool=true)
+        index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
