@@ -797,6 +797,26 @@
     end
     export findclosestabove
 
+    """
+    ```julia
+    findnth(t::AbstractArray{Bool}, n::Integer)
+    ```
+    Return the index of the `n`th true value of `t`, else length(`t`)
+    """
+    function findnth(t::AbstractArray{Bool}, n::Integer)
+        N = 0
+        for i=1:length(t)
+            if t[i]
+                N += 1
+            end
+            if N == n
+                return i
+            end
+        end
+        return length(t)
+    end
+
+
 ## --- Drawing a pseudorandom array from a numerically specified distribution
 
     # Draw random numbers from a distribution specified by a vector of points
