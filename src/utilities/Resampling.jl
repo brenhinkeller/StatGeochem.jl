@@ -3,17 +3,17 @@
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
     function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.36787944,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
         # Resample
         i = 1
-        pm = Progress(nrows, 1, "Resampling: ")
+        # pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
-            # Update progress
-            update!(pm, i)
+            # # Update progress
+            # update!(pm, i)
 
             # If we have more than one sample
             if size(data,1) > 1
@@ -46,8 +46,8 @@
             i += size(sdata,1)
         end
 
-        # Complete progress meter
-        update!(pm, nrows)
+        # # Complete progress meter
+        # update!(pm, nrows)
 
         return resampled
     end
@@ -81,10 +81,10 @@
 
         # Resample
         i = 1
-        pm = Progress(nrows, 1, "Resampling: ")
+        # pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
-            # Update progress
-            update!(pm, i)
+            # # Update progress
+            # update!(pm, i)
 
             # If we have more than one sample
             if size(data,1) > 1
@@ -117,8 +117,8 @@
             i += size(sdata,1)
         end
 
-        # Complete progress meter
-        update!(pm, nrows)
+        # # Complete progress meter
+        # update!(pm, nrows)
 
         return resampled
     end
@@ -391,37 +391,72 @@
 
 ## --- Bin a dataset by a given independent variable
 
-    function bincounts(x, y, min::Number, max::Number, nbins::Integer)
-        # Tally the number of samples (either resampled or corrected/original) that fall into each bin
-        binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
-        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
+    """
+    ```julia
+    (bincenters, N) = bincounts(x::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    ```
 
-        N = Array{Int64}(undef,nbins)
-        for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
-            N[i] = count(t)
+    Tally the number of samples that fall into each of `nbins` equally spaced
+    bins between `xmin` and `xmax`, aligned with bin edges as
+    `xmin:(xmax-xmin)/nbins:xmax`
+    """
+    function bincounts(x::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        # Tally the number of samples (either resampled or corrected/original) that fall into each bin
+        binwidth = (xmax-xmin)/nbins
+        bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
+
+        # Calculate index from x value
+        scalefactor = nbins / (xmax - xmin)
+        index = (x .- xmin) .* scalefactor
+
+        # Add up the results
+        N = fill(0,nbins)
+        @inbounds for i in index
+            if 0 < i < nbins
+                N[ceil(Int, i)] += 1
+            end
         end
-        return (bincenters, N)
+        return bincenters, N
     end
     export bincounts
 
-    function binmeans(x, y, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
-        binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
-        bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
+    # The nanmean of y binned by x, returning bincenters, means, and standard error of the mean
+    function binmeans(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
+        binwidth = (xmax-xmin)/nbins
+        bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
 
-        means = Array{Float64}(undef,nbins)
-        errors = Array{Float64}(undef,nbins)
-        for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<binedges[i+1]) .& (.~isnan.(y))
-            means[i] = mean(y[t])
-            errors[i] = std(y[t]) * sqrt(resamplingratio) / sqrt(count(t))
+        # Calculate index from x value
+        scalefactor = nbins / (xmax - xmin)
+        index_float = (x .- xmin) .* scalefactor
+
+        # Calculate the nanmeans and nansems
+        N = fill(0,nbins)
+        mu = fill(0.0,nbins)
+        s2 = fill(0.0,nbins)
+        for i = 1:length(x)
+            if (0 < index_float[i] < nbins) && !isnan(y[i])
+                index = ceil(Int, index_float[i])
+                N[index] += 1
+                delta = y[i] - mu[index]
+                mu[index] += delta / N[index]
+                s2[index] += delta * (y[i] - mu[index])
+            end
         end
 
-        return (bincenters, means, errors)
+        # Calculate standard errors
+        se = Array{Float64}(undef, nbins)
+        for i=1:nbins
+            if N[i] > 0
+                s2[i] /= N[i] - 1 # Variance
+                se[i] = sqrt(s2[i] * resamplingratio / N[i])
+            else
+                mu[i] = NaN
+                se[i] = NaN
+            end
+        end
+        return bincenters, mu, se
     end
-    function binmeans(x, y, min::Number, max::Number, nbins::Integer, weight::AbstractArray{<:Number}; resamplingratio::Number=1)
+    function binmeans(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, min::Number, max::Number, nbins::Integer, weight::AbstractArray{<:Number}; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -435,12 +470,12 @@
             errors[i] = std(y[t], w, corrected=true) * sqrt(resamplingratio) / sqrt(count(t))
         end
 
-        return (bincenters, means, errors)
+        return bincenters, means, errors
     end
     export binmeans
 
-
-    function binmedians(x, y, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
+    # The nanmedian of y binned by x, retunring bincenters, medians, and equivalent standard error of the mean (1.4828 * median abolute deviation)
+    function binmedians(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -450,17 +485,16 @@
         for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
             medians[i] = median(y[t])
-            errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio) / sqrt(count(t))
+            errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio / count(t))
         end
 
-        return (bincenters, medians, errors)
+        return bincenters, medians, errors
     end
     export binmedians
 
 ## --- Bin bootstrap resampled data
 
     function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
-
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
 
@@ -468,17 +502,15 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins)
-            means[:,i] = m
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], min, max, nbins)
         end
 
         m = nanmean(means,dim=2)
         e = nanstd(means,dim=2)
 
-        return (c, m, e)
+        return c, m, e
     end
     function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
-
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
 
@@ -486,14 +518,13 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins, dbs[:,3])
-            means[:,i] = m
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], min, max, nbins)
         end
 
         m = nanmean(means,dim=2)
         e = nanstd(means,dim=2)
 
-        return (c, m, e)
+        return c, m, e
     end
     export bin_bsr
 
@@ -506,15 +537,14 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins)
-            means[:,i] = m
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], min, max, nbins)
         end
 
         m = nanmean(means,dim=2)
         el = m .- pctile(means,2.5,dim=2)
         eu = pctile(means,97.5,dim=2) .- m
 
-        return (c, m, el, eu)
+        return c, m, el, eu
     end
     function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
 
@@ -525,15 +555,14 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2], min, max, nbins, dbs[:,3])
-            means[:,i] = m
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], min, max, nbins)
         end
 
         m = nanmean(means,dim=2)
         el = m .- pctile(means,2.5,dim=2)
         eu = pctile(means,97.5,dim=2) .- m
 
-        return (c, m, el, eu)
+        return c, m, el, eu
     end
     export bin_bsr_means
 
@@ -546,15 +575,14 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmedians(dbs[:,1], dbs[:,2], min, max, nbins)
-            medians[:,i] = m
+            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2], min, max, nbins)
         end
 
         m = nanmedian(medians,dim=2)
         el = m .- pctile(medians,2.5,dim=2)
         eu = pctile(medians,97.5,dim=2) .- m
 
-        return (c, m, el, eu)
+        return c, m, el, eu
     end
     export bin_bsr_medians
 
@@ -570,7 +598,7 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins)
+            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
@@ -578,9 +606,8 @@
         el = m .- pctile(means,2.5,dim=2)
         eu = pctile(means,97.5,dim=2) .- m
 
-        return (c, m, el, eu)
+        return c, m, el, eu
     end
-
     function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
         min::Number, max::Number, nbins::Integer,
         x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
@@ -593,7 +620,32 @@
         c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = binmeans(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins, dbs[:,4])
+            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), dbs[:,4], min, max, nbins)
+            means[:,i] = m ./ (1 .- m)
+        end
+
+        m = nanmean(means,dim=2)
+        el = m .- pctile(means,2.5,dim=2)
+        eu = pctile(means,97.5,dim=2) .- m
+
+        return c, m, el, eu
+    end
+    export bin_bsr_ratios
+
+
+    function bin_bsr_ratio_medians(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+        min::Number, max::Number, nbins::Integer,
+        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
+        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+
+        data = hcat(x, num, denom)
+        sigma = hcat(x_sigma, num_sigma, denom_sigma)
+
+        means = Array{Float64}(undef,nbins,nresamples)
+        c = Array{Float64}(undef,nbins)
+        for i=1:nresamples
+            dbs = bsresample(data,sigma,length(x),p)
+            (c,m,s) = nanmedian(dbs[:,1], dbs[:,2] ./ dbs[:,3], min, max, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
@@ -603,7 +655,7 @@
 
         return (c, m, el, eu)
     end
-    export bin_bsr_ratios
+    export bin_bsr_ratio_medians
 
 
 ## --- Quick Monte Carlo binning/interpolation functions
