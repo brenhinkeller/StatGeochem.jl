@@ -1,82 +1,109 @@
 ## --- Weighted mean of an array
 
-    # Calculate a weigted mean, including MSWD, but without MSWD correction to uncertainty
-    function awmean(x, sigma)
+    """
+    ```julia
+    (wx, wσ, mswd) = awmean(x, σ)
+    ```
+    Weighted mean, absent the MSWD correction to uncertainty.
+    """
+    function awmean(x, σ)
         n = length(x)
 
         if n == 1
             wx = x[1]
             mswd = NaN
-            wsigma = sigma[1]
+            wσ = σ[1]
         else
-            s1 = 0.0; s2 = 0.0; s3 = 0.0;
+            sum_of_values = sum_of_weights = χ2 = 0.0
             for i=1:n
-                s1 += x[i] / (sigma[i]*sigma[i])
-                s2 += 1 / (sigma[i]*sigma[i])
+                sum_of_values += x[i] / (σ[i]*σ[i])
+                sum_of_weights += 1 / (σ[i]*σ[i])
             end
-            wx = s1/s2
+            wx = sum_of_values / sum_of_weights
 
             for i=1:n
-                s3 += (x[i] - wx) * (x[i] - wx) / (sigma[i]*sigma[i])
+                χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
             end
-            mswd = s3 / (n-1)
-            wsigma = sqrt(1.0/s2)
+            mswd = χ2 / (n-1)
+            wσ = sqrt(1.0 / sum_of_weights)
         end
-        return wx, wsigma, mswd
+        return wx, wσ, mswd
     end
     export awmean
 
-    function gwmean(x, sigma)
-        # Geochronologist's weigted mean, including MSWD, with MSWD correction to uncertainty.
-
+    """
+    ```julia
+    (wx, wσ, mswd) = gwmean(x, σ)
+    ```
+    Geochronologist's weighted mean, with "MSWD correction" to uncertainty,
+    i.e., wσ is increased by a factor of sqrt(mswd)
+    """
+    function gwmean(x, σ)
         n = length(x)
 
         if n == 1
             wx = x[1]
             mswd = NaN
-            wsigma = sigma[1]
+            wσ = σ[1]
         else
-            s1 = 0.0; s2 = 0.0; s3 = 0.0;
+            sum_of_values = sum_of_weights = χ2 = 0.0
             for i=1:n
-                s1 += x[i] / (sigma[i]*sigma[i])
-                s2 += 1 / (sigma[i]*sigma[i])
+                sum_of_values += x[i] / (σ[i]*σ[i])
+                sum_of_weights += 1 / (σ[i]*σ[i])
             end
-            wx = s1/s2
+            wx = sum_of_values / sum_of_weights
 
             for i=1:n
-                s3 += (x[i] - wx) * (x[i] - wx) / (sigma[i]*sigma[i])
+                χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
             end
-            mswd = s3 / (n-1)
-            wsigma = sqrt(mswd/s2)
+            mswd = χ2 / (n-1)
+            wσ = sqrt(mswd / sum_of_weights)
         end
-        return wx, wsigma, mswd
+        return wx, wσ, mswd
     end
     export gwmean
 
-    # Calculate MSWD of a dataset
-    function MSWD(x, sigma)
 
+    """
+    ```julia
+    MSWD(x, σ)
+    ```
+
+    Return the Mean Square of Weighted Deviates (AKA the reduced chi-squared
+    statistic) of a dataset with values `x` and one-sigma uncertainties `σ`
+    """
+    function MSWD(x, σ)
+        sum_of_values = sum_of_weights = χ2 = 0.0
         n = length(x)
 
-        s1 = 0.0; s2 = 0.0; s3 = 0.0;
         for i=1:n
-            s1 += x[i] / (sigma[i]*sigma[i])
-            s2 += 1 / (sigma[i]*sigma[i])
+            w = 1 / (σ[i]*σ[i])
+            sum_of_values += w * x[i]
+            sum_of_weights += w
         end
-        wx = s1/s2
+        wx = sum_of_values / sum_of_weights
 
         for i=1:n
-            s3 += (x[i] - wx) * (x[i] - wx) / (sigma[i]*sigma[i])
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
         end
 
-        return s3 / (n-1)
+        return χ2 / (n-1)
     end
     export MSWD
 
 ## --- Percentile statistics, excluding NaNs
 
-    # Percentile of an array along a specified dimension, ignoring NaNs
-    function pctile(A,p; dim=0)
+    """
+    ```julia
+    pctile(A, p; dim=0)
+    ```
+
+    Find the `p`th percentile of an indexable collection `A`, ignoring NaNs,
+    optionally along a dimension specified by `dim`.
+
+    A valid percentile value must satisfy 0 <= `p` <= 100.
+    """
+    function pctile(A, p; dim=0)
         s = size(A)
         if dim == 2
             result = Array{eltype(A)}(undef,s[1])
@@ -98,15 +125,34 @@
     end
     export pctile
 
-    # Return a boolean mask for samples within the central nth percentile, optionally along a specified dimension
-    function inpctile(A,p; dim=0)
+    """
+    ```julia
+    inpctile(A, p::Number; dim=0)
+    ```
+
+    Return a boolean array that identifies which values of the iterable
+    collection `A` fall within the central `p`th percentile, optionally along a
+    dimension specified by `dim`.
+
+    A valid percentile value must satisfy 0 <= `p` <= 100.
+    """
+    function inpctile(A, p::Number; dim=0)
         offset = (100 - p) / 2
         return (A .> pctile(A, offset, dim=dim)) .& (A .< pctile(A, 100-offset, dim=dim))
     end
     export inpctile
 
+
 ## --- Summary statistics of arrays with NaNs
 
+    """
+    ```julia
+    nansum(A; dim=0)
+    ```
+
+    Calculate the sum of an indexable collection `A`, ignoring NaNs, optionally
+    along a dimension specified by `dim`.
+    """
     function nansum(A; dim=0)
         s = size(A)
         if dim == 2
@@ -130,7 +176,14 @@
     export nansum
 
 
-    # Smallest non-NaN value of an array
+    """
+    ```julia
+    nanminimum(A; dim=0)
+    ```
+
+    Find the smallest non-NaN value of an indexable collection `A`, optionally
+    along a dimension specified by `dim`.
+    """
     function nanminimum(A; dim=0)
         s = size(A)
         if dim == 2
@@ -154,7 +207,14 @@
     export nanminimum
 
 
-    # Largest non-NaN value of an array
+    """
+    ```julia
+    nanmaximum(A; dim=0)
+    ```
+
+    Find the largest non-NaN value of an indexable collection `A`, optionally
+    along a dimension specified by `dim`.
+    """
     function nanmaximum(A; dim=0)
         s = size(A)
         if dim == 2
@@ -178,7 +238,13 @@
     export nanmaximum
 
 
-    # Extrema of an array, ignoring NaNs
+    """
+    ```julia
+    nanextrema(A)
+    ```
+
+    Find the extrema (max & min) of an indexable collection `A`, ignoring NaNs.
+    """
     function nanextrema(A)
         t = .~ isnan.(A)
         return extrema(A[t])
@@ -186,7 +252,14 @@
     export nanextrema
 
 
-    # Range (max-min) of an array, ignoring NaNs
+    """
+    ```julia
+    nanrange(A; dim=0)
+    ```
+
+    Calculate the range (max-min) of an indexable collection `A`, ignoring NaNs,
+    optionally along a dimension specified by `dim`.
+    """
     function nanrange(A; dim=0)
         s = size(A)
         if dim == 2
@@ -342,7 +415,14 @@
     export nanmean
 
 
-    # Standard deviation, ignoring NaNs
+    """
+    ```julia
+    nanstd(A; dim=0)
+    ```
+
+    Calculate the standard deviation, ignoring NaNs, of an indexable collection `A`,
+    optionally along a dimension specified by `dim`.
+    """
     function nanstd(A; dim=0)
         s = size(A)
         if dim == 2
@@ -363,6 +443,14 @@
         end
         return result
     end
+    """
+    ```julia
+    nanstd(A, W; dim=0)
+    ```
+
+    Calculate the weighted standard deviation, ignoring NaNs, of an indexable
+    collection `A` with weights `W`, optionally along a dimension specified by `dim`.
+    """
     function nanstd(A, W; dim=0)
         s = size(A)
         if dim == 2
@@ -437,8 +525,15 @@
     export nanmedian
 
 
-    # Median absolute deviation from the median, ignoring NaNs
-    # For a Normal distribution, sigma = 1.4826 * MAD
+    """
+    ```julia
+    nanmad(A; dim=0)
+    ```
+
+    Median absolute deviation from the median, ignoring NaNs, of an indexable
+    collection `A`, optionally along a dimension specified by `dim`.
+    Note that for a Normal distribution, sigma = 1.4826 * MAD
+    """
     function nanmad(A; dim=0)
         s = size(A)
         if dim == 2
@@ -462,8 +557,15 @@
     export nanmad
 
 
-    # Mean (average) absolute deviation from the mean, ignoring NaNs
-    # For a Normal distribution, sigma = 1.253 * AAD
+    """
+    ```julia
+    nanaad(A; dim=0)
+    ```
+
+    Mean (average) absolute deviation from the mean, ignoring NaNs, of an
+    indexable collection `A`, optionally along a dimension specified by `dim`.
+    Note that for a Normal distribution, sigma = 1.253 * AAD
+    """
     function nanaad(A; dim=0)
         s = size(A)
         if dim == 2
