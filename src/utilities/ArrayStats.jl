@@ -501,7 +501,7 @@
         medians = Array{Float64}(undef,nbins)
         for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
-            medians[i] = median(y[t])
+            medians[i] = any(t) ? median(y[t]) : NaN
         end
 
         return medians
