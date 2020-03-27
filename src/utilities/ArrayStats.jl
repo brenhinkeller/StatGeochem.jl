@@ -68,7 +68,6 @@
     ```julia
     MSWD(x, σ)
     ```
-
     Return the Mean Square of Weighted Deviates (AKA the reduced chi-squared
     statistic) of a dataset with values `x` and one-sigma uncertainties `σ`
     """
@@ -97,7 +96,6 @@
     ```julia
     pctile(A, p; dim=0)
     ```
-
     Find the `p`th percentile of an indexable collection `A`, ignoring NaNs,
     optionally along a dimension specified by `dim`.
 
@@ -129,7 +127,6 @@
     ```julia
     inpctile(A, p::Number; dim=0)
     ```
-
     Return a boolean array that identifies which values of the iterable
     collection `A` fall within the central `p`th percentile, optionally along a
     dimension specified by `dim`.
@@ -149,7 +146,6 @@
     ```julia
     nansum(A; dim=0)
     ```
-
     Calculate the sum of an indexable collection `A`, ignoring NaNs, optionally
     along a dimension specified by `dim`.
     """
@@ -180,7 +176,6 @@
     ```julia
     nanminimum(A; dim=0)
     ```
-
     Find the smallest non-NaN value of an indexable collection `A`, optionally
     along a dimension specified by `dim`.
     """
@@ -211,7 +206,6 @@
     ```julia
     nanmaximum(A; dim=0)
     ```
-
     Find the largest non-NaN value of an indexable collection `A`, optionally
     along a dimension specified by `dim`.
     """
@@ -242,7 +236,6 @@
     ```julia
     nanextrema(A)
     ```
-
     Find the extrema (max & min) of an indexable collection `A`, ignoring NaNs.
     """
     function nanextrema(A)
@@ -256,7 +249,6 @@
     ```julia
     nanrange(A; dim=0)
     ```
-
     Calculate the range (max-min) of an indexable collection `A`, ignoring NaNs,
     optionally along a dimension specified by `dim`.
     """
@@ -302,7 +294,6 @@
     ```julia
     nanmean(A; dim=0)
     ```
-
     Calculate the mean, ignoring NaNs, of an indexable collection `A`, optionally
     along a dimension specified by `dim`.
     """
@@ -330,7 +321,6 @@
     ```julia
     nanmean(A, W; dim=0)
     ```
-
     Calculate the weighted mean, ignoring NaNs, of an indexable collection `A`
     with weights `W`, optionally along a dimension specified by `dim`.
     """
@@ -359,7 +349,6 @@
     nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number},
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
-
     Calculate the mean, ignoring NaNs, of y values that fall into each of
     `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
@@ -388,7 +377,6 @@
     nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, w::AbstractArray{<:Number},
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
-
     Calculate the weighted mean, ignoring NaNs, of y values that fall into each of
     `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
@@ -419,7 +407,6 @@
     ```julia
     nanstd(A; dim=0)
     ```
-
     Calculate the standard deviation, ignoring NaNs, of an indexable collection `A`,
     optionally along a dimension specified by `dim`.
     """
@@ -447,7 +434,6 @@
     ```julia
     nanstd(A, W; dim=0)
     ```
-
     Calculate the weighted standard deviation, ignoring NaNs, of an indexable
     collection `A` with weights `W`, optionally along a dimension specified by `dim`.
     """
@@ -478,7 +464,6 @@
     ```julia
     nanmedian(A; dim=0)
     ```
-
     Calculate the median, ignoring NaNs, of an indexable collection `A`,
     optionally along a dimension specified by `dim`.
     """
@@ -507,7 +492,6 @@
     nanmedian(x::AbstractArray{<:Number}, y::AbstractArray{<:Number},
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
-
     Calculate the median, ignoring NaNs, of y values that fall into each of
     `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
@@ -529,7 +513,6 @@
     ```julia
     nanmad(A; dim=0)
     ```
-
     Median absolute deviation from the median, ignoring NaNs, of an indexable
     collection `A`, optionally along a dimension specified by `dim`.
     Note that for a Normal distribution, sigma = 1.4826 * MAD
@@ -561,7 +544,6 @@
     ```julia
     nanaad(A; dim=0)
     ```
-
     Mean (average) absolute deviation from the mean, ignoring NaNs, of an
     indexable collection `A`, optionally along a dimension specified by `dim`.
     Note that for a Normal distribution, sigma = 1.253 * AAD
@@ -606,8 +588,13 @@
 
 ## --- Interpolating arrays
 
-    # Return a vector of bin centers if given a vector of bin edges
-    function cntr(edges)
+    """
+    ```julia
+    cntr(edges::AbstractArray{<:Number})
+    ```
+    Given an array of bin edges, return a corresponding vector of bin centers
+    """
+    function cntr(edges::AbstractArray{<:Number})
         centers = (edges[1:end-1] + edges[2:end]) ./ 2
         return centers
     end
@@ -661,9 +648,13 @@
     end
     export linterp1s
 
-
-    function movmean(x, n::Number)
-        # Simple moving average
+    """
+    ```julia
+    movmean(x::AbstractArray, n::Number)
+    ```
+    Simple moving average of `x` in 1 or 2 dimensions, spanning `n` bins (or n*n in 2D)
+    """
+    function movmean(x::AbstractArray, n::Number)
         halfspan = ceil((n-1)/2)
         m = Array{Float64}(undef,size(x))
 
@@ -691,15 +682,20 @@
 
 ## --- Searching arrays
 
-    # Find the index of the first value in 'target' (if any) that matches
-    # a given value in 'source' for each value in 'source' (else 0)
+    """
+    ```julia
+    findmatches(source, target)
+    ```
+    Return the index of the first value in `target` (if any) that is equal to
+    a given value in `source` for each value in `source`; else 0.
+    """
     function findmatches(source, target)
         # Allocate output array, initializing with zeros
         index = fill(0, size(source))
         # Allocate match-test array
         t = Array{Bool}(undef,length(target))
         # Loop through source and find first match for each (if any)
-        for i = 1:length(index)
+        @inbounds for i = 1:length(index)
             for j = 1:length(target)
                 t[j] = isequal(source[i], target[j])
             end
@@ -711,15 +707,21 @@
     end
     export findmatches
 
-    # Return the index of the closest value in 'target' for each value in 'source'
-    # If muliple values are equally close, the first one is used
+    """
+    ```julia
+    findclosest(source, target)
+    ```
+    Return the index of the numerically closest value in the indexable collection
+    `target` for each value in `source`.
+    If muliple values are equally close, the first one is used
+    """
     function findclosest(source, target)
         # Allocate index and difference arrays
         index = Array{Int64}(undef, size(source))
         diff_type = promote_type(eltype(source), eltype(target))
         diff = Array{diff_type}(undef, length(target))
         # Find closest (numerical) match in target for each value in source
-        for i = 1:length(source)
+        @inbounds for i = 1:length(source)
             for j = 1:length(diff)
                 diff[j] = abs(target[j] - source[i])
             end
@@ -729,15 +731,21 @@
     end
     export findclosest
 
-    # Return the index of the closest value of array 'target' below (less than)
-    # each value in 'source'. Returns an index of 0 no such values exist
+    """
+    ```julia
+    findclosestbelow(source, target)
+    ```
+    Return the index of the nearest value of the indexable collection `target`
+    that is less than (i.e., "below") each value in `source`.
+    If no such target values exist in `target`, returns an index of 0.
+    """
     function findclosestbelow(source, target)
         # Allocate output array
         index = Array{Int64}(undef, size(source))
         diff_type = promote_type(eltype(source), eltype(target))
         diff = Array{diff_type}(undef, length(target))
         t = Array{Bool}(undef,length(target))
-        for i = 1:length(source)
+        @inbounds for i = 1:length(source)
             j = 0
             closestbelow = 0
             while j < length(diff)
@@ -763,15 +771,21 @@
     end
     export findclosestbelow
 
-    # Return the index of the closest value of the vector 'target' above (greater
-    # than) each value in 'source'. Returns an index of 0 if no values exist
+    """
+    ```julia
+    findclosestabove(source, target)
+    ```
+    Return the index of the nearest value of the indexable collection `target`
+    that is greater than (i.e., "above") each value in `source`.
+    If no such values exist in `target`, returns an index of 0.
+    """
     function findclosestabove(source, target)
         # Allocate output array
         index = Array{Int64}(undef, size(source))
         diff_type = promote_type(eltype(source), eltype(target))
         diff = Array{diff_type}(undef, length(target))
         t = Array{Bool}(undef,length(target))
-        for i = 1:length(source)
+        @inbounds for i = 1:length(source)
             j = 0
             closestabove = 0
             while j < length(diff)
@@ -805,7 +819,7 @@
     """
     function findnth(t::AbstractArray{Bool}, n::Integer)
         N = 0
-        for i=1:length(t)
+        @inbounds for i=1:length(t)
             if t[i]
                 N += 1
             end
@@ -815,19 +829,25 @@
         end
         return length(t)
     end
+    export findnth
 
 
 ## --- Drawing a pseudorandom array from a numerically specified distribution
 
-    # Draw random numbers from a distribution specified by a vector of points
-    # defining the PDF curve
-    function draw_from_distribution(dist::Array{<:AbstractFloat}, n::Integer)
+    """
+    ```julia
+    x = draw_from_distribution(dist::AbstractArray{<:AbstractFloat}, n::Integer)
+    ```
+    Draw `n` random floating point numbers from a continuous probability distribution
+    specified by a vector `dist` defining the PDF curve thereof.
+    """
+    function draw_from_distribution(dist::AbstractArray{<:AbstractFloat}, n::Integer)
         # Draw n random floating-point numbers from the distribution 'dist'
         x = Array{eltype(dist)}(undef, n)
         dist_ymax = maximum(dist)
         dist_xmax = length(dist) - 1.0
 
-        for i = 1:n
+        @inbounds for i = 1:n
             while true
                 # Pick random x value
                 rx = rand(Float64) * dist_xmax
@@ -846,14 +866,20 @@
     end
     export draw_from_distribution
 
-    # Fill an existing variable with random numbers from a distribution specified
-    # by a vector of points defining the PDF curve
-    function fill_from_distribution(dist::Array{<:AbstractFloat}, x::Array{<:AbstractFloat})
+    """
+    ```julia
+    draw_from_distribution!(dist::AbstractArray{<:AbstractFloat}, x::Array{<:AbstractFloat})
+    ```
+    Fill an existing variable `x` with random floating point numbers drawn from
+    a continuous probability distribution specified by a vector `dist`
+    defining the PDF curve thereof.
+    """
+    function draw_from_distribution!(dist::AbstractArray{<:AbstractFloat}, x::Array{<:AbstractFloat})
         # Fill the array x with random numbers from the distribution 'dist'
         dist_ymax = maximum(dist)
         dist_xmax = length(dist) - 1.0
 
-        for i=1:length(x)
+        @inbounds for i=1:length(x)
             while true
                 # Pick random x value
                 rx = rand(Float64) * dist_xmax
