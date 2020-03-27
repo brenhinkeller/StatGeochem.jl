@@ -3,18 +3,14 @@
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
     function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.36787944,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
 
         # Resample
         i = 1
-        # pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
-            # # Update progress
-            # update!(pm, i)
-
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
@@ -46,12 +42,8 @@
             i += size(sdata,1)
         end
 
-        # # Complete progress meter
-        # update!(pm, nrows)
-
         return resampled
     end
-
     # Second method for bsresample that takes a dictionary as input. Yay multiple dispatch!
     function bsresample(in::Dict, nrows::Integer, elements=in["elements"],
         p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
@@ -81,11 +73,7 @@
 
         # Resample
         i = 1
-        # pm = Progress(nrows, 1, "Resampling: ")
         while i <= nrows
-            # # Update progress
-            # update!(pm, i)
-
             # If we have more than one sample
             if size(data,1) > 1
                 # Select weighted sample of data
@@ -117,12 +105,8 @@
             i += size(sdata,1)
         end
 
-        # # Complete progress meter
-        # update!(pm, nrows)
-
         return resampled
     end
-
     # Second method for bsresample_unif that takes a dictionary as input
     function bsresample_unif(in::Dict, nrows::Integer, elements=in["elements"],
         p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
@@ -494,139 +478,153 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], min, max, nbins)
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
 
-        m = nanmean(means,dim=2)
-        e = nanstd(means,dim=2)
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        e = nanstd(means,dim=2) # Standard deviation of means (sem)
 
         return c, m, e
     end
-    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], min, max, nbins)
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], xmin, xmax, nbins)
         end
 
-        m = nanmean(means,dim=2)
-        e = nanstd(means,dim=2)
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        e = nanstd(means,dim=2) # Standard deviation of means (sem)
 
         return c, m, e
     end
     export bin_bsr
 
-    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], min, max, nbins)
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
 
-        m = nanmean(means,dim=2)
-        el = m .- pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
-    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], min, max, nbins)
+            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], xmin, xmax, nbins)
         end
 
-        m = nanmean(means,dim=2)
-        el = m .- pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
     export bin_bsr_means
 
-    function bin_bsr_medians(x::Vector{<:Number}, y::Vector{<:Number}, min::Number, max::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_medians(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         medians = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2], min, max, nbins)
+            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
 
-        m = nanmedian(medians,dim=2)
-        el = m .- pctile(medians,2.5,dim=2)
-        eu = pctile(medians,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmedian(medians,dim=2) # Median-of-medians
+        el = m .- pctile(medians,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(medians,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
     export bin_bsr_medians
 
     function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
-        min::Number, max::Number, nbins::Integer,
+        xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
         nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), min, max, nbins)
+            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), xmin, xmax, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
-        m = nanmean(means,dim=2)
-        el = m .- pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
     function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
-        min::Number, max::Number, nbins::Integer,
+        xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
         nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
+        binwidth = (xmax-xmin)/nbins
 
+        # Resample
         means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), dbs[:,4], min, max, nbins)
+            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), dbs[:,4], xmin, xmax, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
-        m = nanmean(means,dim=2)
-        el = m .- pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
@@ -634,24 +632,25 @@
 
 
     function bin_bsr_ratio_medians(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
-        min::Number, max::Number, nbins::Integer,
+        xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
         nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
+        binwidth = (xmax-xmin)/nbins
 
-        means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
+        # Resample
+        medians = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
             dbs = bsresample(data,sigma,length(x),p)
-            (c,m,s) = nanmedian(dbs[:,1], dbs[:,2] ./ dbs[:,3], min, max, nbins)
-            means[:,i] = m ./ (1 .- m)
+            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2] ./ dbs[:,3], xmin, xmax, nbins)
         end
 
-        m = nanmean(means,dim=2)
-        el = m .- pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) .- m
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmedian(medians,dim=2) # Median-of-medians
+        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return (c, m, el, eu)
     end
@@ -696,6 +695,7 @@
         return (c, m)
     end
     export mcfit
+
 ## --- Downsample an image / array
 
     function downsample(matrix::Array, factor::Integer, jfactor=factor::Integer)
@@ -729,7 +729,7 @@
 
         k = Array{Float64}(undef,length(lat))
         @showprogress 1 "Calculating weights: " for i=1:length(lat)
-            if nodata[i] # If there is no data, set k=inf for weight=0
+            if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
                 k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)./spatialscale).^lp .+ 1.0) .+ 1.0./((abs.(age[i] .- age)./agescale).^lp .+ 1.0) )
@@ -750,7 +750,7 @@
 
         k = Array{Float64}(undef,length(lat))
         @showprogress 1 "Calculating weights: " for i=1:length(lat)
-            if nodata[i] # If there is no data, set k=inf for weight=0
+            if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
                 k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)/spatialscale).^lp .+ 1.0) )
@@ -761,7 +761,15 @@
     export invweight_location
 
     """
-    Find inverse weight for any one array with some scale
+    ```julia
+    k = invweight(nums::Array{<:Number}, scale::Number; lp=2)
+    ```
+
+    Find the inverse weights for a single array `nums` for a given `scale`, and
+    exponent `lp` (default lp = 2).
+
+    Returns an array k where k[i] is the "inverse weight" for element i of the
+    input array.
     """
     function invweight(nums::Array{<:Number}, scale::Number; lp=2)
         # Check if there is lat, lon, and age data
@@ -769,7 +777,7 @@
 
         k = Array{Float64}(undef,length(nums))
         @showprogress 1 "Calculating weights: " for i=1:length(nums)
-            if nodata[i] # If there is no data, set k=inf for weight=0
+            if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
                 k[i] = nansum(1.0 ./ ( (abs.(nums[i] .- nums)./scale).^lp .+ 1.0) )
