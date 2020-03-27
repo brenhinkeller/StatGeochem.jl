@@ -1,5 +1,101 @@
 ## --- Bootstrap resampling
 
+    """
+    ```julia
+    bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    ```
+
+    Fast boostrap resampling of a (sample-per-row / element-per-column) oriented
+    dataset `data` with uncertainties `sigma` and variable resampling probabilities `p`
+    """
+    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+        # Allocate output array
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
+        resampled = Array{Float64}(undef,nrows,ncolumns) # Allocate output array
+
+        # Resample
+        n = 1
+        accepted = Array{Int}(undef, nrows_initial)
+        while n <= nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(Float64) < p[i]
+                    nrows_accepted += 1
+                    accepted[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n + 1)
+
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                k = n
+                # Optimized inner loop
+                @inbounds @simd for i = 1:nrows_new
+                    a = accepted[i]
+                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
+                    k += 1
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    """
+    ```julia
+    bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    ```
+
+    Fast boostrap resampling of a (sample-per-row / element-per-column) oriented
+    dataset `data` with uncertainties `sigma` and uniform resampling probability `p`
+    """
+    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number = min(0.36787944,nrows/size(data,1)))
+        # Allocate output array
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
+        resampled = Array{Float64}(undef,nrows,ncolumns) # Allocate output array
+
+        # Resample
+        n = 1
+        accepted = Array{Int}(undef, nrows_initial)
+        while n <= nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(Float64) < p
+                    nrows_accepted += 1
+                    accepted[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n + 1)
+
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                k = n
+                # Optimized inner loop
+                @inbounds @simd for i = 1:nrows_new
+                    a = accepted[i]
+                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
+                    k += 1
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    export bsr
+
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
     function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
@@ -480,14 +576,23 @@
 
     function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        sigma = hcat(x_sigma, zeros(size(y)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -500,12 +605,21 @@
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -519,14 +633,23 @@
     function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        sigma = hcat(x_sigma, zeros(size(y)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -541,12 +664,21 @@
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            means[:,i] = nanmean(dbs[:,1], dbs[:,2], dbs[:,3], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -561,14 +693,23 @@
     function bin_bsr_medians(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
 
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(x_sigma)))
+        sigma = hcat(x_sigma, zeros(size(y)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        medians = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        medians = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            medians[:,i] = nanmedian(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -588,12 +729,22 @@
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
+            m = nanmean(dbs[ns,1], dbs[ns,2] ./ (dbs[ns,2] .+ dbs[ns,3]), xmin, xmax, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
@@ -612,12 +763,22 @@
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        means = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            m = nanmean(dbs[:,1], dbs[:,2] ./ (dbs[:,2] .+ dbs[:,3]), dbs[:,4], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
+            m = nanmean(dbs[ns,1], dbs[ns,2] ./ (dbs[ns,2] .+ dbs[ns,3]), dbs[ns,4], xmin, xmax, nbins)
             means[:,i] = m ./ (1 .- m)
         end
 
@@ -639,12 +800,21 @@
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
         binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
 
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        medians = Array{Float64}(undef, nbins, nresamples)
         # Resample
-        medians = Array{Float64}(undef,nbins,nresamples)
         for i=1:nresamples
-            dbs = bsresample(data,sigma,length(x),p)
-            medians[:,i] = nanmedian(dbs[:,1], dbs[:,2] ./ dbs[:,3], xmin, xmax, nbins)
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            medians[:,i] = nanmedian(dbs[ns,1], dbs[ns,2] ./ dbs[ns,3], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
