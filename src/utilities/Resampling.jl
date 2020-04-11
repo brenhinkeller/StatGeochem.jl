@@ -819,8 +819,8 @@
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmedian(medians,dim=2) # Median-of-medians
-        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
-        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
+        el = m .- pctile(medians,2.5,dim=2) # Lower bound of central 95% CI
+        eu = pctile(medians,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return (c, m, el, eu)
     end
