@@ -34,6 +34,7 @@ module StatGeochem
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
+    using LoopVectorization
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 

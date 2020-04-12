@@ -7,6 +7,7 @@ SpecialFunctions
 ProgressMeter
 Interpolations
 IndirectArrays
+LoopVectorization
 Colors
 FileIO
 HDF5

@@ -888,47 +888,82 @@
 
 ## --- Spatiotemporal sample weighting
 
-    # Produce a weighting coefficient for each row of data corresponding
-    # to the input lat, lon, and age that is inversely proportional to the
-    # spatiotemporal data concentration
+    """
+    ```julia
+    k = invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number};
+        \tlp::Number=2, spatialscale::Number=1.8, agescale::Number=38.0)
+    ```
+
+    Find the inverse weights `k` (proportional to spatiotemporal sample density) for
+    a set of geological samples with specified latitude (`lat`), logitude (`lon`),
+    and `age` (of crystallization, deposition, etc.).
+    """
     function invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number};
         lp::Number=2, spatialscale::Number=1.8, agescale::Number=38.0)
 
         # Check if there is lat, lon, and age data
         nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
 
+        # Convert lat and lon to radians
+        latr = lat/180*pi
+        lonr = lon/180*pi
+        spatialscaler= spatialscale/180*pi
+
+        # Precalculate some sines and cosines
+        latsin = sin.(latr)
+        latcos = cos.(latr)
+
+        # Allocate and fill ks
         k = Array{Float64}(undef,length(lat))
         @showprogress 1 "Calculating weights: " for i=1:length(lat)
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)./spatialscale).^lp .+ 1.0) .+ 1.0./((abs.(age[i] .- age)./agescale).^lp .+ 1.0) )
+                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscaler)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
             end
         end
         return k
     end
     export invweight
 
-    # Produce a weighting coefficient for each row of data corresponding
-    # to the input lat, lon, and age that is inversely proportional to the
-    # spatial data concentration
+
+    """
+    ```julia
+    k = invweight_location(lat::Array{<:Number}, lon::Array{<:Number};
+        \tlp::Number=2, spatialscale::Number=1.8)
+    ```
+
+    Find the inverse weights `k` (proportional to spatial sample density) for
+    a set of geological samples with specified latitude (`lat`), and logitude (`lon`).
+    """
     function invweight_location(lat::Array{<:Number}, lon::Array{<:Number};
         lp::Number=2, spatialscale::Number=1.8)
 
-        # Check if there is lat, lon, and age data
+        # Check if there is lat, lon data
         nodata = isnan.(lat) .| isnan.(lon)
 
+        # Convert lat and lon to radians
+        latr = lat/180*pi
+        lonr = lon/180*pi
+        spatialscaler= spatialscale/180*pi
+
+        # Precalculate some sines and cosines
+        latsin = sin.(latr)
+        latcos = cos.(latr)
+
+        # Allocate and fill ks
         k = Array{Float64}(undef,length(lat))
         @showprogress 1 "Calculating weights: " for i=1:length(lat)
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( 1.0 ./ ( (arcdistance(lat[i],lon[i],lat,lon)/spatialscale).^lp .+ 1.0) )
+                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscaler)^lp + 1.0) )
             end
         end
         return k
     end
     export invweight_location
+
 
     """
     ```julia
@@ -942,7 +977,7 @@
     input array.
     """
     function invweight(nums::Array{<:Number}, scale::Number; lp=2)
-        # Check if there is lat, lon, and age data
+        # Check if there is data
         nodata = isnan.(nums)
 
         k = Array{Float64}(undef,length(nums))
@@ -950,16 +985,22 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum(1.0 ./ ( (abs.(nums[i] .- nums)./scale).^lp .+ 1.0) )
+                k[i] = nansum( @avx @. 1.0 / ( (abs(nums[i] - nums)/scale)^lp + 1.0) )
             end
         end
         return k
     end
     export invweight
 
-    # Produce a weighting coefficient for each row of data corresponding
-    # to the input age that is inversely proportional to the
-    # temporal data concentration
+
+    """
+    ```julia
+    k = invweight_age(age::Array{<:Number}; lp::Number=2, agescale::Number=38.0)
+    ```
+
+    Find the inverse weights `k` (proportional to temporal sample density) for
+    a set of geological samples with specified `age` (of crystallization, deposition, etc.).
+    """
     function invweight_age(age::Array{<:Number}; lp::Number=2, agescale::Number=38.0)
         return invweight(age, agescale, lp=lp)
     end
