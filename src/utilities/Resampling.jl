@@ -99,7 +99,7 @@
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
     function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -142,7 +142,7 @@
     end
     # Second method for bsresample that takes a dictionary as input. Yay multiple dispatch!
     function bsresample(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
 
         # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
@@ -162,7 +162,7 @@
 
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma
     function bsresample_unif(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -205,7 +205,7 @@
     end
     # Second method for bsresample_unif that takes a dictionary as input
     function bsresample_unif(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
 
         # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
@@ -226,7 +226,7 @@
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma, AND a gaussian component
     function bsresample_unif_norm(data::Array{<:Number},
         sigma_unif::Union{Number,Array{<:Number}}, sigma_norm::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -274,7 +274,7 @@
 
     # As bsresample, but also return an index of the rows included from data
     function bsresample_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -323,7 +323,7 @@
 
     # As bsresample_unif, but also return an index of the rows included from data
     function bsresample_unif_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -373,7 +373,7 @@
     # As bsresample, but with a uniform distribution stretching from age-sigma to age+sigma, AND a gaussian component
     function bsresample_unif_norm_index(data::Array{<:Number},
         sigma_unif::Union{Number,Array{<:Number}}, sigma_norm::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -428,7 +428,7 @@
     # Bootstrap resample (without uncertainty) a variable to size nrows.
     # Optionally provide weights in p
     function randsample(data::Array{<:Number}, nrows::Integer,
-        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/size(data,1)))
+        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -459,7 +459,7 @@
     end
     # Second method for randsample that takes a dictionary as input
     function randsample(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,Vector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
 
         data = unelementify(in, elements, floatout=true)
         sdata = randsample(data, nrows, p)
@@ -574,7 +574,7 @@
 
 ## --- Bin bootstrap resampled data
 
-    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(y)))
         binwidth = (xmax-xmin)/nbins
@@ -601,7 +601,7 @@
 
         return c, m, e
     end
-    function bin_bsr(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
         binwidth = (xmax-xmin)/nbins
@@ -630,7 +630,7 @@
     end
     export bin_bsr
 
-    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(y)))
@@ -659,7 +659,7 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_means(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+    function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
@@ -690,7 +690,7 @@
     end
     export bin_bsr_means
 
-    function bin_bsr_medians(x::Vector{<:Number}, y::Vector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::Vector{<:Number}, nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+    function bin_bsr_medians(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(y)))
@@ -721,10 +721,10 @@
     end
     export bin_bsr_medians
 
-    function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
         xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
-        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
+        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
@@ -755,10 +755,10 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_ratios(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
         xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
-        nresamples::Integer, p::Union{Number,Vector{<:Number}}, w::Vector{<:Number})
+        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
+        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
@@ -792,10 +792,10 @@
     export bin_bsr_ratios
 
 
-    function bin_bsr_ratio_medians(x::Vector{<:Number}, num::Vector{<:Number}, denom::Vector{<:Number},
+    function bin_bsr_ratio_medians(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
         xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::Vector{<:Number}, num_sigma::Vector{<:Number}, denom_sigma::Vector{<:Number},
-        nresamples::Integer, p::Union{Number,Vector{<:Number}}=0.2)
+        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
+        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
