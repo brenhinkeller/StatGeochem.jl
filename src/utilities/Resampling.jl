@@ -1048,16 +1048,21 @@
 
     """
     ```julia
-    k = invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number};
-        \tlp::Number=2, spatialscale::Number=1.8, agescale::Number=38.0)
+    k = invweight(lat::AbstractVector{<:Number}, lon::AbstractVector{<:Number}, age::AbstractVector{<:Number};
+        \tlp::Number=2, spatialscale::Union{Number,AbstractVector{<:Number}}=1.8, agescale::Union{Number,AbstractVector{<:Number}}=38.0)
     ```
 
     Find the inverse weights `k` (proportional to spatiotemporal sample density) for
     a set of geological samples with specified latitude (`lat`), logitude (`lon`),
     and `age` (of crystallization, deposition, etc.).
+
+    The default `spatialscale` and `agescale` are taken from Keller and Schoene 2012.
+    However, alternative scalings can be supplied. If an array is supplied for either
+    `spatialscale`, `agescale`, or both, a 3-d matrix of `k` values will be returned,
+    with dimensions length(`spatialscale`)*length(`agescale`)*nrows.
     """
-    function invweight(lat::Array{<:Number}, lon::Array{<:Number}, age::Array{<:Number};
-        lp::Number=2, spatialscale::Number=1.8, agescale::Number=38.0)
+    function invweight(lat::AbstractVector{<:Number}, lon::AbstractVector{<:Number}, age::AbstractVector{<:Number};
+        lp::Number=2, spatialscale::Union{Number,AbstractVector{<:Number}}=1.8, agescale::Union{Number,AbstractVector{<:Number}}=38.0)
 
         # Check if there is lat, lon, and age data
         nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
@@ -1065,19 +1070,36 @@
         # Convert lat and lon to radians
         latr = lat/180*pi
         lonr = lon/180*pi
-        spatialscaler= spatialscale/180*pi
+        spatialscalr= spatialscale/180*pi
 
         # Precalculate some sines and cosines
         latsin = sin.(latr)
         latcos = cos.(latr)
 
         # Allocate and fill ks
-        k = Array{Float64}(undef,length(lat))
-        @showprogress 1 "Calculating weights: " for i=1:length(lat)
-            if nodata[i] # If there is missing data, set k=inf for weight=0
-                k[i] = Inf
-            else # Otherwise, calculate weight
-                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscaler)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
+        if isa(spatialscale, Number) && isa(agescale, Number)
+            k = Array{Float64}(undef,length(lat))
+            @showprogress 1 "Calculating weights: " for i=1:length(lat)
+                if nodata[i] # If there is missing data, set k=inf for weight=0
+                    k[i] = Inf
+                else # Otherwise, calculate weight
+                    k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
+                end
+            end
+        else
+            k = Array{Float64}(undef,length(spatialscale),length(agescale),length(lat))
+            spatialdistr = similar(lat)
+            @showprogress 1 "Calculating weights: " for i=1:length(lat)
+                if nodata[i] # If there is missing data, set k=inf for weight=0
+                    k[:,:,i] .= Inf
+                else # Otherwise, calculate weight
+                    @avx @. spatialdistr = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))
+                    Threads.@threads for g = 1:length(spatialscale)
+                        for h = 1:length(agescale)
+                            k[g,h,i] = nansum( @avx @. 1.0 / ( (spatialdistr/spatialscalr[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale[h])^lp + 1.0) )
+                        end
+                    end
+                end
             end
         end
         return k
@@ -1103,7 +1125,7 @@
         # Convert lat and lon to radians
         latr = lat/180*pi
         lonr = lon/180*pi
-        spatialscaler= spatialscale/180*pi
+        spatialscalr= spatialscale/180*pi
 
         # Precalculate some sines and cosines
         latsin = sin.(latr)
@@ -1115,7 +1137,7 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscaler)^lp + 1.0) )
+                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) )
             end
         end
         return k
