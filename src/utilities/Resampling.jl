@@ -574,6 +574,16 @@
 
 ## --- Bin bootstrap resampled data
 
+    """
+    ```julia
+    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    ```
+
+    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
+    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
     function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(y)))
@@ -601,6 +611,16 @@
 
         return c, m, e
     end
+    """
+    ```julia
+    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
+        \t x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
+    ```
+
+    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
+    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p` and weight `w`.
+    """
     function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
