@@ -104,20 +104,20 @@
     function pctile(A, p; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
+            result = Array{float(eltype(A))}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 result[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 result[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? percentile(A[t],p) : eltype(A)(NaN)
+            result = any(t) ? percentile(A[t],p) : NaN
         end
         return result
     end
@@ -300,20 +300,20 @@
     function nanmean(A; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
+            result = Array{float(eltype(A))}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? mean(A[i,t]) : NaN
+                result[i] = any(t) ? mean(A[i,t]) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? mean(A[t,i]) : NaN
+                result[i] = any(t) ? mean(A[t,i]) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? mean(A[t]) : NaN
+            result = any(t) ? mean(A[t]) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -327,20 +327,20 @@
     function nanmean(A, W; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
+            result = Array{float(eltype(A))}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? mean(A[i,t], ProbabilityWeights(W[i,t])) : NaN
+                result[i] = any(t) ? mean(A[i,t], ProbabilityWeights(W[i,t])) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? mean(A[t,i], ProbabilityWeights(W[t,i])) : NaN
+                result[i] = any(t) ? mean(A[t,i], ProbabilityWeights(W[t,i])) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? mean(A[t], ProbabilityWeights(W[t])) : NaN
+            result = any(t) ? mean(A[t], ProbabilityWeights(W[t])) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -437,7 +437,6 @@
         return mu
     end
     export nanmean
-
 
 
     """
@@ -543,20 +542,20 @@
     function nanstd(A; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
+            result = Array{float(eltype(A))}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? std(A[i,t]) : NaN
+                result[i] = any(t) ? std(A[i,t]) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? std(A[t,i]) : NaN
+                result[i] = any(t) ? std(A[t,i]) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? std(A[t]) : NaN
+            result = any(t) ? std(A[t]) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -570,20 +569,20 @@
     function nanstd(A, W; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
+            result = Array{float(eltype(A))}(undef,s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? std(A[i,t], ProbabilityWeights(W[i,t]), corrected=false) : NaN
+                result[i] = any(t) ? std(A[i,t], ProbabilityWeights(W[i,t]), corrected=false) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? std(A[t,i], ProbabilityWeights(W[t,i]), corrected=false) : NaN
+                result[i] = any(t) ? std(A[t,i], ProbabilityWeights(W[t,i]), corrected=false) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? std(A[t], ProbabilityWeights(W[t]), corrected=false) : NaN
+            result = any(t) ? std(A[t], ProbabilityWeights(W[t]), corrected=false) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -600,44 +599,89 @@
     function nanmedian(A; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef, s[1])
+            result = Array{float(eltype(A))}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? median(A[i,t]) : NaN
+                result[i] = any(t) ? median(A[i,t]) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? median(A[t,i]) : NaN
+                result[i] = any(t) ? median(A[t,i]) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? median(A[t]) : NaN
+            result = any(t) ? median(A[t]) : float(eltype(A))(NaN)
         end
         return result
     end
 
     """
     ```julia
-    nanmedian(x::AbstractArray{<:Number}, y::AbstractArray{<:Number},
+    nanmedian(x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
     Calculate the median, ignoring NaNs, of y values that fall into each of
     `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
-    function nanmedian(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmedian(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
-        medians = Array{Float64}(undef,nbins)
+        m = Array{float(eltype(y))}(undef,nbins)
         for i = 1:nbins
             t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
-            medians[i] = any(t) ? median(y[t]) : NaN
+            m[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
 
-        return medians
+        return m
+    end
+    function nanmedian(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        binedges = linsp(xmin,xmax,nbins+1)
+        m = Array{float(eltype(y))}(undef,nbins,size(y,2))
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1])
+            for j = 1:size(y,2)
+                tj = t .& (.~isnan.(y[:,j]))
+                m[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
+            end
+        end
+
+        return m
     end
     export nanmedian
+
+    """
+    ```julia
+    nanmedian!(m::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
+        \txmin::Number, xmax::Number, nbins::Integer)
+    ```
+    Fill the array `m` with the medians, ignoring NaNs, of `y` values that fall
+    into each of `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned
+    with bin edges as `xmin:(xmax-xmin)/nbins:xmax`
+    """
+    function nanmedian!(m::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        binedges = linsp(xmin,xmax,nbins+1)
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            m[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
+        end
+
+        return m
+    end
+    function nanmedian!(m::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        binedges = linsp(xmin,xmax,nbins+1)
+        for i = 1:nbins
+            t = (x.>binedges[i]) .& (x.<=binedges[i+1])
+            for j = 1:size(y,2)
+                tj = t .& (.~isnan.(y[:,j]))
+                m[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
+            end
+        end
+
+        return m
+    end
+    export nanmedian!
 
 
     """
@@ -651,20 +695,20 @@
     function nanmad(A; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef, s[1])
+            result = Array{float(eltype(A))}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : NaN
+                result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : NaN
+                result[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? median(abs.( A[t] .- median(A[t]) )) : NaN
+            result = any(t) ? median(abs.( A[t] .- median(A[t]) )) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -682,20 +726,20 @@
     function nanaad(A; dim=0)
         s = size(A)
         if dim == 2
-            result = Array{eltype(A)}(undef, s[1])
+            result = Array{float(eltype(A))}(undef, s[1])
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : NaN
+                result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : float(eltype(A))(NaN)
             end
         elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
+            result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : NaN
+                result[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : float(eltype(A))(NaN)
             end
         else
             t = .~ isnan.(A)
-            result = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : NaN
+            result = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : float(eltype(A))(NaN)
         end
         return result
     end
@@ -732,7 +776,7 @@
     export cntr
 
     # Linearly interpolate vector y at index i, returning outboundsval if outside of bounds
-    function linterp_at_index(y::AbstractArray, i::Number, outboundsval=NaN)
+    function linterp_at_index(y::AbstractArray, i::Number, outboundsval=float(eltype(y))(NaN))
         if i > 1 && i < length(y)
             i_below = floor(Int, i)
             i_above = i_below + 1
@@ -787,7 +831,7 @@
     """
     function movmean(x::AbstractArray, n::Number)
         halfspan = ceil((n-1)/2)
-        m = Array{Float64}(undef,size(x))
+        m = Array{float(eltype(x))}(undef,size(x))
 
         # 2-D case
         if length(size(x)) == 2
