@@ -344,23 +344,25 @@
         end
         return result
     end
+
+
     """
     ```julia
-    nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number},
+    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
-    Calculate the mean, ignoring NaNs, of y values that fall into each of
-    `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
+    Return the mean, ignoring NaNs, of `y` values that fall into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
-    function nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
         index_float = (x .- xmin) .* scalefactor
 
         # Calculate the means for each bin, ignoring NaNs
         N = fill(0,nbins)
-        mu = fill(0.0,nbins)
+        mu = fill(float(eltype(y))(0),nbins)
         for i = 1:length(x)
             if (0 < index_float[i] < nbins) && !isnan(y[i])
                 index = ceil(Int, index_float[i])
@@ -374,14 +376,48 @@
     end
     """
     ```julia
-    nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, w::AbstractArray{<:Number},
+    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}
         \txmin::Number, xmax::Number, nbins::Integer)
     ```
-    Calculate the weighted mean, ignoring NaNs, of y values that fall into each of
-    `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
+    Where `y` is a (sample-per-row, element-per-column) 2-d array, return a
+    (bin-per-row, element-per-column) 2-d array `mu` of the means,
+    ignoring NaNs, of `y` values that fall into each of `nbins` equally spaced
+    `x` bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
-    function nanmean(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, w::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        # Calculate bin index from x value
+        scalefactor = nbins / (xmax - xmin)
+        bin_index_float = (x .- xmin) .* scalefactor
+
+        # Calculate the means for each bin, ignoring NaNs
+        N = fill(0, nbins, size(y,2))
+        mu = fill(float(eltype(y))(0), nbins, size(y,2))
+        for i = 1:length(x)
+            if (0 < bin_index_float[i] < nbins)
+                bin_index = ceil(Int, bin_index_float[i])
+                for j = 1:size(y,2)
+                    if !isnan(y[i,j])
+                        mu[bin_index,j] += y[i,j]
+                        N[bin_index,j] += 1
+                    end
+                end
+            end
+        end
+        mu ./= N # Divide by N to calculate means. Empty bin = 0/0 = NaN
+
+        return mu
+    end
+    """
+    ```julia
+    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number},
+        \txmin::Number, xmax::Number, nbins::Integer)
+    ```
+    Return the weighted mean, ignoring NaNs, of `y` values that fall into each of
+    `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
+    `xmin:(xmax-xmin)/nbins:xmax`.
+    """
+    function nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
         index_float = (x .- xmin) .* scalefactor
@@ -401,6 +437,100 @@
         return mu
     end
     export nanmean
+
+
+
+    """
+    ```julia
+    nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
+        \txmin::Number, xmax::Number, nbins::Integer)
+    ```
+    Fill the 1-d array `mu`, with the means, ignoring NaNs, of `y` values that fall into each of
+    `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
+    `xmin:(xmax-xmin)/nbins:xmax`
+    """
+    function nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        # Calculate bin index from x value
+        scalefactor = nbins / (xmax - xmin)
+        bin_index_float = (x .- xmin) .* scalefactor
+
+        # Calculate the means for each bin, ignoring NaNs
+        N = fill(0, nbins)
+        fill!(mu, 0) # Fill the output array with zeros to start
+        for i = 1:length(x)
+            if (0 < bin_index_float[i] < nbins) && !isnan(y[i])
+                bin_index = ceil(Int, bin_index_float[i])
+                N[bin_index] += 1
+                mu[bin_index] += y[i]
+            end
+        end
+        mu ./= N # Divide by N to calculate means. Empty bin = 0/0 = NaN
+
+        return mu
+    end
+    """
+    ```julia
+    nanmean!(mu::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}
+        \txmin::Number, xmax::Number, nbins::Integer)
+    ```
+    Where `y` is a (sample-per-row, element-per-column) 2-d array, fill
+    the (bin-per-row, element-per-column) 2-d array `mu`, with the means,
+    ignoring NaNs, of `y` values that fall into each of `nbins` equally spaced
+    bins between `xmin` and `xmax`, aligned with bin edges as
+    `xmin:(xmax-xmin)/nbins:xmax`
+    """
+    function nanmean!(mu::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        # Calculate bin index from x value
+        scalefactor = nbins / (xmax - xmin)
+        bin_index_float = (x .- xmin) .* scalefactor
+
+        # Calculate the means for each bin, ignoring NaNs
+        N = fill(0, nbins, size(y,2))
+        fill!(mu, 0) # Fill the output array with zeros to start
+        for i = 1:length(x)
+            if (0 < bin_index_float[i] < nbins)
+                bin_index = ceil(Int, bin_index_float[i])
+                for j = 1:size(y,2)
+                    if !isnan(y[i,j])
+                        mu[bin_index,j] += y[i,j]
+                        N[bin_index,j] += 1
+                    end
+                end
+            end
+        end
+        mu ./= N # Divide by N to calculate means. Empty bin = 0/0 = NaN
+
+        return mu
+    end
+    """
+    ```julia
+    nanmean!(mu::AbstractVector{<:Number},x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number},
+        \txmin::Number, xmax::Number, nbins::Integer)
+    ```
+    Fill the 1-d array `mu`, with the weighted mean, ignoring NaNs, of `y` values
+    that fall into each of `nbins` equally spaced `x` bins between `xmin` and `xmax`,
+    aligned with bin edges as `xmin:(xmax-xmin)/nbins:xmax`.
+    """
+    function nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+        # Calculate bin index from x value
+        scalefactor = nbins / (xmax - xmin)
+        index_float = (x .- xmin) .* scalefactor
+
+        # Calculate the means for each bin, ignoring NaNs
+        N = fill(0.0,nbins)
+        fill!(mu, 0) # Fill the output array with zeros to start
+        for i = 1:length(x)
+            if (0 < index_float[i] < nbins) && !isnan(y[i])
+                index = ceil(Int, index_float[i])
+                N[index] += w[i]
+                mu[index] += y[i]*w[i]
+            end
+        end
+        mu ./= N # Divide by sum of weights to calculate means. Empty bin = 0/0 = NaN
+
+        return mu
+    end
+    export nanmean!
 
 
     """
@@ -487,6 +617,7 @@
         end
         return result
     end
+
     """
     ```julia
     nanmedian(x::AbstractArray{<:Number}, y::AbstractArray{<:Number},
