@@ -2,10 +2,10 @@
 
     """
     ```julia
-    bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    resampled = bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
     ```
 
-    Fast boostrap resampling of a (sample-per-row / element-per-column) oriented
+    Return data boostrap resampled from of a (sample-per-row / element-per-column)
     dataset `data` with uncertainties `sigma` and variable resampling probabilities `p`
     """
     function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
@@ -49,10 +49,10 @@
     end
     """
     ```julia
-    bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    resampled = bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
     ```
 
-    Fast boostrap resampling of a (sample-per-row / element-per-column) oriented
+    Return data boostrap resampled from of a (sample-per-row / element-per-column)
     dataset `data` with uncertainties `sigma` and uniform resampling probability `p`
     """
     function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number = min(0.36787944,nrows/size(data,1)))
@@ -95,6 +95,101 @@
         return resampled
     end
     export bsr
+
+
+    """
+    ```julia
+    bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    ```
+
+    Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
+    dataset `data` with uncertainties `sigma` and variable resampling probabilities `p`
+    """
+    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
+        accepted = Array{Int}(undef, nrows_initial) # Array to hold list of accepted samples
+
+        # Resample
+        n = 1
+        while n <= nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(Float64) < p[i]
+                    nrows_accepted += 1
+                    accepted[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n + 1)
+
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                k = n
+                # Optimized inner loop
+                @inbounds @simd for i = 1:nrows_new
+                    a = accepted[i]
+                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
+                    k += 1
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    """
+    ```julia
+    bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    ```
+
+    Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
+    dataset `data` with uncertainties `sigma` and uniform resampling probability `p`
+    """
+    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number = min(0.36787944,nrows/size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
+        accepted = Array{Int}(undef, nrows_initial) # Array to hold list of accepted samples
+
+        # Resample
+        n = 1
+        while n <= nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(Float64) < p
+                    nrows_accepted += 1
+                    accepted[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n + 1)
+
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                k = n
+                # Optimized inner loop
+                @inbounds @simd for i = 1:nrows_new
+                    a = accepted[i]
+                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
+                    k += 1
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    export bsr!
 
     # Bootstrap resample (with uncertainty) a variable up to size nrows.
     # Optionally provide weights in p
@@ -599,10 +694,10 @@
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
+            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -636,10 +731,10 @@
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
+            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), view(dbs,ns,3), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -662,37 +757,36 @@
     function bin_bsr(x::AbstractVector{<:Number}, Y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2; Y_sigma::AbstractMatrix{<:Number}=zeros(size(Y)))
         data = hcat(x, Y)
         sigma = hcat(x_sigma, Y_sigma)
-        resulttype = float(eltype(data))
+        dtype = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
         chunk = ceil(Int,10^6/nrows)
-        dbs = Array{resulttype}(undef, nrows*chunk, ncols)
-        means = Array{resulttype}(undef, nbins, nresamples, size(Y,2))
+        dbs = Array{dtype}(undef, nrows*chunk, ncols)
+        means = Array{dtype}(undef, nbins, nresamples, size(Y,2))
         # Resample
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            for j = 1:size(Y,2)
-                means[:,i,j] .= nanmean(dbs[ns,1], dbs[ns,1+j], xmin, xmax, nbins)
-            end
+            nanmean!(view(means,:,i,:), view(dbs,ns,1), view(dbs,ns,2:1+size(Y,2)), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = Array{resulttype}(undef, nbins, size(Y,2))
-        e = Array{resulttype}(undef, nbins, size(Y,2))
+        m = Array{dtype}(undef, nbins, size(Y,2))
+        e = Array{dtype}(undef, nbins, size(Y,2))
         for j = 1:size(Y,2)
-            m[:,j] .= nanmean(means[:,:,j],dim=2) # Mean-of-means
-            e[:,j] .= nanstd(means[:,:,j],dim=2) # Standard deviation of means (sem)
+            m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
+            e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
         end
         return c, m, e
     end
     export bin_bsr
+
 
     function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
@@ -710,10 +804,10 @@
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
+            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -739,10 +833,10 @@
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
+            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), view(dbs,ns,3), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
