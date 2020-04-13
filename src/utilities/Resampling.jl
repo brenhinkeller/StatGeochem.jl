@@ -648,6 +648,50 @@
 
         return c, m, e
     end
+    """
+    ```julia
+    (c, M, E) = bin_bsr(x::AbstractVector{<:Number}, Y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2;
+        \ty_sigma::AbstractMatrix{<:Number}=zeros(size(Y)))
+    ```
+
+    Returns the bincenters `c`, means `M`, and 1σ standard errors of the mean `E` for
+    every (column-wise) variable in a 2-d array `Y`, binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
+    function bin_bsr(x::AbstractVector{<:Number}, Y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2; Y_sigma::AbstractMatrix{<:Number}=zeros(size(Y)))
+        data = hcat(x, Y)
+        sigma = hcat(x_sigma, Y_sigma)
+        resulttype = float(eltype(data))
+        binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
+
+        # Preallocate
+        chunk = ceil(Int,10^6/nrows)
+        dbs = Array{resulttype}(undef, nrows*chunk, ncols)
+        means = Array{resulttype}(undef, nbins, nresamples, size(Y,2))
+        # Resample
+        for i=1:nresamples
+            k = mod(i-1,chunk)
+            if k == 0
+                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+            end
+            ns = (k*nrows+1):((k+1)*nrows)
+            for j = 1:size(Y,2)
+                means[:,i,j] .= nanmean(dbs[ns,1], dbs[ns,1+j], xmin, xmax, nbins)
+            end
+        end
+
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = Array{resulttype}(undef, nbins, size(Y,2))
+        e = Array{resulttype}(undef, nbins, size(Y,2))
+        for j = 1:size(Y,2)
+            m[:,j] .= nanmean(means[:,:,j],dim=2) # Mean-of-means
+            e[:,j] .= nanstd(means[:,:,j],dim=2) # Standard deviation of means (sem)
+        end
+        return c, m, e
+    end
     export bin_bsr
 
     function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
