@@ -745,18 +745,18 @@
     end
     """
     ```julia
-    (c, M, E) = bin_bsr(x::AbstractVector{<:Number}, Y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
+    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
         \tx_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2;
-        \ty_sigma::AbstractMatrix{<:Number}=zeros(size(Y)))
+        \ty_sigma::AbstractMatrix{<:Number}=zeros(size(y)))
     ```
 
     Returns the bincenters `c`, means `M`, and 1σ standard errors of the mean `E` for
-    every (column-wise) variable in a 2-d array `Y`, binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    every (column-wise) variable in a 2-d array `y`, binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr(x::AbstractVector{<:Number}, Y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2; Y_sigma::AbstractMatrix{<:Number}=zeros(size(Y)))
-        data = hcat(x, Y)
-        sigma = hcat(x_sigma, Y_sigma)
+    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2; y_sigma::AbstractMatrix{<:Number}=zeros(size(y)))
+        data = hcat(x, y)
+        sigma = hcat(x_sigma, y_sigma)
         dtype = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
@@ -765,7 +765,7 @@
         # Preallocate
         chunk = ceil(Int,10^6/nrows)
         dbs = Array{dtype}(undef, nrows*chunk, ncols)
-        means = Array{dtype}(undef, nbins, nresamples, size(Y,2))
+        means = Array{dtype}(undef, nbins, nresamples, size(y,2))
         # Resample
         for i=1:nresamples
             k = mod(i-1,chunk)
@@ -773,13 +773,13 @@
                 bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i,:), view(dbs,ns,1), view(dbs,ns,2:1+size(Y,2)), xmin, xmax, nbins)
+            nanmean!(view(means,:,i,:), view(dbs,ns,1), view(dbs,ns,2:1+size(y,2)), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = Array{dtype}(undef, nbins, size(Y,2))
-        e = Array{dtype}(undef, nbins, size(Y,2))
-        for j = 1:size(Y,2)
+        m = Array{dtype}(undef, nbins, size(y,2))
+        e = Array{dtype}(undef, nbins, size(y,2))
+        for j = 1:size(y,2)
             m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
             e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
         end
