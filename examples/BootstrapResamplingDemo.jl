@@ -2,11 +2,8 @@
 ## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
-    using Plots; gr(); default(fmt = :svg);
-
-    if VERSION>=v"0.7"
-        using Statistics, DelimitedFiles, SpecialFunctions
-    end
+    using Plots; gr();
+    using Statistics, DelimitedFiles, SpecialFunctions
 
 ## --- Input dataset
 

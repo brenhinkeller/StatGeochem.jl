@@ -1,7 +1,7 @@
 ## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
-    using Plots; gr(); default(fmt = :svg);
+    using Plots; gr();
 
     if VERSION>=v"0.7"
         using Statistics, DelimitedFiles, SpecialFunctions
@@ -40,9 +40,9 @@
 
     nresamplings=1000
     xmin = 0 # Minimum Age
-    xmax = 3900 # Maximum Age
+    xmax = 1200 # Maximum Age
     nbins = 39
-    elem = "MgO" # Element to plot
+    elem = "K2O" # Element to plot
 
     # Look only at samples from a specific silica range
     t = (ign["SiO2"].>43) .& (ign["SiO2"].<51) # Mafic
@@ -88,5 +88,33 @@
     display(h)
 
     savefig(h,"$(num)$(denom)_$(tmax)-$(tmin)Ma.pdf")
+
+## --- Ratio differentiation
+
+    nresamplings=1000
+    xelem = "SiO2"
+    xmin = 40 # Minimum age
+    xmax = 80 # Maximum age
+    nbins = 20
+    num = "Sc" # Numerator
+    denom = "Yb" # Denominator
+
+    # Look only at samples from a specific silica range
+    t = (ign["SiO2"].>40) .& (ign["SiO2"].<80) # Mafic
+
+   # Exclude outliers
+    t = t .& (ign[num] .> pctile(ign[num],0.5)) .& (ign[num] .< pctile(ign[num],99.5))
+    t = t .& (ign[denom] .> pctile(ign[denom],0.5)) .& (ign[denom] .< pctile(ign[denom],99.5))
+
+    # Resample, returning binned means and uncertainties
+    # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_ratios(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins,ign[xelem][t]*0.01,ign[num][t]*0.05,ign[denom][t]*0.05,nresamplings,p[t])
+
+    # Plot results
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
+    plot!(h, xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off) # Format plot
+    display(h)
+
+    savefig(h,"$(xelem)_$(num)$(denom).pdf")
 
 ## --- End of File

@@ -1,11 +1,8 @@
 ## --- Load required packages
     using StatGeochem
-    using Plots; gr(); default(fmt = :svg);
-
-    if VERSION>=v"0.7"
-        using Statistics, DelimitedFiles, SpecialFunctions
-    end
-    
+    using Plots; gr();
+    using Statistics, DelimitedFiles, SpecialFunctions
+        
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
     # Note: melts_configure requires a working alphamelts installation.
     # If you don't have alphamelts, you'll need to download, install, and

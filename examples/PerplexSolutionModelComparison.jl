@@ -4,13 +4,9 @@
 
 ## --- Import some useful packages
     using StatGeochem
-    using Plots; gr(); default(fmt = :svg);
+    using Plots; gr();
+    using Statistics, DelimitedFiles, SpecialFunctions
 
-    if VERSION>=v"0.7"
-        using Statistics
-        using DelimitedFiles
-        using SpecialFunctions
-    end
 
 ## --- Configure
 
@@ -22,7 +18,7 @@
     if !isfile(joinpath(perplexdir,"vertex"))
         # Make sure resourcepath exists
         run(`mkdir -p $resourcepath`)
-        
+
         # Download Perplex v6.8.7 -- known to work with interface used here
         file = download("https://storage.googleapis.com/statgeochem/perplex-stable-6.8.7.zip", joinpath(resourcepath,"perplex-stable.zip"))
 
