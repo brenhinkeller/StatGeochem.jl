@@ -2,7 +2,7 @@
 
     """
     ```julia
-    resampled = bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractArray)
     ```
 
     Return data boostrap resampled from of a (sample-per-row / element-per-column)
@@ -49,7 +49,7 @@
     end
     """
     ```julia
-    resampled = bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number)
     ```
 
     Return data boostrap resampled from of a (sample-per-row / element-per-column)
@@ -99,7 +99,7 @@
 
     """
     ```julia
-    bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractArray)
     ```
 
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
@@ -145,7 +145,7 @@
     end
     """
     ```julia
-    bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number)
     ```
 
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
@@ -568,7 +568,7 @@
 
     """
     ```julia
-    (bincenters, N) = bincounts(x::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
     ```
 
     Tally the number of samples that fall into each of `nbins` equally spaced
@@ -671,8 +671,8 @@
 
     """
     ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
@@ -708,8 +708,8 @@
     end
     """
     ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        \t x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
+    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
+        \t x_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}, w::AbstractVector)
     ```
 
     Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
@@ -745,9 +745,9 @@
     end
     """
     ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2;
-        \ty_sigma::AbstractMatrix{<:Number}=zeros(size(y)))
+    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2;
+        \ty_sigma::AbstractMatrix=zeros(size(y)))
     ```
 
     Returns the bincenters `c`, means `M`, and 1σ standard errors of the mean `E` for
@@ -788,6 +788,16 @@
     export bin_bsr
 
 
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    ```
+
+    Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
+    for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
     function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, y)
@@ -848,6 +858,16 @@
     end
     export bin_bsr_means
 
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
+        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    ```
+
+    Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
+    for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
     function bin_bsr_medians(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, y)
@@ -879,6 +899,17 @@
     end
     export bin_bsr_medians
 
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number,
+        \tnbins::Integer, x_sigma::AbstractVector, num_sigma::AbstractVector, denom_sigma::AbstractVector,
+        \tnresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    ```
+
+    Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
+    for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
     function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
         xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
@@ -949,7 +980,17 @@
     end
     export bin_bsr_ratios
 
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number,
+        \tnbins::Integer, x_sigma::AbstractVector, num_sigma::AbstractVector, denom_sigma::AbstractVector,
+        \tnresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    ```
 
+    Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
+    for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    """
     function bin_bsr_ratio_medians(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
         xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
@@ -1048,8 +1089,8 @@
 
     """
     ```julia
-    k = invweight(lat::AbstractVector{<:Number}, lon::AbstractVector{<:Number}, age::AbstractVector{<:Number};
-        \tlp::Number=2, spatialscale::Union{Number,AbstractVector{<:Number}}=1.8, agescale::Union{Number,AbstractVector{<:Number}}=38.0)
+    k = invweight(lat::AbstractVector, lon::AbstractVector, age::AbstractVector;
+        \tlp::Number=2, spatialscale::Union{Number,AbstractVector}=1.8, agescale::Union{Number,AbstractVector}=38.0)
     ```
 
     Find the inverse weights `k` (proportional to spatiotemporal sample density) for
@@ -1109,14 +1150,14 @@
 
     """
     ```julia
-    k = invweight_location(lat::Array{<:Number}, lon::Array{<:Number};
+    k = invweight_location(lat::AbstractArray, lon::AbstractArray;
         \tlp::Number=2, spatialscale::Number=1.8)
     ```
 
     Find the inverse weights `k` (proportional to spatial sample density) for
     a set of geological samples with specified latitude (`lat`), and logitude (`lon`).
     """
-    function invweight_location(lat::Array{<:Number}, lon::Array{<:Number};
+    function invweight_location(lat::AbstractArray{<:Number}, lon::AbstractArray{<:Number};
         lp::Number=2, spatialscale::Number=1.8)
 
         # Check if there is lat, lon data
@@ -1147,7 +1188,7 @@
 
     """
     ```julia
-    k = invweight(nums::Array{<:Number}, scale::Number; lp=2)
+    k = invweight(nums::AbstractArray, scale::Number; lp=2)
     ```
 
     Find the inverse weights for a single array `nums` for a given `scale`, and
@@ -1156,7 +1197,7 @@
     Returns an array k where k[i] is the "inverse weight" for element i of the
     input array.
     """
-    function invweight(nums::Array{<:Number}, scale::Number; lp=2)
+    function invweight(nums::AbstractArray{<:Number}, scale::Number; lp=2)
         # Check if there is data
         nodata = isnan.(nums)
 
@@ -1175,13 +1216,13 @@
 
     """
     ```julia
-    k = invweight_age(age::Array{<:Number}; lp::Number=2, agescale::Number=38.0)
+    k = invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
     ```
 
     Find the inverse weights `k` (proportional to temporal sample density) for
     a set of geological samples with specified `age` (of crystallization, deposition, etc.).
     """
-    function invweight_age(age::Array{<:Number}; lp::Number=2, agescale::Number=38.0)
+    function invweight_age(age::AbstractArray{<:Number}; lp::Number=2, agescale::Number=38.0)
         return invweight(age, agescale, lp=lp)
     end
     export invweight_age
