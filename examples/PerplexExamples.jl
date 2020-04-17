@@ -3,11 +3,8 @@
 
 ## --- Import some useful packages
     using StatGeochem
-    using Plots; gr(); default(fmt = :svg);
-
-    if VERSION>=v"0.7"
-        using Statistics, DelimitedFiles, SpecialFunctions
-    end
+    using Plots; gr();
+    using Statistics, DelimitedFiles, SpecialFunctions
 
 ## --- Configure
 
