@@ -925,16 +925,18 @@
         chunk = ceil(Int,10^6/nrows)
         dbs = Array{Float64}(undef, nrows*chunk, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        fracts = Array{Float64}(undef, nrows)
+        fractmeans = Array{Float64}(undef, nbins)
         # Resample
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
-            m = nanmean(dbs[ns,1], dbs[ns,2] ./ (dbs[ns,2] .+ dbs[ns,3]), xmin, xmax, nbins)
-            means[:,i] = m ./ (1 .- m)
+            @views @avx @. fracts = dbs[ns,2] / (dbs[ns,2] + dbs[ns,3])
+            nanmean!(fractmeans, view(dbs,ns,1), fracts, xmin, xmax, nbins)
+            @. means[:,i] = fractmeans / (1 - fractmeans)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -959,16 +961,18 @@
         chunk = ceil(Int,10^6/nrows)
         dbs = Array{Float64}(undef, nrows*chunk, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        fracts = Array{Float64}(undef, nrows)
+        fractmeans = Array{Float64}(undef, nbins)
         # Resample
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            means[:,i] = nanmean(dbs[ns,1], dbs[ns,2], dbs[ns,3], xmin, xmax, nbins)
-            m = nanmean(dbs[ns,1], dbs[ns,2] ./ (dbs[ns,2] .+ dbs[ns,3]), dbs[ns,4], xmin, xmax, nbins)
-            means[:,i] = m ./ (1 .- m)
+            @views @avx @. fracts = dbs[ns,2] / (dbs[ns,2] + dbs[ns,3])
+            nanmean!(fractmeans, view(dbs,ns,1), fracts, view(dbs,ns,4), xmin, xmax, nbins)
+            @. means[:,i] = fractmeans / (1 - fractmeans)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -1006,14 +1010,16 @@
         chunk = ceil(Int,10^6/nrows)
         dbs = Array{Float64}(undef, nrows*chunk, ncols)
         medians = Array{Float64}(undef, nbins, nresamples)
+        ratios = Array{Float64}(undef, nrows)
         # Resample
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            medians[:,i] = nanmedian(dbs[ns,1], dbs[ns,2] ./ dbs[ns,3], xmin, xmax, nbins)
+            @views @avx @. ratios = dbs[ns,2] ./ dbs[ns,3]
+            @views nanmedian!(medians[:,i], dbs[ns,1], ratios, xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
