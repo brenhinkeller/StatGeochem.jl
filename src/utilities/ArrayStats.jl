@@ -348,12 +348,14 @@
 
     """
     ```julia
-    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmean(x::AbstractVecOrMat, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
     ```
     Return the mean, ignoring NaNs, of `y` values that fall into each of `nbins`
     equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`
+    `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
+
+    If `y` is a 2-d array (matrix), then `mu` must likewise be a 2-d array; each
+    column will be treated as a separate variable.
     """
     function nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
@@ -374,17 +376,6 @@
 
         return mu
     end
-    """
-    ```julia
-    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}
-        \txmin::Number, xmax::Number, nbins::Integer)
-    ```
-    Where `y` is a (sample-per-row, element-per-column) 2-d array, return a
-    (bin-per-row, element-per-column) 2-d array `mu` of the means,
-    ignoring NaNs, of `y` values that fall into each of `nbins` equally spaced
-    `x` bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`
-    """
     function nanmean(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -410,12 +401,11 @@
     end
     """
     ```julia
-    mu = nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmean(x::AbstractVector, y::AbstractVector, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
     ```
     Return the weighted mean, ignoring NaNs, of `y` values that fall into each of
-    `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`.
+    `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned with bin
+    edges as `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
     """
     function nanmean(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
@@ -441,12 +431,14 @@
 
     """
     ```julia
-    nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmean!(mu::AbstractVecOrMat, x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
     ```
-    Fill the 1-d array `mu`, with the means, ignoring NaNs, of `y` values that fall into each of
-    `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`
+    Fill the array `mu`, with the means, ignoring NaNs, of `y` values that fall
+    into each of `nbins` equally spaced `x` bins between `xmin` and `xmax`,
+    aligned with bin edges as `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
+
+    If `y` is a 2-d array (matrix), then `mu` must likewise be a 2-d array; each
+    column will be treated as a separate variable.
     """
     function nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
@@ -467,17 +459,6 @@
 
         return mu
     end
-    """
-    ```julia
-    nanmean!(mu::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}
-        \txmin::Number, xmax::Number, nbins::Integer)
-    ```
-    Where `y` is a (sample-per-row, element-per-column) 2-d array, fill
-    the (bin-per-row, element-per-column) 2-d array `mu`, with the means,
-    ignoring NaNs, of `y` values that fall into each of `nbins` equally spaced
-    bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`
-    """
     function nanmean!(mu::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -503,12 +484,11 @@
     end
     """
     ```julia
-    nanmean!(mu::AbstractVector{<:Number},x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmean!(mu::AbstractVector, x::AbstractVector, y::AbstractVector, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
     ```
     Fill the 1-d array `mu`, with the weighted mean, ignoring NaNs, of `y` values
     that fall into each of `nbins` equally spaced `x` bins between `xmin` and `xmax`,
-    aligned with bin edges as `xmin:(xmax-xmin)/nbins:xmax`.
+    aligned with bin edges as `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
     """
     function nanmean!(mu::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
@@ -619,18 +599,20 @@
 
     """
     ```julia
-    nanmedian(x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmedian(x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
     ```
-    Calculate the median, ignoring NaNs, of y values that fall into each of
-    `nbins` equally spaced bins between `xmin` and `xmax`, aligned with bin edges as
-    `xmin:(xmax-xmin)/nbins:xmax`
+    Calculate the median, ignoring NaNs, of y values that fall into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, aligned with bin edges as
+    `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
+
+    If `y` is a 2-d array (matrix), each column will be treated as a separate variable
     """
     function nanmedian(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
+        t = Array{Bool}(undef, length(x))
         m = Array{float(eltype(y))}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
             m[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
 
@@ -638,11 +620,13 @@
     end
     function nanmedian(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
+        t = Array{Bool}(undef, length(x))
+        tj = Array{Bool}(undef, length(x))
         m = Array{float(eltype(y))}(undef,nbins,size(y,2))
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1])
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1])
             for j = 1:size(y,2)
-                tj = t .& (.~isnan.(y[:,j]))
+                tj .= t .& (.~isnan.(y[:,j]))
                 m[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
             end
         end
@@ -653,32 +637,34 @@
 
     """
     ```julia
-    nanmedian!(m::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number},
-        \txmin::Number, xmax::Number, nbins::Integer)
+    nanmedian!(m::AbstractVector, x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
     ```
     Fill the array `m` with the medians, ignoring NaNs, of `y` values that fall
     into each of `nbins` equally spaced `x` bins between `xmin` and `xmax`, aligned
-    with bin edges as `xmin:(xmax-xmin)/nbins:xmax`
+    with bin edges as `xmin`:(`xmax`-`xmin`)/`nbins`:`xmax`
+
+    If `y` is a 2-d array (matrix), each column will be treated as a separate variable
     """
     function nanmedian!(m::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
+        t = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
             m[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
-
         return m
     end
     function nanmedian!(m::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
+        t = Array{Bool}(undef, length(x))
+        tj = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1])
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1])
             for j = 1:size(y,2)
-                tj = t .& (.~isnan.(y[:,j]))
+                tj .= t .& (.~isnan.(y[:,j]))
                 m[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
             end
         end
-
         return m
     end
     export nanmedian!

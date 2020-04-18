@@ -884,10 +884,10 @@
         for i=1:nresamples
             k = mod(i-1,chunk)
             if k == 0
-                dbs .= bsr(data,sigma,nrows*chunk,p) # Boostrap Resampling
+                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
             end
             ns = (k*nrows+1):((k+1)*nrows)
-            medians[:,i] = nanmedian(dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
+            @views nanmedian!(medians[:,i], dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
