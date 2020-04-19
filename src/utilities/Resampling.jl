@@ -2,138 +2,51 @@
 
     """
     ```julia
-    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractArray)
+    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector})
     ```
 
     Return data boostrap resampled from of a (sample-per-row / element-per-column)
-    dataset `data` with uncertainties `sigma` and variable resampling probabilities `p`
+    dataset `data` with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
-        # Allocate output array
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
-        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
-        resampled = Array{Float64}(undef,nrows,ncolumns) # Allocate output array
-
-        # Resample
-        n = 1
-        accepted = Array{Int}(undef, nrows_initial)
-        while n <= nrows
-
-            # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
-                if rand(Float64) < p[i]
-                    nrows_accepted += 1
-                    accepted[nrows_accepted] = i
-                end
-            end
-            nrows_new = min(nrows_accepted, nrows - n + 1)
-
-            # Columns go in outer loop because of column major indexing
-            for j=1:ncolumns
-                k = n
-                # Optimized inner loop
-                @inbounds @simd for i = 1:nrows_new
-                    a = accepted[i]
-                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
-                    k += 1
-                end
-            end
-
-            # Keep track of current filled rows
-            n += nrows_new
-        end
-
-        return resampled
-    end
-    """
-    ```julia
-    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number)
-    ```
-
-    Return data boostrap resampled from of a (sample-per-row / element-per-column)
-    dataset `data` with uncertainties `sigma` and uniform resampling probability `p`
-    """
-    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number = min(0.36787944,nrows/size(data,1)))
-        # Allocate output array
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
-        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
-        resampled = Array{Float64}(undef,nrows,ncolumns) # Allocate output array
-
-        # Resample
-        n = 1
-        accepted = Array{Int}(undef, nrows_initial)
-        while n <= nrows
-
-            # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
-                if rand(Float64) < p
-                    nrows_accepted += 1
-                    accepted[nrows_accepted] = i
-                end
-            end
-            nrows_new = min(nrows_accepted, nrows - n + 1)
-
-            # Columns go in outer loop because of column major indexing
-            for j=1:ncolumns
-                k = n
-                # Optimized inner loop
-                @inbounds @simd for i = 1:nrows_new
-                    a = accepted[i]
-                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
-                    k += 1
-                end
-            end
-
-            # Keep track of current filled rows
-            n += nrows_new
-        end
-
-        return resampled
+    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        resampled = Array{float(eltype(data))}(undef,nrows,size(data,2)) # Allocate output array
+        return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
     end
     export bsr
 
-
     """
     ```julia
-    bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractArray)
+    bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector})
     ```
 
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
-    dataset `data` with uncertainties `sigma` and variable resampling probabilities `p`
+    dataset `data` with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractArray{<:Number})
+    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         nrows_initial = size(data,1)
         ncolumns = size(data,2)
-        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
-        accepted = Array{Int}(undef, nrows_initial) # Array to hold list of accepted samples
 
         # Resample
-        n = 1
-        while n <= nrows
+        n = 0
+        while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
             nrows_accepted = 0
             @inbounds for i=1:nrows_initial
-                if rand(Float64) < p[i]
+                if rand(rng) < p
                     nrows_accepted += 1
-                    accepted[nrows_accepted] = i
+                    buffer[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n + 1)
+            nrows_new = min(nrows_accepted, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
-                k = n
                 # Optimized inner loop
-                @inbounds @simd for i = 1:nrows_new
-                    a = accepted[i]
-                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
-                    k += 1
+                @inbounds for i = 1:nrows_new
+                    a = buffer[i]
+                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma[a,j]
                 end
             end
 
@@ -143,43 +56,31 @@
 
         return resampled
     end
-    """
-    ```julia
-    bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number)
-    ```
-
-    Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
-    dataset `data` with uncertainties `sigma` and uniform resampling probability `p`
-    """
-    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number = min(0.36787944,nrows/size(data,1)))
+    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         nrows_initial = size(data,1)
         ncolumns = size(data,2)
-        r = randn(Float64,nrows,ncolumns) # All the normal RVs we'll need
-        accepted = Array{Int}(undef, nrows_initial) # Array to hold list of accepted samples
 
         # Resample
-        n = 1
-        while n <= nrows
+        n = 0
+        while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
             nrows_accepted = 0
             @inbounds for i=1:nrows_initial
-                if rand(Float64) < p
+                if rand(rng) < p[i]
                     nrows_accepted += 1
-                    accepted[nrows_accepted] = i
+                    buffer[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n + 1)
+            nrows_new = min(nrows_accepted, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
-                k = n
                 # Optimized inner loop
-                @inbounds @simd for i = 1:nrows_new
-                    a = accepted[i]
-                    resampled[k,j] = data[a,j] + r[k,j] * sigma[a,j]
-                    k += 1
+                @inbounds for i = 1:nrows_new
+                    a = buffer[i]
+                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma[a,j]
                 end
             end
 
@@ -679,7 +580,7 @@
     a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, poop::Bool, p::Union{Number,AbstractVector{<:Number}}=0.2,)
         data = hcat(x, y)
         sigma = hcat(x_sigma, zeros(size(y)))
         binwidth = (xmax-xmin)/nbins
@@ -687,17 +588,15 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows)
+        N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -724,17 +623,15 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows)
+        N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), view(dbs,ns,3), xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -745,8 +642,7 @@
     end
     """
     ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2;
+    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2;
         \ty_sigma::AbstractMatrix=zeros(size(y)))
     ```
 
@@ -763,17 +659,15 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{dtype}(undef, nrows*chunk, ncols)
+        dbs = Array{dtype}(undef, nrows, ncols)
         means = Array{dtype}(undef, nbins, nresamples, size(y,2))
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows)
+        N = Array{Int}(undef, nbins, size(y,2))
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i,:), view(dbs,ns,1), view(dbs,ns,2:1+size(y,2)), xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+size(y,2)), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -807,17 +701,15 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
+        N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -836,17 +728,15 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister() # Pseudorandom number generator
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
+        W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            nanmean!(view(means,:,i), view(dbs,ns,1), view(dbs,ns,2), view(dbs,ns,3), xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i), W, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -877,17 +767,14 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         medians = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister() # Pseudorandom number generator
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            @views nanmedian!(medians[:,i], dbs[ns,1], dbs[ns,2], xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,rng,buffer) # Boostrap Resampling
+            @views nanmedian!(medians[:,i], dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -910,8 +797,7 @@
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
-        xmin::Number, xmax::Number, nbins::Integer,
+    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
         nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
@@ -922,21 +808,19 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
-        fracts = Array{Float64}(undef, nrows)
-        fractmeans = Array{Float64}(undef, nbins)
+        fractions = Array{Float64}(undef, nrows)
+        fraction_means = Array{Float64}(undef, nbins)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
+        N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            @views @avx @. fracts = dbs[ns,2] / (dbs[ns,2] + dbs[ns,3])
-            nanmean!(fractmeans, view(dbs,ns,1), fracts, xmin, xmax, nbins)
-            @. means[:,i] = fractmeans / (1 - fractmeans)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            nanmean!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
+            @. means[:,i] = fraction_means / (1 - fraction_means)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -946,8 +830,7 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
-        xmin::Number, xmax::Number, nbins::Integer,
+    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
         nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
 
@@ -958,21 +841,19 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamples)
-        fracts = Array{Float64}(undef, nrows)
-        fractmeans = Array{Float64}(undef, nbins)
+        fractions = Array{Float64}(undef, nrows)
+        fraction_means = Array{Float64}(undef, nbins)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
+        W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            @views @avx @. fracts = dbs[ns,2] / (dbs[ns,2] + dbs[ns,3])
-            nanmean!(fractmeans, view(dbs,ns,1), fracts, view(dbs,ns,4), xmin, xmax, nbins)
-            @. means[:,i] = fractmeans / (1 - fractmeans)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            nanmean!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
+            @. means[:,i] = fraction_means / (1 - fraction_means)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
@@ -995,8 +876,7 @@
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratio_medians(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number},
-        xmin::Number, xmax::Number, nbins::Integer,
+    function bin_bsr_ratio_medians(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
         x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
         nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
@@ -1007,19 +887,16 @@
         ncols = size(data,2)
 
         # Preallocate
-        chunk = ceil(Int,10^6/nrows)
-        dbs = Array{Float64}(undef, nrows*chunk, ncols)
+        dbs = Array{Float64}(undef, nrows, ncols)
         medians = Array{Float64}(undef, nbins, nresamples)
         ratios = Array{Float64}(undef, nrows)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
         for i=1:nresamples
-            k = mod(i-1,chunk)
-            if k == 0
-                bsr!(dbs,data,sigma,nrows*chunk,p) # Boostrap Resampling
-            end
-            ns = (k*nrows+1):((k+1)*nrows)
-            @views @avx @. ratios = dbs[ns,2] ./ dbs[ns,3]
-            @views nanmedian!(medians[:,i], dbs[ns,1], ratios, xmin, xmax, nbins)
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            @views @avx @. ratios = dbs[:,2] ./ dbs[:,3]
+            @views nanmedian!(medians[:,i], dbs[:,1], ratios, xmin, xmax, nbins)
         end
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
