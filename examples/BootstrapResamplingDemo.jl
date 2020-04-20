@@ -72,7 +72,7 @@
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8, p=p, x_sigma=test["SiO2_sigma"], nresamplings=1000)
+    (c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8, p=p, x_sigma=test["SiO2_sigma"], nresamplings=10000)
 
     # Plot results
     plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
@@ -121,7 +121,6 @@
     plot!(xlabel="Age (Ma)", ylabel="$elem ($unit)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 ## --- Same as above, but for Na2O
-    nresamplings=1000
     xmin = 0
     xmax = 3900
     nbins = 39

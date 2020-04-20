@@ -573,18 +573,18 @@
     """
     ```julia
     (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer;
-        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
     ```
     Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
     a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p`.
 
     If a 2-d array (matrix) of `y` values is provided, each column will be treated
     as a separate variable, means and uncertainties will be returned column-wise
     """
     function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2,)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2,)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
@@ -594,12 +594,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins)
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
@@ -612,7 +612,7 @@
     end
     function bin_bsr(x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractMatrix=zeros(size(y)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
@@ -623,12 +623,12 @@
 
         # Preallocate
         dbs = Array{dtype}(undef, nrows, ncols)
-        means = Array{dtype}(undef, nbins, nresamples, size(y,2))
+        means = Array{dtype}(undef, nbins, nresamplings, size(y,2))
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins, size(y,2))
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             nanmean!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+size(y,2)), xmin, xmax, nbins)
         end
@@ -645,15 +645,15 @@
     """
     ```julia
     (c, m, e) = function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
-        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(x)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(x)), nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
     ```
     Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
     a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p` and weight `w`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p` and weight `w`.
     """
     function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(x)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, y_sigma, zeros(size(w)));
@@ -664,12 +664,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins)
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
@@ -686,16 +686,16 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
     for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
     function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
@@ -705,12 +705,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
@@ -724,7 +724,7 @@
     end
     function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, y_sigma, zeros(size(w)))
@@ -734,12 +734,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister() # Pseudorandom number generator
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             nanmean!(view(means,:,i), W, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
@@ -756,16 +756,16 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
     for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
     function bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
@@ -775,11 +775,11 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        medians = Array{Float64}(undef, nbins, nresamples)
+        medians = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister() # Pseudorandom number generator
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,rng,buffer) # Boostrap Resampling
             @views nanmedian!(medians[:,i], dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
@@ -796,16 +796,16 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-        \tx_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        \tx_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
     function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
@@ -815,14 +815,14 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         fractions = Array{Float64}(undef, nrows)
         fraction_means = Array{Float64}(undef, nbins)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             nanmean!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
@@ -838,7 +838,7 @@
     end
     function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
         x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
-        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
@@ -848,14 +848,14 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
+        means = Array{Float64}(undef, nbins, nresamplings)
         fractions = Array{Float64}(undef, nrows)
         fraction_means = Array{Float64}(undef, nbins)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             nanmean!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
@@ -874,16 +874,16 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-        x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamples=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
+        x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
     ```
 
     Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
+    after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
     function bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
         x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
-        nresamples=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
+        nresamplings=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
@@ -893,12 +893,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
-        medians = Array{Float64}(undef, nbins, nresamples)
+        medians = Array{Float64}(undef, nbins, nresamplings)
         ratios = Array{Float64}(undef, nrows)
         rng = MersenneTwister()
         buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
-        for i=1:nresamples
+        for i=1:nresamplings
             bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
             @views @avx @. ratios = dbs[:,2] ./ dbs[:,3]
             @views nanmedian!(medians[:,i], dbs[:,1], ratios, xmin, xmax, nbins)
