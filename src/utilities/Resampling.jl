@@ -572,17 +572,22 @@
 
     """
     ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer;
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
     ```
-
     Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
     a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
+
+    If a 2-d array (matrix) of `y` values is provided, each column will be treated
+    as a separate variable, means and uncertainties will be returned column-wise
     """
-    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, poop::Bool, p::Union{Number,AbstractVector{<:Number}}=0.2,)
+    function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2,)
+
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(y)))
+        sigma = hcat(x_sigma, y_sigma)
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
@@ -605,52 +610,10 @@
 
         return c, m, e
     end
-    """
-    ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
-        \t x_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}, w::AbstractVector)
-    ```
+    function bin_bsr(x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractMatrix=zeros(size(y)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
-    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
-    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p` and weight `w`.
-    """
-    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
-        data = hcat(x, y, w)
-        sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
-        binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
-
-        # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamples)
-        rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows)
-        N = Array{Int}(undef, nbins)
-        # Resample
-        for i=1:nresamples
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
-            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
-        end
-
-        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = nanmean(means,dim=2) # Mean-of-means
-        e = nanstd(means,dim=2) # Standard deviation of means (sem)
-
-        return c, m, e
-    end
-    """
-    ```julia
-    (c, m, e) = bin_bsr(x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2;
-        \ty_sigma::AbstractMatrix=zeros(size(y)))
-    ```
-
-    Returns the bincenters `c`, means `M`, and 1σ standard errors of the mean `E` for
-    every (column-wise) variable in a 2-d array `y`, binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamples` boostrap resamplings with acceptance probability `p`.
-    """
-    function bin_bsr(x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2; y_sigma::AbstractMatrix{<:Number}=zeros(size(y)))
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
         dtype = float(eltype(data))
@@ -679,23 +642,63 @@
         end
         return c, m, e
     end
+    """
+    ```julia
+    (c, m, e) = function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(x)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+    ```
+    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
+    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
+    after `nresamples` boostrap resamplings with acceptance probability `p` and weight `w`.
+    """
+    function bin_bsr(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(x)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
+
+        data = hcat(x, y, w)
+        sigma = hcat(x_sigma, y_sigma, zeros(size(w)));
+
+        binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
+
+        # Preallocate
+        dbs = Array{Float64}(undef, nrows, ncols)
+        means = Array{Float64}(undef, nbins, nresamples)
+        rng = MersenneTwister()
+        buffer = Array{Int}(undef, nrows)
+        N = Array{Int}(undef, nbins)
+        # Resample
+        for i=1:nresamples
+            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
+        end
+
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = nanmean(means,dim=2) # Mean-of-means
+        e = nanstd(means,dim=2) # Standard deviation of means (sem)
+
+        return c, m, e
+    end
     export bin_bsr
 
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    (c, m, el, eu) = bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
     for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(y)))
+        sigma = hcat(x_sigma, y_sigma)
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
@@ -719,10 +722,12 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_means(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
+    function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y, w)
-        sigma = hcat(x_sigma, zeros(size(y)), zeros(size(w)))
+        sigma = hcat(x_sigma, y_sigma, zeros(size(w)))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
@@ -750,18 +755,20 @@
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer,
-        \tx_sigma::AbstractVector, nresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    (c, m, el, eu) = bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        \tx_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
     for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_medians(x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer, x_sigma::AbstractVector{<:Number}, nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    function bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), y_sigma::AbstractVector=zeros(size(y)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, y)
-        sigma = hcat(x_sigma, zeros(size(y)))
+        sigma = hcat(x_sigma, y_sigma)
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
@@ -788,18 +795,17 @@
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number,
-        \tnbins::Integer, x_sigma::AbstractVector, num_sigma::AbstractVector, denom_sigma::AbstractVector,
-        \tnresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    (c, m, el, eu) = bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        \tx_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamples=1000, p::Union{Number,AbstractVector}=0.2)
     ```
 
     Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
-        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
@@ -830,9 +836,9 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_ratios(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
-        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}, w::AbstractVector{<:Number})
+    function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
+        x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
+        nresamples=1000, p::Union{Number,AbstractVector}=0.2)
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
@@ -867,18 +873,17 @@
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number,
-        \tnbins::Integer, x_sigma::AbstractVector, num_sigma::AbstractVector, denom_sigma::AbstractVector,
-        \tnresamples::Integer, p::Union{Number,AbstractVector}=0.2)
+    (c, m, el, eu) = bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamples=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
     ```
 
     Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamples` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratio_medians(x::AbstractVector{<:Number}, num::AbstractVector{<:Number}, denom::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer,
-        x_sigma::AbstractVector{<:Number}, num_sigma::AbstractVector{<:Number}, denom_sigma::AbstractVector{<:Number},
-        nresamples::Integer, p::Union{Number,AbstractVector{<:Number}}=0.2)
+    function bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
+        x_sigma::AbstractVector=zeros(size(x)), num_sigma::AbstractVector=zeros(size(num)), denom_sigma::AbstractVector=zeros(size(denom)),
+        nresamples=1000, p::Union{Number,AbstractVector{<:Number}}=0.2)
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)

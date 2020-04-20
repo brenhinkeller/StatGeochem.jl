@@ -69,11 +69,10 @@
     plot(c,m,yerror=2*e,label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80),framestyle=:box)
 
 ## --- Approach 2: resample the binned means for one element at a time (Can resample many times)
-    nresamplings = 10000
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8,test["SiO2_sigma"],nresamplings,p)
+    (c,m,el,eu) = bin_bsr_means(test["SiO2"],test["MgO"],40,80,8, p=p, x_sigma=test["SiO2_sigma"], nresamplings=1000)
 
     # Plot results
     plot(c,m,yerror=(el,eu),label="",xlabel="SiO2", ylabel="MgO",xlims=(40,80), framestyle=:box)
@@ -103,7 +102,6 @@
     ign["Age_sigma"][t] .= 50; # Set 50 Ma minimum age uncertainty (1-sigma)
 
 ## --- Try resampling a single variable to reproduce the MgO trend from K&S 2012
-    nresamplings=1000
     xmin = 0
     xmax = 3900
     nbins = 39
@@ -116,7 +114,7 @@
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
@@ -135,8 +133,8 @@
     t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
 
     # Calculate binned means and uncertainties
-    # (c = bincenter, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,markerstrokecolor=:auto,label="")

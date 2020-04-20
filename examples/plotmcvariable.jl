@@ -38,7 +38,6 @@
 
 ## --- Resample a single variable
 
-    nresamplings=1000
     xmin = 0 # Minimum Age
     xmax = 1200 # Maximum Age
     nbins = 39
@@ -52,7 +51,7 @@
 
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins,ign["Age_sigma"][t],nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:auto,label="")
@@ -61,7 +60,6 @@
 
 ## ---  Resample a ratio
 
-    nresamplings=1000
     tmin = 0 # Minimum age
     tmax = 3900 # Maximum age
     nbins = 39
@@ -80,7 +78,8 @@
 
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_ratios(ign["Age"][t],ign[num][t],ign[denom][t],tmin,tmax,nbins,ign["Age_sigma"][t],ign[num][t]*0.05,ign[denom][t]*0.05,nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_ratios(ign["Age"][t],ign[num][t],ign[denom][t],tmin,tmax,nbins, p=p[t],
+                    x_sigma=ign["Age_sigma"][t], num_sigma=ign["$(num)_sigma"][t], denom_sigma=ign["$(denom)_sigma"][t])
 
     # Plot results
     h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
@@ -91,7 +90,6 @@
 
 ## --- Ratio differentiation
 
-    nresamplings=1000
     xelem = "SiO2"
     xmin = 40 # Minimum age
     xmax = 80 # Maximum age
@@ -108,7 +106,8 @@
 
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-    (c,m,el,eu) = bin_bsr_ratios(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins,ign[xelem][t]*0.01,ign[num][t]*0.05,ign[denom][t]*0.05,nresamplings,p[t])
+    (c,m,el,eu) = bin_bsr_ratios(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
+                    x_sigma=ign[xelem][t]*0.01, num_sigma=ign[num][t]*0.05, denom_sigma=ign[denom][t]*0.05)
 
     # Plot results
     h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
