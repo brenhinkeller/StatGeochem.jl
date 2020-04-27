@@ -8,7 +8,7 @@
     Return data boostrap resampled from of a (sample-per-row / element-per-column)
     dataset `data` with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsr(data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         resampled = Array{float(eltype(data))}(undef,nrows,size(data,2)) # Allocate output array
         return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
     end
@@ -22,7 +22,7 @@
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
     dataset `data` with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         nrows_initial = size(data,1)
         ncolumns = size(data,2)
@@ -56,7 +56,7 @@
 
         return resampled
     end
-    function bsr!(resampled::AbstractArray{<:Number}, data::AbstractArray{<:Number}, sigma::AbstractArray{<:Number}, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         nrows_initial = size(data,1)
         ncolumns = size(data,2)
@@ -476,7 +476,7 @@
     bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
-    function bincounts(x::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
         # Tally the number of samples (either resampled or corrected/original) that fall into each bin
         binwidth = (xmax-xmin)/nbins
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
@@ -497,7 +497,7 @@
     export bincounts
 
     # The nanmean of y binned by x, returning bincenters, means, and standard error of the mean
-    function binmeans(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
+    function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (xmax-xmin)/nbins
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
 
@@ -532,7 +532,7 @@
         end
         return bincenters, mu, se
     end
-    function binmeans(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, min::Number, max::Number, nbins::Integer, weight::AbstractArray{<:Number}; resamplingratio::Number=1)
+    function binmeans(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer, weight::AbstractArray; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -551,7 +551,7 @@
     export binmeans
 
     # The nanmedian of y binned by x, retunring bincenters, medians, and equivalent standard error of the mean (1.4828 * median abolute deviation)
-    function binmedians(x::AbstractArray{<:Number}, y::AbstractArray{<:Number}, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
+    function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = linsp(min,max,nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
@@ -1045,7 +1045,7 @@
     Find the inverse weights `k` (proportional to spatial sample density) for
     a set of geological samples with specified latitude (`lat`), and logitude (`lon`).
     """
-    function invweight_location(lat::AbstractArray{<:Number}, lon::AbstractArray{<:Number};
+    function invweight_location(lat::AbstractArray, lon::AbstractArray;
         lp::Number=2, spatialscale::Number=1.8)
 
         # Check if there is lat, lon data
@@ -1085,7 +1085,7 @@
     Returns an array k where k[i] is the "inverse weight" for element i of the
     input array.
     """
-    function invweight(nums::AbstractArray{<:Number}, scale::Number; lp=2)
+    function invweight(nums::AbstractArray, scale::Number; lp=2)
         # Check if there is data
         nodata = isnan.(nums)
 
@@ -1110,7 +1110,7 @@
     Find the inverse weights `k` (proportional to temporal sample density) for
     a set of geological samples with specified `age` (of crystallization, deposition, etc.).
     """
-    function invweight_age(age::AbstractArray{<:Number}; lp::Number=2, agescale::Number=38.0)
+    function invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
         return invweight(age, agescale, lp=lp)
     end
     export invweight_age

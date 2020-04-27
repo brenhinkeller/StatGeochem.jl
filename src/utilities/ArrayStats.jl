@@ -351,12 +351,12 @@
     AbstractVecOrMat). If `y` is a 2-d array, then each column of `y` will be
     treated as a separate variable.
     """
-    function nanmean(x::AbstractVector{<:Number}, y::AbstractVecOrMat{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean(x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
         N = Array{Int}(undef, nbins, size(y)[2:end]...)
         MU = Array{float(eltype(y))}(undef, nbins, size(y)[2:end]...)
         return nanmean!(MU, N, x, y, xmin, xmax, nbins)
     end
-    function nanmean(x::AbstractVector{<:Number}, y::AbstractVecOrMat{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean(x::AbstractVector, y::AbstractVecOrMat, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         W = Array{float(eltype(y))}(undef, nbins, size(y)[2:end]...)
         MU = Array{float(eltype(y))}(undef, nbins, size(y)[2:end]...)
         return nanmean!(MU, W, x, y, w, xmin, xmax, nbins)
@@ -384,11 +384,11 @@
     number of columns as `y`; if `y` is a 2-d array (matrix), then each column of
     `y` will be treated as a separate variable.
     """
-    function nanmean!(MU::AbstractVecOrMat{<:Number}, x::AbstractVector{<:Number}, y::AbstractVecOrMat{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean!(MU::AbstractVecOrMat, x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
         N = Array{Int}(undef, size(MU))
         return nanmean!(MU, N, x, y, xmin, xmax, nbins)
     end
-    function nanmean!(MU::AbstractVector{<:Number}, N::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean!(MU::AbstractVector, N::AbstractVector, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
 
@@ -407,7 +407,7 @@
 
         return MU
     end
-    function nanmean!(MU::AbstractMatrix{<:Number}, N::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean!(MU::AbstractMatrix, N::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
 
@@ -430,7 +430,7 @@
 
         return MU
     end
-    function nanmean!(MU::AbstractVector{<:Number}, W::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean!(MU::AbstractVector, W::AbstractVector, x::AbstractVector, y::AbstractVector, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
 
@@ -449,7 +449,7 @@
 
         return MU
     end
-    function nanmean!(MU::AbstractMatrix{<:Number}, W::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, w::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmean!(MU::AbstractMatrix, W::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
 
@@ -570,7 +570,7 @@
 
     If `y` is a 2-d array (matrix), each column will be treated as a separate variable
     """
-    function nanmedian(x::AbstractVector{<:Number}, y::AbstractVecOrMat{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmedian(x::AbstractVector, y::AbstractVecOrMat, xmin::Number, xmax::Number, nbins::Integer)
         M = Array{float(eltype(y))}(undef, nbins, size(y)[2:end]...)
         return nanmedian!(M, x, y, xmin, xmax, nbins)
     end
@@ -586,7 +586,7 @@
 
     If `y` is a 2-d array (matrix), each column will be treated as a separate variable
     """
-    function nanmedian!(M::AbstractVector{<:Number}, x::AbstractVector{<:Number}, y::AbstractVector{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmedian!(M::AbstractVector, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
         t = Array{Bool}(undef, length(x))
         for i = 1:nbins
@@ -595,7 +595,7 @@
         end
         return M
     end
-    function nanmedian!(M::AbstractMatrix{<:Number}, x::AbstractVector{<:Number}, y::AbstractMatrix{<:Number}, xmin::Number, xmax::Number, nbins::Integer)
+    function nanmedian!(M::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer)
         binedges = linsp(xmin,xmax,nbins+1)
         t = Array{Bool}(undef, length(x))
         tj = Array{Bool}(undef, length(x))
@@ -692,11 +692,11 @@
 
     """
     ```julia
-    cntr(edges::AbstractArray{<:Number})
+    cntr(edges::AbstractArray)
     ```
     Given an array of bin edges, return a corresponding vector of bin centers
     """
-    function cntr(edges::AbstractArray{<:Number})
+    function cntr(edges::AbstractArray)
         centers = (edges[1:end-1] + edges[2:end]) ./ 2
         return centers
     end
