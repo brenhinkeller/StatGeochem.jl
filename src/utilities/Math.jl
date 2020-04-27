@@ -49,6 +49,14 @@
     function normcdf(mu::Number,sigma::Number,x::Number)
         return 0.5 + erf((x-mu) / (sigma*sqrt(2))) / 2
     end
+    function normcdf(mu::Number,sigma::Number,x::AbstractArray)
+        result = Array{float(eltype(x))}(undef,length(x))
+        sigma_sqrt = sigma*sqrt(2)
+        @inbounds @simd for i = 1:length(x)
+            result[i] = 0.5 + erf((x[i]-mu) / sigma_sqrt) / 2
+        end
+        return result
+    end
     export normcdf
 
     # How far away from the mean (in units of sigma) should we expect proportion
