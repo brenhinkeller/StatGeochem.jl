@@ -263,7 +263,7 @@
     export floatify
 
     # Convert a flat array into a dict with each column as a variable
-    function elementify(in::Array, elements::Array=in[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
+    function elementify(dataset::Array, elements::Array=dataset[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         # Output as dictionary
         result = Dict()
         if skipnameless
@@ -274,7 +274,7 @@
 
         # Parse the input array, minus empty-named columns
         for i = 1:length(elements)
-            thiscol = in[(1+skipstart):end,i]
+            thiscol = dataset[(1+skipstart):end,i]
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
 
             if haskey(result,elements[i])
@@ -303,11 +303,11 @@
     export elementify
 
     # Convert a dict into a flat array with variables as columns
-    function unelementify(in::Dict, elements::Array=sort(collect(keys(in))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
-            elements = in["elements"]
+            elements = dataset["elements"]
         end
 
         # Figure out how many are numeric (if necessary), so we can export only
@@ -315,7 +315,7 @@
         if findnumeric
             is_numeric_element = Array{Bool}(undef,length(elements))
             for i = 1:length(elements)
-                is_numeric_element = sum(plausiblynumeric.(in[elements[i]])) > sum(nonnumeric.(in[elements[i]]))
+                is_numeric_element = sum(plausiblynumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
             end
             elements = elements[is_numeric_element]
         end
@@ -323,21 +323,21 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{Float64}(undef,length(in[elements[1]]),length(elements))
+            result = Array{Float64}(undef,length(dataset[elements[1]]),length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i = 1:length(elements)
-                result[:,i] = floatify.(in[elements[i]])
+                result[:,i] = floatify.(dataset[elements[i]])
             end
         else
             # Allocate output Array{Any}
-            result = Array{Any}(undef,length(in[elements[1]])+1,length(elements))
+            result = Array{Any}(undef,length(dataset[elements[1]])+1,length(elements))
 
             # Parse the input dict
             for i = 1:length(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = elements[i]
-                result[2:end,i] = in[elements[i]]
+                result[2:end,i] .= dataset[elements[i]]
 
                 # if `skipnan` is set, replace each NaN in the output array with
                 # an empty string ("") such that it is empty when printed to file
