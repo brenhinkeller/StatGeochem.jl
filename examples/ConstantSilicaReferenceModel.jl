@@ -45,6 +45,61 @@
         end
     end
 
+## --- Single element differentiation example
+
+    xelem = "SiO2"
+    xmin = 45
+    xmax = 75
+    nbins = 8
+    elem = "MgO"
+
+    h = plot(xlabel=xelem, ylabel="$(elem)",xlims=(xmin,xmax),framestyle=:box,grid=:off,fg_color_legend=:white) # Format plot
+
+    rt = [0,1,2,3,4]
+    colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
+    for i=1:length(rt)-1
+        t = (ign["Age"].>rt[i]*1000) .& (ign["Age"].<rt[i+1]*1000)
+
+        # Resample, returning binned means and uncertainties
+        # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+        (c,m,el,eu) = bin_bsr_means(ign[xelem][t],ign[elem][t],xmin,xmax,nbins, p=p[t],
+                        x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
+
+        # Plot results
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+    end
+    display(h)
+
+## --- Ratio differentiation example
+
+    xelem = "SiO2"
+    xmin = 45
+    xmax = 75
+    nbins = 8
+    num = "Rb" # Numerator
+    denom = "Sr" # Denominator
+
+    # # Exclude outliers
+    # t = t .& (ign[num] .> pctile(ign[num],0.5)) .& (ign[num] .< pctile(ign[num],99.5))
+    # t = t .& (ign[denom] .> pctile(ign[denom],0.5)) .& (ign[denom] .< pctile(ign[denom],99.5))
+
+    h = plot(xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off,legend=:topleft,fg_color_legend=:white) # Format plot
+
+    rt = [0,1,2,3,4]
+    colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
+    for i=1:length(rt)-1
+        t = (ign["Age"].>rt[i]*1000) .& (ign["Age"].<rt[i+1]*1000)
+
+        # Resample, returning binned means and uncertainties
+        # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+        (c,m,el,eu) = bin_bsr_ratio_medians(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
+                        x_sigma=ign[xelem*"_sigma"][t], num_sigma=ign[num*"_sigma"][t], denom_sigma=ign[denom*"_sigma"][t])
+
+        # Plot results
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+    end
+    display(h)
+
 ## --- High-level functions for calculating combined averages over a set or silica ranges
 
     function constprop(binbsrfunction::Function, dataset::Dict, elem, xmin, xmax, nbins, p; xelem="Age", norm_by="SiO2", norm_bins=[43,55,65,78], nresamplings=1000)
@@ -99,7 +154,7 @@
         return c, m, el, eu
     end
 
-## --- Single variable
+## --- Single element constant-silica reference model
 
     tmin = 0
     tmax = 3900
@@ -119,7 +174,7 @@
     savefig(h,"Constant Silica $(elem).pdf")
     display(h)
 
-## --- Ratio
+## --- Ratio constant-silica reference model
 
     tmin = 0
     tmax = 4000

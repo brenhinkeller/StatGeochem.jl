@@ -4,8 +4,13 @@
 *.jpg
 .ipynb_checkpoints
 
-# Ignore hdf5 files so these don't interfere with updates
+# Ignore data and image files by default
 *.h5
+*.csv
+*.mat
+*.png
+*.jpg
+*.pdf
 
 # Various julia files to ignore
 *.jld
