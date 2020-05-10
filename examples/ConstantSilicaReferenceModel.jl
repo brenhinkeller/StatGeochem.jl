@@ -66,7 +66,8 @@
                         x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
 
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
     end
     display(h)
 
@@ -78,10 +79,6 @@
     nbins = 8
     num = "Rb" # Numerator
     denom = "Sr" # Denominator
-
-    # # Exclude outliers
-    # t = t .& (ign[num] .> pctile(ign[num],0.5)) .& (ign[num] .< pctile(ign[num],99.5))
-    # t = t .& (ign[denom] .> pctile(ign[denom],0.5)) .& (ign[denom] .< pctile(ign[denom],99.5))
 
     h = plot(xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off,legend=:topleft,fg_color_legend=:white) # Format plot
 
@@ -96,7 +93,8 @@
                         x_sigma=ign[xelem*"_sigma"][t], num_sigma=ign[num*"_sigma"][t], denom_sigma=ign[denom*"_sigma"][t])
 
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
     end
     display(h)
 
