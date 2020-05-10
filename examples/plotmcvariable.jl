@@ -79,7 +79,7 @@
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
     (c,m,el,eu) = bin_bsr_ratios(ign["Age"][t],ign[num][t],ign[denom][t],tmin,tmax,nbins, p=p[t],
-                    x_sigma=ign["Age_sigma"][t], num_sigma=ign["$(num)_sigma"][t], denom_sigma=ign["$(denom)_sigma"][t])
+                    x_sigma=ign["Age_sigma"][t])
 
     # Plot results
     h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
