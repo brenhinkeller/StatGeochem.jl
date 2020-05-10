@@ -36,9 +36,8 @@
     # ign["Age_sigma"][t] .= ign["Age"][t] * 0.025 # Set 5% (2-sigma) minimum relative uncertainty
 
 
-    # Begin by grabbing two-sigma relative uncertainties from file
+    # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
     ign["err2srel"] = importdataset("err2srel.csv", ',')
-    # Set absolute uncertainties for each element in elements
     for e in ign["elements"]
         # If there's an err2srel for this variable, create a "_sigma" if possible
         if haskey(ign["err2srel"], e) && !haskey(ign, e*"_sigma")
