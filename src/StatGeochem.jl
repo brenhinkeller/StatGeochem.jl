@@ -26,16 +26,15 @@ module StatGeochem
         trunc(x; digits::Int=0) = trunc(x,digits)
     end
 
-    # Functions
-    include("utilities/System.jl");
-    include("utilities/Math.jl");
-    include("utilities/Import.jl");
 
     using Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
     using LoopVectorization
+    include("utilities/System.jl");
+    include("utilities/Math.jl");
+    include("utilities/Import.jl");
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
 
