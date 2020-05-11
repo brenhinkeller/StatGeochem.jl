@@ -32,22 +32,56 @@
 
 ## --- Gaussian distribution functions
 
-    # Probability density function of the Normal (Gaussian) distribution
-    function normpdf(mu::Number,sigma::Number,x::Number)
-        return exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
+    """
+    ```julia
+    normpdf(mu,sigma,x)
+    ```
+    Probability density function of the Normal (Gaussian) distribution
+
+    ``ℯ^{-(x-μ)^2 / (2σ^2)} / σ√2π``
+
+    with mean `mu` and standard deviation `sigma`, evaluated at `x`
+    """
+    function normpdf(mu,sigma,x)
+        return @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
     end
     export normpdf
 
-    # Fast Log Likelihood corresponding to a Normal (Gaussian) distribution
+    """
+    ```julia
+    normpdf_ll(mu, sigma, x)
+    ```
+    Fast log likelihood corresponding to a Normal (Gaussian) distribution
+    with mean `mu` and standard deviation `sigma`, evaluated at `x`.
+
+    If `x`, `mu`, and `sigma` are given as arrays, the sum of the log likelihood
+    over all `x` will be returned.
+
+    See also `normpdf`
+    """
     function normpdf_ll(mu::Number,sigma::Number,x::Number)
         return -(x-mu)*(x-mu) / (2*sigma*sigma)
     end
-    export normpdf_ll
+    function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
+        ll = 0.0
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu[i])*(x[i]-mu[i]) / (2*sigma[i]*sigma[i])
+        end
+        return ll
+    end
 
-    # Cumulative density function of the Normal (Gaussian) distribution
-    # Not precise enough for many uses, unfortunately
-    function normcdf(mu::Number,sigma::Number,x::Number)
-        return 0.5 + erf((x-mu) / (sigma*sqrt(2))) / 2
+    """
+    ```julia
+    normcdf(mu,sigma,x)
+    ```
+    Cumulative density function of the Normal (Gaussian) distribution
+
+    ``1/2 + erf(\frac{x-μ}{σ√2})/2``
+
+    with mean `mu` and standard deviation `sigma`, evaluated at `x`.
+    """
+    function normcdf(mu,sigma,x)
+        return @. 0.5 + erf((x-mu) / (sigma*sqrt(2))) / 2
     end
     function normcdf(mu::Number,sigma::Number,x::AbstractArray)
         result = Array{float(eltype(x))}(undef,length(x))
@@ -59,32 +93,52 @@
     end
     export normcdf
 
-    # How far away from the mean (in units of sigma) should we expect proportion
-    # F of the samples to fall in a Normal (Gaussian) distribution
+    """
+    ```julia
+    norm_quantile(F::Number)
+    ```
+    How far away from the mean (in units of sigma) should we expect proportion
+    F of the samples to fall in a standard Gaussian (Normal[0,1]) distribution
+    """
     function norm_quantile(F::Number)
         return sqrt(2)*erfinv(2*F-1)
     end
     export norm_quantile
 
-    # How dispersed (in units of sigma) should we expect a sample of N numbers
-    # drawn from a Normal (Gaussian) distribution to be?
+    """
+    ```julia
+    norm_width(N::Number)
+    ```
+    How dispersed (in units of sigma) should we expect a sample of N numbers
+    drawn from a standard Gaussian (Normal[0,1]) distribution to be?
+    """
     function norm_width(N::Number)
         F = 1 - 1/(N+1)
         return 2*norm_quantile(F)
     end
     export norm_width
 
-    # Integral of the product of two normal distributions N(μ1,σ1) * N(μ2,σ2)
+    """
+    ```julia
+    normproduct(μ1, σ1, μ2, σ2)
+    ```
+    The integral of the product of two normal distributions N[μ1,σ1] * N[μ2,σ2].
+    This is itself just another Normal distribution! Specifically, one with
+    variance σ1^2 + σ2^2, evaluated at distance |μ1-μ2| from the mean
+    """
     function normproduct(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
-        # The integral of the product of two normal distributions is itself just
-        # another Normal distribution! Specifically, one with variance σ1^2 + σ2^2
         normpdf(μ1, sqrt(σ1^2 + σ2^2), μ2)
     end
     export normproduct
 
-    # Log likelihood corresponding to the integral of N(μ1,σ1) * N(μ2,σ2)
+    """
+    ```julia
+    normproduct_ll(μ1, σ1, μ2, σ2)
+    ```
+    Log likelihood corresponding to the integral of N[μ1,σ1] * N[μ2,σ2]
+    As `normproduct`, but using the fast log likelihood of a Normal distribution
+    """
     function normproduct_ll(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
-        # As above, but using the fast log likelihood of a Normal distribution
         normpdf_ll(μ1, sqrt(σ1^2 + σ2^2), μ2)
     end
     export normproduct_ll
