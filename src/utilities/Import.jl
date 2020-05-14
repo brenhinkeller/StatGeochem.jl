@@ -355,6 +355,58 @@
     end
     export unelementify
 
+## --- Concatenating / stacking datasets
+
+    """
+    ```julia
+    concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
+    ```
+    Vertically concatenate two Dict-based datasets, variable-by-variable
+    """
+    function concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
+        if isempty(keys(d1))
+            result = d2
+        elseif isempty(keys(d2))
+            result = d1
+        else
+            # If 'elements' field doesn't exist, populate it
+            if ~haskey(d1,"elements")
+                d1["elements"] = sort(collect(keys(d1)))
+            end
+            if ~haskey(d2,"elements")
+                d2["elements"] = sort(collect(keys(d2)))
+            end
+
+            # Find variable size
+            s1 = size(d1[d1["elements"][1]])
+            s2 = size(d2[d2["elements"][1]])
+
+            # Combine datasets
+            result = Dict()
+            result["elements"] = d1["elements"] ∪ d2["elements"]
+            for e in result["elements"]
+                # Make any missing fields
+                if haskey(d1, e) && ~haskey(d2, e)
+                    if eltype(d1[e]) <: Number
+                        d2[e] = fill(float(eltype(d1[e]))(NaN), s2)
+                    else
+                        d2[e] = fill("", s2)
+                    end
+                elseif haskey(d2, e) && ~haskey(d1, e)
+                    if eltype(d2[e]) <: Number
+                        d1[e] = fill(float(eltype(d2[e]))(NaN), s1)
+                    else
+                        d1[e] = fill("", s1)
+                    end
+                end
+
+                # Combine fields
+                result[e] = vcat(d1[e], d2[e])
+            end
+        end
+        return result
+    end
+
 ## --- Renormalization of imported datasets
 
     function renormalize!(dataset::Dict, elements::Array=sort(collect(keys(dataset))); total::Number=1)
@@ -368,7 +420,7 @@
             dataset[e] .*= total ./ current_sum
         end
     end
-    function renormalize!(A::Array{<:AbstractFloat}; dim::Number=0, total::Number=1)
+    function renormalize!(A::AbstractArray{<:Number}; dim::Number=0, total::Number=1)
         current_sum = nansum(A, dim=dim)
         A .*= total ./ current_sum
     end
