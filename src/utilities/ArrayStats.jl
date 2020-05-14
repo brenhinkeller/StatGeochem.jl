@@ -135,7 +135,7 @@
     """
     function inpctile(A, p::Number; dim=0)
         offset = (100 - p) / 2
-        return (A .> pctile(A, offset, dim=dim)) .& (A .< pctile(A, 100-offset, dim=dim))
+        return pctile(A, offset, dim=dim) .< A .< pctile(A, 100-offset, dim=dim)
     end
     export inpctile
 

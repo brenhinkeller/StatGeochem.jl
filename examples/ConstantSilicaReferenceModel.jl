@@ -51,14 +51,14 @@
     xmin = 45
     xmax = 75
     nbins = 8
-    elem = "MgO"
+    elem = "K2O"
 
     h = plot(xlabel=xelem, ylabel="$(elem)",xlims=(xmin,xmax),framestyle=:box,grid=:off,fg_color_legend=:white) # Format plot
 
-    rt = [0,1,2,3,4]
+    rt = [0,1,2,3,4] # Time range (Ga)
     colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
     for i=1:length(rt)-1
-        t = (ign["Age"].>rt[i]*1000) .& (ign["Age"].<rt[i+1]*1000)
+        t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
 
         # Resample, returning binned means and uncertainties
         # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -70,7 +70,6 @@
         plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
     end
     display(h)
-
 ## --- Ratio differentiation example
 
     xelem = "SiO2"
@@ -85,7 +84,7 @@
     rt = [0,1,2,3,4]
     colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
     for i=1:length(rt)-1
-        t = (ign["Age"].>rt[i]*1000) .& (ign["Age"].<rt[i+1]*1000)
+        t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
 
         # Resample, returning binned means and uncertainties
         # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -107,10 +106,10 @@
         eu = zeros(nbins)
         for i=1:length(norm_bins)-1
             # Find the samples we're looking for
-            t = (dataset[norm_by].>norm_bins[i]) .& (dataset[norm_by].<norm_bins[i+1]) .& (dataset[elem].>0)
+            t = (norm_bins[i] .< dataset[norm_by] .< norm_bins[i+1]) .& (dataset[elem] .> 0)
 
             # See what proportion of the modern crust falls in this norm_bin
-            prop = sum((dataset[norm_by].>norm_bins[i]) .& (dataset[norm_by].<norm_bins[i+1]) .& (p .> 0)) / sum((dataset[norm_by].>norm_bins[1]) .& (dataset[norm_by].<norm_bins[end]) .& (p .> 0))
+            prop = sum((norm_bins[i] .< dataset[norm_by] .< norm_bins[i+1]) .& (p .> 0)) / sum((norm_bins[1] .< dataset[norm_by] .< norm_bins[end]) .& (p .> 0))
 
             # Resample, returning binned means and uncertainties
             # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -133,10 +132,10 @@
         eu = zeros(nbins)
         for i=1:length(norm_bins)-1
             # Find the samples we're looking for
-            t = (dataset[norm_by].>norm_bins[i]) .& (dataset[norm_by].<norm_bins[i+1]) .& (dataset[num].>0) .& (dataset[denom].>0)
+            t = (norm_bins[i] .< dataset[norm_by] .< norm_bins[i+1]) .& (dataset[num].>0) .& (dataset[denom].>0)
 
             # See what proportion of the modern crust falls in this norm_bin
-            prop = sum((dataset[norm_by].>norm_bins[i]) .& (dataset[norm_by].<norm_bins[i+1]) .& (p .> 0)) / sum((dataset[norm_by].>norm_bins[1]) .& (dataset[norm_by].<norm_bins[end]) .& (p .> 0))
+            prop = sum((norm_bins[i] .< dataset[norm_by] .< norm_bins[i+1]) .& (p .> 0)) / sum((norm_bins[1] .< dataset[norm_by] .< norm_bins[end]) .& (p .> 0))
 
             # Resample, returning binned means and uncertainties
             # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)

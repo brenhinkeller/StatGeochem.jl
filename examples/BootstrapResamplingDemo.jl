@@ -110,7 +110,7 @@
 
     # Look only at samples in the basaltic silica range
     # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
-    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
+    t = 43 .< ign["SiO2"] .< 51 # Mafic
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -129,7 +129,7 @@
 
     # Look only at samples in the basaltic silica range
     # (note that if uncertainty in SiO2 were more significant, we should be resampling this too)
-    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51)
+    t = 43 .< ign["SiO2"] .< 51 # Mafic
 
     # Calculate binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)

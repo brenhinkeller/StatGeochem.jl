@@ -11,6 +11,7 @@
 
     if ~isfile("ign.h5") # Unless it already exists
         download("https://storage.googleapis.com/statgeochem/ign.h5.gz","./ign.h5.gz")
+        download("https://storage.googleapis.com/statgeochem/err2srel.csv","./err2srel.csv")
         run(`gunzip -f ign.h5.gz`) # Unzip file
     end
 
@@ -35,6 +36,14 @@
     t = (ign["Age_sigma"] .< 50) .| isnan.(ign["Age_sigma"]) # Find points with < 50 Ma absolute uncertainty
     ign["Age_sigma"][t] .= 50 # Set 50 Ma minimum age uncertainty (1-sigma)
 
+    # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
+    ign["err2srel"] = importdataset("err2srel.csv", ',')
+    for e in ign["elements"]
+        # If there's an err2srel for this variable, create a "_sigma" if possible
+        if haskey(ign["err2srel"], e) && !haskey(ign, e*"_sigma")
+            ign[e*"_sigma"] = ign[e] .* (ign["err2srel"][e] / 2);
+        end
+    end
 
 ## --- Resample a single variable
 
@@ -44,9 +53,9 @@
     elem = "K2O" # Element to plot
 
     # Look only at samples from a specific silica range
-    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51) # Mafic
-    # t = (ign["SiO2"].>51) .& (ign["SiO2"].<62) # Intermediate
-    # t = (ign["SiO2"].>62) .& (ign["SiO2"].<74) # Felsic
+    t = 43 .< ign["SiO2"] .< 51 # Mafic
+    # t = 51 .< ign["SiO2"] .< 62 # Intermediate
+    # t = 62 .< ign["SiO2"] .< 74 # Felsic
     # t = trues(size(ign[elem])) # Everything
 
     # Resample, returning binned means and uncertainties
@@ -67,14 +76,12 @@
     denom = "Yb" # Denominator
 
     # Look only at samples from a specific silica range
-    t = (ign["SiO2"].>43) .& (ign["SiO2"].<51) # Mafic
-    # t = (ign["SiO2"].>51) .& (ign["SiO2"].<62) # Intermediate
-    # t = (ign["SiO2"].>62) .& (ign["SiO2"].<74) # Felsic
-    # t = trues(size(ign[elem])) # Everything
+    t = 43 .< ign["SiO2"] .< 51 # Mafic
+    # t = 51 .< ign["SiO2"] .< 62 # Intermediate
+    # t = 62 .< ign["SiO2"] .< 74 # Felsic
 
-   # Exclude outliers
-    t = t .& (ign[num] .> pctile(ign[num],0.5)) .& (ign[num] .< pctile(ign[num],99.5))
-    t = t .& (ign[denom] .> pctile(ign[denom],0.5)) .& (ign[denom] .< pctile(ign[denom],99.5))
+    # Exclude outliers
+    t = t .& inpctile(ign[num], 99) .& inpctile(ign[denom], 99)
 
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -88,6 +95,61 @@
 
     savefig(h,"$(num)$(denom)_$(tmax)-$(tmin)Ma.pdf")
 
+
+## --- Single element differentiation example
+
+    xelem = "SiO2"
+    xmin = 45
+    xmax = 75
+    nbins = 8
+    elem = "K2O"
+
+    h = plot(xlabel=xelem, ylabel="$(elem)",xlims=(xmin,xmax),framestyle=:box,grid=:off,fg_color_legend=:white) # Format plot
+
+    rt = [0,1,2,3,4] # Time range (Ga)
+    colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
+    for i=1:length(rt)-1
+        t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
+
+        # Resample, returning binned means and uncertainties
+        # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+        (c,m,el,eu) = bin_bsr_means(ign[xelem][t],ign[elem][t],xmin,xmax,nbins, p=p[t],
+                        x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
+
+        # Plot results
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+    end
+    # savefig(h,"$(xelem)_$(num)$(denom).pdf")
+    display(h)
+
+## --- Ratio differentiation example
+
+    xelem = "SiO2"
+    xmin = 45
+    xmax = 75
+    nbins = 8
+    num = "Sc" # Numerator
+    denom = "Yb" # Denominator
+
+    h = plot(xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off,legend=:topleft,fg_color_legend=:white) # Format plot
+
+    rt = [0,1,2,3,4]
+    colors = reverse(resize_colormap(viridis[1:end-20],length(rt)-1))
+    for i=1:length(rt)-1
+        t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
+
+        # Resample, returning binned means and uncertainties
+        # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+        (c,m,el,eu) = bin_bsr_ratio_medians(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
+                        x_sigma=ign[xelem*"_sigma"][t], num_sigma=ign[num*"_sigma"][t], denom_sigma=ign[denom*"_sigma"][t])
+
+        # Plot results
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+    end
+    display(h)
+
 ## --- Ratio differentiation
 
     xelem = "SiO2"
@@ -97,12 +159,8 @@
     num = "Sc" # Numerator
     denom = "Yb" # Denominator
 
-    # Look only at samples from a specific silica range
-    t = (ign["SiO2"].>40) .& (ign["SiO2"].<80) # Mafic
-
-   # Exclude outliers
-    t = t .& (ign[num] .> pctile(ign[num],0.5)) .& (ign[num] .< pctile(ign[num],99.5))
-    t = t .& (ign[denom] .> pctile(ign[denom],0.5)) .& (ign[denom] .< pctile(ign[denom],99.5))
+    # Exclude outliers
+    t = inpctile(ign[num], 99) .& inpctile(ign[denom], 99)
 
     # Resample, returning binned means and uncertainties
     # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
@@ -114,6 +172,29 @@
     plot!(h, xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off) # Format plot
     display(h)
 
-    savefig(h,"$(xelem)_$(num)$(denom).pdf")
+
+
+## --- Export differentiation trends
+
+    xelem = "SiO2"
+    xmin = 45
+    xmax = 75
+    nbins = 10
+
+    rt = [0,1,2,3,4] # Time range (Ga)
+    data = Dict()
+    for elem in ["Al2O3", "MgO", "Na2O", "Fe2O3T", "K2O", "CaO"]
+        for i=1:length(rt)-1
+            t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
+
+            # Resample, returning binned means and uncertainties
+            (c,m,e) = bin_bsr(ign[xelem][t],ign[elem][t],xmin,xmax,nbins, p=p[t],
+                            x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
+            data[xelem] = c
+            data[elem*"_$(rt[i])-$(rt[i+1])Ga"] = m
+            data[elem*"_$(rt[i])-$(rt[i+1])Ga_sigma"] = e
+        end
+    end
+    exportdataset(data,"MajorDifferentiation.csv",',')
 
 ## --- End of File
