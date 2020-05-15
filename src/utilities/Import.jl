@@ -439,13 +439,14 @@
     end
     export importdataset
 
-    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar, skipnan::Bool=true)
-        if skipnan
-            result = writedlm(filepath, unelementify(dataset, skipnan=true), delim)
-        else
-            result = writedlm(filepath, unelementify(dataset), delim)
+    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
+        data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
+        if sigdigits > 0
+            data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
+        elseif digits > 0
+            data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
         end
-        return result
+        return writedlm(filepath, data, delim)
     end
     export exportdataset
 
