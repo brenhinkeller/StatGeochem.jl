@@ -1,4 +1,4 @@
-## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
+## --- Load the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
     using Plots; gr();
@@ -34,7 +34,6 @@
     ign["Age_sigma"][t] .= 50 # Set 50 Ma minimum age uncertainty (1-sigma)
     # t = (ign["Age_sigma"]./ign["Age"] .< 0.025)
     # ign["Age_sigma"][t] .= ign["Age"][t] * 0.025 # Set 5% (2-sigma) minimum relative uncertainty
-
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
     ign["err2srel"] = importdataset("err2srel.csv", ',')

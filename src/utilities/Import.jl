@@ -406,6 +406,8 @@
         end
         return result
     end
+    export concatenatedatasets
+
 
 ## --- Renormalization of imported datasets
 
