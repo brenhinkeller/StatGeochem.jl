@@ -90,7 +90,7 @@
 ## --- Compute proximity coefficients (inverse weights)
     # Since this is pretty computatually intensive, let's load a precomputed version instead
 
-    # k = invweight(ign["Latitude"], ign["Longitude"], ign["Age"])
+    # k = invweight(ign["Latitude"] .|> Float32, ign["Longitude"] .|> Float32, ign["Age"] .|> Float32)
     k = ign["k"]
 
     # Probability of keeping a given data point when sampling

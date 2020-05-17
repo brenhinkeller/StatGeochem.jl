@@ -23,7 +23,7 @@
 ## --- Compute proximity coefficients (inverse weights)
 
     # # Compute inverse weights
-    # k = invweight(ign["Latitude"], ign["Longitude"], ign["Age"])
+    # k = invweight(ign["Latitude"] .|> Float32, ign["Longitude"] .|> Float32, ign["Age"] .|> Float32)
 
     # Since this is pretty computatually intensive, let's load a precomputed version instead
     k = ign["k"]
