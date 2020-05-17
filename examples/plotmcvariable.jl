@@ -31,19 +31,23 @@
     # Probability of keeping a given data point when sampling
     p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
 
-    # Calculate age uncertainty
+    # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
+    err2srel = importdataset("err2srel.csv", ',')
+    for e in elements
+        # If there's an err2srel for this variable, create a "_sigma" if possible
+        if haskey(err2srel, e) && !haskey(ign, e*"_sigma")
+            ign[e*"_sigma"] = ign[e] .* (err2srel[e] / 2);
+        end
+    end
+
+    # Special cases: age uncertainty
     ign["Age_sigma"] = (ign["Age_Max"]-ign["Age_Min"])/2;
     t = (ign["Age_sigma"] .< 50) .| isnan.(ign["Age_sigma"]) # Find points with < 50 Ma absolute uncertainty
     ign["Age_sigma"][t] .= 50 # Set 50 Ma minimum age uncertainty (1-sigma)
 
-    # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
-    ign["err2srel"] = importdataset("err2srel.csv", ',')
-    for e in ign["elements"]
-        # If there's an err2srel for this variable, create a "_sigma" if possible
-        if haskey(ign["err2srel"], e) && !haskey(ign, e*"_sigma")
-            ign[e*"_sigma"] = ign[e] .* (ign["err2srel"][e] / 2);
-        end
-    end
+    # Special cases: location uncertainty
+    ign["Latitude_sigma"] = ign["Loc_Prec"]
+    ign["Longitude_sigma"] = ign["Loc_Prec"]
 
 ## --- Resample a single variable
 

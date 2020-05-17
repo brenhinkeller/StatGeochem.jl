@@ -88,18 +88,25 @@
     ign = h5read("ign.h5","vars")
 
 ## --- Compute proximity coefficients (inverse weights)
-    # Since this is pretty computatually intensive, let's load a precomputed version instead
 
+    # # Compute inverse weights
     # k = invweight(ign["Latitude"] .|> Float32, ign["Longitude"] .|> Float32, ign["Age"] .|> Float32)
+
+    # Since this is somewhat computatually intensive, let's load a precomputed version instead
     k = ign["k"]
 
     # Probability of keeping a given data point when sampling
     p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
+    p[vec(ign["Elevation"].<-100)] .= 0 # Consider only continental crust
 
-    # Calculate age uncertainty
+    # Age uncertainty
     ign["Age_sigma"] = (ign["Age_Max"]-ign["Age_Min"])/2;
     t = (ign["Age_sigma"] .< 50) .| isnan.(ign["Age_sigma"]) # Find points with < 50 Ma absolute uncertainty
-    ign["Age_sigma"][t] .= 50; # Set 50 Ma minimum age uncertainty (1-sigma)
+    ign["Age_sigma"][t] .= 50 # Set 50 Ma minimum age uncertainty (1-sigma)
+
+    # Location uncertainty
+    ign["Latitude_sigma"] = ign["Loc_Prec"]
+    ign["Longitude_sigma"] = ign["Loc_Prec"]
 
 ## --- Try resampling a single variable to reproduce the MgO trend from K&S 2012
     xmin = 0
