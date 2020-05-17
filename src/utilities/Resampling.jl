@@ -978,7 +978,7 @@
     """
     ```julia
     k = invweight(lat::AbstractVector, lon::AbstractVector, age::AbstractVector;
-        \tlp::Number=2, spatialscale::Union{Number,AbstractVector}=1.8, agescale::Union{Number,AbstractVector}=38.0)
+        \tlp::Number=2, spatialscale=1.8, agescale=38.0)
     ```
 
     Find the inverse weights `k` (proportional to spatiotemporal sample density) for
@@ -990,16 +990,17 @@
     `spatialscale`, `agescale`, or both, a 3-d matrix of `k` values will be returned,
     with dimensions length(`spatialscale`)*length(`agescale`)*nrows.
     """
-    function invweight(lat::AbstractVector{<:Number}, lon::AbstractVector{<:Number}, age::AbstractVector{<:Number};
-        lp::Number=2, spatialscale::Union{Number,AbstractVector{<:Number}}=1.8, agescale::Union{Number,AbstractVector{<:Number}}=38.0)
+    function invweight(lat::AbstractArray, lon::AbstractArray, age::AbstractArray;
+        lp::Number=2, spatialscale=1.8, agescale=38.0)
+
 
         # Check if there is lat, lon, and age data
-        nodata = isnan.(lat) .| isnan.(lon) .| isnan.(age)
+        nodata = vec(isnan.(lat) .| isnan.(lon) .| isnan.(age))
 
         # Convert lat and lon to radians
-        latr = lat/180*pi
-        lonr = lon/180*pi
-        spatialscalr= spatialscale/180*pi
+        latr = vec(lat/180*pi)
+        lonr = vec(lon/180*pi)
+        spatialscalr = spatialscale/180*pi
 
         # Precalculate some sines and cosines
         latsin = sin.(latr)
@@ -1049,12 +1050,12 @@
         lp::Number=2, spatialscale::Number=1.8)
 
         # Check if there is lat, lon data
-        nodata = isnan.(lat) .| isnan.(lon)
+        nodata = vec(isnan.(lat) .| isnan.(lon))
 
         # Convert lat and lon to radians
-        latr = lat/180*pi
-        lonr = lon/180*pi
-        spatialscalr= spatialscale/180*pi
+        latr = vec(lat/180*pi)
+        lonr = vec(lon/180*pi)
+        spatialscalr = spatialscale/180*pi
 
         # Precalculate some sines and cosines
         latsin = sin.(latr)
