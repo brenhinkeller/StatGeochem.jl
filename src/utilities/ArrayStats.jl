@@ -133,7 +133,8 @@
     function nanmax(a::AbstractFloat,b::AbstractFloat)
         ifelse(isnan(a), b, ifelse(a < b, b, a))
     end
-    nanmax(a::Number,b::Number) = nanmax(promote(a,b)...)
+    nanmax(a::AbstractFloat,b::Number) = nanmax(promote(a,b)...)
+    nanmax(a::Number,b::AbstractFloat) = nanmax(promote(a,b)...)
     nanmax(a,b) = max(a,b) # Fallback method for non-Floats
 
     """
@@ -145,7 +146,8 @@
     function nanmin(a::AbstractFloat,b::AbstractFloat)
         ifelse(isnan(a), b, ifelse(a > b, b, a))
     end
-    nanmin(a::Number,b::Number) = nanmin(promote(a,b)...)
+    nanmin(a::AbstractFloat,b::Number) = nanmin(promote(a,b)...)
+    nanmin(a::Number,b::AbstractFloat) = nanmin(promote(a,b)...)
     nanmin(a,b) = min(a,b) # Fallback method for non-Floats
 
 
@@ -509,14 +511,13 @@
     end
     function _nanstd(A, region, ::Colon)
         mask = nanmask(A)
-        A_masked = A.*mask
         N = sum(mask, dims=region)
-        s = sum(A_masked, dims=region)./N
-        A_masked .-= s # Subtract mean, using broadcasting
-        @inbounds @simd for i = 1:length(A_masked)
-            A_masked[i] *= A_masked[i] * mask[i]
+        s = sum(A.*mask, dims=region)./N
+        d = A .- s # Subtract mean, using broadcasting
+        @inbounds @simd for i = 1:length(d)
+            d[i] = (d[i] * d[i]) * mask[i]
         end
-        s .= sum(A_masked, dims=region)
+        s .= sum(d, dims=region)
         return @avx @. sqrt( s / (N - 1) )
     end
     _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
