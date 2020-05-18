@@ -90,52 +90,119 @@
     end
     export MSWD
 
+## --- Transformations of arrays with NaNs
+
+    """
+    ```julia
+    nanmask(A)
+    ```
+    Create a Boolean mask of dimensions `size(A)` that is false wherever `A` is `NaN`
+    """
+    function nanmask(A)
+        mask = Array{Bool}(undef,size(A))
+        @avx for i=1:length(A)
+            mask[i] = !isnan(A[i])
+        end
+        return mask
+    end
+    export nanmask
+
+    """
+    ```julia
+    zeronan!(A)
+    ```
+    Replace all `NaN`s in A with zeros of the same type
+    """
+    function zeronan!(A)
+        @inbounds @simd for i=1:length(A)
+            A[i] *= !isnan(A[i])
+        end
+        return A
+    end
+    export zeronan!
+
+
+## --- Min & max ignoring NaNs
+
+    """
+    ```julia
+    nanmax(a,b)
+    ```
+    As `max(a,b)`, but if either argument is `NaN`, return the other one
+    """
+    function nanmax(a::AbstractFloat,b::AbstractFloat)
+        ifelse(isnan(a), b, ifelse(a < b, b, a))
+    end
+    nanmax(a::Number,b::Number) = nanmax(promote(a,b)...)
+    nanmax(a,b) = max(a,b) # Fallback method for non-Floats
+
+    """
+    ```julia
+    nanmin(a,b)
+    ```
+    As `min(a,b)`, but if either argument is `NaN`, return the other one
+    """
+    function nanmin(a::AbstractFloat,b::AbstractFloat)
+        ifelse(isnan(a), b, ifelse(a > b, b, a))
+    end
+    nanmin(a::Number,b::Number) = nanmin(promote(a,b)...)
+    nanmin(a,b) = min(a,b) # Fallback method for non-Floats
+
+
 ## --- Percentile statistics, excluding NaNs
 
     """
     ```julia
-    pctile(A, p; dim=0)
+    pctile(A, p; dims)
     ```
     Find the `p`th percentile of an indexable collection `A`, ignoring NaNs,
-    optionally along a dimension specified by `dim`.
+    optionally along a dimension specified by `dims`.
 
     A valid percentile value must satisfy 0 <= `p` <= 100.
     """
-    function pctile(A, p; dim=0)
+    pctile(A, p; dims=:, dim=:) = _pctile(A, p, dims, dim)
+    _pctile(A, p, region, ::Colon) = _pctile(A, p, region)
+    _pctile(A, p, ::Colon, region) = _pctile(A, p, region) |> vec
+    _pctile(A, p, ::Colon, ::Colon) = _pctile(A, p, :)
+    function _pctile(A, p, ::Colon)
+        t = .~ isnan.(A)
+        return any(t) ? percentile(A[t],p) : NaN
+    end
+    function _pctile(A, p, region)
         s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef,s[1])
+        if region == 2
+            result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 result[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
-        elseif dim == 1
+        elseif region == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 result[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
-            t = .~ isnan.(A)
-            result = any(t) ? percentile(A[t],p) : NaN
+            result =  _pctile(A, p, :)
         end
         return result
     end
     export pctile
 
+
     """
     ```julia
-    inpctile(A, p::Number; dim=0)
+    inpctile(A, p::Number; dims)
     ```
     Return a boolean array that identifies which values of the iterable
     collection `A` fall within the central `p`th percentile, optionally along a
-    dimension specified by `dim`.
+    dimension specified by `dims`.
 
     A valid percentile value must satisfy 0 <= `p` <= 100.
     """
-    function inpctile(A, p::Number; dim=0)
+    function inpctile(A, p)
         offset = (100 - p) / 2
-        return pctile(A, offset, dim=dim) .< A .< pctile(A, 100-offset, dim=dim)
+        return _pctile(A, offset, :) .< A .< _pctile(A, 100-offset, :)
     end
     export inpctile
 
@@ -144,199 +211,135 @@
 
     """
     ```julia
-    nansum(A; dim=0)
+    nansum(A; dims)
     ```
     Calculate the sum of an indexable collection `A`, ignoring NaNs, optionally
-    along a dimension specified by `dim`.
+    along dimensions specified by `dims`.
     """
-    function nansum(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? sum(A[i,t]) : NaN
-            end
-        elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? sum(A[t,i]) : NaN
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? sum(A[t]) : NaN
+    nansum(A; dims=:, dim=:) = _nansum(A, dims, dim)
+    _nansum(A, region, ::Colon) = _nansum(A, region)
+    _nansum(A, ::Colon, region) = _nansum(A, region) |> vec
+    _nansum(A, ::Colon, ::Colon) = _nansum(A, :)
+    function _nansum(A,::Colon)
+        m = zero(eltype(A))
+        @simd for x in A
+            m += x * !isnan(x)
         end
-        return result
+        return m
+    end
+    function _nansum(A, region)
+        sum(A.*nanmask(A), dims=region)
     end
     export nansum
 
-
     """
     ```julia
-    nanminimum(A; dim=0)
+    nanminimum(A; dims)
     ```
-    Find the smallest non-NaN value of an indexable collection `A`, optionally
-    along a dimension specified by `dim`.
+    As `minimum` but ignoring `NaN`s: Find the smallest non-`NaN` value of an
+    indexable collection `A`, optionally along a dimension specified by `dims`.
     """
-    function nanminimum(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? minimum(A[i,t]) : NaN
-            end
-        elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? minimum(A[t,i]) : NaN
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? minimum(A[t]) : NaN
+    nanminimum(A; dims=:, dim=:) = _nanminimum(A, dims, dim)
+    _nanminimum(A, region, ::Colon) = _nanminimum(A, region)
+    _nanminimum(A, ::Colon, region) = _nanminimum(A, region) |> vec
+    _nanminimum(A, ::Colon, ::Colon) = _nanminimum(A, :)
+    function _nanminimum(A, ::Colon)
+        result = A[1]
+        for x in A
+            result = nanmin(x, result)
         end
         return result
     end
+    _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=A[1])
     export nanminimum
 
 
     """
     ```julia
-    nanmaximum(A; dim=0)
+    nanmaximum(A; dims)
     ```
     Find the largest non-NaN value of an indexable collection `A`, optionally
-    along a dimension specified by `dim`.
+    along a dimension specified by `dims`.
     """
-    function nanmaximum(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? maximum(A[i,t]) : NaN
-            end
-        elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? maximum(A[t,i]) : NaN
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? maximum(A[t]) : NaN
+    nanmaximum(A; dims=:, dim=:) = _nanmaximum(A, dims, dim)
+    _nanmaximum(A, region, ::Colon) = _nanmaximum(A, region)
+    _nanmaximum(A, ::Colon, region) = _nanmaximum(A, region) |> vec
+    _nanmaximum(A, ::Colon, ::Colon) = _nanmaximum(A, :)
+    function _nanmaximum(A, ::Colon)
+        result = A[1]
+        for x in A
+            result = nanmax(x,result)
         end
         return result
     end
+    _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=A[1])
     export nanmaximum
 
 
     """
     ```julia
-    nanextrema(A)
+    nanextrema(A; dims)
     ```
-    Find the extrema (max & min) of an indexable collection `A`, ignoring NaNs.
+    Find the extrema (maximum & minimum) of an indexable collection `A`,
+    ignoring NaNs, optionally along a dimension specified by `dims`.
     """
-    function nanextrema(A)
-        t = .~ isnan.(A)
-        return extrema(A[t])
-    end
+    nanextrema(A; dims=:) = _nanextrema(A, dims)
+    _nanextrema(A, ::Colon) = (_nanminimum(A, :), _nanminimum(A, :))
+    _nanextrema(A, region) = collect(zip(_nanminimum(A, region), _nanminimum(A, region)))
     export nanextrema
 
 
     """
     ```julia
-    nanrange(A; dim=0)
+    nanrange(A; dims)
     ```
-    Calculate the range (max-min) of an indexable collection `A`, ignoring NaNs,
-    optionally along a dimension specified by `dim`.
+    Calculate the range (maximum - minimum) of an indexable collection `A`,
+    ignoring NaNs, optionally along a dimension specified by `dims`.
     """
-    function nanrange(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{eltype(A)}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                if any(t)
-                    extr = extrema(A[i,t])
-                    result[i] = extr[2] - extr[1]
-                else
-                    result[i] = 0
-                end
-            end
-        elseif dim == 1
-            result = Array{eltype(A)}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                if any(t)
-                    extr = extrema(A[t,i])
-                    result[i] = extr[2] - extr[1]
-                else
-                    result[i] = 0
-                end
-            end
-        else
-            t = .~ isnan.(A)
-            if any(t)
-                extr = extrema(A[t])
-                result = extr[2] - extr[1]
-            else
-                result = 0
-            end
-        end
-        return result
-    end
+    nanrange(A; dims=:) = _nanmaximum(A, dims) - _nanminimum(A, dims)
     export nanrange
 
 
     """
     ```julia
-    nanmean(A, [W]; dim=0)
+    nanmean(A, [W]; dims)
     ```
     Ignoring NaNs, calculate the mean (optionally weighted) of an indexable
-    collection `A`, optionally along a dimension specified by `dim`.
+    collection `A`, optionally along dimensions specified by `dims`.
     """
-    function nanmean(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? mean(A[i,t]) : float(eltype(A))(NaN)
-            end
-        elseif dim == 1
-            result = Array{float(eltype(A))}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? mean(A[t,i]) : float(eltype(A))(NaN)
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? mean(A[t]) : float(eltype(A))(NaN)
+    nanmean(A; dims=:, dim=:) = _nanmean(A, dims, dim)
+    nanmean(A, W; dims=:, dim=:) = _nanmean(A, W, dims, dim)
+    function _nanmean(A, ::Colon, ::Colon)
+        n = 0
+        m = zero(eltype(A))
+        @inbounds @simd for i=1:length(A)
+            t = !isnan(A[i])
+            n += t
+            m += A[i] * t
         end
-        return result
+        return m / n
     end
-    function nanmean(A, W; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? mean(A[i,t], ProbabilityWeights(W[i,t])) : float(eltype(A))(NaN)
-            end
-        elseif dim == 1
-            result = Array{float(eltype(A))}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? mean(A[t,i], ProbabilityWeights(W[t,i])) : float(eltype(A))(NaN)
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? mean(A[t], ProbabilityWeights(W[t])) : float(eltype(A))(NaN)
+    function _nanmean(A, region, ::Colon)
+        mask = nanmask(A)
+        return sum(A.*mask, dims=region) ./ sum(mask, dims=region)
+    end
+    _nanmean(A, ::Colon, region) = vec(_nanmean(A, region, :))
+    function _nanmean(A, W, ::Colon, ::Colon)
+        n = zero(eltype(W))
+        m = zero(promote_type(eltype(W), eltype(A)))
+        @inbounds @simd for i=1:length(A)
+            t = !isnan(A[i])
+            n += W[i] * t
+            m += A[i] * W[i] * t
         end
-        return result
+        return m / n
     end
+    function _nanmean(A, W, region, ::Colon)
+        mask = nanmask(A)
+        return sum(A.*W.*mask, dims=region) ./ sum(W.*mask, dims=region)
+    end
+    _nanmean(A, W, ::Colon, region) = vec(_nanmean(A, W, region, :))
+
 
     """
     ```julia
@@ -388,6 +391,7 @@
         N = Array{Int}(undef, size(MU))
         return nanmean!(MU, N, x, y, xmin, xmax, nbins)
     end
+    # As above, but also return an array of counts, N; y, N, and MU as 1D vectors
     function nanmean!(MU::AbstractVector, N::AbstractVector, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -407,6 +411,7 @@
 
         return MU
     end
+    # In-place binning; as above but with y, N, MU as 2D matrices instead of 1D vectors
     function nanmean!(MU::AbstractMatrix, N::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -430,6 +435,7 @@
 
         return MU
     end
+    # In-place binning with weights; y, W, MU as 1D vectors
     function nanmean!(MU::AbstractVector, W::AbstractVector, x::AbstractVector, y::AbstractVector, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -437,7 +443,7 @@
         # Calculate the means for each bin, ignoring NaNs
         fill!(W, 0)
         fill!(MU, 0) # Fill the output array with zeros to start
-        for i = 1:length(x)
+        @inbounds for i = 1:length(x)
             bin_index_float = (x[i] - xmin) * scalefactor
             if (0 < bin_index_float < nbins) && !isnan(y[i])
                 bin_index = ceil(Int, bin_index_float)
@@ -449,6 +455,7 @@
 
         return MU
     end
+    # In-place binning with weights; y, W, MU as 2D matrices
     function nanmean!(MU::AbstractMatrix, W::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, w::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
         # Calculate bin index from x value
         scalefactor = nbins / (xmax - xmin)
@@ -477,85 +484,104 @@
 
     """
     ```julia
-    nanstd(A; dim=0)
+    nanstd(A, [W]; dims)
     ```
-    Calculate the standard deviation, ignoring NaNs, of an indexable collection `A`,
-    optionally along a dimension specified by `dim`.
+    Calculate the standard deviation (optionaly weighted), ignoring NaNs, of an
+    indexable collection `A`, optionally along a dimension specified by `dims`.
     """
-    function nanstd(A; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? std(A[i,t]) : float(eltype(A))(NaN)
-            end
-        elseif dim == 1
-            result = Array{float(eltype(A))}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? std(A[t,i]) : float(eltype(A))(NaN)
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? std(A[t]) : float(eltype(A))(NaN)
+    nanstd(A; dims=:, dim=:) = _nanstd(A, dims, dim)
+    nanstd(A, W; dims=:, dim=:) = _nanstd(A, W, dims, dim)
+    function _nanstd(A, ::Colon, ::Colon)
+        n = 0
+        m = zero(eltype(A))
+        @inbounds @simd for i=1:length(A)
+            t = !isnan(A[i])
+            n += t
+            m += A[i] * t
         end
-        return result
-    end
-    """
-    ```julia
-    nanstd(A, W; dim=0)
-    ```
-    Calculate the weighted standard deviation, ignoring NaNs, of an indexable
-    collection `A` with weights `W`, optionally along a dimension specified by `dim`.
-    """
-    function nanstd(A, W; dim=0)
-        s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef,s[1])
-            for i=1:s[1]
-                t = .~ isnan.(A[i,:])
-                result[i] = any(t) ? std(A[i,t], ProbabilityWeights(W[i,t]), corrected=false) : float(eltype(A))(NaN)
-            end
-        elseif dim == 1
-            result = Array{float(eltype(A))}(undef, 1, s[2])
-            for i=1:s[2]
-                t = .~ isnan.(A[:,i])
-                result[i] = any(t) ? std(A[t,i], ProbabilityWeights(W[t,i]), corrected=false) : float(eltype(A))(NaN)
-            end
-        else
-            t = .~ isnan.(A)
-            result = any(t) ? std(A[t], ProbabilityWeights(W[t]), corrected=false) : float(eltype(A))(NaN)
+        mu = m / n
+        s = zero(typeof(mu))
+        @inbounds @simd for i=1:length(A)
+            d = (A[i] - mu) * !isnan(A[i])
+            s += d * d
         end
-        return result
+        return sqrt(s / (n-1))
     end
+    function _nanstd(A, region, ::Colon)
+        mask = nanmask(A)
+        A_masked = A.*mask
+        N = sum(mask, dims=region)
+        s = sum(A_masked, dims=region)./N
+        A_masked .-= s # Subtract mean, using broadcasting
+        @inbounds @simd for i = 1:length(A_masked)
+            A_masked[i] *= A_masked[i] * mask[i]
+        end
+        s .= sum(A_masked, dims=region)
+        return @avx @. sqrt( s / (N - 1) )
+    end
+    _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
+    function _nanstd(A, W, ::Colon)
+        w = zero(eltype(W))
+        m = zero(promote_type(eltype(W), eltype(A)))
+        @inbounds @simd for i=1:length(A)
+            t = !isnan(A[i])
+            w += W[i] * t
+            m += A[i] * W[i] * t
+        end
+        mu = m / w
+        s = zero(typeof(mu))
+        @inbounds @simd for i=1:length(A)
+            d = (A[i] - mu)
+            s += d * d * W[i] * !isnan(A[i])
+        end
+        return sqrt(s / w)
+    end
+    function _nanstd(A, W, region)
+        mask = nanmask(A)
+        w = sum(W.*mask, dims=region)
+        s = sum(A.*W.*mask, dims=region) ./ w
+        d = A .- s # Subtract mean, using broadcasting
+        @inbounds @simd for i = 1:length(d)
+            d[i] = (d[i] * d[i] * W[i]) * mask[i]
+        end
+        s .= sum(d, dims=region)
+        return @avx @. sqrt( s / w )
+    end
+    _nanstd(A, W, ::Colon, region) = vec(_nanstd(A, W, region, :))
     export nanstd
 
 
     """
     ```julia
-    nanmedian(A; dim=0)
+    nanmedian(A; dims)
     ```
     Calculate the median, ignoring NaNs, of an indexable collection `A`,
-    optionally along a dimension specified by `dim`.
+    optionally along a dimension specified by `dims`.
     """
-    function nanmedian(A; dim=0)
+    nanmedian(A; dims=:, dim=:) = _nanmedian(A, dims, dim)
+    _nanmedian(A, region, ::Colon) = _nanmedian(A, region)
+    _nanmedian(A, ::Colon, region) = _nanmedian(A, region) |> vec
+    _nanmedian(A, ::Colon, ::Colon) = _nanmedian(A, :)
+    function _nanmedian(A, ::Colon)
+        t = .~ isnan.(A)
+        return any(t) ? median(A[t]) : float(eltype(A))(NaN)
+    end
+    function _nanmedian(A, region)
         s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef, s[1])
+        if region == 2
+            result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 result[i] = any(t) ? median(A[i,t]) : float(eltype(A))(NaN)
             end
-        elseif dim == 1
+        elseif region == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
                 result[i] = any(t) ? median(A[t,i]) : float(eltype(A))(NaN)
             end
         else
-            t = .~ isnan.(A)
-            result = any(t) ? median(A[t]) : float(eltype(A))(NaN)
+            result = _nanmedian(A, :)
         end
         return result
     end
@@ -613,21 +639,21 @@
 
     """
     ```julia
-    nanmad(A; dim=0)
+    nanmad(A; dims)
     ```
     Median absolute deviation from the median, ignoring NaNs, of an indexable
-    collection `A`, optionally along a dimension specified by `dim`.
+    collection `A`, optionally along a dimension specified by `dims`.
     Note that for a Normal distribution, sigma = 1.4826 * MAD
     """
-    function nanmad(A; dim=0)
+    function nanmad(A; dims=:)
         s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef, s[1])
+        if dims == 2
+            result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : float(eltype(A))(NaN)
             end
-        elseif dim == 1
+        elseif dims == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
@@ -644,21 +670,21 @@
 
     """
     ```julia
-    nanaad(A; dim=0)
+    nanaad(A; dims)
     ```
     Mean (average) absolute deviation from the mean, ignoring NaNs, of an
-    indexable collection `A`, optionally along a dimension specified by `dim`.
+    indexable collection `A`, optionally along a dimension specified by `dims`.
     Note that for a Normal distribution, sigma = 1.253 * AAD
     """
-    function nanaad(A; dim=0)
+    function nanaad(A; dims=:)
         s = size(A)
-        if dim == 2
-            result = Array{float(eltype(A))}(undef, s[1])
+        if dims == 2
+            result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
                 t = .~ isnan.(A[i,:])
                 result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : float(eltype(A))(NaN)
             end
-        elseif dim == 1
+        elseif dims == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
                 t = .~ isnan.(A[:,i])
@@ -671,6 +697,23 @@
         return result
     end
     export nanaad
+
+
+
+## --- Normalize and standardize arrays
+
+    """
+    ```julia
+    standardize!(A; dims)
+    ```
+    Rescale `A` to unit variance and zero mean
+    """
+    function standardize!(A::Array{<:AbstractFloat}, dims=:)
+        A .-= _nanmean(A, dims, :)
+        A ./= _nanstd(A, dims, :)
+        return A
+    end
+    export standardize!
 
 
 ## --- Array construction
