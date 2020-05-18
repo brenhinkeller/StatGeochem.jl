@@ -252,7 +252,7 @@
         end
         return result
     end
-    _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=A[1])
+    _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
     export nanminimum
 
 
@@ -274,7 +274,7 @@
         end
         return result
     end
-    _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=A[1])
+    _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
     export nanmaximum
 
 
