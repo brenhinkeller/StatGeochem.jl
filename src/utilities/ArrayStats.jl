@@ -520,7 +520,7 @@
         return @avx @. sqrt( s / (N - 1) )
     end
     _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
-    function _nanstd(A, W, ::Colon)
+    function _nanstd(A, W, ::Colon, ::Colon)
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @inbounds @simd for i=1:length(A)
@@ -536,7 +536,7 @@
         end
         return sqrt(s / w)
     end
-    function _nanstd(A, W, region)
+    function _nanstd(A, W, region, ::Colon)
         mask = nanmask(A)
         w = sum(W.*mask, dims=region)
         s = sum(A.*W.*mask, dims=region) ./ w
