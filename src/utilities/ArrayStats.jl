@@ -284,8 +284,8 @@
     ignoring NaNs, optionally along a dimension specified by `dims`.
     """
     nanextrema(A; dims=:) = _nanextrema(A, dims)
-    _nanextrema(A, ::Colon) = (_nanminimum(A, :), _nanminimum(A, :))
-    _nanextrema(A, region) = collect(zip(_nanminimum(A, region), _nanminimum(A, region)))
+    _nanextrema(A, ::Colon) = (_nanminimum(A, :), _nanmaximum(A, :))
+    _nanextrema(A, region) = collect(zip(_nanminimum(A, region), _nanmaximum(A, region)))
     export nanextrema
 
 
