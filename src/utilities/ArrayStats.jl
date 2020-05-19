@@ -75,14 +75,14 @@
         sum_of_values = sum_of_weights = χ2 = 0.0
         n = length(x)
 
-        for i=1:n
+        @avx for i=1:n
             w = 1 / (σ[i]*σ[i])
             sum_of_values += w * x[i]
             sum_of_weights += w
         end
         wx = sum_of_values / sum_of_weights
 
-        for i=1:n
+        @avx for i=1:n
             χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
         end
 
