@@ -9,24 +9,35 @@
     function awmean(x, σ)
         n = length(x)
 
-        if n == 1
-            wx = x[1]
-            mswd = NaN
-            wσ = σ[1]
-        else
-            sum_of_values = sum_of_weights = χ2 = 0.0
-            @avx for i=1:n
-                sum_of_values += x[i] / (σ[i]*σ[i])
-                sum_of_weights += 1 / (σ[i]*σ[i])
-            end
-            wx = sum_of_values / sum_of_weights
-
-            @avx for i=1:n
-                χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
-            end
-            mswd = χ2 / (n-1)
-            wσ = sqrt(1.0 / sum_of_weights)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @inbounds @simd for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
         end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(1.0 / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    function awmean(x::Array{<:Number}, σ::Array{<:Number})
+        n = length(x)
+
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @avx for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @avx for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(1.0 / sum_of_weights)
         return wx, wσ, mswd
     end
     export awmean
@@ -41,28 +52,37 @@
     function gwmean(x, σ)
         n = length(x)
 
-        if n == 1
-            wx = x[1]
-            mswd = NaN
-            wσ = σ[1]
-        else
-            sum_of_values = sum_of_weights = χ2 = 0.0
-            @avx for i=1:n
-                sum_of_values += x[i] / (σ[i]*σ[i])
-                sum_of_weights += 1 / (σ[i]*σ[i])
-            end
-            wx = sum_of_values / sum_of_weights
-
-            @avx for i=1:n
-                χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
-            end
-            mswd = χ2 / (n-1)
-            wσ = sqrt(mswd / sum_of_weights)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @inbounds @simd for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
         end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(mswd / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    function gwmean(x::Array{<:Number}, σ::Array{<:Number})
+        n = length(x)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @avx for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @avx for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(mswd / sum_of_weights)
         return wx, wσ, mswd
     end
     export gwmean
-
 
     """
     ```julia
@@ -72,6 +92,23 @@
     statistic) of a dataset with values `x` and one-sigma uncertainties `σ`
     """
     function MSWD(x, σ)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        n = length(x)
+
+        @inbounds @simd for i=1:n
+            w = 1 / (σ[i]*σ[i])
+            sum_of_values += w * x[i]
+            sum_of_weights += w
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+
+        return χ2 / (n-1)
+    end
+    function MSWD(x::Array{<:Number}, σ::Array{<:Number})
         sum_of_values = sum_of_weights = χ2 = 0.0
         n = length(x)
 
