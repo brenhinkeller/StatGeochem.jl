@@ -4,7 +4,7 @@
     ```julia
     (wx, wσ, mswd) = awmean(x, σ)
     ```
-    Weighted mean, absent the MSWD correction to uncertainty.
+    Weighted mean, absent the geochonologist's MSWD correction to uncertainty.
     """
     function awmean(x, σ)
         n = length(x)
@@ -15,13 +15,13 @@
             wσ = σ[1]
         else
             sum_of_values = sum_of_weights = χ2 = 0.0
-            for i=1:n
+            @avx for i=1:n
                 sum_of_values += x[i] / (σ[i]*σ[i])
                 sum_of_weights += 1 / (σ[i]*σ[i])
             end
             wx = sum_of_values / sum_of_weights
 
-            for i=1:n
+            @avx for i=1:n
                 χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
             end
             mswd = χ2 / (n-1)
@@ -47,13 +47,13 @@
             wσ = σ[1]
         else
             sum_of_values = sum_of_weights = χ2 = 0.0
-            for i=1:n
+            @avx for i=1:n
                 sum_of_values += x[i] / (σ[i]*σ[i])
                 sum_of_weights += 1 / (σ[i]*σ[i])
             end
             wx = sum_of_values / sum_of_weights
 
-            for i=1:n
+            @avx for i=1:n
                 χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
             end
             mswd = χ2 / (n-1)
