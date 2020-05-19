@@ -1028,7 +1028,7 @@
         # Draw n random floating-point numbers from the distribution 'dist'
         x = Array{eltype(dist)}(undef, n)
         dist_ymax = maximum(dist)
-        dist_xmax = prevfloat(length(dist) - 1.0)0
+        dist_xmax = prevfloat(length(dist) - 1.0)
 
         @inbounds for i = 1:n
             while true
@@ -1060,7 +1060,7 @@
     function draw_from_distribution!(x::Array{<:AbstractFloat}, dist::AbstractArray{<:AbstractFloat})
         # Fill the array x with random numbers from the distribution 'dist'
         dist_ymax = maximum(dist)
-        dist_xmax = prevfloat(length(dist) - 1.0)0
+        dist_xmax = prevfloat(length(dist) - 1.0)
 
         @inbounds for i=1:length(x)
             while true
