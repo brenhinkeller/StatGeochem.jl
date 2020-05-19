@@ -991,7 +991,7 @@
         # Draw n random floating-point numbers from the distribution 'dist'
         x = Array{eltype(dist)}(undef, n)
         dist_ymax = maximum(dist)
-        dist_xmax = length(dist) - 1.0
+        dist_xmax = prevfloat(length(dist) - 1.0)0
 
         @inbounds for i = 1:n
             while true
@@ -1020,15 +1020,15 @@
     a continuous probability distribution specified by a vector `dist`
     defining the PDF curve thereof.
     """
-    function draw_from_distribution!(dist::AbstractArray{<:AbstractFloat}, x::Array{<:AbstractFloat})
+    function draw_from_distribution!(x::Array{<:AbstractFloat}, dist::AbstractArray{<:AbstractFloat})
         # Fill the array x with random numbers from the distribution 'dist'
         dist_ymax = maximum(dist)
-        dist_xmax = length(dist) - 1.0
+        dist_xmax = prevfloat(length(dist) - 1.0)0
 
         @inbounds for i=1:length(x)
             while true
                 # Pick random x value
-                rx = rand(Float64) * dist_xmax
+                rx = rand(eltype(x)) * dist_xmax
                 # Interpolate corresponding distribution value
                 f = floor(Int,rx)
                 y = dist[f+2]*(rx-f) + dist[f+1]*(1-(rx-f))
@@ -1041,6 +1041,6 @@
             end
         end
     end
-    export fill_from_distribution
+    export draw_from_distribution!
 
 ## --- End of File
