@@ -555,7 +555,10 @@
             d[i] = (d[i] * d[i]) * mask[i]
         end
         s .= sum(d, dims=region)
-        return @avx @. sqrt( s / (N - 1) )
+        @avx for i=1:length(s)
+            s[i] = sqrt( s[i] / (N[i] - 1) )
+        end
+        return s
     end
     _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
     function _nanstd(A, W, ::Colon, ::Colon)
@@ -583,7 +586,10 @@
             d[i] = (d[i] * d[i] * W[i]) * mask[i]
         end
         s .= sum(d, dims=region)
-        return @avx @. sqrt( s / w )
+        @avx for i=1:length(s)
+            s[i] = sqrt( s[i] / w[i] )
+        end
+        return s
     end
     _nanstd(A, W, ::Colon, region) = vec(_nanstd(A, W, region, :))
     export nanstd
