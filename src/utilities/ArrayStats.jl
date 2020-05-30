@@ -766,7 +766,7 @@
     ```
     Rescale a copy of `A` to unit variance and zero mean
     """
-    standardize(A::AbstractArray; dims=:)) = _standardize!(float.(A), dims)
+    standardize(A::AbstractArray; dims=:) = _standardize!(float.(A), dims)
     export standardize
 
 ## --- Array construction
