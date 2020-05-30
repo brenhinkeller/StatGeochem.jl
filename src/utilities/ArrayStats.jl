@@ -748,17 +748,26 @@
 
     """
     ```julia
-    standardize!(A; dims)
+    standardize!(A::Array{<:AbstractFloat}; dims)
     ```
     Rescale `A` to unit variance and zero mean
     """
-    function standardize!(A::Array{<:AbstractFloat}, dims=:)
+    standardize!(A::Array{<:AbstractFloat}; dims=:) = _standardize!(A, dims)
+    function _standardize!(A::Array{<:AbstractFloat}, dims=:)
         A .-= _nanmean(A, dims, :)
         A ./= _nanstd(A, dims, :)
         return A
     end
     export standardize!
 
+    """
+    ```julia
+    standardize(A; dims)
+    ```
+    Rescale a copy of `A` to unit variance and zero mean
+    """
+    standardize(A::AbstractArray; dims=:)) = _standardize!(float.(A), dims)
+    export standardize
 
 ## --- Array construction
 
