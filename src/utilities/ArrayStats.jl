@@ -805,8 +805,8 @@
     # Interpolate y-value at xq
     # Linear interpolation, sorting inputs
     if VERSION>v"0.7"
-        function linterp1(x,y,xq)
-            itp = LinearInterpolation(x,y, extrapolation_bc = Line())
+        function linterp1(x,y,xq; extrapolate=Line())
+            itp = LinearInterpolation(x,y, extrapolation_bc=extrapolate)
             yq = itp(xq) # Interpolate value of y at queried x values
             return yq
         end
@@ -821,9 +821,9 @@
 
     # Sort x and interpolate y-value at xq
     if VERSION>v"0.7"
-        function linterp1s(x,y,xq)
+        function linterp1s(x,y,xq; extrapolate=Line())
             sI = sortperm(x) # indices to construct sorted array
-            itp = LinearInterpolation(x[sI], y[sI], extrapolation_bc = Line())
+            itp = LinearInterpolation(x[sI], y[sI], extrapolation_bc=extrapolate)
             yq = itp(xq) # Interpolate value of y at queried x values
             return yq
         end
