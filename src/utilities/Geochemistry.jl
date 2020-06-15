@@ -323,18 +323,19 @@
     function melts_query(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
-        # Read results and return them if possible
-        data = ""
-        try
-            # Read entire output file as a string
-            fp = open(prefix*"Phase_main_tbl.txt", "r")
-            data = read(fp,String)
-            close(fp)
-        catch
-            # Return empty string if file doesn't exist
-            data = ""
+        melts = Dict()
+        if isfile(prefix*"/Phase_main_tbl.txt")
+            data = readdlm(prefix*"/Phase_main_tbl.txt", ' ', skipblanks=false)
+            pos = findall(all(isempty.(data), dims=2) |> vec)
+            melts["minerals"] = Array{String}(undef, length(pos)-1)
+            for i=1:(length(pos)-1)
+                name = data[pos[i]+1,1]
+                cols = .!isempty.(data[pos[i]+2,:])
+                melts[name] = elementify(data[pos[i]+3:pos[i+1]-1,cols], data[pos[i]+2, cols])
+                melts["minerals"][i] = name
+            end
         end
-        return data
+        return melts
     end
     export melts_query
 
@@ -343,13 +344,12 @@
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Phase_mass_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
-        catch
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -362,13 +362,12 @@
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Liquid_comp_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
-        catch
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -381,13 +380,12 @@
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Solid_comp_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
-        catch
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -400,13 +398,12 @@
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/System_main_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data,floatout=true)
-        catch
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
