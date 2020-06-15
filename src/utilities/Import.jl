@@ -267,10 +267,9 @@
         # Output as dictionary
         result = Dict()
         if skipnameless
-            result["elements"] = elements[elements .!= ""]
-        else
-            result["elements"] = elements
+            elements = elements[elements .!= ""]
         end
+        result["elements"] = elements
 
         # Parse the input array, minus empty-named columns
         for i = 1:length(elements)
