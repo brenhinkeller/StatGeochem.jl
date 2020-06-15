@@ -348,7 +348,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
+            data = elementify(data, floatout=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -366,7 +366,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
+            data = elementify(data, floatout=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -384,7 +384,14 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
+            data = elementify(data, floatout=true, skipnameless=true)
+            data["solids"] = zeros(size(data["Temperature"]))
+            data["elements"] = [data["elements"]; "solids"]
+            for e in data["elements"][4:end]
+                if !contains(e, "water") && !contains(e, "liquid")
+                    data["solids"] .+= data[e]
+                end
+            end
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -402,7 +409,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
+            data = elementify(data, floatout=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
