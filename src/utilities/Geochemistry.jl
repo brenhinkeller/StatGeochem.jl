@@ -403,18 +403,18 @@
 
             # Start by transferring over all the non-redundant elements
             modes = Dict()
-            for m in data["elements"]
-                ms = replace(m, r"_.*" => s"")
-                if haskey(modes, ms)
-                    modes[ms] .+= data[m]
+            for e in data["elements"]
+                m = replace(e, r"_.*" => s"")
+                if haskey(modes, m)
+                    modes[m] .+= data[e]
                 else
-                    modes[ms] = copy(data[m])
+                    modes[m] = copy(data[e])
                 end
             end
 
             # Add the sum of all solids
             modes["solids"] = zeros(size(data["Temperature"]))
-            for m in data["elements"][4:end]
+            for e in data["elements"][4:end]
                 if !contains(e, "water") && !contains(e, "liquid")
                     modes["solids"] .+= data[e]
                 end
