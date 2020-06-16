@@ -331,7 +331,7 @@
             for i=1:(length(pos)-1)
                 name = data[pos[i]+1,1]
                 cols = .!isempty.(data[pos[i]+2,:])
-                melts[name] = elementify(data[pos[i]+3:pos[i+1]-1,cols], data[pos[i]+2, cols])
+                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,cols])
                 melts["minerals"][i] = name
             end
         end
