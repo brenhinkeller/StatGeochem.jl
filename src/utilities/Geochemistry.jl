@@ -401,22 +401,22 @@
             # Convert to a dictionary
             data = elementify(data, floatout=true, skipnameless=true)
 
-            # Start with sum of all solids
+            # Start by transferring over all the non-redundant elements
             modes = Dict()
-            modes["solids"] = zeros(size(data["Temperature"]))
-            for m in data["elements"][4:end]
-                if !contains(e, "water") && !contains(e, "liquid")
-                    modes["solids"] .+= data[e]
-                end
-            end
-
-            # Transfer over all the other elements
             for m in data["elements"]
                 ms = replace(m, r"_.*" => s"")
                 if haskey(modes, ms)
                     modes[ms] .+= data[m]
                 else
                     modes[ms] = copy(data[m])
+                end
+            end
+
+            # Add the sum of all solids
+            modes["solids"] = zeros(size(data["Temperature"]))
+            for m in data["elements"][4:end]
+                if !contains(e, "water") && !contains(e, "liquid")
+                    modes["solids"] .+= data[e]
                 end
             end
 
@@ -458,7 +458,7 @@
                     modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
                 end
             end
-            modes["elements"] = collect(keys(modes))
+            modes["elements"] = sort(collect(keys(modes)))
         else
             # Return empty dictionary if file doesn't exist
             modes = Dict()
