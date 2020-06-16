@@ -330,8 +330,7 @@
             melts["minerals"] = Array{String}(undef, length(pos)-1)
             for i=1:(length(pos)-1)
                 name = data[pos[i]+1,1]
-                cols = .!isempty.(data[pos[i]+2,:])
-                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,cols])
+                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,:], skipnameless=true)
                 melts["minerals"][i] = name
             end
         end
