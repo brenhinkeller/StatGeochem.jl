@@ -1193,5 +1193,60 @@
     end
     export perplex_query_system
 
+## -- Zircon saturation calculations
+
+    function tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
+        K .= K ./ normconst
+        Na .= Na ./ normconst
+        Ca .= Ca ./ normconst
+        Al .= Al ./ normconst
+        Si .= Si ./ normconst
+
+        return (Na + K + 2*Ca)./(Al .* Si)
+    end
+
+    """
+    ```julia
+    ZrSat = tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ```
+    Calculate zircon saturation concentration for a given temperature (in C)
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
+    function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        # Boehnke, Watson, et al., 2013
+        Zr = @. 496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M))
+        return Zr
+    end
+    export tzircZr
+
+    """
+    ```julia
+    T = tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+    ```
+    Calculate zircon saturation temperature in degrees Celsius
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
+    function tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        # Boehnke, Watson, et al., 2013
+        T = @. 10108. / (0.32 + 1.16*M + log(496000. / Zr)) - 273.15
+        return T
+    end
+    export tzirc
 
 ## --- End of File
