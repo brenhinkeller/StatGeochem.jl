@@ -386,6 +386,89 @@
 
     """
     ```julia
+    melts_clean_modes(scratchdir::String; index=1)
+    ```
+    Read and parse / clean-up modal phase proportions from specified MELTS run directory
+    Returns an elementified dictionary
+    """
+    function melts_clean_modes(scratchdir::String; index=1)
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Read results and return them if possible
+        if isfile(prefix*"/Phase_mass_tbl.txt")
+            # Read data as an Array{Any}
+            data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
+            # Convert to a dictionary
+            data = elementify(data, floatout=true, skipnameless=true)
+
+            # Start with sum of all solids
+            modes = Dict()
+            modes["solids"] = zeros(size(data["Temperature"]))
+            for m in data["elements"][4:end]
+                if !contains(e, "water") && !contains(e, "liquid")
+                    modes["solids"] .+= data[e]
+                end
+            end
+
+            # Transfer over all the other elements
+            for m in data["elements"]
+                ms = replace(m, r"_.*" => s"")
+                if haskey(modes, ms)
+                    modes[ms] .+= data[m]
+                else
+                    modes[ms] = copy(data[m])
+                end
+            end
+
+            # Get full mineral compositions, add feldspar and oxides
+            melts = melts_query(scratchdir, index=index)
+            if containsi(melts["minerals"],"feldspar")
+                modes["anorthite"] = zeros(size(modes["Temperature"]))
+                modes["albite"] = zeros(size(modes["Temperature"]))
+                modes["orthoclase"] = zeros(size(modes["Temperature"]))
+            end
+            An_Ca = (238.12507+40.0784) / (15.999+40.0784)
+            Ab_Na = (239.22853+22.98977*2) / (15.999+22.98977*2)
+            Or_K  = (239.22853+39.09831*2) / (15.999+39.09831*2)
+            if containsi(melts["minerals"],"rhm_oxide")
+                modes["ilmenite"] = zeros(size(modes["Temperature"]))
+                modes["magnetite"] = zeros(size(modes["Temperature"]))
+                modes["hematite"] = zeros(size(modes["Temperature"]))
+            end
+            for m in melts["minerals"]
+                if containsi(m,"feldspar")
+                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    AnAbOr = [melts[m]["CaO"]*An_Ca melts[m]["Na2O"]*Ab_Na melts[m]["K2O"]*Or_K] |> x -> x ./ sum(x, dims=2)
+                    modes["anorthite"][t] .+= AnAbOr[:,1] .*  melts[m]["mass"]
+                    modes["albite"][t] .+= AnAbOr[:,2] .*  melts[m]["mass"]
+                    modes["orthoclase"][t] .+= AnAbOr[:,3] .*  melts[m]["mass"]
+                elseif containsi(m,"rhm_oxide")
+                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    if  haskey(melts[m],"MnO")
+                        Ilmenite = (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
+                        Magnetite = (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                    else
+                        Ilmenite = (melts[m]["TiO2"] + melts[m]["TiO2"]*71.8444/79.8768) / 100
+                        Magnetite = (melts[m]["FeO"] - melts[m]["TiO2"]*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                    end
+                    Magnetite[Magnetite.<0] .= 0
+                    Hematite = (melts[m]["Fe2O3"] - Magnetite*100*159.6882/231.5326)/100
+                    modes["ilmenite"][t] .+= melts[m]["mass"] .* Ilmenite
+                    modes["magnetite"][t] .+= melts[m]["mass"] .* Magnetite
+                    modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
+                end
+            end
+            modes["elements"] = collect(keys(modes))
+        else
+            # Return empty dictionary if file doesn't exist
+            modes = Dict()
+        end
+        return modes
+    end
+    export melts_clean_modes
+
+    """
+    ```julia
     melts_query_liquid(scratchdir::String; index=1)
     ```
     Read liquid composition from `Liquid_comp_tbl.txt` in specified MELTS run directory
