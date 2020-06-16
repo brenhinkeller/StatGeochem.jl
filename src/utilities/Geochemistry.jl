@@ -107,7 +107,6 @@
     ```julia
     dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
     ```
-
     Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
     If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
     set unitratio = 1
@@ -165,7 +164,24 @@
 
 ## --- MELTS interface
 
-    # Configure and run MELTS simulation
+    """
+    ```julia
+    melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
+        \telements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];)
+    ```
+    Optional keyword arguments and defaults:
+    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
+    `dT=-10`
+    `dP=0`
+    `index=1`
+    `version="pMELTS"`
+    `mode="isobaric"`
+    `fo2path="FMQ"``
+    `fractionatesolids::Bool=false`
+    `verbose::Bool=true`
+
+    Configure and run MELTS simulation
+    """
     function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
@@ -319,7 +335,13 @@
     end
     export melts_configure
 
-    # Get melts results, return as string
+    """
+    ```julia
+    melts_query_modes(scratchdir::String; index=1)
+    ```
+    Read all phase proportions from `Phase_main_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
@@ -338,7 +360,13 @@
     end
     export melts_query
 
-    # Get modal phase proportions, return as elementified dictionary
+    """
+    ```julia
+    melts_query_modes(scratchdir::String; index=1)
+    ```
+    Read modal phase proportions from `Phase_mass_tbl.txt` in specified MELTS run
+    Returns an elementified dictionary
+    """
     function melts_query_modes(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
@@ -348,14 +376,6 @@
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
             data = elementify(data, floatout=true, skipnameless=true)
-            # Add sum of all solids
-            data["solids"] = zeros(size(data["Temperature"]))
-            for e in data["elements"][4:end]
-                if !contains(e, "water") && !contains(e, "liquid")
-                    data["solids"] .+= data[e]
-                end
-            end
-            data["elements"] = [data["elements"]; "solids"]
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -364,7 +384,13 @@
     end
     export melts_query_modes
 
-    # Get liquid composition, return as elementified dictionary
+    """
+    ```julia
+    melts_query_liquid(scratchdir::String; index=1)
+    ```
+    Read liquid composition from `Liquid_comp_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query_liquid(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
@@ -382,7 +408,13 @@
     end
     export melts_query_liquid
 
-    # Read solid composition, return as elementified dictionary
+    """
+    ```julia
+    melts_query_solid(scratchdir::String; index=1)
+    ```
+    Read solid composition from `Solid_comp_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query_solid(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
