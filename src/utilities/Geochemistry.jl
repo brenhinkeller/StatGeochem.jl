@@ -458,7 +458,7 @@
                     modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
                 end
             end
-            modes["elements"] = sort(collect(keys(modes)))
+            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ sort(collect(keys(modes)))
         else
             # Return empty dictionary if file doesn't exist
             modes = Dict()
