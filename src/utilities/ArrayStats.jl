@@ -248,6 +248,36 @@
 
 ## --- Summary statistics of arrays with NaNs
 
+
+    """
+    ```julia
+    nanadd(A, B)
+    ```
+    Add the non-NaN elements of A and B, treating NaNs as zeros
+    """
+    function nanadd(A::AbstractArray, B::AbstractArray)
+        result_type = promote_type(eltype(A), eltype(B))
+        result = similar(A, result_type)
+        @inbounds @simd for i = 1:length(A)
+            result[i] = (A[i] * !isnan(A[i])) + (B[i] * !isnan(B[i]))
+        end
+        return result
+    end
+
+    """
+    ```julia
+    nanadd!(A, B)
+    ```
+    Add the non-NaN elements of `B` to `A`, treating NaNs as zeros
+    """
+    function nanadd!(A::AbstractArray, B::AbstractArray)
+        @inbounds @simd for i = 1:length(A)
+            A[i] = (A[i] * !isnan(A[i])) + (B[i] * !isnan(B[i]))
+        end
+        return A
+    end
+
+
     """
     ```julia
     nansum(A; dims)
