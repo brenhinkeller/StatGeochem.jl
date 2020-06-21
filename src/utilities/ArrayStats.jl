@@ -245,9 +245,7 @@
     end
     export inpctile
 
-
-## --- Summary statistics of arrays with NaNs
-
+## --- Combine arrays containing NaNs
 
     """
     ```julia
@@ -263,6 +261,7 @@
         end
         return result
     end
+    export nanadd
 
     """
     ```julia
@@ -276,7 +275,10 @@
         end
         return A
     end
+    export nanadd!
 
+
+## --- Summary statistics of arrays with NaNs
 
     """
     ```julia
