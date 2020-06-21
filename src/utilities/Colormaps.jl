@@ -100,7 +100,11 @@
 
     function resize_colormap(cmap::AbstractArray{<:Colorant}, n::Integer)
         cNum = length(cmap)
-        return linterp1(1:cNum,cmap,collect(linsp(1,cNum,n)))
+        if n<2
+            cmap[1:1]
+        else
+            linterp1(1:cNum,cmap,collect(linsp(1,cNum,n)))
+        end
     end
     export resize_colormap
 
