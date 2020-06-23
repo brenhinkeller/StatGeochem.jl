@@ -142,6 +142,9 @@
         end
         return mask
     end
+    # Special methods for arrays that cannot contain NaNs
+    nanmask(A::AbstractArray{<:Integer}) = falses(size(A))
+    nanmask(A::AbstractArray{<:Rational}) = falses(size(A))
     export nanmask
 
     """
