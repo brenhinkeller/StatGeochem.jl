@@ -692,7 +692,7 @@
     If `y` is a 2-d array (matrix), each column will be treated as a separate variable
     """
     function nanmedian!(M::AbstractVector, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
-        binedges = linsp(xmin,xmax,nbins+1)
+        binedges = range(xmin, xmax, length=nbins+1)
         t = Array{Bool}(undef, length(x))
         for i = 1:nbins
             t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
@@ -701,7 +701,7 @@
         return M
     end
     function nanmedian!(M::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer)
-        binedges = linsp(xmin,xmax,nbins+1)
+        binedges = range(xmin, xmax, length=nbins+1)
         t = Array{Bool}(undef, length(x))
         tj = Array{Bool}(undef, length(x))
         for i = 1:nbins

@@ -534,7 +534,7 @@
     end
     function binmeans(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer, weight::AbstractArray; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
+        binedges = range(min,max,length=nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
         means = Array{Float64}(undef,nbins)
@@ -553,7 +553,7 @@
     # The nanmedian of y binned by x, retunring bincenters, medians, and equivalent standard error of the mean (1.4828 * median abolute deviation)
     function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
+        binedges = range(min,max,length=nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
         medians = Array{Float64}(undef,nbins)
