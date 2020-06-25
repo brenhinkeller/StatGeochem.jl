@@ -153,9 +153,10 @@
     ```
     Replace all `NaN`s in A with zeros of the same type
     """
-    function zeronan!(A)
-        @inbounds @simd for i=1:length(A)
-            A[i] *= !isnan(A[i])
+    function zeronan!(A::Array)
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            A[i] *= (Aᵢ == Aᵢ)
         end
         return A
     end
@@ -259,8 +260,10 @@
     function nanadd(A::AbstractArray, B::AbstractArray)
         result_type = promote_type(eltype(A), eltype(B))
         result = similar(A, result_type)
-        @inbounds @simd for i = 1:length(A)
-            result[i] = (A[i] * !isnan(A[i])) + (B[i] * !isnan(B[i]))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Bᵢ = B[i]
+            result[i] = (Aᵢ * (Aᵢ==Aᵢ)) + (Bᵢ * (Bᵢ==Bᵢ))
         end
         return result
     end
@@ -272,9 +275,11 @@
     ```
     Add the non-NaN elements of `B` to `A`, treating NaNs as zeros
     """
-    function nanadd!(A::AbstractArray, B::AbstractArray)
-        @inbounds @simd for i = 1:length(A)
-            A[i] = (A[i] * !isnan(A[i])) + (B[i] * !isnan(B[i]))
+    function nanadd!(A::Array, B::AbstractArray)
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Bᵢ = B[i]
+            A[i] = (Aᵢ * (Aᵢ==Aᵢ)) + (Bᵢ * (Bᵢ==Bᵢ))
         end
         return A
     end
@@ -296,8 +301,24 @@
     _nansum(A, ::Colon, ::Colon) = _nansum(A, :)
     function _nansum(A,::Colon)
         m = zero(eltype(A))
-        @simd for x in A
-            m += x * !isnan(x)
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            m += Aᵢ * (Aᵢ==Aᵢ)
+        end
+        return m
+    end
+    function _nansum(A::AbstractArray{<:Number},::Colon)
+        m = zero(eltype(A))
+        @avx for i ∈ eachindex(A)
+            m += A[i]
+        end
+        return m
+    end
+    function _nansum(A::AbstractArray{<:AbstractFloat},::Colon)
+        m = zero(eltype(A))
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            m += Aᵢ * (Aᵢ==Aᵢ)
         end
         return m
     end
@@ -318,6 +339,21 @@
     _nanminimum(A, ::Colon, region) = _nanminimum(A, region) |> vec
     _nanminimum(A, ::Colon, ::Colon) = _nanminimum(A, :)
     function _nanminimum(A, ::Colon)
+        s = typemax(eltype(A))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            s = min(s, isnan(Aᵢ) ? s : Aᵢ)
+        end
+        return s
+    end
+    function _nanminimum(A::AbstractArray{<:Number}, ::Colon)
+        s = typemax(eltype(A))
+        @avx for i ∈ eachindex(A)
+            s = min(s, A[i])
+        end
+        return s
+    end
+    function _nanminimum(A::AbstractArray{<AbstractFloat}, ::Colon)
         s = typemax(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
@@ -340,8 +376,23 @@
     _nanmaximum(A, region, ::Colon) = _nanmaximum(A, region)
     _nanmaximum(A, ::Colon, region) = _nanmaximum(A, region) |> vec
     _nanmaximum(A, ::Colon, ::Colon) = _nanmaximum(A, :)
-    function _nanmaximum(A, ::Colon)
-        s = typemax(eltype(A))
+    function __nanmaximum(A, ::Colon)
+        s = typemin(eltype(A))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            s = max(s, isnan(Aᵢ) ? s : Aᵢ)
+        end
+        return s
+    end
+    function _nanmaximum(A::Array{<:Number}, ::Colon)
+        s = typemin(eltype(A))
+        @avx for i ∈ eachindex(A)
+            s = max(s, A[i])
+        end
+        return s
+    end
+    function _nanmaximum(A::Array{<:AbstractFloat}, ::Colon)
+        s = typemin(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             s = max(s, isnan(Aᵢ) ? s : Aᵢ)
@@ -384,7 +435,35 @@
     collection `A`, optionally along dimensions specified by `dims`.
     """
     nanmean(A; dims=:, dim=:) = _nanmean(A, dims, dim)
+    function _nanmean(A, region, ::Colon)
+        mask = nanmask(A)
+        return sum(A.*mask, dims=region) ./ sum(mask, dims=region)
+    end
+    _nanmean(A, ::Colon, region) = vec(_nanmean(A, region, :))
+    # Fallback method for non-Arrays
     function _nanmean(A, ::Colon, ::Colon)
+        n = 0
+        m = zero(eltype(A))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            t = Aᵢ == Aᵢ
+            n += t
+            m += Aᵢ * t
+        end
+        return m / n
+    end
+    # Anything that's a number but not a float won't have NaNs
+    function _nanmean(A::Array{<:Number}, ::Colon, ::Colon)
+        n = 0
+        m = zero(eltype(A))
+        @avx for i ∈ eachindex(A)
+            n += 1
+            m += A[i]
+        end
+        return m / n
+    end
+    # Optimized AVX version
+    function _nanmean(A::Array{<:AbstractFloat}, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -395,14 +474,39 @@
         end
         return m / n
     end
-    function _nanmean(A, region, ::Colon)
-        mask = nanmask(A)
-        return sum(A.*mask, dims=region) ./ sum(mask, dims=region)
-    end
-    _nanmean(A, ::Colon, region) = vec(_nanmean(A, region, :))
 
     nanmean(A, W; dims=:, dim=:) = _nanmean(A, W, dims, dim)
+    function _nanmean(A, W, region, ::Colon)
+        mask = nanmask(A)
+        return sum(A.*W.*mask, dims=region) ./ sum(W.*mask, dims=region)
+    end
+    _nanmean(A, W, ::Colon, region) = vec(_nanmean(A, W, region, :))
+    # Fallback method for non-Arrays
     function _nanmean(A, W, ::Colon, ::Colon)
+        n = zero(eltype(W))
+        m = zero(promote_type(eltype(W), eltype(A)))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Wᵢ = W[i]
+            t = Aᵢ == Aᵢ
+            n += Wᵢ * t
+            m += Wᵢ * Aᵢ * t
+        end
+        return m / n
+    end
+    # Anything that's a number but not a float won't have NaNs
+    function _nanmean(A::Array{<:Number}, W::Array{<:Number}, ::Colon, ::Colon)
+        n = zero(eltype(W))
+        m = zero(promote_type(eltype(W), eltype(A)))
+        @avx for i ∈ eachindex(A)
+            Wᵢ = W[i]
+            n += Wᵢ
+            m += Wᵢ * A[i]
+        end
+        return m / n
+    end
+    # Optimized AVX method for floats
+    function _nanmean(A::Array{<:AbstractFloat}, W::Array{<:Number}, ::Colon, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
@@ -414,11 +518,6 @@
         end
         return m / n
     end
-    function _nanmean(A, W, region, ::Colon)
-        mask = nanmask(A)
-        return sum(A.*W.*mask, dims=region) ./ sum(W.*mask, dims=region)
-    end
-    _nanmean(A, W, ::Colon, region) = vec(_nanmean(A, W, region, :))
 
 
     """
@@ -570,6 +669,22 @@
     indexable collection `A`, optionally along a dimension specified by `dims`.
     """
     nanstd(A; dims=:, dim=:) = _nanstd(A, dims, dim)
+    function _nanstd(A, region, ::Colon)
+        mask = nanmask(A)
+        N = sum(mask, dims=region)
+        s = sum(A.*mask, dims=region)./N
+        d = A .- s # Subtract mean, using broadcasting
+        @avx for i ∈ eachindex(d)
+            dᵢ = d[i]
+            d[i] = (dᵢ * dᵢ) * mask[i]
+        end
+        s .= sum(d, dims=region)
+        @avx for i=1:length(s)
+            s[i] = sqrt( s[i] / (N[i] - 1) )
+        end
+        return s
+    end
+    _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
     function _nanstd(A, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
@@ -588,22 +703,6 @@
         end
         return sqrt(s / (n-1))
     end
-    function _nanstd(A, region, ::Colon)
-        mask = nanmask(A)
-        N = sum(mask, dims=region)
-        s = sum(A.*mask, dims=region)./N
-        d = A .- s # Subtract mean, using broadcasting
-        @avx for i ∈ eachindex(d)
-            dᵢ = d[i]
-            d[i] = (dᵢ * dᵢ) * mask[i]
-        end
-        s .= sum(d, dims=region)
-        @avx for i=1:length(s)
-            s[i] = sqrt( s[i] / (N[i] - 1) )
-        end
-        return s
-    end
-    _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
 
     nanstd(A, W; dims=:, dim=:) = _nanstd(A, W, dims, dim)
     function _nanstd(A, W, ::Colon, ::Colon)
