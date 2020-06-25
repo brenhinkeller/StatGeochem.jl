@@ -172,7 +172,7 @@
     As `max(a,b)`, but if either argument is `NaN`, return the other one
     """
     function nanmax(a::AbstractFloat,b::AbstractFloat)
-        ifelse((a==a) & !(a > b), a, b)
+        ifelse((a==a) & !(a < b), a, b)
     end
     nanmax(a::AbstractFloat,b::Number) = nanmax(promote(a,b)...)
     nanmax(a::Number,b::AbstractFloat) = nanmax(promote(a,b)...)
@@ -185,7 +185,7 @@
     As `min(a,b)`, but if either argument is `NaN`, return the other one
     """
     function nanmin(a::AbstractFloat,b::AbstractFloat)
-        ifelse(isnan(a), b, ifelse(a > b, b, a))
+        ifelse((a==a) & !(a > b), a, b)
     end
     nanmin(a::AbstractFloat,b::Number) = nanmin(promote(a,b)...)
     nanmin(a::Number,b::AbstractFloat) = nanmin(promote(a,b)...)
@@ -454,13 +454,11 @@
     end
     # Can't have NaNs if array is all Integers
     function _nanmean(A::Array{<:Integer}, ::Colon, ::Colon)
-        n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
-            n += 1
             m += A[i]
         end
-        return m / n
+        return m / length(A)
     end
     # Optimized AVX version for floats
     function _nanmean(A::Array{<:AbstractFloat}, ::Colon, ::Colon)
