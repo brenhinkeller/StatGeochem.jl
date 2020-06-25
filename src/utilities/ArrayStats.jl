@@ -135,17 +135,24 @@
     ```
     Create a Boolean mask of dimensions `size(A)` that is false wherever `A` is `NaN`
     """
-    function nanmask(A)
-        mask = Array{Bool}(undef,size(A))
+    nanmask(A) = nanmask!(Array{Bool}(undef,size(A)), A)
+    export nanmask
+
+    """
+    ```julia
+    nanmask!(mask, A)
+    ```
+    Fill a Boolean mask of dimensions `size(A)` that is false wherever `A` is `NaN`
+    """
+    function nanmask!(mask, A)
         @avx for i=1:length(A)
             mask[i] = !isnan(A[i])
         end
         return mask
     end
     # Special methods for arrays that cannot contain NaNs
-    nanmask(A::AbstractArray{<:Integer}) = trues(size(A))
-    nanmask(A::AbstractArray{<:Rational}) = trues(size(A))
-    export nanmask
+    nanmask!(mask, A::AbstractArray{<:Integer}) = fill!(mask, true)
+    nanmask!(mask, A::AbstractArray{<:Rational}) = fill!(mask, true)
 
     """
     ```julia
@@ -209,19 +216,21 @@
     function _pctile(A, p, region)
         s = size(A)
         if region == 2
+            t = Array{Bool}(undef, s[2])
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = nanmask(A[i,:])
+                nanmask!(t, A[i,:])
                 result[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif region == 1
+            t = Array{Bool}(undef, s[1])
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = nanmask(A[:,i])
+                nanmask!(t, A[:,i])
                 result[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
-            result =  _pctile(A, p, :)
+            result = _pctile(A, p, :)
         end
         return result
     end
@@ -746,15 +755,17 @@
     function _nanmedian(A, region)
         s = size(A)
         if region == 2
+            t = Array{Bool}(undef, s[2])
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = nanmask(A[i,:])
+                nanmask!(t, A[i,:])
                 result[i] = any(t) ? median(A[i,t]) : float(eltype(A))(NaN)
             end
         elseif region == 1
+            t = Array{Bool}(undef, s[1])
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = nanmask(A[:,i])
+                nanmask!(t, A[:,i])
                 result[i] = any(t) ? median(A[t,i]) : float(eltype(A))(NaN)
             end
         else
@@ -793,7 +804,7 @@
         binedges = range(xmin, xmax, length=nbins+1)
         t = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& nanmask(y)
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (y.==y)
             M[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
         return M
@@ -805,7 +816,7 @@
         for i = 1:nbins
             t .= (x.>binedges[i]) .& (x.<=binedges[i+1])
             for j = 1:size(y,2)
-                tj .= t .& nanmask(y[:,j])
+                tj .= t .& !isnan(y[:,j])
                 M[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
             end
         end
@@ -825,15 +836,17 @@
     function nanmad(A; dims=:)
         s = size(A)
         if dims == 2
+            t = Array{Bool}(undef, s[2])
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = nanmask(A[i,:])
+                nanmask!(t, A[i,:])
                 result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : float(eltype(A))(NaN)
             end
         elseif dims == 1
+            t = Array{Bool}(undef, s[1])
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = nanmask(A[:,i])
+                nanmask!(t, A[:,i])
                 result[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : float(eltype(A))(NaN)
             end
         else
