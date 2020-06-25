@@ -673,11 +673,12 @@
     function _nanstd(A, region)
         mask = nanmask(A)
         N = sum(mask, dims=region)
-        s = sum(A.*mask, dims=region)./N
-        d = A .- s # Subtract mean, using broadcasting
+        Aₘ = A.*mask
+        s = sum(Aₘ, dims=region)./N
+        d = Aₘ .- s # Subtract mean, using broadcasting
         @avx for i ∈ eachindex(d)
             dᵢ = d[i]
-            d[i] = (dᵢ * dᵢ) * mask[i]
+            d[i] = (dᵢ * dᵢ)
         end
         s .= sum(d, dims=region)
         @avx for i ∈ eachindex(s)
@@ -698,7 +699,7 @@
         s = zero(typeof(mu))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = (Aᵢ - mu) * (Aᵢ == Aᵢ) # zero if Aᵢ is NaN
+            d = Aᵢ * (Aᵢ == Aᵢ) - mu # zero if Aᵢ is NaN
             s += d * d
         end
         return sqrt(s / (n-1))
@@ -716,7 +717,7 @@
         s = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = (Aᵢ - mu) * (Aᵢ == Aᵢ) # zero if Aᵢ is NaN
+            d = (Aᵢ * (Aᵢ == Aᵢ)) - mu  # zero if Aᵢ is NaN
             s += d * d
         end
         return sqrt(s / (n-1))
@@ -754,8 +755,9 @@
         s = zero(typeof(mu))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = Aᵢ - mu
-            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
+            t = Aᵢ == Aᵢ
+            d = Aᵢ * t - mu
+            s += d * d * (W[i] * t) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w)
     end
@@ -773,8 +775,9 @@
         s = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = Aᵢ - mu
-            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
+            t = Aᵢ == Aᵢ
+            d = Aᵢ * t - mu
+            s += d * d * (W[i] * t) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w)
     end
