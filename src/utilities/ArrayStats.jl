@@ -171,13 +171,10 @@
     ```
     As `max(a,b)`, but if either argument is `NaN`, return the other one
     """
-    function nanmax(a::AbstractFloat,b::AbstractFloat)
-        ifelse((a==a) & !(a < b), a, b)
-    end
-    nanmax(a::AbstractFloat,b::Number) = nanmax(promote(a,b)...)
-    nanmax(a::Number,b::AbstractFloat) = nanmax(promote(a,b)...)
-    nanmax(a,b) = max(a,b) # Fallback method for non-Floats
-    vnanmax(a,b) = vifelse(a > b, a, b)
+    nanmax(a, b) = ifelse(a > b, a, b)
+    nanmax(a, b::AbstractFloat) = ifelse(a==a, ifelse(b > a, b, a), b)
+    nanmax(a::SVec{N,<:Integer}, b::SVec{N,<:Integer}) where N = vifelse(a > b, a, b)
+    nanmax(a::SVec{N,<:AbstractFloat}, b::SVec{N,<:AbstractFloat}) where N = vifelse(a==a, vifelse(b > a, b, a), b)
 
     """
     ```julia
@@ -185,13 +182,10 @@
     ```
     As `min(a,b)`, but if either argument is `NaN`, return the other one
     """
-    function nanmin(a::AbstractFloat,b::AbstractFloat)
-        ifelse((a==a) & !(a > b), a, b)
-    end
-    nanmin(a::AbstractFloat,b::Number) = nanmin(promote(a,b)...)
-    nanmin(a::Number,b::AbstractFloat) = nanmin(promote(a,b)...)
-    nanmin(a,b) = min(a,b) # Fallback method for non-Floats
-    vnanmin(a,b) = vifelse(a < b, a, b)
+    nanmin(a, b) = ifelse(a < b, a, b)
+    nanmin(a, b::AbstractFloat) = ifelse(a==a, ifelse(b < a, b, a), b)
+    nanmin(a::SVec{N,<:Integer}, b::SVec{N,<:Integer}) where N = vifelse(a < b, a, b)
+    nanmin(a::SVec{N,<:AbstractFloat}, b::SVec{N,<:AbstractFloat}) where N = vifelse(a==a, vifelse(b < a, b, a), b)
 
 
 ## --- Percentile statistics, excluding NaNs
@@ -323,9 +317,7 @@
         end
         return m
     end
-    function _nansum(A, region)
-        sum(A.*nanmask(A), dims=region)
-    end
+    _nansum(A, region) = sum(A.*nanmask(A), dims=region)
     export nansum
 
     """
@@ -339,29 +331,7 @@
     __nanminimum(A, dims, dim) = _nanminimum(A, dim) |> vec
     __nanminimum(A, dims, ::Colon) = _nanminimum(A, dims)
     _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
-    function _nanminimum(A, ::Colon)
-        s = typemax(eltype(A))
-        @inbounds @simd for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            s = min(s, isnan(Aᵢ) ? s : Aᵢ)
-        end
-        return s
-    end
-    function _nanminimum(A::Array{<:Integer}, ::Colon)
-        s = typemax(eltype(A))
-        @avx for i ∈ eachindex(A)
-            s = min(s, A[i])
-        end
-        return s
-    end
-    function _nanminimum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = typemax(eltype(A))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            s = min(s, isnan(Aᵢ) ? s : Aᵢ)
-        end
-        return s
-    end
+    _nanminimum(A::AbstractArray{<:Number}, ::Colon) = vreduce(nanmin, A)
     export nanminimum
 
 
@@ -376,29 +346,7 @@
     __nanmaximum(A, dims, dim) = _nanmaximum(A, dim) |> vec
     __nanmaximum(A, dims, ::Colon) = _nanmaximum(A, dims)
     _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
-    function _nanmaximum(A, ::Colon)
-        s = typemin(eltype(A))
-        @inbounds @simd for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            s = max(s, isnan(Aᵢ) ? s : Aᵢ)
-        end
-        return s
-    end
-    function _nanmaximum(A::Array{<:Integer}, ::Colon)
-        s = typemin(eltype(A))
-        @avx for i ∈ eachindex(A)
-            s = max(s, A[i])
-        end
-        return s
-    end
-    function _nanmaximum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = typemin(eltype(A))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            s = max(s, isnan(Aᵢ) ? s : Aᵢ)
-        end
-        return s
-    end
+    _nanmaximum(A::AbstractArray{<:Number}, ::Colon) = vreduce(nanmax, A)
     export nanmaximum
 
 
@@ -410,8 +358,8 @@
     ignoring NaNs, optionally along a dimension specified by `dims`.
     """
     nanextrema(A; dims=:) = _nanextrema(A, dims)
-    _nanextrema(A, ::Colon) = (_nanminimum(A, :), _nanmaximum(A, :))
     _nanextrema(A, region) = collect(zip(_nanminimum(A, region), _nanmaximum(A, region)))
+    _nanextrema(A, ::Colon) = (_nanminimum(A, :), _nanmaximum(A, :))
     export nanextrema
 
 

@@ -26,12 +26,16 @@ module StatGeochem
         trunc(x; digits::Int=0) = trunc(x,digits)
     end
 
+    # AVX vectorziation tools
+    using LoopVectorization
+    using SIMDPirates: vifelse
+    using VectorizationBase: SVec
 
+    # General requirements
     using Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
-    using LoopVectorization
     include("utilities/System.jl");
     include("utilities/Math.jl");
     include("utilities/Import.jl");
@@ -57,7 +61,6 @@ module StatGeochem
     include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
-
 
 
 end # module
