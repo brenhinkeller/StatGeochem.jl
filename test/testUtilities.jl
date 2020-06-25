@@ -7,8 +7,8 @@
 
     # Summary statistics: simple cases, Float64
     A = [1:10.0..., NaN]
-    @test nanmin(1.,2.) == 1.
-    @test nanmax(1.,2.) == 2.
+    @test StatGeochem.nanmin(1.,2.) == 1.
+    @test StatGeochem.nanmax(1.,2.) == 2.
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
     @test nanrange(A) == 9.0
@@ -23,8 +23,28 @@
 
     # Summary statistics: simple cases, Int64
     A = collect(1:10)
-    @test nanmin(1,2) == 1
-    @test nanmax(1,2) == 2
+    @test StatGeochem.nanmin(1,2) == 1
+    @test StatGeochem.nanmax(1,2) == 2
+    @test nansum(A) == 55.0
+    @test nanmean(A) == 5.5
+    @test nanrange(A) == 9.0
+    @test nanminimum(A) == 1.0
+    @test nanmaximum(A) == 10.0
+    @test nanextrema(A) == (1.0, 10.0)
+
+    # Summary statistics: simple cases, ranges
+    A = 1:10
+    @test StatGeochem.nanmin(1,2) == 1
+    @test StatGeochem.nanmax(1,2) == 2
+    @test nansum(A) == 55.0
+    @test nanmean(A) == 5.5
+    @test nanrange(A) == 9.0
+    @test nanminimum(A) == 1.0
+    @test nanmaximum(A) == 10.0
+    @test nanextrema(A) == (1.0, 10.0)
+    A = 1:10.
+    @test StatGeochem.nanmin(1,2) == 1
+    @test StatGeochem.nanmax(1,2) == 2
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
     @test nanrange(A) == 9.0
