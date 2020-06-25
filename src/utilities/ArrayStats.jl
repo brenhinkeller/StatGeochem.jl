@@ -307,7 +307,7 @@
         end
         return m
     end
-    function _nansum(A::AbstractArray{<:Number},::Colon)
+    function _nansum(A::AbstractArray{<:Integer},::Colon)
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
             m += A[i]
@@ -346,14 +346,14 @@
         end
         return s
     end
-    function _nanminimum(A::AbstractArray{<:Number}, ::Colon)
+    function _nanminimum(A::Array{<:Integer}, ::Colon)
         s = typemax(eltype(A))
         @avx for i ∈ eachindex(A)
             s = min(s, A[i])
         end
         return s
     end
-    function _nanminimum(A::AbstractArray{<AbstractFloat}, ::Colon)
+    function _nanminimum(A::Array{<:AbstractFloat}, ::Colon)
         s = typemax(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
@@ -376,7 +376,7 @@
     _nanmaximum(A, region, ::Colon) = _nanmaximum(A, region)
     _nanmaximum(A, ::Colon, region) = _nanmaximum(A, region) |> vec
     _nanmaximum(A, ::Colon, ::Colon) = _nanmaximum(A, :)
-    function __nanmaximum(A, ::Colon)
+    function _nanmaximum(A, ::Colon)
         s = typemin(eltype(A))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
@@ -384,7 +384,7 @@
         end
         return s
     end
-    function _nanmaximum(A::Array{<:Number}, ::Colon)
+    function _nanmaximum(A::Array{<:Integer}, ::Colon)
         s = typemin(eltype(A))
         @avx for i ∈ eachindex(A)
             s = max(s, A[i])
@@ -452,8 +452,8 @@
         end
         return m / n
     end
-    # Anything that's a number but not a float won't have NaNs
-    function _nanmean(A::Array{<:Number}, ::Colon, ::Colon)
+    # Can't have NaNs if array is all Integers
+    function _nanmean(A::Array{<:Integer}, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -462,7 +462,7 @@
         end
         return m / n
     end
-    # Optimized AVX version
+    # Optimized AVX version for floats
     function _nanmean(A::Array{<:AbstractFloat}, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
@@ -494,8 +494,8 @@
         end
         return m / n
     end
-    # Anything that's a number but not a float won't have NaNs
-    function _nanmean(A::Array{<:Number}, W::Array{<:Number}, ::Colon, ::Colon)
+    # Can't have NaNs if array is all Integers
+    function _nanmean(A::Array{<:Integer}, W::Array{<:Number}, ::Colon, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
