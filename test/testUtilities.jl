@@ -5,8 +5,10 @@
     @test awmean([0,1,2,3],[1,1,1,1]) == (1.5, 0.5, 5/3)
     @test gwmean([0,1,2,3],[1,1,1,1]) == (1.5, 0.6454972243679028, 5/3)
 
-    # Summary statistics: simple cases
+    # Summary statistics: simple cases, Float64
     A = [1:10.0..., NaN]
+    @test nanmin(1.,2.) == 1.
+    @test nanmax(1.,2.) == 2.
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
     @test nanrange(A) == 9.0
@@ -19,21 +21,50 @@
     @test nanmedian([1,2,3,NaN]) == 2.0
     @test pctile([0:100...,NaN],99) == 99.0
 
-    # Summary statistics: dimensional tests
-    @test nanminimum(reshape(1:300,100,3), dims=1) == minimum(reshape(1:300,100,3), dims=1)
-    @test nanminimum(reshape(1:300,100,3), dims=2) == minimum(reshape(1:300,100,3), dims=2)
-    @test nanmaximum(reshape(1:300,100,3), dims=1) == maximum(reshape(1:300,100,3), dims=1)
-    @test nanmaximum(reshape(1:300,100,3), dims=2) == maximum(reshape(1:300,100,3), dims=2)
-    @test nanmean(reshape(1:300,100,3), dims=1) == mean(reshape(1:300,100,3), dims=1)
-    @test nanmean(reshape(1:300,100,3), dims=2) == mean(reshape(1:300,100,3), dims=2)
-    @test nanstd(reshape(1:300,100,3), dims=1) ≈ std(reshape(1:300,100,3), dims=1)
-    @test nanstd(reshape(1:300,100,3), dims=2) ≈ std(reshape(1:300,100,3), dims=2)
-    @test nanmad(reshape(1:300,100,3), dims=1) == [25.0 25.0 25.0]
-    @test nanmad(reshape(1:300,100,3), dims=2) == fill(100.0,100,1)
-    @test nanaad(reshape(1:300,100,3), dims=1) == [25.0 25.0 25.0]
-    @test nanaad(reshape(1:300,100,3), dims=2) ≈ fill(200/3,100,1)
-    @test nanmedian(reshape(1:300,100,3), dims=1) == median(reshape(1:300,100,3), dims=1)
-    @test nanmedian(reshape(1:300,100,3), dims=2) == median(reshape(1:300,100,3), dims=2)
+    # Summary statistics: simple cases, Int64
+    A = collect(1:10)
+    @test nanmin(1,2) == 1
+    @test nanmax(1,2) == 2
+    @test nansum(A) == 55.0
+    @test nanmean(A) == 5.5
+    @test nanrange(A) == 9.0
+    @test nanminimum(A) == 1.0
+    @test nanmaximum(A) == 10.0
+    @test nanextrema(A) == (1.0, 10.0)
+
+    # Summary statistics: dimensional tests, Int64
+    A = reshape(1:300,100,3)
+    @test nanminimum(A, dims=1) == minimum(A, dims=1)
+    @test nanminimum(A, dims=2) == minimum(A, dims=2)
+    @test nanmaximum(A, dims=1) == maximum(A, dims=1)
+    @test nanmaximum(A, dims=2) == maximum(A, dims=2)
+    @test nanmean(A, dims=1) == mean(A, dims=1)
+    @test nanmean(A, dims=2) == mean(A, dims=2)
+    @test nanstd(A, dims=1) ≈ std(A, dims=1)
+    @test nanstd(A, dims=2) ≈ std(A, dims=2)
+    @test nanmad(A, dims=1) == [25.0 25.0 25.0]
+    @test nanmad(A, dims=2) == fill(100.0,100,1)
+    @test nanaad(A, dims=1) == [25.0 25.0 25.0]
+    @test nanaad(A, dims=2) ≈ fill(200/3,100,1)
+    @test nanmedian(A, dims=1) == median(A, dims=1)
+    @test nanmedian(A, dims=2) == median(A, dims=2)
+
+    # Summary statistics: dimensional tests, Float64
+    A = reshape(1:300.,100,3)
+    @test nanminimum(A, dims=1) == minimum(A, dims=1)
+    @test nanminimum(A, dims=2) == minimum(A, dims=2)
+    @test nanmaximum(A, dims=1) == maximum(A, dims=1)
+    @test nanmaximum(A, dims=2) == maximum(A, dims=2)
+    @test nanmean(A, dims=1) == mean(A, dims=1)
+    @test nanmean(A, dims=2) == mean(A, dims=2)
+    @test nanstd(A, dims=1) ≈ std(A, dims=1)
+    @test nanstd(A, dims=2) ≈ std(A, dims=2)
+    @test nanmad(A, dims=1) == [25.0 25.0 25.0]
+    @test nanmad(A, dims=2) == fill(100.0,100,1)
+    @test nanaad(A, dims=1) == [25.0 25.0 25.0]
+    @test nanaad(A, dims=2) ≈ fill(200/3,100,1)
+    @test nanmedian(A, dims=1) == median(A, dims=1)
+    @test nanmedian(A, dims=2) == median(A, dims=2)
 
     # Summary statistics: binning
     @test nanmean([1:100..., 1],[1:100..., NaN],0,100,3) == [17, 50, 83]

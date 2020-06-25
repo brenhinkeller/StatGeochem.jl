@@ -1,3 +1,4 @@
+using StatGeochem
 using Test, Statistics, StatsBase
 
 include("testCrust1.jl")
