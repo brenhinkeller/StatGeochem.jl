@@ -673,16 +673,15 @@
     function _nanstd(A, region)
         mask = nanmask(A)
         N = sum(mask, dims=region)
-        Aₘ = A.*mask
-        s = sum(Aₘ, dims=region)./N
-        d = Aₘ .- s # Subtract mean, using broadcasting
+        s = sum(A.*mask, dims=region)./N
+        d = A .- s # Subtract mean, using broadcasting
         @avx for i ∈ eachindex(d)
             dᵢ = d[i]
-            d[i] = (dᵢ * dᵢ)
+            d[i] = (dᵢ * dᵢ) * mask[i]
         end
         s .= sum(d, dims=region)
         @avx for i ∈ eachindex(s)
-            s[i] = sqrt( s[i] / (N[i] - 1) )
+            s[i] = sqrt( s[i] / max((N[i] - 1), 0) )
         end
         return s
     end
@@ -699,10 +698,10 @@
         s = zero(typeof(mu))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = Aᵢ * (Aᵢ == Aᵢ) - mu # zero if Aᵢ is NaN
+            d = (Aᵢ - mu) * (Aᵢ == Aᵢ)# zero if Aᵢ is NaN
             s += d * d
         end
-        return sqrt(s / (n-1))
+        return sqrt(s / max((n-1), 0))
     end
     function _nanstd(A::AbstractArray{<:AbstractFloat}, ::Colon)
         n = 0
@@ -717,10 +716,10 @@
         s = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = (Aᵢ * (Aᵢ == Aᵢ)) - mu  # zero if Aᵢ is NaN
+            d = (Aᵢ - mu) * (Aᵢ == Aᵢ)# zero if Aᵢ is NaN
             s += d * d
         end
-        return sqrt(s / (n-1))
+        return sqrt(s / max((n-1), 0))
     end
 
     nanstd(A, W; dims=:, dim=:) = __nanstd(A, W, dims, dim)
@@ -755,9 +754,8 @@
         s = zero(typeof(mu))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
-            t = Aᵢ == Aᵢ
-            d = Aᵢ * t - mu
-            s += d * d * (W[i] * t) # Zero if Aᵢ is NaN
+            d = Aᵢ - mu
+            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w)
     end
@@ -775,9 +773,8 @@
         s = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            t = Aᵢ == Aᵢ
-            d = Aᵢ * t - mu
-            s += d * d * (W[i] * t) # Zero if Aᵢ is NaN
+            d = Aᵢ - mu
+            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w)
     end

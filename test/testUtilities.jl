@@ -21,6 +21,11 @@
     @test nanmedian([1,2,3,NaN]) == 2.0
     @test pctile([0:100...,NaN],99) == 99.0
 
+    # Arrays of only NaNs should yield NaN
+    A = fill(NaN,10)
+    @test isnan(nanmean(A))
+    @test isnan(nanstd(A))
+
     # Summary statistics: simple cases, Int64
     A = collect(1:10)
     @test StatGeochem.nanmin(1,2) == 1
