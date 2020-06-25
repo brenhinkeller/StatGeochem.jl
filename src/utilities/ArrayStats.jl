@@ -290,10 +290,10 @@
     Calculate the sum of an indexable collection `A`, ignoring NaNs, optionally
     along dimensions specified by `dims`.
     """
-    nansum(A; dims=:, dim=:) = _nansum(A, dims, dim)
-    _nansum(A, region, ::Colon) = _nansum(A, region)
-    _nansum(A, ::Colon, region) = _nansum(A, region) |> vec
-    _nansum(A, ::Colon, ::Colon) = _nansum(A, :)
+    nansum(A; dims=:, dim=:) = __nansum(A, dims, dim)
+    __nansum(A, dims, dim) = _nansum(A, dim) |> vec
+    __nansum(A, dims, ::Colon) = _nansum(A, dims)
+    _nansum(A, region) = sum(A.*nanmask(A), dims=region)
     function _nansum(A,::Colon)
         m = zero(eltype(A))
         @inbounds @simd for i ∈ eachindex(A)
@@ -317,7 +317,6 @@
         end
         return m
     end
-    _nansum(A, region) = sum(A.*nanmask(A), dims=region)
     export nansum
 
     """
@@ -453,7 +452,7 @@
         return m / n
     end
     # Optimized AVX method for floats
-    function _nanmean(A::Array{<:AbstractFloat}, W, ::Colon)
+    function _nanmean(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
