@@ -23,12 +23,14 @@
 
     # Arrays containing only NaNs should yield NaN
     A = fill(NaN,10)
+    @test nansum(A) == 0
     @test isnan(nanmean(A))
-    @test isnan(nanstd(A))
     @test isnan(nanrange(A))
     @test isnan(nanminimum(A))
     @test isnan(nanmaximum(A))
     @test all(isnan.(nanextrema(A)))
+    @test isnan(nanstd(A))
+    @test isnan(nanaad(A))
 
     # Summary statistics: simple cases, Int64
     A = collect(1:10)

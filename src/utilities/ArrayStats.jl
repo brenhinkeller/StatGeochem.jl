@@ -853,26 +853,7 @@
     indexable collection `A`, optionally along a dimension specified by `dims`.
     Note that for a Normal distribution, sigma = 1.253 * AAD
     """
-    function nanaad(A; dims=:)
-        s = size(A)
-        if dims == 2
-            result = Array{float(eltype(A))}(undef, s[1], 1)
-            for i=1:s[1]
-                t = nanmask(A[i,:])
-                result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : float(eltype(A))(NaN)
-            end
-        elseif dims == 1
-            result = Array{float(eltype(A))}(undef, 1, s[2])
-            for i=1:s[2]
-                t = nanmask(A[:,i])
-                result[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : float(eltype(A))(NaN)
-            end
-        else
-            t = nanmask(A)
-            result = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : float(eltype(A))(NaN)
-        end
-        return result
-    end
+    nanaad(A; dims=:) = _nanmean(abs.(A .- _nanmean(A, dims)), dims)
     export nanaad
 
 
