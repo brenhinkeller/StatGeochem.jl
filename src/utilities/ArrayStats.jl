@@ -171,7 +171,7 @@
     As `max(a,b)`, but if either argument is `NaN`, return the other one
     """
     function nanmax(a::AbstractFloat,b::AbstractFloat)
-        ifelse(isnan(a), b, ifelse(a < b, b, a))
+        ifelse((a==a) & !(a > b), a, b)
     end
     nanmax(a::AbstractFloat,b::Number) = nanmax(promote(a,b)...)
     nanmax(a::Number,b::AbstractFloat) = nanmax(promote(a,b)...)
@@ -318,11 +318,12 @@
     _nanminimum(A, ::Colon, region) = _nanminimum(A, region) |> vec
     _nanminimum(A, ::Colon, ::Colon) = _nanminimum(A, :)
     function _nanminimum(A, ::Colon)
-        result = A[1]
-        for x in A
-            result = nanmin(x, result)
+        s = typemax(eltype(A))
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            s = min(s, isnan(Aᵢ) ? s : Aᵢ)
         end
-        return result
+        return s
     end
     _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
     export nanminimum
@@ -340,11 +341,12 @@
     _nanmaximum(A, ::Colon, region) = _nanmaximum(A, region) |> vec
     _nanmaximum(A, ::Colon, ::Colon) = _nanmaximum(A, :)
     function _nanmaximum(A, ::Colon)
-        result = A[1]
-        for x in A
-            result = nanmax(x,result)
+        s = typemax(eltype(A))
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            s = max(s, isnan(Aᵢ) ? s : Aᵢ)
         end
-        return result
+        return s
     end
     _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
     export nanmaximum
@@ -382,14 +384,14 @@
     collection `A`, optionally along dimensions specified by `dims`.
     """
     nanmean(A; dims=:, dim=:) = _nanmean(A, dims, dim)
-    nanmean(A, W; dims=:, dim=:) = _nanmean(A, W, dims, dim)
     function _nanmean(A, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
-        @inbounds @simd for i=1:length(A)
-            t = !isnan(A[i])
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            t = Aᵢ == Aᵢ
             n += t
-            m += A[i] * t
+            m += Aᵢ * t
         end
         return m / n
     end
@@ -398,13 +400,17 @@
         return sum(A.*mask, dims=region) ./ sum(mask, dims=region)
     end
     _nanmean(A, ::Colon, region) = vec(_nanmean(A, region, :))
+
+    nanmean(A, W; dims=:, dim=:) = _nanmean(A, W, dims, dim)
     function _nanmean(A, W, ::Colon, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
-        @inbounds @simd for i=1:length(A)
-            t = !isnan(A[i])
-            n += W[i] * t
-            m += A[i] * W[i] * t
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Wᵢ = W[i]
+            t = Aᵢ == Aᵢ
+            n += Wᵢ * t
+            m += Wᵢ * Aᵢ * t
         end
         return m / n
     end
@@ -564,19 +570,20 @@
     indexable collection `A`, optionally along a dimension specified by `dims`.
     """
     nanstd(A; dims=:, dim=:) = _nanstd(A, dims, dim)
-    nanstd(A, W; dims=:, dim=:) = _nanstd(A, W, dims, dim)
     function _nanstd(A, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
-        @inbounds @simd for i=1:length(A)
-            t = !isnan(A[i])
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            t = Aᵢ == Aᵢ # False for NaNs
             n += t
-            m += A[i] * t
+            m += Aᵢ * t
         end
         mu = m / n
         s = zero(typeof(mu))
-        @inbounds @simd for i=1:length(A)
-            d = (A[i] - mu) * !isnan(A[i])
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            d = (Aᵢ - mu) * (Aᵢ == Aᵢ) # zero if Aᵢ is NaN
             s += d * d
         end
         return sqrt(s / (n-1))
@@ -586,8 +593,9 @@
         N = sum(mask, dims=region)
         s = sum(A.*mask, dims=region)./N
         d = A .- s # Subtract mean, using broadcasting
-        @inbounds @simd for i = 1:length(d)
-            d[i] = (d[i] * d[i]) * mask[i]
+        @avx for i ∈ eachindex(d)
+            dᵢ = d[i]
+            d[i] = (dᵢ * dᵢ) * mask[i]
         end
         s .= sum(d, dims=region)
         @avx for i=1:length(s)
@@ -596,19 +604,24 @@
         return s
     end
     _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
+
+    nanstd(A, W; dims=:, dim=:) = _nanstd(A, W, dims, dim)
     function _nanstd(A, W, ::Colon, ::Colon)
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
-        @inbounds @simd for i=1:length(A)
-            t = !isnan(A[i])
-            w += W[i] * t
-            m += A[i] * W[i] * t
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Wᵢ = W[i]
+            t = Aᵢ == Aᵢ
+            w += Wᵢ * t
+            m += Wᵢ * Aᵢ * t
         end
         mu = m / w
         s = zero(typeof(mu))
-        @inbounds @simd for i=1:length(A)
-            d = (A[i] - mu)
-            s += d * d * W[i] * !isnan(A[i])
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            d = Aᵢ - mu
+            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w)
     end
@@ -617,11 +630,12 @@
         w = sum(W.*mask, dims=region)
         s = sum(A.*W.*mask, dims=region) ./ w
         d = A .- s # Subtract mean, using broadcasting
-        @inbounds @simd for i = 1:length(d)
-            d[i] = (d[i] * d[i] * W[i]) * mask[i]
+        @avx for i ∈ eachindex(d)
+            dᵢ = d[i]
+            d[i] = (dᵢ * dᵢ * W[i]) * mask[i]
         end
         s .= sum(d, dims=region)
-        @avx for i=1:length(s)
+        @avx for i ∈ eachindex(s)
             s[i] = sqrt( s[i] / w[i] )
         end
         return s
