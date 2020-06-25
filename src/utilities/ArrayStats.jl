@@ -177,6 +177,7 @@
     nanmax(a::AbstractFloat,b::Number) = nanmax(promote(a,b)...)
     nanmax(a::Number,b::AbstractFloat) = nanmax(promote(a,b)...)
     nanmax(a,b) = max(a,b) # Fallback method for non-Floats
+    vnanmax(a,b) = vifelse(a > b, a, b)
 
     """
     ```julia
@@ -190,6 +191,7 @@
     nanmin(a::AbstractFloat,b::Number) = nanmin(promote(a,b)...)
     nanmin(a::Number,b::AbstractFloat) = nanmin(promote(a,b)...)
     nanmin(a,b) = min(a,b) # Fallback method for non-Floats
+    vnanmin(a,b) = vifelse(a < b, a, b)
 
 
 ## --- Percentile statistics, excluding NaNs
@@ -353,7 +355,7 @@
         return s
     end
     function _nanminimum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = eltype(A)(NaN)
+        s = typemax(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             s = min(s, isnan(Aᵢ) ? s : Aᵢ)
@@ -390,7 +392,7 @@
         return s
     end
     function _nanmaximum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = eltype(A)(NaN)
+        s = typemin(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             s = max(s, isnan(Aᵢ) ? s : Aᵢ)
