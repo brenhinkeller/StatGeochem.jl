@@ -667,8 +667,8 @@
     indexable collection `A`, optionally along a dimension specified by `dims`.
     """
     nanstd(A; dims=:, dim=:) = __nanstd(A, dims, dim)
-    __nanstd(A, dims, dim) == _nanstd(A, dim) |> vec
-    __nanstd(A, dims, ::Colon) == _nanstd(A, dims)
+    __nanstd(A, dims, dim) = _nanstd(A, dim) |> vec
+    __nanstd(A, dims, ::Colon) = _nanstd(A, dims)
     function _nanstd(A, region)
         mask = nanmask(A)
         N = sum(mask, dims=region)
