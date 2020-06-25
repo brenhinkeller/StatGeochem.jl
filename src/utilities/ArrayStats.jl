@@ -307,7 +307,7 @@
         end
         return m
     end
-    function _nansum(A::AbstractArray{<:Integer},::Colon)
+    function _nansum(A::Array{<:Integer},::Colon)
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
             m += A[i]
@@ -353,7 +353,7 @@
         end
         return s
     end
-    function _nanminimum(A::Array{<:AbstractFloat}, ::Colon)
+    function _nanminimum(A::AbstractArray{<:AbstractFloat}, ::Colon)
         s = typemax(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
@@ -391,7 +391,7 @@
         end
         return s
     end
-    function _nanmaximum(A::Array{<:AbstractFloat}, ::Colon)
+    function _nanmaximum(A::AbstractArray{<:AbstractFloat}, ::Colon)
         s = typemin(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
@@ -461,7 +461,7 @@
         return m / length(A)
     end
     # Optimized AVX version for floats
-    function _nanmean(A::Array{<:AbstractFloat}, ::Colon, ::Colon)
+    function _nanmean(A::AbstractArray{<:AbstractFloat}, ::Colon, ::Colon)
         n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -666,8 +666,10 @@
     Calculate the standard deviation (optionaly weighted), ignoring NaNs, of an
     indexable collection `A`, optionally along a dimension specified by `dims`.
     """
-    nanstd(A; dims=:, dim=:) = _nanstd(A, dims, dim)
-    function _nanstd(A, region, ::Colon)
+    nanstd(A; dims=:, dim=:) = __nanstd(A, dims, dim)
+    __nanstd(A, dims, dim) == _nanstd(A, dim) |> vec
+    __nanstd(A, dims, ::Colon) == _nanstd(A, dims)
+    function _nanstd(A, region)
         mask = nanmask(A)
         N = sum(mask, dims=region)
         s = sum(A.*mask, dims=region)./N
@@ -677,13 +679,30 @@
             d[i] = (dᵢ * dᵢ) * mask[i]
         end
         s .= sum(d, dims=region)
-        @avx for i=1:length(s)
+        @avx for i ∈ eachindex(s)
             s[i] = sqrt( s[i] / (N[i] - 1) )
         end
         return s
     end
-    _nanstd(A, ::Colon, region) = vec(_nanstd(A, region, :))
-    function _nanstd(A, ::Colon, ::Colon)
+    function _nanstd(A, ::Colon)
+        n = 0
+        m = zero(eltype(A))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            t = Aᵢ == Aᵢ # False for NaNs
+            n += t
+            m += Aᵢ * t
+        end
+        mu = m / n
+        s = zero(typeof(mu))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            d = (Aᵢ - mu) * (Aᵢ == Aᵢ) # zero if Aᵢ is NaN
+            s += d * d
+        end
+        return sqrt(s / (n-1))
+    end
+    function _nanstd(A::AbstractArray{<:AbstractFloat}, ::Colon)
         n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -702,8 +721,44 @@
         return sqrt(s / (n-1))
     end
 
-    nanstd(A, W; dims=:, dim=:) = _nanstd(A, W, dims, dim)
-    function _nanstd(A, W, ::Colon, ::Colon)
+    nanstd(A, W; dims=:, dim=:) = __nanstd(A, W, dims, dim)
+    __nanstd(A, W, dims, dim) = _nanstd(A, W, dim) |> vec
+    __nanstd(A, W, dims, ::Colon) = _nanstd(A, W, dims)
+    function _nanstd(A, W, region)
+        mask = nanmask(A)
+        w = sum(W.*mask, dims=region)
+        s = sum(A.*W.*mask, dims=region) ./ w
+        d = A .- s # Subtract mean, using broadcasting
+        @avx for i ∈ eachindex(d)
+            dᵢ = d[i]
+            d[i] = (dᵢ * dᵢ * W[i]) * mask[i]
+        end
+        s .= sum(d, dims=region)
+        @avx for i ∈ eachindex(s)
+            s[i] = sqrt( s[i] / w[i] )
+        end
+        return s
+    end
+    function _nanstd(A, W, ::Colon)
+        w = zero(eltype(W))
+        m = zero(promote_type(eltype(W), eltype(A)))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            Wᵢ = W[i]
+            t = Aᵢ == Aᵢ
+            w += Wᵢ * t
+            m += Wᵢ * Aᵢ * t
+        end
+        mu = m / w
+        s = zero(typeof(mu))
+        @inbounds @simd for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            d = Aᵢ - mu
+            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
+        end
+        return sqrt(s / w)
+    end
+    function _nanstd(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
@@ -722,22 +777,6 @@
         end
         return sqrt(s / w)
     end
-    function _nanstd(A, W, region, ::Colon)
-        mask = nanmask(A)
-        w = sum(W.*mask, dims=region)
-        s = sum(A.*W.*mask, dims=region) ./ w
-        d = A .- s # Subtract mean, using broadcasting
-        @avx for i ∈ eachindex(d)
-            dᵢ = d[i]
-            d[i] = (dᵢ * dᵢ * W[i]) * mask[i]
-        end
-        s .= sum(d, dims=region)
-        @avx for i ∈ eachindex(s)
-            s[i] = sqrt( s[i] / w[i] )
-        end
-        return s
-    end
-    _nanstd(A, W, ::Colon, region) = vec(_nanstd(A, W, region, :))
     export nanstd
 
 
