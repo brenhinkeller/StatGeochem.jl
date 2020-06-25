@@ -31,6 +31,11 @@
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
     @test nanextrema(A) == (1.0, 10.0)
+    @test nanstd([1,2,3]) == 1.0
+    @test nanmad([1,2,3]) == 1.0
+    @test nanaad([1,2,3]) ≈ 2/3
+    @test nanmedian([1,2,3]) == 2.0
+    @test pctile([0:100...],99) == 99.0
 
     # Summary statistics: simple cases, ranges
     A = 1:10
@@ -42,6 +47,12 @@
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
     @test nanextrema(A) == (1.0, 10.0)
+    @test nanstd(1:3) == 1.0
+    @test nanmad(1:3) == 1.0
+    @test nanaad(1:3) ≈ 2/3
+    @test nanmedian(1:3) == 2.0
+    @test pctile(0:100,99) == 99.0
+
     A = 1:10.
     @test StatGeochem.nanmin(1,2) == 1
     @test StatGeochem.nanmax(1,2) == 2
@@ -51,6 +62,11 @@
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
     @test nanextrema(A) == (1.0, 10.0)
+    @test nanstd(1:3.) == 1.0
+    @test nanmad(1:3.) == 1.0
+    @test nanaad(1:3.) ≈ 2/3
+    @test nanmedian(1:3.) == 2.0
+    @test pctile(0:100.,99) == 99.0
 
     # Summary statistics: dimensional tests, Int64
     A = reshape(1:300,100,3)
