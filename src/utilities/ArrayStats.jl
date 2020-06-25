@@ -203,12 +203,11 @@
 
     A valid percentile value must satisfy 0 <= `p` <= 100.
     """
-    pctile(A, p; dims=:, dim=:) = _pctile(A, p, dims, dim)
-    _pctile(A, p, region, ::Colon) = _pctile(A, p, region)
-    _pctile(A, p, ::Colon, region) = _pctile(A, p, region) |> vec
-    _pctile(A, p, ::Colon, ::Colon) = _pctile(A, p, :)
+    pctile(A, p; dims=:, dim=:) = __pctile(A, p, dims, dim)
+    __pctile(A, p, dims, dim) = _pctile(A, p, dim) |> vec
+    __pctile(A, p, dims, ::Colon) = _pctile(A, p, dims)
     function _pctile(A, p, ::Colon)
-        t = .~ isnan.(A)
+        t = nanmask(A)
         return any(t) ? percentile(A[t],p) : NaN
     end
     function _pctile(A, p, region)
@@ -216,13 +215,13 @@
         if region == 2
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = .~ isnan.(A[i,:])
+                t = nanmask(A[i,:])
                 result[i] = any(t) ? percentile(A[i,t],p) : NaN
             end
         elseif region == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = .~ isnan.(A[:,i])
+                t = nanmask(A[:,i])
                 result[i] = any(t) ? percentile(A[t,i],p) : NaN
             end
         else
@@ -334,10 +333,10 @@
     As `minimum` but ignoring `NaN`s: Find the smallest non-`NaN` value of an
     indexable collection `A`, optionally along a dimension specified by `dims`.
     """
-    nanminimum(A; dims=:, dim=:) = _nanminimum(A, dims, dim)
-    _nanminimum(A, region, ::Colon) = _nanminimum(A, region)
-    _nanminimum(A, ::Colon, region) = _nanminimum(A, region) |> vec
-    _nanminimum(A, ::Colon, ::Colon) = _nanminimum(A, :)
+    nanminimum(A; dims=:, dim=:) = __nanminimum(A, dims, dim)
+    __nanminimum(A, dims, dim) = _nanminimum(A, dim) |> vec
+    __nanminimum(A, dims, ::Colon) = _nanminimum(A, dims)
+    _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
     function _nanminimum(A, ::Colon)
         s = typemax(eltype(A))
         @inbounds @simd for i ∈ eachindex(A)
@@ -354,14 +353,13 @@
         return s
     end
     function _nanminimum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = typemax(eltype(A))
+        s = eltype(A)(NaN)
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             s = min(s, isnan(Aᵢ) ? s : Aᵢ)
         end
         return s
     end
-    _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
     export nanminimum
 
 
@@ -372,10 +370,10 @@
     Find the largest non-NaN value of an indexable collection `A`, optionally
     along a dimension specified by `dims`.
     """
-    nanmaximum(A; dims=:, dim=:) = _nanmaximum(A, dims, dim)
-    _nanmaximum(A, region, ::Colon) = _nanmaximum(A, region)
-    _nanmaximum(A, ::Colon, region) = _nanmaximum(A, region) |> vec
-    _nanmaximum(A, ::Colon, ::Colon) = _nanmaximum(A, :)
+    nanmaximum(A; dims=:, dim=:) = __nanmaximum(A, dims, dim)
+    __nanmaximum(A, dims, dim) = _nanmaximum(A, dim) |> vec
+    __nanmaximum(A, dims, ::Colon) = _nanmaximum(A, dims)
+    _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
     function _nanmaximum(A, ::Colon)
         s = typemin(eltype(A))
         @inbounds @simd for i ∈ eachindex(A)
@@ -392,14 +390,13 @@
         return s
     end
     function _nanmaximum(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        s = typemin(eltype(A))
+        s = eltype(A)(NaN)
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             s = max(s, isnan(Aᵢ) ? s : Aᵢ)
         end
         return s
     end
-    _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
     export nanmaximum
 
 
@@ -434,14 +431,15 @@
     Ignoring NaNs, calculate the mean (optionally weighted) of an indexable
     collection `A`, optionally along dimensions specified by `dims`.
     """
-    nanmean(A; dims=:, dim=:) = _nanmean(A, dims, dim)
-    function _nanmean(A, region, ::Colon)
+    nanmean(A; dims=:, dim=:) = __nanmean(A, dims, dim)
+    __nanmean(A, dims, dim) = _nanmean(A, dim) |> vec
+    __nanmean(A, dims, ::Colon) = _nanmean(A, dims)
+    function _nanmean(A, region)
         mask = nanmask(A)
         return sum(A.*mask, dims=region) ./ sum(mask, dims=region)
     end
-    _nanmean(A, ::Colon, region) = vec(_nanmean(A, region, :))
     # Fallback method for non-Arrays
-    function _nanmean(A, ::Colon, ::Colon)
+    function _nanmean(A, ::Colon)
         n = 0
         m = zero(eltype(A))
         @inbounds @simd for i ∈ eachindex(A)
@@ -453,7 +451,7 @@
         return m / n
     end
     # Can't have NaNs if array is all Integers
-    function _nanmean(A::Array{<:Integer}, ::Colon, ::Colon)
+    function _nanmean(A::Array{<:Integer}, ::Colon)
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
             m += A[i]
@@ -461,7 +459,7 @@
         return m / length(A)
     end
     # Optimized AVX version for floats
-    function _nanmean(A::AbstractArray{<:AbstractFloat}, ::Colon, ::Colon)
+    function _nanmean(A::AbstractArray{<:AbstractFloat}, ::Colon)
         n = 0
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -473,14 +471,15 @@
         return m / n
     end
 
-    nanmean(A, W; dims=:, dim=:) = _nanmean(A, W, dims, dim)
-    function _nanmean(A, W, region, ::Colon)
+    nanmean(A, W; dims=:, dim=:) = __nanmean(A, W, dims, dim)
+    __nanmean(A, W, dims, dim) = _nanmean(A, W, dim) |> vec
+    __nanmean(A, W, dims, ::Colon) = _nanmean(A, W, dims)
+    function _nanmean(A, W, region)
         mask = nanmask(A)
         return sum(A.*W.*mask, dims=region) ./ sum(W.*mask, dims=region)
     end
-    _nanmean(A, W, ::Colon, region) = vec(_nanmean(A, W, region, :))
     # Fallback method for non-Arrays
-    function _nanmean(A, W, ::Colon, ::Colon)
+    function _nanmean(A, W, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @inbounds @simd for i ∈ eachindex(A)
@@ -493,7 +492,7 @@
         return m / n
     end
     # Can't have NaNs if array is all Integers
-    function _nanmean(A::Array{<:Integer}, W::Array{<:Number}, ::Colon, ::Colon)
+    function _nanmean(A::Array{<:Integer}, W, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
@@ -504,7 +503,7 @@
         return m / n
     end
     # Optimized AVX method for floats
-    function _nanmean(A::Array{<:AbstractFloat}, W::Array{<:Number}, ::Colon, ::Colon)
+    function _nanmean(A::Array{<:AbstractFloat}, W, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
@@ -792,7 +791,7 @@
     _nanmedian(A, ::Colon, region) = _nanmedian(A, region) |> vec
     _nanmedian(A, ::Colon, ::Colon) = _nanmedian(A, :)
     function _nanmedian(A, ::Colon)
-        t = .~ isnan.(A)
+        t = nanmask(A)
         return any(t) ? median(A[t]) : float(eltype(A))(NaN)
     end
     function _nanmedian(A, region)
@@ -800,13 +799,13 @@
         if region == 2
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = .~ isnan.(A[i,:])
+                t = nanmask(A[i,:])
                 result[i] = any(t) ? median(A[i,t]) : float(eltype(A))(NaN)
             end
         elseif region == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = .~ isnan.(A[:,i])
+                t = nanmask(A[:,i])
                 result[i] = any(t) ? median(A[t,i]) : float(eltype(A))(NaN)
             end
         else
@@ -845,7 +844,7 @@
         binedges = range(xmin, xmax, length=nbins+1)
         t = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& nanmask(y)
             M[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
         return M
@@ -857,7 +856,7 @@
         for i = 1:nbins
             t .= (x.>binedges[i]) .& (x.<=binedges[i+1])
             for j = 1:size(y,2)
-                tj .= t .& (.~isnan.(y[:,j]))
+                tj .= t .& nanmask(y[:,j])
                 M[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
             end
         end
@@ -879,17 +878,17 @@
         if dims == 2
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = .~ isnan.(A[i,:])
+                t = nanmask(A[i,:])
                 result[i] = any(t) ? median(abs.( A[i,t] .- median(A[i,t]) )) : float(eltype(A))(NaN)
             end
         elseif dims == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = .~ isnan.(A[:,i])
+                t = nanmask(A[:,i])
                 result[i] = any(t) ? median(abs.( A[t,i] .- median(A[t,i]) )) : float(eltype(A))(NaN)
             end
         else
-            t = .~ isnan.(A)
+            t = nanmask(A)
             result = any(t) ? median(abs.( A[t] .- median(A[t]) )) : float(eltype(A))(NaN)
         end
         return result
@@ -910,17 +909,17 @@
         if dims == 2
             result = Array{float(eltype(A))}(undef, s[1], 1)
             for i=1:s[1]
-                t = .~ isnan.(A[i,:])
+                t = nanmask(A[i,:])
                 result[i] = any(t) ? mean(abs.( A[i,t] .- mean(A[i,t]) )) : float(eltype(A))(NaN)
             end
         elseif dims == 1
             result = Array{float(eltype(A))}(undef, 1, s[2])
             for i=1:s[2]
-                t = .~ isnan.(A[:,i])
+                t = nanmask(A[:,i])
                 result[i] = any(t) ? mean(abs.( A[t,i] .- mean(A[t,i]) )) : float(eltype(A))(NaN)
             end
         else
-            t = .~ isnan.(A)
+            t = nanmask(A)
             result = any(t) ? mean(abs.( A[t] .- mean(A[t]) )) : float(eltype(A))(NaN)
         end
         return result
@@ -939,8 +938,8 @@
     """
     standardize!(A::Array{<:AbstractFloat}; dims=:) = _standardize!(A, dims)
     function _standardize!(A::Array{<:AbstractFloat}, dims=:)
-        A .-= _nanmean(A, dims, :)
-        A ./= _nanstd(A, dims, :)
+        A .-= _nanmean(A, dims)
+        A ./= _nanstd(A, dims)
         return A
     end
     export standardize!
