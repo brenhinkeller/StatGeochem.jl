@@ -975,31 +975,32 @@
 
     """
     ```julia
-    movmean(x::AbstractArray, n::Number)
+    movmean(x::AbstractVecOrMat, n::Number)
     ```
     Simple moving average of `x` in 1 or 2 dimensions, spanning `n` bins (or n*n in 2D)
     """
-    function movmean(x::AbstractArray, n::Number)
+    function movmean(x::AbstractVector, n::Number)
         halfspan = ceil((n-1)/2)
+        t = Array{Bool}(undef,length(x))
         m = Array{float(eltype(x))}(undef,size(x))
-
-        # 2-D case
-        if length(size(x)) == 2
-            iind = repmat(1:size(x,1), 1, size(x,2))
-            jind = repmat((1:size(x,2))', size(x,1), 1)
-            for k = 1:length(x)
-                i = iind[k]
-                j = jind[k]
-                t = (iind .>= (i-halfspan)) .& (iind .<= (i+halfspan)) .& (jind .>= (j-halfspan)) .& (jind .<= (j+halfspan))
-                m[i,j] = mean(x[t])
-            end
-        # Treat all others as 1-D
-        else
-            ind = 1:length(x)
-            for i in ind
-                t = (ind .>= ceil(i-halfspan)) .& (ind .<= ceil(i+halfspan))
-                m[i] = mean(x[t])
-            end
+        ind = 1:length(x)
+        @inbounds for i in ind
+            t .= ceil(i-halfspan) .<= ind .<= ceil(i+halfspan)
+            m[i] = mean(x[t])
+        end
+        return m
+    end
+    function movmean(x::AbstractMatrix, n::Number)
+        halfspan = ceil((n-1)/2)
+        t = Array{Bool}(undef,size(x))
+        m = Array{float(eltype(x))}(undef,size(x))
+        iind = repmat(1:size(x,1), 1, size(x,2))
+        jind = repmat((1:size(x,2))', size(x,1), 1)
+        @inbounds for k = 1:length(x)
+            i = iind[k]
+            j = jind[k]
+            t .= ((i-halfspan) .<= iind .<= (i+halfspan)) .& ((j-halfspan) .<= jind .<= (j+halfspan))
+            m[i,j] = mean(x[t])
         end
         return m
     end
