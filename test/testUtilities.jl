@@ -124,6 +124,7 @@
     # Moving averages
     @test movmean(collect(1:10.),5) == movmean(1:10,5)
     @test movmean(1:10,4) == [2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0]
+    @test movmean(repeat(1:10,1,10),4) == repeat([2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0],1,10)
 
     # Interpolation
     @test linterp1(1:10,21:30,5:0.5:6) == [25.0, 25.5, 26.0]
