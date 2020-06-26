@@ -1,34 +1,33 @@
 ## --- Fast inverse square-root
-    # This is mostly just for fun: while it can be 1.5x faster than 1/sqrt(x)
-    # I'm not sure there's any realistic scientific application where it's
-    # worth the loss of precision. Both versions good to about 4 ppm
 
-    # Float64 version
-    function inv_sqrt(number::Float64)
-        n_2 = 0.5 * number
-        y = Base.sub_int(9.603007803048109e153, Base.lshr_int(number,1)) # Floating point magic
-        y *= ( 1.5 - (n_2 * y * y )) # Newton's method
-        y *= ( 1.5 - (n_2 * y * y )) # Newton's method (again)
-        return y
+    """
+    ```julia
+    inv_sqrt(x)
+    ```
+    The fast inverse square root of `x`, in 32 and 64 bit versions. Can be up to
+    10x faster than base `1/sqrt(x)`, though with significant loss of precision.
+    The implementations here are good to about 4 ppm.
+    """
+    function inv_sqrt(x::Float64)
+        x_2 = 0.5 * x
+        result = Base.sub_int(9.603007803048109e153, Base.lshr_int(x,1)) # Floating point magic
+        result *= ( 1.5 - (x_2 * result * result )) # Newton's method
+        result *= ( 1.5 - (x_2 * result * result )) # Newton's method (again)
+        return result
     end
-
-    # Float32 version
-    function inv_sqrt(number::Float32)
-        n_2 = 0.5f0 * number
-        y = Base.sub_int(1.321202f19, Base.lshr_int(number,1)) # Floating point magic
-        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method
-        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method (again)
-        return y
+    function inv_sqrt(x::Float32)
+        x_2 = 0.5f0 * x
+        result = Base.sub_int(1.321202f19, Base.lshr_int(x,1)) # Floating point magic
+        result *= ( 1.5f0 - (x_2 * result * result) ) # Newton's method
+        result *= ( 1.5f0 - (x_2 * result * result) ) # Newton's method (again)
+        return result
     end
-
-    export inv_sqrt
 
 ## --- Base-10 version of log1p
 
     function log10f(x::Number,from::Number=-1)
         return log10(abs(x-from)+1)*sign(x-from)
     end
-    export log10f
 
 ## --- Gaussian distribution functions
 
