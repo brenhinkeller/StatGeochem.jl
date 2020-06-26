@@ -146,10 +146,14 @@
 
 ## --- Geometry
 
-    # Check if a 2D polygon defined by the arrays x, y contains a point.
-    # Returns boolean (true or false)
+    """
+    ```julia
+    inpolygon(x,y,point)
+    ```
+    Check if a 2D polygon defined by the arrays `x`, `y` contains a given `point`.
+    Returns boolean (true or false)
+    """
     function inpolygon(x,y,point)
-
         # Check that we have the right kind of input data
         if length(x) != length(y)
             error("polygon must have equal number of x and y points\n")
@@ -177,7 +181,7 @@
 
         # Check how many times a line projected right along x-axis from point intersects the polygon
         intersections = 0
-        for i=1:length(x)
+        @inbounds for i=1:length(x)
             # Recycle our vertex
             x_last = copy(x_here)
             y_last = copy(y_here)
@@ -231,13 +235,16 @@
     end
     export inpolygon
 
-    # Find the indexes of grid points that fall within a polygon for a grid /
-    # matrix with cell centers given by grid_x (j-columns of matrix) and
-    # grid_y (i-rows of matrix).
-    # Returns a list of rows and columns in the polygon
-    function find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
-        # (row, column) = find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
 
+    """
+    ```julia
+    (rows, columns) = find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
+    ```
+    Find the indexes of grid points that fall within a polygon for a grid with
+    cell centers given by grid_x (j-columns of grid) and grid_y (i-rows of grid).
+    Returns a list of rows and columns in the polygon
+    """
+    function find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
         # Check that we have the right kind of input data
         if length(poly_x) != length(poly_y)
             error("polygon must have equal number of x and y points\n")
@@ -274,11 +281,17 @@
     export find_grid_inpolygon
 
 
-    # Calculate the distance between two (lat,lon) points on a sphere.
-    # Lat, Lon in decimal degrees
-    function arcdistance(lat_i,lon_i,lat,lon)
+    """
+    ```julia
+    arcdistance(latᵢ,lonᵢ,lat,lon)
+    ```
+    Calculate the distance on a sphere between the point (`latᵢ`,`lonᵢ`) and any
+    number of points in (`lat`,`lon`).
+    Latitude and Longitude should be specified in decimal degrees
+    """
+    function arcdistance(latᵢ,lonᵢ,lat,lon)
         # Argument for acos()
-        arg = sin.(lat_i .* pi/180) .* sin.(lat .* pi/180) .+ cos.(lat_i*pi/180) .* cos.(lat .* pi/180).*cos.((lon_i .- lon) .* pi/180)
+        arg = sin.(latᵢ .* pi/180) .* sin.(lat .* pi/180) .+ cos.(latᵢ*pi/180) .* cos.(lat .* pi/180).*cos.((lonᵢ .- lon) .* pi/180)
 
         # Avoid domain errors from imprecise sine and cosine math
         arg[arg .> 1.0] .= 1.0
