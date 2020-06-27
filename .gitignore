@@ -1,15 +1,20 @@
 .DS_STORE
 *.swp
-*.pdf
-*.jpg
+
+# Other languages
+*.c
+*.h
+*.m
+*.py
 .ipynb_checkpoints
 
 # Ignore data and image files by default
 *.h5
 *.csv
 *.mat
-*.png
 *.jpg
+*.png
+*.gif
 *.pdf
 
 # Various julia files to ignore
