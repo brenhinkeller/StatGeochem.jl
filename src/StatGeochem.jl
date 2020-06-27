@@ -46,6 +46,7 @@ module StatGeochem
     using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
     include("utilities/Colormaps.jl");
 
+    include("utilities/Geochronology.jl");
     include("utilities/Geochemistry.jl");
     include("utilities/GIS.jl");
     include("utilities/Etc.jl");
