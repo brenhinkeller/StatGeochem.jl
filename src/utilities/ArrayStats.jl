@@ -896,6 +896,31 @@
     standardize(A::AbstractArray; dims=:) = _standardize!(float.(A), dims)
     export standardize
 
+## --- Sorting and counting array elements
+
+    """
+    ```julia
+    n = count_unique!(A)
+    ```
+    Sort the array `A` in-place, move unique elements to the front, and return
+    the number of unique elements found.
+    `A[1:count_unique!(A)]` should return an array equivalent to `unique(A)`
+    """
+    function count_unique!(A)
+        sort!(A)
+        n = 1
+        last = A[1]
+        @inbounds for i=2:length(A)
+            if A[i] != last
+                n += 1
+                last = A[n] = A[i]
+            end
+        end
+        return n
+    end
+    export count_unique!
+
+
 ## --- Array construction
 
     # Construct linearly spaced array with n points between l and u

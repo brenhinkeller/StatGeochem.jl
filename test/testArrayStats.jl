@@ -121,16 +121,23 @@
     @test nanmedian(1:100, reshape(1:300,100,3), 0, 100, 3) ==
                 [17.0 117.0 217.0; 50.0 150.0 250.0; 83.5 183.5 283.5]
 
-    # Moving averages
-    @test movmean(collect(1:10.),5) == movmean(1:10,5)
-    @test movmean(1:10,4) == [2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0]
-    @test movmean(repeat(1:10,1,10),4) == repeat([2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0],1,10)
+    # Standardization
+    @test standardize!(collect(1:10.)) ≈ ((1:10) .- mean(1:10)) / std(1:10)
+
+    # Sorting and counting
+    A = rand(1:100.,100); B = sort(A)
+    @test A[1:count_unique!(A)] == unique(B)
 
     # Interpolation
     @test linterp1(1:10,21:30,5:0.5:6) == [25.0, 25.5, 26.0]
     @test linterp1s(10:-1:1,21:30,5:0.5:6) == [26.0, 25.5, 25.0]
+    @test movmean(collect(1:10.),5) == movmean(1:10,5)
+    @test movmean(1:10,4) == [2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0]
+    @test movmean(repeat(1:10,1,10),4) == repeat([2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0],1,10)
 
-    # Standardization
-    standardize!(collect(1:10.)) ≈ ((1:10) .- mean(1:10)) / std(1:10)
+    # Integration
+    @test trapz(1:10,fill(1,10)) == 9
+    @test trapz(collect(1:10.),ones(10)) == 9
+    @test midpointintegrate(1:10,ones(10)) == 10
 
-## --- 
+## ---
