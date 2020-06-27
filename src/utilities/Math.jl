@@ -41,9 +41,7 @@
 
     with mean `mu` and standard deviation `sigma`, evaluated at `x`
     """
-    function normpdf(mu,sigma,x)
-        return @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
-    end
+    normpdf(mu,sigma,x) = @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
     export normpdf
 
     """
@@ -53,13 +51,19 @@
     Fast log likelihood corresponding to a Normal (Gaussian) distribution
     with mean `mu` and standard deviation `sigma`, evaluated at `x`.
 
-    If `x`, `mu`, and `sigma` are given as arrays, the sum of the log likelihood
+    If `x`, [`mu`, and `sigma`] are given as arrays, the sum of the log likelihood
     over all `x` will be returned.
 
     See also `normpdf`
     """
-    function normpdf_ll(mu::Number,sigma::Number,x::Number)
-        return -(x-mu)*(x-mu) / (2*sigma*sigma)
+    normpdf_ll(mu::Number,sigma::Number,x::Number) = -(x-mu)*(x-mu) / (2*sigma*sigma)
+    function normpdf_ll(mu::Number,sigma::Number,x::AbstractArray)
+        ll = 0.0
+        inv_s2 = 1/(2*sigma*sigma)
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu)*(x[i]-mu) * inv_s2
+        end
+        return ll
     end
     function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
         ll = 0.0
@@ -68,6 +72,7 @@
         end
         return ll
     end
+    export normpdf_ll
 
     """
     ```julia
