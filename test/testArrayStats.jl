@@ -124,9 +124,12 @@
     # Standardization
     @test standardize!(collect(1:10.)) ≈ ((1:10) .- mean(1:10)) / std(1:10)
 
-    # Sorting and counting
+    # Sorting, counting, matching
     A = rand(1:100.,100); B = sort(A)
     @test A[1:count_unique!(A)] == unique(B)
+    @test findclosest(3.3:5.3,1:10) == 3:5
+    @test findclosestbelow(3.3:5.3,1:10) == 3:5
+    @test findclosestabove(3.3:5.3,1:10) == 4:6
 
     # Interpolation
     @test linterp1(1:10,21:30,5:0.5:6) == [25.0, 25.5, 26.0]
