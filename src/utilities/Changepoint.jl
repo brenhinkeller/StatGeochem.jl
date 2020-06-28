@@ -7,6 +7,7 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
     DEATH = 0.25
 
 	DEBUG = false
+	FORMATTED = false
 
 	T = float(eltype(data))
 	model = similar(data, T)
@@ -25,21 +26,18 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 	np = npₚ = 2
 
 	# Fill initial boundary point array
-	boundarypoints = Array{Int}(undef, K+2)
-	boundarypoints[1] = 1
-	boundarypoints[np+2] = nrows
-	boundarypoints[2:np+1] .= rand(2:nrows-1, np)
-	boundarypointsₚ = copy(boundarypoints)
+	boundaries = Array{Int}(undef, K+2)
+	boundaries[1] = 1
+	boundaries[np+2] = nrows
+	boundaries[2:np+1] .= rand(2:nrows-1, np)
+	boundariesₚ = similar(boundaries)
 
-
-
-	np = count_unique!(view(boundarypoints,np+2)) - 2
-	copyto!(boundarypoints,1,boundarypointsₚ,1,np+2)
-	copyto!(boundarypoints,1,boundarypointsₚ,1,np+2)
+	np = count_unique!(view(boundaries,np+2)) - 2
+	copyto!(boundariesₚ,1,boundaries,1,np+2)
 
 
 	# The actual loop
-	for (i=0;i<nsims;i++){
+	@inbounds for i = 1:nsims
 
 		# Randomly choose a type of modification to the model
 		r = rand()
@@ -47,35 +45,34 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 
 		if r < MOVE && np>0
 			# Move a changepoint
-
-			copyto!(boundarypoints,1,boundarypointsₚ,1,np+2)
+			copyto!(boundariesₚ,1,boundaries,1,np+2)
 			# Pick which changepoint to move
 			pick = rand(2:np+1)
 			# Move the changepoint between its boundaries
-			nextValueUniform = pcg32_random_r(&rng) / ( RAND_MAX_U32 / ((boundarypointsₚ[pick+1]-1)-(boundarypointsₚ[pick-1]+1)+1) ) + (boundarypointsₚ[pick-1]+1);
-			nextValueGaussian = (uint32_t)(pcg_gaussian_ziggurat(&rng, lastDifference) + boundarypoints[pick]);
-			if (abs((int)nextValueUniform-(int)boundarypointsₚ[pick]) > abs((int)nextValueGaussian-(int)boundarypointsₚ[pick]) && nextValueGaussian>boundarypointsₚ[pick-1] && nextValueGaussian<boundarypointsₚ[pick+1] && nextValueGaussian != boundarypointsₚ[pick]){
-				# printf("GaussianCloser: %u %u %u ", nextValueUniform, boundarypointsₚ[pick], nextValueGaussian);
-				boundarypointsₚ[pick] = nextValueGaussian;
+			nextValueUniform = pcg32_random_r(&rng) / ( RAND_MAX_U32 / ((boundariesₚ[pick+1]-1)-(boundariesₚ[pick-1]+1)+1) ) + (boundariesₚ[pick-1]+1);
+			nextValueGaussian = (uint32_t)(pcg_gaussian_ziggurat(&rng, lastDifference) + boundaries[pick]);
+			if (abs((int)nextValueUniform-(int)boundariesₚ[pick]) > abs((int)nextValueGaussian-(int)boundariesₚ[pick]) && nextValueGaussian>boundariesₚ[pick-1] && nextValueGaussian<boundariesₚ[pick+1] && nextValueGaussian != boundariesₚ[pick]){
+				# printf("GaussianCloser: %u %u %u ", nextValueUniform, boundariesₚ[pick], nextValueGaussian);
+				boundariesₚ[pick] = nextValueGaussian;
 			else
-				# printf("UniformCloser: %u %u %u ", nextValueUniform, boundarypointsₚ[pick], nextValueGaussian);
-				boundarypointsₚ[pick] = nextValueUniform;
+				# printf("UniformCloser: %u %u %u ", nextValueUniform, boundariesₚ[pick], nextValueGaussian);
+				boundariesₚ[pick] = nextValueUniform;
 			end
 			# Update the model
-			update_model(boundarypointsₚ, np, rows, columns, &rng, d, s, m);
+			update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m);
 
 			# Calculate log likelihood for proposal
-			llP=log_likelihood(d, m, s, rows, columns);
+			llₚ=log_likelihood(d, m, σ, rows, columns);
 
-			DEBUG && print("Move: llP-ll = %g - %g\n",llP,ll);}
-			if (u<exp(llP-ll)){
+			DEBUG && print("Move: llₚ-ll = %g - %g\n",llₚ,ll);}
+			if log(u) < llₚ-ll
 				DEBUG && print("Accepted!\n");}
-				ll=llP;
-				lastDifference = fabs(((double)boundarypointsₚ[pick]-(double)boundarypoints[pick])*2.9);
+				ll = llₚ
+				lastDifference = fabs(((double)boundariesₚ[pick]-(double)boundaries[pick])*2.9);
 				# printf("%g\n",lastDifference);
-				copyArrayUint(boundarypointsₚ,np+2,boundarypoints);
+				copyto!(boundaries,1,boundariesₚ,1,np+2)
 				for n=1:np
-					printf("%u,",boundarypointsₚ[n+1]);
+					printf("%u,",boundariesₚ[n+1]);
 				end
 				FORMATTED && print("\n")
 				# printf("\n%u\n",np);
@@ -83,28 +80,29 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 
 		elseif r < MOVE+SIGMA
 			# Adjust σ
-			copyArray(s,columns,sP);
+			copyto!(σₚ,σ)
 
 			# Choose a new sigma
-			j=pcg32_random_r(&rng)/(RAND_MAX_U32/columns);
-			sP[j]=pcg32_random_r(&rng)/4294967295.0;
-			sll=log(pow((sP[j]/s[j]),rows));
+			j=rand(1:columns)
+			σₚ[j]=rand()
+			sll=log(pow((σₚ[j]/σ[j]),rows));
 
 			# Calculate log likelihood for proposal
-			llP=log_likelihood(d, m, sP, rows, columns);
+			llₚ=log_likelihood(d, m, σₚ, rows, columns);
 
-			DEBUG && println("Sigma $(sP[j]): llP-ll = $llP - $ll")
-			if (u<exp(sll+llP-ll)){ # If accepted
+			DEBUG && println("Sigma $(σₚ[j]): llₚ-ll = $llₚ - $ll")
+			if log(u) < llₚ+sll-ll
+				# If accepted
 				DEBUG && println("Accepted!")
-				ll=llP;
-				copyArray(sP,columns,s);
+				ll = llₚ
+				copyto!(σ,σₚ)
 				# for (int n=0; n<np+2; n++){
-				# 	printf("%u,",boundarypointsₚ[n]);
+				# 	printf("%u,",boundariesₚ[n]);
 				# }
 				# printf("\n%u\n",np);
 				# printf("sigma: ");
 				# for (int n=0; n<columns; n++){
-				# 	printf("%g,",s[n]);
+				# 	printf("%g,",σ[n]);
 				# }
 				# printf("\n");
 			end
@@ -112,27 +110,27 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 		elseif r < MOVE+SIGMA+BIRTH
 			# Add a changepoint
 			if np < npmax
-				copyto!(boundarypoints,1,boundarypointsₚ,1,np+2)
+				copyto!(boundariesₚ,1,boundaries,1,np+2)
 
 				# Pick which changepoint to add right of
-				pick=pcg32_random_r(&rng)/(RAND_MAX_U32/(np+1));
-				boundarypointsₚ[np+2] = pcg32_random_r(&rng) / ( RAND_MAX_U32 / ((boundarypointsₚ[pick+1]-1)-(boundarypointsₚ[pick]+1)+1) ) + (boundarypointsₚ[pick]+1);
-				npₚ = count_unique!(view(boundarypointsₚ,np+3)) - 2
+				pick=rand(1:np+1)
+				boundariesₚ[np+3] = rand(boundariesₚ[pick]:boundariesₚ[pick+1])
+				npₚ = count_unique!(view(boundariesₚ,np+3)) - 2
 
 				# Update the model
-				update_model(boundarypointsₚ, npₚ, rows, columns, &rng, d, s, m);
+				update_model(boundariesₚ, npₚ, rows, columns, &rng, d, σ, m);
 
 				# Calculate log likelihood for proposal
-				lqz=lqxz(d, m, &boundarypointsₚ[pick], rows, columns);
-				llP=log_likelihood(d, m, s, rows, columns);
-				DEBUG && print("Birth: -lqz+llP-ll = %g + %g - %g\n",-lqz,llP,ll);}
-				if u < exp(-lqz+llP-ll)
+				lqz=lqxz(d, m, &boundariesₚ[pick], rows, columns);
+				llₚ=log_likelihood(d, m, σ, rows, columns);
+				DEBUG && print("Birth: -lqz+llₚ-ll = %g + %g - %g\n",-lqz,llₚ,ll)
+				if log(u) < llₚ-lqz-ll
 					DEBUG && print("Accepted!\n");}
-					ll=llP;
-					np=npₚ;
-					copyArrayUint(boundarypointsₚ,np+2,boundarypoints);
+					ll = llₚ
+					np = npₚ
+					copyto!(boundaries,1,boundariesₚ,1,np+2)
 					for n=1:np
-						printf("%u,",boundarypointsₚ[n+1]);
+						printf("%u,",boundariesₚ[n+1])
 					end
 					FORMATTED && print("\n")
 				# printf("\n%u\n",np);
@@ -141,27 +139,27 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 		elseif r < MOVE+SIGMA+BIRTH+DEATH
 			# Delete a changepoint
 			if np > npmin
-				copyto!(boundarypoints,1,boundarypointsₚ,1,np+2)
+				copyto!(boundariesₚ,1,boundaries,1,np+2)
 
 				# Pick which changepoint to delete
 				pick = rand(2:np+1)
-				boundarypointsₚ[pick]=boundarypointsₚ[pick+1];
-				npₚ = count_unique!(view(boundarypointsₚ,np+2) - 2
+				boundariesₚ[pick]=boundariesₚ[pick+1]
+				npₚ = count_unique!(view(boundariesₚ,np+2) - 2
 
 				# Update the model
-				update_model(boundarypointsₚ, np, rows, columns, &rng, d, s, m);
+				update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m);
 
 				# Calculate log likelihood for proposal
-				llP=log_likelihood(d, m, s, rows, columns);
-				lqz=lqxz(d, m, &boundarypoints[pick], rows, columns);
-				DEBUG && println("Death: lqz+llP-ll = $lqz + $llP - $ll")
-				if (u<exp(lqz+llP-ll))
+				llₚ=log_likelihood(d, m, σ, rows, columns);
+				lqz=lqxz(d, m, &boundaries[pick], rows, columns);
+				DEBUG && println("Death: lqz+llₚ-ll = $lqz + $llₚ - $ll")
+				if log(u) < llₚ+lqz-ll
 					DEBUG && println("Accepted!")
-					ll=llP;
-					np=npₚ;
-					copyArrayUint(boundarypointsₚ,np+2,boundarypoints);
+					ll = llₚ
+					np = npₚ
+					copyto!(boundaries,1,boundariesₚ,1,np+2)
 					for n=1:np
-						printf("%u,",boundarypointsₚ[n+1]);
+						printf("%u,",boundariesₚ[n+1])
 					end
 					FORMATTED && print("\n")
 				# printf("\n%u\n",np);
@@ -170,15 +168,14 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 
 		else
 			# Update the model
-			update_model(boundarypointsₚ, np, rows, columns, &rng, d, s, m);
+			update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m)
 
 			# Calculate log likelihood for proposal
-			llP=log_likelihood(d, m, s, rows, columns);
-			if u < exp(llP-ll)
-				# printf("Update: llP-ll = %g - %g\n",llP,ll);
+			llₚ=log_likelihood(d, m, σ, rows, columns)
+			if log(u) < llₚ-ll
+				# printf("Update: llₚ-ll = %g - %g\n",llₚ,ll);
 				# printf("Accepted!\n");
-				ll=llP;
-
+				ll = llₚ
 			end
 		end
 		# printf("%u\n",i);
