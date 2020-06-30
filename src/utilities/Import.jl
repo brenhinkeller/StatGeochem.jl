@@ -262,7 +262,13 @@
     end
     export floatify
 
-    # Convert a flat array into a dict with each column as a variable
+    """
+    ```julia
+    elementify(dataset::Array, elements::Array=dataset[1,:];
+        \tfloatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
+    ```
+    Convert a flat array into a dict with each column as a variable
+    """
     function elementify(dataset::Array, elements::Array=dataset[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         # Output as dictionary
         result = Dict()
@@ -301,7 +307,13 @@
     end
     export elementify
 
-    # Convert a dict into a flat array with variables as columns
+    """
+    ```julia
+    unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset)));
+        \tfloatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+    ```
+    Convert a dict into a flat array with variables as columns
+    """
     function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
