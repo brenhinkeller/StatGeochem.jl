@@ -792,21 +792,6 @@
     export count_unique!
 
 
-## --- Array construction
-
-    # Construct linearly spaced array with n points between l and u
-    # (linspace replacement )
-    if VERSION>=v"0.7"
-        function linsp(l::Number,u::Number,n::Number)
-            return range(l,stop=u,length=n)
-        end
-    else
-        function linsp(l::Number,u::Number,n::Number)
-            return linspace(l,u,n)
-        end
-    end
-    export linsp
-
 ## --- Interpolating arrays
 
     """
