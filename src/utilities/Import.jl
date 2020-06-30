@@ -185,79 +185,55 @@
 
 ## --- Classifying imported datasets
 
-    if VERSION >= v"0.7"
-        # Return true for numbers and strings that can be parsed as numbers
-        function plausiblynumeric(x)
-            if isa(x,Number)
-                return true
-            elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-                return true
-            else
-                return false
-            end
-        end
-    else
-        # Return true for numbers and strings that can be parsed as numbers
-        function plausiblynumeric(x)
-            if isa(x,Number)
-                return true
-            elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
-                return true
-            else
-                return false
-            end
+    """
+    ```julia
+    plausiblynumeric(x)
+    ```
+    Return `true` if `x` can be parsed as a number, else `false`
+    """
+    function plausiblynumeric(x)
+        if isa(x,Number)
+            return true
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
+            return true
+        else
+            return false
         end
     end
     export plausiblynumeric
 
-    if VERSION >= v"0.7"
-        # Return true for values that are not missing and cannot be parsed as numbers
-        function nonnumeric(x)
-            if isa(x,Number)
-                return false
-            elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
-                return false
-            else
-                return true
-            end
-        end
-    else
-        # Return true for values that are not missing and cannot be parsed as numbers
-        function nonnumeric(x)
-            if isa(x,Number)
-                return false
-            elseif isa(x,AbstractString) && (~isnull(tryparse(Float64,x)) || x == "")
-                return false
-            else
-                return true
-            end
+    """
+    ```julia
+    nonnumeric(x)
+    ```
+    Return true for if `x` is not missing but cannot be parsed as a number
+    """
+    function nonnumeric(x)
+        if isa(x,Number)
+            false
+        elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
+            false
+        else
+            true
         end
     end
     export nonnumeric
 
 ## --- Transforming imported datasets
 
-    if VERSION >= v"0.7"
-        # Convert to a Float64 if possible, or a Float64 NaN if not.
-        function floatify(x)
-            if isa(x,Number)
-                return Float64(x)
-            elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-                return parse(Float64,x)
-            else
-                return NaN
-            end
-        end
-    else
-        # Convert to a Float64 if possible, or a Float64 NaN if not.
-        function floatify(x)
-            if isa(x,Number)
-                return Float64(x)
-            elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
-                return parse(Float64,x)
-            else
-                return NaN
-            end
+    """
+    ```julia
+    floatify(x)
+    ```
+    Convert to a Float64 by any means necessary
+    """
+    function floatify(x)
+        if isa(x,Number)
+            Float64(x)
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
+            parse(Float64,x)
+        else
+            NaN
         end
     end
     export floatify
