@@ -875,8 +875,8 @@
         halfspan = ceil((n-1)/2)
         t = Array{Bool}(undef,size(x))
         m = Array{float(eltype(x))}(undef,size(x))
-        iind = repmat(1:size(x,1), 1, size(x,2))
-        jind = repmat((1:size(x,2))', size(x,1), 1)
+        iind = repeat(1:size(x,1), 1, size(x,2))
+        jind = repeat((1:size(x,2))', size(x,1), 1)
         @inbounds for k = 1:length(x)
             i = iind[k]
             j = jind[k]

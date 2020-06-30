@@ -43,31 +43,6 @@
         linreg(x::AbstractVector, y::AbstractVector) = hcat(fill!(similar(x), 1), x) \ y
         export linreg
 
-
-        """
-        ```julia
-        repmat(A::AbstractArray, n::Integer)
-        ```
-
-        Repeats the matrix or vector `A` along the first dimension `n` times
-        """
-        function repmat(A::AbstractArray, n::Integer)
-            return repeat(A, outer=n)
-        end
-        """
-        ```julia
-        repmat(A::AbstractArray, vert::Integer,  horiz::Integer)
-        ```
-
-        Repeats the matrix or vector `A` along the first dimension `vert` times
-        and along the second dimension `horiz` times.
-        """
-        function repmat(A::AbstractArray, vert::Integer, horiz::Integer)
-            return repeat(A, outer=(vert, horiz))
-        end
-        export repmat
-
-
         """
         ```julia
         contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
