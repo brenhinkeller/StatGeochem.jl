@@ -15,8 +15,7 @@
     end
     export system
 
-## --- Retain deprecated functions with matlab-like syntax,
-    # to avoid breakages in user scripts that may depend on them
+## --- Retain deprecated functions with matlab-like syntax, to avoid breakages in user scripts that may depend on them
 
     if ~ @isdefined linspace
         """
