@@ -15,16 +15,7 @@ module StatGeochem
     # Backwards compatibility
     using Compat
     # Forwards compatibility
-    if VERSION>=v"0.7"
-        using Statistics
-        using DelimitedFiles
-        using SpecialFunctions
-    else
-        # Other compatibility not covered by Compat.jl:
-        # New syntax for trunc
-        import Base.trunc
-        trunc(x; digits::Int=0) = trunc(x,digits)
-    end
+    VERSION >= v"0.7" && using Statistics, DelimitedFiles, SpecialFunctions
 
     # AVX vectorziation tools
     using LoopVectorization
