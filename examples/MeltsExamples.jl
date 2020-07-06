@@ -1,8 +1,8 @@
 ## --- Load required packages
     using StatGeochem
-    using Plots; gr();
+    using Plots; gr()
     using Statistics, DelimitedFiles, SpecialFunctions
-        
+
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
     # Note: melts_configure requires a working alphamelts installation.
     # If you don't have alphamelts, you'll need to download, install, and
