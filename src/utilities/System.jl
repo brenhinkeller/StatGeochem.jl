@@ -59,17 +59,19 @@
         export contains
     end
 
-    """
-    ```julia
-    containsi(haystack, needle)
-    ```
+    if ~ @isdefined containsi
+        """
+        ```julia
+        containsi(haystack, needle)
+        ```
 
-    Converts both `haystack` and `needle` to strings and checks whether
-    `string(haystack)` contains `string(needle)`, ignoring case.
-    """
-    containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar}) = occursin(lowercase(needle), lowercase(haystack))
-    containsi(haystack, needle) = occursin(lowercase(string(needle)), lowercase(string(haystack)))
-    export containsi
+        Converts both `haystack` and `needle` to strings and checks whether
+        `string(haystack)` contains `string(needle)`, ignoring case.
+        """
+        containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar}) = occursin(lowercase(needle), lowercase(haystack))
+        containsi(haystack, needle) = occursin(lowercase(string(needle)), lowercase(string(haystack)))
+        export containsi
+    end
 
 
 ## --- End of File
