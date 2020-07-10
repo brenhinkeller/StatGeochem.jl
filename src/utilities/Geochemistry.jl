@@ -1,6 +1,13 @@
 ## --- Calculate Eu*
 
-    # Full four-element log-linear interpolation, using ionic radii
+    """
+    ```julia
+    eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
+    ```
+    Calculate expected europium concentration, Eu*, based on abundance of
+    adjacent rare earths.
+    Full four-element log-linear interpolation, using ionic radii
+    """
     function eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
         # Ionic radii, in pm [Tb, Gd, Sm, Nd]
         r = [106.3, 107.8, 109.8, 112.3] # or x = [1, 2, 4, 6]
@@ -21,7 +28,14 @@
         return eu_interp
     end
 
-    # Simple geometric mean interpolation from Sm and Gd alone
+    """
+    ```julia
+    eustar(Sm::Number, Gd::Number)
+    ```
+    Calculate expected europium concentration, Eu*, based on abundance of
+    adjacent rare earths.
+    Simple geometric mean interpolation from Sm and Gd alone
+    """
     function eustar(Sm::Number, Gd::Number)
         # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
         return 0.0580*sqrt(Sm/0.1530 * Gd/0.2055)
@@ -31,9 +45,13 @@
 
 ## --- Fe oxide conversions
 
+    """
+    ```julia
+    feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
+    ```
+    Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into  a single FeOT value.
+    """
     function feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
-        # Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into
-        # a single FeOT value.
 
         # To convert from Fe2O3 wt % to FeO wt %, multiply by
         conversionfactor = (55.845+15.999) / (55.845+1.5*15.999)
