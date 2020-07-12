@@ -1,3 +1,14 @@
+function update_changepoint_model!(m, σ, d, boundaries, np)
+	@inbounds for i=1:np+1
+		r = boundaries[i]:boundaries[i+1]
+		for col = 1:size(m,2)
+			m[r,col] .= nanmean(view(d,r,col))
+			σ[r,col] .= nanstd(view(d,r,col))
+		end
+	end
+end
+
+
 function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmin::Integer=0, npmax::Integer=0)
 
     MOVE = 0.30
@@ -13,7 +24,7 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 	model = similar(data, T)
 	nrows = size(data,1)
 	ncolumns = size(data,2)
-	σ = Array{mtype}(T, ncolumns) # TODO: actually fill these sigmas with something
+	σ = Array{mtype}(T, ncolumns) # TODO: Decide whether to actually do something with these sigmas
 	σₚ = Array{mtype}(T, ncolumns)
 
 	# Number of possible changepoint locations
@@ -57,23 +68,23 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 			npₚ = count_unique!(view(boundariesₚ,np+2)) - 2
 
 			# Update the model
-			update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m);
+			update_changepoint_model!(m, σ, d, boundariesₚ, npₚ)
 
 			# Calculate log likelihood for proposal
 			llₚ = normpdf_ll(m, σ, d)
 
-			DEBUG && print("Move: llₚ-ll = %g - %g\n",llₚ,ll);}
+			DEBUG && print("Move: llₚ-ll = %g - %g\n",llₚ,ll)
 			if log(u) < llₚ-ll
-				DEBUG && print("Accepted!\n");}
+				DEBUG && print("Accepted!\n")
 				ll = llₚ
 				boundary_sigma = abs(boundariesₚ[pick]-boundaries[pick])*2.9
-				# printf("%g\n",boundary_sigma);
+				# printf("%g\n",boundary_sigma)
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
 				for n=1:np
-					printf("%u,",boundariesₚ[n+1]);
+					printf("%u,",boundariesₚ[n+1])
 				end
 				FORMATTED && print("\n")
-				# printf("\n%u\n",np);
+				# printf("\n%u\n",np)
 			end
 
 		elseif r < MOVE+SIGMA
@@ -106,14 +117,14 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 				npₚ = count_unique!(view(boundariesₚ,np+3)) - 2
 
 				# Update the model
-				update_model(boundariesₚ, npₚ, rows, columns, &rng, d, σ, m);
+				update_changepoint_model!(m, σ, d, boundariesₚ, npₚ)
 
 				# Calculate log likelihood for proposal
-				lqz=lqxz(d, m, &boundariesₚ[pick], rows, columns);
+				lqz=lqxz(d, m, &boundariesₚ[pick], rows, columns); #TODO: do something with / make replacement for lqxz
 				llₚ = normpdf_ll(m, σ, d)
 				DEBUG && print("Birth: -lqz+llₚ-ll = %g + %g - %g\n",-lqz,llₚ,ll)
 				if log(u) < llₚ-lqz-ll
-					DEBUG && print("Accepted!\n");}
+					DEBUG && print("Accepted!\n")
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
@@ -134,7 +145,7 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 				npₚ = count_unique!(view(boundariesₚ,np+2) - 2
 
 				# Update the model
-				update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m);
+				update_changepoint_model!(m, σ, d, boundariesₚ, npₚ)
 
 				# Calculate log likelihood for proposal
 				llₚ = normpdf_ll(m, σ, d)
@@ -150,22 +161,19 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 						printf("%u,",boundariesₚ[n+1])
 					end
 					FORMATTED && print("\n")
-				# printf("\n%u\n",np);
 				end
 			end
 
 		else
 			# Update the model
-			update_model(boundariesₚ, np, rows, columns, &rng, d, σ, m)
+			npₚ = count_unique!(view(boundariesₚ,np+2)) - 2
+			update_changepoint_model!(m, σ, d, boundariesₚ, npₚ)
 
 			# Calculate log likelihood for proposal
 			llₚ = normpdf_ll(m, σ, d)
 			if log(u) < llₚ-ll
-				# printf("Update: llₚ-ll = %g - %g\n",llₚ,ll);
-				# printf("Accepted!\n");
 				ll = llₚ
 			end
 		end
-		# printf("%u\n",i);
 	end
 end
