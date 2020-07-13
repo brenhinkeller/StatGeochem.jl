@@ -28,11 +28,11 @@ end
 
 function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmin::Integer=0, npmax::Integer=0)
 
-    MOVE = 0.30
-    UPDATE = 0.00
-    SIGMA = 0.20
-    BIRTH = 0.25
-    DEATH = 0.25
+    MOVE = 0.60
+    SIGMA = 0.1
+    BIRTH = 0.15
+    DEATH = 0.15
+	UPDATE = 0.00
 
 	DEBUG = false
 	FORMATTED = true
@@ -100,12 +100,12 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 				llₚ = -Inf
 			end
 
-			DEBUG && print("Move: llₚ-ll = %g - %g\n",llₚ,ll)
+			DEBUG && println("Move: llₚ-ll = $llₚ - $ll")
 			if log(u) < llₚ-ll
-				DEBUG && print("Accepted!\n")
+				DEBUG && println("Accepted!")
 				ll = llₚ
 				boundary_sigma = abs(boundary_adj)*2.9
-				# println(boundary_sigma)
+				# println("sigma: $boundary_sigma")
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
 				for n=1:np
 					print("$(boundariesₚ[n+1]),")
@@ -118,13 +118,15 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 			# Calculate new sigma
 			update_changepoint_model!(m, σₚ, data, boundariesₚ, npₚ)
 
-			sll = sum(log.(σₚ./σ))
+			# sll = sum(log.(σ./σₚ))
 
 			# Calculate log likelihood for proposal
 			llₚ = normpdf_ll(m, σₚ, data)
 
+			# DEBUG && println("Sigma: llₚ+sll-ll = $llₚ - $sll - $ll")
 			DEBUG && println("Sigma: llₚ-ll = $llₚ - $ll")
-			if log(u) < llₚ+sll-ll
+			# if log(u) < llₚ+sll-ll
+			if log(u) < llₚ-ll
 				# If accepted
 				DEBUG && println("Accepted!")
 				ll = llₚ
@@ -145,11 +147,11 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 				update_changepoint_mu!(m, data, boundariesₚ, npₚ)
 
 				# Calculate log likelihood for proposal
-				lqz = sum(1 ./ σ)
+				lqz = sum(1 ./ (2*σ.*σ))
 				llₚ = normpdf_ll(m, σ, data)
-				DEBUG && print("Birth: -lqz+llₚ-ll = %g + %g - %g\n",-lqz,llₚ,ll)
+				DEBUG && println("Birth: -lqz+llₚ-ll = $(-lqz) + $llₚ - $ll")
 				if log(u) < llₚ-lqz-ll
-					DEBUG && print("Accepted!\n")
+					DEBUG && println("Accepted!")
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
@@ -176,7 +178,7 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 				# Calculate log likelihood for proposal
 				llₚ = normpdf_ll(m, σ, data)
 
-				lqz=sum(1 ./ σ)
+				lqz = sum(1 ./ (2*σ.*σ))
 				DEBUG && println("Death: lqz+llₚ-ll = $lqz + $llₚ - $ll")
 				if log(u) < llₚ+lqz-ll
 					DEBUG && println("Accepted!")
