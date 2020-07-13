@@ -35,7 +35,7 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
     DEATH = 0.25
 
 	DEBUG = false
-	FORMATTED = false
+	FORMATTED = true
 
 	T = float(eltype(data))
 	nrows = size(data,1)
@@ -81,9 +81,12 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 			# Pick which changepoint to move
 			pick = rand(2:np+1)
 			# Move the changepoint
-			boundariesₚ[pick] .+= round(Int, randn()*boundary_sigma)
+			boundary_adj = randn()*boundary_sigma
+			boundary_prop = boundariesₚ[pick] + round(Int, boundary_adj)
+
 			# Treat ends of array as periodic boundary conditions
-			boundariesₚ[pick] = mod(boundariesₚ[pick] - 1, nrows-1) + 1
+			boundariesₚ[pick] = mod(boundary_prop - 1, nrows-1) + 1
+
 			# Check if this has caused any redundancies
 			npₚ = count_unique!(view(boundariesₚ,1:np+2)) - 2
 
@@ -91,13 +94,17 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 			update_changepoint_mu!(m, data, boundariesₚ, npₚ)
 
 			# Calculate log likelihood for proposal
-			llₚ = normpdf_ll(m, σ, data)
+			if (1 < boundary_prop < nrows)
+				llₚ = normpdf_ll(m, σ, data)
+			else
+				llₚ = -Inf
+			end
 
 			DEBUG && print("Move: llₚ-ll = %g - %g\n",llₚ,ll)
 			if log(u) < llₚ-ll
 				DEBUG && print("Accepted!\n")
 				ll = llₚ
-				boundary_sigma = abs(boundariesₚ[pick]-boundaries[pick])*2.9
+				boundary_sigma = abs(boundary_adj)*2.9
 				# println(boundary_sigma)
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
 				for n=1:np
@@ -109,14 +116,14 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 		elseif r < MOVE+SIGMA
 
 			# Calculate new sigma
-			update_changepoint_sigma!(σₚ, data, boundariesₚ, npₚ)
+			update_changepoint_model!(m, σₚ, data, boundariesₚ, npₚ)
 
 			sll = sum(log.(σₚ./σ))
 
 			# Calculate log likelihood for proposal
 			llₚ = normpdf_ll(m, σₚ, data)
 
-			DEBUG && println("Sigma $(σₚ[j]): llₚ-ll = $llₚ - $ll")
+			DEBUG && println("Sigma: llₚ-ll = $llₚ - $ll")
 			if log(u) < llₚ+sll-ll
 				# If accepted
 				DEBUG && println("Accepted!")
