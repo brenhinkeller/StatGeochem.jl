@@ -471,8 +471,7 @@
     ```julia
     (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
     ```
-
-    Tally the number of samples that fall into each of `nbins` equally spaced
+    Tally the number of samples that fall into each of `nbins` equally spaced `x`
     bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
@@ -496,7 +495,16 @@
     end
     export bincounts
 
-    # The nanmean of y binned by x, returning bincenters, means, and standard error of the mean
+    """
+    ```julia
+    (c,m,e) = binmeans(x, y, xmin, xmax, nbins, [weight]; resamplingratio::Number=1)
+    ```
+    The means (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, returning bincenters,
+    means, and standard errors of the mean.
+
+    To calculate binned medians only (without uncertainties), see `nanmean`
+    """
     function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (xmax-xmin)/nbins
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
@@ -550,7 +558,17 @@
     end
     export binmeans
 
-    # The nanmedian of y binned by x, retunring bincenters, medians, and equivalent standard error of the mean (1.4828 * median abolute deviation)
+    """
+    ```julia
+    (c,m,e) = binmedians(x, y, xmin, xmax, nbins; resamplingratio::Number=1)
+    ```
+
+    The medians (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, returning bincenters, medians,
+    and equivalent standard errors of the mean (1.4828 * median abolute deviation)
+
+    To calculate binned medians only (without uncertainties), see `nanmedian`
+    """
     function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
         binedges = range(min,max,length=nbins+1)
