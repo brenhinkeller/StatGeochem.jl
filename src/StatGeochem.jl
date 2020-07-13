@@ -32,6 +32,7 @@ module StatGeochem
     include("utilities/Import.jl");
     include("utilities/ArrayStats.jl");
     include("utilities/Resampling.jl");
+    include("utilities/Changepoint.jl");
 
     using IndirectArrays: IndirectArray
     using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
