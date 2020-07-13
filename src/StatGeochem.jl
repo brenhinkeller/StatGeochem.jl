@@ -27,21 +27,21 @@ module StatGeochem
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
-    include("utilities/System.jl");
-    include("utilities/Math.jl");
-    include("utilities/Import.jl");
-    include("utilities/ArrayStats.jl");
-    include("utilities/Resampling.jl");
-    include("utilities/Changepoint.jl");
+    include("utilities/System.jl")
+    include("utilities/Math.jl")
+    include("utilities/Import.jl")
+    include("utilities/ArrayStats.jl")
+    include("utilities/Resampling.jl")
+    include("utilities/Changepoint.jl")
 
     using IndirectArrays: IndirectArray
     using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
-    include("utilities/Colormaps.jl");
+    include("utilities/Colormaps.jl")
 
-    include("utilities/Geochronology.jl");
-    include("utilities/Geochemistry.jl");
-    include("utilities/GIS.jl");
-    include("utilities/Etc.jl");
+    include("utilities/Geochronology.jl")
+    include("utilities/Geochemistry.jl")
+    include("utilities/GIS.jl")
+    include("utilities/Etc.jl")
 
     # Resources
     resourcepath = joinpath(homedir(),"resources")
