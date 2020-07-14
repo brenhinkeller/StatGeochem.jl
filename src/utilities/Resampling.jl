@@ -421,9 +421,15 @@
     export bsresample_unif_norm_index
 
 
-    # Bootstrap resample (without uncertainty) a variable to size nrows.
-    # Optionally provide weights in p
-    function randsample(data::Array{<:Number}, nrows::Integer,
+
+    """
+    ```julia
+    randsample(data, nrows, [p])
+    ```
+    Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
+    Optionally provide weights `p` either per-sampel or blanket
+    """
+    function randsample(data::AbstractArray{<:Number}, nrows::Integer,
         p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
 
         # Allocate output array
