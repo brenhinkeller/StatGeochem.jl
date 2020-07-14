@@ -487,7 +487,7 @@
         # Add up the results
         N = fill(0,nbins)
         @inbounds for i in index
-            if 0 < i < nbins
+            if 0 < i <= nbins
                 N[ceil(Int, i)] += 1
             end
         end
@@ -518,7 +518,7 @@
         mu = fill(0.0,nbins)
         s2 = fill(0.0,nbins)
         for i = 1:length(x)
-            if (0 < index_float[i] < nbins) && !isnan(y[i])
+            if (0 < index_float[i] <= nbins) && !isnan(y[i])
                 index = ceil(Int, index_float[i])
                 N[index] += 1
                 delta = y[i] - mu[index]
@@ -548,7 +548,7 @@
         means = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
             w = ProbabilityWeights(weight[t])
             means[i] = mean(y[t], w)
             errors[i] = std(y[t], w, corrected=true) * sqrt(resamplingratio) / sqrt(count(t))
@@ -577,7 +577,7 @@
         medians = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
             medians[i] = median(y[t])
             errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio / count(t))
         end
