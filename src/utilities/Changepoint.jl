@@ -26,13 +26,12 @@ function update_changepoint_sigma!(σ, d, boundaries, np)
 	end
 end
 
-function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmin::Integer=0, npmax::Integer=0)
+function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
 
     MOVE = 0.60
     SIGMA = 0.1
     BIRTH = 0.15
     DEATH = 0.15
-	UPDATE = 0.00
 
 	DEBUG = false
 	FORMATTED = true
@@ -46,14 +45,19 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 
 	# Number of possible changepoint locations
 	K = nrows-1
-	if !(0 < npmax < K)
-		npmax = K
+
+	# Parse provided options
+	if 0 < np <= K
+		# If np is specified, use that
+		npmin = npmax = np
+	else
+		# Otherwise, ensure all provided values are plausible and go with that
+		npmax > K && npmax = K
+		npmin < 0 && npmin = 0
+		np = minimum(maximum(npmin, 2), npmax)
 	end
 
-	# Number of initial changepoints
-	np = npₚ = 2
-
-	# Fill initial boundary point array
+	# Create and fill initial boundary point array
 	boundaries = Array{Int}(undef, K+2)
 	boundaries[1] = 1
 	boundaries[np+2] = nrows
@@ -62,7 +66,6 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 	boundary_sigma = nrows/np
 
 	np = count_unique!(view(boundaries,1:np+2)) - 2
-	copyto!(boundariesₚ,1,boundaries,1,np+2)
 
 	# Calculate initial proposal and log likelihood
 	update_changepoint_model!(m, σ, data, boundaries, np)
@@ -164,8 +167,6 @@ function changepoint(data::AbstractArray, nsims::Integer, npoints::Integer; npmi
 		elseif r < MOVE+SIGMA+BIRTH+DEATH
 			# Delete a changepoint
 			if np > npmin
-				copyto!(boundariesₚ,1,boundaries,1,np+2)
-
 				# Pick which changepoint to delete
 				pick = rand(2:np+1)
 				boundariesₚ[pick]=boundariesₚ[pick+1]
