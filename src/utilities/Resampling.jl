@@ -421,51 +421,95 @@
     export bsresample_unif_norm_index
 
 
+    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+
+        # Resample
+        n = 0
+        while n < nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n)
+
+            # Columns go in outer loop because of column major indexing
+            @inbounds @simd for j=1:ncolumns
+                # Optimized inner loop
+                for i = 1:nrows_new
+                    resampled[n+i,j] = data[buffer[i],j]
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+
+        # Resample
+        n = 0
+        while n < nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p[i]
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n)
+
+            # Columns go in outer loop because of column major indexing
+            @inbounds @simd for j=1:ncolumns
+                # Optimized inner loop
+                for i = 1:nrows_new
+                    resampled[n+i,j] = data[buffer[i],j]
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
 
     """
     ```julia
-    randsample(data, nrows, [p])
+    randsample(data::Array, nrows, [p])
     ```
     Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
     Optionally provide weights `p` either per-sampel or blanket
     """
-    function randsample(data::AbstractArray{<:Number}, nrows::Integer,
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
-
-        # Allocate output array
-        resampled = Array{Float64}(undef,nrows,size(data,2))
-
-        # Resample
-        i = 1
-        while i <= nrows
-            # If we have more than one sample
-            if size(data,1) > 1
-                # Select weighted sample of data
-                t = rand(Float64, size(data,1)) .< p
-                sdata = data[t,:]
-            else # If only one sample
-                sdata = data
-            end
-
-            # Figure out how much of our resampled data to output
-            if (i+size(sdata,1)-1) <= nrows
-                resampled[i:i+size(sdata,1)-1,:] = sdata
-            else
-                resampled[i:end,:] = sdata[1:nrows-i+1,:]
-            end
-
-            # Keep track of current filled rows
-            i += size(sdata,1)
-        end
-        return resampled
+    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1)))
+        resampled = Array{eltype(data)}(undef,nrows,size(data,2))
+        return randsample!(resampled, data, nrows, p)
     end
     # Second method for randsample that takes a dictionary as input
-    function randsample(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
-
-        data = unelementify(in, elements, floatout=true)
+    """
+    ```julia
+    randsample(dataset::Dict, nrows, [elements], [p])
+    ```
+    Bootstrap resample (without uncertainty) a `dataset` dict to length `nrows`.
+    Optionally provide weights `p` either per-sampel or blanket
+    """
+    function randsample(dataset::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+        data = unelementify(dataset, elements, floatout=true)
         sdata = randsample(data, nrows, p)
-
         return elementify(sdata, elements, skipstart=0)
     end
     export randsample
