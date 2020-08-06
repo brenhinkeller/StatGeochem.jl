@@ -322,7 +322,7 @@
 
         # Fill output arrays
         for j=1:length(lat)
-            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
+            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lon[j] < -180
                 baseout[j] = NaN
             else
                 baseout[j] = bnd[layer+1,ilat[j],ilon[j]]
