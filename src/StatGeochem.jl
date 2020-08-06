@@ -15,36 +15,33 @@ module StatGeochem
     # Backwards compatibility
     using Compat
     # Forwards compatibility
-    if VERSION>=v"0.7"
-        using Statistics
-        using DelimitedFiles
-        using SpecialFunctions
-    else
-        # Other compatibility not covered by Compat.jl:
-        # New syntax for trunc
-        import Base.trunc
-        trunc(x; digits::Int=0) = trunc(x,digits)
-    end
+    VERSION >= v"0.7" && using Statistics, DelimitedFiles, SpecialFunctions
 
+    # AVX vectorziation tools
+    using LoopVectorization
+    using SIMDPirates: vifelse
+    using VectorizationBase: SVec
 
+    # General requirements
     using Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
-    using LoopVectorization
-    include("utilities/System.jl");
-    include("utilities/Math.jl");
-    include("utilities/Import.jl");
-    include("utilities/ArrayStats.jl");
-    include("utilities/Resampling.jl");
+    include("utilities/System.jl")
+    include("utilities/Math.jl")
+    include("utilities/Import.jl")
+    include("utilities/ArrayStats.jl")
+    include("utilities/Resampling.jl")
+    include("utilities/Changepoint.jl")
 
     using IndirectArrays: IndirectArray
     using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
-    include("utilities/Colormaps.jl");
+    include("utilities/Colormaps.jl")
 
-    include("utilities/Geochemistry.jl");
-    include("utilities/GIS.jl");
-    include("utilities/Etc.jl");
+    include("utilities/Geochronology.jl")
+    include("utilities/Geochemistry.jl")
+    include("utilities/GIS.jl")
+    include("utilities/Etc.jl")
 
     # Resources
     resourcepath = joinpath(homedir(),"resources")
@@ -57,7 +54,6 @@ module StatGeochem
     include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
-
 
 
 end # module

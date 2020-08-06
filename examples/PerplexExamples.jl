@@ -48,17 +48,21 @@
     # elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO",  "MNO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
     # composition = [50.0956, 0.9564, 15.3224, 8.5103, 0.1659, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
 
-    # Kelemen (2014) primitive continental basalt excluding Mn. H2O and CO2 are guesses
-    elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
-    composition = [50.0956, 0.9564, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
+    # # Kelemen (2014) primitive continental basalt excluding Mn. H2O and CO2 are guesses
+    # elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
+    # composition = [50.0956, 0.9564, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
 
-    # # Kelemen (2014) primitive continental basalt excluding Mn and Ti since most melt models can"t handle them..
-    # elements =    [ "SIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
-    # composition = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
+    # Kelemen (2014) primitive continental basalt excluding Mn and Ti since most melt models can"t handle them..
+    elements =    [ "SIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
+    composition = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
 
     # # Average Archean basalt (EarthChem data)
     # elements =    [ "SIO2", "TIO2", "AL2O3",   "FEO",  "MNO",   "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
     # composition = [49.2054, 0.8401, 12.0551, 11.4018, 0.2198, 12.3997, 9.3113, 1.6549, 0.4630, 1.8935, 0.5555,]
+
+    # # A random granite
+    # elements =    [ "SIO2", "TIO2", "AL2O3",  "FEO", "MGO", "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
+    # composition = [  69.16,   0.42,   14.96, 2.9064,  1.52,  1.81,    3.7,   4.95, 1.8386, 0.4407,]
 
 ## --- # # # # # # # # # # # Some solution model options # # # # # # # # # # # #
     # Emphasis on phases from Green (2016) -- developed for metabasites, includes what is probably the best (and most expensive) amphibole model. Use with hp11ver.dat
@@ -220,6 +224,52 @@
 
     P = 10000
     data_geotherm = perplex_query_point(perplexdir, scratchdir, P, index=2) |> print
+
+## --- Compare seismic properties for several different geotherms, as a function of Pressure
+
+    # Input parameters
+    P_range = [280, 14000] # Pressure range to explore, bar (roughly 1-50 km depth)
+    T_surf = 273.15 # Temperature of surface (K)
+    dataset="hp02ver.dat"
+    yelem = "vp,km/s"
+    # yelem = "rho,kg/m3"
+
+    h = plot(xlabel="Pressure (bar)", ylabel=yelem)
+    for i=1:5
+        geotherm = i/50
+        # Configure (run build and vertex)
+        @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+            P_range, T_surf, geotherm, dataset=dataset, excludes=HP_excludes,
+            solution_phases=HP_solution_phases, npoints=200, index=10+i)
+        # Query perplex results
+        seismic = perplex_query_seismic(perplexdir, scratchdir, index=10+i)
+        # Plot results
+        plot!(h,seismic["P(bar)"],seismic[yelem], label="$geotherm K/bar")
+        display(h)
+    end
+
+## --- Compare seismic properties for several different geotherms, as a function of temperature
+
+    # Input parameters
+    P_range = [280, 16000] # Pressure range to explore, bar (roughly 1-60 km depth)
+    T_surf = 273.15 # Temperature of surface (K)
+    dataset="hp02ver.dat"
+    yelem = "vp,km/s"
+    # yelem = "rho,kg/m3"
+
+    h = plot(xlabel="Temperature (K)", ylabel=yelem)
+    for i=1:5
+        geotherm = i/50
+        # Configure (run build and vertex)
+        @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+            P_range, T_surf, geotherm, dataset=dataset, excludes=HP_excludes,
+            solution_phases=HP_solution_phases, npoints=200, index=10+i)
+        # Query perplex results
+        seismic = perplex_query_seismic(perplexdir, scratchdir, index=10+i)
+        # Plot results
+        plot!(h,seismic["T(K)"],seismic[yelem], label="$geotherm K/bar")
+        display(h)
+    end
 
 ## --- Build a pseudosection
 

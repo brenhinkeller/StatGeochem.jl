@@ -1,56 +1,13 @@
-## --- Hafnium isotopes
-
-    # Calculate the initial Hf ratio and epsilon Hf at time t Ma
-    function eHf(Hf176_Hf177, Lu176_Hf177, t; eHfOnly::Bool=true)
-
-        # Lutetium decay constant (Soderlund et al., 2004
-        lambda = 1.867E-11
-
-        # Present-day CHUR composition (Bouvier et al., 2008)
-        CHUR_Hf176_Hf177 = 0.282785
-        CHUR_Lu176_Hf177 = 0.0336
-
-        # Calculate initial Hf ratio at time t
-        Hf176_Hf177_t = Hf176_Hf177 .- Lu176_Hf177.*(exp.(t .* 10^6*lambda) .- 1)
-
-        # Calculate CHUR Hf ratio at time t
-        CHUR_Hf176_Hf177_t = CHUR_Hf176_Hf177 .- CHUR_Lu176_Hf177.*(exp.(t .* 10^6*lambda) .- 1)
-
-        # Calculate corresponding epsilon Hf
-        eHf=(Hf176_Hf177_t ./ CHUR_Hf176_Hf177_t .- 1) .* 10^4
-
-        if eHfOnly
-            return eHf
-        else
-            return (eHf, Hf176_Hf177_t)
-        end
-    end
-    export eHf
-
-    function bin_bsr_eHf(x,Hf176_Hf177,Lu176_Hf177,age,min,max,nbins,x_sigma,Hf176_Hf177_sigma,Lu176_Hf177_sigma,age_sigma,nresamples)
-        data = hcat(x,Hf176_Hf177,Lu176_Hf177,age)
-        sigma = hcat(x_sigma,Hf176_Hf177_sigma,Lu176_Hf177_sigma,age_sigma)
-
-        means = Array{Float64}(undef,nbins,nresamples)
-        c = Array{Float64}(undef,nbins)
-        for i=1:nresamples
-            dbs = bsresample(data,sigma,length(age))
-            eHf_resampled = eHf(dbs[:,2], dbs[:,3], dbs[:,4])
-            (c,m,s) = binmeans(dbs[:,1], eHf_resampled, min, max, nbins)
-            means[:,i] = m
-        end
-
-        m = nanmean(means,dim=2)
-        el = m - pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) - m
-
-        return (c, m, el, eu)
-    end
-    export bin_bsr_eHf
-
 ## --- Calculate Eu*
 
-    # Full four-element log-linear interpolation, using ionic radii
+    """
+    ```julia
+    eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
+    ```
+    Calculate expected europium concentration, Eu*, based on abundance of
+    adjacent rare earths.
+    Full four-element log-linear interpolation, using ionic radii
+    """
     function eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
         # Ionic radii, in pm [Tb, Gd, Sm, Nd]
         r = [106.3, 107.8, 109.8, 112.3] # or x = [1, 2, 4, 6]
@@ -71,7 +28,14 @@
         return eu_interp
     end
 
-    # Simple geometric mean interpolation from Sm and Gd alone
+    """
+    ```julia
+    eustar(Sm::Number, Gd::Number)
+    ```
+    Calculate expected europium concentration, Eu*, based on abundance of
+    adjacent rare earths.
+    Simple geometric mean interpolation from Sm and Gd alone
+    """
     function eustar(Sm::Number, Gd::Number)
         # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
         return 0.0580*sqrt(Sm/0.1530 * Gd/0.2055)
@@ -81,9 +45,13 @@
 
 ## --- Fe oxide conversions
 
+    """
+    ```julia
+    feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
+    ```
+    Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into  a single FeOT value.
+    """
     function feoconversion(FeO::Number=NaN, Fe2O3::Number=NaN, FeOT::Number=NaN, Fe2O3T::Number=NaN)
-        # Compiles data from FeO, Fe2O3, FeOT, and Fe2O3T into
-        # a single FeOT value.
 
         # To convert from Fe2O3 wt % to FeO wt %, multiply by
         conversionfactor = (55.845+15.999) / (55.845+1.5*15.999)
@@ -107,7 +75,6 @@
     ```julia
     dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
     ```
-
     Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
     If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
     set unitratio = 1
@@ -165,7 +132,24 @@
 
 ## --- MELTS interface
 
-    # Configure and run MELTS simulation
+    """
+    ```julia
+    melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
+        \telements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];)
+    ```
+    Optional keyword arguments and defaults:
+    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
+    `dT=-10`
+    `dP=0`
+    `index=1`
+    `version="pMELTS"`
+    `mode="isobaric"`
+    `fo2path="FMQ"``
+    `fractionatesolids::Bool=false`
+    `verbose::Bool=true`
+
+    Configure and run MELTS simulation
+    """
     function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
@@ -319,37 +303,48 @@
     end
     export melts_configure
 
-    # Get melts results, return as string
+    """
+    ```julia
+    melts_query_modes(scratchdir::String; index=1)
+    ```
+    Read all phase proportions from `Phase_main_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
-        # Read results and return them if possible
-        data = ""
-        try
-            # Read entire output file as a string
-            fp = open(prefix*"Phase_main_tbl.txt", "r")
-            data = read(fp,String)
-            close(fp)
-        catch
-            # Return empty string if file doesn't exist
-            data = ""
+        melts = Dict()
+        if isfile(prefix*"/Phase_main_tbl.txt")
+            data = readdlm(prefix*"/Phase_main_tbl.txt", ' ', skipblanks=false)
+            pos = findall(all(isempty.(data), dims=2) |> vec)
+            melts["minerals"] = Array{String}(undef, length(pos)-1)
+            for i=1:(length(pos)-1)
+                name = data[pos[i]+1,1]
+                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,:], skipnameless=true)
+                melts["minerals"][i] = name
+            end
         end
-        return data
+        return melts
     end
     export melts_query
 
-    # Get modal phase proportions, return as elementified dictionary
+    """
+    ```julia
+    melts_query_modes(scratchdir::String; index=1)
+    ```
+    Read modal phase proportions from `Phase_mass_tbl.txt` in specified MELTS run
+    Returns an elementified dictionary
+    """
     function melts_query_modes(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Phase_mass_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
-        catch
+            data = elementify(data, floatout=true, skipnameless=true)
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -357,18 +352,106 @@
     end
     export melts_query_modes
 
-    # Get liquid composition, return as elementified dictionary
+    """
+    ```julia
+    melts_clean_modes(scratchdir::String; index=1)
+    ```
+    Read and parse / clean-up modal phase proportions from specified MELTS run directory
+    Returns an elementified dictionary
+    """
+    function melts_clean_modes(scratchdir::String; index=1)
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Read results and return them if possible
+        if isfile(prefix*"/Phase_mass_tbl.txt")
+            # Read data as an Array{Any}
+            data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
+            # Convert to a dictionary
+            data = elementify(data, floatout=true, skipnameless=true)
+
+            # Start by transferring over all the non-redundant elements
+            modes = Dict()
+            for e in data["elements"]
+                m = replace(e, r"_.*" => s"")
+                if haskey(modes, m)
+                    modes[m] .+= data[e]
+                else
+                    modes[m] = copy(data[e])
+                end
+            end
+
+            # Add the sum of all solids
+            modes["solids"] = zeros(size(data["Temperature"]))
+            for e in data["elements"][4:end]
+                if !contains(e, "water") && !contains(e, "liquid")
+                    modes["solids"] .+= data[e]
+                end
+            end
+
+            # Get full mineral compositions, add feldspar and oxides
+            melts = melts_query(scratchdir, index=index)
+            if containsi(melts["minerals"],"feldspar")
+                modes["anorthite"] = zeros(size(modes["Temperature"]))
+                modes["albite"] = zeros(size(modes["Temperature"]))
+                modes["orthoclase"] = zeros(size(modes["Temperature"]))
+            end
+            An_Ca = (238.12507+40.0784) / (15.999+40.0784)
+            Ab_Na = (239.22853+22.98977*2) / (15.999+22.98977*2)
+            Or_K  = (239.22853+39.09831*2) / (15.999+39.09831*2)
+            if containsi(melts["minerals"],"rhm_oxide")
+                modes["ilmenite"] = zeros(size(modes["Temperature"]))
+                modes["magnetite"] = zeros(size(modes["Temperature"]))
+                modes["hematite"] = zeros(size(modes["Temperature"]))
+            end
+            for m in melts["minerals"]
+                if containsi(m,"feldspar")
+                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    AnAbOr = [melts[m]["CaO"]*An_Ca melts[m]["Na2O"]*Ab_Na melts[m]["K2O"]*Or_K] |> x -> x ./ sum(x, dims=2)
+                    modes["anorthite"][t] .+= AnAbOr[:,1] .*  melts[m]["mass"]
+                    modes["albite"][t] .+= AnAbOr[:,2] .*  melts[m]["mass"]
+                    modes["orthoclase"][t] .+= AnAbOr[:,3] .*  melts[m]["mass"]
+                elseif containsi(m,"rhm_oxide")
+                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    if  haskey(melts[m],"MnO")
+                        Ilmenite = (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
+                        Magnetite = (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                    else
+                        Ilmenite = (melts[m]["TiO2"] + melts[m]["TiO2"]*71.8444/79.8768) / 100
+                        Magnetite = (melts[m]["FeO"] - melts[m]["TiO2"]*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                    end
+                    Magnetite[Magnetite.<0] .= 0
+                    Hematite = (melts[m]["Fe2O3"] - Magnetite*100*159.6882/231.5326)/100
+                    modes["ilmenite"][t] .+= melts[m]["mass"] .* Ilmenite
+                    modes["magnetite"][t] .+= melts[m]["mass"] .* Magnetite
+                    modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
+                end
+            end
+            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ sort(collect(keys(modes)))
+        else
+            # Return empty dictionary if file doesn't exist
+            modes = Dict()
+        end
+        return modes
+    end
+    export melts_clean_modes
+
+    """
+    ```julia
+    melts_query_liquid(scratchdir::String; index=1)
+    ```
+    Read liquid composition from `Liquid_comp_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query_liquid(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Liquid_comp_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
-        catch
+            data = elementify(data, floatout=true, skipnameless=true)
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -376,18 +459,23 @@
     end
     export melts_query_liquid
 
-    # Read solid composition, return as elementified dictionary
+    """
+    ```julia
+    melts_query_solid(scratchdir::String; index=1)
+    ```
+    Read solid composition from `Solid_comp_tbl.txt` in specified MELTS run directory
+    Returns an elementified dictionary
+    """
     function melts_query_solid(scratchdir::String; index=1)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/Solid_comp_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
-        catch
+            data = elementify(data, floatout=true, skipnameless=true)
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -400,13 +488,12 @@
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
-        data = Dict()
-        try
+        if isfile(prefix*"/System_main_tbl.txt")
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data,floatout=true)
-        catch
+            data = elementify(data, floatout=true, skipnameless=true)
+        else
             # Return empty dictionary if file doesn't exist
             data = Dict()
         end
@@ -1189,5 +1276,60 @@
     end
     export perplex_query_system
 
+## -- Zircon saturation calculations
+
+    function tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
+        K .= K ./ normconst
+        Na .= Na ./ normconst
+        Ca .= Ca ./ normconst
+        Al .= Al ./ normconst
+        Si .= Si ./ normconst
+
+        return (Na + K + 2*Ca)./(Al .* Si)
+    end
+
+    """
+    ```julia
+    ZrSat = tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ```
+    Calculate zircon saturation concentration for a given temperature (in C)
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
+    function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        # Boehnke, Watson, et al., 2013
+        Zr = @. 496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M))
+        return Zr
+    end
+    export tzircZr
+
+    """
+    ```julia
+    T = tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+    ```
+    Calculate zircon saturation temperature in degrees Celsius
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
+    function tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        # Boehnke, Watson, et al., 2013
+        T = @. 10108. / (0.32 + 1.16*M + log(496000. / Zr)) - 273.15
+        return T
+    end
+    export tzirc
 
 ## --- End of File

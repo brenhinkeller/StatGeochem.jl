@@ -30,7 +30,7 @@
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
     err2srel = importdataset("err2srel.csv", ',')
-    for e in elements
+    for e in ign["elements"]
         # If there's an err2srel for this variable, create a "_sigma" if possible
         if haskey(err2srel, e) && !haskey(ign, e*"_sigma")
             ign[e*"_sigma"] = ign[e] .* (err2srel[e] / 2);

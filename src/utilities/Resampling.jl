@@ -421,45 +421,95 @@
     export bsresample_unif_norm_index
 
 
-    # Bootstrap resample (without uncertainty) a variable to size nrows.
-    # Optionally provide weights in p
-    function randsample(data::Array{<:Number}, nrows::Integer,
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
-
-        # Allocate output array
-        resampled = Array{Float64}(undef,nrows,size(data,2))
+    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
 
         # Resample
-        i = 1
-        while i <= nrows
-            # If we have more than one sample
-            if size(data,1) > 1
-                # Select weighted sample of data
-                t = rand(Float64, size(data,1)) .< p
-                sdata = data[t,:]
-            else # If only one sample
-                sdata = data
-            end
+        n = 0
+        while n < nrows
 
-            # Figure out how much of our resampled data to output
-            if (i+size(sdata,1)-1) <= nrows
-                resampled[i:i+size(sdata,1)-1,:] = sdata
-            else
-                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n)
+
+            # Columns go in outer loop because of column major indexing
+            @inbounds @simd for j=1:ncolumns
+                # Optimized inner loop
+                for i = 1:nrows_new
+                    resampled[n+i,j] = data[buffer[i],j]
+                end
             end
 
             # Keep track of current filled rows
-            i += size(sdata,1)
+            n += nrows_new
         end
+
         return resampled
     end
+    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
+
+        # Resample
+        n = 0
+        while n < nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p[i]
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n)
+
+            # Columns go in outer loop because of column major indexing
+            @inbounds @simd for j=1:ncolumns
+                # Optimized inner loop
+                for i = 1:nrows_new
+                    resampled[n+i,j] = data[buffer[i],j]
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+
+    """
+    ```julia
+    randsample(data::Array, nrows, [p])
+    ```
+    Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
+    Optionally provide weights `p` either per-sampel or blanket
+    """
+    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1)))
+        resampled = Array{eltype(data)}(undef,nrows,size(data,2))
+        return randsample!(resampled, data, nrows, p)
+    end
     # Second method for randsample that takes a dictionary as input
-    function randsample(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
-
-        data = unelementify(in, elements, floatout=true)
+    """
+    ```julia
+    randsample(dataset::Dict, nrows, [elements], [p])
+    ```
+    Bootstrap resample (without uncertainty) a `dataset` dict to length `nrows`.
+    Optionally provide weights `p` either per-sampel or blanket
+    """
+    function randsample(dataset::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+        data = unelementify(dataset, elements, floatout=true)
         sdata = randsample(data, nrows, p)
-
         return elementify(sdata, elements, skipstart=0)
     end
     export randsample
@@ -471,8 +521,7 @@
     ```julia
     (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
     ```
-
-    Tally the number of samples that fall into each of `nbins` equally spaced
+    Tally the number of samples that fall into each of `nbins` equally spaced `x`
     bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
     """
@@ -488,7 +537,7 @@
         # Add up the results
         N = fill(0,nbins)
         @inbounds for i in index
-            if 0 < i < nbins
+            if 0 < i <= nbins
                 N[ceil(Int, i)] += 1
             end
         end
@@ -496,7 +545,16 @@
     end
     export bincounts
 
-    # The nanmean of y binned by x, returning bincenters, means, and standard error of the mean
+    """
+    ```julia
+    (c,m,e) = binmeans(x, y, xmin, xmax, nbins, [weight]; resamplingratio::Number=1)
+    ```
+    The means (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, returning bincenters,
+    means, and standard errors of the mean.
+
+    To calculate binned medians only (without uncertainties), see `nanmean`
+    """
     function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (xmax-xmin)/nbins
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
@@ -510,7 +568,7 @@
         mu = fill(0.0,nbins)
         s2 = fill(0.0,nbins)
         for i = 1:length(x)
-            if (0 < index_float[i] < nbins) && !isnan(y[i])
+            if (0 < index_float[i] <= nbins) && !isnan(y[i])
                 index = ceil(Int, index_float[i])
                 N[index] += 1
                 delta = y[i] - mu[index]
@@ -534,13 +592,13 @@
     end
     function binmeans(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer, weight::AbstractArray; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
+        binedges = range(min,max,length=nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
         means = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
             w = ProbabilityWeights(weight[t])
             means[i] = mean(y[t], w)
             errors[i] = std(y[t], w, corrected=true) * sqrt(resamplingratio) / sqrt(count(t))
@@ -550,16 +608,26 @@
     end
     export binmeans
 
-    # The nanmedian of y binned by x, retunring bincenters, medians, and equivalent standard error of the mean (1.4828 * median abolute deviation)
+    """
+    ```julia
+    (c,m,e) = binmedians(x, y, xmin, xmax, nbins; resamplingratio::Number=1)
+    ```
+
+    The medians (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
+    equally spaced `x` bins between `xmin` and `xmax`, returning bincenters, medians,
+    and equivalent standard errors of the mean (1.4828 * median abolute deviation)
+
+    To calculate binned medians only (without uncertainties), see `nanmedian`
+    """
     function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
-        binedges = linsp(min,max,nbins+1)
+        binedges = range(min,max,length=nbins+1)
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
         medians = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (.~isnan.(y))
+            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
             medians[i] = median(y[t])
             errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio / count(t))
         end

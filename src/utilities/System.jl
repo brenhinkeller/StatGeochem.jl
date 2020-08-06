@@ -15,10 +15,9 @@
     end
     export system
 
-## --- Retain deprecated functions with matlab-like syntax,
-    # to avoid breakages in user scripts that may depend on them
+## --- Retain deprecated functions with matlab-like syntax, to avoid breakages in user scripts that may depend on them
 
-    if VERSION>=v"1.0"
+    if ~ @isdefined linspace
         """
         ```julia
         linspace(l::Number,u::Number,n::Number)
@@ -31,7 +30,9 @@
             return range(l,stop=u,length=n)
         end
         export linspace
+    end
 
+    if ~ @isdefined linreg
         """
         ```julia
         (a,b) = linreg(x::AbstractVector, y::AbstractVector)
@@ -42,67 +43,23 @@
         """
         linreg(x::AbstractVector, y::AbstractVector) = hcat(fill!(similar(x), 1), x) \ y
         export linreg
+    end
 
-
-        """
-        ```julia
-        repmat(A::AbstractArray, n::Integer)
-        ```
-
-        Repeats the matrix or vector `A` along the first dimension `n` times
-        """
-        function repmat(A::AbstractArray, n::Integer)
-            return repeat(A, outer=n)
-        end
-        """
-        ```julia
-        repmat(A::AbstractArray, vert::Integer,  horiz::Integer)
-        ```
-
-        Repeats the matrix or vector `A` along the first dimension `vert` times
-        and along the second dimension `horiz` times.
-        """
-        function repmat(A::AbstractArray, vert::Integer, horiz::Integer)
-            return repeat(A, outer=(vert, horiz))
-        end
-        export repmat
-
-
-        """
-        ```julia
-        contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
-        ```
-
-        Tests whether the string `haystack` contains the string or char `needle`,
-        matching case. Identical to `occursin`, but with opposite argument order.
-        """
-        function contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar})
-            return occursin(needle, haystack)
-        end
+    if ~ @isdefined contains
         """
         ```julia
         contains(haystack, needle)
         ```
 
-        Converts both `haystack` and `needle` to strings and checks whether
-        `string(haystack)` contains `string(needle)`.
+        Converts both `haystack` and `needle` to strings (if not already strings)
+        and checks whether `string(haystack)` contains `string(needle)`.
         """
-        function contains(haystack, needle)
-            return occursin(string(needle), string(haystack))
-        end
+        contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar}) = occursin(needle, haystack)
+        contains(haystack, needle) = occursin(string(needle), string(haystack))
         export contains
+    end
 
-        """
-        ```julia
-        containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar})
-        ```
-
-        Tests whether the string `haystack` contains the string or char `needle`,
-        ignoring case
-        """
-        function containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar})
-            return occursin(lowercase(needle), lowercase(haystack))
-        end
+    if ~ @isdefined containsi
         """
         ```julia
         containsi(haystack, needle)
@@ -111,10 +68,10 @@
         Converts both `haystack` and `needle` to strings and checks whether
         `string(haystack)` contains `string(needle)`, ignoring case.
         """
-        function containsi(haystack, needle)
-            return occursin(lowercase(string(needle)), lowercase(string(haystack)))
-        end
+        containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar}) = occursin(lowercase(needle), lowercase(haystack))
+        containsi(haystack, needle) = occursin(lowercase(string(needle)), lowercase(string(haystack)))
         export containsi
     end
+
 
 ## --- End of File

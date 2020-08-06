@@ -185,92 +185,73 @@
 
 ## --- Classifying imported datasets
 
-    if VERSION >= v"0.7"
-        # Return true for numbers and strings that can be parsed as numbers
-        function plausiblynumeric(x)
-            if isa(x,Number)
-                return true
-            elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-                return true
-            else
-                return false
-            end
-        end
-    else
-        # Return true for numbers and strings that can be parsed as numbers
-        function plausiblynumeric(x)
-            if isa(x,Number)
-                return true
-            elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
-                return true
-            else
-                return false
-            end
+    """
+    ```julia
+    plausiblynumeric(x)
+    ```
+    Return `true` if `x` can be parsed as a number, else `false`
+    """
+    function plausiblynumeric(x)
+        if isa(x,Number)
+            return true
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
+            return true
+        else
+            return false
         end
     end
     export plausiblynumeric
 
-    if VERSION >= v"0.7"
-        # Return true for values that are not missing and cannot be parsed as numbers
-        function nonnumeric(x)
-            if isa(x,Number)
-                return false
-            elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
-                return false
-            else
-                return true
-            end
-        end
-    else
-        # Return true for values that are not missing and cannot be parsed as numbers
-        function nonnumeric(x)
-            if isa(x,Number)
-                return false
-            elseif isa(x,AbstractString) && (~isnull(tryparse(Float64,x)) || x == "")
-                return false
-            else
-                return true
-            end
+    """
+    ```julia
+    nonnumeric(x)
+    ```
+    Return true for if `x` is not missing but cannot be parsed as a number
+    """
+    function nonnumeric(x)
+        if isa(x,Number)
+            false
+        elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
+            false
+        else
+            true
         end
     end
     export nonnumeric
 
 ## --- Transforming imported datasets
 
-    if VERSION >= v"0.7"
-        # Convert to a Float64 if possible, or a Float64 NaN if not.
-        function floatify(x)
-            if isa(x,Number)
-                return Float64(x)
-            elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-                return parse(Float64,x)
-            else
-                return NaN
-            end
-        end
-    else
-        # Convert to a Float64 if possible, or a Float64 NaN if not.
-        function floatify(x)
-            if isa(x,Number)
-                return Float64(x)
-            elseif isa(x,AbstractString) && ~isnull(tryparse(Float64,x))
-                return parse(Float64,x)
-            else
-                return NaN
-            end
+    """
+    ```julia
+    floatify(x)
+    ```
+    Convert to a Float64 by any means necessary
+    """
+    function floatify(x)
+        if isa(x,Number)
+            Float64(x)
+        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
+            parse(Float64,x)
+        else
+            NaN
         end
     end
     export floatify
 
-    # Convert a flat array into a dict with each column as a variable
+    """
+    ```julia
+    elementify(dataset::Array, elements::Array=dataset[1,:];
+        \tfloatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
+    ```
+    Convert a flat array into a dict with each column as a variable
+    """
     function elementify(dataset::Array, elements::Array=dataset[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
         # Output as dictionary
         result = Dict()
         if skipnameless
-            result["elements"] = elements[elements .!= ""]
-        else
-            result["elements"] = elements
+            elements = elements[elements .!= ""]
         end
+        result["elements"] = elements
 
         # Parse the input array, minus empty-named columns
         for i = 1:length(elements)
@@ -302,7 +283,13 @@
     end
     export elementify
 
-    # Convert a dict into a flat array with variables as columns
+    """
+    ```julia
+    unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset)));
+        \tfloatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+    ```
+    Convert a dict into a flat array with variables as columns
+    """
     function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
         # Find the elements in the input dict if they exist and aren't otherwise specified

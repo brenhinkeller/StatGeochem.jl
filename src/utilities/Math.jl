@@ -1,34 +1,33 @@
 ## --- Fast inverse square-root
-    # This is mostly just for fun: while it can be 1.5x faster than 1/sqrt(x)
-    # I'm not sure there's any realistic scientific application where it's
-    # worth the loss of precision. Both versions good to about 4 ppm
 
-    # Float64 version
-    function inv_sqrt(number::Float64)
-        n_2 = 0.5 * number
-        y = Base.sub_int(9.603007803048109e153, Base.lshr_int(number,1)) # Floating point magic
-        y *= ( 1.5 - (n_2 * y * y )) # Newton's method
-        y *= ( 1.5 - (n_2 * y * y )) # Newton's method (again)
-        return y
+    """
+    ```julia
+    inv_sqrt(x)
+    ```
+    The fast inverse square root of `x`, in 32 and 64 bit versions. Can be up to
+    10x faster than base `1/sqrt(x)`, though with significant loss of precision.
+    The implementations here are good to about 4 ppm.
+    """
+    function inv_sqrt(x::Float64)
+        x_2 = 0.5 * x
+        result = Base.sub_int(9.603007803048109e153, Base.lshr_int(x,1)) # Floating point magic
+        result *= ( 1.5 - (x_2 * result * result )) # Newton's method
+        result *= ( 1.5 - (x_2 * result * result )) # Newton's method (again)
+        return result
     end
-
-    # Float32 version
-    function inv_sqrt(number::Float32)
-        n_2 = 0.5f0 * number
-        y = Base.sub_int(1.321202f19, Base.lshr_int(number,1)) # Floating point magic
-        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method
-        y *= ( 1.5f0 - (n_2 * y * y) ) # Newton's method (again)
-        return y
+    function inv_sqrt(x::Float32)
+        x_2 = 0.5f0 * x
+        result = Base.sub_int(1.321202f19, Base.lshr_int(x,1)) # Floating point magic
+        result *= ( 1.5f0 - (x_2 * result * result) ) # Newton's method
+        result *= ( 1.5f0 - (x_2 * result * result) ) # Newton's method (again)
+        return result
     end
-
-    export inv_sqrt
 
 ## --- Base-10 version of log1p
 
     function log10f(x::Number,from::Number=-1)
         return log10(abs(x-from)+1)*sign(x-from)
     end
-    export log10f
 
 ## --- Gaussian distribution functions
 
@@ -42,9 +41,7 @@
 
     with mean `mu` and standard deviation `sigma`, evaluated at `x`
     """
-    function normpdf(mu,sigma,x)
-        return @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
-    end
+    normpdf(mu,sigma,x) = @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
     export normpdf
 
     """
@@ -54,13 +51,19 @@
     Fast log likelihood corresponding to a Normal (Gaussian) distribution
     with mean `mu` and standard deviation `sigma`, evaluated at `x`.
 
-    If `x`, `mu`, and `sigma` are given as arrays, the sum of the log likelihood
+    If `x`, [`mu`, and `sigma`] are given as arrays, the sum of the log likelihood
     over all `x` will be returned.
 
     See also `normpdf`
     """
-    function normpdf_ll(mu::Number,sigma::Number,x::Number)
-        return -(x-mu)*(x-mu) / (2*sigma*sigma)
+    normpdf_ll(mu::Number,sigma::Number,x::Number) = -(x-mu)*(x-mu) / (2*sigma*sigma)
+    function normpdf_ll(mu::Number,sigma::Number,x::AbstractArray)
+        ll = 0.0
+        inv_s2 = 1/(2*sigma*sigma)
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu)*(x[i]-mu) * inv_s2
+        end
+        return ll
     end
     function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
         ll = 0.0
@@ -69,6 +72,7 @@
         end
         return ll
     end
+    export normpdf_ll
 
     """
     ```julia
@@ -146,10 +150,14 @@
 
 ## --- Geometry
 
-    # Check if a 2D polygon defined by the arrays x, y contains a point.
-    # Returns boolean (true or false)
+    """
+    ```julia
+    inpolygon(x,y,point)
+    ```
+    Check if a 2D polygon defined by the arrays `x`, `y` contains a given `point`.
+    Returns boolean (true or false)
+    """
     function inpolygon(x,y,point)
-
         # Check that we have the right kind of input data
         if length(x) != length(y)
             error("polygon must have equal number of x and y points\n")
@@ -177,7 +185,7 @@
 
         # Check how many times a line projected right along x-axis from point intersects the polygon
         intersections = 0
-        for i=1:length(x)
+        @inbounds for i=1:length(x)
             # Recycle our vertex
             x_last = copy(x_here)
             y_last = copy(y_here)
@@ -231,13 +239,16 @@
     end
     export inpolygon
 
-    # Find the indexes of grid points that fall within a polygon for a grid /
-    # matrix with cell centers given by grid_x (j-columns of matrix) and
-    # grid_y (i-rows of matrix).
-    # Returns a list of rows and columns in the polygon
-    function find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
-        # (row, column) = find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
 
+    """
+    ```julia
+    (rows, columns) = find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
+    ```
+    Find the indexes of grid points that fall within a polygon for a grid with
+    cell centers given by grid_x (j-columns of grid) and grid_y (i-rows of grid).
+    Returns a list of rows and columns in the polygon
+    """
+    function find_grid_inpolygon(grid_x, grid_y, poly_x, poly_y)
         # Check that we have the right kind of input data
         if length(poly_x) != length(poly_y)
             error("polygon must have equal number of x and y points\n")
@@ -274,11 +285,17 @@
     export find_grid_inpolygon
 
 
-    # Calculate the distance between two (lat,lon) points on a sphere.
-    # Lat, Lon in decimal degrees
-    function arcdistance(lat_i,lon_i,lat,lon)
+    """
+    ```julia
+    arcdistance(latᵢ,lonᵢ,lat,lon)
+    ```
+    Calculate the distance on a sphere between the point (`latᵢ`,`lonᵢ`) and any
+    number of points in (`lat`,`lon`).
+    Latitude and Longitude should be specified in decimal degrees
+    """
+    function arcdistance(latᵢ,lonᵢ,lat,lon)
         # Argument for acos()
-        arg = sin.(lat_i .* pi/180) .* sin.(lat .* pi/180) .+ cos.(lat_i*pi/180) .* cos.(lat .* pi/180).*cos.((lon_i .- lon) .* pi/180)
+        arg = sin.(latᵢ .* pi/180) .* sin.(lat .* pi/180) .+ cos.(latᵢ*pi/180) .* cos.(lat .* pi/180).*cos.((lonᵢ .- lon) .* pi/180)
 
         # Avoid domain errors from imprecise sine and cosine math
         arg[arg .> 1.0] .= 1.0
@@ -290,8 +307,133 @@
     end
     export arcdistance
 
-## --- Empirical and numerical distributions
+## --- Weighted mean of an array
 
+    """
+    ```julia
+    (wx, wσ, mswd) = awmean(x, σ)
+    ```
+    Weighted mean, absent the geochonologist's MSWD correction to uncertainty.
+    """
+    function awmean(x, σ)
+        n = length(x)
 
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @inbounds @simd for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(1.0 / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    function awmean(x::Array{<:Number}, σ::Array{<:Number})
+        n = length(x)
+
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @avx for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @avx for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(1.0 / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    export awmean
+
+    """
+    ```julia
+    (wx, wσ, mswd) = gwmean(x, σ)
+    ```
+    Geochronologist's weighted mean, with "MSWD correction" to uncertainty,
+    i.e., wσ is increased by a factor of sqrt(mswd)
+    """
+    function gwmean(x, σ)
+        n = length(x)
+
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @inbounds @simd for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(mswd / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    function gwmean(x::Array{<:Number}, σ::Array{<:Number})
+        n = length(x)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        @avx for i=1:n
+            sum_of_values += x[i] / (σ[i]*σ[i])
+            sum_of_weights += 1 / (σ[i]*σ[i])
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @avx for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+        mswd = χ2 / (n-1)
+        wσ = sqrt(mswd / sum_of_weights)
+        return wx, wσ, mswd
+    end
+    export gwmean
+
+    """
+    ```julia
+    MSWD(x, σ)
+    ```
+    Return the Mean Square of Weighted Deviates (AKA the reduced chi-squared
+    statistic) of a dataset with values `x` and one-sigma uncertainties `σ`
+    """
+    function MSWD(x, σ)
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        n = length(x)
+
+        @inbounds @simd for i=1:n
+            w = 1 / (σ[i]*σ[i])
+            sum_of_values += w * x[i]
+            sum_of_weights += w
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @inbounds @simd for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+
+        return χ2 / (n-1)
+    end
+    function MSWD(x::Array{<:Number}, σ::Array{<:Number})
+        sum_of_values = sum_of_weights = χ2 = 0.0
+        n = length(x)
+
+        @avx for i=1:n
+            w = 1 / (σ[i]*σ[i])
+            sum_of_values += w * x[i]
+            sum_of_weights += w
+        end
+        wx = sum_of_values / sum_of_weights
+
+        @avx for i=1:n
+            χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
+        end
+
+        return χ2 / (n-1)
+    end
+    export MSWD
 
 ## --- End of File
