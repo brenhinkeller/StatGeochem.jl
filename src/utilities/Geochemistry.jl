@@ -1306,7 +1306,7 @@
     ```julia
     ZrSat = tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
-    Calculate zircon saturation concentration for a given temperature (in C)
+    Calculate zircon saturation Zr concentration for a given temperature (in C)
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
     """
     function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
@@ -1331,5 +1331,45 @@
         return T
     end
     export tzirc
+
+
+    function tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        eCa = Ca - Al/2 + Na/2 + K/2
+        C = (10 * eCa) / (Al * Si)
+    end
+
+    """
+    ```julia
+    TiSat = tspheneTi(SiO2, Al2O3, CaO, Na2O, K2O, T)
+    ```
+    Calculate sphene saturation Ti concentration for a given temperature (in C)
+    Following the sphene saturation calibration of Ayers et al., 2018
+    (10.1130/abs/2018AM-320568)
+    """
+    function tspheneTi(SiO2, Al2O3, CaO, Na2O, K2O, T)
+        C = tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
+        TiO2 = 0.79*C - 7993/(T+273.15) + 7.88
+    end
+    export tspheneTi
+
+
+    """
+    ```julia
+    T = tsphene(SiO2, TiO2, Al2O3, CaO, Na2O, K2O)
+    ```
+    Calculate sphene saturation temperature in degrees Celsius
+    Following the sphene saturation calibration of Ayers et al., 2018
+    (10.1130/abs/2018AM-320568)
+    """
+    function tsphene(SiO2, TiO2, Al2O3, CaO, Na2O, K2O)
+        C = tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
+        T = 7993/(0.79*C - TiO2 + 7.88) - 273.15
+    end
+    export tsphene
 
 ## --- End of File
