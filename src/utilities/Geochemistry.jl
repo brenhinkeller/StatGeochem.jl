@@ -1278,7 +1278,30 @@
 
 ## -- Zircon saturation calculations
 
-    function tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        K = K / normconst
+        Na = Na / normconst
+        Ca = Ca / normconst
+        Al = Al / normconst
+        Si = Si / normconst
+
+        return (Na + K + 2*Ca)/(Al * Si)
+    end
+    function tzircM(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
         #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
@@ -1312,7 +1335,7 @@
     function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
         M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         # Boehnke, Watson, et al., 2013
-        Zr = @. 496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M))
+        Zr = @. max(496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M)), 0)
         return Zr
     end
     export tzircZr
@@ -1333,43 +1356,83 @@
     export tzirc
 
 
-    function tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
+    function tspheneC(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
         Ca = CaO/56.0774
         Al = Al2O3/50.9806
         Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        K = K / normconst
+        Na = Na / normconst
+        Ca = Ca / normconst
+        Al = Al / normconst
+        Si = Si / normconst
+
         eCa = Ca - Al/2 + Na/2 + K/2
         C = (10 * eCa) / (Al * Si)
+    end
+    function tspheneC(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
+        K .= K ./ normconst
+        Na .= Na ./ normconst
+        Ca .= Ca ./ normconst
+        Al .= Al ./ normconst
+        Si .= Si ./ normconst
+
+        eCa = Ca - Al/2 + Na/2 + K/2
+        C = (10 * eCa) ./ (Al .* Si)
     end
 
     """
     ```julia
-    TiSat = tspheneTi(SiO2, Al2O3, CaO, Na2O, K2O, T)
+    TiSat = tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
     Calculate sphene saturation Ti concentration for a given temperature (in C)
     Following the sphene saturation calibration of Ayers et al., 2018
     (10.1130/abs/2018AM-320568)
     """
-    function tspheneTi(SiO2, Al2O3, CaO, Na2O, K2O, T)
-        C = tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
-        TiO2 = 0.79*C - 7993/(T+273.15) + 7.88
+    function tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TiO2 = @. max(0.79*C - 7993/(T+273.15) + 7.88, 0)
     end
     export tspheneTi
 
 
     """
     ```julia
-    T = tsphene(SiO2, TiO2, Al2O3, CaO, Na2O, K2O)
+    T = tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
     ```
     Calculate sphene saturation temperature in degrees Celsius
     Following the sphene saturation calibration of Ayers et al., 2018
     (10.1130/abs/2018AM-320568)
     """
-    function tsphene(SiO2, TiO2, Al2O3, CaO, Na2O, K2O)
-        C = tspheneC(SiO2, Al2O3, CaO, Na2O, K2O)
-        T = 7993/(0.79*C - TiO2 + 7.88) - 273.15
+    function tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        T = @. 7993/(0.79*C - TiO2 + 7.88) - 273.15
     end
     export tsphene
+
 
 ## --- End of File
