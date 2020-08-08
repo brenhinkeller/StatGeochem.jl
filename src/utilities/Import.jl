@@ -255,7 +255,11 @@
 
         # Parse the input array, minus empty-named columns
         for i = 1:length(elements)
-            thiscol = dataset[(1+skipstart):end,i]
+            if 1+skipstart == size(dataset,1)
+                thiscol = dataset[end,i]
+            else
+                thiscol = dataset[(1+skipstart):end,i]
+            end
             floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
 
             if haskey(result,elements[i])
