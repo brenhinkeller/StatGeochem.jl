@@ -137,24 +137,37 @@
     melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
         \telements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];)
     ```
-    Optional keyword arguments and defaults:
-    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
-    `dT=-10`
-    `dP=0`
-    `index=1`
-    `version="pMELTS"`
-    `mode="isobaric"`
-    `fo2path="FMQ"``
-    `fractionatesolids::Bool=false`
-    `verbose::Bool=true`
+    Configure and run a MELTS simulation using alphaMELTS. Optional keyword arguments and defaults:
 
-    Configure and run MELTS simulation
+    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
+
+    `dT = -10`
+
+    `dP = 0`
+
+    `index = 1`
+
+    `version = "pMELTS"`
+
+    `mode = "isobaric"`
+
+    `fo2path = "FMQ"`
+    Oxygen fugacity buffer to follow, e.g., `FMQ` or `NNO+1`
+
+    `fractionatesolids::Bool = false`
+    Fractionate all solids
+
+    `suppress::Array{String} = []`
+    Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
+
+    `verbose::Bool = true`
+    Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
     function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false,verbose::Bool=true)
+        fractionatesolids::Bool=false,suppress::Array{String}=[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
@@ -175,8 +188,6 @@
         fractionatewater = "!"
         # Fractionate individual phases (specify as strings in cell array, i.e. {"olivine","spinel"})
         fractionate = []
-        # Supress individual phases (specify as strings in cell array, i.e. {"leucite"})
-        supress = []
         # Coninuous (fractional) melting? ("!" for no, "" for yes)
         continuous = "!"
         # Threshold above which melt is extracted (if fractionation is turned on)
@@ -240,8 +251,8 @@
         for i = 1:length(fractionate)
             write(fp,"Fractionate: $(fractionate[i])\n")
         end
-        for i = 1:length(supress)
-            write(fp,"Suppress: $(supress[i])\n")
+        for i = 1:length(suppress)
+            write(fp,"Suppress: $(suppress[i])\n")
         end
 
         close(fp)
