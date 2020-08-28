@@ -167,7 +167,7 @@
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false,suppress::Array{String}=[], verbose::Bool=true)
+        fractionatesolids::Bool=false, suppress::Array{String}=String[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
