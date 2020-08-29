@@ -183,6 +183,65 @@
     end
     export delim_string_function
 
+    """
+    ```julia
+    parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\n')
+    ```
+    Parse a string delimited by both row and column into a single (2-D) matrix. Default column delimiter is newline.
+    Similar to `readdlm`, but operating on a string instead of a file.
+    """
+    function parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\n')
+    	if parsetype <: AbstractFloat
+    		emptyval = parsetype(NaN)
+    	else
+    		emptyval = zero(parsetype)
+    	end
+
+    	# Count rows, and find maximum number of delimiters per row
+    	numcolumns = maxcolumns = maxrows = 0
+    	cₗ = delimiter
+    	for c in str
+    		(c == delimiter) && (numcolumns += 1)
+    		if c == rowdelimiter
+    			maxrows += 1
+    			numcolumns += 1
+    			# See if we have a new maximum, and reset the counters
+    			(numcolumns > maxcolumns) && (maxcolumns = numcolumns)
+    			numcolumns=0
+    		end
+    		cₗ = c
+    	end
+    	# If the last line isn't blank, add one more to the row counter
+    	(cₗ != rowdelimiter) && (maxrows += 1)
+    	maxchars = length(str)
+
+
+    	# Allocate space for the imported array and fill with emptyval
+    	parsedmatrix = fill(emptyval, maxrows, maxcolumns)
+
+    	k = kₗ = 0 # Last delimiter position
+    	for i = 1:maxrows
+    		for j = 1:maxcolumns
+    			while (str[k+1] != delimiter) && (str[k+1] != rowdelimiter) && (k+1 < maxchars)
+    				k += 1
+    			end
+    			# If we're at the end of the string, move on
+    			(k+1 == maxchars) && break
+
+    			# Otherwise, parse the string
+    			parsed = tryparse(parsetype, str[kₗ+1:k])
+    			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+
+    			# Step over the delimiter
+    			kₗ = k += 1
+    			# If we've hit a row delimiter, move to next row
+    			(str[k] == rowdelimiter) && break
+    		end
+    	end
+    	return parsedmatrix
+    end
+
+
 ## --- Classifying imported datasets
 
     """
