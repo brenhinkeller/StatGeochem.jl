@@ -175,7 +175,7 @@
         # Check for final value after last delim
         if length(str)>last_delim_pos
             n += 1
-            result[n] = parse(parseType, str[(last_delim_pos+1):length(str)])
+            result[n] = f(str[(last_delim_pos+1):length(str)])
         end
 
         # Return the result values
