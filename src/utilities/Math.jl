@@ -65,6 +65,21 @@
         end
         return ll
     end
+    function normpdf_ll(mu::AbstractArray,sigma::Number,x::AbstractArray)
+        ll = 0.0
+        inv_s2 = 1/(2*sigma*sigma)
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu[i])*(x[i]-mu[i]) * inv_s2
+        end
+        return ll
+    end
+    function normpdf_ll(mu::Number,sigma::AbstractArray,x::AbstractArray)
+        ll = 0.0
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu)*(x[i]-mu) / (2*sigma[i]*sigma[i])
+        end
+        return ll
+    end
     function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
         ll = 0.0
         @avx for i=1:length(x)
