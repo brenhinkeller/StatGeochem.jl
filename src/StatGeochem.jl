@@ -19,8 +19,11 @@ module StatGeochem
 
     # AVX vectorziation tools
     using LoopVectorization
-    using SIMDPirates: vifelse
+    using SIMDPirates: vifelse, verf
     using VectorizationBase: SVec
+
+    import SpecialFunctions.erf
+    erf(x::SVec) = verf(x)
 
     # General requirements
     using Random

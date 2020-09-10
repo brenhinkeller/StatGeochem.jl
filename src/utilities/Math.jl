@@ -89,8 +89,6 @@
     end
     export normpdf_ll
 
-    import SpecialFunctions.erf
-    erf(x::SVec) = SIMDPirates.verf(x)
 
     """
     ```julia
@@ -106,6 +104,12 @@
     normcdf(mu,sigma,x) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*sqrt(2)))
     export normcdf
 
+    """
+    ```julia
+    normcdf!(result,mu,sigma,x)
+    ```
+    In-place version of `normcdf`
+    """
     function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
         T = eltype(result)
         inv_sigma_sqrt2 = one(T)/(sigma*sqrt(2))
