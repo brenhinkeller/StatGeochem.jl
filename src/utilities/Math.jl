@@ -89,6 +89,9 @@
     end
     export normpdf_ll
 
+    import SpecialFunctions.erf
+    erf(x::SVec) = SIMDPirates.verf(x)
+
     """
     ```julia
     normcdf(mu,sigma,x)
@@ -99,18 +102,19 @@
 
     with mean `mu` and standard deviation `sigma`, evaluated at `x`.
     """
-    function normcdf(mu,sigma,x)
-        return @. 0.5 + erf((x-mu) / (sigma*sqrt(2))) / 2
-    end
-    function normcdf(mu::Number,sigma::Number,x::AbstractArray)
-        result = Array{float(eltype(x))}(undef,length(x))
-        sigma_sqrt = sigma*sqrt(2)
-        @inbounds @simd for i = 1:length(x)
-            result[i] = 0.5 + erf((x[i]-mu) / sigma_sqrt) / 2
+    normcdf(mu::Number,sigma::Number,x::Number) = 0.5 + 0.5 * erf((x-mu) / (sigma*sqrt(2)))
+    normcdf(mu,sigma,x) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*sqrt(2)))
+    export normcdf
+
+    function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
+        T = eltype(result)
+        inv_sigma_sqrt2 = one(T)/(sigma*sqrt(2))
+        @avx for i ∈ 1:length(x)
+            result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
         end
         return result
     end
-    export normcdf
+    export normcdf!
 
     """
     ```julia
