@@ -588,9 +588,18 @@
         end
         return elementify(data, floatout=floatout, skipnameless=skipnameless)
     end
+    function importdataset(t::Tuple, filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+        data = readdlm(filepath, delim, skipstart=skipstart)
+        if mindefinedcolumns > 0
+            definedcolumns = vec(sum(.~ isempty.(data), dims=2))
+            t = definedcolumns .>= mindefinedcolumns
+            data = data[t,:]
+        end
+        return elementify(data, floatout=floatout, skipnameless=skipnameless)
+    end
     export importdataset
 
-    function exportdataset(dataset::Dict, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
+    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
         data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
