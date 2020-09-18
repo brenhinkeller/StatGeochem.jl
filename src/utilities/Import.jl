@@ -389,12 +389,16 @@
             return x
         end
     end
-    # function sanitizevarname(s::AbstractString)
-    #     return s
-    # end
 
-    function elementify(t::Tuple, data::Array, elements::Array=dataset[1,:]; skipstart::Integer=1, floatout::Bool=true)
-        # elements = sanitizevarname.(elements)
+    function sanitizevarname(s::AbstractString)
+        s = replace(s, r" " => "_")
+        s = replace(s, r"[^a-zA-Z0-9_]" => "")
+        s = replace(s, r"^([^a-zA-Z])" => s"_\1")
+        return s
+    end
+
+    function elementify(t::Tuple, data::Array, elements::Array=data[1,:]; skipstart::Integer=1, floatout::Bool=true)
+        elements = sanitizevarname.(elements)
         symbols = ((Meta.parse(e) for e ∈ elements)...,)
         values = [possiblyfloatify(data[1+skipstart:end,i], floatout) for i in 1:size(data,2)]
         return NamedTuple{symbols}(values)
