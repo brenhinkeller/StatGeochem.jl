@@ -346,12 +346,67 @@
     end
     export elementify
 
+    import Base.display
+    function display(x::NamedTuple)
+        i = 1
+        println("NamedTuple with $(length(keys(x))) elements:")
+        l = max(length.(string.(keys(x)))...)
+        for s in keys(x)
+            t = typeof(x[s])
+            sp = " "^(l-length(string(s)))
+            print("  $s$sp  = $t")
+            if t<:Number
+                print("\t$(x[s])")
+            elseif t<:AbstractRange
+                print("\t$(x[s])")
+            elseif t<:AbstractArray
+                print(size(x[s]))
+                if length(x[s]) < 2
+                    print("\t[$(x[s])]")
+                else
+                    print("\t[$(x[s][1]) ... $(x[s][end])]")
+                end
+            elseif t<:AbstractString
+                if length(x[s]) < 50
+                    print("\t\"$(x[s])\"")
+                else
+                    print("\t\"$(x[s][1:50])...")
+                end
+            end
+            print("\n")
+            i += 1
+            if i > 222
+                print(".\n.\n.\n")
+                break
+            end
+        end
+    end
+
+    function possiblyfloatify(x, floatout=true)
+        if floatout && sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
+            return floatify.(x)
+        else
+            return x
+        end
+    end
+    # function sanitizevarname(s::AbstractString)
+    #     return s
+    # end
+
+    function elementify(t::Tuple, data::Array, elements::Array=dataset[1,:]; skipstart::Integer=1, floatout::Bool=true)
+        # elements = sanitizevarname.(elements)
+        symbols = ((Meta.parse(e) for e ∈ elements)...,)
+        values = [possiblyfloatify(data[1+skipstart:end,i], floatout) for i in 1:size(data,2)]
+        return NamedTuple{symbols}(values)
+    end
+
+
     """
     ```julia
-    unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset)));
+    unelementify(dataset, elements;
         \tfloatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
     ```
-    Convert a dict into a flat array with variables as columns
+    Convert a dict or named tuple of vectors into a 2-D array with variables as columns
     """
     function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
 
@@ -365,7 +420,7 @@
         if findnumeric
             is_numeric_element = Array{Bool}(undef,length(elements))
             for i = 1:length(elements)
-                is_numeric_element = sum(plausiblynumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
+                is_numeric_element[i] = sum(plausiblynumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
             end
             elements = elements[is_numeric_element]
         end
@@ -387,6 +442,46 @@
             for i = 1:length(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = elements[i]
+                result[2:end,i] .= dataset[elements[i]]
+
+                # if `skipnan` is set, replace each NaN in the output array with
+                # an empty string ("") such that it is empty when printed to file
+                # with dlmwrite or similar
+                if skipnan
+                    for n = 2:length(result[:,i])
+                        if isa(result[n,i], AbstractFloat) && isnan(result[n,i])
+                            result[n,i] = ""
+                        end
+                    end
+                end
+            end
+        end
+        return result
+    end
+    function unelementify(dataset::NamedTuple, elements=keys(dataset); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+        # Figure out how many are numeric (if necessary), so we can export only
+        # those if `findnumeric` is set
+        if findnumeric
+            elements = filter(x -> sum(plausiblynumeric.(dataset[x])) > sum(nonnumeric.(dataset[x])), elements)
+        end
+
+        # Generate output array
+        if floatout
+            # Allocate output Array{Float64}
+            result = Array{Float64}(undef,length(dataset[elements[1]]),length(elements))
+
+            # Parse the input dict. No column names if `floatout` is set
+            for i = 1:length(elements)
+                result[:,i] = floatify.(dataset[elements[i]])
+            end
+        else
+            # Allocate output Array{Any}
+            result = Array{Any}(undef,length(dataset[elements[1]])+1,length(elements))
+
+            # Parse the input dict
+            for i = 1:length(elements)
+                # Column name goes in the first row, everything else after that
+                result[1,i] = string(elements[i])
                 result[2:end,i] .= dataset[elements[i]]
 
                 # if `skipnan` is set, replace each NaN in the output array with
