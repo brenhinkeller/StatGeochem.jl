@@ -33,7 +33,7 @@
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
     err2srel = importdataset("err2srel.csv", ',')
-    for e in elements
+    for e in ign["elements"]
         # If there's an err2srel for this variable, create a "_sigma" if possible
         if haskey(err2srel, e) && !haskey(ign, e*"_sigma")
             ign[e*"_sigma"] = ign[e] .* (err2srel[e] / 2);
@@ -52,7 +52,7 @@
 ## --- Resample a single variable
 
     xmin = 0 # Minimum Age
-    xmax = 1200 # Maximum Age
+    xmax = 3900 # Maximum Age
     nbins = 39
     elem = "K2O" # Element to plot
 
@@ -67,7 +67,7 @@
     (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
 
     # Plot results
-    plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:auto,label="")
+    plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:darkblue,label="")
     plot!(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 
@@ -93,11 +93,11 @@
                     x_sigma=ign["Age_sigma"][t])
 
     # Plot results
-    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:darkred,label="")
     plot!(h, xlabel="Age (Ma)", ylabel="$(num) / $(denom)",xlims=(tmin,tmax),framestyle=:box,grid=:off,xflip=true) # Format plot
     display(h)
 
-    savefig(h,"$(num)$(denom)_$(tmax)-$(tmin)Ma.pdf")
+    # savefig(h,"$(num)$(denom)_$(tmax)-$(tmin)Ma.pdf")
 
 
 ## --- Single element differentiation example
@@ -172,10 +172,9 @@
                     x_sigma=ign[xelem][t]*0.01, num_sigma=ign[num][t]*0.05, denom_sigma=ign[denom][t]*0.05)
 
     # Plot results
-    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:darkblue,label="")
     plot!(h, xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off) # Format plot
     display(h)
-
 
 
 ## --- Export differentiation trends
