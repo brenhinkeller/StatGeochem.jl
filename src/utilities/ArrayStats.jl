@@ -1118,15 +1118,14 @@
     Bins need not be evenly spaced, though it helps.
     """
     function trapz(edges::AbstractRange, values::AbstractArray)
-        dx = (edges[end]-edges[1])/(length(edges) - 1)
         result = zero(eltype(values))
         @avx for i=2:length(edges)
             result += values[i-1]+values[i]
         end
+        dx = (edges[end]-edges[1])/(length(edges) - 1)
         return result * dx / 2
     end
     function trapz(edges::AbstractArray, values::AbstractArray)
-        dx = (edges[end]-edges[1])/(length(edges) - 1)
         result = zero(promote_type(eltype(edges), eltype(values)))
         @avx for i=2:length(edges)
             result += (values[i-1] + values[i]) * (edges[i] - edges[i-1])
