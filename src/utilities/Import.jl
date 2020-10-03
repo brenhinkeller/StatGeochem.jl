@@ -295,57 +295,23 @@
             NaN
         end
     end
-    export floatify
 
-    """
-    ```julia
-    elementify(dataset::Array, elements::Array=dataset[1,:];
-        \tfloatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
-    ```
-    Convert a flat array into a dict with each column as a variable
-    """
-    function elementify(dataset::Array, elements::Array=dataset[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
-        # Output as dictionary
-        result = Dict()
-        if skipnameless
-            elements = elements[elements .!= ""]
+    function possiblyfloatify(x, floatout=true)
+        if floatout && sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
+            return floatify.(x)
+        else
+            return x
         end
-        result["elements"] = elements
-
-        # Parse the input array, minus empty-named columns
-        for i = 1:length(elements)
-            if 1+skipstart == size(dataset,1)
-                thiscol = dataset[end,i]
-            else
-                thiscol = dataset[(1+skipstart):end,i]
-            end
-            floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
-
-            if haskey(result,elements[i])
-                # If key already exists
-                if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
-                    # If either this column or the existing one is plausibly numeric, average the two
-                    result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
-                else
-                    # If neither is plausibly numeric, just contatenate the columns and move on
-                    result[elements[i]] = hcat(result[elements[i]], thiscol)
-                end
-            elseif floatcol
-                # If column is numeric
-                result[elements[i]] = floatify.(thiscol)
-            else
-                # If column is non-numeric
-                result[elements[i]] = thiscol
-            end
-        end
-
-        # Return only unique elements, since dictionary keys must be unique
-        result["elements"] = unique(elements)
-
-        return result
     end
-    export elementify
 
+    function sanitizevarname(s::AbstractString)
+        s = replace(s, r" " => "_")
+        s = replace(s, r"[^a-zA-Z0-9_]" => "")
+        s = replace(s, r"^([^a-zA-Z])" => s"_\1")
+        return s
+    end
+
+    # Custom pretty printing for named tuples
     import Base.display
     function display(x::NamedTuple)
         i = 1
@@ -382,27 +348,65 @@
         end
     end
 
-    function possiblyfloatify(x, floatout=true)
-        if floatout && sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
-            return floatify.(x)
-        else
-            return x
+    """
+    ```julia
+    elementify(data::Array, elements::Array=data[1,:];
+        \timportas=:Dict, floatout::Bool=true,
+        \tskipstart::Integer=1, skipnameless::Bool=true)
+    ```
+    Convert a flat array `data` into a dictionary (`importas=:Dict`) or named
+    tuple (`importas=:Tuple`) with each column as a variable.
+    Tuples are substantially more efficient, so should be favored where possible.
+    """
+    function elementify(data::Array, elements::Array=data[1,:]; importas=:Dict, skipstart::Integer=1, floatout::Bool=true, skipnameless::Bool=true)
+        if importas == :Dict || importas==:dict
+            # Output as dictionary
+            result = Dict()
+            if skipnameless
+                elements = elements[elements .!= ""]
+            end
+            result["elements"] = elements
+
+            # Parse the input array, minus empty-named columns
+            for i = 1:length(elements)
+                if 1+skipstart == size(data,1)
+                    thiscol = data[end,i]
+                else
+                    thiscol = data[(1+skipstart):end,i]
+                end
+                floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
+
+                if haskey(result,elements[i])
+                    # If key already exists
+                    if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
+                        # If either this column or the existing one is plausibly numeric, average the two
+                        result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
+                    else
+                        # If neither is plausibly numeric, just contatenate the columns and move on
+                        result[elements[i]] = hcat(result[elements[i]], thiscol)
+                    end
+                elseif floatcol
+                    # If column is numeric
+                    result[elements[i]] = floatify.(thiscol)
+                else
+                    # If column is non-numeric
+                    result[elements[i]] = thiscol
+                end
+            end
+
+            # Return only unique elements, since dictionary keys must be unique
+            result["elements"] = unique(elements)
+            return result
+        elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
+            # Import as NamedTuple (more efficient future default)
+            t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
+            elements = sanitizevarname.(elements[t])
+            symbols = ((Symbol(e) for e ∈ elements)...,)
+            values = [possiblyfloatify(data[1+skipstart:end,i], floatout) for i in findall(t)]
+            return NamedTuple{symbols}(values)
         end
     end
-
-    function sanitizevarname(s::AbstractString)
-        s = replace(s, r" " => "_")
-        s = replace(s, r"[^a-zA-Z0-9_]" => "")
-        s = replace(s, r"^([^a-zA-Z])" => s"_\1")
-        return s
-    end
-
-    function elementify(t::Tuple, data::Array, elements::Array=data[1,:]; skipstart::Integer=1, floatout::Bool=true)
-        elements = sanitizevarname.(elements)
-        symbols = ((Meta.parse(e) for e ∈ elements)...,)
-        values = [possiblyfloatify(data[1+skipstart:end,i], floatout) for i in 1:size(data,2)]
-        return NamedTuple{symbols}(values)
-    end
+    export elementify
 
 
     """
@@ -579,23 +583,14 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; importas=:Dict, floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
         data = readdlm(filepath, delim, skipstart=skipstart)
         if mindefinedcolumns > 0
             definedcolumns = vec(sum(.~ isempty.(data), dims=2))
             t = definedcolumns .>= mindefinedcolumns
             data = data[t,:]
         end
-        return elementify(data, floatout=floatout, skipnameless=skipnameless)
-    end
-    function importdataset(t::Tuple, filepath::AbstractString, delim::AbstractChar; floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
-        data = readdlm(filepath, delim, skipstart=skipstart)
-        if mindefinedcolumns > 0
-            definedcolumns = vec(sum(.~ isempty.(data), dims=2))
-            t = definedcolumns .>= mindefinedcolumns
-            data = data[t,:]
-        end
-        return elementify(data, floatout=floatout, skipnameless=skipnameless)
+        return elementify(data, importas=importas, floatout=floatout, skipstart=1, skipnameless=skipnameless)
     end
     export importdataset
 
