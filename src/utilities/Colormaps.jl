@@ -83,44 +83,44 @@
         )
     export water
 
-    struct AllColormaps
-        viridis
-        plasma
+    struct AllColormapsC
+        hesperia
         magma
         inferno
-        cividis
-        laguna
+        plasma
+        viridis
         lacerta
-        hesperia
-        cubehelix
-        cubelinearl
-        cubelacerta
         cubeviridis
+        cubelacerta
+        laguna
         cubelaguna
         linearl
+        cubelinearl
+        cividis
         ylcn
         water
         fire
+        cubehelix
     end
 
-    colormaps = AllColormaps(
-        viridis,
-        plasma,
+    colormaps = AllColormapsC(
+        hesperia,
         magma,
         inferno,
-        cividis,
-        laguna,
+        plasma,
+        viridis,
         lacerta,
-        hesperia,
-        cubehelix,
-        cubelinearl,
-        cubelacerta,
         cubeviridis,
+        cubelacerta,
+        laguna,
         cubelaguna,
         linearl,
+        cubelinearl,
+        cividis,
         ylcn,
         water,
-        fire
+        fire,
+        cubehelix
     )
     export colormaps
 
