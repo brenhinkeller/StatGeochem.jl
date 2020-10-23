@@ -83,8 +83,50 @@
         )
     export water
 
+    struct AllColormaps
+        viridis
+        plasma
+        magma
+        inferno
+        cividis
+        laguna
+        lacerta
+        hesperia
+        cubehelix
+        cubelinearl
+        cubelacerta
+        cubeviridis
+        cubelaguna
+        linearl
+        ylcn
+        water
+        fire
+    end
+
+    colormaps = AllColormaps(
+        viridis,
+        plasma,
+        magma,
+        inferno,
+        cividis,
+        laguna,
+        lacerta,
+        hesperia,
+        cubehelix,
+        cubelinearl,
+        cubelacerta,
+        cubeviridis,
+        cubelaguna,
+        linearl,
+        ylcn,
+        water,
+        fire
+    )
+    export colormaps
+
     lines = parse.(Colorant, ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F",])
     export lines
+
 
 ## --- Resize and interpolate colormaps
 
