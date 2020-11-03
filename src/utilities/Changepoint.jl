@@ -26,7 +26,25 @@ function update_changepoint_sigma!(σ, d, boundaries, np)
 	end
 end
 
-function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
+
+"""
+```julia
+changepoint(data, [sigma], nsteps; np, npmin, npmax)
+```
+Given an ordered array of `data` points, optionally with uncertainties `sigma`,
+use a Markov chain Monte Carlo approach based on that of Gallagher et al., 2010
+(10.1016/j.epsl.2011.09.015) to estimate the position (by index) and optionally
+number of changepoints that best explain the `data`. Will return the results for
+`nsteps` steps of the Markov chain.
+
+Optionally, you may also specify as keyword arguments either `np` or
+`npmin` and `npmax` to constrain the number of allowed changepoints.
+
+Currently prints results to the terminal (stdout), one line per step of the Markov
+chain, but a more efficent output format is probably desirable in a future version
+of this function.
+"""
+function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
 
     MOVE = 0.60
     SIGMA = 0.1
@@ -72,7 +90,7 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 	ll = normpdf_ll(m, σ, data)
 
 	# The actual loop
-	@inbounds for i = 1:nsims
+	@inbounds for i = 1:nsteps
 
 		# Randomly choose a type of modification to the model
 		r = rand()
@@ -197,9 +215,7 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 		end
 	end
 end
-
-
-function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
+function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
 
     MOVE = 0.70
     BIRTH = 0.15
@@ -242,7 +258,7 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 	ll = normpdf_ll(m, sigma, data)
 
 	# The actual loop
-	@inbounds for i = 1:nsims
+	@inbounds for i = 1:nsteps
 
 		# Randomly choose a type of modification to the model
 		r = rand()
@@ -344,3 +360,4 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 		end
 	end
 end
+export changepoint
