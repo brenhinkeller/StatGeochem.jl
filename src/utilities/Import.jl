@@ -558,8 +558,47 @@
     end
     export importdataset
 
+    """
+    ```julia
+    exportdataset(dataset, [elements], filepath, delim;
+        \tfloatout::Bool=false,
+        \tfindnumeric::Bool=false,
+        \tskipnan::Bool=true,
+        \tdigits::Integer,
+        \tsigdigits::Integer
+    )
+    ```
+    Convert a dict or named tuple of vectors into a 2-D array with variables as columns
+    Export a `dataset` (in the form of either a `Dict` or a `NamedTuple`),
+    optionally specifying which `elements` to export, as a delimited ASCII text file
+    with the name specified by `filepath` and delimiter `delim`.
+
+    Possible keyword arguments include:
+
+        \tdigits
+        \tsigdigits
+    Specify a number of absolute or significant digits to which to round the printed output
+
+        \tskipnan
+    Leave `NaN`s as empty cells in the delimited output file
+
+        \tfloatout
+    Force all output to be represented as a floating-point number, or else `NaN`
+
+        \tfindnumeric
+    Export only numeric columns
+    """
     function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
         data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
+        if sigdigits > 0
+            data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
+        elseif digits > 0
+            data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
+        end
+        return writedlm(filepath, data, delim)
+    end
+    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
+        data = unelementify(dataset, elements, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
         elseif digits > 0
