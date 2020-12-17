@@ -58,8 +58,9 @@
 
     # Look only at samples from a specific silica range
     t = 43 .< ign["SiO2"] .< 51 # Mafic
-    # t = 51 .< ign["SiO2"] .< 62 # Intermediate
+    # t = 51 .< ign["SiO2"] .< 62  # Intermediate
     # t = 62 .< ign["SiO2"] .< 74 # Felsic
+    # t = 40 .< ign["SiO2"] .< 80 # All normal igneous
     # t = trues(size(ign[elem])) # Everything
 
     # Resample, returning binned means and uncertainties
@@ -69,7 +70,30 @@
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:darkblue,label="")
     plot!(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
+    savefig("$(siname)_$(elem).pdf")
 
+    ## Multiple silica ranges together
+    xmin = 0 # Minimum Age
+    xmax = 800 # Maximum Age
+    nbins = 40
+    elem = "Al2O3" # Element to plot
+    rsi = [43,51,62,74,80] # Ranges of silica to plot together
+
+
+    t = trues(size(ign[elem]))
+    h = plot(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
+    for i=1:length(rsi)-1
+        t .= rsi[i] .< ign["SiO2"] .< rsi[i+1]
+
+        # Resample, returning binned means and uncertainties
+        # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+        (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
+
+        # Plot results
+        plot!(h, c,m,yerror=(el,eu),seriestype=:scatter,color=lines[i],markerstrokecolor=lines[i],label="$(rsi[i])-$(rsi[i+1]) % SiO2")
+    end
+    savefig("$(elem)_$(xmin)-$(xmax) Ma.pdf")
+    display(h)
 
 ## ---  Resample a ratio
 
@@ -201,3 +225,4 @@
     exportdataset(data,"MajorDifferentiation.csv",',')
 
 ## --- End of File
+""
