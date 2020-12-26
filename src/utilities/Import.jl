@@ -286,25 +286,27 @@
     ```
     Convert to a Float64 by any means necessary
     """
-    function floatify(x)
+    function floatify(x, T=Float64)
         if isa(x,Number)
-            Float64(x)
-        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-            parse(Float64,x)
+            T(x)
+        elseif isa(x,AbstractString) && tryparse(T,x) != nothing
+            parse(T,x)
         else
-            NaN
+            T(NaN)
         end
     end
 
-    function possiblyfloatify(x, floatout=true)
+    function _standardizecolumnformat(x, floatout=true)
         if floatout && sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
             return floatify.(x)
+        elseif all(xi -> isa(xi, AbstractString), x)
+            return string.(x)
         else
             return x
         end
     end
 
-    function sanitizevarname(s::AbstractString)
+    function _sanitizevarname(s::AbstractString)
         s = replace(s, r" " => "_")
         s = replace(s, r"[^a-zA-Z0-9_]" => "")
         s = replace(s, r"^([^a-zA-Z])" => s"_\1")
@@ -364,9 +366,9 @@
         elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
             # Import as NamedTuple (more efficient future default)
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
-            elements = sanitizevarname.(elements[t])
+            elements = _sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = [possiblyfloatify(data[1+skipstart:end,i], floatout) for i in findall(t)]
+            values = [_standardizecolumnformat(data[1+skipstart:end,i], floatout) for i in findall(t)]
             return NamedTuple{symbols}(values)
         end
     end
