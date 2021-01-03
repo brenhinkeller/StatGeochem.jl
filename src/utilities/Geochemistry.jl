@@ -416,13 +416,13 @@
             end
             for m in melts["minerals"]
                 if containsi(m,"feldspar")
-                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    t = vec(findclosest(melts[m]["Temperature"],modes["Temperature"]))
                     AnAbOr = [melts[m]["CaO"]*An_Ca melts[m]["Na2O"]*Ab_Na melts[m]["K2O"]*Or_K] |> x -> x ./ sum(x, dims=2)
                     modes["anorthite"][t] .+= AnAbOr[:,1] .*  melts[m]["mass"]
                     modes["albite"][t] .+= AnAbOr[:,2] .*  melts[m]["mass"]
                     modes["orthoclase"][t] .+= AnAbOr[:,3] .*  melts[m]["mass"]
                 elseif containsi(m,"rhm_oxide")
-                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    t = vec(findclosest(melts[m]["Temperature"],modes["Temperature"]))
                     if  haskey(melts[m],"MnO")
                         Ilmenite = (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
                         Magnetite = (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
