@@ -32,19 +32,6 @@
         export linspace
     end
 
-    if ~ @isdefined linreg
-        """
-        ```julia
-        (a,b) = linreg(x::AbstractVector, y::AbstractVector)
-        ```
-
-        Returns the coefficients for a simple linear least-squares regression of
-        the form `y = a + bx`
-        """
-        linreg(x::AbstractVector, y::AbstractVector) = hcat(fill!(similar(x), 1), x) \ y
-        export linreg
-    end
-
     if ~ @isdefined contains
         """
         ```julia

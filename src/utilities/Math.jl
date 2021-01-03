@@ -458,4 +458,118 @@
     end
     export MSWD
 
+## --- Linear regression
+
+    if ~ @isdefined linreg
+        """
+        ```julia
+        (a,b) = linreg(x::AbstractVector, y::AbstractVector)
+        ```
+
+        Returns the coefficients for a simple linear least-squares regression of
+        the form `y = a + bx`
+        """
+        linreg(x::AbstractVector, y::AbstractVector) = hcat(fill!(similar(x), 1), x) \ y
+        export linreg
+    end
+
+
+    # Custom type to hold York fit resutls
+    struct YorkFit{T}
+        intercept::T
+        intercept_sigma::T
+        slope::T
+        slope_sigma::T
+        mswd::T
+    end
+
+    """
+    ```julia
+    yorkfit(x, σx, y, σy)
+    ```
+    Uses the York (1968) least-squares fit to calculate `a`, `b`, and uncertanties
+    `σa`, `σb` for the equation `y = a + bx`
+    """
+    function yorkfit(x, σx, y, σy; niterations=10)
+
+        ## 1. Ordinary linear regression (to get a first estimate of slope and intercept)
+
+        # Check for missing data
+        t = (x.==x) .& (y.==y) .& (σx.==σx) .& (σy.==σy)
+        x = x[t]
+        y = y[t]
+        σx = σx[t]
+        σy = σy[t]
+
+        # Calculate the ordinary least-squares fit
+        # For the equation y=a+bx, m(1)=a, m(2)=b
+        g = [ones(length(x)) x]
+        m = (g'*g)\g'*y
+        b = m[2]
+        a = m[1]
+
+        ## 2. Now, let's define parameters needed by the York fit
+
+        # Weighting factors
+        ωx = 1.0 ./ σx.^2
+        ωy = 1.0 ./ σy.^2
+
+        # terms that don't depend on a or b
+        α = sqrt.(ωx .* ωy)
+
+        x̄ = mean(x)
+        ȳ = mean(y)
+        r = sum((x .- x̄).*(y .- ȳ)) ./ (sqrt(sum((x .- x̄).^2)) * sqrt(sum((y .- ȳ).^2)))
+
+        ## 3. Perform the York fit (must iterate)
+        W = ωx.*ωy ./ (b^2*ωy + ωx - 2*b*r.*α)
+
+        X̄ = sum(W.*x) / sum(W)
+        Ȳ = sum(W.*y) / sum(W)
+
+        U = x .- X̄
+        V = y .- Ȳ
+
+        sV = W.^2 .* V .* (U./ωy + b.*V./ωx - r.*V./α)
+        sU = W.^2 .* U .* (U./ωy + b.*V./ωx - b.*r.*U./α)
+        b = sum(sV) ./ sum(sU)
+
+        a = Ȳ - b .* X̄
+        for i = 2:niterations
+            W .= ωx.*ωy ./ (b^2*ωy + ωx - 2*b*r.*α)
+
+            X̄ = sum(W.*x) / sum(W)
+            Ȳ = sum(W.*y) / sum(W)
+
+            U .= x .- X̄
+            V .= y .- Ȳ
+
+            sV .= W.^2 .* V .* (U./ωy + b.*V./ωx - r.*V./α)
+            sU .= W.^2 .* U .* (U./ωy + b.*V./ωx - b.*r.*U./α)
+            b = sum(sV) ./ sum(sU)
+
+            a = Ȳ - b .* X̄
+        end
+
+        ## 4. Calculate uncertainties and MSWD
+        β = W .* (U./ωy + b.*V./ωx - (b.*U+V).*r./α)
+
+        u = X̄ .+ β
+        v = Ȳ .+ b.*β
+
+        xm = sum(W.*u)./sum(W)
+        ym = sum(W.*v)./sum(W)
+
+        σb = sqrt(1.0 ./ sum(W .* (u .- xm).^2))
+        σa = sqrt(1.0 ./ sum(W) + xm.^2 .* σb.^2)
+
+        # MSWD (reduced chi-squared) of the fit
+        mswd = 1.0 ./ length(x) .* sum( (y .- a.-b.* x).^2 ./ (σy.^2 + b.^2 .* σx.^2) )
+
+        ## Results
+        return YorkFit(a, σa, b, σb, mswd)
+    end
+    export yorkfit
+
+
 ## --- End of File
