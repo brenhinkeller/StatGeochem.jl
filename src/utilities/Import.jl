@@ -340,6 +340,8 @@
                 result = Dict{String, Any}()
             end
 
+            # Process elements array
+            elements = string.(elements)
             if skipnameless
                 elements = elements[elements .!= ""]
             end
