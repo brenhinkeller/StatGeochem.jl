@@ -287,22 +287,28 @@
     Convert to a Float64 by any means necessary
     """
     function floatify(x, T=Float64)
-        if isa(x,Number)
+        if isa(x, Number)
             T(x)
         elseif isa(x,AbstractString) && tryparse(T,x) != nothing
-            parse(T,x)
+            parse(T, x)
         else
             T(NaN)
         end
     end
 
-    function _standardizecolumnformat(x, floatout=true)
-        if floatout && sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
-            return floatify.(x)
-        elseif all(xi -> isa(xi, AbstractString), x)
-            return string.(x)
+    function _standardizecolumnformat(x, floatout=true, floattype=Float64)
+        if floatout
+            if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
+                return floatify.(x, floattype)
+            else
+                return string.(x)
+            end
         else
-            return x
+            if all(xi -> isa(xi, AbstractString), x)
+                return string.(x)
+            else
+                return x
+            end
         end
     end
 
@@ -317,17 +323,23 @@
     """
     ```julia
     elementify(data::Array, elements::Array=data[1,:];
-        \timportas=:Dict, floatout::Bool=true,
+        \timportas=:Dict, floatout::Bool=true, floattype=Float64,
         \tskipstart::Integer=1, skipnameless::Bool=true)
     ```
     Convert a flat array `data` into a dictionary (`importas=:Dict`) or named
     tuple (`importas=:Tuple`) with each column as a variable.
     Tuples are substantially more efficient, so should be favored where possible.
     """
-    function elementify(data::Array, elements::Array=data[1,:]; importas=:Dict, skipstart::Integer=1, floatout::Bool=true, skipnameless::Bool=true)
+    function elementify(data::Array, elements::Array=data[1,:]; importas=:Dict, skipstart::Integer=1, floatout::Bool=true, floattype=Float64, skipnameless::Bool=true)
         if importas == :Dict || importas==:dict
             # Output as dictionary
-            result = Dict()
+            if floatout
+                # Constrain types somewhat for a modicum of type-stability
+                result = Dict{String,Union{Vector{String}, Vector{Float64}}}()
+            else
+                result = Dict{String, Any}()
+            end
+
             if skipnameless
                 elements = elements[elements .!= ""]
             end
@@ -336,27 +348,26 @@
             # Parse the input array, minus empty-named columns
             for i = 1:length(elements)
                 if 1+skipstart == size(data,1)
-                    thiscol = data[end,i]
+                    column = data[end,i]
                 else
-                    thiscol = data[(1+skipstart):end,i]
+                    column = data[(1+skipstart):end,i]
                 end
-                floatcol = floatout && ( sum(plausiblynumeric.(thiscol)) >= sum(nonnumeric.(thiscol)) )
+                column_is_numeric = sum(plausiblynumeric.(column)) >= sum(nonnumeric.(column))
 
                 if haskey(result,elements[i])
                     # If key already exists
-                    if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
+                    if column_is_numeric && (floatout || (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
                         # If either this column or the existing one is plausibly numeric, average the two
-                        result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
+                        result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )
+                    elseif floatout
+                        # If neither is numeric, but floatout is set, must return a string
+                        result[elements[i]] = string.(result[elements[i]]) .* "|" .* string(lastcol)
                     else
-                        # If neither is plausibly numeric, just contatenate the columns and move on
-                        result[elements[i]] = hcat(result[elements[i]], thiscol)
+                        # If neither is plausibly numeric, contatenate the columns and move on
+                        result[elements[i]] = hcat(result[elements[i]], column)
                     end
-                elseif floatcol
-                    # If column is numeric
-                    result[elements[i]] = floatify.(thiscol)
                 else
-                    # If column is non-numeric
-                    result[elements[i]] = thiscol
+                    result[elements[i]] = _standardizecolumnformat(column, floatout, floattype)
                 end
             end
 
@@ -368,7 +379,7 @@
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
             elements = _sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = [_standardizecolumnformat(data[1+skipstart:end,i], floatout) for i in findall(t)]
+            values = [_standardizecolumnformat(data[1+skipstart:end,i], floatout, floattype) for i in findall(t)]
             return NamedTuple{symbols}(values)
         end
     end
@@ -549,14 +560,14 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; importas=:Dict, floatout::Bool=true, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+    function importdataset(filepath::AbstractString, delim::AbstractChar; importas=:Dict, floatout::Bool=true, floattype=Float64, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
         data = readdlm(filepath, delim, skipstart=skipstart)
         if mindefinedcolumns > 0
             definedcolumns = vec(sum(.~ isempty.(data), dims=2))
             t = definedcolumns .>= mindefinedcolumns
             data = data[t,:]
         end
-        return elementify(data, importas=importas, floatout=floatout, skipstart=1, skipnameless=skipnameless)
+        return elementify(data, importas=importas, floatout=floatout, floattype=floattype, skipstart=1, skipnameless=skipnameless)
     end
     export importdataset
 
