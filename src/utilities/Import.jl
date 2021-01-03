@@ -336,7 +336,7 @@
             if floatout
                 # Constrain types somewhat for a modicum of type-stability
                 if 1+skipstart == size(data,1)
-                    result = Dict{String,Union{String, Float64}}()
+                    result = Dict{String,Union{Vector{String}, String, Float64}}()
                 else
                     result = Dict{String,Union{Vector{String}, Vector{Float64}}}()
                 end
