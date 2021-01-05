@@ -437,7 +437,8 @@
                     modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
                 end
             end
-            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ sort(collect(keys(modes)))
+            minerals = sort(collect(keys(modes)))
+            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ minerals[.!containsi.(minerals, "feldspar") .& .!containsi.(minerals, "rhm_oxide")]
         else
             # Return empty dictionary if file doesn't exist
             modes = Dict()
