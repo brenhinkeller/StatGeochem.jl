@@ -438,7 +438,7 @@
                 end
             end
             minerals = sort(collect(keys(modes)))
-            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ minerals[.!containsi.(minerals, "feldspar") .& .!containsi.(minerals, "rhm_oxide")]
+            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ minerals[.!containsi.(minerals, "feldspar") .& .!containsi.(minerals, "rhm")]
         else
             # Return empty dictionary if file doesn't exist
             modes = Dict()
