@@ -1367,6 +1367,13 @@
     end
     export perplex_phase_is_melt
 
+    function perplex_phase_is_solid(phase_name)
+        !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
+        !any(contains.(perplex_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals"]))
+    end
+    export perplex_phase_is_solid
+    
+
 ## -- Zircon saturation calculations
 
     function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
