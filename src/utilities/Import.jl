@@ -282,11 +282,11 @@
 
     """
     ```julia
-    floatify(x)
+    floatify(x, T::Type=Float64)
     ```
-    Convert to a Float64 by any means necessary
+    Convert `x` to a float (default `Float64`) by any means necessary
     """
-    function floatify(x, T=Float64)
+    function floatify(x, T::Type=Float64)
         if isa(x, Number)
             T(x)
         elseif isa(x,AbstractString) && tryparse(T,x) != nothing
@@ -395,11 +395,16 @@
     """
     ```julia
     unelementify(dataset, elements;
-        \tfloatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+        \tfloatout::Bool=false,
+        \tfloattype=Float64,
+        \tfindnumeric::Bool=false,
+        \tskipnan::Bool=false,
+        \trows=:
+    )
     ```
     Convert a dict or named tuple of vectors into a 2-D array with variables as columns
     """
-    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, floattype=Float64, findnumeric::Bool=false, skipnan::Bool=false, rows=:)
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
@@ -419,21 +424,21 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{Float64}(undef,length(dataset[elements[1]]),length(elements))
+            result = Array{Float64}(undef, length(dataset[elements[1]][rows]), length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i = 1:length(elements)
-                result[:,i] = floatify.(dataset[elements[i]])
+                result[:,i] = floatify.(dataset[elements[i]][rows], floattype)
             end
         else
             # Allocate output Array{Any}
-            result = Array{Any}(undef,length(dataset[elements[1]])+1,length(elements))
+            result = Array{Any}(undef, length(dataset[elements[1]][rows])+1, length(elements))
 
             # Parse the input dict
             for i = 1:length(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = elements[i]
-                result[2:end,i] .= dataset[elements[i]]
+                result[2:end,i] .= dataset[elements[i]][rows]
 
                 # if `skipnan` is set, replace each NaN in the output array with
                 # an empty string ("") such that it is empty when printed to file
@@ -449,7 +454,7 @@
         end
         return result
     end
-    function unelementify(dataset::NamedTuple, elements=keys(dataset); floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=false)
+    function unelementify(dataset::NamedTuple, elements=keys(dataset); floatout::Bool=false, floattype=Float64, findnumeric::Bool=false, skipnan::Bool=false, rows=:)
         # Figure out how many are numeric (if necessary), so we can export only
         # those if `findnumeric` is set
         if findnumeric
@@ -459,21 +464,21 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{Float64}(undef,length(dataset[elements[1]]),length(elements))
+            result = Array{Float64}(undef,length(dataset[elements[1]][rows]),length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i = 1:length(elements)
-                result[:,i] = floatify.(dataset[elements[i]])
+                result[:,i] = floatify.(dataset[elements[i]][rows], floattype)
             end
         else
             # Allocate output Array{Any}
-            result = Array{Any}(undef,length(dataset[elements[1]])+1,length(elements))
+            result = Array{Any}(undef,length(dataset[elements[1]][rows])+1,length(elements))
 
             # Parse the input dict
             for i = 1:length(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = string(elements[i])
-                result[2:end,i] .= dataset[elements[i]]
+                result[2:end,i] .= dataset[elements[i]][rows]
 
                 # if `skipnan` is set, replace each NaN in the output array with
                 # an empty string ("") such that it is empty when printed to file
@@ -585,6 +590,7 @@
         \tskipnan::Bool=true,
         \tdigits::Integer,
         \tsigdigits::Integer
+        \trows=:
     )
     ```
     Convert a dict or named tuple of vectors into a 2-D array with variables as columns
@@ -606,9 +612,12 @@
 
         \tfindnumeric
     Export only numeric columns
+
+        \trows
+    specify which rows of the dataset to export (default `:` exports all rows)
     """
-    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
-        data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
+    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0, rows=:)
+        data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan, rows=rows)
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
         elseif digits > 0
@@ -616,8 +625,8 @@
         end
         return writedlm(filepath, data, delim)
     end
-    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0)
-        data = unelementify(dataset, elements, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan)
+    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0, rows=:)
+        data = unelementify(dataset, elements, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan, rows=rows)
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
         elseif digits > 0
