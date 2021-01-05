@@ -1357,22 +1357,22 @@
 
     function perplex_phase_is_fluid(phase_name)
         any(phase_name .== ["F", "WADDAH", "H2O"]) ||
-        any(contains.(perplex_name, ["Aq_", "F(", "Fluid"]))
+        any(contains.(phase_name, ["Aq_", "F(", "Fluid"]))
     end
     export perplex_phase_is_fluid
 
     function perplex_phase_is_melt(phase_name)
         any(phase_name .== ["h2oL", "abL", "anL", "diL", "enL", "faL", "kspL", "qL", "silL"]) ||
-        any(contains.(perplex_name, ["liq", "melt", "LIQ", "MELTS"]))
+        any(contains.(phase_name, ["liq", "melt", "LIQ", "MELTS"]))
     end
     export perplex_phase_is_melt
 
     function perplex_phase_is_solid(phase_name)
         !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
-        !any(contains.(perplex_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals"]))
+        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals"]))
     end
     export perplex_phase_is_solid
-    
+
 
 ## -- Zircon saturation calculations
 
