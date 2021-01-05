@@ -1288,6 +1288,74 @@
     end
     export perplex_query_system
 
+    # Translate between perplex names and germ names
+    function germ_perplex_name_matches(germ_name, perplex_name)
+        # Feldspar
+        if germ_name == "Albite"
+            any(perplex_name .== ["ab", "abh"])
+        elseif germ_name == "Anorthite"
+            perplex_name == "an"
+        elseif germ_name == "Orthoclase"
+            any(perplex_name .== ["mic", "Kf", "San", "San(TH)"])
+        # Amphibole
+        elseif germ_name == "Amphibole"
+            any(lowercase(perplex_name) .== ["gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts"]) ||
+            any(contains.(perplex_name, ["Amph", "GlTrTs", "Act(", "Anth"]))
+        # Mica
+        elseif germ_name == "Biotite"
+            any(perplex_name .== ["ann"]) ||
+            any(contains.(perplex_name, ["Bi(", "Bio("]))
+        elseif germ_name == "Phlogopite"
+            any(lowercase(perplex_name) .== ["naph", "phl"])
+        # Pyroxene
+        elseif germ_name == "Clinopyroxene"
+            any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd"]) ||
+            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"]))
+        elseif germ_name == "Orthopyroxene"
+            any(lowercase(perplex_name) .== ["en", "fs"]) ||
+            contains(perplex_name, "Opx")
+        # Cordierite
+        elseif germ_name == "Cordierite"
+            any(lowercase(perplex_name) .== ["crd", "fcrd", "hcrd", "mncrd"]) ||
+            contains(perplex_name, "Crd")
+        # Garnet
+        elseif germ_name == "Garnet"
+            any(lowercase(perplex_name) .== ["py", "spss", "alm", "andr", "gr"]) ||
+            any(contains.(perplex_name, ["Grt", "Gt(", "Maj"]))
+        # Oxides
+        elseif germ_name == "Ilmenite"
+            perplex_name == "ilm" || any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
+        elseif germ_name == "Magnetite"
+            perplex_name == "mt"
+        elseif germ_name == "Rutile"
+            perplex_name == "ru"
+        # Feldspathoids
+        elseif germ_name == "Leucite"
+            perplex_name == "lc"
+        elseif germ_name == "Nepheline"
+            perplex_name == "ne" || contains(perplex_name, "Neph")
+        # Olivine
+        elseif germ_name == "Olivine"
+            any(lowercase(perplex_name) .== ["fo", "fa"]) ||
+            any(contains.(perplex_name, ["O(", "Ol("]))
+        # Spinel
+        elseif germ_name == "Spinel"
+            any(lowercase(perplex_name) .== ["sp", "usp"]) ||
+            contains(perplex_name, "Sp(")
+        # Accessories
+        elseif germ_name == "Sphene"
+            perplex_name == "sph"
+        elseif germ_name == "Zircon"
+            perplex_name == "zrc"
+        elseif germ_name == "Baddeleyite"
+            perplex_name == "bdy"
+        else
+            false
+        end
+    end
+    export germ_perplex_name_matches
+
+
 ## -- Zircon saturation calculations
 
     function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
