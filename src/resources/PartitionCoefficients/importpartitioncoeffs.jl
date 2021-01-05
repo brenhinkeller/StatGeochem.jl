@@ -130,7 +130,8 @@
         savefig(h, "Calc_$(m)_REE.pdf")
     end
 
-    # Interpolate Eu partition coefficients given 60# Eu as Eu2+ and 40# as Eu3+
+    # Interpolate Eu partition coefficients where missing, assuming
+    # 60# Eu as Eu2+ (c.f. Ba, Sr, Ca) and 40# as Eu3+ (c.f. Sm, Gd)
     # for m in = ["Albite","Anorthite","Orthoclase","Apatite"]
     for m in pd["minerals"]
         for i = 1:length(pd["samples"])
