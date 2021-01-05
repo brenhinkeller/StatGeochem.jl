@@ -11,8 +11,8 @@
     filenames = readdir(path)
 
     # Load every `.tsv` file into a struct
-    pr = Dict()
-    pr["minerals"] = []
+    pr = Dict{String,Any}()
+    pr["minerals"] = String[]
     for n in filenames
         m = match(r"(.*).tsv", n)
         if ~ isnothing(m)
@@ -23,13 +23,14 @@
     end
 
     # Approximate content of various rock types, for when actual melt SiO2 not reported
-    str = ["basalt","andesit","dacit","rhyolit","hawaiite","alkali basalt","basanit","benmoreite","camptonite","eclogit","garnet pyroxenit","kimberlit","komatiit","lampro","latite","leucitit","lherzolit","mugearite","pantellerite","trachyt","peridotit","phonolit","picrit","syen","morb","tholeiit","tonalit","granodiorit","granit","shoshonit","carbonatit","aplite","monzonit"]
-    val = [49,57.5,67.5,73,48.5,47,44,57,42,49,49,40,45,46.5,62.5,47,42,52,73,61,42,59,45.5,61,49,50,65,67.5,72,55,2,73,67.4,]
-    err = [5,6.5,5.5,5,3.5,4,3,4,3,5,5,4,5,11.5,11.5,5,5,5,5,9,5,5,5.5,9,5,4,8,7.5,5,5,5,5,5,]
+    str = ["basalt","andesit","dacit","rhyolit","hawaiite","alkali basalt","basanit","benmoreite","camptonite","eclogit","garnet pyroxenit","kimberlit","komatiit","lampro","latite","leucitit","lherzolit","mugearite","pantellerite","trachyt","peridotit","phonolit","picrit","syen","morb","tholeiit","tonalit","granodiorit","granit","shoshonit","carbonatit","aplite","monzonit","synthetic"]
+    val = [49,57.5,67.5,73,48.5,47,44,57,42,49,49,40,45,46.5,62.5,47,42,52,73,61,42,59,45.5,61,49,50,65,67.5,72,55,2,73,67.4,60]
+    err = [5,6.5,5.5,5,3.5,4,3,4,3,5,5,4,5,11.5,11.5,5,5,5,5,9,5,5,5.5,9,5,4,8,7.5,5,5,5,5,5,20]
 
     # Determine the unique reference / rock type pairs
-    samples = []
-    elements = []
+    samples = Dict{String,Vector{Tuple{String,String,Float64,Float64}}}()
+    allsamples = Tuple{String,String,Float64,Float64}[]
+    allelements = String[]
     for m in pr["minerals"]
         if ~haskey(pr[m],"SiO2")
             pr[m]["SiO2"] = fill(NaN, size(pr[m]["Reference"]))
@@ -37,6 +38,7 @@
         if ~haskey(pr[m],"SiO2_sigma")
             pr[m]["SiO2_sigma"] = fill(NaN, size(pr[m]["Reference"]))
         end
+        # Estimate SiO2 from rock type
         needssi = isnan.(pr[m]["SiO2"])
         for i=1:length(str)
             t = containsi.(pr[m]["Rock Type"], str[i]) .& needssi
@@ -46,30 +48,32 @@
         end
 
         # Save unique samples
-        pr[m]["samples"] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
-        append!(samples, unique(pr[m]["samples"]))
+        println(m)
+        flush(stdout)
+        samples[m] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
+        append!(allsamples, unique(samples[m]))
 
         # Save unique elements
-        append!(elements, unique(pr[m]["Elem"]))
+        append!(allelements, unique(pr[m]["Elem"]))
     end
-    samples = sort(unique(samples))
-    elements = sort(unique(elements))
+    allsamples = sort(unique(allsamples))
+    allelements = sort(unique(allelements))
 
 
     # Second dict: sort the data by sample ID
-    pd = Dict()
-    pd["samples"] = samples
-    pd["Reference"] = samples .|> x -> x[1]
-    pd["Rock Type"] = samples .|> x -> x[2]
-    pd["SiO2"] = samples .|> x -> x[3]
-    pd["SiO2_sigma"] = samples .|> x -> x[4]
+    pd = Dict{String, Union{Vector, Dict{String, Union{Vector{Float64}, Vector{String}}}}}()
+    pd["samples"] = allsamples
+    pd["Reference"] = allsamples .|> x -> x[1]
+    pd["Rock Type"] = allsamples .|> x -> x[2]
+    pd["SiO2"] = allsamples .|> x -> x[3]
+    pd["SiO2_sigma"] = allsamples .|> x -> x[4]
     pd["minerals"] = pr["minerals"]
     for m in pd["minerals"]
-        pd[m] = Dict()
-        pd[m]["elements"] = elements
-        for e in elements
-            pd[m][e] = fill(NaN, length(samples))
-            pd[m][e*"_sigma"] = fill(NaN, length(samples))
+        pd[m] = Dict{String, Union{Vector{Float64}, Vector{String}}}()
+        pd[m]["elements"] = allelements
+        for e in allelements
+            pd[m][e] = fill(NaN, length(allsamples))
+            pd[m][e*"_sigma"] = fill(NaN, length(allsamples))
 
             t = pr[m]["Elem"] .== e
             kd = log10.(pr[m]["Value"][t])
@@ -78,7 +82,7 @@
             kdh = log10.(pr[m]["High"][t])
 
             if any(t)
-                rows = findmatches(pr[m]["samples"][t], samples)
+                rows = findmatches(samples[m][t], allsamples)
                 pd[m][e][rows] = nanmean([kd nanmean([kdl kdh], dim=2)], dim=2)
                 pd[m][e*"_sigma"][rows] = nanmean([kd_sigma (kdh .- kdl)/4], dim=2)
             end
@@ -139,13 +143,14 @@
 ## --- Convert data to average as a function of SiO2
 
     # Convert from row-based to Si-based Dict
-    kd = Dict()
+    kd = Dict{String, Union{Vector{String}, Vector{Float64}, Dict{String,Union{Float64, Vector{String}, Vector{Float64}}}}}()
     kd["minerals"] = pd["minerals"]
     for m in kd["minerals"]
-        kd[m] = Dict()
-        kd[m]["elements"] = elements
-        for e in elements
-            if nanrange(pd["SiO2"][.!isnan.(pd[m][e])]) > 5
+        kd[m] = Dict{String,Union{Float64, Vector{String}, Vector{Float64}}}()
+        kd[m]["elements"] = allelements
+        for e in allelements
+            t = .!isnan.(pd[m][e])
+            if any(t) && nanrange(pd["SiO2"][t]) > 5
                 kd[m][e] = mcfit(pd["SiO2"], pd["SiO2_sigma"], pd[m][e], pd[m][e*"_sigma"], 40, 80, 41, binwidth=5)[2]
             else
                 kd[m][e] = ones(41) * nanmean(pd[m][e])
@@ -153,20 +158,20 @@
             kd[m][e*"_sigma"] = nanstd(pd[m][e])
         end
     end
-    kd["SiO2"] = collect(40:80)
+    kd["SiO2"] = collect(40:80.)
 
     # Set Albite partiton coefficients
     for e in kd["Albite"]["elements"]
         kd["Albite"][e] = nanmean([kd["Albite"][e] kd["Orthoclase"][e] kd["Anorthite"][e]], dim=2)
     end
-    kd["note"] = "kd for Albite is nanmean of AlkaliFeldspar, Orthoclase, and Anorthite"
+    kd["note"] = ["kd for Albite is nanmean of AlkaliFeldspar, Orthoclase, and Anorthite",]
 
 ## --- Save results
 
     # using MAT
     # matwrite(joinpath(path,"partitioncoeffs.mat"),p)
-    f = open(joinpath(path,"PartitionCoefficients.jl"), "w")
-    print(f, "kd = $kd\nexport kd")
+    f = open(joinpath(path,"PartitionCoefficients.jl"), "a")
+    print(f, "\ngerm_kd = $kd\nexport germ_kd\n")
     close(f)
 
 ## --- End of File

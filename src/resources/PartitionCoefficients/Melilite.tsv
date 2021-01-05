@@ -1,0 +1,56 @@
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Chondritic Basalt	Melilite	4	Be			.53	1.86	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Melilite	21	Sc			.012	.022	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Melilite	56	Ba			.036	.064	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Melilite	57	La			.066	.29	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Melilite	58	Ce			.049	.208	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Chondritic Basalt	Melilite	69	Tm			.03	.143	Experimental	Beckett et al. 1990	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	13	Al			.28	.31	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	38	Sr			.1	.11	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	39	Y			.36	.53	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	40	Zr			.27	.44	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	57	La			.084	.13	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	62	Sm			.34	.53	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic Ak-Ge	Melilite	70	Yb			.34	.53	Experimental	Kuehner et al. 1989	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	21	Sc			.0565	.0814	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	57	La			.453	.497	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	62	Sm			.549	.667	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	63	Eu			.54	.615	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	65	Tb			.473	.499	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	70	Yb			.203	.24	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic CaO-MgO-Al2O3-SiO2-TiO2	Melilite	71	Lu			.216	.259	Experimental	Nagasawa et al. 1980	Solid-Melt		12-DEC-2000
+Synthetic Na2O-Al2O3-MgO-CaO-SiO2-TiO2	Mellilite	11	Na	.38	1.65			Experimental	Beckett & Stolper 2000	Solid-Melt		08-DEC-2008
+
+
+LINKS TO REFERENCES:
+Beckett et al. 1990 - https://earthref.org/cgi-bin/err.cgi?n=229
+Kuehner et al. 1989 - https://earthref.org/cgi-bin/err.cgi?n=153
+Nagasawa et al. 1980 - https://earthref.org/cgi-bin/err.cgi?n=213
+Beckett & Stolper 2000 - https://earthref.org/cgi-bin/err.cgi?n=413
+
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version: 
+Search Time: 05 January 2021 07:19:45 AM
+
+LINKS TO EARTHREF.ORG:
+Original search form - https://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=&term=&term_type=mineral&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Melilite&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=rock_type
+
+SEARCH VALUES:
+Search Term(s):  
+Rock Type: Any Rock Type
+Mineral: Melilite
+Element Family: Any Element Family
+Reference: Beckett et al. 1990
+Sort by: Rock Type
+
+</body></html>
