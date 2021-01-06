@@ -527,8 +527,8 @@
         \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        \tmodes::String="wt",  #["vol", "wt", "mol"]
-        \tunits::String="wt",  #["vol", "wt", "mol"]
+        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
         \tfluid_eos::Integer=5)
     ```
 
@@ -544,8 +544,8 @@
             npoints::Integer=100,
             solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
-            modes::String="wt",
-            units::String="wt",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
             fluid_eos::Integer=5
         )
 
@@ -565,9 +565,9 @@
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Specify whether we want volume or weight percentages
-        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
@@ -611,8 +611,8 @@
         \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        \tmodes::String="wt",  #["vol", "wt", "mol"]
-        \tunits::String="wt",  #["vol", "wt", "mol"]
+        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
         \tfluid_eos::Integer=5)
     ```
 
@@ -627,8 +627,8 @@
             npoints::Integer=100,
             solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
-            modes::String="wt",
-            units::String="wt",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
             fluid_eos::Integer=5
         )
 
@@ -648,9 +648,9 @@
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Specify whether we want volume or weight percentages
-        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
         # Options based on Perplex v6.8.7
@@ -690,8 +690,8 @@
         \tynodes::Integer=42,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        \tmodes::String="wt", #["vol", "wt", "mol"]
-        \tunits::String="wt", #["wt", "mol"]
+        \tmode_basis::String="vol", #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt", #["wt", "mol"]
         \tfluid_eos::Number=5)
     ```
 
@@ -707,8 +707,8 @@
             ynodes::Integer=42,
             solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
-            modes::String="wt",
-            units::String="wt",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
             fluid_eos::Number=5
         )
 
@@ -729,9 +729,9 @@
         system("sed -e \"s/y_nodes .*|/y_nodes                   $ynodes $ynodes |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Specify whether we want volume or weight percentages
-        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
-        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
         # Options based on Perplex v6.8.7
@@ -982,7 +982,8 @@
         fp = open(prefix*"werami.bat", "w")
         if dof == 1
             # v6.7.8, 1d path
-            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n0\n")
+            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+            # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
         elseif dof == 2
             # v6.7.8, 2d grid
             write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8
@@ -1014,11 +1015,12 @@
             total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             # Check if perplex is messing up and outputting mole proportions
             if nanmean(total_weight) < 50
-                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
-                for col = findall(t)
-                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-                end
-                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
+                # Attempt to change back to weight percentages
+                # for col = findall(t)
+                #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                # end
+                # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             end
             data[2:end,t] .*= 100 ./ total_weight
 
@@ -1082,11 +1084,12 @@
             total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             # Check if perplex is messing up and outputting mole proportions
             if nanmean(total_weight) < 50
-                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
-                for col = findall(t)
-                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-                end
-                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
+                # , attempting to correct
+                # for col = findall(t)
+                #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                # end
+                # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             end
             data[2:end,t] .*= 100 ./ total_weight
 
