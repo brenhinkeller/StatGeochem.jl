@@ -135,7 +135,9 @@
     """
     ```julia
     melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
-        \telements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];)
+        \telements::Array,
+        \tT_range::Array=[1400, 600],
+        \tP_range::Array=[10000,10000];)
     ```
     Configure and run a MELTS simulation using alphaMELTS. Optional keyword arguments and defaults:
 
@@ -520,9 +522,14 @@
     perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
-        \tdataset::String="hp02ver.dat", index::Integer=1, npoints::Integer=100,
+        \tdataset::String="hp02ver.dat",
+        \tindex::Integer=1,
+        \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Integer=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmodes::String="wt",  #["vol", "wt", "mol"]
+        \tunits::String="wt",  #["vol", "wt", "mol"]
+        \tfluid_eos::Integer=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
@@ -530,11 +537,17 @@
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
     function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
-        dataset::String="hp02ver.dat", index::Integer=1, npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Integer=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
+            dataset::String="hp02ver.dat",
+            index::Integer=1,
+            npoints::Integer=100,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            modes::String="wt",
+            units::String="wt",
+            fluid_eos::Integer=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -550,6 +563,11 @@
 
         # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
@@ -588,20 +606,31 @@
     perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
         \tP::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
-        \tdataset::String="hp11ver.dat", index::Integer=1, npoints::Integer=100,
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Integer=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmodes::String="wt",  #["vol", "wt", "mol"]
+        \tunits::String="wt",  #["vol", "wt", "mol"]
+        \tfluid_eos::Integer=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
     function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
-        dataset::String="hp11ver.dat", index::Integer=1, npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Integer=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
+            dataset::String="hp11ver.dat",
+            index::Integer=1,
+            npoints::Integer=100,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            modes::String="wt",
+            units::String="wt",
+            fluid_eos::Integer=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -617,6 +646,11 @@
 
         # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
         # Options based on Perplex v6.8.7
@@ -650,20 +684,33 @@
     perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
-        \tdataset::String="hp11ver.dat", index::Integer=1, xnodes::Integer=42, ynodes::Integer=42,
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \txnodes::Integer=42,
+        \tynodes::Integer=42,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Number=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmodes::String="wt", #["vol", "wt", "mol"]
+        \tunits::String="wt", #["wt", "mol"]
+        \tfluid_eos::Number=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition across an entire
-    2d P-T space. P specified in bar and T in Kelvin
+    2d P-T space. P specified in bar and T in Kelvin.
     """
     function perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
-        dataset::String="hp11ver.dat", index::Integer=1, xnodes::Integer=42, ynodes::Integer=42,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Number=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
+            dataset::String="hp11ver.dat",
+            index::Integer=1,
+            xnodes::Integer=42,
+            ynodes::Integer=42,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            modes::String="wt",
+            units::String="wt",
+            fluid_eos::Number=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -680,6 +727,11 @@
         # Edit data files to specify number of nodes at which to solve
         system("sed -e \"s/x_nodes .*|/x_nodes                   $xnodes $xnodes |/\" -i.backup $(prefix)perplex_option.dat")
         system("sed -e \"s/y_nodes .*|/y_nodes                   $ynodes $ynodes |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $modes |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $units |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $units |/\" -i.backup $(prefix)perplex_option.dat")
 
         # Create build batch file
         # Options based on Perplex v6.8.7
