@@ -1467,6 +1467,13 @@
 
 ## -- Zircon saturation calculations
 
+    """
+    ```julia
+    M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate zircon saturation M-value based on major element concentrations
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
     function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
         #Cations
         Na = Na2O/30.9895
@@ -1513,6 +1520,7 @@
 
         return (Na + K + 2*Ca)./(Al .* Si)
     end
+    export tzircM
 
     """
     ```julia
