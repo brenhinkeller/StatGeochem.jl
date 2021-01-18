@@ -574,7 +574,7 @@
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
 
@@ -658,7 +658,7 @@
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
@@ -739,7 +739,7 @@
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
 
         # Whole-rock composition
