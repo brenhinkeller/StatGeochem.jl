@@ -38,7 +38,7 @@ module StatGeochem
     include("utilities/Changepoint.jl")
 
     using IndirectArrays: IndirectArray
-    using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
+    using Colors: Color, ColorTypes, RGBX, RGB, N0f8
     include("resources/Colormaps.jl")
 
     include("resources/Chemistry.jl")
