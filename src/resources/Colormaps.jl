@@ -87,6 +87,61 @@
     lines = parse.(Colorant, ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F",])
     export lines
 
+    # Consistent mineral color dictionary
+    mineralcolors=Dict{String,Color}()
+    mineralcolors["quartz"] = parse(Colorant, "#803c92")
+
+    mineralcolors["garnet"] = parse(Colorant, "#741d2d")
+    mineralcolors["pyrope"] = parse(Colorant, "#9a1d36")
+    mineralcolors["almandine"] = parse(Colorant, "#ae1921")
+    mineralcolors["grossular"] = parse(Colorant, "#953d31")
+    mineralcolors["andradite"] = parse(Colorant, "#71331b")
+
+    mineralcolors["amphibole"] = parse(Colorant, "#4F6518")
+    mineralcolors["clinoamphibole"] = parse(Colorant, "#4F6500")
+    mineralcolors["orthoamphibole"] = parse(Colorant, "#4F6535")
+
+    mineralcolors["pyroxene"] = parse(Colorant, "#343628")
+    mineralcolors["clinopyroxene"] = parse(Colorant, "#262f01")
+    mineralcolors["orthopyroxene"] = parse(Colorant, "#7e5933")
+    mineralcolors["diopside"] = parse(Colorant, "#324b3a")
+    mineralcolors["omphacite"] = parse(Colorant, "#34781b")
+    mineralcolors["enstatite"] = parse(Colorant, "#37350e")
+    mineralcolors["ferrosilite"] = parse(Colorant, "#3c1c07")
+
+    mineralcolors["olivine"] = parse(Colorant, "#5b9d00")
+    mineralcolors["forsterite"] = parse(Colorant, "#5bad00")
+    mineralcolors["fayalite"] = parse(Colorant, "#6b8d00")
+
+    mineralcolors["feldspar"] = parse(Colorant, "#00afa9")
+    mineralcolors["microcline"] = parse(Colorant, "#00afa9")
+    mineralcolors["orthoclase"] = parse(Colorant, "#ef9e90")
+    mineralcolors["albite"] = parse(Colorant, "#00AAAE")
+    mineralcolors["anorthite"] = parse(Colorant, "#00A98D")
+
+    mineralcolors["muscovite"] = parse(Colorant, "#b294a9")
+    mineralcolors["white mica"] = parse(Colorant, "#b294a9")
+    mineralcolors["biotite"] = parse(Colorant, "#4f3114")
+    mineralcolors["annite"] = parse(Colorant, "#4f3114")
+    mineralcolors["phlogopite"] = parse(Colorant, "#b19259")
+
+    mineralcolors["epidote"] = parse(Colorant, "#afc037")
+    mineralcolors["zoisite"] = parse(Colorant, "#93871d")
+    mineralcolors["clinozoisite"] = parse(Colorant, "#93871d")
+
+    mineralcolors["apatite"] = parse(Colorant, "#277e85")
+    mineralcolors["sphene"] = parse(Colorant, "#9CD356")
+    mineralcolors["zircon"] = parse(Colorant, "#0079a5")
+
+    mineralcolors["magnetite"] = parse(Colorant, "#1d2523")
+    mineralcolors["ilmenite"] = parse(Colorant, "#282a27")
+    mineralcolors["hematite"] = parse(Colorant, "#40211f")
+    mineralcolors["rutile"] = parse(Colorant, "#360216")
+
+    mineralcolors["fluid"] = parse(Colorant, "#4DBEEE")
+    mineralcolors["melt"] = parse(Colorant, "#A2142F")
+    export mineralcolors
+
     struct AllColormaps
         hesperia
         magma
