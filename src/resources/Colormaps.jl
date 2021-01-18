@@ -131,7 +131,7 @@
     mineralcolors["white mica"] = parse(Color, "#b294a9")
     mineralcolors["biotite"] = parse(Color, "#4f3114")
     mineralcolors["annite"] = parse(Color, "#4f3114")
-    mineralcolors["phlogopite"] = parse(Color, "#b19259")
+    mineralcolors["phlogopite"] = parse(Color, "#684a36")
     mineralcolors["pyrophyllite"] = parse(Color, "#dfbf7d")
     mineralcolors["chlorite"] = parse(Color, "#5d8d71")
     mineralcolors["talc"] = parse(Color, "#92a1a1")
@@ -143,6 +143,9 @@
     mineralcolors["k-feldspar"] = parse(Color, "#ef9e90")
     mineralcolors["albite"] = parse(Color, "#70b0c0")
     mineralcolors["anorthite"] = parse(Color, "#7f9fad")
+    mineralcolors["nepheline"] = parse(Color, "#9d9e9b")
+    mineralcolors["leucite"] = parse(Color, "#e8c383")
+    mineralcolors["sodalite"] = parse(Color, "#202f94")
 
     mineralcolors["quartz"] = parse(Color, "#803c92")
 
@@ -155,6 +158,9 @@
     mineralcolors["sillimanite"] = parse(Color, "#b19259")
 
     mineralcolors["apatite"] = parse(Color, "#277e85")
+    mineralcolors["monazite"] = parse(Color, "#f37f14")
+    mineralcolors["xenotime"] = parse(Color, "#73240d")
+    mineralcolors["allanite"] = parse(Color, "#503c6c")
     mineralcolors["sphene"] = parse(Color, "#9CD356")
     mineralcolors["zircon"] = parse(Color, "#0079a5")
 
@@ -165,6 +171,7 @@
     mineralcolors["ilmenite"] = parse(Color, "#282a27")
     mineralcolors["hematite"] = parse(Color, "#40211f")
     mineralcolors["rutile"] = parse(Color, "#360216")
+    mineralcolors["corundum"] = parse(Color, "#8c3464")
 
     mineralcolors["goethite"] = parse(Color, "#796367")
     mineralcolors["brucite"] = parse(Color, "#cdc646")
@@ -173,6 +180,14 @@
     mineralcolors["dolomite"] = parse(Color, "#eccdc3")
     mineralcolors["siderite"] = parse(Color, "#6c462d")
     mineralcolors["rhodochrosite"] = parse(Color, "#cc0153")
+    mineralcolors["malachite"] = parse(Color, "#068671")
+    mineralcolors["azurite"] = parse(Color, "#102ca8")
+
+    mineralcolors["pyrite"] = parse(Color, "#cab360")
+    mineralcolors["proustite"] = parse(Color, "#94120a")
+    mineralcolors["pyrargyrite"] = parse(Color, "#6f0921")
+    mineralcolors["crocoite"] = parse(Color, "#e73b20")
+    mineralcolors["orpiment"] = parse(Color, "#b15f28")
 
     mineralcolors["fluid"] = parse(Color, "#4DBEEE")
     mineralcolors["melt"] = parse(Color, "#A2142F")
