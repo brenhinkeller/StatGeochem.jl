@@ -1458,6 +1458,12 @@
         t = name .== abbreviations
         if any(t)
             common_names[findfirst(t)]
+        elseif contains(name,"anorthite")
+            "anorthite"
+        elseif contains(name,"albite")
+            "albite"
+        elseif contains(name,"orthoclase")
+            "orthoclase"
         else
             name
         end
