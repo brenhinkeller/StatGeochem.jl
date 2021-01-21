@@ -313,9 +313,9 @@
     end
 
     function _sanitizevarname(s::AbstractString)
-        s = replace(s, r" " => "_")
-        s = replace(s, r"[^a-zA-Z0-9_]" => "")
-        s = replace(s, r"^([^a-zA-Z])" => s"_\1")
+        s = replace(s, r"[\[\](){}]" => "") # Remove parentheses entirely
+        s = replace(s, r"^([0-9])" => s"_\1") # Can't begin with a number
+        s = replace(s, r"([\0-\x1F -/:-@\[-`{-~])" => s"_") # Everything else becomes an underscore
         return s
     end
 
