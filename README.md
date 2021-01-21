@@ -1,5 +1,8 @@
 # StatGeochem.jl
-Some computational tools for geochemistry
+
+[![Build Status](https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg)](https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI)
+
+> Some computational tools for geochemistry
 
 ## Installation
 
