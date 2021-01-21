@@ -574,18 +574,19 @@
 
 ## --- Renormalization of imported datasets
 
-    function renormalize!(dataset::Dict, elements::Array=sort(collect(keys(dataset))); total::Number=1)
-        current_sum = zeros(size(dataset[elements[1]]))
+    function renormalize!(dataset::Union{Dict,NamedTuple}, elements=keys(dataset); total=1.0)
+        # Note that this assumes all variables in the dataset are the same length!
+        current_sum = zeros(size(dataset[first(keys(dataset))]))
         for e in elements
             current_sum .+= dataset[e] .|> x -> isnan(x) ? 0 : x
         end
-        current_sum[current_sum .== 0] .= NaN
+        current_sum[current_sum .== 0] .= NaN 
 
         for e in elements
             dataset[e] .*= total ./ current_sum
         end
     end
-    function renormalize!(A::AbstractArray{<:Number}; dim::Number=0, total::Number=1)
+    function renormalize!(A::AbstractArray; dim::Number=0, total=1.0)
         current_sum = nansum(A, dim=dim)
         A .*= total ./ current_sum
     end
