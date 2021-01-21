@@ -609,7 +609,7 @@
 
     Possible keyword arguments include:
 
-        \importas
+        \timportas
     Specify the format of the imported dataset. Options include `:Dict` and `:Tuple`
 
         \tstandardize
