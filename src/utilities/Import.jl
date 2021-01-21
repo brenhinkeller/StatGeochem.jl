@@ -616,11 +616,11 @@
     Convert columns to uniform type wherever possible. Boolean; `true` by default.
 
         \tfloattype
-    Preferred floating-point type for numerical data. `Float64` by default
+    Preferred floating-point type for numerical data. `Float64` by default.
 
         \tskipstart
     Ignore this many rows at the start of the input file (useful if input file has
-    a header or other text before the column names). `0` by default
+    a header or other text before the column names). `0` by default.
 
         \tskipnameless
     Skip columns with no column name. Boolean; `true` by default
@@ -676,19 +676,21 @@
 
         \tdigits
         \tsigdigits
-    Specify a number of absolute or significant digits to which to round the printed output
+    Specify a number of absolute or significant digits to which to round the printed output.
+    Default is no rounding.
 
         \tskipnan
-    Leave `NaN`s as empty cells in the delimited output file
+    Leave `NaN`s as empty cells in the delimited output file. Boolean; `true` by default.
 
         \tfloatout
-    Force all output to be represented as a floating-point number, or else `NaN`
+    Force all output to be represented as a floating-point number, or else `NaN`.
+    Boolean; `false` by default.
 
         \tfindnumeric
-    Export only numeric columns
+    Export only numeric columns. Boolean; `false` by default.
 
         \trows
-    specify which rows of the dataset to export (default `:` exports all rows)
+    specify which rows of the dataset to export. Default `:` exports all rows.
     """
     function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar;
             floatout::Bool=false,
