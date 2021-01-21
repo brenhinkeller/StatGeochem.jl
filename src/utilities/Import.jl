@@ -284,7 +284,7 @@
     ```julia
     floatify(x, T::Type=Float64)
     ```
-    Convert `x` to a float (default `Float64`) by any means necessary
+    Convert `x` to a floating-point number (default `Float64`) by any means necessary
     """
     function floatify(x, T::Type=Float64)
         if isa(x, Number)
@@ -296,8 +296,8 @@
         end
     end
 
-    function _standardizecolumnformat(x, floatout=true, floattype=Float64)
-        if floatout
+    function _columnformat(x, standardize=true, floattype=Float64)
+        if standardize
             if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
                 return floatify.(x, floattype)
             else
@@ -323,17 +323,27 @@
     """
     ```julia
     elementify(data::Array, elements::Array=data[1,:];
-        \timportas=:Dict, floatout::Bool=true, floattype=Float64,
-        \tskipstart::Integer=1, skipnameless::Bool=true)
+        \timportas=:Dict,
+        \tstandardize::Bool=true,
+        \tfloattype=Float64,
+        \tskipstart::Integer=1,
+        \tskipnameless::Bool=true
+    )
     ```
     Convert a flat array `data` into a dictionary (`importas=:Dict`) or named
     tuple (`importas=:Tuple`) with each column as a variable.
     Tuples are substantially more efficient, so should be favored where possible.
     """
-    function elementify(data::Array, elements::Array=data[1,:]; importas=:Dict, skipstart::Integer=1, floatout::Bool=true, floattype=Float64, skipnameless::Bool=true)
+    function elementify(data::Array, elements::Array=data[1,:];
+            importas=:Dict,
+            skipstart::Integer=1,
+            standardize::Bool=true,
+            floattype=Float64,
+            skipnameless::Bool=true
+        )
         if importas == :Dict || importas==:dict
             # Output as dictionary
-            if floatout
+            if standardize
                 # Constrain types somewhat for a modicum of type-stability
                 if 1+skipstart == size(data,1)
                     result = Dict{String,Union{Vector{String}, String, Float64}}()
@@ -362,18 +372,18 @@
 
                 if haskey(result,elements[i])
                     # If key already exists
-                    if column_is_numeric && (floatout || (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
+                    if column_is_numeric && (standardize || (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
                         # If either this column or the existing one is plausibly numeric, average the two
                         result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )
-                    elseif floatout
-                        # If neither is numeric, but floatout is set, must return a string
+                    elseif standardize
+                        # If neither is numeric, but standardize is set, must return a string
                         result[elements[i]] = string.(result[elements[i]]) .* "|" .* string(lastcol)
                     else
                         # If neither is plausibly numeric, contatenate the columns and move on
                         result[elements[i]] = hcat(result[elements[i]], column)
                     end
                 else
-                    result[elements[i]] = _standardizecolumnformat(column, floatout, floattype)
+                    result[elements[i]] = _columnformat(column, standardize, floattype)
                 end
             end
 
@@ -385,7 +395,7 @@
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
             elements = _sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = [_standardizecolumnformat(data[1+skipstart:end,i], floatout, floattype) for i in findall(t)]
+            values = [_columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t)]
             return NamedTuple{symbols}(values)
         end
     end
@@ -404,7 +414,13 @@
     ```
     Convert a dict or named tuple of vectors into a 2-D array with variables as columns
     """
-    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset))); floatout::Bool=false, floattype=Float64, findnumeric::Bool=false, skipnan::Bool=false, rows=:)
+    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset)));
+            floatout::Bool=false,
+            floattype=Float64,
+            findnumeric::Bool=false,
+            skipnan::Bool=false,
+            rows=:
+        )
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
@@ -454,7 +470,13 @@
         end
         return result
     end
-    function unelementify(dataset::NamedTuple, elements=keys(dataset); floatout::Bool=false, floattype=Float64, findnumeric::Bool=false, skipnan::Bool=false, rows=:)
+    function unelementify(dataset::NamedTuple, elements=keys(dataset);
+            floatout::Bool=false,
+            floattype=Float64,
+            findnumeric::Bool=false,
+            skipnan::Bool=false,
+            rows=:
+        )
         # Figure out how many are numeric (if necessary), so we can export only
         # those if `findnumeric` is set
         if findnumeric
@@ -464,7 +486,7 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{Float64}(undef,length(dataset[elements[1]][rows]),length(elements))
+            result = Array{floattype}(undef,length(dataset[elements[1]][rows]),length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i = 1:length(elements)
@@ -571,14 +593,66 @@
 
 ## --- High-level import/export functions
 
-    function importdataset(filepath::AbstractString, delim::AbstractChar; importas=:Dict, floatout::Bool=true, floattype=Float64, skipstart::Integer=0, skipnameless::Bool=true, mindefinedcolumns::Integer=0)
+    """
+    ```julia
+    function importdataset(filepath, delim;
+        \timportas=:Dict,
+        \tstandardize::Bool=true,
+        \tfloattype=Float64,
+        \tskipstart::Integer=0,
+        \tskipnameless::Bool=true,
+        \tmindefinedcolumns::Integer=0
+    )
+    ```
+    Import a delimited file specified by `filepath` with delimiter `delim` as a
+    dataset in the form of either a `Dict` or a `NamedTuple`.
+
+    Possible keyword arguments include:
+
+        \importas
+    Specify the format of the imported dataset. Options include `:Dict` and `:Tuple`
+
+        \tstandardize
+    Convert columns to uniform type wherever possible. Boolean; `true` by default.
+
+        \tfloattype
+    Preferred floating-point type for numerical data. `Float64` by default
+
+        \tskipstart
+    Ignore this many rows at the start of the input file (useful if input file has
+    a header or other text before the column names). `0` by default
+
+        \tskipnameless
+    Skip columns with no column name. Boolean; `true` by default
+
+        \tmindefinedcolumns
+    Skip rows with fewer than this number of delimiters. `0` by default.
+    """
+    function importdataset(filepath::AbstractString, delim::AbstractChar;
+            importas=:Dict,
+            standardize::Bool=true,
+            floattype=Float64,
+            skipstart::Integer=0,
+            skipnameless::Bool=true,
+            mindefinedcolumns::Integer=0
+        )
+
+        # Read file
         data = readdlm(filepath, delim, skipstart=skipstart)
+        # Exclude rows with fewer than `mindefinedcolumns` columns
         if mindefinedcolumns > 0
             definedcolumns = vec(sum(.~ isempty.(data), dims=2))
             t = definedcolumns .>= mindefinedcolumns
             data = data[t,:]
         end
-        return elementify(data, importas=importas, floatout=floatout, floattype=floattype, skipstart=1, skipnameless=skipnameless)
+
+        return elementify(data,
+            importas=importas,
+            standardize=standardize,
+            floattype=floattype,
+            skipstart=1,
+            skipnameless=skipnameless
+        )
     end
     export importdataset
 
@@ -616,22 +690,59 @@
         \trows
     specify which rows of the dataset to export (default `:` exports all rows)
     """
-    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0, rows=:)
-        data = unelementify(dataset, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan, rows=rows)
+    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar;
+            floatout::Bool=false,
+            findnumeric::Bool=false,
+            skipnan::Bool=true,
+            digits::Integer=0,
+            sigdigits::Integer=0,
+            rows=:
+        )
+
+        # Convert dataset to flat 2d array
+        data = unelementify(dataset,
+            floatout=floatout,
+            findnumeric=findnumeric,
+            skipnan=skipnan,
+            rows=rows
+        )
+
+        # Round output if applicable
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
         elseif digits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
         end
+
+        # Write to file
         return writedlm(filepath, data, delim)
     end
-    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar; floatout::Bool=false, findnumeric::Bool=false, skipnan::Bool=true, digits::Integer=0, sigdigits::Integer=0, rows=:)
-        data = unelementify(dataset, elements, floatout=floatout, findnumeric=findnumeric, skipnan=skipnan, rows=rows)
+    # As above, but specifying which elements to export
+    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar;
+            floatout::Bool=false,
+            findnumeric::Bool=false,
+            skipnan::Bool=true,
+            digits::Integer=0,
+            sigdigits::Integer=0,
+            rows=:
+        )
+
+        # Convert dataset to flat 2d array
+        data = unelementify(dataset, elements,
+            floatout=floatout,
+            findnumeric=findnumeric,
+            skipnan=skipnan,
+            rows=rows
+        )
+
+        # Round output if applicable
         if sigdigits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
         elseif digits > 0
             data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
         end
+
+        # Write to file
         return writedlm(filepath, data, delim)
     end
     export exportdataset
