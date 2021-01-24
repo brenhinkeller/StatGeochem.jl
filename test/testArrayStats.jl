@@ -27,6 +27,7 @@
     A = fill(NaN,10)
     @test nansum(A) == 0
     @test isnan(nanmean(A))
+    @test isnan(nanmean(A, ones(10)))
     @test isnan(nanrange(A))
     @test isnan(nanminimum(A))
     @test isnan(nanmaximum(A))
@@ -40,6 +41,7 @@
     @test StatGeochem.nanmax(1,2) == 2
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
+    @test nanmean(A, ones(10)) == 5.5
     @test nanrange(A) == 9.0
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
@@ -56,6 +58,7 @@
     @test StatGeochem.nanmax(1,2) == 2
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
+    @test nanmean(A, ones(10)) == 5.5
     @test nanrange(A) == 9.0
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
@@ -71,6 +74,7 @@
     @test StatGeochem.nanmax(1,2) == 2
     @test nansum(A) == 55.0
     @test nanmean(A) == 5.5
+    @test nanmean(A, ones(10)) == 5.5
     @test nanrange(A) == 9.0
     @test nanminimum(A) == 1.0
     @test nanmaximum(A) == 10.0
@@ -87,8 +91,10 @@
     @test nanminimum(A, dims=2) == minimum(A, dims=2)
     @test nanmaximum(A, dims=1) == maximum(A, dims=1)
     @test nanmaximum(A, dims=2) == maximum(A, dims=2)
-    @test nanmean(A, dims=1) == mean(A, dims=1) == nanmean(A, ones(size(A)), dims=1)
-    @test nanmean(A, dims=2) == mean(A, dims=2) == nanmean(A, ones(size(A)), dims=2)
+    @test nanmean(A, dims=1) == mean(A, dims=1)
+    @test nanmean(A, dims=2) == mean(A, dims=2)
+    @test nanmean(A, ones(size(A)), dims=1) == mean(A, dims=1)
+    @test nanmean(A, ones(size(A)), dims=2) == mean(A, dims=2)
     @test nanstd(A, dims=1) ≈ std(A, dims=1)
     @test nanstd(A, dims=2) ≈ std(A, dims=2)
     @test nanmad(A, dims=1) == [25.0 25.0 25.0]
@@ -107,8 +113,10 @@
     @test nanminimum(A, dims=2) == minimum(A, dims=2)
     @test nanmaximum(A, dims=1) == maximum(A, dims=1)
     @test nanmaximum(A, dims=2) == maximum(A, dims=2)
-    @test nanmean(A, dims=1) == mean(A, dims=1) == nanmean(A, ones(size(A)), dims=1)
-    @test nanmean(A, dims=2) == mean(A, dims=2) == nanmean(A, ones(size(A)), dims=2)
+    @test nanmean(A, dims=1) == mean(A, dims=1)
+    @test nanmean(A, dims=2) == mean(A, dims=2)
+    @test nanmean(A, ones(size(A)), dims=1) == mean(A, dims=1)
+    @test nanmean(A, ones(size(A)), dims=2) == mean(A, dims=2)
     @test nanstd(A, dims=1) ≈ std(A, dims=1)
     @test nanstd(A, dims=2) ≈ std(A, dims=2)
     @test nanmad(A, dims=1) == [25.0 25.0 25.0]
@@ -126,7 +134,7 @@
     @test nanmean([1:100..., 1], [1:100..., NaN], 0, 100, 3) == [17, 50, 83]
     @test nanmean(1:100, reshape(1:300,100,3), 0, 100, 3) ==
                 [17.0 117.0 217.0; 50.0 150.0 250.0; 83.0 183.0 283.0]
-    # Weighted versions
+    # Weighted means
     @test nanmean([1:100..., 1], [1:100..., NaN], ones(100), 0,100,3) == [17, 50, 83]
     @test nanmean(1:100, reshape(1:300,100,3), ones(100), 0, 100, 3) ==
                 [17.0 117.0 217.0; 50.0 150.0 250.0; 83.0 183.0 283.0]
