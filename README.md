@@ -1,5 +1,7 @@
 # StatGeochem.jl
 [![Build Status](https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg)](https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI)
+[![codecov.io][codecov-img]][codecov-url]
+
 
 _Some computational tools for geochemistry_
 
