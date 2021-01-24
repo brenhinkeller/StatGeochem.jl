@@ -9,9 +9,11 @@
     @test normpdf.(1:10, 1:10, 1:10) ≈ normpdf(collect.((1:10, 1:10, 1:10))...)
 
     @test normpdf_ll.(0,1,-5:5) == -(-5:5).^2/2
-    @test normpdf_ll(0,1,-5:5) ≈ sum(normpdf_ll.(0,1,-5:5))
+    r = collect(-5:5)
+    @test normpdf_ll(0,1,r) == normpdf_ll(0,ones(11),r) == normpdf_ll(zeros(11),ones(11),r) == sum(normpdf_ll.(0,1,r))
     @test normpdf_ll(ones(10),1,collect(1:10)) == normpdf_ll(collect(1:10),1,ones(10))
 
+    @test normcdf(1,1,1) == 0.5
     result = zeros(5)
     normcdf!(result, 0, 1, -2:2)
     @test result ≈ normcdf(0,1,-2:2) ≈ normcdf.(0,1,-2:2) ≈ [0.02275013194817921, 0.15865525393145707, 0.5, 0.8413447460685429, 0.9772498680518208]
