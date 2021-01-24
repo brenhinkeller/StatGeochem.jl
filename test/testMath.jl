@@ -42,9 +42,17 @@
 
 ## --- Weighted means
 
+    # Plain vanilla weighted mean
+    @test awmean([0,1,2,3],[1,1,1,1]) == (1.5, 0.5, 5/3)
     @test awmean(1:10,ones(10)) == (5.5, 0.31622776601683794, 9.166666666666666)
+
+    # Weighted mean with geochronogists' MSWD-correction to uncertainty
+    @test gwmean([0,1,2,3],[1,1,1,1]) == (1.5, 0.6454972243679028, 5/3)
     @test gwmean(1:10,ones(10)) == (5.5, 0.9574271077563381, 9.166666666666666)
-    @test MSWD(0:10, ones(11)) ≈ 11
+
+    # Mean Square of Weighted Deviates (aka reduced chi-squared)
+    @test MSWD(0:10, ones(11)) == 11
+    @test MSWD([0,1,2],[1,1,1]) == 1.0
 
 ## --- York fit
 
