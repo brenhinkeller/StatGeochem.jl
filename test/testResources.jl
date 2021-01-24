@@ -17,6 +17,8 @@
 
 ## --- Colormaps.jl
 
+   using Colors: Color
+
    cmap = resize_colormap(viridis, 10)
    @test length(cmap) == 10
    @test isa(cmap, Array{<:Color,1})
