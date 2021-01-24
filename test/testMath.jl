@@ -15,7 +15,7 @@
     result = zeros(5)
     normcdf!(result, 0, 1, -2:2)
     @test result ≈ normcdf(0,1,-2:2) ≈ normcdf.(0,1,-2:2) ≈ [0.02275013194817921, 0.15865525393145707, 0.5, 0.8413447460685429, 0.9772498680518208]
-    @test normcdf.(1:10, 1:10, 1:10) == normcdf(1:10, 1:10, 1:10) == normcdf(collect.((1:10, 1:10, 1:10))...) == fill(0.5, 10)
+    @test normcdf.(1:10, 1:10, 1:10) == normcdf(collect.((1:10, 1:10, 1:10))...) == fill(0.5, 10)
 
     @test normproduct(0,1,0,1) === normpdf(0,sqrt(2),0) === 0.28209479177387814
     @test normproduct_ll(0,1,0,1) === normpdf_ll(0,1,0) === 0.0
