@@ -574,23 +574,43 @@
 
 ## --- Renormalization of imported datasets
 
+    """
+    ```julia
+    renormalize!(A::AbstractArray; dim, total=1.0)
+    ```
+    Normalize an array `A` in place such that it sums to `total`. Optionally may
+    specify a dimension `dim` along which to normalize.
+    """
+    function renormalize!(A::AbstractArray; dim::Number=0, total=1.0)
+        current_sum = nansum(A, dim=dim)
+        A .*= total ./ current_sum
+    end
+    """
+    ```julia
+    renormalize!(dataset, [elements]; total=1.0)
+    ```
+    Normalize in-place a (i.e., compositional) `dataset` defined by a `Dict` or
+    `NamedTuple` of one-dimensional numerical arrays, such that all the `elements`
+    (i.e., variables -- by default all keys in the datset) sum to a given `total`
+    (by default, `1.0`).
+
+    Note that the arrays representing each element or variable are assumed to be
+    of uniform length
+    """
     function renormalize!(dataset::Union{Dict,NamedTuple}, elements=keys(dataset); total=1.0)
         # Note that this assumes all variables in the dataset are the same length!
         current_sum = zeros(size(dataset[first(keys(dataset))]))
         for e in elements
             current_sum .+= dataset[e] .|> x -> isnan(x) ? 0 : x
         end
-        current_sum[current_sum .== 0] .= NaN 
+        current_sum[current_sum .== 0] .= NaN
 
         for e in elements
             dataset[e] .*= total ./ current_sum
         end
     end
-    function renormalize!(A::AbstractArray; dim::Number=0, total=1.0)
-        current_sum = nansum(A, dim=dim)
-        A .*= total ./ current_sum
-    end
     export renormalize!
+    
 
 ## --- High-level import/export functions
 
