@@ -31,7 +31,7 @@
 
     const SQRT2 = sqrt(2)
     const SQRT2PI = sqrt(2*pi)
-    const AN = Union{Array{<:Number},Number}
+    const AN = Union{AbstractArray{<:Number},Number}
 
 ## --- Gaussian distribution functions
 

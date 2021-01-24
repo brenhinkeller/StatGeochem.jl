@@ -6,7 +6,7 @@
 ## --- Distributions
 
     @test normpdf.(0, 1,-1:1) ≈ [0.24197072451914337, 0.3989422804014327, 0.24197072451914337]
-    @test normpdf.(1:10, 1:10, 1:10) ≈ normpdf(1:10, 1:10, 1:10) ≈ normpdf(collect.((1:10, 1:10, 1:10))...)
+    @test normpdf.(1:10, 1:10, 1:10) ≈ normpdf(collect.((1:10, 1:10, 1:10))...)
 
     @test normpdf_ll.(0,1,-5:5) == -(-5:5).^2/2
     @test normpdf_ll(0,1,-5:5) ≈ sum(normpdf_ll.(0,1,-5:5))
