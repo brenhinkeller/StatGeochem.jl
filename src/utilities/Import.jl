@@ -65,56 +65,8 @@
         # Allocate an array to hold our parsed results
         result = Array{parseType}(undef,ceil(Int,length(str)/2))
 
-        # Make sure the output data type allows our chosen value for undefined data
-        undefval = convert(parseType, undefval)
-
-        # Ignore initial delimiter
-        last_delim_pos = 0
-        if ~isempty(str) && str[1] == delim
-            last_delim_pos = 1
-        end
-
-        # Cycle through string parsing text betweeen delims
-        delim_pos = 0
-        n = 0
-        if merge
-            for i = 1:length(str)
-                if str[i] == delim
-                    delim_pos = i
-                    if delim_pos > last_delim_pos+1
-                        n += 1
-                        parsed = nothing
-                        if delim_pos > last_delim_pos+1
-                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
-                        end
-                        result[n] = isnothing(parsed) ? undefval : parsed
-                    end
-                    last_delim_pos = delim_pos
-                end
-            end
-        else
-            for i = 1:length(str)
-                if str[i] == delim
-                    delim_pos = i
-                    if delim_pos > last_delim_pos
-                        n += 1
-                        parsed = nothing
-                        if delim_pos>last_delim_pos+1
-                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
-                        end
-                        result[n] = isnothing(parsed) ? undefval : parsed
-                        last_delim_pos = delim_pos
-                    end
-                end
-            end
-        end
-
-        # Check for final value after last delim
-        if length(str)>last_delim_pos
-            n += 1
-            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
-            result[n] = isnothing(parsed) ? undefval : parsed
-        end
+        # Parse the string
+        n = delim_string_parse!(result, st, delim, parseType; merge=merge, undefval=undefval)
 
         # Return the result values
         return result[1:n]
