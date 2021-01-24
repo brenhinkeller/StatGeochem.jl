@@ -18,6 +18,8 @@
 
     @test inpolygon([-1,0,1,0],[0,1,0,-1],[0,0])
     @test !inpolygon([-1,0,1,0],[0,1,0,-1],[0,10])
+    @test inpolygon([-1,0,1,0],[0,1,0,-1],prevfloat.([0.5,0.5]))
+    @test !inpolygon([-1,0,1,0],[0,1,0,-1],nextfloat.([0.5,0.5]))
     @test inpolygon([-1,1,1,-1],[1,1,-1,-1],(0,0))
     @test !inpolygon([-1,1,1,-1],[1,1,-1,-1],(1.1,1))
 
