@@ -23,11 +23,20 @@
     @test inpolygon([-1,1,1,-1],[1,1,-1,-1],(0,0))
     @test !inpolygon([-1,1,1,-1],[1,1,-1,-1],(1.1,1))
 
+    i,j = find_grid_inpolygon(-1.5:1/3:1.5, -1.5:1/3:1.5, [-.75,.75,.75,-.75],[.75,.75,-.75,-.75])
+    @test sort([i j], dims=2) == [4 4; 4 5; 4 6; 4 7; 4 5; 5 5; 5 6; 5 7; 4 6; 5 6; 6 6; 6 7; 4 7; 5 7; 6 7; 7 7]
+
     @test all( arcdistance(0,100,[30,0,0],[100,100,95]) .≈ [30,0,5] )
 
 ## --- Weighted mean functions
 
     @test awmean(1:10,ones(10)) == (5.5, 0.31622776601683794, 9.166666666666666)
     @test gwmean(1:10,ones(10)) == (5.5, 0.9574271077563381, 9.166666666666666)
+
+
+## --- Silly functions
+
+    @test isapprox(StatGeochem.inv_sqrt(5.0), 1/sqrt(5.0), atol=1e-6)
+    @test isapprox(StatGeochem.inv_sqrt(5f0), 1/sqrt(5f0), atol=1e-6)
 
 ## ---

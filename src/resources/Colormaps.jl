@@ -276,7 +276,7 @@
 
     # Convert matrix to indirect array image using colormap
     function imsci(matrix::AbstractArray,colormap::AbstractArray=viridis,cmin::Number=0,cmax::Number=0)
-        Nc = length(colormap) - 2
+        Nc = length(colormap)
         if cmin>=cmax
             cmin = nanminimum(matrix)
             cmax = nanmaximum(matrix)
