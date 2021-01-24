@@ -66,7 +66,7 @@
         result = Array{parseType}(undef,ceil(Int,length(str)/2))
 
         # Parse the string
-        n = delim_string_parse!(result, st, delim, parseType; merge=merge, undefval=undefval)
+        n = delim_string_parse!(result, str, delim, parseType; merge=merge, undefval=undefval)
 
         # Return the result values
         return result[1:n]
@@ -177,6 +177,10 @@
     			while (k+1 <= maxchars) && (str[k+1] != delimiter) && (str[k+1] != rowdelimiter)
     				k += 1
     			end
+
+                println(kₗ)
+                println(k)
+                flush(stdout)
 
     			# Otherwise, parse the string
     			parsed = tryparse(parsetype, str[kₗ+1:k])
