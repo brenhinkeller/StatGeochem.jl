@@ -1,3 +1,8 @@
+## --- String parsing functions
+
+    @test parsedlm("1,2,3\n4,5,6\n7,8,9\n", ',', Float64) == reshape(1:9,3,3)'
+    @test parsedlm("1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", ',', Int64) == reshape(1:16,4,4)'
+
 ## --- Elementify/unelementify functions
     elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",10))))
     data = vcat(elements, randn(1000, length(elements)))

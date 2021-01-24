@@ -137,7 +137,7 @@
 
     """
     ```julia
-    parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\n')
+    parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\\n')
     ```
     Parse a string delimited by both row and column into a single (2-D) matrix. Default column delimiter is newline.
     Similar to `readdlm`, but operating on a string instead of a file.
@@ -174,15 +174,16 @@
     	k = kₗ = 0 # Last delimiter position
     	for i = 1:maxrows
     		for j = 1:maxcolumns
-    			while (str[k+1] != delimiter) && (str[k+1] != rowdelimiter) && (k+1 < maxchars)
+    			while (k+1 <= maxchars) && (str[k+1] != delimiter) && (str[k+1] != rowdelimiter)
     				k += 1
     			end
-    			# If we're at the end of the string, move on
-    			(k+1 == maxchars) && break
 
     			# Otherwise, parse the string
     			parsed = tryparse(parsetype, str[kₗ+1:k])
     			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+
+                # If we're at the end of the string, move on
+                (k+1 > maxchars) && break
 
     			# Step over the delimiter
     			kₗ = k += 1
@@ -192,6 +193,7 @@
     	end
     	return parsedmatrix
     end
+    export parsedlm
 
 
 ## --- Classifying imported datasets
