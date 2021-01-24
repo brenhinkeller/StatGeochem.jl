@@ -1,7 +1,6 @@
 # StatGeochem.jl
-[![Build Status](https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg)](https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI)
+[![Build Status](ci-img)](ci-url)
 [![codecov.io][codecov-img]][codecov-url]
-
 
 _Some computational tools for geochemistry_
 
@@ -33,3 +32,8 @@ The above links run notebooks from the [examples/](examples/) folder on a [Jupyt
 julia> using IJulia
 julia> notebook()
 ```
+
+[ci-img]: https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg
+[ci-url]: https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI
+[codecov-img]: http://codecov.io/github/brenhinkeller/StatGeochem.jl/coverage.svg?branch=master
+[codecov-url]: http://codecov.io/github/brenhinkeller/StatGeochem.jl?branch=master
