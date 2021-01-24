@@ -581,8 +581,8 @@
     Normalize an array `A` in place such that it sums to `total`. Optionally may
     specify a dimension `dim` along which to normalize.
     """
-    function renormalize!(A::AbstractArray; dim::Number=0, total=1.0)
-        current_sum = nansum(A, dim=dim)
+    function renormalize!(A::AbstractArray; dim=:, total=1.0)
+        current_sum = _nansum(A, dim)
         A .*= total ./ current_sum
     end
     """
@@ -608,9 +608,10 @@
         for e in elements
             dataset[e] .*= total ./ current_sum
         end
+        return dataset
     end
     export renormalize!
-    
+
 
 ## --- High-level import/export functions
 
