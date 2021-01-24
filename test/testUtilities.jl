@@ -13,4 +13,6 @@
     @test randsample(1:10,1000)::Array{Int64} |> length == 1000
     @test unique(randsample(1:10,1000)) ⊆ 1:10
 
+    # Invweight...
+
 ## ---
