@@ -1,5 +1,5 @@
 # StatGeochem.jl
-[![Build Status](ci-img)](ci-url)
+[![Build Status][ci-img]][ci-url]
 [![codecov.io][codecov-img]][codecov-url]
 
 _Some computational tools for geochemistry_
