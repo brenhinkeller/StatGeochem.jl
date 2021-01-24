@@ -145,7 +145,7 @@
     How dispersed (in units of sigma) should we expect a sample of N numbers
     drawn from a standard Gaussian (Normal[0,1]) distribution to be?
     """
-    @inline norm_width(N) = 2*norm_quantile(1 - 1/(N+1))
+    @inline norm_width(N) = 2*norm_quantile(1 - 1/(2N))
     export norm_width
 
     """
