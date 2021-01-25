@@ -30,13 +30,8 @@
 
 ## --  Normalization functions
 
-    elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",11))))
-    dataarray = rand(1000,length(elements))
-    data = vcat(elements, dataarray)
-    datadict = elementify(data,importas=:Dict)::Dict
-    datatuple = elementify(data,importas=:Tuple)::NamedTuple
-
     # Renormalization functions on arrays
+    dataarray = unelementify(datadict, findnumeric=true, floatout=true)
     dataarray[rand(1:length(dataarray),100)] .= NaN
     renormalize!(dataarray, total=100)
     @test nansum(dataarray) ≈ 100
@@ -46,10 +41,12 @@
     @test all(nansum(dataarray, dims=2) .≈ 100)
 
     # Renormalization functions on NamedTuple-based dataset
+    datatuple = elementify(unelementify(datatuple, findnumeric=true), importas=:Tuple)
     renormalize!(datatuple, total=100)
     @test all(sum(unelementify(datatuple, floatout=true),dims=2) .≈ 100)
 
     # Renormalization functions on Dict-based dataset
+    datadict = elementify(unelementify(datadict, findnumeric=true), importas=:Dict)
     renormalize!(datadict, datadict["elements"], total=100)
     @test all(sum(unelementify(datadict, floatout=true),dims=2) .≈ 100)
 
