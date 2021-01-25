@@ -1,12 +1,6 @@
 ## --- Geolcont
 
-    continentcolors = [ [0.2,0.2,0.6],
-                        [0.0,0.4,0.8],
-                        [0.024,0.663,0.757],
-                        [0.4,0.8,0.4],
-                        [1.0,0.8,0.2],
-                        [1.0,1.0,0.0],
-                        [1.0,1.0,1.0], ] .|> x -> RGBX{N0f8}(x...)
+    continentcolors = parse.(Color, ["#333399","#0066CC","#06A9C1","#66CC66","#FFCC33","#FFFF00","#FFFFFF"])
     export continentcolors
 
     continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
