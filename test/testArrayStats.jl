@@ -139,9 +139,26 @@
     @test nanaad(A, dims=2) ≈ fill(200/3,100,1)
     @test nanmedian(A, dims=1) == median(A, dims=1)
     @test nanmedian(A, dims=2) == median(A, dims=2)
-    @test pctile(A, 10, dims=1) == [10.9  110.9  210.9]
+    @test pctile(A, 10, dims=1) == [10.9 110.9 210.9]
     @test pctile(A, 10, dims=2) ≈ 21:120
 
+    # Same but with other keyword, for 1-d output
+    @test nanminimum(A, dim=1) == [1,101,201]
+    @test nanminimum(A, dim=2) == 1:100
+    @test nanmaximum(A, dim=1) == [100,200,300]
+    @test nanmaximum(A, dim=2) == 201:300
+    @test nanmean(A, dim=1) == [50.5, 150.5, 250.5]
+    @test nanmean(A, dim=2) == 101:200
+    @test nanmean(A, ones(size(A)), dim=1) == [50.5, 150.5, 250.5] # weighted
+    @test nanmean(A, ones(size(A)), dim=2) == 101:200 # weighted
+    @test nanstd(A, dim=1) ≈ fill(29.011491975882016,3)
+    @test nanstd(A, dim=2) ≈ fill(100,100)
+    @test nanstd(A, ones(size(A)), dim=1) ≈ fill(29.011491975882016,3) # weighted
+    @test nanstd(A, ones(size(A)), dim=2) ≈ fill(100,100) # weighted
+    @test nanmedian(A, dim=1) == [50.5, 150.5, 250.5]
+    @test nanmedian(A, dim=2) == 101:200
+    @test pctile(A, 10, dim=1) == [10.9, 110.9, 210.9]
+    @test pctile(A, 10, dim=2) ≈ 21:120
 
     # Summary statistics: binning
     # Means
