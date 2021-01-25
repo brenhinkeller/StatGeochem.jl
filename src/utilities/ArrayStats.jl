@@ -554,6 +554,7 @@
     __nanstd(A, W, dims, ::Colon) = _nanstd(A, W, dims)
     function _nanstd(A, W, region)
         mask = nanmask(A)
+        n = sum(mask, dims=region)
         w = sum(W.*mask, dims=region)
         s = sum(A.*W.*mask, dims=region) ./ w
         d = A .- s # Subtract mean, using broadcasting
@@ -563,17 +564,19 @@
         end
         s .= sum(d, dims=region)
         @avx for i ∈ eachindex(s)
-            s[i] = sqrt( s[i] / w[i] )
+            s[i] = sqrt((s[i] * n[i]) / (w[i] * (n[i] - 1)))
         end
         return s
     end
     function _nanstd(A, W, ::Colon)
+        n = 0
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
+            n += t
             w += Wᵢ * t
             m += Wᵢ * Aᵢ * t
         end
@@ -584,15 +587,17 @@
             d = Aᵢ - mu
             s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
-        return sqrt(s / w)
+        return sqrt(s / w * n / (n-1))
     end
     function _nanstd(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
+        n = 0
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
+            n += t
             w += Wᵢ * t
             m += Wᵢ * Aᵢ * t
         end
@@ -603,7 +608,7 @@
             d = Aᵢ - mu
             s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
-        return sqrt(s / w)
+        return sqrt(s / w * n / (n-1))
     end
     export nanstd
 
