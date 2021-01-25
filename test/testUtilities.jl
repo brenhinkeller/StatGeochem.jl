@@ -35,6 +35,13 @@
     @test feoconversion(3.5, 4.4, NaN, NaN) ≈ 7.45916511675966
     @test feoconversion(NaN, 4.4, NaN, NaN) ≈ 3.9591651167596607
 
+    D = elementify(["Fe" "Mg" "Ca" "P"; 10000 10000 10000 10000; 10000 10000 10000 10000], importas=:Dict)
+    D = oxideconversion(D)
+    @test all(D["FeOT"] .≈ (molarmass["Fe"]+molarmass["O"])/molarmass["Fe"])
+    @test all(D["MgO"] .≈ (molarmass["Mg"]+molarmass["O"])/molarmass["Mg"])
+    @test all(D["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
+    @test all(D["P2O5"] .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
+
 
 ## --- Geochronology.jl
 

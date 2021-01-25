@@ -75,11 +75,26 @@
     ```julia
     dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
     ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...).
+
     If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
     set unitratio = 1
     """
     function oxideconversion(dataset::Dict; unitratio::Number=10000)
+        result = copy(dataset)
+        return oxideconversion!(result)
+    end
+    export oxideconversion
+    """
+    ```julia
+    dataset = oxideconversion!(dataset::Dict; unitratio::Number=10000)
+    ```
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place.
+
+    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
+    set unitratio = 1
+    """
+    function oxideconversion!(dataset::Dict; unitratio::Number=10000)
         # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
         # for i=1:length(source)
         #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
@@ -103,7 +118,10 @@
 
         return dataset
     end
-    export oxideconversion
+    export oxideconversion!
+
+
+
 
 
 ## --- Chemical Index of Alteration
