@@ -3,8 +3,9 @@ using Test, Statistics, StatsBase
 
 # Utilities
 @testset "Math" begin include("testMath.jl") end
-@testset "ArrayStats" begin include("testArrayStats.jl") end
 @testset "Import" begin include("testImport.jl") end
+@testset "Resampling" begin include("testResampling.jl") end
+@testset "ArrayStats" begin include("testArrayStats.jl") end
 @testset "Changepoint" begin include("testChangepoint.jl") end
 @testset "Other Utilities" begin include("testUtilities.jl") end
 
