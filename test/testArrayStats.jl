@@ -172,6 +172,7 @@
     # Interpolation
     @test linterp1(1:10,21:30,5:0.5:6) == [25.0, 25.5, 26.0]
     @test linterp1s(10:-1:1,21:30,5:0.5:6) == [26.0, 25.5, 25.0]
+    @test linterp_at_index(1:100,10) == 10
     @test movmean(collect(1:10.),5) == movmean(1:10,5)
     @test movmean(1:10,4) == [2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0]
     @test movmean(repeat(1:10,1,10),4) == repeat([2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.5, 9.0],1,10)
