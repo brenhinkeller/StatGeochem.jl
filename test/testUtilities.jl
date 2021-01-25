@@ -39,5 +39,35 @@
     isapprox(el, [2.254, 2.216, 2.28, 2.319], atol=0.5)
     isapprox(eu, [2.245, 2.216, 2.273, 2.348], atol=0.5)
 
+## --- GIS.jl
+
+   A = [6 10 3 10; 5 1 4 2; 8 10 5 5; 9 1 1 10]
+   @test Int64.(maxslope(A*1000, 1:4, 1:4, 1)) == [0 81 13 0; 36 16 16 32; 51 16 29 38; 0 81 57 0]
+   @test Int64.(aveslope(A*1000, 1:4, 1:4, 1)) == [0 0 6 0; 14 22 9 14; 25 0 14 12; 0 28 12 0]
+
+   grid =
+   """
+   ncols         4
+   nrows         6
+   xllcorner     0.0
+   yllcorner     0.0
+   cellsize      50.0
+   NODATA_value  -9999
+   -9999 -9999 5 2
+   -9999 20 100 36
+   3 8 35 10
+   32 42 50 6
+   88 75 27 9
+   13 5 1 -9999
+   """
+
+   f = open("grid.asc","w")
+   print(f, grid)
+   close(f)
+
+   (data, metadata) = importAAIGrid("grid.asc", Int64, undefval=-999)
+   @test eltype(data) == Int64
+   @test data == [-9999 -9999 5 2; -9999 20 100 36; 3 8 35 10; 32 42 50 6; 88 75 27 9; 13 5 1 -9999]
+   @test metadata["nodata"] == -9999
 
 ## ---

@@ -1,24 +1,24 @@
 ## --- Read ESRI Arc/Info ASCII grid files
 
-    function parse_AAIGrid(fname, parseType)
+    function importAAIGrid(fname, T=Float64; undefval=NaN)
         # Open the file
         fid = open(fname)
 
-        metadata = Dict()
-        metadata["ncols"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nrows"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["xll_corner"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["yll_corner"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["cellsize"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nodata"] = parse(match(r"  *(.*?)$", readline(fid))[1])
+        metadata = Dict{String,Number}()
+        metadata["ncols"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["nrows"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["xll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["yll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["cellsize"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["nodata"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
 
         nrows = metadata["nrows"]
         ncols = metadata["ncols"]
 
-        data = Array{Int16}(undef,ncols,nrows)
+        data = Array{T}(undef,ncols,nrows)
         for i = 1:nrows
             l = readline(fid)
-            delim_string_parse!(data, l, ' ', Int16, offset=(i-1)*ncols)
+            delim_string_parse!(data, l, ' ', T, offset=(i-1)*ncols, undefval=undefval)
         end
 
         # Close the file
