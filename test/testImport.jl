@@ -14,7 +14,7 @@
 ## --- Elementify/unelementify functions
 
     elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",11))))
-    data = vcat(elements, hcat(randn(1000, length(elements)-1), string.(rand("abcdefghijklmnopqrstuvwxyz0123456789",1000))))
+    data = vcat(elements, hcat(rand(1000, length(elements)-1), string.(rand("abcdefghijklmnopqrstuvwxyz0123456789",1000))))
     datatuple = elementify(data,importas=:Tuple)::NamedTuple
     datadict = elementify(data,importas=:Dict)::Dict
 
@@ -51,7 +51,7 @@
 
     # Renormalization functions on Dict-based dataset
     datadict = elementify(unelementify(datadict, findnumeric=true), importas=:Dict)
-    renormalize!(datadict, datadict["elements"], total=100)
+    renormalize!(datadict, datadict["elements"], total=100.)
     @test all(sum(unelementify(datadict, floatout=true),dims=2) .≈ 100)
 
     # Internal standardization functions
