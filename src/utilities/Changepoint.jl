@@ -44,7 +44,7 @@ Currently prints results to the terminal (stdout), one line per step of the Mark
 chain, but a more efficent output format is probably desirable in a future version
 of this function.
 """
-function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
+function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
     MOVE = 0.60
     SIGMA = 0.1
@@ -75,6 +75,9 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 		np = min(max(npmin, 2), npmax)
 	end
 
+	# Allocate output array of changepoints
+	result = fill(0, nsteps, npmax)
+
 	# Create and fill initial boundary point array
 	boundaries = Array{Int}(undef, K+2)
 	boundaries[1] = 1
@@ -96,6 +99,7 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 		r = rand()
 		u = rand()
 
+		# Update the model with the chosen modification
 		if r < MOVE && np>0
 			# Move a changepoint
 			copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -128,10 +132,10 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 				boundary_sigma = abs(boundary_adj)*2.9
 				# println("sigma: $boundary_sigma")
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
-				for n=1:np
-					print("$(boundariesₚ[n+1]),")
-				end
-				FORMATTED && print("\n")
+				# for n=1:np
+				# 	print("$(boundariesₚ[n+1]),")
+ 				# end
+				# FORMATTED && print("\n")
 			end
 
 		elseif r < MOVE+SIGMA
@@ -176,10 +180,10 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		elseif r < MOVE+SIGMA+BIRTH+DEATH
@@ -206,16 +210,20 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		end
+
+		# Record results
+		result[i, 1:np] .= boundaries[2:(np+1)]
 	end
+	return result
 end
-function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
+function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
     MOVE = 0.70
     BIRTH = 0.15
@@ -243,6 +251,9 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 		np = min(max(npmin, 2), npmax)
 	end
 
+	# Allocate output array of changepoints
+	result = fill(0, nsteps, npmax)
+
 	# Create and fill initial boundary point array
 	boundaries = Array{Int}(undef, K+2)
 	boundaries[1] = 1
@@ -264,6 +275,7 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 		r = rand()
 		u = rand()
 
+		# Update the model with the chosen modification
 		if r < MOVE && np>0
 			# Move a changepoint
 			copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -296,10 +308,10 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 				boundary_sigma = abs(boundary_adj)*2.9
 				# println("sigma: $boundary_sigma")
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
-				for n=1:np
-					print("$(boundariesₚ[n+1]),")
-				end
-				FORMATTED && print("\n")
+				# for n=1:np
+				# 	print("$(boundariesₚ[n+1]),")
+				# end
+				# FORMATTED && print("\n")
 			end
 		elseif r < MOVE+BIRTH
 			# Add a changepoint
@@ -322,10 +334,10 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		elseif r < MOVE+BIRTH+DEATH
@@ -351,13 +363,17 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		end
+
+		# Record results
+		result[i, 1:np] .= boundaries[2:(np+1)]
 	end
+	return result
 end
 export changepoint
