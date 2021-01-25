@@ -3,7 +3,8 @@
     @test parsedlm("1,2,3\n4,5,6\n7,8,9\n", ',', Float64) == reshape(1:9,3,3)'
     @test parsedlm("1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", ',', Int64) == reshape(1:16,4,4)'
 
-    A = delim_string_function(x -> delim_string_parse(x, ',', Float32), "1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", '\n', Array{Float32,1})
+    A = delim_string_function(x -> delim_string_parse(x, ',', Float32),
+        "1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", '\n', Array{Float32,1})
     @test isa(A, Array{Array{Float32,1},1})
     @test all([A[i][j] == (i-1)*4 + j for i=1:4, j=1:4])
 
