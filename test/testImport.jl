@@ -7,6 +7,10 @@
     @test isa(A, Array{Array{Float32,1},1})
     @test all([A[i][j] == (i-1)*4 + j for i=1:4, j=1:4])
 
+    A = delim_string_function(x -> delim_string_parse(x, ',', Int64, merge=true, undefval=0),
+        "1,2,3,,4\n5,6,,7,8\n9,10,,,,11,12\n\n\n13,14,15,16", '\n', Array{Int64,1}, merge=true)
+    @test all([A[i][j] == (i-1)*4 + j for i=1:4, j=1:4])
+
 ## --- Elementify/unelementify functions
 
     elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",11))))
@@ -25,7 +29,7 @@
     @test importdataset("tupledataset.csv", ',', importas=:Tuple) == datatuple
 
     @test exportdataset(datadict, datadict["elements"], "dictdataset.csv", ',') == nothing
-    @test importdataset("dictdataset.csv", ',', importas=:Dict) == datadict
+    @test importdataset("dictdataset.csv", ',', importas=:Dict, mindefinedcolumns=2) == datadict
 
 
 ## --  Normalization functions
