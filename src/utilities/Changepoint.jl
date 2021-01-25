@@ -17,14 +17,15 @@ function update_changepoint_mu!(m, d, boundaries, np)
 	end
 end
 
-function update_changepoint_sigma!(σ, d, boundaries, np)
-	@inbounds for i=1:np+1
-		r = boundaries[i]:boundaries[i+1]
-		for col = 1:size(d,2)
-			σ[r,col] .= nanstd(view(d,r,col))
-		end
-	end
-end
+# # Not currently used
+# function update_changepoint_sigma!(σ, d, boundaries, np)
+# 	@inbounds for i=1:np+1
+# 		r = boundaries[i]:boundaries[i+1]
+# 		for col = 1:size(d,2)
+# 			σ[r,col] .= nanstd(view(d,r,col))
+# 		end
+# 	end
+# end
 
 
 """
@@ -46,8 +47,7 @@ of this function.
 """
 function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
-    MOVE = 0.60
-    SIGMA = 0.1
+    MOVE = 0.70
     BIRTH = 0.15
     DEATH = 0.15
 
@@ -58,7 +58,7 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 	nrows = size(data,1)
 	ncolumns = size(data,2)
 	m = similar(data, T)
-	σ = similar(data, T) #Array{T}(undef, ncolumns) # TODO: Decide whether to actually do something with these sigmas
+	σ = similar(data, T) #Array{T}(undef, ncolumns)
 	σₚ = similar(data, T) #Array{T}(undef, ncolumns)
 
 	# Number of possible changepoint locations
@@ -138,27 +138,7 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 				# FORMATTED && print("\n")
 			end
 
-		elseif r < MOVE+SIGMA
-
-			# Calculate new sigma
-			update_changepoint_model!(m, σₚ, data, boundaries, np)
-
-			# sll = sum(log.(σ./σₚ))
-
-			# Calculate log likelihood for proposal
-			llₚ = normpdf_ll(m, σₚ, data)
-
-			# DEBUG && println("Sigma: llₚ+sll-ll = $llₚ - $sll - $ll")
-			DEBUG && println("Sigma: llₚ-ll = $llₚ - $ll")
-			# if log(u) < llₚ+sll-ll
-			if log(u) < llₚ-ll
-				# If accepted
-				DEBUG && println("Accepted!")
-				ll = llₚ
-				copyto!(σ,σₚ)
-			end
-
-		elseif r < MOVE+SIGMA+BIRTH
+		elseif r < MOVE+BIRTH
 			# Add a changepoint
 			if np < npmax
 				copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -186,7 +166,7 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 					# FORMATTED && print("\n")
 				end
 			end
-		elseif r < MOVE+SIGMA+BIRTH+DEATH
+		elseif r < MOVE+BIRTH+DEATH
 			# Delete a changepoint
 			if np > npmin
 				copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -265,7 +245,7 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 	np = count_unique!(view(boundaries,1:np+2)) - 2
 
 	# Calculate initial proposal and log likelihood
-	update_changepoint_model!(m, sigma, data, boundaries, np)
+	update_changepoint_mu!(m, data, boundaries, np)
 	ll = normpdf_ll(m, sigma, data)
 
 	# The actual loop
