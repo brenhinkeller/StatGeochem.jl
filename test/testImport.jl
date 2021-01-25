@@ -55,9 +55,9 @@
 
     # Internal standardization functions
     @test isnan(StatGeochem.floatify("asdf"))
-    @test StatGeochem.floatify("12345") === 12345.0
+    @test StatGeochem.floatify("12345", Float64) === 12345.0
     @test StatGeochem.floatify("12345", Float32) === 12345f0
-    @test StatGeochem.floatify(12345) === 12345.0
+    @test StatGeochem.floatify(12345, Float64) === 12345.0
     @test StatGeochem.floatify(12345, Float32) === 12345f0
 
     @test isa(StatGeochem._columnformat(["asdf","qwer","zxcv"], false), Array{String,1})

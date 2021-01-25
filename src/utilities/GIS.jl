@@ -30,14 +30,11 @@
 
 ## --- Calculate slope from a DEM
 
-    function max_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000)
+    function maxslope(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
         slope = Array{UInt16}(undef,size(matrix))
-
-        # Average size of a degree on Earth
-        km_per_lat = 111.1
 
         # Fill in the center first
         distNS = 2 * cellsize * km_per_lat
@@ -197,9 +194,9 @@
 
         return slope
     end
-    export max_slope_earth
+    export maxslope
 
-    function ave_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, maxmatval=9000)
+    function aveslope(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, maxmatval=9000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
@@ -216,9 +213,6 @@
         # 8 1 2
         # 7 x 3
         # 6 5 4
-
-        # Average size of a degree on Earth
-        km_per_lat = 111.1
 
         # Distance between grid cell centers
         # N, S
@@ -334,7 +328,7 @@
 
         return slope
     end
-    export ave_slope_earth
+    export aveslope
 
 
 ## --- End of File
