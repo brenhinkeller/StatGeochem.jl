@@ -1,10 +1,22 @@
 ## --- Parse a delimited string
 
-    # Parse a delimited string, return the results in a pre-allocated array provided as input
-    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, parseType::Type=eltype(result); offset::Integer=0, merge::Bool=false, undefval=NaN)
+
+    """
+    ```julia
+    delim_string_parse!(result, str, delim, [T];
+        \toffset::Integer=0,
+        \tmerge::Bool=false,
+        \tundefval=NaN)
+    ```
+    Parse a delimited string `str` with delimiter `delim` into values of type `T`
+    and return the answers in a pre-allocated `result` array provided as input.
+
+    If `T` is not specified, it the `eltype` of the `result` array will be used by default.
+    """
+    function delim_string_parse!(result::Array, str::AbstractString, delim::Char, T::Type=eltype(result); offset::Integer=0, merge::Bool=false, undefval=NaN)
 
         # Make sure the output data type allows our chosen value for undefined data
-        undefval = convert(parseType, undefval)
+        undefval = convert(T, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -23,7 +35,7 @@
                         n += 1
                         parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(T, str[(last_delim_pos+1):(delim_pos-1)])
                         end
                         result[n] = isnothing(parsed) ? undefval : parsed
                     end
@@ -38,7 +50,7 @@
                         n += 1
                         parsed = nothing
                         if delim_pos > last_delim_pos+1
-                            parsed = tryparse(parseType, str[(last_delim_pos+1):(delim_pos-1)])
+                            parsed = tryparse(T, str[(last_delim_pos+1):(delim_pos-1)])
                         end
                         result[n] = isnothing(parsed) ? undefval : parsed
                         last_delim_pos = delim_pos
@@ -50,7 +62,7 @@
         # Check for final value after last delim
         if length(str) > last_delim_pos
             n += 1
-            parsed = tryparse(parseType, str[(last_delim_pos+1):length(str)])
+            parsed = tryparse(T, str[(last_delim_pos+1):length(str)])
             result[n] = isnothing(parsed) ? undefval : parsed
         end
 
@@ -59,22 +71,38 @@
     end
     export delim_string_parse!
 
-    # Parse a delimited string, return an array as output
-    function delim_string_parse(str::AbstractString, delim::Char, parseType::Type=Float64; merge::Bool=false, undefval=NaN)
+    """
+    ```julia
+    delim_string_parse(str, delim, T;
+        \tmerge::Bool=false,
+        \tundefval=NaN)
+    ```
+    Parse a delimited string `str` with delimiter `delim` into values of type `T`
+    and return the answers as an array with eltype `T`
+    """
+    function delim_string_parse(str::AbstractString, delim::Char, T::Type=Float64; merge::Bool=false, undefval=NaN)
 
         # Allocate an array to hold our parsed results
-        result = Array{parseType}(undef,ceil(Int,length(str)/2))
+        result = Array{T}(undef,ceil(Int,length(str)/2))
 
         # Parse the string
-        n = delim_string_parse!(result, str, delim, parseType; merge=merge, undefval=undefval)
+        n = delim_string_parse!(result, str, delim, T; merge=merge, undefval=undefval)
 
         # Return the result values
         return result[1:n]
     end
     export delim_string_parse
 
-    function delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge::Bool=false)
-        # result = delim_string_function(f::Function, str::AbstractString, delim::Char, outType::Type; merge=false)
+    """
+    ```julia
+    delim_string_function(f, str, delim, T;
+        \tmerge::Bool=false,
+    ```
+    Parse a delimited string `str` with delimiter `delim` into substrings that will
+    then be operated upon by function `f`. The results of `f` will be returned
+    in an array with eltype `T`.
+    """
+    function delim_string_function(f::Function, str::AbstractString, delim::Char, T::Type; merge::Bool=false)
 
         # Max number of delimted values
         ndelims = 2
@@ -85,7 +113,7 @@
         end
 
         # Allocate output array
-        result = Array{outType}(undef,ceil(Int,ndelims))
+        result = Array{T}(undef,ceil(Int,ndelims))
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -137,16 +165,16 @@
 
     """
     ```julia
-    parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\\n')
+    parsedlm(str::AbstractString, delimiter::Char, T::Type=Float64; rowdelimiter::Char='\\n')
     ```
     Parse a string delimited by both row and column into a single (2-D) matrix. Default column delimiter is newline.
     Similar to `readdlm`, but operating on a string instead of a file.
     """
-    function parsedlm(str::AbstractString, delimiter::Char, parsetype::Type=Float64; rowdelimiter::Char='\n')
-    	if parsetype <: AbstractFloat
-    		emptyval = parsetype(NaN)
+    function parsedlm(str::AbstractString, delimiter::Char, T::Type=Float64; rowdelimiter::Char='\n')
+    	if T <: AbstractFloat
+    		emptyval = T(NaN)
     	else
-    		emptyval = zero(parsetype)
+    		emptyval = zero(T)
     	end
 
     	# Count rows, and find maximum number of delimiters per row
@@ -179,7 +207,7 @@
     			end
 
     			# Otherwise, parse the string
-    			parsed = tryparse(parsetype, str[kₗ+1:k])
+    			parsed = tryparse(T, str[kₗ+1:k])
     			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
 
                 # If we're at the end of the string, move on
