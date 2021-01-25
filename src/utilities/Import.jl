@@ -288,6 +288,10 @@
         else
             if all(xi -> isa(xi, AbstractString), x)
                 return string.(x)
+            elseif all(xi -> isa(xi, AbstractFloat), x)
+                return float.(x)
+            elseif all(xi -> isa(xi, Integer), x)
+                return Integer.(x)
             else
                 return x
             end
