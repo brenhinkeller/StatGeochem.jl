@@ -26,7 +26,7 @@
 
         return (data', metadata)
     end
-    export parse_AAIGrid
+    export importAAIGrid
 
 ## --- Calculate slope from a DEM
 
