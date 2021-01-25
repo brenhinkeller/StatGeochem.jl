@@ -71,6 +71,6 @@
 
     d2array = unelementify(d2, floatout=true)
     @test isa(d2array, Array{Float64,2})
-    @test size(d2array) == (2000, length(elements))
+    @test size(d2array) == (2000, length(datadict["elements"]))
 
 ## ---
