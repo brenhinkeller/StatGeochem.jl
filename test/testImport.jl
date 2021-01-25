@@ -66,7 +66,8 @@
     @test isa(StatGeochem._columnformat([1., 2., 3.], false), Array{Float64,1})
     @test isa(StatGeochem._columnformat([0x01,0x02,0x03], false), Array{UInt8,1})
     @test isa(StatGeochem._columnformat([1,2,3], false), Array{Int64,1})
-
+    @test all(StatGeochem._columnformat([0x01,2,"3"], false) .=== [0x01,2,"3"])
+    @test StatGeochem._columnformat([0x01,2,"3"], true) == [1,2,3]
 
 ## --- Concatenating and merging datasets
 
