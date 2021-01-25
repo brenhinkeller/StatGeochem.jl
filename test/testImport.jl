@@ -8,7 +8,7 @@
     @test all([A[i][j] == (i-1)*4 + j for i=1:4, j=1:4])
 
     A = delim_string_function(x -> delim_string_parse(x, ',', Int64, merge=true, undefval=0),
-        "1,2,3,,4\n5,6,,7,8\n9,10,,,,11,12\n\n\n13,14,15,16", '\n', Array{Int64,1}, merge=true)
+        "\n1,2,3,,4\n5,6,,7,8\n9,10,,,,11,12\n\n\n13,14,15,16", '\n', Array{Int64,1}, merge=true)
     @test all([A[i][j] == (i-1)*4 + j for i=1:4, j=1:4])
 
 ## --- Elementify/unelementify functions
