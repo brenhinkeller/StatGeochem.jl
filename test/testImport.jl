@@ -53,6 +53,20 @@
     renormalize!(datadict, datadict["elements"], total=100)
     @test all(sum(unelementify(datadict, floatout=true),dims=2) .≈ 100)
 
+    # Internal standardization functions
+    @test isnan(StatGeochem.floatify("asdf"))
+    @test StatGeochem.floatify("12345") === 12345.0
+    @test StatGeochem.floatify("12345", Float32) === 12345f0
+    @test StatGeochem.floatify(12345) === 12345.0
+    @test StatGeochem.floatify(12345, Float32) === 12345f0
+
+    @test isa(StatGeochem._columnformat(["asdf","qwer","zxcv"], false), Array{String,1})
+    @test isa(StatGeochem._columnformat([1f0, 2f0, 3f0], false), Array{Float32,1})
+    @test isa(StatGeochem._columnformat([1., 2., 3.], false), Array{Float64,1})
+    @test isa(StatGeochem._columnformat([0x01,0x02,0x03], false), Array{UInt8,1})
+    @test isa(StatGeochem._columnformat([1,2,3], false), Array{Int64,1})
+
+
 ## --- Concatenating and merging datasets
 
     d2 = concatenatedatasets(datadict, datadict)
