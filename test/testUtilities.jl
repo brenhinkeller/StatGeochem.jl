@@ -29,6 +29,13 @@
     @test tsphene(58.509, 1.022, 14.858, 4.371, 0.141, 4.561, 5.912, 3.296, 2.399, 0.279) ≈ 637.139776663209
     @test tspheneTi(58.509, 1.022, 14.858, 4.371, 0.141, 4.561, 5.912, 3.296, 2.399, 0.279, 800) ≈ 2.3545537746637324
 
+    @test feoconversion(3.5, NaN, NaN, NaN) == 3.5
+    @test feoconversion(3.5, NaN, 7.5, NaN) == 7.5
+    @test feoconversion(3.5, NaN, 7.5, 10) == 7.5
+    @test feoconversion(3.5, 4.4, NaN, NaN) ≈ 7.45916511675966
+    @test feoconversion(NaN, 4.4, NaN, NaN) ≈ 3.9591651167596607
+
+
 ## --- Geochronology.jl
 
     @test eHf(0.2818792, 0.001009289, 1424.878) ≈ -0.9639408985107067
