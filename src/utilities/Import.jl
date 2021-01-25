@@ -178,10 +178,6 @@
     				k += 1
     			end
 
-                println(kₗ)
-                println(k)
-                flush(stdout)
-
     			# Otherwise, parse the string
     			parsed = tryparse(parsetype, str[kₗ+1:k])
     			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
