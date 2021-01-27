@@ -14,7 +14,7 @@
 
 ## --- Elementify/unelementify functions
 
-    elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",11))))
+    elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",20))))
     data = vcat(elements, hcat(rand(1000, length(elements)-1), string.(rand("abcdefghijklmnopqrstuvwxyz0123456789",1000))))
     datatuple = elementify(data,importas=:Tuple)::NamedTuple
     datadict = elementify(data,importas=:Dict)::Dict
@@ -35,9 +35,11 @@
 
 ## --  Normalization functions
 
-    # Renormalization functions on arrays
-    dataarray = unelementify(datadict, findnumeric=true, floatout=true)
-    dataarray[rand(1:length(dataarray),100)] .= NaN
+    dataarray = rand(1000, length(elements))
+    data = vcat(elements, dataarray)
+    datatuple = elementify(data,importas=:Tuple)::NamedTuple
+    datadict = elementify(data,importas=:Dict)::Dict
+
     renormalize!(dataarray, total=100)
     @test nansum(dataarray) ≈ 100
     renormalize!(dataarray, dim=1, total=100)
