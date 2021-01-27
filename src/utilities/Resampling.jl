@@ -1,11 +1,5 @@
 ## --- Bootstrap resampling
 
-    # function bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
-    #     resampled = Array{float(eltype(data))}(undef,nrows,size(data,2)) # Allocate output array
-    #     return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
-    # end
-    # export bsr
-
     """
     ```julia
     bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector})
@@ -162,7 +156,7 @@
     with uncertainties `sigma` and resampling probabilities `p`
     """
     function bsresample(data::AbstractArray, sigma::Union{Number,AbstractArray}, nrows::Integer, p=min(0.2,nrows/size(data,1)))
-        buffer=Array{Int}(undef,size(data,1)))
+        buffer=Array{Int}(undef,size(data,1))
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
         return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
     end
