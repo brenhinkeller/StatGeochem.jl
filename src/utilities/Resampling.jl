@@ -984,40 +984,52 @@
 
 ## --- Quick Monte Carlo binning/interpolation functions
 
-    function mcfit(x::AbstractVector, sx::AbstractVector, y::AbstractVector, sy::AbstractVector,
+    function mcfit(x::AbstractVector, σx::AbstractVector, y::AbstractVector, σy::AbstractVector,
         xmin::Number, xmax::Number, nbins::Integer=10; binwidth::Number=(xmax-xmin)/(nbins-1), minrows::Number=100000)
-        # (c,m)=monteCarloFit(x,sx,y,sy,xmin,xmax,nbins,binwidth)
         # Run a simplified Monte Carlo fit with nbins of witdth binwidth between xmin and xmax
 
-        # Fill in variances where not provided explicitly
-        sx[isnan.(sx) .& .!isnan.(x)] .= nanstd(x)
-        sy[isnan.(sy) .& .!isnan.(y)] .= nanstd(y)
-
         # Remove missing data
-        hasdata = .!(isnan.(x) .| isnan.(y) .| isnan.(sx) .| isnan.(sy))
-        x = x[hasdata]; y = y[hasdata];
-        sx = sx[hasdata]; sy = sy[hasdata];
+        hasdata = .!(isnan.(x) .| isnan.(y))
+        x = x[hasdata]
+        y = y[hasdata]
+        σx = σx[hasdata]
+        σy = σy[hasdata]
+
+        # Fill in variances where not provided explicitly
+        σx[isnan.(σx)] .= nanstd(x)
+        σy[isnan.(σy)] .= nanstd(y)
 
         # Increase x uncertainty if x sampling is sparse
         xsorted = sort(x)
         minerr = maximum(xsorted[2:end] - xsorted[1:end-1]) / 2
-        sx[sx .< minerr] .= minerr
+        σx[σx .< minerr] .= minerr
+
+        # Bin centers
+        c = xmin:(xmax-xmin)/(nbins-1):xmax
+        halfwidth = binwidth / 2
 
         # Run the Monte Carlo
-        halfwidth = binwidth / 2
-        c = collect(xmin:(xmax-xmin)/(nbins-1):xmax)
-
-        nsims = ceil(Int, minrows/length(x))
-        xm = repeat(x,nsims) + randn(length(x)*nsims) .* repeat(sx,nsims)
-        ym = repeat(y,nsims) + randn(length(y)*nsims) .* repeat(sy,nsims)
-
-        m = fill(NaN, nbins)
-        for i = 1:nbins
-            inbin = ym[(xm .> c[i] .- halfwidth) .& (xm .< c[i] .+ halfwidth)]
-            m[i] = nanmean(inbin)
+        N = fill(0, nbins)
+        m = Array{float(eltype(y))}(undef, nbins)
+        xresampled = similar(x, float(eltype(x)))
+        yresampled = similar(y, float(eltype(y)))
+        @inbounds for n = 1:ceil(Int, minrows/length(x))
+            xresampled .= x .+ σx .* randn!(xresampled)
+            yresampled .= y .+ σy .* randn!(yresampled)
+            for j = 1:nbins
+                l = (c[j] - halfwidth)
+                u = (c[j] + halfwidth)
+                for i ∈ eachindex(xresampled)
+                    if l < xresampled[i] < u
+                        m[j] += yresampled[i]
+                        N[j] += 1
+                    end
+                end
+            end
         end
+        m ./= N
 
-        return (c, m)
+        return c, m
     end
     export mcfit
 
