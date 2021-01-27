@@ -1023,21 +1023,21 @@
 
 ## --- Downsample an image / array
 
-    function downsample(matrix::Array, factor::Integer, jfactor=factor::Integer)
-        if ndims(matrix)==2
-            rows = floor(Int,size(matrix,1)/factor)
-            cols = floor(Int,size(matrix,2)/jfactor)
+    function downsample(A::AbstractArray, factor::Integer, jfactor=factor::Integer)
+        if ndims(A)==2
+            rows = size(A,1) ÷ factor
+            cols = size(A,2) ÷ jfactor
 
-            downsampled = typeof(matrix)(undef,rows,cols)
-            for i=1:rows
+            result = Array{eltype(A)}(undef,rows,cols)
+            @avx for i=1:rows
                 for j=1:cols
-                    downsampled[i,j]=matrix[i*factor,j*jfactor]
+                    result[i,j]=A[i*factor,j*jfactor]
                 end
             end
         else
-            downsampled = matrix[factor:factor:end]
+            result = A[factor:factor:end]
         end
-        return downsampled
+        return result
     end
     export downsample
 
