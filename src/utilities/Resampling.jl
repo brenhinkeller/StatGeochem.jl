@@ -24,6 +24,9 @@
                 if rand(rng) < p
                     nrows_accepted += 1
                     index[nrows_accepted] = i
+                    if nrows_accepted == nrows
+                        break
+                    end
                 end
             end
             nrows_new = min(nrows_accepted - n, nrows - n)
@@ -59,6 +62,9 @@
                 if rand(rng) < p[i]
                     nrows_accepted += 1
                     index[nrows_accepted] = i
+                    if nrows_accepted == nrows
+                        break
+                    end
                 end
             end
             nrows_new = min(nrows_accepted - n, nrows - n)
@@ -94,6 +100,9 @@
                 if rand(rng) < p
                     nrows_accepted += 1
                     index[nrows_accepted] = i
+                    if nrows_accepted == nrows
+                        break
+                    end
                 end
             end
             nrows_new = min(nrows_accepted - n, nrows - n)
@@ -129,6 +138,9 @@
                 if rand(rng) < p[i]
                     nrows_accepted += 1
                     index[nrows_accepted] = i
+                    if nrows_accepted == nrows
+                        break
+                    end
                 end
             end
             nrows_new = min(nrows_accepted - n, nrows - n)
