@@ -310,9 +310,12 @@
     Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
     Optionally provide weights `p` either per-sampel or blanket
     """
-    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1)))
+    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1));
+            rng::AbstractRNG=MersenneTwister(),
+            buffer::Vector{Int}=Array{Int}(undef,size(data,1))
+        )
         resampled = Array{eltype(data)}(undef,nrows,size(data,2))
-        return randsample!(resampled, data, nrows, p)
+        return randsample!(resampled, data, nrows, p, rng, buffer)
     end
     # Second method for randsample that takes a dictionary as input
     """

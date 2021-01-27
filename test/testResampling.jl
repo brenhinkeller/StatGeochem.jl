@@ -20,12 +20,15 @@
     @test bsresample(1:10,fill(0.5,10),1000,0.5)::Array{Float64} |> length == 1000
     @test bsresample(1:10,fill(0.5,10),1000,fill(0.5,10))::Array{Float64} |> length == 1000
 
-    @test bincounts(1:100,0,100,10) == (5:10:95, fill(10,10))
-    @test binmeans(1:100,1:100,0,100,10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
+    @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
+    @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
+    @test binmeans(1:100, 1:100, 0, 100, 10, ones(100)) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     @test binmedians(1:100,1:100,0,100,10) == (5:10:95, 5.5:10:95.5, fill(1.1720982147414096,10))
 
-    @test randsample(1:10,1000)::Array{Int64} |> length == 1000
-    @test unique(randsample(1:10,1000)) ⊆ 1:10
+    @test randsample(1:10., 1000, rand(1000))::Array{Float64} |> length == 1000
+    @test randsample(1:10, 1000)::Array{Int64} |> length == 1000
+    @test unique(randsample(1:10, 1000)) ⊆ 1:10
+
 
 ## --- Invweight
 
