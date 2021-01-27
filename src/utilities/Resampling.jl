@@ -8,31 +8,32 @@
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
     dataset `data` with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::Array, index::Vector{Int}, data::AbstractArray, sigma::AbstractArray, p::Number, rng::AbstractRNG=MersenneTwister())
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        nrows = size(resampled,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
+        nrows_accepted = 0
         while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p
                     nrows_accepted += 1
-                    buffer[nrows_accepted] = i
+                    index[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n)
+            nrows_new = min(nrows_accepted - n, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
                 # Optimized inner loop
                 @inbounds for i = 1:nrows_new
-                    a = buffer[i]
-                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma[a,j]
+                    row = index[n+i]
+                    resampled[n+i,j] = data[row,j] + randn(rng) * sigma[row,j]
                 end
             end
 
@@ -42,31 +43,32 @@
 
         return resampled
     end
-    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::Array, index::Vector{Int}, data::AbstractArray, sigma::AbstractArray, p::AbstractVector, rng::AbstractRNG=MersenneTwister())
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        nrows = size(resampled,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
+        nrows_accepted = 0
         while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p[i]
                     nrows_accepted += 1
-                    buffer[nrows_accepted] = i
+                    index[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n)
+            nrows_new = min(nrows_accepted - n, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
                 # Optimized inner loop
                 @inbounds for i = 1:nrows_new
-                    a = buffer[i]
-                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma[a,j]
+                    row = index[n+i]
+                    resampled[n+i,j] = data[row,j] + randn(rng) * sigma[row,j]
                 end
             end
 
@@ -76,31 +78,32 @@
 
         return resampled
     end
-    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::Number, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::Array, index::Vector{Int}, data::AbstractArray, sigma::Number, p::Number, rng::AbstractRNG=MersenneTwister())
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        nrows = size(resampled,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
+        nrows_accepted = 0
         while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p
                     nrows_accepted += 1
-                    buffer[nrows_accepted] = i
+                    index[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n)
+            nrows_new = min(nrows_accepted - n, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
                 # Optimized inner loop
                 @inbounds for i = 1:nrows_new
-                    a = buffer[i]
-                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma
+                    row = index[n+i]
+                    resampled[n+i,j] = data[row,j] + randn(rng) * sigma
                 end
             end
 
@@ -110,31 +113,32 @@
 
         return resampled
     end
-    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::Number, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function bsr!(resampled::Array, index::Vector{Int}, data::AbstractArray, sigma::Number, p::AbstractVector, rng::AbstractRNG=MersenneTwister())
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        nrows = size(resampled,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
+        nrows_accepted = 0
         while n < nrows
 
             # Compare acceptance probability p against Unif(0,1)
-            nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p[i]
                     nrows_accepted += 1
-                    buffer[nrows_accepted] = i
+                    index[nrows_accepted] = i
                 end
             end
-            nrows_new = min(nrows_accepted, nrows - n)
+            nrows_new = min(nrows_accepted - n, nrows - n)
 
             # Columns go in outer loop because of column major indexing
             for j=1:ncolumns
                 # Optimized inner loop
                 @inbounds for i = 1:nrows_new
-                    a = buffer[i]
-                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma
+                    row = index[n+i]
+                    resampled[n+i,j] = data[row,j] + randn(rng) * sigma
                 end
             end
 
@@ -155,10 +159,10 @@
     Bootstrap resample a (sample-per-row / element-per-column) array of `data`
     with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsresample(data::AbstractArray, sigma::Union{Number,AbstractArray}, nrows::Integer, p=min(0.2,nrows/size(data,1)))
-        buffer=Array{Int}(undef,size(data,1))
+    function bsresample(data::AbstractArray, sigma::Union{Number,AbstractArray}, nrows::Integer, p=min(0.2,nrows/size(data,1)); rng=MersenneTwister())
+        index = Array{Int}(undef, nrows)
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
-        return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
+        return bsr!(resampled, index, data, sigma, p, rng)
     end
     # Second method for bsresample that takes a dictionary as input.
     function bsresample(dataset::Dict, nrows::Integer, elements=in["elements"], p = min(0.2,nrows/length(in[elements[1]])))
@@ -443,8 +447,8 @@
 
     function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
@@ -452,7 +456,7 @@
 
             # Compare acceptance probability p against Unif(0,1)
             nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p
                     nrows_accepted += 1
                     buffer[nrows_accepted] = i
@@ -476,8 +480,8 @@
     end
     function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
-        nrows_initial = size(data,1)
-        ncolumns = size(data,2)
+        ndata = size(data,1)
+        ncolumns = size(resampled,2)
 
         # Resample
         n = 0
@@ -485,7 +489,7 @@
 
             # Compare acceptance probability p against Unif(0,1)
             nrows_accepted = 0
-            @inbounds for i=1:nrows_initial
+            @inbounds for i=1:ndata
                 if rand(rng) < p[i]
                     nrows_accepted += 1
                     buffer[nrows_accepted] = i
@@ -682,13 +686,13 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         means = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
 
@@ -712,12 +716,12 @@
         # Preallocate
         dbs = Array{dtype}(undef, nrows, ncols)
         means = Array{dtype}(undef, nbins, nresamplings, size(y,2))
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins, size(y,2))
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             nanmean!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+size(y,2)), xmin, xmax, nbins)
         end
 
@@ -753,12 +757,12 @@
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamplings)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows)
         N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
 
@@ -794,12 +798,12 @@
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamplings)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
 
@@ -823,12 +827,12 @@
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
         means = Array{Float64}(undef, nbins, nresamplings)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister() # Pseudorandom number generator
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             nanmean!(view(means,:,i), W, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
 
@@ -863,12 +867,12 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         medians = Array{Float64}(undef, nbins, nresamplings)
         rng = MersenneTwister() # Pseudorandom number generator
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             @views nanmedian!(medians[:,i], dbs[:,1], dbs[:,2], xmin, xmax, nbins)
         end
 
@@ -903,15 +907,15 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         means = Array{Float64}(undef, nbins, nresamplings)
         fractions = Array{Float64}(undef, nrows)
         fraction_means = Array{Float64}(undef, nbins)
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             nanmean!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
@@ -936,15 +940,15 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         means = Array{Float64}(undef, nbins, nresamplings)
         fractions = Array{Float64}(undef, nrows)
         fraction_means = Array{Float64}(undef, nbins)
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             nanmean!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
@@ -981,13 +985,13 @@
 
         # Preallocate
         dbs = Array{Float64}(undef, nrows, ncols)
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         medians = Array{Float64}(undef, nbins, nresamplings)
         ratios = Array{Float64}(undef, nrows)
         rng = MersenneTwister()
-        buffer = Array{Int}(undef, nrows) # Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
-            bsr!(dbs,data,sigma,nrows,p,rng,buffer) # Boostrap Resampling
+            bsr!(dbs, index, data, sigma, p, rng) # Boostrap Resampling
             @views @avx @. ratios = dbs[:,2] ./ dbs[:,3]
             @views nanmedian!(medians[:,i], dbs[:,1], ratios, xmin, xmax, nbins)
         end
