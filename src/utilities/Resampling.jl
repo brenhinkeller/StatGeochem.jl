@@ -1,18 +1,10 @@
 ## --- Bootstrap resampling
 
-    """
-    ```julia
-    resampled = bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector})
-    ```
-
-    Return data boostrap resampled from of a (sample-per-row / element-per-column)
-    dataset `data` with uncertainties `sigma` and resampling probabilities `p`
-    """
-    function bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
-        resampled = Array{float(eltype(data))}(undef,nrows,size(data,2)) # Allocate output array
-        return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
-    end
-    export bsr
+    # function bsr(data::AbstractArray, sigma::AbstractArray, nrows::Integer, p::Union{Number, AbstractVector{<:Number}}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    #     resampled = Array{float(eltype(data))}(undef,nrows,size(data,2)) # Allocate output array
+    #     return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
+    # end
+    # export bsr
 
     """
     ```julia
@@ -90,58 +82,94 @@
 
         return resampled
     end
-    export bsr!
-
-    # Bootstrap resample (with uncertainty) a variable up to size nrows.
-    # Optionally provide weights in p
-    function bsresample(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
-
-        # Allocate output array
-        resampled = Array{Float64}(undef,nrows,size(data,2))
+    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::Number, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
 
         # Resample
-        i = 1
-        while i <= nrows
-            # If we have more than one sample
-            if size(data,1) > 1
-                # Select weighted sample of data
-                t = rand(Float64, size(data,1)) .< p
-                sdata = data[t,:]
+        n = 0
+        while n < nrows
 
-                # Corresponing uncertainty (either blanket or for each datum)
-                if size(sigma,1) > 1
-                    serr = sigma[t,:]
-                else
-                    serr = ones(size(sdata)) .* sigma
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
                 end
-            else # If only one sample
-                sdata = data
-                serr = sigma
             end
+            nrows_new = min(nrows_accepted, nrows - n)
 
-            # Randomize data over uncertainty interval
-            sdata += randn(Float64, size(sdata)) .* serr
-
-            # Figure out how much of our resampled data to output
-            if (i+size(sdata,1)-1) <= nrows
-                resampled[i:i+size(sdata,1)-1,:] = sdata
-            else
-                resampled[i:end,:] = sdata[1:nrows-i+1,:]
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                # Optimized inner loop
+                @inbounds for i = 1:nrows_new
+                    a = buffer[i]
+                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma
+                end
             end
 
             # Keep track of current filled rows
-            i += size(sdata,1)
+            n += nrows_new
         end
 
         return resampled
     end
-    # Second method for bsresample that takes a dictionary as input. Yay multiple dispatch!
-    function bsresample(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+    function bsr!(resampled::AbstractArray, data::AbstractArray, sigma::Number, nrows::Integer, p::AbstractVector{<:Number}, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+        # Prepare
+        nrows_initial = size(data,1)
+        ncolumns = size(data,2)
 
+        # Resample
+        n = 0
+        while n < nrows
+
+            # Compare acceptance probability p against Unif(0,1)
+            nrows_accepted = 0
+            @inbounds for i=1:nrows_initial
+                if rand(rng) < p[i]
+                    nrows_accepted += 1
+                    buffer[nrows_accepted] = i
+                end
+            end
+            nrows_new = min(nrows_accepted, nrows - n)
+
+            # Columns go in outer loop because of column major indexing
+            for j=1:ncolumns
+                # Optimized inner loop
+                @inbounds for i = 1:nrows_new
+                    a = buffer[i]
+                    resampled[n+i,j] = data[a,j] + randn(rng) * sigma
+                end
+            end
+
+            # Keep track of current filled rows
+            n += nrows_new
+        end
+
+        return resampled
+    end
+    export bsr!
+
+
+
+    """
+    ```julia
+    resampled = bsresample(data::AbstractArray, sigma, nrows, [p])
+    ```
+    Bootstrap resample a (sample-per-row / element-per-column) array of `data`
+    with uncertainties `sigma` and resampling probabilities `p`
+    """
+    function bsresample(data::AbstractArray, sigma::Union{Number,AbstractArray}, nrows::Integer, p=min(0.2,nrows/size(data,1)))
+        buffer=Array{Int}(undef,size(data,1)))
+        resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
+        return bsr!(resampled, data, sigma, nrows, p, rng, buffer)
+    end
+    # Second method for bsresample that takes a dictionary as input.
+    function bsresample(dataset::Dict, nrows::Integer, elements=in["elements"], p = min(0.2,nrows/length(in[elements[1]])))
         # 2d array of nominal values
-        data = unelementify(in, elements, floatout=true)
+        data = unelementify(dataset, elements, floatout=true)
 
         # 2d array of absolute 1-sigma uncertainties
         if haskey(in,"err") && isa(in["err"], Dict)
@@ -157,8 +185,7 @@
     export bsresample
 
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma
-    function bsresample_unif(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
+    function bsresample_unif(data::AbstractArray, sigma::Union{Number,AbstractArray}, nrows::Integer, p=min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -200,8 +227,7 @@
         return resampled
     end
     # Second method for bsresample_unif that takes a dictionary as input
-    function bsresample_unif(in::Dict, nrows::Integer, elements=in["elements"],
-        p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/length(in[elements[1]])))
+    function bsresample_unif(in::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
 
         # 2d array of nominal values
         data = unelementify(in, elements, floatout=true)
@@ -220,9 +246,9 @@
     export bsresample_unif
 
     # As bsresample, but with a uniform distribution stretching from data-sigma to data+sigma, AND a gaussian component
-    function bsresample_unif_norm(data::Array{<:Number},
-        sigma_unif::Union{Number,Array{<:Number}}, sigma_norm::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
+    function bsresample_unif_norm(data::AbstractArray,
+        sigma_unif::Union{Number,AbstractArray}, sigma_norm::Union{Number,AbstractArray},
+        nrows::Integer, p=min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -269,8 +295,8 @@
     export bsresample_unif_norm
 
     # As bsresample, but also return an index of the rows included from data
-    function bsresample_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
+    function bsresample_index(data::AbstractArray, sigma::Union{Number,AbstractArray},
+        nrows::Integer, p=min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
@@ -318,8 +344,8 @@
     export bsresample_index
 
     # As bsresample_unif, but also return an index of the rows included from data
-    function bsresample_unif_index(data::Array{<:Number}, sigma::Union{Number,Array{<:Number}},
-        nrows::Integer, p::Union{Number,AbstractVector{<:Number}} = min(0.2,nrows/size(data,1)))
+    function bsresample_unif_index(data::AbstractArray, sigma::Union{Number,AbstractArray},
+        nrows::Integer, p=min(0.2,nrows/size(data,1)))
 
         # Allocate output array
         resampled = Array{Float64}(undef,nrows,size(data,2))
