@@ -30,6 +30,15 @@
     @test bsresample(1:10,fill(0.5,10),1000,0.5)::Array{Float64} |> length == 1000
     @test bsresample(1:10,fill(0.5,10),1000,fill(0.5,10))::Array{Float64} |> length == 1000
 
+    d = Dict{String,Vector{Float64}}()
+    d["x"] = 1:10;  d["y"] = 2:2:20
+    d["x_sigma"] = d["y_sigma"] = fill(0.5,10)
+    d = bsresample(d, 1000, ["x","y"], 0.5)
+    @test isapprox(mean(d["x"]), 5.5, atol=0.5)
+    @test isapprox(std(d["x"]), 3.03, atol=0.5)
+    @test isapprox(mean(d["y"]), 11, atol=1)
+    @test isapprox(std(d["y"]), 6.06, atol=1)
+
     @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
     @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     @test binmeans(1:100, 1:100, 0, 100, 10, ones(100)) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))

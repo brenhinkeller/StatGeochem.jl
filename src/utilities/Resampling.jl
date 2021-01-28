@@ -1,4 +1,4 @@
-## --- Bootstrap resampling
+dataset## --- Bootstrap resampling
 
     # Kernel functions
     @inline function uniform(rng::AbstractRNG, mu, halfwidth)
@@ -215,7 +215,7 @@
     Bootstrap resample a dictionary-based `dataset` with uncertainties stored either
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
-    function bsresample(dataset::Dict, nrows, elements=in["elements"], p = min(0.2,nrows/length(in[elements[1]]));
+    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p = min(0.2,nrows/length(in[elements[1]]));
             kernel = gaussian,
             rng = MersenneTwister()
         )
@@ -223,10 +223,10 @@
         data = unelementify(dataset, elements, floatout=true)
 
         # 2d array of absolute 1-sigma uncertainties
-        if haskey(in,"err") && isa(in["err"], Dict)
-            sigma = unelementify(in["err"], elements, floatout=true)
+        if haskey(dataset, "err") && isa(dataset["err"], Dict)
+            sigma = unelementify(dataset["err"], elements, floatout=true)
         else
-            sigma = unelementify(in, elements.*"_sigma", floatout=true)
+            sigma = unelementify(dataset, elements.*"_sigma", floatout=true)
         end
 
         # Resample
