@@ -12,7 +12,8 @@
 
 ## --- PartitionCoefficients/PartitionCoefficients.jl
 
-   @test claiborne_zircon_kd.(["Sm","Yb"], 800) ≈ [0.4362887941802957, 101.77562766576213]
+   @test Float16.(claiborne_zircon_kd.(["Hf","Th","U","Y","Nb","Nd","Sm","Tb","Eu","Dy","Gd","Ho","Er","Yb","Tm","Lu"], 800)) ==
+      Float16[1.303e3, 6.46, 36.97, 33.47, 0.2556, 0.02368, 0.4363, 10.695, 0.8784, 19.56, 3.293, 40.34, 62.88, 101.75, 94.94, 126.4]
 
 
 ## --- Colormaps.jl
