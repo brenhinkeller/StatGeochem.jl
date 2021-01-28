@@ -30,11 +30,11 @@
 
 ## --- Calculate slope from a DEM
 
-    function maxslope(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, km_per_lat=111.1)
+    function maxslope(matrix, x_lon_cntr, y_lat_cntr, cellsize, T=UInt16; minmatval=-12000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
-        slope = Array{UInt16}(undef,size(matrix))
+        slope = Array{T}(undef,size(matrix))
 
         # Fill in the center first
         distNS = 2 * cellsize * km_per_lat
@@ -71,7 +71,7 @@
                     end
 
                     # Record the steepest slope
-                    slope[i,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+                    slope[i,j] = nearest(T, max(NS,EW,NESW,NWSE))
                 end
             end
 
@@ -100,7 +100,7 @@
             else
                 NWSE = abs(matrix[i+1,2] - matrix[i-1,1]) / distDiag
             end
-            slope[i,1] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[i,1] = nearest(T, max(NS,EW,NESW,NWSE))
 
             # Right edge
             if (matrix[i+1,end] < minmatval) || (matrix[i-1,end] < minmatval)
@@ -123,7 +123,7 @@
             else
                 NWSE = abs(matrix[i+1,end] - matrix[i-1,end-1]) / distDiag
             end
-            slope[i,end] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[i,end] = nearest(T, max(NS,EW,NESW,NWSE))
         end
 
         # Fill in the top and bottom row
@@ -156,7 +156,7 @@
             else
                 NWSE = abs(matrix[2,j+1] - matrix[1,j]) / distDiag
             end
-            slope[1,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[1,j] = nearest(T, max(NS,EW,NESW,NWSE))
         end
         slope[1,1] = 0
         slope[1,end] = 0
@@ -187,7 +187,7 @@
             else
                 NWSE = abs(matrix[end-1,j+1] - matrix[end,j]) / distDiag
             end
-            slope[end,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[end,j] = nearest(T, max(NS,EW,NESW,NWSE))
         end
         slope[end,1] = 0
         slope[end,end] = 0
@@ -196,13 +196,13 @@
     end
     export maxslope
 
-    function aveslope(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, maxmatval=9000, km_per_lat=111.1)
+    function aveslope(matrix, x_lon_cntr, y_lat_cntr, cellsize, T=UInt16; minmatval=-12000, maxmatval=9000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
         distance = Array{Float64}(undef,8)
         local_slopes = Array{Float64}(undef,8)
-        slope = Array{UInt16}(undef,size(matrix))
+        slope = Array{T}(undef,size(matrix))
 
         # Index offsets to cycle through:
         #         [N,NE,E,SE,S,SW,W,NW]
@@ -241,7 +241,7 @@
                         end
                     end
                     # Record the average slope
-                    slope[i,j] = round(UInt16, min(mean(local_slopes), 0xffff))
+                    slope[i,j] = nearest(T, mean(local_slopes))
                 end
             end
 
@@ -258,7 +258,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,1] = round(UInt16, min(mean(local_slopes[1:5]), 0xffff))
+                slope[i,1] = nearest(T, mean(local_slopes[1:5]))
             end
 
             # Right edge
@@ -274,7 +274,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,end] = round(UInt16, min(mean(local_slopes[[5,6,7,8,1]]), 0xffff))
+                slope[i,end] = nearest(T, mean(local_slopes[[5,6,7,8,1]]))
             end
         end
 
@@ -296,7 +296,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[1,j] = round(UInt16, min(mean(local_slopes[3:7]), 0xffff))
+                slope[1,j] = nearest(T, mean(local_slopes[3:7]))
             end
         end
         slope[1,1] = 0
@@ -320,7 +320,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[end,j] = round(UInt16, min(mean(local_slopes[[7,8,1,2,3]]),0xffff));
+                slope[end,j] = nearest(T, mean(local_slopes[[7,8,1,2,3]]))
             end
         end
         slope[end,1] = 0

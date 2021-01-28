@@ -1,3 +1,20 @@
+## --- Dealing with different number representations
+
+    """
+    ```julia
+    nearest(T, x)
+    ```
+    Convert `x` to the nearest representable value in type T, rounding if inexact
+    """
+    function nearest(::Type{T}, x) where T <: Integer
+        round(T, max(min(x, typemax(T)), typemin(T)))
+    end
+    function nearest(::Type{T}, x) where T
+        T(max(min(x, typemax(T)), typemin(T)))
+    end
+    export nearest
+
+
 ## --- Fast inverse square-root
 
     """
