@@ -1,4 +1,4 @@
-dataset## --- Bootstrap resampling
+## --- Bootstrap resampling
 
     # Kernel functions for bsr!
     @inline function uniform(rng::AbstractRNG, mu, halfwidth)
