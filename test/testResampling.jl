@@ -8,6 +8,7 @@
     @test bsr!(resampled,index,1:10,fill(0,10),fill(0.5,1000)) |> unique ⊆ 1:10
 
     resampled = Array{Float64}(undef,1000)
+    # Gaussian
     bsr!(resampled, index, ones(10), 0.5, 0.5)
     @test isapprox(mean(resampled), 1, atol=0.15)
     bsr!(resampled, index, ones(10), 0.5, fill(0.5,1000))
@@ -15,6 +16,15 @@
     bsr!(resampled, index, ones(10), fill(0.5,10), 0.5)
     @test isapprox(mean(resampled), 1, atol=0.15)
     bsr!(resampled, index, ones(10), fill(0.5,10), fill(0.5,1000))
+    @test isapprox(mean(resampled), 1, atol=0.15)
+    # Other distributions
+    bsr!(uniform, resampled, index, ones(10), 0.5, 0.5)
+    @test isapprox(mean(resampled), 1, atol=0.15)
+    bsr!(triangular, resampled, index, ones(10), 0.5, fill(0.5,1000))
+    @test isapprox(mean(resampled), 1, atol=0.15)
+    bsr!(triangular, resampled, index, ones(10), fill(0.5,10), 0.5)
+    @test isapprox(mean(resampled), 1, atol=0.15)
+    bsr!(uniform, resampled, index, ones(10), fill(0.5,10), fill(0.5,1000))
     @test isapprox(mean(resampled), 1, atol=0.15)
 
     @test bsresample(1:10,fill(0.5,10),1000,0.5)::Array{Float64} |> length == 1000
