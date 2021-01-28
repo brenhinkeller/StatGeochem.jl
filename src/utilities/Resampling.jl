@@ -1,6 +1,6 @@
 dataset## --- Bootstrap resampling
 
-    # Kernel functions
+    # Kernel functions for bsr!
     @inline function uniform(rng::AbstractRNG, mu, halfwidth)
         mu + halfwidth * (2*rand(rng)-1)
     end
@@ -16,8 +16,9 @@ dataset## --- Bootstrap resampling
 
     """
     ```julia
-    bsr!([f::Function], resampled::AbstractArray, data::AbstractArray, sigma:Union{Number, AbstractArray}, p::Union{Number, AbstractVector}
-        \trng::AbstractRNG=MersenneTwister())
+    bsr!([f::Function], resampled::Array, index::Vector{Int}, data, sigma, p;
+        \trng::AbstractRNG=MersenneTwister()
+    )
     ```
 
     Fill `resampled` with data boostrap resampled from a (sample-per-row / element-per-column)
@@ -215,7 +216,7 @@ dataset## --- Bootstrap resampling
     Bootstrap resample a dictionary-based `dataset` with uncertainties stored either
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
-    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p = min(0.2,nrows/length(in[elements[1]]));
+    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(in[elements[1]]));
             kernel = gaussian,
             rng = MersenneTwister()
         )
@@ -308,7 +309,7 @@ dataset## --- Bootstrap resampling
     randsample(data::Array, nrows, [p])
     ```
     Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
-    Optionally provide weights `p` either per-sampel or blanket
+    Optionally provide weights `p` either as a vector (one-weight-per-sample) or scalar.
     """
     function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1));
             rng::AbstractRNG=MersenneTwister(),
@@ -323,7 +324,7 @@ dataset## --- Bootstrap resampling
     randsample(dataset::Dict, nrows, [elements], [p])
     ```
     Bootstrap resample (without uncertainty) a `dataset` dict to length `nrows`.
-    Optionally provide weights `p` either per-sampel or blanket
+    Optionally provide weights `p` either as a vector (one-weight-per-sample) or scalar.
     """
     function randsample(dataset::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
         data = unelementify(dataset, elements, floatout=true)
@@ -458,25 +459,64 @@ dataset## --- Bootstrap resampling
 
     """
     ```julia
-    (c, m, e) = bin_bsr(x::Vector, y::VecOrMat, xmin, xmax, nbins;
+    bin_bsr([f!::Function], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \ty_sigma = zeros(size(y)),
         \tnresamplings = 1000,
-        \tp::Union{Number,Vector} = 0.2
+        \tsem = :sigma,
+        \tp = 0.2
     )
     ```
-    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
-    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamplings` boostrap resamplings with acceptance probability `p`.
+    Returns the bincenters `c`, means or medians `m`, and uncertainties of the
+    mean or median for a variable `y` binned by independent variable `x` into
+    `nbins` equal bins between `xmin` and `xmax`, after `nresamplings` boostrap
+    resamplings with acceptance probability `p`.
 
     If a 2-d array (matrix) of `y` values is provided, each column will be treated
-    as a separate variable, means and uncertainties will be returned column-wise
+    as a separate variable, means and uncertainties will be returned column-wise.
+
+    Optional keyword arguments and defaults:
+
+        x_sigma = zeros(size(x))
+
+    A vector representing the uncertainty (standard deviation) of each x value
+
+        y_sigma = zeros(size(y))
+
+    A vector representing the uncertainty (standard deviation) of each y value
+
+        nresamplings = 1000
+
+    The number of resamplings to conduct
+
+        sem = :sigma
+
+    Format of the uncertainty estimate of the distribution of the mean.
+    If `:sigma` is chosen, a tuple of three vectors `(c, m, e)` will be returned,
+    where `e` is the standard error of the mean.
+    If `:CI` or `:pctile` is chosen, a tuple of four vectors `(c, m, el, eu)`
+    will be returned, where `el` and `eu` are the lower and upper bounds of the 95%
+    confidence interval.
+
+        p = 0.2
+
+    Resampling probabilities, either as a scalar or a vector of the same length as `x`
+
+
+    # Examples:
+    ```julia
+    (c,m,e) = bin_bsr(nanmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
+    ```
+    ```julia
+    (c,m,el,eu) = bin_bsr(nanmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
+    ```
     """
-    function bin_bsr(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractVector=zeros(size(y)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
+            x_sigma = zeros(size(x)),
+            y_sigma = zeros(size(y)),
+            nresamplings = 1000,
+            sem = :credibleinterval,
+            p = 0.2
         )
 
         data = hcat(x, y)
@@ -494,20 +534,32 @@ dataset## --- Bootstrap resampling
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
+            f!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
         end
 
+        # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        e = nanstd(means,dim=2) # Standard deviation of means (sem)
-
-        return c, m, e
+        if sem == :sigma
+            # Standard deviation of means (sem)
+            e = nanstd(means,dim=2)
+            return c, m, e
+        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+            # Lower bound of central 95% CI of means
+            el = m .- pctile(means,2.5,dim=2)
+            # Upper bound of central 95% CI of means
+            eu = pctile(means,97.5,dim=2) .- m
+            return c, m, el, eu
+        else
+            return c, means
+        end
     end
-    function bin_bsr(x::AbstractVector, y::AbstractMatrix, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractMatrix=zeros(size(y)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin, xmax, nbins::Integer;
+            x_sigma = zeros(size(x)),
+            y_sigma = zeros(size(y)),
+            nresamplings = 1000,
+            sem = :credibleinterval,
+            p = 0.2
         )
 
         data = hcat(x, y)
@@ -526,36 +578,39 @@ dataset## --- Bootstrap resampling
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            nanmean!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+size(y,2)), xmin, xmax, nbins)
+            f!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+size(y,2)), xmin, xmax, nbins)
         end
 
+        # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = Array{dtype}(undef, nbins, size(y,2))
-        e = Array{dtype}(undef, nbins, size(y,2))
-        for j = 1:size(y,2)
-            m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
-            e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
+        if sem == :sigma
+            m = Array{dtype}(undef, nbins, size(y,2))
+            e = Array{dtype}(undef, nbins, size(y,2))
+            for j = 1:size(y,2)
+                m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
+                e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
+            end
+            return c, m, e
+        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+            m = Array{dtype}(undef, nbins, size(y,2))
+            el = Array{dtype}(undef, nbins, size(y,2))
+            eu = Array{dtype}(undef, nbins, size(y,2))
+            for j = 1:size(y,2)
+                m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
+                el[:,j] .= m[:,j] .- pctile(view(means,:,:,j),dim=2)
+                eu[:,j] .= pctile(view(means,:,:,j),dim=2) .- m[:,j]
+            end
+            return c, m, el, eu
+        else
+            return c, means
         end
-        return c, m, e
     end
-    """
-    ```julia
-    (c, m, e) = function bin_bsr(x::Vector, y::Vector, xmin, xmax, nbins, w::Vector;
-        \tx_sigma=zeros(size(x)),
-        \ty_sigma=zeros(size(x)),
-        \tnresamplings=1000,
-        \tp::Union{Number,Vector}=0.2
-    )
-    ```
-    Returns the bincenters `c`, means `m`, and 1σ standard errors of the mean `e` for
-    a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamplings` boostrap resamplings with acceptance probability `p` and weight `w`.
-    """
-    function bin_bsr(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractVector=zeros(size(x)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
+            x_sigma = zeros(size(x)),
+            y_sigma = zeros(size(x)),
+            nresamplings = 1000,
+            sem = :credibleinterval,
+            p = 0.2
         )
 
         data = hcat(x, y, w)
@@ -574,143 +629,42 @@ dataset## --- Bootstrap resampling
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
+            f!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
         end
 
+        # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        e = nanstd(means,dim=2) # Standard deviation of means (sem)
-
-        return c, m, e
+        if sem == :sigma
+            # Standard deviation of means (sem)
+            e = nanstd(means,dim=2)
+            return c, m, e
+        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+            # Lower bound of central 95% CI of means
+            el = m .- pctile(means,2.5,dim=2)
+            # Upper bound of central 95% CI of means
+            eu = pctile(means,97.5,dim=2) .- m
+            return c, m, el, eu
+        else
+            return c, means
+        end
     end
+    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
+        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
+        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr
 
-
-    """
-    ```julia
-    (c, m, el, eu) = bin_bsr_means(x::Vector, y::Vector, xmin, xmax, nbins;
-        \tx_sigma=zeros(size(x)),
-        \ty_sigma=zeros(size(y)),
-        \tnresamplings=1000,
-        \tp::Union{Number,AbstractVector}=0.2
-    )
-    ```
-
-    Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
-    for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamplings` boostrap resamplings with acceptance probability `p`.
-    """
-    function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractVector=zeros(size(y)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
-        )
-
-        data = hcat(x, y)
-        sigma = hcat(x_sigma, y_sigma)
-        binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
-
-        # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamplings)
-        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        rng = MersenneTwister()
-        N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
-        # Resample
-        for i=1:nresamplings
-            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            nanmean!(view(means,:,i), N, view(dbs,:,1), view(dbs,:,2), xmin, xmax, nbins)
-        end
-
-        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = nanmean(means,dim=2) # Mean-of-means
-        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
-        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
-
-        return c, m, el, eu
-    end
-    function bin_bsr_means(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractVector=zeros(size(y)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
-        )
-
-        data = hcat(x, y, w)
-        sigma = hcat(x_sigma, y_sigma, zeros(size(w)))
-        binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
-
-        # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamplings)
-        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        rng = MersenneTwister() # Pseudorandom number generator
-        W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
-        # Resample
-        for i=1:nresamplings
-            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            nanmean!(view(means,:,i), W, view(dbs,:,1), view(dbs,:,2), view(dbs,:,3), xmin, xmax, nbins)
-        end
-
-        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = nanmean(means,dim=2) # Mean-of-means
-        el = m .- pctile(means,2.5,dim=2) # Lower bound of central 95% CI
-        eu = pctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
-
-        return c, m, el, eu
-    end
+    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr_means
 
-    """
-    ```julia
-    (c, m, el, eu) = bin_bsr_medians(x::Vector, y::Vector, xmin, xmax, nbins;
-        \tx_sigma=zeros(size(x)),
-        \ty_sigma=zeros(size(y)),
-        \tnresamplings=1000,
-        \tp::Union{Number,AbstractVector}=0.2
-    )
-    ```
-
-    Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
-    for a variable `y` binned by variable `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamplings` boostrap resamplings with acceptance probability `p`.
-    """
-    function bin_bsr_medians(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
-            y_sigma::AbstractVector=zeros(size(y)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
-        )
-
-        data = hcat(x, y)
-        sigma = hcat(x_sigma, y_sigma)
-        binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
-
-        # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        medians = Array{Float64}(undef, nbins, nresamplings)
-        rng = MersenneTwister() # Pseudorandom number generator
-        # Resample
-        for i=1:nresamplings
-            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views nanmedian!(medians[:,i], dbs[:,1], dbs[:,2], xmin, xmax, nbins)
-        end
-
-        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = nanmedian(medians,dim=2) # Median-of-medians
-        el = m .- pctile(medians,2.5,dim=2) # Lower bound of central 95% CI
-        eu = pctile(medians,97.5,dim=2) .- m # Upper bound of central 95% CI
-
-        return c, m, el, eu
-    end
+    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr_medians
 
     """
