@@ -10,22 +10,22 @@
     resampled = Array{Float64}(undef,1000)
     # Gaussian
     bsr!(resampled, index, ones(10), 0.5, 0.5)
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(resampled, index, ones(10), 0.5, fill(0.5,1000))
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(resampled, index, ones(10), fill(0.5,10), 0.5)
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(resampled, index, ones(10), fill(0.5,10), fill(0.5,1000))
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     # Other distributions
     bsr!(uniform, resampled, index, ones(10), 0.5, 0.5)
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(triangular, resampled, index, ones(10), 0.5, fill(0.5,1000))
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(triangular, resampled, index, ones(10), fill(0.5,10), 0.5)
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
     bsr!(uniform, resampled, index, ones(10), fill(0.5,10), fill(0.5,1000))
-    @test isapprox(mean(resampled), 1, atol=0.15)
+    @test isapprox(mean(resampled), 1, atol=0.2)
 
     @test bsresample(1:10,fill(0.5,10),1000,0.5)::Array{Float64} |> length == 1000
     @test bsresample(1:10,fill(0.5,10),1000,fill(0.5,10))::Array{Float64} |> length == 1000
@@ -68,20 +68,20 @@
     xmin = 0; xmax = 100; nbins = 5
     (c,m,e) = bin_bsr(x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.15)
-    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.15)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.3)
+    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.3)
 
     # Upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.15)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.3)
     @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=0.5)
     @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=0.5)
 
     # Medians, upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanmedian!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.01, 29.91, 49.9, 69.88, 89.79], atol=0.15)
+    @test isapprox(m, [10.01, 29.91, 49.9, 69.88, 89.79], atol=1)
     @test isapprox(el, [4.01, 3.91, 3.9, 3.88, 3.79], atol=2)
     @test isapprox(eu, [3.99, 4.09, 4.1, 4.12, 4.21], atol=2)
 
@@ -89,8 +89,8 @@
     w = ones(101)
     (c,m,e) = bin_bsr(x, y, xmin, xmax, nbins, w, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.15)
-    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.15)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.3)
+    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.3)
 
     # with 2-D array (matrix) of y data
     y = repeat(0:100, 1, 4)
@@ -107,22 +107,22 @@
     xmin = 0; xmax = 100; nbins = 5
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.3)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.5)
     @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
 
     # With weights
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, ones(101), x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.3)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.5)
     @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
 
 ## --- Monte Carlo interpolation/fitting
 
     (c,m) = mcfit(0:11, ones(12), 0:11, ones(12), 1, 10, 10)
     @test c == 1:10
-    @test isapprox(m, [1.15, 2.02, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.98, 9.85], atol = 0.15)
+    @test isapprox(m, [1.15, 2.02, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.98, 9.85], atol = 0.2)
 
 ## --- Downsampling
 
