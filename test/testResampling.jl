@@ -33,11 +33,11 @@
     d = Dict{String,Vector{Float64}}()
     d["x"] = 1:10;  d["y"] = 2:2:20
     d["x_sigma"] = d["y_sigma"] = fill(0.5,10)
-    d = bsresample(d, 1000, ["x","y"], 0.5)
-    @test isapprox(mean(d["x"]), 5.5, atol=0.5)
-    @test isapprox(std(d["x"]), 3.03, atol=0.5)
-    @test isapprox(mean(d["y"]), 11, atol=1)
-    @test isapprox(std(d["y"]), 6.06, atol=1)
+    dbs = bsresample(d, 1000, ["x","y"], 0.5)
+    @test isapprox(mean(dbs["x"]), 5.5, atol=0.5)
+    @test isapprox(std(dbs["x"]), 3.03, atol=0.5)
+    @test isapprox(mean(dbs["y"]), 11, atol=1)
+    @test isapprox(std(dbs["y"]), 6.06, atol=1)
 
     @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
     @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
@@ -48,6 +48,13 @@
     @test randsample(1:10, 1000)::Array{Int64} |> length == 1000
     @test unique(randsample(1:10, 1000)) ⊆ 1:10
 
+    dr = randsample(d, 1000, ["x","y"], 0.5)
+    @test isapprox(mean(dr["x"]), 5.5, atol=0.5)
+    @test isapprox(std(dr["x"]), 3.03, atol=0.5)
+    @test unique(dr["x"]) ⊆ 1:10
+    @test isapprox(mean(dr["y"]), 11, atol=1)
+    @test isapprox(std(dr["y"]), 6.06, atol=1)
+    @test unique(dr["y"]) ⊆ 2:2:20
 
 ## --- Invweight
 
@@ -85,14 +92,6 @@
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.15)
     @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.15)
 
-    # ratios
-    num = 0:100; denom=reverse(num)
-    (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
-    @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
-
     # with 2-D array (matrix) of y data
     y = repeat(0:100, 1, 4)
     y_sigma = ones(101,4)
@@ -102,7 +101,22 @@
     @test isapprox(e, repeat([1.17, 1.21, 1.23, 1.26, 1.28], 1, 4), atol=0.5)
 
 
+## -- bin_bsr_ratios
 
+    x = 0:100; num = 0:100; denom=reverse(num)
+    xmin = 0; xmax = 100; nbins = 5
+    (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
+
+    # With weights
+    (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, ones(101), x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
 
 ## --- Monte Carlo interpolation/fitting
 
