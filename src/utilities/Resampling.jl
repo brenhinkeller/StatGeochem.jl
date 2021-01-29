@@ -669,7 +669,7 @@
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins;
+    (c, m, el, eu) = bin_bsr_ratios([f!::Function], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
@@ -682,7 +682,7 @@
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
+    function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
             x_sigma::AbstractVector=zeros(size(x)),
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
@@ -708,7 +708,7 @@
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
-            nanmean!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
+            f!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
 
@@ -719,7 +719,7 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
+    function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
             x_sigma::AbstractVector=zeros(size(x)),
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
@@ -745,7 +745,7 @@
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
             @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
-            nanmean!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
+            f!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
 
@@ -756,58 +756,11 @@
 
         return c, m, el, eu
     end
+    bin_bsr_ratios(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr_ratios(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
+    bin_bsr_ratios(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr_ratios(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
     export bin_bsr_ratios
-
-    """
-    ```julia
-    (c, m, el, eu) = bin_bsr_ratio_medians(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins;
-        \tx_sigma=zeros(size(x)),
-        \tnum_sigma=zeros(size(num)),
-        \tdenom_sigma=zeros(size(denom)),
-        \tnresamplings=1000,
-        \tp::Union{Number,AbstractVector{<:Number}}=0.2
-    )
-    ```
-
-    Returns the bincenters `c`, mean medians `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the median
-    for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
-    after `nresamplings` boostrap resamplings with acceptance probability `p`.
-    """
-    function bin_bsr_ratio_medians(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
-            num_sigma::AbstractVector=zeros(size(num)),
-            denom_sigma::AbstractVector=zeros(size(denom)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector{<:Number}}=0.2
-        )
-
-        data = hcat(x, num, denom)
-        sigma = hcat(x_sigma, num_sigma, denom_sigma)
-        binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
-
-        # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        medians = Array{Float64}(undef, nbins, nresamplings)
-        ratios = Array{Float64}(undef, nrows)
-        rng = MersenneTwister()
-        # Resample
-        for i=1:nresamplings
-            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views @avx @. ratios = dbs[:,2] ./ dbs[:,3]
-            @views nanmedian!(medians[:,i], dbs[:,1], ratios, xmin, xmax, nbins)
-        end
-
-        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        m = nanmedian(medians,dim=2) # Median-of-medians
-        el = m .- pctile(medians,2.5,dim=2) # Lower bound of central 95% CI
-        eu = pctile(medians,97.5,dim=2) .- m # Upper bound of central 95% CI
-
-        return (c, m, el, eu)
-    end
-    export bin_bsr_ratio_medians
 
 
 ## --- Quick Monte Carlo binning/interpolation functions

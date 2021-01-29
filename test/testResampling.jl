@@ -85,6 +85,14 @@
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.15)
     @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.15)
 
+    # ratios
+    num = 0:100; denom=reverse(num)
+    (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.15)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.15)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
+
     # with 2-D array (matrix) of y data
     y = repeat(0:100, 1, 4)
     y_sigma = ones(101,4)
@@ -92,6 +100,8 @@
     @test c == 10.0:20.0:90.0
     @test isapprox(m, repeat([10.04, 29.94, 49.94, 69.92, 89.83], 1, 4), atol=0.5)
     @test isapprox(e, repeat([1.17, 1.21, 1.23, 1.26, 1.28], 1, 4), atol=0.5)
+
+
 
 
 ## --- Monte Carlo interpolation/fitting
