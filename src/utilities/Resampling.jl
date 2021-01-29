@@ -756,10 +756,10 @@
 
         return c, m, el, eu
     end
-    bin_bsr_ratios(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
-    bin_bsr_ratios(x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
+    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
+    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,p=p)
     export bin_bsr_ratios
 
 
