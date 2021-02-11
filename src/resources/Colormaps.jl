@@ -110,6 +110,7 @@
     mineralcolors["ferrosilite"] = parse(Color, "#242d2c")
     mineralcolors["clinopyroxene"] = parse(Color, "#227d0e")
     mineralcolors["diopside"] = parse(Color, "#227d0e")
+    mineralcolors["chrome diopside"] = parse(Color, "#0b6402")    
     mineralcolors["hedenbergite"] = parse(Color, "#58634b")
     mineralcolors["acmite"] = parse(Color, "#979141")
     mineralcolors["jadeite"] = parse(Color, "#008621")
