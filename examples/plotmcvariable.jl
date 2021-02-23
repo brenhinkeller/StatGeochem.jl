@@ -70,9 +70,9 @@
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:darkblue,label="")
     plot!(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
-    savefig("$(siname)_$(elem).pdf")
 
-    ## Multiple silica ranges together
+## --- Multiple silica ranges together
+
     xmin = 0 # Minimum Age
     xmax = 800 # Maximum Age
     nbins = 40
