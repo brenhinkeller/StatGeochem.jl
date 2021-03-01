@@ -244,8 +244,11 @@
         \tfloatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
     ```
     Convert a flat array into a dict with each column as a variable
+
+    Option sumduplicates: if multiple columns have identical names, sum them instead of averaging
     """
-    function elementify(dataset::Array, elements::Array=dataset[1,:]; floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true)
+    function elementify(dataset::Array, elements::Array=dataset[1,:]; 
+        floatout::Bool=true, skipstart::Integer=1, skipnameless::Bool=true, sumduplicates::Bool=false)
         # Output as dictionary
         result = Dict()
         if skipnameless
@@ -262,7 +265,11 @@
                 # If key already exists
                 if floatcol || (floatout && (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))))
                     # If either this column or the existing one is plausibly numeric, average the two
-                    result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
+                    if sumduplicates
+                        result[elements[i]] = nansum( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
+                    else 
+                        result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]]), floatify.(thiscol)), dim=2 )
+                    end 
                 else
                     # If neither is plausibly numeric, just contatenate the columns and move on
                     result[elements[i]] = hcat(result[elements[i]], thiscol)
@@ -324,7 +331,7 @@
             for i = 1:length(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = elements[i]
-                result[2:end,i] .= dataset[elements[i]]
+                result[2:end,i] .= dataset[elements[i]][:] # Make 1-D before inserting into result array.
 
                 # if `skipnan` is set, replace each NaN in the output array with
                 # an empty string ("") such that it is empty when printed to file

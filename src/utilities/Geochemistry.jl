@@ -539,6 +539,10 @@
         # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
+        # Edit perplex_option.dat to output all seismic properties 
+        #println("editing perplex options ")
+        system("sed -e \"s/seismic_output .*|/seismic_output                   all |/\" -i.backup $(prefix)perplex_option.dat")
+
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
 
@@ -1052,6 +1056,8 @@
     Query modal mineralogy (mass proportions) along a previously configured 1-d
     path (dof=1, isobar or geotherm) or 2-d grid / pseudosection (dof=2).
     Results are returned as a dictionary.
+
+    Currently returns vol % 
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
         dof::Integer=1, index::Integer=1, include_fluid="y")
@@ -1089,8 +1095,9 @@
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
-            # Convert to a dictionary
-            result = elementify(data)
+            # Convert to a dictionary. 
+            # Perplex sometimes returns duplicates of a single solution model, sum them.
+            result = elementify(data, sumduplicates=true)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1136,7 +1143,7 @@
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary
-            result = elementify(data)
+            result = elementify(data, sumduplicates=true)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
