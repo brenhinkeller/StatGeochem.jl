@@ -1,7 +1,14 @@
 using StatGeochem
 using Test, Statistics, StatsBase
 
-include("testCrust1.jl")
-include("testResources.jl")
-include("testUtilities.jl")
-include("testArrayStats.jl")
+# Utilities
+@testset "Math" begin include("testMath.jl") end
+@testset "Import" begin include("testImport.jl") end
+@testset "Resampling" begin include("testResampling.jl") end
+@testset "ArrayStats" begin include("testArrayStats.jl") end
+@testset "Changepoint" begin include("testChangepoint.jl") end
+@testset "Other Utilities" begin include("testUtilities.jl") end
+
+# Resources
+@testset "Crust 1.0" begin include("testCrust1.jl") end
+@testset "Other Resources" begin include("testResources.jl") end

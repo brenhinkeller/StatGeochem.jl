@@ -1,12 +1,6 @@
 ## --- Geolcont
 
-    continentcolors = [ [0.2,0.2,0.6],
-                        [0.0,0.4,0.8],
-                        [0.024,0.663,0.757],
-                        [0.4,0.8,0.4],
-                        [1.0,0.8,0.2],
-                        [1.0,1.0,0.0],
-                        [1.0,1.0,1.0], ] .|> x -> RGBX{N0f8}(x...)
+    continentcolors = parse.(Color, ["#333399","#0066CC","#06A9C1","#66CC66","#FFCC33","#FFFF00","#FFFFFF"])
     export continentcolors
 
     continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
@@ -84,19 +78,11 @@
 
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the ETOPO elevation model.
-    function find_etopoelev(etopo,lat,lon)
-
+    find_etopoelev(lat,lon) = find_etopoelev(get_etopo(),lat,lon)
+    find_etopoelev(etopo::Dict, lat, lon) = find_etopoelev(etopo["elevation"], lat, lon)
+    function find_etopoelev(etopo::AbstractArray, lat, lon)
         # Interpret user input
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        elseif isa(etopo,Dict)
-            data = etopo["elevation"]
-        elseif isa(etopo, Array)
-            data = etopo
-        else
-            error("wrong etopo variable")
-        end
-
+        length(lat) != length(lon) && error("lat and lon must be of equal length\n")
 
         # Scale factor (cells per degree) = 60 = arc minutes in an arc degree
         sf = 60
@@ -104,11 +90,11 @@
         maxcol = 360 * sf
 
         # Create and fill output vector
-        out = Array{Float64}(undef,size(lat))
+        result = Array{Float64}(undef,size(lat))
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
-                out[i] = NaN
+                result[i] = NaN
             else
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)
@@ -122,11 +108,11 @@
                 end
 
                 # Find result by indexing
-                out[i] = data[row,col]
+                result[i] = etopo[row,col]
             end
         end
 
-        return out
+        return result
     end
     export find_etopoelev
 
@@ -195,7 +181,6 @@
                 end
             end
         end
-
         return out
     end
     export find_srtm15plus

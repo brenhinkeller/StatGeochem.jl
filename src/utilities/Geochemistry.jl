@@ -75,11 +75,26 @@
     ```julia
     dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
     ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...).
+
     If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
     set unitratio = 1
     """
     function oxideconversion(dataset::Dict; unitratio::Number=10000)
+        result = copy(dataset)
+        return oxideconversion!(result)
+    end
+    export oxideconversion
+    """
+    ```julia
+    dataset = oxideconversion!(dataset::Dict; unitratio::Number=10000)
+    ```
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place.
+
+    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
+    set unitratio = 1
+    """
+    function oxideconversion!(dataset::Dict; unitratio::Number=10000)
         # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
         # for i=1:length(source)
         #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
@@ -103,7 +118,7 @@
 
         return dataset
     end
-    export oxideconversion
+    export oxideconversion!
 
 
 ## --- Chemical Index of Alteration
@@ -135,26 +150,41 @@
     """
     ```julia
     melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
-        \telements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];)
+        \telements::Array,
+        \tT_range::Array=[1400, 600],
+        \tP_range::Array=[10000,10000];)
     ```
-    Optional keyword arguments and defaults:
-    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
-    `dT=-10`
-    `dP=0`
-    `index=1`
-    `version="pMELTS"`
-    `mode="isobaric"`
-    `fo2path="FMQ"``
-    `fractionatesolids::Bool=false`
-    `verbose::Bool=true`
+    Configure and run a MELTS simulation using alphaMELTS. Optional keyword arguments and defaults:
 
-    Configure and run MELTS simulation
+    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
+
+    `dT = -10`
+
+    `dP = 0`
+
+    `index = 1`
+
+    `version = "pMELTS"`
+
+    `mode = "isobaric"`
+
+    `fo2path = "FMQ"`
+    Oxygen fugacity buffer to follow, e.g., `FMQ` or `NNO+1`
+
+    `fractionatesolids::Bool = false`
+    Fractionate all solids
+
+    `suppress::Array{String} = []`
+    Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
+
+    `verbose::Bool = true`
+    Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
     function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
         elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false,verbose::Bool=true)
+        fractionatesolids::Bool=false, suppress::Array{String}=String[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
@@ -175,8 +205,6 @@
         fractionatewater = "!"
         # Fractionate individual phases (specify as strings in cell array, i.e. {"olivine","spinel"})
         fractionate = []
-        # Supress individual phases (specify as strings in cell array, i.e. {"leucite"})
-        supress = []
         # Coninuous (fractional) melting? ("!" for no, "" for yes)
         continuous = "!"
         # Threshold above which melt is extracted (if fractionation is turned on)
@@ -240,8 +268,8 @@
         for i = 1:length(fractionate)
             write(fp,"Fractionate: $(fractionate[i])\n")
         end
-        for i = 1:length(supress)
-            write(fp,"Suppress: $(supress[i])\n")
+        for i = 1:length(suppress)
+            write(fp,"Suppress: $(suppress[i])\n")
         end
 
         close(fp)
@@ -405,13 +433,13 @@
             end
             for m in melts["minerals"]
                 if containsi(m,"feldspar")
-                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    t = vec(findclosest(melts[m]["Temperature"],modes["Temperature"]))
                     AnAbOr = [melts[m]["CaO"]*An_Ca melts[m]["Na2O"]*Ab_Na melts[m]["K2O"]*Or_K] |> x -> x ./ sum(x, dims=2)
                     modes["anorthite"][t] .+= AnAbOr[:,1] .*  melts[m]["mass"]
                     modes["albite"][t] .+= AnAbOr[:,2] .*  melts[m]["mass"]
                     modes["orthoclase"][t] .+= AnAbOr[:,3] .*  melts[m]["mass"]
                 elseif containsi(m,"rhm_oxide")
-                    t = findclosest(melts[m]["Temperature"],modes["Temperature"])
+                    t = vec(findclosest(melts[m]["Temperature"],modes["Temperature"]))
                     if  haskey(melts[m],"MnO")
                         Ilmenite = (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
                         Magnetite = (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
@@ -426,7 +454,8 @@
                     modes["hematite"][t] .+= melts[m]["mass"] .* Hematite
                 end
             end
-            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ sort(collect(keys(modes)))
+            minerals = sort(collect(keys(modes)))
+            modes["elements"] = ["Pressure","Temperature","mass","solids","liquid"] ∪ minerals[.!containsi.(minerals, "feldspar") .& .!containsi.(minerals, "rhm")]
         else
             # Return empty dictionary if file doesn't exist
             modes = Dict()
@@ -508,9 +537,14 @@
     perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
-        \tdataset::String="hp02ver.dat", index::Integer=1, npoints::Integer=100,
+        \tdataset::String="hp02ver.dat",
+        \tindex::Integer=1,
+        \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Integer=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+        \tfluid_eos::Integer=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
@@ -518,11 +552,17 @@
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
     function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
-        dataset::String="hp02ver.dat", index::Integer=1, npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Integer=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
+            dataset::String="hp02ver.dat",
+            index::Integer=1,
+            npoints::Integer=100,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
+            fluid_eos::Integer=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -543,12 +583,17 @@
         #println("editing perplex options ")
         system("sed -e \"s/seismic_output .*|/seismic_output                   all |/\" -i.backup $(prefix)perplex_option.dat")
 
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+
         # Create build batch file.
         fp = open(prefix*"build.bat", "w")
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
 
@@ -580,20 +625,31 @@
     perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
         \tP::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
-        \tdataset::String="hp11ver.dat", index::Integer=1, npoints::Integer=100,
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Integer=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+        \tfluid_eos::Integer=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
     function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
-        dataset::String="hp11ver.dat", index::Integer=1, npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Integer=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
+            dataset::String="hp11ver.dat",
+            index::Integer=1,
+            npoints::Integer=100,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
+            fluid_eos::Integer=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -610,13 +666,18 @@
         # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+
         # Create build batch file
         # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
@@ -642,20 +703,33 @@
     perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
         \telements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         \tP::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
-        \tdataset::String="hp11ver.dat", index::Integer=1, xnodes::Integer=42, ynodes::Integer=42,
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \txnodes::Integer=42,
+        \tynodes::Integer=42,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n", fluid_eos::Number=5)
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmode_basis::String="vol", #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt", #["wt", "mol"]
+        \tfluid_eos::Number=5)
     ```
 
     Set up a PerpleX calculation for a single bulk composition across an entire
-    2d P-T space. P specified in bar and T in Kelvin
+    2d P-T space. P specified in bar and T in Kelvin.
     """
     function perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
-        dataset::String="hp11ver.dat", index::Integer=1, xnodes::Integer=42, ynodes::Integer=42,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n", fluid_eos::Number=5)
+            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
+            dataset::String="hp11ver.dat",
+            index::Integer=1,
+            xnodes::Integer=42,
+            ynodes::Integer=42,
+            solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
+            excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+            mode_basis::String="vol",
+            composition_basis::String="wt",
+            fluid_eos::Number=5
+        )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
@@ -673,13 +747,18 @@
         system("sed -e \"s/x_nodes .*|/x_nodes                   $xnodes $xnodes |/\" -i.backup $(prefix)perplex_option.dat")
         system("sed -e \"s/y_nodes .*|/y_nodes                   $ynodes $ynodes |/\" -i.backup $(prefix)perplex_option.dat")
 
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+
         # Create build batch file
         # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-        elementstring = join(uppercase.(elements) .* "\n")
+        elementstring = join(elements .* "\n")
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
 
         # Whole-rock composition
@@ -794,8 +873,8 @@
 
 ## --- Perplex interface: 3. 1d queries
 
-    # We'll need this for when perplex messes up
-    molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
+    # # We'll need this for when perplex messes up
+    # molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
 
     """
     ```julia
@@ -922,7 +1001,8 @@
         fp = open(prefix*"werami.bat", "w")
         if dof == 1
             # v6.7.8, 1d path
-            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n0\n")
+            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+            # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
         elseif dof == 2
             # v6.7.8, 2d grid
             write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8
@@ -954,11 +1034,12 @@
             total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             # Check if perplex is messing up and outputting mole proportions
             if nanmean(total_weight) < 50
-                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
-                for col = findall(t)
-                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-                end
-                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
+                # Attempt to change back to weight percentages
+                # for col = findall(t)
+                #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                # end
+                # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             end
             data[2:end,t] .*= 100 ./ total_weight
 
@@ -1022,11 +1103,12 @@
             total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             # Check if perplex is messing up and outputting mole proportions
             if nanmean(total_weight) < 50
-                @warn "Perplex seems to be reporting mole fractions instead of weight percentages, attempting to correct"
-                for col = findall(t)
-                    data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-                end
-                total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
+                # , attempting to correct
+                # for col = findall(t)
+                #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                # end
+                # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
             end
             data[2:end,t] .*= 100 ./ total_weight
 
@@ -1283,9 +1365,167 @@
     end
     export perplex_query_system
 
+    # Translate between perplex names and germ names
+    function germ_perplex_name_matches(germ_name, perplex_name)
+        # Feldspar
+        if germ_name == "Albite"
+            any(perplex_name .== ["ab", "abh"])
+        elseif germ_name == "Anorthite"
+            perplex_name == "an"
+        elseif germ_name == "Orthoclase"
+            any(perplex_name .== ["mic", "Kf", "San", "San(TH)"])
+        # Amphibole
+        elseif germ_name == "Amphibole"
+            any(lowercase(perplex_name) .== ["gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts"]) ||
+            any(contains.(perplex_name, ["Amph", "GlTrTs", "Act(", "Anth"]))
+        # Mica
+        elseif germ_name == "Biotite"
+            any(perplex_name .== ["ann"]) ||
+            any(contains.(perplex_name, ["Bi(", "Bio("]))
+        elseif germ_name == "Phlogopite"
+            any(lowercase(perplex_name) .== ["naph", "phl"])
+        # Pyroxene
+        elseif germ_name == "Clinopyroxene"
+            any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd"]) ||
+            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"]))
+        elseif germ_name == "Orthopyroxene"
+            any(lowercase(perplex_name) .== ["en", "fs"]) ||
+            contains(perplex_name, "Opx")
+        # Cordierite
+        elseif germ_name == "Cordierite"
+            any(lowercase(perplex_name) .== ["crd", "fcrd", "hcrd", "mncrd"]) ||
+            contains(perplex_name, "Crd")
+        # Garnet
+        elseif germ_name == "Garnet"
+            any(lowercase(perplex_name) .== ["py", "spss", "alm", "andr", "gr"]) ||
+            any(contains.(perplex_name, ["Grt", "Gt(", "Maj"]))
+        # Oxides
+        elseif germ_name == "Ilmenite"
+            perplex_name == "ilm" || any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
+        elseif germ_name == "Magnetite"
+            perplex_name == "mt"
+        elseif germ_name == "Rutile"
+            perplex_name == "ru"
+        # Feldspathoids
+        elseif germ_name == "Leucite"
+            perplex_name == "lc"
+        elseif germ_name == "Nepheline"
+            perplex_name == "ne" || contains(perplex_name, "Neph")
+        # Olivine
+        elseif germ_name == "Olivine"
+            any(lowercase(perplex_name) .== ["fo", "fa"]) ||
+            any(contains.(perplex_name, ["O(", "Ol("]))
+        # Spinel
+        elseif germ_name == "Spinel"
+            any(lowercase(perplex_name) .== ["sp", "usp"]) ||
+            contains(perplex_name, "Sp(")
+        # Accessories
+        elseif germ_name == "Sphene"
+            perplex_name == "sph"
+        elseif germ_name == "Zircon"
+            perplex_name == "zrc"
+        elseif germ_name == "Baddeleyite"
+            perplex_name == "bdy"
+        else
+            false
+        end
+    end
+    export germ_perplex_name_matches
+
+    function perplex_phase_is_fluid(phase_name)
+        any(phase_name .== ["F", "WADDAH", "H2O"]) ||
+        any(contains.(phase_name, ["Aq_", "F(", "Fluid"]))
+    end
+    export perplex_phase_is_fluid
+
+    function perplex_phase_is_melt(phase_name)
+        any(phase_name .== ["h2oL", "abL", "anL", "diL", "enL", "faL", "kspL", "qL", "silL"]) ||
+        any(contains.(phase_name, ["liq", "melt", "LIQ", "MELTS"]))
+    end
+    export perplex_phase_is_melt
+
+    function perplex_phase_is_solid(phase_name)
+        !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
+        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals"]))
+    end
+    export perplex_phase_is_solid
+
+    function perplex_expand_name(name)
+        abbreviations = ("ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm","oilm","lime", "mft", "mt", "mang", "oxide", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",)
+        full_names = ("akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote(ordered)", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite-bredigite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermaks pyroxene", "Diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "mg-tschermak", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite(Na-free)", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "fe-carpholite", "fe-sapphirine(793)", "mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite(14Ang)", "clinochlore(ordered)", "daphnite", "Fe-sudoite", "Mn-chlorite", "Sudoite", "antigorite", "chrysotile", "Fe-talc", "Kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)","lime", "magnesioferrite", "magnetite", "manganosite", "nickel", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "Forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica",)
+        t = name .== abbreviations
+        if any(t)
+            full_names[findfirst(t)]
+        else
+            name
+        end
+    end
+    export perplex_expand_name
+
+    function perplex_abbreviate_name(name)
+        abbreviations = ("ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm", "oilm", "lime", "mft", "mt", "mang", "oxide", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",)
+        full_names = ("akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote(ordered)", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite-bredigite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermaks pyroxene", "Diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "mg-tschermak", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite(Na-free)", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "fe-carpholite", "fe-sapphirine(793)", "mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite(14Ang)", "clinochlore(ordered)", "daphnite", "Fe-sudoite", "Mn-chlorite", "Sudoite", "antigorite", "chrysotile", "Fe-talc", "Kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)", "lime", "magnesioferrite", "magnetite", "manganosite", "nickel", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "Forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica",)
+        t = name .== full_names
+        if any(t)
+            abbreviations[findfirst(t)]
+        else
+            name
+        end
+    end
+    export perplex_abbreviate_name
+
+    function perplex_common_name(name)
+        abbreviations = ("ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm", "oilm", "lime", "mft", "mt", "mang", "oxide", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi", "Augite(G)", "Cpx(JH)", "Cpx(l)", "Cpx(h)", "Cpx(stx)", "Cpx(stx7)", "Omph(HP)", "Cpx(HP)", "Cpx(m)", "Cpx(stx8)", "Omph(GHP)", "cAmph(G)", "Cumm", "Gl", "Tr", "GlTrTsPg", "Amph(DHP)", "Amph(DPW)", "Ca-Amph(D)", "Na-Amph(D)", "Act(M)", "GlTrTsMr", "cAmph(DP)", "melt(G)", "melt(W)", "melt(HP)", "pMELTS(G)", "mMELTS(G)", "LIQ(NK)", "LIQ(EF)", "Chl(W)", "Chl(HP)", "Chl(LWV)", "O(JH)", "O(SG)", "O(HP)", "O(HPK)", "O(stx)", "O(stx7)", "Ol(m)", "O(stx8)", "Sp(JH)", "GaHcSp", "Sp(JR)", "Sp(GS)", "Sp(HP)", "Sp(stx)", "CrSp", "Sp(stx7)", "Sp(WPC)", "Sp(stx8)", "Pl(JH)", "Pl(h)", "Pl(stx8)", "Kf", "San", "San(TH)", "Grt(JH)", "Gt(W)", "CrGt", "Gt(MPF)", "Gt(B)", "Gt(GCT)", "Gt(HP)", "Gt(EWHP)", "Gt(WPH)", "Gt(stx)", "Gt(stx8)", "Gt(WPPH)", "ZrGt(KP)", "Maj", "Opx(JH)", "Opx(W)", "Opx(HP)", "CrOpx(HP)", "Opx(stx)", "Opx(stx8)", "Mica(W)", "Pheng(HP)", "MaPa", "Mica(CF)", "Mica(CHA1)", "Mica(CHA)", "Mica+(CHA)", "Mica(M)", "Mica(SGH)", "Ctd(W)", "Ctd(HP)", "Ctd(SGH)", "St(W)", "St(HP)", "Bi(W)", "Bio(TCC)", "Bio(WPH)", "Bio(HP)", "Crd(W)", "hCrd", "Sa(WP)", "Sapp(HP)", "Sapp(KWP)", "Sapp(TP)", "Osm(HP)", "F", "F(salt)", "COH-Fluid", "Aq_solven0", "WADDAH", "T", "Scap", "Carp", "Carp(M)", "Carp(SGH)", "Sud(Livi)", "Sud", "Sud(M)", "Anth", "o-Amph", "oAmph(DP)", "feldspar", "feldspar_B", "Pl(I1,HP)", "Fsp(C1)", "Do(HP)", "M(HP)", "Do(AE)", "Cc(AE)", "oCcM(HP)", "Carb(M)", "oCcM(EF)", "dis(EF)", "IlHm(A)", "IlGkPy", "Ilm(WPH)", "Ilm(WPH0)", "Neph(FB)", "Chum", "Atg(PN)", "B", "Pu(M)", "Stlp(M)", "Wus",)
+        common_names = ("akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermakite", "diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "Mg-tschermakite", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "Fe-carpholite", "Fe-sapphirine(793)", "Mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite", "clinochlore", "daphnite", "Fe-sudoite", "Mn-chlorite", "sudoite", "antigorite", "chrysotile", "Fe-talc", "kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)", "lime", "magnesioferrite", "magnetite", "manganosite", "nickel", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "melt", "melt", "melt", "melt", "melt", "melt", "melt", "chlorite", "chlorite", "chlorite", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "plagioclase", "plagioclase", "plagioclase", "k-feldspar", "k-feldspar", "k-feldspar", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "chloritoid", "chloritoid", "chloritoid", "staurolite", "staurolite", "biotite", "biotite", "biotite", "biotite", "cordierite", "cordierite", "sapphirine", "sapphirine", "sapphirine", "sapphirine", "osumilite", "fluid", "fluid", "fluid", "fluid", "fluid", "talc", "scapolite", "carpholite", "carpholite", "carpholite", "sudoite", "sudoite", "sudoite", "orthoamphibole", "orthoamphibole", "orthoamphibole", "ternary feldspar", "ternary feldspar", "ternary feldspar", "ternary feldspar", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "ilmenite", "ilmenite", "ilmenite", "ilmenite", "nepheline", "clinohumite", "serpentine", "brucite", "pumpellyite", "stilpnomelane", "wüstite",)
+        t = name .== abbreviations
+        if any(t)
+            common_names[findfirst(t)]
+        elseif contains(name,"anorthite")
+            "anorthite"
+        elseif contains(name,"albite")
+            "albite"
+        elseif contains(name,"orthoclase")
+            "orthoclase"
+        else
+            name
+        end
+    end
+    export perplex_common_name
+
+
 ## -- Zircon saturation calculations
 
-    function tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    """
+    ```julia
+    M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate zircon saturation M-value based on major element concentrations
+    Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    """
+    function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        K = K / normconst
+        Na = Na / normconst
+        Ca = Ca / normconst
+        Al = Al / normconst
+        Si = Si / normconst
+
+        return (Na + K + 2*Ca)/(Al * Si)
+    end
+    function tzircM(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
         #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
@@ -1308,18 +1548,19 @@
 
         return (Na + K + 2*Ca)./(Al .* Si)
     end
+    export tzircM
 
     """
     ```julia
     ZrSat = tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
-    Calculate zircon saturation concentration for a given temperature (in C)
+    Calculate zircon saturation Zr concentration for a given temperature (in C)
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
     """
     function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
         M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         # Boehnke, Watson, et al., 2013
-        Zr = @. 496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M))
+        Zr = @. max(496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M)), 0)
         return Zr
     end
     export tzircZr
@@ -1338,5 +1579,85 @@
         return T
     end
     export tzirc
+
+
+    function tspheneC(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        K = K / normconst
+        Na = Na / normconst
+        Ca = Ca / normconst
+        Al = Al / normconst
+        Si = Si / normconst
+
+        eCa = Ca - Al/2 + Na/2 + K/2
+        C = (10 * eCa) / (Al * Si)
+    end
+    function tspheneC(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+        # Normalize cation ratios
+        normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
+        K .= K ./ normconst
+        Na .= Na ./ normconst
+        Ca .= Ca ./ normconst
+        Al .= Al ./ normconst
+        Si .= Si ./ normconst
+
+        eCa = Ca - Al/2 + Na/2 + K/2
+        C = (10 * eCa) ./ (Al .* Si)
+    end
+
+    """
+    ```julia
+    TiSat = tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ```
+    Calculate sphene saturation Ti concentration for a given temperature (in C)
+    Following the sphene saturation calibration of Ayers et al., 2018
+    (10.1130/abs/2018AM-320568)
+    """
+    function tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TiO2 = @. max(0.79*C - 7993/(T+273.15) + 7.88, 0)
+    end
+    export tspheneTi
+
+
+    """
+    ```julia
+    T = tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate sphene saturation temperature in degrees Celsius
+    Following the sphene saturation calibration of Ayers et al., 2018
+    (10.1130/abs/2018AM-320568)
+    """
+    function tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        T = @. 7993/(0.79*C - TiO2 + 7.88) - 273.15
+    end
+    export tsphene
+
 
 ## --- End of File

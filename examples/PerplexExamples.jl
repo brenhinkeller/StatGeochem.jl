@@ -67,7 +67,7 @@
 ## --- # # # # # # # # # # # Some solution model options # # # # # # # # # # # #
     # Emphasis on phases from Green (2016) -- developed for metabasites, includes what is probably the best (and most expensive) amphibole model. Use with hp11ver.dat
     G_solution_phases = "Augite(G)\nOpx(JH)\ncAmph(G)\noAmph(DP)\nO(JH)\nSp(JH)\nGrt(JH)\nfeldspar_B\nMica(W)\nBio(TCC)\nChl(W)\nCtd(W)\nCrd(W)\nSa(WP)\nSt(W)\nIlm(WPH)\nAtg(PN)\nT\nB\nF\nDo(HP)\nScap\nChum\nNeph(FB)\n"
-    G_excludes ="ged\nfanth\ngl\n"
+    G_excludes ="ged\nfanth\ngl\nilm\nilm_nol\n"
 
     # Emphasis on phases from White (2014) -- developed for metapelites. Use with hp11ver.dat (though can apparenty run with hp02ver.dat without crashing)
     W_solution_phases = "Omph(HP)\nOpx(W)\ncAmph(DP)\noAmph(DP)\nO(JH)\nSp(JH)\nGt(W)\nfeldspar_B\nMica(W)\nBi(W)\nChl(W)\nCtd(W)\nCrd(W)\nSa(WP)\nSt(W) \nIlm(WPH)\nAtg(PN)\nT\nB\nF\nDo(HP)\nScap\nChum\nPu(M)\n"
@@ -84,18 +84,29 @@
 ## --- # # # # # # # # # # # # # Isobaric example # # # # # # # # # # # # # # # #
 
     # Input parameters
-    P = 10000 # Pressure, bar
-    T_range = [500+273.15, 1500+273.15] # Temperature range, Kelvin
-    melt_model = "melt(G)"
+    P = 1000 # Pressure, bar
+    T_range = [0+273.15, 1500+273.15] # Temperature range, Kelvin
 
-    # Configure (run build and vertex)
-    @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements,
-        P, T_range, dataset="hp11ver.dat", npoints=100, excludes=G_excludes,
-        solution_phases=melt_model*"\n"*G_solution_phases)
+    # # Configure (run build and vertex)
+    # melt_model = "melt(G)"
+    # @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range,
+    #     dataset="hpha11ver.dat",
+    #     npoints=100,
+    #     excludes=G_excludes,
+    #     solution_phases=melt_model*"\n"*G_solution_phases
+    # )
+
+    melt_model = "melt(HP)"
+    @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range,
+        dataset="hp02ver.dat",
+        npoints=100,
+        excludes=HP_excludes,
+        solution_phases=melt_model*"\n"*HP_solution_phases
+    )
 
 ## --- Query all properties at a single temperature -- results returned as text
 
-    T = 1450+273.15
+    T = 850+273.15
     data_isobaric = perplex_query_point(perplexdir, scratchdir, T) |> print
 
 ## --- Query the full isobar -- results returned as dict
@@ -169,6 +180,20 @@
     plot!(h,fg_color_legend=:white, framestyle=:box)
     savefig(h,"PhaseModesvsF.pdf")
     display(h)
+
+## --- Plot seismic properties
+
+    # Query seismic properties along the whole profile
+    seismic = perplex_query_seismic(perplexdir, scratchdir)
+    seismic["vp/vs"][seismic["vp/vs"] .> 100] .= NaN # Exclude cases where vs drops to zero
+
+    h = plot(xlabel="Pressure", ylabel="Property")
+    plot!(h,seismic["T(K)"],seismic["vp,km/s"], label="vp,km/s")
+    plot!(h,seismic["T(K)"],seismic["vp/vs"], label="vp/vs")
+    plot!(h,seismic["T(K)"],seismic["rho,kg/m3"]/1000, label="rho, g/cc")
+    savefig(h,"GeothermSeismicProperties.pdf")
+    display(h)
+
 
 ## --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
 
@@ -282,7 +307,7 @@
 
     # Configure (run build and vertex)
     @time perplex_configure_pseudosection(perplexdir, scratchdir, composition,
-        elements, P_range, T_range, dataset="hp02ver.dat", excludes=HP_excludes,
+        elements, P_range, T_range, dataset="hpha02ver.dat", excludes=HP_excludes,
         solution_phases=melt_model*HP_solution_phases, index=3, xnodes=200, ynodes=200)
 
 

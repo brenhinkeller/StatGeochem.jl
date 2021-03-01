@@ -1,3 +1,20 @@
+## --- Dealing with different number representations
+
+    """
+    ```julia
+    nearest(T, x)
+    ```
+    Convert `x` to the nearest representable value in type T, rounding if inexact
+    """
+    function nearest(::Type{T}, x) where T <: Integer
+        round(T, max(min(x, typemax(T)), typemin(T)))
+    end
+    function nearest(::Type{T}, x) where T
+        T(max(min(x, typemax(T)), typemin(T)))
+    end
+    export nearest
+
+
 ## --- Fast inverse square-root
 
     """
@@ -25,9 +42,13 @@
 
 ## --- Base-10 version of log1p
 
-    function log10f(x::Number,from::Number=-1)
-        return log10(abs(x-from)+1)*sign(x-from)
-    end
+    log10f(x::Number,from::Number=-1) = log10(abs(x-from)+1)*sign(x-from)
+
+## --- Some mathematical constants
+
+    const SQRT2 = sqrt(2)
+    const SQRT2PI = sqrt(2*pi)
+    const AN = Union{AbstractArray{<:Number},Number}
 
 ## --- Gaussian distribution functions
 
@@ -41,7 +62,9 @@
 
     with mean `mu` and standard deviation `sigma`, evaluated at `x`
     """
-    normpdf(mu,sigma,x) = @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (sqrt(2*pi)*sigma)
+    @inline normpdf(mu,sigma,x) = exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
+    @inline normpdf(mu::AN,sigma::AN,x::AN) = @avx @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
+    @inline normpdf(mu::Number,sigma::Number,x::Number) = exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
     export normpdf
 
     """
@@ -56,23 +79,40 @@
 
     See also `normpdf`
     """
-    normpdf_ll(mu::Number,sigma::Number,x::Number) = -(x-mu)*(x-mu) / (2*sigma*sigma)
+    @inline normpdf_ll(mu,sigma,x) = -(x-mu)*(x-mu) / (2*sigma*sigma)
+    @inline normpdf_ll(mu::Number,sigma::Number,x::Number) = -(x-mu)*(x-mu) / (2*sigma*sigma)
     function normpdf_ll(mu::Number,sigma::Number,x::AbstractArray)
-        ll = 0.0
         inv_s2 = 1/(2*sigma*sigma)
+        ll = zero(typeof(inv_s2))
         @avx for i=1:length(x)
             ll -= (x[i]-mu)*(x[i]-mu) * inv_s2
         end
         return ll
     end
+    function normpdf_ll(mu::AbstractArray,sigma::Number,x::AbstractArray)
+        inv_s2 = 1/(2*sigma*sigma)
+        ll = zero(typeof(inv_s2))
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu[i])*(x[i]-mu[i]) * inv_s2
+        end
+        return ll
+    end
+    function normpdf_ll(mu::Number,sigma::AbstractArray,x::AbstractArray)
+        ll = zero(float(eltype(sigma)))
+        @avx for i=1:length(x)
+            ll -= (x[i]-mu)*(x[i]-mu) / (2*sigma[i]*sigma[i])
+        end
+        return ll
+    end
     function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
-        ll = 0.0
+        ll = zero(float(eltype(sigma)))
         @avx for i=1:length(x)
             ll -= (x[i]-mu[i])*(x[i]-mu[i]) / (2*sigma[i]*sigma[i])
         end
         return ll
     end
     export normpdf_ll
+
 
     """
     ```julia
@@ -84,18 +124,26 @@
 
     with mean `mu` and standard deviation `sigma`, evaluated at `x`.
     """
-    function normcdf(mu,sigma,x)
-        return @. 0.5 + erf((x-mu) / (sigma*sqrt(2))) / 2
-    end
-    function normcdf(mu::Number,sigma::Number,x::AbstractArray)
-        result = Array{float(eltype(x))}(undef,length(x))
-        sigma_sqrt = sigma*sqrt(2)
-        @inbounds @simd for i = 1:length(x)
-            result[i] = 0.5 + erf((x[i]-mu) / sigma_sqrt) / 2
+    @inline normcdf(mu,sigma,x) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    @inline normcdf(mu::AN,sigma::AN,x::AN) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    @inline normcdf(mu::Number,sigma::Number,x::Number) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    export normcdf
+
+    """
+    ```julia
+    normcdf!(result,mu,sigma,x)
+    ```
+    In-place version of `normcdf`
+    """
+    function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
+        T = eltype(result)
+        inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
+        @avx for i ∈ 1:length(x)
+            result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
         end
         return result
     end
-    export normcdf
+    export normcdf!
 
     """
     ```julia
@@ -104,9 +152,7 @@
     How far away from the mean (in units of sigma) should we expect proportion
     F of the samples to fall in a standard Gaussian (Normal[0,1]) distribution
     """
-    function norm_quantile(F::Number)
-        return sqrt(2)*erfinv(2*F-1)
-    end
+    @inline norm_quantile(F) = SQRT2*erfinv(2*F-1)
     export norm_quantile
 
     """
@@ -116,10 +162,7 @@
     How dispersed (in units of sigma) should we expect a sample of N numbers
     drawn from a standard Gaussian (Normal[0,1]) distribution to be?
     """
-    function norm_width(N::Number)
-        F = 1 - 1/(N+1)
-        return 2*norm_quantile(F)
-    end
+    @inline norm_width(N) = 2*norm_quantile(1 - 1/(2N))
     export norm_width
 
     """
@@ -130,9 +173,7 @@
     This is itself just another Normal distribution! Specifically, one with
     variance σ1^2 + σ2^2, evaluated at distance |μ1-μ2| from the mean
     """
-    function normproduct(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
-        normpdf(μ1, sqrt(σ1^2 + σ2^2), μ2)
-    end
+    normproduct(μ1, σ1, μ2, σ2) = normpdf(μ1, sqrt.(σ1.*σ1 + σ2.*σ2), μ2)
     export normproduct
 
     """
@@ -142,9 +183,7 @@
     Log likelihood corresponding to the integral of N[μ1,σ1] * N[μ2,σ2]
     As `normproduct`, but using the fast log likelihood of a Normal distribution
     """
-    function normproduct_ll(μ1::Number, σ1::Number, μ2::Number, σ2::Number)
-        normpdf_ll(μ1, sqrt(σ1^2 + σ2^2), μ2)
-    end
+    normproduct_ll(μ1, σ1, μ2, σ2) = normpdf_ll(μ1, sqrt.(σ1.*σ1 + σ2.*σ2), μ2)
     export normproduct_ll
 
 
@@ -435,5 +474,119 @@
         return χ2 / (n-1)
     end
     export MSWD
+
+## --- Linear regression
+
+    if ~ @isdefined linreg
+        """
+        ```julia
+        (a,b) = linreg(x::AbstractVector, y::AbstractVector)
+        ```
+
+        Returns the coefficients for a simple linear least-squares regression of
+        the form `y = a + bx`
+        """
+        linreg(x::AbstractVector, y::AbstractVector) = hcat(fill!(similar(x), 1), x) \ y
+        export linreg
+    end
+
+
+    # Custom type to hold York fit resutls
+    struct YorkFit{T}
+        intercept::T
+        intercept_sigma::T
+        slope::T
+        slope_sigma::T
+        mswd::T
+    end
+
+    """
+    ```julia
+    yorkfit(x, σx, y, σy)
+    ```
+    Uses the York (1968) least-squares fit to calculate `a`, `b`, and uncertanties
+    `σa`, `σb` for the equation `y = a + bx`
+    """
+    function yorkfit(x, σx, y, σy; niterations=10)
+
+        ## 1. Ordinary linear regression (to get a first estimate of slope and intercept)
+
+        # Check for missing data
+        t = (x.==x) .& (y.==y) .& (σx.==σx) .& (σy.==σy)
+        x = x[t]
+        y = y[t]
+        σx = σx[t]
+        σy = σy[t]
+
+        # Calculate the ordinary least-squares fit
+        # For the equation y=a+bx, m(1)=a, m(2)=b
+        g = [ones(length(x)) x]
+        m = (g'*g)\g'*y
+        b = m[2]
+        a = m[1]
+
+        ## 2. Now, let's define parameters needed by the York fit
+
+        # Weighting factors
+        ωx = 1.0 ./ σx.^2
+        ωy = 1.0 ./ σy.^2
+
+        # terms that don't depend on a or b
+        α = sqrt.(ωx .* ωy)
+
+        x̄ = mean(x)
+        ȳ = mean(y)
+        r = sum((x .- x̄).*(y .- ȳ)) ./ (sqrt(sum((x .- x̄).^2)) * sqrt(sum((y .- ȳ).^2)))
+
+        ## 3. Perform the York fit (must iterate)
+        W = ωx.*ωy ./ (b^2*ωy + ωx - 2*b*r.*α)
+
+        X̄ = sum(W.*x) / sum(W)
+        Ȳ = sum(W.*y) / sum(W)
+
+        U = x .- X̄
+        V = y .- Ȳ
+
+        sV = W.^2 .* V .* (U./ωy + b.*V./ωx - r.*V./α)
+        sU = W.^2 .* U .* (U./ωy + b.*V./ωx - b.*r.*U./α)
+        b = sum(sV) ./ sum(sU)
+
+        a = Ȳ - b .* X̄
+        for i = 2:niterations
+            W .= ωx.*ωy ./ (b^2*ωy + ωx - 2*b*r.*α)
+
+            X̄ = sum(W.*x) / sum(W)
+            Ȳ = sum(W.*y) / sum(W)
+
+            U .= x .- X̄
+            V .= y .- Ȳ
+
+            sV .= W.^2 .* V .* (U./ωy + b.*V./ωx - r.*V./α)
+            sU .= W.^2 .* U .* (U./ωy + b.*V./ωx - b.*r.*U./α)
+            b = sum(sV) ./ sum(sU)
+
+            a = Ȳ - b .* X̄
+        end
+
+        ## 4. Calculate uncertainties and MSWD
+        β = W .* (U./ωy + b.*V./ωx - (b.*U+V).*r./α)
+
+        u = X̄ .+ β
+        v = Ȳ .+ b.*β
+
+        xm = sum(W.*u)./sum(W)
+        ym = sum(W.*v)./sum(W)
+
+        σb = sqrt(1.0 ./ sum(W .* (u .- xm).^2))
+        σa = sqrt(1.0 ./ sum(W) + xm.^2 .* σb.^2)
+
+        # MSWD (reduced chi-squared) of the fit
+        mswd = 1.0 ./ length(x) .* sum( (y .- a.-b.* x).^2 ./ (σy.^2 + b.^2 .* σx.^2) )
+
+        ## Results
+        return YorkFit(a, σa, b, σb, mswd)
+    end
+    export yorkfit
+
 
 ## --- End of File

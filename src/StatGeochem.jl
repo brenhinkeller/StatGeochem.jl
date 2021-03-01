@@ -19,8 +19,11 @@ module StatGeochem
 
     # AVX vectorziation tools
     using LoopVectorization
-    using SIMDPirates: vifelse
+    using SIMDPirates: vifelse, verf
     using VectorizationBase: SVec
+
+    import SpecialFunctions.erf
+    erf(x::SVec) = verf(x)
 
     # General requirements
     using Random
@@ -35,9 +38,10 @@ module StatGeochem
     include("utilities/Changepoint.jl")
 
     using IndirectArrays: IndirectArray
-    using Colors: Colorant, ColorTypes, RGBX, RGB, N0f8
-    include("utilities/Colormaps.jl")
+    using Colors: Color, RGBX, RGB, N0f8
+    include("resources/Colormaps.jl")
 
+    include("resources/Chemistry.jl")
     include("utilities/Geochronology.jl")
     include("utilities/Geochemistry.jl")
     include("utilities/GIS.jl")
@@ -55,5 +59,7 @@ module StatGeochem
     include("resources/Seafloorage.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
 
+    # Custom pretty printing for some types
+    include("utilities/Display.jl")
 
 end # module

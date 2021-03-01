@@ -12,6 +12,8 @@
 *.h5
 *.csv
 *.mat
+*.xls
+*.xlsx
 *.jpg
 *.png
 *.gif

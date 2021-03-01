@@ -17,19 +17,37 @@ function update_changepoint_mu!(m, d, boundaries, np)
 	end
 end
 
-function update_changepoint_sigma!(σ, d, boundaries, np)
-	@inbounds for i=1:np+1
-		r = boundaries[i]:boundaries[i+1]
-		for col = 1:size(d,2)
-			σ[r,col] .= nanstd(view(d,r,col))
-		end
-	end
-end
+# # Not currently used
+# function update_changepoint_sigma!(σ, d, boundaries, np)
+# 	@inbounds for i=1:np+1
+# 		r = boundaries[i]:boundaries[i+1]
+# 		for col = 1:size(d,2)
+# 			σ[r,col] .= nanstd(view(d,r,col))
+# 		end
+# 	end
+# end
 
-function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
 
-    MOVE = 0.60
-    SIGMA = 0.1
+"""
+```julia
+changepoint(data, [sigma], nsteps; np, npmin, npmax)
+```
+Given an ordered array of `data` points, optionally with uncertainties `sigma`,
+use a Markov chain Monte Carlo approach based on that of Gallagher et al., 2010
+(10.1016/j.epsl.2011.09.015) to estimate the position (by index) and optionally
+number of changepoints that best explain the `data`. Will return the results for
+`nsteps` steps of the Markov chain.
+
+Optionally, you may also specify as keyword arguments either `np` or
+`npmin` and `npmax` to constrain the number of allowed changepoints.
+
+Currently prints results to the terminal (stdout), one line per step of the Markov
+chain, but a more efficent output format is probably desirable in a future version
+of this function.
+"""
+function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
+
+    MOVE = 0.70
     BIRTH = 0.15
     DEATH = 0.15
 
@@ -40,7 +58,7 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 	nrows = size(data,1)
 	ncolumns = size(data,2)
 	m = similar(data, T)
-	σ = similar(data, T) #Array{T}(undef, ncolumns) # TODO: Decide whether to actually do something with these sigmas
+	σ = similar(data, T) #Array{T}(undef, ncolumns)
 	σₚ = similar(data, T) #Array{T}(undef, ncolumns)
 
 	# Number of possible changepoint locations
@@ -57,6 +75,9 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 		np = min(max(npmin, 2), npmax)
 	end
 
+	# Allocate output array of changepoints
+	result = fill(0, nsteps, npmax)
+
 	# Create and fill initial boundary point array
 	boundaries = Array{Int}(undef, K+2)
 	boundaries[1] = 1
@@ -72,12 +93,13 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 	ll = normpdf_ll(m, σ, data)
 
 	# The actual loop
-	@inbounds for i = 1:nsims
+	@inbounds for i = 1:nsteps
 
 		# Randomly choose a type of modification to the model
 		r = rand()
 		u = rand()
 
+		# Update the model with the chosen modification
 		if r < MOVE && np>0
 			# Move a changepoint
 			copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -110,33 +132,13 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 				boundary_sigma = abs(boundary_adj)*2.9
 				# println("sigma: $boundary_sigma")
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
-				for n=1:np
-					print("$(boundariesₚ[n+1]),")
-				end
-				FORMATTED && print("\n")
+				# for n=1:np
+				# 	print("$(boundariesₚ[n+1]),")
+ 				# end
+				# FORMATTED && print("\n")
 			end
 
-		elseif r < MOVE+SIGMA
-
-			# Calculate new sigma
-			update_changepoint_model!(m, σₚ, data, boundaries, np)
-
-			# sll = sum(log.(σ./σₚ))
-
-			# Calculate log likelihood for proposal
-			llₚ = normpdf_ll(m, σₚ, data)
-
-			# DEBUG && println("Sigma: llₚ+sll-ll = $llₚ - $sll - $ll")
-			DEBUG && println("Sigma: llₚ-ll = $llₚ - $ll")
-			# if log(u) < llₚ+sll-ll
-			if log(u) < llₚ-ll
-				# If accepted
-				DEBUG && println("Accepted!")
-				ll = llₚ
-				copyto!(σ,σₚ)
-			end
-
-		elseif r < MOVE+SIGMA+BIRTH
+		elseif r < MOVE+BIRTH
 			# Add a changepoint
 			if np < npmax
 				copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -158,13 +160,13 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
-		elseif r < MOVE+SIGMA+BIRTH+DEATH
+		elseif r < MOVE+BIRTH+DEATH
 			# Delete a changepoint
 			if np > npmin
 				copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -188,18 +190,20 @@ function changepoint(data::AbstractArray, nsims::Integer; np::Integer=0, npmin::
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		end
+
+		# Record results
+		result[i, 1:np] .= boundaries[2:(np+1)]
 	end
+	return result
 end
-
-
-function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=size(data,1)-1)
+function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
     MOVE = 0.70
     BIRTH = 0.15
@@ -227,6 +231,9 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 		np = min(max(npmin, 2), npmax)
 	end
 
+	# Allocate output array of changepoints
+	result = fill(0, nsteps, npmax)
+
 	# Create and fill initial boundary point array
 	boundaries = Array{Int}(undef, K+2)
 	boundaries[1] = 1
@@ -238,16 +245,17 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 	np = count_unique!(view(boundaries,1:np+2)) - 2
 
 	# Calculate initial proposal and log likelihood
-	update_changepoint_model!(m, sigma, data, boundaries, np)
+	update_changepoint_mu!(m, data, boundaries, np)
 	ll = normpdf_ll(m, sigma, data)
 
 	# The actual loop
-	@inbounds for i = 1:nsims
+	@inbounds for i = 1:nsteps
 
 		# Randomly choose a type of modification to the model
 		r = rand()
 		u = rand()
 
+		# Update the model with the chosen modification
 		if r < MOVE && np>0
 			# Move a changepoint
 			copyto!(boundariesₚ,1,boundaries,1,np+2)
@@ -280,10 +288,10 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 				boundary_sigma = abs(boundary_adj)*2.9
 				# println("sigma: $boundary_sigma")
 				copyto!(boundaries,1,boundariesₚ,1,np+2)
-				for n=1:np
-					print("$(boundariesₚ[n+1]),")
-				end
-				FORMATTED && print("\n")
+				# for n=1:np
+				# 	print("$(boundariesₚ[n+1]),")
+				# end
+				# FORMATTED && print("\n")
 			end
 		elseif r < MOVE+BIRTH
 			# Add a changepoint
@@ -306,10 +314,10 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		elseif r < MOVE+BIRTH+DEATH
@@ -335,12 +343,17 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsims::Integer; 
 					ll = llₚ
 					np = npₚ
 					copyto!(boundaries,1,boundariesₚ,1,np+2)
-					for n=1:np
-						print("$(boundariesₚ[n+1]),")
-					end
-					FORMATTED && print("\n")
+					# for n=1:np
+					# 	print("$(boundariesₚ[n+1]),")
+					# end
+					# FORMATTED && print("\n")
 				end
 			end
 		end
+
+		# Record results
+		result[i, 1:np] .= boundaries[2:(np+1)]
 	end
+	return result
 end
+export changepoint

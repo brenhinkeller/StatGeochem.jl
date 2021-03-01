@@ -1,11 +1,21 @@
 # StatGeochem.jl
-Some computational tools for geochemistry
+[![Build Status][ci-img]][ci-url]
+[![codecov.io][codecov-img]][codecov-url]
+
+_Some computational tools for geochemistry_
 
 ## Installation
 
-In the Julia package manager (type `]` in the REPL to enter)
+StatGeochem.jl is written in the [Julia programming language](https://julialang.org/).
+
+In the Julia package manager (type `]` in the REPL to enter):
 ```
-pkg> add "https://github.com/brenhinkeller/StatGeochem.jl"
+pkg> add https://github.com/brenhinkeller/StatGeochem.jl
+```
+or equivalently outside of the package manager:
+```Julia
+julia> using Pkg
+julia> Pkg.add(PackageSpec(url="https://github.com/brenhinkeller/StatGeochem.jl"))
 ```
 
 ## Usage
@@ -22,3 +32,8 @@ The above links run notebooks from the [examples/](examples/) folder on a [Jupyt
 julia> using IJulia
 julia> notebook()
 ```
+
+[ci-img]: https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg
+[ci-url]: https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI
+[codecov-img]: http://codecov.io/github/brenhinkeller/StatGeochem.jl/coverage.svg?branch=master
+[codecov-url]: http://codecov.io/github/brenhinkeller/StatGeochem.jl?branch=master

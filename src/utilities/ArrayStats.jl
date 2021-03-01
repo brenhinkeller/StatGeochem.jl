@@ -554,6 +554,7 @@
     __nanstd(A, W, dims, ::Colon) = _nanstd(A, W, dims)
     function _nanstd(A, W, region)
         mask = nanmask(A)
+        n = sum(mask, dims=region)
         w = sum(W.*mask, dims=region)
         s = sum(A.*W.*mask, dims=region) ./ w
         d = A .- s # Subtract mean, using broadcasting
@@ -563,17 +564,19 @@
         end
         s .= sum(d, dims=region)
         @avx for i ∈ eachindex(s)
-            s[i] = sqrt( s[i] / w[i] )
+            s[i] = sqrt((s[i] * n[i]) / (w[i] * (n[i] - 1)))
         end
         return s
     end
     function _nanstd(A, W, ::Colon)
+        n = 0
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
+            n += t
             w += Wᵢ * t
             m += Wᵢ * Aᵢ * t
         end
@@ -584,15 +587,17 @@
             d = Aᵢ - mu
             s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
-        return sqrt(s / w)
+        return sqrt(s / w * n / (n-1))
     end
     function _nanstd(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
+        n = 0
         w = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
+            n += t
             w += Wᵢ * t
             m += Wᵢ * Aᵢ * t
         end
@@ -603,7 +608,7 @@
             d = Aᵢ - mu
             s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
         end
-        return sqrt(s / w)
+        return sqrt(s / w * n / (n-1))
     end
     export nanstd
 
@@ -675,7 +680,7 @@
         binedges = range(xmin, xmax, length=nbins+1)
         t = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t .= (x.>binedges[i]) .& (x.<=binedges[i+1]) .& (y.==y)
+            t .= (binedges[i] .<= x .< binedges[i+1]) .& (y.==y)
             M[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
         end
         return M
@@ -685,7 +690,7 @@
         t = Array{Bool}(undef, length(x))
         tj = Array{Bool}(undef, length(x))
         for i = 1:nbins
-            t .= (x.>binedges[i]) .& (x.<=binedges[i+1])
+            t .= binedges[i] .<= x .< binedges[i+1]
             for j = 1:size(y,2)
                 tj .= t .& .!isnan.(y[:,j])
                 M[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
@@ -693,8 +698,31 @@
         end
         return M
     end
+    function nanmedian!(M::AbstractVector, N::AbstractVector, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer)
+        binedges = range(xmin, xmax, length=nbins+1)
+        t = Array{Bool}(undef, length(x))
+        for i = 1:nbins
+            t .= (binedges[i] .<= x .< binedges[i+1]) .& (y.==y)
+            M[i] = any(t) ? median(y[t]) : float(eltype(A))(NaN)
+            N[i] = count(t)
+        end
+        return M
+    end
+    function nanmedian!(M::AbstractMatrix, N::AbstractMatrix, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer)
+        binedges = range(xmin, xmax, length=nbins+1)
+        t = Array{Bool}(undef, length(x))
+        tj = Array{Bool}(undef, length(x))
+        for i = 1:nbins
+            t .= binedges[i] .<= x .< binedges[i+1]
+            for j = 1:size(y,2)
+                tj .= t .& .!isnan.(y[:,j])
+                M[i,j] = any(tj) ? median(y[tj,j]) : float(eltype(A))(NaN)
+                N[i,j] = count(tj)
+            end
+        end
+        return M
+    end
     export nanmedian!
-
 
     """
     ```julia
@@ -765,7 +793,6 @@
     Rescale a copy of `A` to unit variance and zero mean
     """
     standardize(A::AbstractArray; dims=:) = _standardize!(float.(A), dims)
-    export standardize
 
 ## --- Sorting and counting array elements
 
@@ -821,36 +848,19 @@
 
     # Interpolate y-value at xq
     # Linear interpolation, sorting inputs
-    if VERSION>v"0.7"
-        function linterp1(x,y,xq; extrapolate=Line())
-            itp = LinearInterpolation(x,y, extrapolation_bc=extrapolate)
-            yq = itp(xq) # Interpolate value of y at queried x values
-            return yq
-        end
-    else
-        function linterp1(x,y,xq)
-            itp = interpolate((x,),y, Gridded(Linear()))
-            yq = itp[xq] # Interpolate value of y at queried x values
-            return yq
-        end
+    function linterp1(x,y,xq; extrapolate=Line())
+        itp = LinearInterpolation(x,y, extrapolation_bc=extrapolate)
+        yq = itp(xq) # Interpolate value of y at queried x values
+        return yq
     end
     export linterp1
 
     # Sort x and interpolate y-value at xq
-    if VERSION>v"0.7"
-        function linterp1s(x,y,xq; extrapolate=Line())
-            sI = sortperm(x) # indices to construct sorted array
-            itp = LinearInterpolation(x[sI], y[sI], extrapolation_bc=extrapolate)
-            yq = itp(xq) # Interpolate value of y at queried x values
-            return yq
-        end
-    else
-        function linterp1s(x,y,xq)
-            sI = sortperm(x) # indices to construct sorted array
-            itp = interpolate((x[sI],), y[sI], Gridded(Linear()))
-            yq = itp[xq] # Interpolate value of y at queried x values
-            return yq
-        end
+    function linterp1s(x,y,xq; extrapolate=Line())
+        sI = sortperm(x) # indices to construct sorted array
+        itp = LinearInterpolation(x[sI], y[sI], extrapolation_bc=extrapolate)
+        yq = itp(xq) # Interpolate value of y at queried x values
+        return yq
     end
     export linterp1s
 
@@ -1051,26 +1061,8 @@
     specified by a vector `dist` defining the PDF curve thereof.
     """
     function draw_from_distribution(dist::AbstractArray{<:AbstractFloat}, n::Integer)
-        # Draw n random floating-point numbers from the distribution 'dist'
         x = Array{eltype(dist)}(undef, n)
-        dist_ymax = maximum(dist)
-        dist_xmax = prevfloat(length(dist) - 1.0)
-
-        @inbounds for i = 1:n
-            while true
-                # Pick random x value
-                rx = rand(Float64) * dist_xmax
-                # Interpolate corresponding distribution value
-                f = floor(Int,rx)
-                y = dist[f+2]*(rx-f) + dist[f+1]*(1-(rx-f))
-                # See if x value is accepted
-                ry = rand(Float64) * dist_ymax
-                if (y > ry)
-                    x[i] = rx / dist_xmax
-                    break
-                end
-            end
-        end
+        draw_from_distribution!(x, dist)
         return x
     end
     export draw_from_distribution
@@ -1118,15 +1110,14 @@
     Bins need not be evenly spaced, though it helps.
     """
     function trapz(edges::AbstractRange, values::AbstractArray)
-        dx = (edges[end]-edges[1])/(length(edges) - 1)
         result = zero(eltype(values))
         @avx for i=2:length(edges)
             result += values[i-1]+values[i]
         end
+        dx = (edges[end]-edges[1])/(length(edges) - 1)
         return result * dx / 2
     end
     function trapz(edges::AbstractArray, values::AbstractArray)
-        dx = (edges[end]-edges[1])/(length(edges) - 1)
         result = zero(promote_type(eltype(edges), eltype(values)))
         @avx for i=2:length(edges)
             result += (values[i-1] + values[i]) * (edges[i] - edges[i-1])

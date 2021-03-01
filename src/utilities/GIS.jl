@@ -1,24 +1,24 @@
 ## --- Read ESRI Arc/Info ASCII grid files
 
-    function parse_AAIGrid(fname, parseType)
+    function importAAIGrid(fname, T=Float64; undefval=NaN)
         # Open the file
         fid = open(fname)
 
-        metadata = Dict()
-        metadata["ncols"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nrows"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["xll_corner"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["yll_corner"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["cellsize"] = parse(match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nodata"] = parse(match(r"  *(.*?)$", readline(fid))[1])
+        metadata = Dict{String,Number}()
+        metadata["ncols"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["nrows"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["xll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["yll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["cellsize"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["nodata"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
 
         nrows = metadata["nrows"]
         ncols = metadata["ncols"]
 
-        data = Array{Int16}(undef,ncols,nrows)
+        data = Array{T}(undef,ncols,nrows)
         for i = 1:nrows
             l = readline(fid)
-            delim_string_parse!(data, l, ' ', Int16, offset=(i-1)*ncols)
+            delim_string_parse!(data, l, ' ', T, offset=(i-1)*ncols, undefval=undefval)
         end
 
         # Close the file
@@ -26,18 +26,15 @@
 
         return (data', metadata)
     end
-    export parse_AAIGrid
+    export importAAIGrid
 
 ## --- Calculate slope from a DEM
 
-    function max_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000)
+    function maxslope(matrix, x_lon_cntr, y_lat_cntr, cellsize, T=UInt16; minmatval=-12000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate output array
-        slope = Array{UInt16}(undef,size(matrix))
-
-        # Average size of a degree on Earth
-        km_per_lat = 111.1
+        slope = Array{T}(undef,size(matrix))
 
         # Fill in the center first
         distNS = 2 * cellsize * km_per_lat
@@ -74,7 +71,7 @@
                     end
 
                     # Record the steepest slope
-                    slope[i,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+                    slope[i,j] = nearest(T, max(NS,EW,NESW,NWSE))
                 end
             end
 
@@ -103,7 +100,7 @@
             else
                 NWSE = abs(matrix[i+1,2] - matrix[i-1,1]) / distDiag
             end
-            slope[i,1] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[i,1] = nearest(T, max(NS,EW,NESW,NWSE))
 
             # Right edge
             if (matrix[i+1,end] < minmatval) || (matrix[i-1,end] < minmatval)
@@ -126,7 +123,7 @@
             else
                 NWSE = abs(matrix[i+1,end] - matrix[i-1,end-1]) / distDiag
             end
-            slope[i,end] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[i,end] = nearest(T, max(NS,EW,NESW,NWSE))
         end
 
         # Fill in the top and bottom row
@@ -159,7 +156,7 @@
             else
                 NWSE = abs(matrix[2,j+1] - matrix[1,j]) / distDiag
             end
-            slope[1,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[1,j] = nearest(T, max(NS,EW,NESW,NWSE))
         end
         slope[1,1] = 0
         slope[1,end] = 0
@@ -190,22 +187,22 @@
             else
                 NWSE = abs(matrix[end-1,j+1] - matrix[end,j]) / distDiag
             end
-            slope[end,j] = round(UInt16, min(max(max(NS,EW), max(NESW,NWSE)), 0xffff))
+            slope[end,j] = nearest(T, max(NS,EW,NESW,NWSE))
         end
         slope[end,1] = 0
         slope[end,end] = 0
 
         return slope
     end
-    export max_slope_earth
+    export maxslope
 
-    function ave_slope_earth(matrix, x_lon_cntr, y_lat_cntr, cellsize; minmatval=-12000, maxmatval=9000)
+    function aveslope(matrix, x_lon_cntr, y_lat_cntr, cellsize, T=UInt16; minmatval=-12000, maxmatval=9000, km_per_lat=111.1)
         # Returns slope in units/kilometer given a latitude-longitude grid of z-values
 
         # Allocate intermediate and output arrays
         distance = Array{Float64}(undef,8)
         local_slopes = Array{Float64}(undef,8)
-        slope = Array{UInt16}(undef,size(matrix))
+        slope = Array{T}(undef,size(matrix))
 
         # Index offsets to cycle through:
         #         [N,NE,E,SE,S,SW,W,NW]
@@ -216,9 +213,6 @@
         # 8 1 2
         # 7 x 3
         # 6 5 4
-
-        # Average size of a degree on Earth
-        km_per_lat = 111.1
 
         # Distance between grid cell centers
         # N, S
@@ -247,7 +241,7 @@
                         end
                     end
                     # Record the average slope
-                    slope[i,j] = round(UInt16, min(mean(local_slopes), 0xffff))
+                    slope[i,j] = nearest(T, mean(local_slopes))
                 end
             end
 
@@ -264,7 +258,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,1] = round(UInt16, min(mean(local_slopes[1:5]), 0xffff))
+                slope[i,1] = nearest(T, mean(local_slopes[1:5]))
             end
 
             # Right edge
@@ -280,7 +274,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,end] = round(UInt16, min(mean(local_slopes[[5,6,7,8,1]]), 0xffff))
+                slope[i,end] = nearest(T, mean(local_slopes[[5,6,7,8,1]]))
             end
         end
 
@@ -302,7 +296,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[1,j] = round(UInt16, min(mean(local_slopes[3:7]), 0xffff))
+                slope[1,j] = nearest(T, mean(local_slopes[3:7]))
             end
         end
         slope[1,1] = 0
@@ -326,7 +320,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[end,j] = round(UInt16, min(mean(local_slopes[[7,8,1,2,3]]),0xffff));
+                slope[end,j] = nearest(T, mean(local_slopes[[7,8,1,2,3]]))
             end
         end
         slope[end,1] = 0
@@ -334,7 +328,7 @@
 
         return slope
     end
-    export ave_slope_earth
+    export aveslope
 
 
 ## --- End of File
