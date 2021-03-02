@@ -14,7 +14,7 @@
 
 ## --- Elementify/unelementify functions
 
-    elements = string.(permutedims(unique(rand("abcdefghijklmnopqrstuvwxyz",20))))
+    elements = ["U" "Lv" "Te" "O" "Er" "W" "Re" "j" "asdf" "Zr" "Al" "S" "K" "V" "N" "Ga" "I"]
     data = vcat(elements, hcat(rand(1000, length(elements)-1), string.(rand("abcdefghijklmnopqrstuvwxyz0123456789",1000))))
     datatuple = elementify(data,importas=:Tuple)::NamedTuple
     datadict = elementify(data,importas=:Dict)::Dict
