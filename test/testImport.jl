@@ -24,6 +24,14 @@
     @test isa(datadict, Dict)
     @test unelementify(datadict) == data
 
+    # Test adding or averaging option for numeric elements 
+    addtest = ["a" "b" "a";1 2 3]
+    avg = elementify(addtest)
+    add = elementify(addtest, sumduplicates=true)
+    @test avg["elements"] == avg["elements"]
+    @test avg["a"] == 2
+    @test add["a"] == 4
+
 ## --- Import / export functions
 
     @test exportdataset(datatuple, "tupledataset.csv", ',') == nothing

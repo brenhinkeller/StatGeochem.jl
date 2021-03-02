@@ -325,7 +325,8 @@
             skipstart::Integer=1,
             standardize::Bool=true,
             floattype=Float64,
-            skipnameless::Bool=true
+            skipnameless::Bool=true,
+            sumduplicates::Bool=false
         )
         if importas == :Dict || importas==:dict
             # Output as dictionary
@@ -359,8 +360,12 @@
                 if haskey(result,elements[i])
                     # If key already exists
                     if column_is_numeric && (standardize || (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
-                        # If either this column or the existing one is plausibly numeric, average the two
-                        result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )
+                        # If either this column or the existing one is plausibly numeric, sum or average the two
+                        if sumduplicates
+                            result[elements[i]] = floatify.(result[elements[i]], floattype) + floatify.(column, floattype)
+                        else
+                            result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )[1]  
+                        end
                     elseif standardize
                         # If neither is numeric, but standardize is set, must return a string
                         result[elements[i]] = string.(result[elements[i]]) .* "|" .* string(lastcol)
