@@ -216,7 +216,7 @@
     Bootstrap resample a dictionary-based `dataset` with uncertainties stored either
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
-    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(in[elements[1]]));
+    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(elements[1]));
             kernel = gaussian,
             rng = MersenneTwister()
         )
