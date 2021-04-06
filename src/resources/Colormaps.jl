@@ -87,6 +87,17 @@
     lines = parse.(Color, ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F",])
     export lines
 
+    # Various one-color ramps
+    xq = [range(1,2,length=166); range(2+1/120,2.93,length=120)][[1; 32:end]]
+    blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0072BD", "#000000",]), xq)
+    oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#D95319", "#000000",]), xq)
+    yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#EDB120", "#000000",]), xq)
+    purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#7E2F8E", "#000000",]), xq)
+    greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#77AC30", "#000000",]), xq)
+    cyans = linterp1(1:3, parse.(Color, ["#FFFFFF", "#4DBEEE", "#000000",]), xq)
+    reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#A2142F", "#000000",]), xq)
+    export blues, oranges, yellows, purples, greens, cyans, reds
+
     # Consistent mineral color dictionary
     mineralcolors=Dict{String,Color}()
     mineralcolors["olivine"] = parse(Color, "#5b9d00")
@@ -110,7 +121,7 @@
     mineralcolors["ferrosilite"] = parse(Color, "#242d2c")
     mineralcolors["clinopyroxene"] = parse(Color, "#227d0e")
     mineralcolors["diopside"] = parse(Color, "#227d0e")
-    mineralcolors["chrome diopside"] = parse(Color, "#0b6402")    
+    mineralcolors["chrome diopside"] = parse(Color, "#0b6402")
     mineralcolors["hedenbergite"] = parse(Color, "#58634b")
     mineralcolors["acmite"] = parse(Color, "#979141")
     mineralcolors["jadeite"] = parse(Color, "#008621")
@@ -236,56 +247,3 @@
         lines
     )
     export colormaps
-
-
-## --- Resize and interpolate colormaps
-
-    # Linearly interpolate cmap at positions xq
-    function linterp1(x::AbstractArray, cmap::AbstractArray{<:Color}, xq)
-        # Interpolate red, green, and blue vectors separately
-        r_interp = linterp1(x, cmap .|> c -> c.r, xq)
-        g_interp = linterp1(x, cmap .|> c -> c.g, xq)
-        b_interp = linterp1(x, cmap .|> c -> c.b, xq)
-        # Convert back to a color
-        return RGB.(r_interp,g_interp,b_interp)
-    end
-
-    function resize_colormap(cmap::AbstractArray{<:Color}, n::Integer)
-        cNum = length(cmap)
-        if n<2
-            cmap[1:1]
-        else
-            linterp1(1:cNum,cmap,collect(range(1,cNum,length=n)))
-        end
-    end
-    export resize_colormap
-
-
-## --- Map colormaps to images
-
-    # Convert matrix to image using colormap
-    function imsc(matrix::AbstractArray,colormap::AbstractArray=viridis,cmin::Number=0,cmax::Number=0)
-        Nc = length(colormap)
-        if cmin>=cmax
-            cmin = nanminimum(matrix)
-            cmax = nanmaximum(matrix)
-        end
-        crange = cmax - cmin
-        return  matrix .|> x -> colormap[isnan(x) ? 1 : ceil(UInt, min(max(Nc*(x-cmin)/crange, 1), Nc))]
-    end
-    export imsc
-
-    # Convert matrix to indirect array image using colormap
-    function imsci(matrix::AbstractArray,colormap::AbstractArray=viridis,cmin::Number=0,cmax::Number=0)
-        Nc = length(colormap)
-        if cmin>=cmax
-            cmin = nanminimum(matrix)
-            cmax = nanmaximum(matrix)
-        end
-        crange = cmax - cmin
-        return IndirectArray(matrix .|> x -> isnan(x) ? 1 : ceil(UInt, min(max(Nc*(x-cmin)/crange, 1), Nc)), colormap)
-    end
-    export imsci
-
-
-## -- End of File

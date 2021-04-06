@@ -39,6 +39,7 @@ module StatGeochem
 
     using IndirectArrays: IndirectArray
     using Colors: Color, RGBX, RGB, N0f8
+    include("utilities/ColorsAndImages.jl")
     include("resources/Colormaps.jl")
 
     include("resources/Chemistry.jl")
