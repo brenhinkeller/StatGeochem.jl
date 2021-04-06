@@ -88,7 +88,7 @@
     export lines
 
     # Various one-color ramps
-    color_x = [1; range(1.2,2,length=135); range(2+1/120,2.9,length=120)]
+    color_x = [1.05; range(1.15,2,length=135); range(2+1/120,2.9,length=120)]
     blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0072BD", "#000000",]), color_x)
     oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#D95319", "#000000",]), color_x)
     yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#EDB120", "#000000",]), color_x)
@@ -204,6 +204,17 @@
     mineralcolors["fluid"] = parse(Color, "#4DBEEE")
     mineralcolors["melt"] = parse(Color, "#A2142F")
     export mineralcolors
+
+    w = RGB{N0f8}(1.0,1.0,1.0)
+    k = RGB{N0f8}(0,0,0)
+    color_x = [1.05; range(1.15,2,length=135); range(2+1/120,2.9,length=120)]
+    almandines = linterp1(1:3, [w, mineralcolors["almandine"], k], color_x)
+    spessartines = linterp1(1:3, [w, mineralcolors["spessartine"], k], color_x)
+    pargasites = linterp1(1:3, [w, mineralcolors["pargasite"], k], color_x)
+    malachites = linterp1(1:3, [w, mineralcolors["malachite"], k], color_x)
+    azurites = linterp1(1:3, [w, mineralcolors["azurite"], k], color_x)
+    quartzes = linterp1(1:3, [w, mineralcolors["quartz"], k], color_x)
+    export almandines, spessartines, pargasites, malachites, azurites, quartzes
 
     struct AllColormaps
         hesperia
