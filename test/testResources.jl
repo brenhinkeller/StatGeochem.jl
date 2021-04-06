@@ -16,28 +16,4 @@
       Float16[1.303e3, 6.46, 36.97, 33.47, 0.2556, 0.02368, 0.4363, 10.695, 0.8784, 19.56, 3.293, 40.34, 62.88, 101.75, 94.94, 126.4]
 
 
-## --- Colormaps.jl
-
-   using Colors: Color
-
-   cmap = resize_colormap(viridis, 10)
-   @test length(cmap) == 10
-   @test isa(cmap, Array{<:Color,1})
-
-   matrix = rand(10,10)
-   # Specifiying limits
-   img1 = imsc(matrix, viridis, 0, 1)
-   @test isa(img1, Array{<:Color,2})
-   img2 = imsci(matrix, viridis, 0, 1)
-   @test isa(img2, AbstractArray{<:Color,2})
-   @test all(img1 .== img2)
-
-   # Auto-ranging
-   img1 = imsc(matrix, viridis)
-   @test isa(img1, Array{<:Color,2})
-   img2 = imsci(matrix, viridis)
-   @test isa(img2, AbstractArray{<:Color,2})
-   @test all(img1 .== img2)
-
-
 ## ---

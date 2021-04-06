@@ -88,14 +88,14 @@
     export lines
 
     # Various one-color ramps
-    xq = [range(1,2,length=166); range(2+1/120,2.93,length=120)][[1; 32:end]]
-    blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0072BD", "#000000",]), xq)
-    oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#D95319", "#000000",]), xq)
-    yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#EDB120", "#000000",]), xq)
-    purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#7E2F8E", "#000000",]), xq)
-    greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#77AC30", "#000000",]), xq)
-    cyans = linterp1(1:3, parse.(Color, ["#FFFFFF", "#4DBEEE", "#000000",]), xq)
-    reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#A2142F", "#000000",]), xq)
+    color_x = [1; range(1.2,2,length=135); range(2+1/120,2.9,length=120)]
+    blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0072BD", "#000000",]), color_x)
+    oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#D95319", "#000000",]), color_x)
+    yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#EDB120", "#000000",]), color_x)
+    purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#7E2F8E", "#000000",]), color_x)
+    greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#77AC30", "#000000",]), color_x)
+    cyans = linterp1(1:3, parse.(Color, ["#FFFFFF", "#4DBEEE", "#000000",]), color_x)
+    reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#A2142F", "#000000",]), color_x)
     export blues, oranges, yellows, purples, greens, cyans, reds
 
     # Consistent mineral color dictionary
