@@ -88,12 +88,12 @@
     export lines
 
     # Various one-color ramps
-    color_x = [1.15; range(1.2,2,length=140); range(2+1/120,2.9,length=115)]
+    color_x = [1.11; range(1.2,2,length=140); range(2+1/120,2.9,length=115)]
     blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0000FF", "#000000",]), color_x)
     oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FF8f00", "#000000",]), color_x)
     yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FFE900", "#000000",]), color_x)
     purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#800080", "#000000",]), color_x)
-    greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#00CF60", "#000000",]), color_x)
+    greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#00AA66", "#000000",]), color_x)
     cyans = linterp1(1:3, parse.(Color, ["#FFFFFF", "#00AAFF", "#000000",]), color_x)
     reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FF0000", "#000000",]), color_x)
     export blues, oranges, yellows, purples, greens, cyans, reds
@@ -207,7 +207,7 @@
 
     w = RGB{N0f8}(1.0,1.0,1.0)
     k = RGB{N0f8}(0,0,0)
-    color_x = [1.15; range(1.2,2,length=140); range(2+1/120,2.8,length=115)]
+    color_x = [1.11; range(1.2,2,length=140); range(2+1/120,2.8,length=115)]
     almandines = linterp1(1:3, [w, mineralcolors["almandine"], k], color_x)
     spessartines = linterp1(1:3, [w, mineralcolors["spessartine"], k], color_x)
     pargasites = linterp1(1:3, [w, mineralcolors["pargasite"], k], color_x)
