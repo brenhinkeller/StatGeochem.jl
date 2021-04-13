@@ -233,6 +233,14 @@
         ylcn
         water
         fire
+        reds
+        oranges
+        greens
+        cyans
+        blues
+        violets
+        purples
+        magentas
         cubehelix
         lines
     end
@@ -255,6 +263,14 @@
         water,
         fire,
         cubehelix,
+        reds,
+        oranges,
+        greens,
+        cyans,
+        blues,
+        violets,
+        purples,
+        magentas,
         lines
     )
     export colormaps
