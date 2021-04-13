@@ -88,15 +88,16 @@
     export lines
 
     # Various one-color ramps
-    color_x = [1.11; range(1.2,2,length=140); range(2+1/120,2.9,length=115)]
-    blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0000FF", "#000000",]), color_x)
+    color_x = [1.07; range(1.2,2,length=130); range(2+1/120,2.9,length=125)]
+    reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FF0000", "#000000",]), color_x)
     oranges = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FF8f00", "#000000",]), color_x)
-    yellows = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FFE900", "#000000",]), color_x)
-    purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#800080", "#000000",]), color_x)
     greens = linterp1(1:3, parse.(Color, ["#FFFFFF", "#00AA66", "#000000",]), color_x)
     cyans = linterp1(1:3, parse.(Color, ["#FFFFFF", "#00AAFF", "#000000",]), color_x)
-    reds = linterp1(1:3, parse.(Color, ["#FFFFFF", "#FF0000", "#000000",]), color_x)
-    export blues, oranges, yellows, purples, greens, cyans, reds
+    blues = linterp1(1:3, parse.(Color, ["#FFFFFF", "#0000FF", "#000000",]), color_x)
+    violets = linterp1(1:3, parse.(Color, ["#FFFFFF", "#8000F0", "#000000",]), color_x)
+    purples = linterp1(1:3, parse.(Color, ["#FFFFFF", "#800080", "#000000",]), color_x)
+    magentas = linterp1(1:3, parse.(Color, ["#FFFFFF", "#F00080", "#000000",]), color_x)
+    export reds, oranges, greens, cyans, blues, violets, purples, magentas
 
     # Consistent mineral color dictionary
     mineralcolors=Dict{String,Color}()
@@ -214,7 +215,6 @@
     malachites = linterp1(1:3, [w, mineralcolors["malachite"], k], color_x)
     azurites = linterp1(1:3, [w, mineralcolors["azurite"], k], color_x)
     quartzes = linterp1(1:3, [w, mineralcolors["quartz"], k], color_x)
-    export almandines, spessartines, pargasites, malachites, azurites, quartzes
 
     struct AllColormaps
         hesperia
