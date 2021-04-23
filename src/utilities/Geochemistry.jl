@@ -371,7 +371,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, floatout=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -395,7 +395,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, floatout=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true)
 
             # Start by transferring over all the non-redundant elements
             modes = Dict()
@@ -479,7 +479,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, floatout=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -503,7 +503,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, floatout=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -521,7 +521,7 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, floatout=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true)
         else
             # Return empty dictionary if file doesn't exist
             data = Dict()
@@ -579,7 +579,7 @@
         # Edit perplex_option.dat to specify number of nodes at which to solve
         system("sed -e \"s/1d_path .*|/1d_path                   $npoints $npoints |/\" -i.backup $(prefix)perplex_option.dat")
 
-        # Edit perplex_option.dat to output all seismic properties 
+        # Edit perplex_option.dat to output all seismic properties
         #println("editing perplex options ")
         system("sed -e \"s/seismic_output .*|/seismic_output                   all |/\" -i.backup $(prefix)perplex_option.dat")
 
@@ -1139,7 +1139,7 @@
     path (dof=1, isobar or geotherm) or 2-d grid / pseudosection (dof=2).
     Results are returned as a dictionary.
 
-    Currently returns vol % 
+    Currently returns vol %
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
         dof::Integer=1, index::Integer=1, include_fluid="y")
@@ -1177,7 +1177,7 @@
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
-            # Convert to a dictionary. 
+            # Convert to a dictionary.
             # Perplex sometimes returns duplicates of a single solution model, sum them.
             result = elementify(data, sumduplicates=true)
         catch
