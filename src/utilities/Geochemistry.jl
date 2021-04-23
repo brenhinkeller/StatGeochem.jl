@@ -440,12 +440,14 @@
                     modes["orthoclase"][t] .+= AnAbOr[:,3] .*  melts[m]["mass"]
                 elseif containsi(m,"rhm_oxide")
                     t = vec(findclosest(melts[m]["Temperature"],modes["Temperature"]))
+                    Ilmenite = Vector{Float64}(undef, length(t))
+                    Magnetite = Vector{Float64}(undef, length(t))
                     if  haskey(melts[m],"MnO")
-                        Ilmenite = (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
-                        Magnetite = (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                        Ilmenite .= (melts[m]["TiO2"] + melts[m]["MnO"]+(melts[m]["TiO2"]*(71.8444/79.8768) - melts[m]["MnO"]*(71.8444/70.9374))) / 100
+                        Magnetite .= (melts[m]["FeO"] - (melts[m]["TiO2"])*71.8444/79.8768) * (1+159.6882/71.8444)/100
                     else
-                        Ilmenite = (melts[m]["TiO2"] + melts[m]["TiO2"]*71.8444/79.8768) / 100
-                        Magnetite = (melts[m]["FeO"] - melts[m]["TiO2"]*71.8444/79.8768) * (1+159.6882/71.8444)/100
+                        Ilmenite .= (melts[m]["TiO2"] + melts[m]["TiO2"]*71.8444/79.8768) / 100
+                        Magnetite .= (melts[m]["FeO"] - melts[m]["TiO2"]*71.8444/79.8768) * (1+159.6882/71.8444)/100
                     end
                     Magnetite[Magnetite.<0] .= 0
                     Hematite = (melts[m]["Fe2O3"] - Magnetite*100*159.6882/231.5326)/100
