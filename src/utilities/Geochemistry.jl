@@ -1742,7 +1742,7 @@
     """
     function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
         D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
-        REEt = @. exp(9.50 + 2.34D + 0.3879√H2O - 13318/(T+272.15))
+        REEt = @. exp(9.50 + 2.34D + 0.3879sqrt(H2O) - 13318/(T+272.15))
     end
     export tmonaziteREE
 
@@ -1757,7 +1757,7 @@
     function tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
         D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
         REEt = LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
-        T = @. 13318/(9.50 + 2.34D + 0.3879√H2O - log(REEt)) - 272.15
+        T = @. 13318/(9.50 + 2.34D + 0.3879sqrt(H2O) - log(REEt)) - 272.15
     end
     export tmonazite
 
