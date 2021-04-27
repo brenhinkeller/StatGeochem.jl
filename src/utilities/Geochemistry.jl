@@ -1742,7 +1742,7 @@
     """
     function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
         D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
-        REEt = @. exp(9.50 + 2.34D + 0.3879sqrt(H2O) - 13318/(T+272.15))
+        REEt = @. exp(9.50 + 2.34*D + 0.3879*sqrt(H2O) - 13318/(T+272.15))
     end
     export tmonaziteREE
 
@@ -1757,7 +1757,7 @@
     function tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
         D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
         REEt = LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
-        T = @. 13318/(9.50 + 2.34D + 0.3879sqrt(H2O) - log(REEt)) - 272.15
+        T = @. 13318/(9.50 + 2.34*D + 0.3879*sqrt(H2O) - log(REEt)) - 272.15
     end
     export tmonazite
 
@@ -1786,7 +1786,7 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
 
-        P2O5satₘ = exp((T+273.15) * (0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
+        P2O5satₘ = exp((T+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
         avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst)
         P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
 
@@ -1796,7 +1796,7 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
 
-        P2O5satₘ = exp((T+273.15) * (0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
+        P2O5satₘ = exp((T+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
         avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst + 141.94252*P2/normconst)
         P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
         return P2O5sat
@@ -1829,7 +1829,7 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
         P2O5ₘ = P2 / normconst * 100
-        T = (log(P2O5ₘ) + 3.3333*log(CaOₘ)) / (0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
+        T = (log(P2O5ₘ) + 3.3333*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
         return T
     end
     export tapatite
