@@ -120,7 +120,7 @@
 
 ## --- Monte Carlo interpolation/fitting
 
-    (c,m) = mcfit(0:11, ones(12), 0:11, ones(12), 1, 10, 10)
+    (c,m) = mcfit(0:11, ones(12), 0:11, ones(12), 1, 10, 10, minrows=10^6)
     @test c == 1:10
     @test isapprox(m, [1.15, 2.02, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.98, 9.85], atol = 0.5)
 
