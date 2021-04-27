@@ -1519,7 +1519,7 @@
         P = P2O5/70.9723
 
         # Normalize cation ratios
-        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
         K = K / normconst
         Na = Na / normconst
         Ca = Ca / normconst
@@ -1600,7 +1600,7 @@
         P = P2O5/70.9723
 
         # Normalize cation ratios
-        normconst = nansum([Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P])
+        normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
         K = K / normconst
         Na = Na / normconst
         Ca = Ca / normconst
@@ -1680,12 +1680,12 @@
 
         # Normalize cation ratios
         normconst = nansum([Li, Na, K, Ca, Al, Si, Ti, Fe, Mg])
-        Li /= normconst
-        Na /= normconst
-        K /= normconst
-        Ca /= normconst
-        Al /= normconst
-        Si /= normconst
+        Li = Li / normconst * 100
+        Na = Na / normconst * 100
+        K = K / normconst * 100
+        Ca = Ca / normconst * 100
+        Al = Al / normconst * 100
+        Si = Si / normconst * 100
 
         D = (Na + K + Li + 2Ca) / (Al * (Al + Si))
         return D
@@ -1702,14 +1702,14 @@
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
 
-        # Normalize cation ratios
+        # Calculate atomic percent
         normconst = nansum([Li Na K Ca Al Si Ti Fe Mg], dim=2)
-        Li ./= normconst
-        Na ./= normconst
-        K ./= normconst
-        Ca ./= normconst
-        Al ./= ormconst
-        Si ./= normconst
+        Li .= Li ./ normconst .* 100
+        Na .= Na ./ normconst .* 100
+        K .= K ./ normconst .* 100
+        Ca .= Ca ./ normconst .* 100
+        Al .= Al ./ normconst .* 100
+        Si .= Si ./ normconst .* 100
         D = (Na + K + Li + 2Ca) ./ (Al .* (Al + Si))
         return D
     end
@@ -1724,7 +1724,7 @@
     """
     function LREEt(La, Ce, Pr, Nd, Sm, Gd)
         # All as PPM
-        @. La/molarmass["La"] + Ce/molarmass["Ce"] + Pr/molarmass["Pr"] + Nd/molarmass["Nd"] + Sm / molarmass["Sm"] + Gd / molarmass["Gd"]
+        @. La/138.905477 + Ce/140.1161 + Pr/140.907662 + Nd/144.2423 + Sm/150.362 + Gd/157.253
     end
     export LREEt
 
@@ -1733,7 +1733,7 @@
     REEt = tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
     ```
     Calculate monazite saturation REEt value (in [ppm/mol.wt.]) for a given
-    temperature (in C) following the Monazite saturation model of Montel 1993
+    temperature (in C) following the monazite saturation model of Montel 1993
     (doi: 10.1016/0009-2541(93)90250-M), where:
 
     D = (Na + K + Li + 2Ca) / Al * 1/(Al + Si)) # all as at. %
@@ -1751,7 +1751,7 @@
     T = tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
     ```
     Calculate monazite saturation temperature in degrees Celcius
-    following the Monazite saturation model of Montel 1993
+    following the monazite saturation model of Montel 1993
     (doi: 10.1016/0009-2541(93)90250-M)
     """
     function tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
@@ -1760,6 +1760,79 @@
         T = @. 13318/(9.50 + 2.34D + 0.3879sqrt(H2O) - log(REEt)) - 272.15
     end
     export tmonazite
+
+
+    """
+    ```julia
+    P2O5 = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
+    ```
+    Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
+    given `T` (in C) following the apatite saturation model of Tollari et al. 2006
+    (doi: 10.1016/j.gca.2005.11.024)
+    """
+    function tapatiteP2O5(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, T::Number)
+        # Cations
+        Na2 = Na2O/61.97854
+        K2 = K2O/94.19562
+        Ca = CaO/56.0774
+        Al2 = Al2O3/101.960077
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+
+        # Normalize to mole percent oxides
+        normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg))
+        CaOₘ = Ca / normconst * 100
+        SiO2ₘ = Si / normconst * 100
+
+        P2O5satₘ = exp((T+273.15) * (0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
+        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst)
+        P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
+
+        # Repeat calculation using P2O5 at saturation to improve accuracy of molar%-to-weight% conversion
+        P2 = P2O5sat/141.94252
+        normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
+        CaOₘ = Ca / normconst * 100
+        SiO2ₘ = Si / normconst * 100
+
+        P2O5satₘ = exp((T+273.15) * (0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
+        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst + 141.94252*P2/normconst)
+        P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
+        return P2O5sat
+    end
+    export tapatiteP2O5
+
+
+    """
+    ```julia
+    T = tapatite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate apatite saturation temperature in degrees Celcius
+    following the apatite saturation model of Tollari et al. 2006
+    (doi: 10.1016/j.gca.2005.11.024)
+    """
+    function tapatite(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        # Cations
+        Na2 = Na2O/61.97854
+        K2 = K2O/94.19562
+        Ca = CaO/56.0774
+        Al2 = Al2O3/101.960077
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        P2 = P2O5/141.94252
+
+        # Normalize to mole percent oxides
+        normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
+        CaOₘ = Ca / normconst * 100
+        SiO2ₘ = Si / normconst * 100
+        P2O5ₘ = P2 / normconst * 100
+        T = (log(P2O5ₘ) + 3.3333*log(CaOₘ)) / (0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
+        return T
+    end
+    export tapatite
 
 
 ## --- End of File
