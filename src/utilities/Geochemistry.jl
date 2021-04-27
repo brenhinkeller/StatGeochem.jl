@@ -1503,6 +1503,7 @@
     ```
     Calculate zircon saturation M-value based on major element concentrations
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    (doi: 10.1016/j.chemgeo.2013.05.028)
     """
     function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
         #Cations
@@ -1558,6 +1559,7 @@
     ```
     Calculate zircon saturation Zr concentration for a given temperature (in C)
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    (doi: 10.1016/j.chemgeo.2013.05.028)
     """
     function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
         M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
@@ -1573,6 +1575,7 @@
     ```
     Calculate zircon saturation temperature in degrees Celsius
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
+    (doi: 10.1016/j.chemgeo.2013.05.028)
     """
     function tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
         M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
@@ -1638,7 +1641,7 @@
     ```
     Calculate sphene saturation Ti concentration for a given temperature (in C)
     Following the sphene saturation calibration of Ayers et al., 2018
-    (10.1130/abs/2018AM-320568)
+    (doi: 10.1130/abs/2018AM-320568)
     """
     function tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
         C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
@@ -1653,13 +1656,110 @@
     ```
     Calculate sphene saturation temperature in degrees Celsius
     Following the sphene saturation calibration of Ayers et al., 2018
-    (10.1130/abs/2018AM-320568)
+    (doi: 10.1130/abs/2018AM-320568)
     """
     function tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         T = @. 7993/(0.79*C - TiO2 + 7.88) - 273.15
     end
     export tsphene
+
+
+
+    function tmonaziteD(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, Li2O::Number)
+        #Cations
+        Li = Li2O/14.9395
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+
+        # Normalize cation ratios
+        normconst = nansum([Li, Na, K, Ca, Al, Si, Ti, Fe, Mg])
+        Li /= normconst
+        Na /= normconst
+        K /= normconst
+        Ca /= normconst
+        Al /= normconst
+        Si /= normconst
+
+        D = (Na + K + Li + 2Ca) / (Al * (Al + Si))
+        return D
+    end
+    function tmonaziteD(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, Li2O::AbstractArray)
+        #Cations
+        Li = Li2O/14.9395
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+
+        # Normalize cation ratios
+        normconst = nansum([Li Na K Ca Al Si Ti Fe Mg], dim=2)
+        Li ./= normconst
+        Na ./= normconst
+        K ./= normconst
+        Ca ./= normconst
+        Al ./= ormconst
+        Si ./= normconst
+        D = (Na + K + Li + 2Ca) ./ (Al .* (Al + Si))
+        return D
+    end
+
+    """
+    ```julia
+    LREEt(La, Ce, Pr, Nd, Sm, Gd)
+    ```
+    Returns the sum of the LREE concentrations divided by their respective molar masses
+    This is equivalent to the REEt value from the monazite saturation model of Montel 1993
+    (doi: 10.1016/0009-2541(93)90250-M)
+    """
+    function LREEt(La, Ce, Pr, Nd, Sm, Gd)
+        # All as PPM
+        @. La/molarmass["La"] + Ce/molarmass["Ce"] + Pr/molarmass["Pr"] + Nd/molarmass["Nd"] + Sm / molarmass["Sm"] + Gd / molarmass["Gd"]
+    end
+    export LREEt
+
+    """
+    ```julia
+    REEt = tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
+    ```
+    Calculate monazite saturation REEt value (in [ppm/mol.wt.]) for a given
+    temperature (in C) following the Monazite saturation model of Montel 1993
+    (doi: 10.1016/0009-2541(93)90250-M), where:
+
+    D = (Na + K + Li + 2Ca) / Al * 1/(Al + Si)) # all as at. %
+    ln(REEt) = 9.50 + 2.34D + 0.3879√H2O - 13318/T # H2O as wt.%
+    REEt = Σ REEᵢ(ppm) / at. weight (g/mol)
+    """
+    function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
+        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
+        REEt = @. exp(9.50 + 2.34D + 0.3879√H2O - 13318/(T+272.15))
+    end
+    export tmonaziteREE
+
+    """
+    ```julia
+    T = tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
+    ```
+    Calculate monazite saturation temperature in degrees Celcius
+    following the Monazite saturation model of Montel 1993
+    (doi: 10.1016/0009-2541(93)90250-M)
+    """
+    function tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
+        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
+        REEt = LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
+        T = @. 13318/(9.50 + 2.34D + 0.3879√H2O - log(REEt)) - 272.15
+    end
+    export tmonazite
 
 
 ## --- End of File
