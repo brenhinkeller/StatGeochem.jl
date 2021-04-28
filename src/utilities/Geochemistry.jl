@@ -1518,7 +1518,7 @@
         Mn = MnO/70.9374
         P = P2O5/70.9723
 
-        # Normalize cation ratios
+        # Normalize cation fractions
         normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
         K = K / normconst
         Na = Na / normconst
@@ -1541,7 +1541,7 @@
         Mn = MnO/70.9374
         P = P2O5/70.9723
 
-        # Normalize cation ratios
+        # Normalize cation fractions
         normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
         K .= K ./ normconst
         Na .= Na ./ normconst
@@ -1599,7 +1599,7 @@
         Mn = MnO/70.9374
         P = P2O5/70.9723
 
-        # Normalize cation ratios
+        # Normalize cation fractions
         normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
         K = K / normconst
         Na = Na / normconst
@@ -1623,7 +1623,7 @@
         Mn = MnO/70.9374
         P = P2O5/70.9723
 
-        # Normalize cation ratios
+        # Normalize cation fractions
         normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
         K .= K ./ normconst
         Na .= Na ./ normconst
@@ -1665,34 +1665,6 @@
     export tsphene
 
 
-
-    function tmonaziteD(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, Li2O::Number)
-        #Cations
-        Li = Li2O/14.9395
-        Na = Na2O/30.9895
-        K = K2O/47.0827
-        Ca = CaO/56.0774
-        Al = Al2O3/50.9806
-        Si = SiO2/60.0843
-        Ti = TiO2/55.8667
-        Fe = FeOT/71.8444
-        Mg = MgO/24.3050
-        # Anions
-        O = 0.5Li + 0.5Na + 0.5K + Ca + Mg + Fe + 1.5Al + 2Si + 2Ti
-
-        # Calculate atomic percentages
-        normconst = nansum((Li, Na, K, Ca, Al, Si, Ti, Fe, Mg, O))
-        Li = Li / normconst * 100
-        Na = Na / normconst * 100
-        K = K / normconst * 100
-        Ca = Ca / normconst * 100
-        Al = Al / normconst * 100
-        Si = Si / normconst * 100
-
-        D = (Na + K + Li + 2Ca) / (Al * (Al + Si))
-        return D
-    end
-
     """
     ```julia
     LREEt(La, Ce, Pr, Nd, Sm, Gd)
@@ -1721,6 +1693,38 @@
     end
     export LREEmolwt
 
+    function tmonaziteD(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, Li2O::Number, H2O::Number)
+        #Cations
+        H = H2O/9.0075
+        Li = Li2O/14.9395
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/55.8667
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        # Anions
+        # O = 0.5H + 0.5Li + 0.5Na + 0.5K + Ca + Mg + Fe + 1.5Al + 2Si + 2Ti
+
+        # Calculate cation fractions
+        normconst = nansum((H, Li, Na, K, Ca, Al, Si, Ti, Fe, Mg))
+        Li = Li / normconst
+        Na = Na / normconst
+        K = K / normconst
+        Ca = Ca / normconst
+        Al = Al / normconst
+        Si = Si / normconst
+
+        # Note that the paper incorrectly describes this equation as being
+        # written in terms of atomic percent ("at.%"), but in fact it appears
+        # to require molar cation fractions, just as does the analagous M-value
+        # equation found in zircon saturation papers
+        D = (Na + K + Li + 2Ca) / (Al * (Al + Si))
+        return D
+    end
+
     """
     ```julia
     REEt = tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
@@ -1729,12 +1733,12 @@
     temperature (in C) following the monazite saturation model of Montel 1993
     (doi: 10.1016/0009-2541(93)90250-M), where:
 
-    D = (Na + K + Li + 2Ca) / Al * 1/(Al + Si)) # all as at. %
+    D = (Na + K + Li + 2Ca) / Al * 1/(Al + Si)) # all as molar cation fractions (not at. %!)
     ln(REEt) = 9.50 + 2.34D + 0.3879√H2O - 13318/T # H2O as wt.%
     REEt = Σ REEᵢ(ppm) / at. weight (g/mol)
     """
     function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
-        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
+        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
         REEt = exp(9.50 + 2.34*D + 0.3879*sqrt(H2O) - 13318/(T+272.15))
     end
     export tmonaziteREE
