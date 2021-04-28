@@ -1677,9 +1677,11 @@
         Ti = TiO2/55.8667
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
+        # Anions
+        O = 0.5Li + 0.5Na + 0.5K + Ca + Mg + Fe + 1.5Al + 2Si + 2Ti
 
-        # Normalize cation ratios
-        normconst = nansum([Li, Na, K, Ca, Al, Si, Ti, Fe, Mg])
+        # Calculate atomic percentages
+        normconst = nansum([Li, Na, K, Ca, Al, Si, Ti, Fe, Mg, O])
         Li = Li / normconst * 100
         Na = Na / normconst * 100
         K = K / normconst * 100
@@ -1688,29 +1690,6 @@
         Si = Si / normconst * 100
 
         D = (Na + K + Li + 2Ca) / (Al * (Al + Si))
-        return D
-    end
-    function tmonaziteD(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, Li2O::AbstractArray)
-        #Cations
-        Li = Li2O/14.9395
-        Na = Na2O/30.9895
-        K = K2O/47.0827
-        Ca = CaO/56.0774
-        Al = Al2O3/50.9806
-        Si = SiO2/60.0843
-        Ti = TiO2/55.8667
-        Fe = FeOT/71.8444
-        Mg = MgO/24.3050
-
-        # Calculate atomic percent
-        normconst = nansum([Li Na K Ca Al Si Ti Fe Mg], dim=2)
-        Li .= Li ./ normconst .* 100
-        Na .= Na ./ normconst .* 100
-        K .= K ./ normconst .* 100
-        Ca .= Ca ./ normconst .* 100
-        Al .= Al ./ normconst .* 100
-        Si .= Si ./ normconst .* 100
-        D = (Na + K + Li + 2Ca) ./ (Al .* (Al + Si))
         return D
     end
 
@@ -1724,9 +1703,23 @@
     """
     function LREEt(La, Ce, Pr, Nd, Sm, Gd)
         # All as PPM
-        @. La/138.905477 + Ce/140.1161 + Pr/140.907662 + Nd/144.2423 + Sm/150.362 + Gd/157.253
+        La/138.905477 + Ce/140.1161 + Pr/140.907662 + Nd/144.2423 + Sm/150.362 + Gd/157.253
     end
     export LREEt
+
+    """
+    ```julia
+    LREEmolwt(La, Ce, Pr, Nd, Sm, Gd)
+    ```
+    Returns the average molecular weight of the LREE considered in the
+    REEt value from the monazite saturation model of Montel 1993
+    (doi: 10.1016/0009-2541(93)90250-M)
+    """
+    function LREEmolwt(La, Ce, Pr, Nd, Sm, Gd)
+        # All as PPM
+        nansum((138.905477La, 140.1161Ce, 140.907662Pr, 144.2423Nd, 150.362Sm, 157.253Gd)) / nansum((La, Ce, Pr, Nd, Sm, Gd))
+    end
+    export LREEmolwt
 
     """
     ```julia
@@ -1742,7 +1735,7 @@
     """
     function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
         D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O) # input as wt. %
-        REEt = @. exp(9.50 + 2.34*D + 0.3879*sqrt(H2O) - 13318/(T+272.15))
+        REEt = exp(9.50 + 2.34*D + 0.3879*sqrt(H2O) - 13318/(T+272.15))
     end
     export tmonaziteREE
 
