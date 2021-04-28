@@ -59,7 +59,7 @@
         # If FeOT or Fe2O3T already exists, use that
         if isnan(FeOT)
             if isnan(Fe2O3T)
-                FeOT=nansum([Fe2O3*conversionfactor, FeO])
+                FeOT=nanadd(Fe2O3*conversionfactor, FeO)
             else
                 FeOT=Fe2O3T*conversionfactor
             end
@@ -1681,7 +1681,7 @@
         O = 0.5Li + 0.5Na + 0.5K + Ca + Mg + Fe + 1.5Al + 2Si + 2Ti
 
         # Calculate atomic percentages
-        normconst = nansum([Li, Na, K, Ca, Al, Si, Ti, Fe, Mg, O])
+        normconst = nansum((Li, Na, K, Ca, Al, Si, Ti, Fe, Mg, O))
         Li = Li / normconst * 100
         Na = Na / normconst * 100
         K = K / normconst * 100

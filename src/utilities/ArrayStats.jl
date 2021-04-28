@@ -126,13 +126,25 @@
 
 ## --- Combine arrays containing NaNs
 
+
     """
     ```julia
-    nanadd(A, B)
+    nanadd(a::Number, b::Number)
+    ```
+    Add `a` to `b`, returning NaN only if both are NaN
+    """
+    nanadd(a::Number, b::Number) = a + b
+    nanadd(a::Number, b::AbstractFloat) = isnan(b) ? a : a + b
+    nanadd(a::AbstractFloat, b::Number) = isnan(a) ? b : a + b
+    nanadd(a::AbstractFloat, b::AbstractFloat) = isnan(a) ? b : isnan(b) ? a : a + b
+
+    """
+    ```julia
+    nanadd(A::AbstractArray, B::AbstractArray)
     ```
     Add the non-NaN elements of A and B, treating NaNs as zeros
     """
-    function nanadd(A::AbstractArray, B::AbstractArray)
+    function nanadd(A::Union{AbstractArray,Tuple}, B::Union{AbstractArray,Tuple})
         result_type = promote_type(eltype(A), eltype(B))
         result = similar(A, result_type)
         @inbounds @simd for i ∈ eachindex(A)
@@ -146,11 +158,11 @@
 
     """
     ```julia
-    nanadd!(A, B)
+    nanadd!(A::Array, B::AbstractArray)
     ```
     Add the non-NaN elements of `B` to `A`, treating NaNs as zeros
     """
-    function nanadd!(A::Array, B::AbstractArray)
+    function nanadd!(A::Array, B::Union{AbstractArray,Tuple})
         @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
             Bᵢ = B[i]

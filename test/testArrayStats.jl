@@ -8,9 +8,13 @@
     A = [1:10; fill(NaN,10)]
     B = [fill(NaN,10); 11:20]
     @test A[nanmask(A)] == 1:10
+    @test nanadd.(A,B) == 1:20
     @test nanadd(A,B) == 1:20
     @test nanadd!(A,B) == 1:20
     @test zeronan!(B) == [fill(0,10); 11:20]
+
+    @test nanadd(1,NaN) == nanadd(NaN,1) == 1
+    @test isnan(nanadd(NaN,NaN))
 
     # Summary statistics: simple cases, Float64
     A = [1:10.0..., NaN]
