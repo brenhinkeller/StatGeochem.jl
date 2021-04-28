@@ -1767,7 +1767,7 @@
     given `T` (in C) following the apatite saturation model of Tollari et al. 2006
     (doi: 10.1016/j.gca.2005.11.024)
     """
-    function tapatiteP2O5(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, T::Number)
+    function tapatiteP2O5(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number, T::Number)
         # Cations
         Na2 = Na2O/61.97854
         K2 = K2O/94.19562
@@ -1777,25 +1777,17 @@
         Ti = TiO2/55.8667
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
+        P2 = P2O5/141.94252
 
         # Normalize to mole percent oxides
-        normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg))
-        CaOₘ = Ca / normconst * 100
-        SiO2ₘ = Si / normconst * 100
-
-        P2O5satₘ = exp((T+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
-        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst)
-        P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
-
-        # Repeat calculation using P2O5 at saturation to improve accuracy of molar%-to-weight% conversion
-        P2 = P2O5sat/141.94252
         normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
 
         P2O5satₘ = exp((T+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
-        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst + 141.94252*P2/normconst)
-        P2O5sat = P2O5satₘ * 141.94252 / avemolarmass
+        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst)
+        P2O5sat = P2O5satₘ * normconst / 100 * 141.94252
+
         return P2O5sat
     end
     export tapatiteP2O5
