@@ -364,7 +364,7 @@
                         if sumduplicates
                             result[elements[i]] = floatify.(result[elements[i]], floattype) + floatify.(column, floattype)
                         else
-                            result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )[1]  
+                            result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )
                         end
                     elseif standardize
                         # If neither is numeric, but standardize is set, must return a string
