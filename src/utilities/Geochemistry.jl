@@ -1807,17 +1807,17 @@
 
     """
     ```julia
-    P2O5 = tapatiteP2O5(SiO2, Al2O3, CaO, Na20, K20, T)
+    P2O5 = tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, T)
     ```
     Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
     given `T` (in C) following the apatite saturation model of Harrison and Watson
     1984 (doi: 10.1016/0016-7037(84)90403-4) with the correction of Bea et al. 1992
     (doi: 10.1016/0024-4937(92)90033-U)
     """
-    function tapatiteP2O5(SiO2::T, Al2O3::T, CaO::T, Na20::T, K20::T, TC::T) where T <: Number
+    function tapatiteP2O5(SiO2::T, Al2O3::T, CaO::T, Na2O::T, K2O::T, TC::T) where T <: Number
         TK = TC + 273.16
         ASI = (Al2O3/50.9806)/(CaO/56.0774 + Na2O/30.9895 + K2O/47.0827)
-        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(Si02/100 - 0.5)) )
+        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
         return P2O5sat * (ASI-1) * 6429/TK
     end
     export tapatiteP2O5
