@@ -1675,7 +1675,7 @@
     """
     function LREEt(La, Ce, Pr, Nd, Sm, Gd)
         # All as PPM
-        La/138.905477 + Ce/140.1161 + Pr/140.907662 + Nd/144.2423 + Sm/150.362 + Gd/157.253
+        nansum((La/138.905477, Ce/140.1161, Pr/140.907662, Nd/144.2423, Sm/150.362, Gd/157.253))
     end
     export LREEt
 
@@ -1819,6 +1819,11 @@
         ASI = (Al2O3/50.9806)/(CaO/56.0774 + Na2O/30.9895 + K2O/47.0827)
         P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
         return max(P2O5sat, P2O5sat * (ASI-1) * 6429/TK)
+    end
+    function tapatiteP2O5(SiO2::T, TC::T) where T <: Number
+        TK = TC + 273.16
+        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
+        return P2O5sat
     end
     export tapatiteP2O5
 
