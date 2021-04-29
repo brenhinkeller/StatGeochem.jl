@@ -53,6 +53,7 @@
     nanmax(a, b::AbstractFloat) = ifelse(a==a, ifelse(b > a, b, a), b)
     nanmax(a::SVec{N,<:Integer}, b::SVec{N,<:Integer}) where N = vifelse(a > b, a, b)
     nanmax(a::SVec{N,<:AbstractFloat}, b::SVec{N,<:AbstractFloat}) where N = vifelse(a==a, vifelse(b > a, b, a), b)
+    export nanmax
 
     """
     ```julia
@@ -64,7 +65,7 @@
     nanmin(a, b::AbstractFloat) = ifelse(a==a, ifelse(b < a, b, a), b)
     nanmin(a::SVec{N,<:Integer}, b::SVec{N,<:Integer}) where N = vifelse(a < b, a, b)
     nanmin(a::SVec{N,<:AbstractFloat}, b::SVec{N,<:AbstractFloat}) where N = vifelse(a==a, vifelse(b < a, b, a), b)
-
+    export nanmin
 
 ## --- Percentile statistics, excluding NaNs
 
