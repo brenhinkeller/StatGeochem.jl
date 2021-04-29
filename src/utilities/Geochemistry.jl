@@ -1637,17 +1637,17 @@
 
     """
     ```julia
-    TiSat = tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    TiSat = tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
-    Calculate sphene saturation Ti concentration for a given temperature (in C)
-    Following the sphene saturation calibration of Ayers et al., 2018
+    Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
+    (in C) following the sphene saturation calibration of Ayers et al., 2018
     (doi: 10.1130/abs/2018AM-320568)
     """
-    function tspheneTi(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    function tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
         C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         TiO2 = @. max(0.79*C - 7993/(T+273.15) + 7.88, 0)
     end
-    export tspheneTi
+    export tspheneTiO2
 
 
     """
@@ -1792,6 +1792,16 @@
     end
     export tapatiteP2O5
 
+    """
+    ```julia
+    P2O5 = tapatiteP(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
+    ```
+    Calculate `P` concentration (in ppmw) required for apatite saturation at a
+    given `T` (in C) following the apatite saturation model of Tollari et al. 2006
+    (doi: 10.1016/j.gca.2005.11.024)
+    """
+    tapatiteP(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number, T::Number) = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T) * 10_000 / 2.2913349
+    export tapatiteP
 
     """
     ```julia

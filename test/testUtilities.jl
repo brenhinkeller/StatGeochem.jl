@@ -36,7 +36,7 @@
     @test all(tzircM((repeat([m],2) for m in majors)...,) .≈ 2.335918319204001)
 
     @test tsphene(majors...) ≈ 637.139776663209
-    @test tspheneTi(majors..., 800) ≈ 2.3545537746637324
+    @test tspheneTiO2(majors..., 800) ≈ 2.3545537746637324
     @test all(StatGeochem.tspheneC((repeat([m],2) for m in majors)...,) .≈ 2.4338232746497326)
 
     @test feoconversion(3.5, NaN, NaN, NaN) == 3.5
