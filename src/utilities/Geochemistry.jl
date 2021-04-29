@@ -1759,48 +1759,73 @@
     export tmonazite
 
 
+    # """
+    # ```julia
+    # P2O5 = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
+    # ```
+    # Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
+    # given `T` (in C) following the apatite saturation model of Tollari et al. 2006
+    # (doi: 10.1016/j.gca.2005.11.024)
+    # """
+    # function tapatiteP2O5(SiO2::T, TiO2::T, Al2O3::T, FeOT::T, MgO::T, CaO::T, Na2O::T, K2O::T, P2O5::T, TC::T)
+    #     # Cations
+    #     Na2 = Na2O/61.97854
+    #     K2 = K2O/94.19562
+    #     Ca = CaO/56.0774
+    #     Al2 = Al2O3/101.960077
+    #     Si = SiO2/60.0843
+    #     Ti = TiO2/55.8667
+    #     Fe = FeOT/71.8444
+    #     Mg = MgO/24.3050
+    #     P2 = P2O5/141.94252
+    #
+    #     # Normalize to mole percent oxides
+    #     normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
+    #     CaOₘ = Ca / normconst * 100
+    #     SiO2ₘ = Si / normconst * 100
+    #
+    #     P2O5satₘ = exp((TC+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  10/3*log(CaOₘ))
+    #     return P2O5satₘ * normconst / 100 * 141.94252 where T <: Number
+    # end
+
     """
     ```julia
-    P2O5 = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
+    P2O5 = tapatiteP2O5(SiO2, CaO, T)
     ```
     Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
     given `T` (in C) following the apatite saturation model of Tollari et al. 2006
     (doi: 10.1016/j.gca.2005.11.024)
     """
-    function tapatiteP2O5(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number, T::Number)
-        # Cations
-        Na2 = Na2O/61.97854
-        K2 = K2O/94.19562
-        Ca = CaO/56.0774
-        Al2 = Al2O3/101.960077
-        Si = SiO2/60.0843
-        Ti = TiO2/55.8667
-        Fe = FeOT/71.8444
-        Mg = MgO/24.3050
-        P2 = P2O5/141.94252
+    function tapatiteP2O5(SiO2::T, CaO::T, TC::T) where T <: Number
+        # Using conversions from Tollari et al.
+        SiO2ₘ = 1.11 * SiO2
+        CaOₘ = 1.18 * CaO
+        TK = TC+273.15
+        P2O5satₘ = exp(TK * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  10/3*log(CaOₘ))
+        return P2O5satₘ / 0.47
+    end
 
-        # Normalize to mole percent oxides
-        normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
-        CaOₘ = Ca / normconst * 100
-        SiO2ₘ = Si / normconst * 100
-
-        P2O5satₘ = exp((T+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  3.3333*log(CaOₘ))
-        avemolarmass = (61.97854*Na2/normconst + 94.19562*K2/normconst + 56.0774*Ca/normconst + 101.960077*Al2/normconst + 60.0843*Si/normconst + 55.8667*Ti/normconst + 71.8444*Fe/normconst + 24.3050*Mg/normconst)
-        P2O5sat = P2O5satₘ * normconst / 100 * 141.94252
-
-        return P2O5sat
+    """
+    ```julia
+    P2O5 = tapatiteP2O5(SiO2, Al2O3, CaO, Na20, K20, T)
+    ```
+    Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
+    given `T` (in C) following the apatite saturation model of Harrison and Watson
+    1984 (doi: 10.1016/0016-7037(84)90403-4) with the correction of Bea et al. 1992
+    (doi: 10.1016/0024-4937(92)90033-U)
+    """
+    function tapatiteP2O5(SiO2::T, Al2O3::T, CaO::T, Na20::T, K20::T, TC::T) where T <: Number
+        TK = TC + 273.16
+        ASI = (Al2O3/50.9806)/(CaO/56.0774 + Na2O/30.9895 + K2O/47.0827)
+        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(Si02/100 - 0.5)) )
+        return P2O5sat * (ASI-1) * 6429/TK
     end
     export tapatiteP2O5
 
     """
-    ```julia
-    P2O5 = tapatiteP(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
-    ```
-    Calculate `P` concentration (in ppmw) required for apatite saturation at a
-    given `T` (in C) following the apatite saturation model of Tollari et al. 2006
-    (doi: 10.1016/j.gca.2005.11.024)
+    As `tapatiteP2O5`, but returns saturation phosphorus concentration in PPM P
     """
-    tapatiteP(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number, T::Number) = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T) * 10_000 / 2.2913349
+    tapatiteP(x...) = tapatiteP2O5(x...) * 10_000 / 2.2913349
     export tapatiteP
 
     """
@@ -1828,7 +1853,7 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
         P2O5ₘ = P2 / normconst * 100
-        T = (log(P2O5ₘ) + 3.3333*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
+        T = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
         return T
     end
     export tapatite
