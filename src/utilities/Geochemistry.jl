@@ -1740,7 +1740,7 @@
     """
     function Montel_tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
         D = Montel_tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
-        REEt = Montel_LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
+        REEt = LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
         TC = 13318/(9.50 + 2.34*D + 0.3879*sqrt(H2O) - log(REEt)) - 272.15
         return TC
     end
@@ -1749,14 +1749,14 @@
 
     """
     ```julia
-    LREEt = Rusiecka_tmonaziteREE(TC, P)
+    LREEt = Rusiecka_tmonaziteREE(P_ppm, TC)
     ```
     Calculate the LREEt (mol/Megagram) value required for monazite saturation at a
     temperature of `TC` degrees celcius and `P` ppmw phosphorous present,
     following the solubility model of Rusiecka & Baker, 2019
     (doi: 10.2138/am-2019-6931)
     """
-    function Rusiecka_tmonaziteREE(TC, P_ppm)
+    function Rusiecka_tmonaziteREE(P_ppm, TC)
         #[LREE][P] (mol^2/100g^2) = 10^(2.3055 - 1.029e4/T)
         Kₛₚ = 10^(2.3055 - 1.029e4/(TC + 273.15))
         LREE_μmol_g = Kₛₚ/(P_ppm/10000/30.97)*10000
@@ -1765,14 +1765,14 @@
 
     """
     ```julia
-    LREEt = Rusiecka_txenotimeY(TC, P)
+    LREEt = Rusiecka_txenotimeY(P_ppm, TC)
     ```
     Calculate the Y (ppmw) concentration required for xenotime saturation at a
     temperature of `TC` degrees celcius and `P` ppmw phosphorous present,
     following the solubility model of Rusiecka & Baker, 2019
     (doi: 10.2138/am-2019-6931)
     """
-    function Rusiecka_txenotimeY(TC, P_ppm)
+    function Rusiecka_txenotimeY(P_ppm, TC)
         # [Y][P] (mol^2/100g^2) = 10^(3.6932 - 1.1469e4/T)
         Kₛₚ = 10^(3.6932 - 1.1469e4/(TC + 273.15))
         Y_ppm = Kₛₚ/(P_ppm/10000/30.97)*10000*88.905
