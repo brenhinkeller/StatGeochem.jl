@@ -19,11 +19,6 @@ module StatGeochem
 
     # AVX vectorziation tools
     using LoopVectorization
-    using SIMDPirates: vifelse, verf
-    using VectorizationBase: SVec
-
-    # AVX vectorziation tools
-    using LoopVectorization
     using VectorizationBase
     using VectorizationBase: Vec
     using IfElse: ifelse
