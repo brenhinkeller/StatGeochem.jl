@@ -1554,7 +1554,7 @@
         return M
     end
     export Boehnke_tzircM
-    Boehnke_tzircM = tzircM
+    tzircM = Boehnke_tzircM
     export tzircM
 
     """
