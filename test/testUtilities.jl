@@ -35,9 +35,21 @@
     @test tzircZr(majors..., 800) ≈ 832.9689080567883
     @test all(tzircM((repeat([m],2) for m in majors)...,) .≈ 2.335918319204001)
 
-    @test tsphene(majors...) ≈ 637.139776663209
-    @test tspheneTiO2(majors..., 800) ≈ 2.3545537746637324
-    @test all(StatGeochem.tspheneC((repeat([m],2) for m in majors)...,) .≈ 2.4338232746497326)
+    @test StatGeochem.Ayers_tsphene(majors...) ≈ 637.139776663209
+    @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 2.3545537746637324
+    @test all(StatGeochem.Ayers_tspheneC.((repeat([m],2) for m in majors)...,) .≈ 2.4338232746497326)
+
+    montel_elems = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.279, 0.01, 4.0]
+    @test StatGeochem.Montel_tmonaziteREE(majors..., 750.0) ≈ 38.75614492248447
+
+    @test StatGeochem.Rusiecka_tmonaziteREE(200, 750) ≈ 0.27430570654873154
+
+    @test StatGeochem.Rusiecka_txenotimeY(200, 750) ≈ 41.9312030248943
+
+    @test StatGeochem.Harrison_tapatiteP2O5(58.509, 14.858, 5.912, 3.296, 2.399, 750.) ≈ 0.10142278764336987
+    @test StatGeochem.Harrison_tapatiteP(58.509, 14.858, 5.912, 3.296, 2.399, 750.) ≈ 442.6362451135793
+    @test StatGeochem.Harrison_tapatiteP2O5(58.509, 750.) ≈ 0.10142278764336987
+    @test StatGeochem.Harrison_tapatite(58.509, 0.1) ≈ 748.6127179814277
 
     @test feoconversion(3.5, NaN, NaN, NaN) == 3.5
     @test feoconversion(3.5, NaN, 7.5, NaN) == 7.5
