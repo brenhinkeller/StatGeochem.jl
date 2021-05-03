@@ -1499,13 +1499,13 @@
 
     """
     ```julia
-    M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    M = Boehnke_tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
     ```
     Calculate zircon saturation M-value based on major element concentrations
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
     (doi: 10.1016/j.chemgeo.2013.05.028)
     """
-    function tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+    function Boehnke_tzircM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
         #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
@@ -1526,9 +1526,10 @@
         Al = Al / normconst
         Si = Si / normconst
 
-        return (Na + K + 2*Ca)/(Al * Si)
+        M = (Na + K + 2*Ca)/(Al * Si)
+        return M
     end
-    function tzircM(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
+    function Boehnke_tzircM(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
         #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
@@ -1549,44 +1550,51 @@
         Al .= Al ./ normconst
         Si .= Si ./ normconst
 
-        return (Na + K + 2*Ca)./(Al .* Si)
+        M = (Na + K + 2*Ca)./(Al .* Si)
+        return M
     end
+    export Boehnke_tzircM
+    Boehnke_tzircM = tzircM
     export tzircM
 
     """
     ```julia
-    ZrSat = tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ZrSat = Boehnke_tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
     Calculate zircon saturation Zr concentration for a given temperature (in C)
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
     (doi: 10.1016/j.chemgeo.2013.05.028)
     """
-    function tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
-        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    function Boehnke_tzircZr(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+        M = Boehnke_tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         # Boehnke, Watson, et al., 2013
-        Zr = @. max(496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M)), 0)
-        return Zr
+        ZrSat = @. max(496000. /(exp(10108. /(T+273.15) -0.32 -1.16*M)), 0)
+        return ZrSat
     end
+    export Boehnke_tzircZr
+    tzircZr = Boehnke_tzircZr
     export tzircZr
 
     """
     ```julia
-    T = tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+    T = Boehnke_tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
     ```
     Calculate zircon saturation temperature in degrees Celsius
     Following the zircon saturation calibration of Boehnke, Watson, et al., 2013
     (doi: 10.1016/j.chemgeo.2013.05.028)
     """
-    function tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
-        M = tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    function Boehnke_tzirc(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, Zr)
+        M = Boehnke_tzircM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         # Boehnke, Watson, et al., 2013
-        T = @. 10108. / (0.32 + 1.16*M + log(496000. / Zr)) - 273.15
-        return T
+        TC = @. 10108. / (0.32 + 1.16*M + log(496000. / Zr)) - 273.15
+        return TC
     end
+    export Boehnke_tzirc
+    tzirc = Boehnke_tzirc
     export tzirc
 
 
-    function tspheneC(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+    function Ayers_tspheneC(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
         #Cations
         Na = Na2O/30.9895
         K = K2O/47.0827
@@ -1608,76 +1616,40 @@
         Si = Si / normconst
 
         eCa = Ca - Al/2 + Na/2 + K/2
-        C = (10 * eCa) / (Al * Si)
-    end
-    function tspheneC(SiO2::AbstractArray, TiO2::AbstractArray, Al2O3::AbstractArray, FeOT::AbstractArray, MnO::AbstractArray, MgO::AbstractArray, CaO::AbstractArray, Na2O::AbstractArray, K2O::AbstractArray, P2O5::AbstractArray)
-        #Cations
-        Na = Na2O/30.9895
-        K = K2O/47.0827
-        Ca = CaO/56.0774
-        Al = Al2O3/50.9806
-        Si = SiO2/60.0843
-        Ti = TiO2/55.8667
-        Fe = FeOT/71.8444
-        Mg = MgO/24.3050
-        Mn = MnO/70.9374
-        P = P2O5/70.9723
-
-        # Normalize cation fractions
-        normconst = nansum([Na K Ca Al Si Ti Fe Mg Mn P], dim=2)
-        K .= K ./ normconst
-        Na .= Na ./ normconst
-        Ca .= Ca ./ normconst
-        Al .= Al ./ normconst
-        Si .= Si ./ normconst
-
-        eCa = Ca - Al/2 + Na/2 + K/2
-        C = (10 * eCa) ./ (Al .* Si)
+        return (10 * eCa) / (Al * Si)
     end
 
     """
     ```julia
-    TiSat = tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    TiO2Sat = Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
     Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
     (in C) following the sphene saturation calibration of Ayers et al., 2018
     (doi: 10.1130/abs/2018AM-320568)
     """
-    function tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
-        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        TiO2 = @. max(0.79*C - 7993/(T+273.15) + 7.88, 0)
+    function Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
+        C = Ayers_tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TiO2 = max(0.79*C - 7993/(TC+273.15) + 7.88, 0)
+        return TiO2
     end
-    export tspheneTiO2
+    export Ayers_tspheneTiO2
 
 
     """
     ```julia
-    T = tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    TC = Ayers_tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
     ```
     Calculate sphene saturation temperature in degrees Celsius
     Following the sphene saturation calibration of Ayers et al., 2018
     (doi: 10.1130/abs/2018AM-320568)
     """
-    function tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        C = tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        T = @. 7993/(0.79*C - TiO2 + 7.88) - 273.15
+    function Ayers_tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        C = Ayers_tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TC = 7993/(0.79*C - TiO2 + 7.88) - 273.15
+        return TC
     end
-    export tsphene
+    export Ayers_tsphene
 
-
-    """
-    ```julia
-    LREEt(La, Ce, Pr, Nd, Sm, Gd)
-    ```
-    Returns the sum of the LREE concentrations divided by their respective molar masses
-    This is equivalent to the REEt value from the monazite saturation model of Montel 1993
-    (doi: 10.1016/0009-2541(93)90250-M)
-    """
-    function LREEt(La, Ce, Pr, Nd, Sm, Gd)
-        # All as PPM
-        nansum((La/138.905477, Ce/140.1161, Pr/140.907662, Nd/144.2423, Sm/150.362, Gd/157.253))
-    end
-    export LREEt
 
     """
     ```julia
@@ -1691,9 +1663,23 @@
         # All as PPM
         nansum((138.905477La, 140.1161Ce, 140.907662Pr, 144.2423Nd, 150.362Sm, 157.253Gd)) / nansum((La, Ce, Pr, Nd, Sm, Gd))
     end
-    export LREEmolwt
 
-    function tmonaziteD(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, Li2O::Number, H2O::Number)
+    """
+    ```julia
+    LREEt(La, Ce, Pr, Nd, Sm, Gd)
+    ```
+    Returns the sum of the LREE concentrations divided by their respective molar masses.
+    If REE are input in parts per million by weight (ppmw), the result is in units of moles per megagram.
+    This is equivalent to the REEt value from the monazite saturation model of Montel 1993
+    (doi: 10.1016/0009-2541(93)90250-M)
+    """
+    function LREEt(La::T, Ce::T, Pr::T, Nd::T, Sm::T, Gd::T) where T <: Number
+        # All as PPM
+        nansum((La/138.905477, Ce/140.1161, Pr/140.907662, Nd/144.2423, Sm/150.362, Gd/157.253))
+    end
+
+
+    function Montel_tmonaziteD(SiO2::T, TiO2::T, Al2O3::T, FeOT::T, MgO::T, CaO::T, Na2O::T, K2O::T, Li2O::T, H2O::T) where T <: Number
         #Cations
         H = H2O/9.0075
         Li = Li2O/14.9395
@@ -1727,7 +1713,7 @@
 
     """
     ```julia
-    REEt = tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
+    REEt = Montel_tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
     ```
     Calculate monazite saturation REEt value (in [ppm/mol.wt.]) for a given
     temperature (in C) following the monazite saturation model of Montel 1993
@@ -1737,66 +1723,113 @@
     ln(REEt) = 9.50 + 2.34D + 0.3879√H2O - 13318/T # H2O as wt.%
     REEt = Σ REEᵢ(ppm) / at. weight (g/mol)
     """
-    function tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
-        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
+    function Montel_tmonaziteREE(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, T)
+        D = Montel_tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
         REEt = exp(9.50 + 2.34*D + 0.3879*sqrt(H2O) - 13318/(T+272.15))
+        return REEt
     end
-    export tmonaziteREE
+    export Montel_tmonaziteREE
 
     """
     ```julia
-    T = tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
+    TC = Montel_tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
     ```
     Calculate monazite saturation temperature in degrees Celcius
     following the monazite saturation model of Montel 1993
     (doi: 10.1016/0009-2541(93)90250-M)
     """
-    function tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
-        D = tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
-        REEt = LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
-        T = @. 13318/(9.50 + 2.34*D + 0.3879*sqrt(H2O) - log(REEt)) - 272.15
+    function Montel_tmonazite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O, La, Ce, Pr, Nd, Sm, Gd)
+        D = Montel_tmonaziteD(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, Li2O, H2O) # input as wt. %
+        REEt = Montel_LREEt(La, Ce, Pr, Nd, Sm, Gd) # input in PPM
+        TC = 13318/(9.50 + 2.34*D + 0.3879*sqrt(H2O) - log(REEt)) - 272.15
+        return TC
     end
-    export tmonazite
+    export Montel_tmonazite
 
-
-    # """
-    # ```julia
-    # P2O5 = tapatiteP2O5(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, T)
-    # ```
-    # Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
-    # given `T` (in C) following the apatite saturation model of Tollari et al. 2006
-    # (doi: 10.1016/j.gca.2005.11.024)
-    # """
-    # function tapatiteP2O5(SiO2::T, TiO2::T, Al2O3::T, FeOT::T, MgO::T, CaO::T, Na2O::T, K2O::T, P2O5::T, TC::T)
-    #     # Cations
-    #     Na2 = Na2O/61.97854
-    #     K2 = K2O/94.19562
-    #     Ca = CaO/56.0774
-    #     Al2 = Al2O3/101.960077
-    #     Si = SiO2/60.0843
-    #     Ti = TiO2/55.8667
-    #     Fe = FeOT/71.8444
-    #     Mg = MgO/24.3050
-    #     P2 = P2O5/141.94252
-    #
-    #     # Normalize to mole percent oxides
-    #     normconst = nansum((Na2, K2, Ca, Al2, Si, Ti, Fe, Mg, P2))
-    #     CaOₘ = Ca / normconst * 100
-    #     SiO2ₘ = Si / normconst * 100
-    #
-    #     P2O5satₘ = exp((TC+273.15) * (-0.8579/(139.0 - SiO2ₘ) + 0.0165)  -  10/3*log(CaOₘ))
-    #     return P2O5satₘ * normconst / 100 * 141.94252 where T <: Number
-    # end
 
     """
     ```julia
-    P2O5 = tapatiteP2O5(SiO2, CaO, T)
+    LREEt = Rusiecka_tmonaziteREE(TC, P)
+    ```
+    Calculate the LREEt (mol/Megagram) value required for monazite saturation at a
+    temperature of `TC` degrees celcius and `P` ppmw phosphorous present,
+    following the solubility model of Rusiecka & Baker, 2019
+    (doi: 10.2138/am-2019-6931)
+    """
+    function Rusiecka_tmonaziteREE(TC, P_ppm)
+        #[LREE][P] (mol^2/100g^2) = 10^(2.3055 - 1.029e4/T)
+        Kₛₚ = 10^(2.3055 - 1.029e4/(TC + 273.15))
+        LREE_μmol_g = Kₛₚ/(P_ppm/10000/30.97)*10000
+        return LREE_μmol_g
+    end
+
+    """
+    ```julia
+    LREEt = Rusiecka_txenotimeY(TC, P)
+    ```
+    Calculate the Y (ppmw) concentration required for xenotime saturation at a
+    temperature of `TC` degrees celcius and `P` ppmw phosphorous present,
+    following the solubility model of Rusiecka & Baker, 2019
+    (doi: 10.2138/am-2019-6931)
+    """
+    function Rusiecka_txenotimeY(TC, P_ppm)
+        # [Y][P] (mol^2/100g^2) = 10^(3.6932 - 1.1469e4/T)
+        Kₛₚ = 10^(3.6932 - 1.1469e4/(TC + 273.15))
+        Y_ppm = Kₛₚ/(P_ppm/10000/30.97)*10000*88.905
+        return Y_ppm
+    end
+
+    """
+    ```julia
+    P2O5 = Harrison_tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, T)
+    ```
+    Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
+    given `T` (in C) following the apatite saturation model of Harrison and Watson
+    1984 (doi: 10.1016/0016-7037(84)90403-4) with the correction of Bea et al. 1992
+    (doi: 10.1016/0024-4937(92)90033-U) where applicable
+    """
+    function Harrison_tapatiteP2O5(SiO2::T, Al2O3::T, CaO::T, Na2O::T, K2O::T, TC::T) where T <: Number
+        TK = TC + 273.16
+        ASI = (Al2O3/50.9806)/(CaO/56.0774 + Na2O/30.9895 + K2O/47.0827)
+        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
+        return max(P2O5sat, P2O5sat * (ASI-1) * 6429/TK)
+    end
+    function Harrison_tapatiteP2O5(SiO2::T, TC::T) where T <: Number
+        TK = TC + 273.16
+        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
+        return P2O5sat
+    end
+    export Harrison_tapatiteP2O5
+
+    """
+    As `Harrison_tapatiteP2O5`, but returns saturation phosphorus concentration in PPM P
+    """
+    Harrison_tapatiteP(x...) = Harrison_tapatiteP2O5(x...) * 10_000 / 2.2913349
+    export Harrison_tapatiteP
+
+    """
+    ```julia
+    TC = Harrison_tapatite(SiO2, P2O5)
+    ```
+    Calculate apatite saturation temperature in degrees Celcius
+    following the apatite saturation model of Harrison and Watson 1984
+    (doi: 10.1016/0016-7037(84)90403-4)
+    """
+    function Harrison_tapatite(SiO2::T, P2O5::T) where T <: Number
+        TK = (8400 + 2.64e4(SiO2/100 - 0.5)) / (log(52.5525567/P2O5) + (3.1 + 12.4(SiO2/100 - 0.5)))
+        return TK - 273.16
+    end
+    export Harrison_tapatite
+
+    """
+    ```julia
+    P2O5 = Tollari_tapatiteP2O5(SiO2, CaO, T)
     ```
     Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
     given `T` (in C) following the apatite saturation model of Tollari et al. 2006
     (doi: 10.1016/j.gca.2005.11.024)
     """
-    function tapatiteP2O5(SiO2::T, CaO::T, TC::T) where T <: Number
+    function Tollari_tapatiteP2O5(SiO2::T, CaO::T, TC::T) where T <: Number
         # Using conversions from Tollari et al.
         SiO2ₘ = 1.11 * SiO2
         CaOₘ = 1.18 * CaO
@@ -1807,41 +1840,13 @@
 
     """
     ```julia
-    P2O5 = tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, T)
-    ```
-    Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
-    given `T` (in C) following the apatite saturation model of Harrison and Watson
-    1984 (doi: 10.1016/0016-7037(84)90403-4) with the correction of Bea et al. 1992
-    (doi: 10.1016/0024-4937(92)90033-U) where applicable
-    """
-    function tapatiteP2O5(SiO2::T, Al2O3::T, CaO::T, Na2O::T, K2O::T, TC::T) where T <: Number
-        TK = TC + 273.16
-        ASI = (Al2O3/50.9806)/(CaO/56.0774 + Na2O/30.9895 + K2O/47.0827)
-        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
-        return max(P2O5sat, P2O5sat * (ASI-1) * 6429/TK)
-    end
-    function tapatiteP2O5(SiO2::T, TC::T) where T <: Number
-        TK = TC + 273.16
-        P2O5sat = 52.5525567/exp( (8400 + 2.64e4(SiO2/100 - 0.5))/TK - (3.1 + 12.4(SiO2/100 - 0.5)) )
-        return P2O5sat
-    end
-    export tapatiteP2O5
-
-    """
-    As `tapatiteP2O5`, but returns saturation phosphorus concentration in PPM P
-    """
-    tapatiteP(x...) = tapatiteP2O5(x...) * 10_000 / 2.2913349
-    export tapatiteP
-
-    """
-    ```julia
-    T = tapatite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
+    TC = Tollari_tapatite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
     ```
     Calculate apatite saturation temperature in degrees Celcius
     following the apatite saturation model of Tollari et al. 2006
     (doi: 10.1016/j.gca.2005.11.024)
     """
-    function tapatite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
+    function Tollari_tapatite(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
         # Cations
         Na2 = Na2O/61.97854
         K2 = K2O/94.19562
@@ -1861,20 +1866,6 @@
         T = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
         return T
     end
-
-    """
-    ```julia
-    T = tapatite(SiO2, P2O5)
-    ```
-    Calculate apatite saturation temperature in degrees Celcius
-    following the apatite saturation model of Harrison and Watson 1984
-    (doi: 10.1016/0016-7037(84)90403-4)
-    """
-    function tapatite(SiO2::T, P2O5::T) where T <: Number
-        TK = (8400 + 2.64e4(SiO2/100 - 0.5)) / (log(52.5525567/P2O5) + (3.1 + 12.4(SiO2/100 - 0.5)))
-        return TK - 273.16
-    end
-    export tapatite
 
 
 ## --- End of File
