@@ -125,7 +125,11 @@
     with mean `mu` and standard deviation `sigma`, evaluated at `x`.
     """
     @inline normcdf(mu,sigma,x) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
-    @inline normcdf(mu::AN,sigma::AN,x::AN) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    if VERSION >= v"1.6"
+        @inline normcdf(mu::AN,sigma::AN,x::AN) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    else
+        @inline normcdf(mu::AN,sigma::AN,x::AN) = @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
+    end
     @inline normcdf(mu::Number,sigma::Number,x::Number) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
     export normcdf
 
@@ -135,13 +139,24 @@
     ```
     In-place version of `normcdf`
     """
-    function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
-        T = eltype(result)
-        inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
-        @avx for i ∈ 1:length(x)
-            result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
+    if VERSION >= v"1.6"
+        function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
+            T = eltype(result)
+            inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
+            @avx for i ∈ 1:length(x)
+                result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
+            end
+            return result
         end
-        return result
+    else
+        function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
+            T = eltype(result)
+            inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
+            @inbounds @simd for i ∈ 1:length(x)
+                result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
+            end
+            return result
+        end
     end
     export normcdf!
 

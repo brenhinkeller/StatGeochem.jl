@@ -22,8 +22,16 @@ module StatGeochem
     using SIMDPirates: vifelse, verf
     using VectorizationBase: SVec
 
-    import SpecialFunctions.erf
-    erf(x::SVec) = verf(x)
+    # AVX vectorziation tools
+    using LoopVectorization
+    using VectorizationBase
+    using VectorizationBase: Vec
+    using IfElse: ifelse
+
+    if VERSION >= v"1.6"
+        import SpecialFunctions.erf
+        erf(x::Vec) = VectorizationBase.verf(x)
+    end
 
     # General requirements
     using Random

@@ -8,6 +8,8 @@ ProgressMeter
 Interpolations
 IndirectArrays
 LoopVectorization
+VectorizationBase
+IfElse
 Colors
 FileIO
 HDF5
