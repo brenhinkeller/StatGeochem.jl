@@ -17,7 +17,7 @@
     """
     function nanmask!(mask, A)
         @avx for i=1:length(A)
-            mask[i] = !isnan(A[i])
+            mask[i] = A[i]==A[i]
         end
         return mask
     end
@@ -34,7 +34,7 @@
     function zeronan!(A::Array)
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            A[i] *= (Aᵢ == Aᵢ)
+            A[i] = ifelse(Aᵢ==Aᵢ, Aᵢ, 0)
         end
         return A
     end
@@ -50,8 +50,9 @@
     As `max(a,b)`, but if either argument is `NaN`, return the other one
     """
     nanmax(a, b) = ifelse(a > b, a, b)
-    nanmax(a, b::AbstractFloat) = ifelse(a==a, ifelse(b > a, b, a), b)
-    nanmax(a::Vec{N,<:Integer}, b::Vec{N,<:Integer}) where N = ifelse(a > b, a, b)
+    nanmax(a, b::AbstractFloat) = ifelse(b > a, b, a)
+    nanmax(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b > a, b, a), b)
+    nanmax(a, b::Vec{N,<:AbstractFloat}) where N = ifelse(b > a, b, a)
     nanmax(a::Vec{N,<:AbstractFloat}, b::Vec{N,<:AbstractFloat}) where N = ifelse(a==a, ifelse(b > a, b, a), b)
     export nanmax
 
@@ -62,8 +63,9 @@
     As `min(a,b)`, but if either argument is `NaN`, return the other one
     """
     nanmin(a, b) = ifelse(a < b, a, b)
-    nanmin(a, b::AbstractFloat) = ifelse(a==a, ifelse(b < a, b, a), b)
-    nanmin(a::Vec{N,<:Integer}, b::Vec{N,<:Integer}) where N = ifelse(a < b, a, b)
+    nanmin(a, b::AbstractFloat) = ifelse(b < a, b, a)
+    nanmin(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b < a, b, a), b)
+    nanmin(a, b::Vec{N,<:AbstractFloat}) where N = ifelse(b < a, b, a)
     nanmin(a::Vec{N,<:AbstractFloat}, b::Vec{N,<:AbstractFloat}) where N = ifelse(a==a, ifelse(b < a, b, a), b)
     export nanmin
 
@@ -134,10 +136,10 @@
     ```
     Add `a` to `b`, returning NaN only if both are NaN
     """
-    nanadd(a::Number, b::Number) = a + b
-    nanadd(a::Number, b::AbstractFloat) = isnan(b) ? a : a + b
-    nanadd(a::AbstractFloat, b::Number) = isnan(a) ? b : a + b
-    nanadd(a::AbstractFloat, b::AbstractFloat) = isnan(a) ? b : isnan(b) ? a : a + b
+    nanadd(a, b) = a + b
+    nanadd(a, b::AbstractFloat) = ifelse(b==b, a+b, a)
+    nanadd(a::AbstractFloat, b) = ifelse(a==a, a+b, a)
+    nanadd(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b==b, a+b, a), b)
 
     """
     ```julia
@@ -159,7 +161,7 @@
 
     """
     ```julia
-    nanadd!(A::Array, B::AbstractArray)
+    nanadd!(A::Array, B)
     ```
     Add the non-NaN elements of `B` to `A`, treating NaNs as zeros
     """
@@ -195,6 +197,14 @@
         end
         return m
     end
+    function _nansum(A::Array,::Colon)
+        m = ∅ = zero(eltype(A))
+        @avx for i ∈ eachindex(A)
+            Aᵢ = A[i]
+            m += ifelse(Aᵢ==Aᵢ, Aᵢ, ∅)
+        end
+        return m
+    end
     function _nansum(A::Array{<:Integer},::Colon)
         m = zero(eltype(A))
         @avx for i ∈ eachindex(A)
@@ -202,14 +212,7 @@
         end
         return m
     end
-    function _nansum(A::AbstractArray{<:AbstractFloat},::Colon)
-        m = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            m += Aᵢ * (Aᵢ==Aᵢ)
-        end
-        return m
-    end
+
     export nansum
 
     """
@@ -223,7 +226,7 @@
     __nanminimum(A, dims, dim) = _nanminimum(A, dim) |> vec
     __nanminimum(A, dims, ::Colon) = _nanminimum(A, dims)
     _nanminimum(A, region) = reduce(nanmin, A, dims=region, init=float(eltype(A))(NaN))
-    _nanminimum(A::AbstractArray{<:Number}, ::Colon) = vreduce(nanmin, A)
+    _nanminimum(A::Array{<:Number}, ::Colon) = vreduce(nanmin, A)
     export nanminimum
 
 
@@ -238,7 +241,7 @@
     __nanmaximum(A, dims, dim) = _nanmaximum(A, dim) |> vec
     __nanmaximum(A, dims, ::Colon) = _nanmaximum(A, dims)
     _nanmaximum(A, region) = reduce(nanmax, A, dims=region, init=float(eltype(A))(NaN))
-    _nanmaximum(A::AbstractArray{<:Number}, ::Colon) = vreduce(nanmax, A)
+    _nanmaximum(A::Array{<:Number}, ::Colon) = vreduce(nanmax, A)
     export nanmaximum
 
 
@@ -303,12 +306,12 @@
     # Optimized AVX version for floats
     function _nanmean(A::AbstractArray{<:AbstractFloat}, ::Colon)
         n = 0
-        m = zero(eltype(A))
+        m = ∅ = zero(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             t = Aᵢ == Aᵢ
             n += t
-            m += Aᵢ * t
+            m += ifelse(t, Aᵢ, ∅)
         end
         return m / n
     end
@@ -346,14 +349,14 @@
     end
     # Optimized AVX method for floats
     function _nanmean(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
-        n = zero(eltype(W))
-        m = zero(promote_type(eltype(W), eltype(A)))
+        n = ∅₁ = zero(eltype(W))
+        m = ∅₂ = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
-            n += Wᵢ * t
-            m += Wᵢ * Aᵢ * t
+            n += ifelse(t, Wᵢ, ∅₁)
+            m += ifelse(t, Wᵢ * Aᵢ, ∅₂)
         end
         return m / n
     end
@@ -517,7 +520,7 @@
         d = A .- s # Subtract mean, using broadcasting
         @avx for i ∈ eachindex(d)
             dᵢ = d[i]
-            d[i] = (dᵢ * dᵢ) * mask[i]
+            d[i] = ifelse(mask[i], dᵢ * dᵢ, 0)
         end
         s .= sum(d, dims=region)
         @avx for i ∈ eachindex(s)
@@ -545,21 +548,21 @@
     end
     function _nanstd(A::AbstractArray{<:AbstractFloat}, ::Colon)
         n = 0
-        m = zero(eltype(A))
+        m = ∅ = zero(eltype(A))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             t = Aᵢ == Aᵢ # False for NaNs
             n += t
-            m += Aᵢ * t
+            m += ifelse(t, Aᵢ, ∅)
         end
         mu = m / n
-        s = zero(typeof(mu))
+        s = ∅ = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
-            d = (Aᵢ - mu) * (Aᵢ == Aᵢ)# zero if Aᵢ is NaN
+            d = ifelse(Aᵢ==Aᵢ, Aᵢ-mu, ∅)
             s += d * d
         end
-        return sqrt(s / max((n-1), 0))
+        return sqrt(s / max((n-1), ∅))
     end
 
     nanstd(A, W; dims=:, dim=:) = __nanstd(A, W, dims, dim)
@@ -604,22 +607,22 @@
     end
     function _nanstd(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
         n = 0
-        w = zero(eltype(W))
-        m = zero(promote_type(eltype(W), eltype(A)))
+        w = ∅₁ = zero(eltype(W))
+        m = ∅₂ = zero(promote_type(eltype(W), eltype(A)))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             Wᵢ = W[i]
             t = Aᵢ == Aᵢ
             n += t
-            w += Wᵢ * t
-            m += Wᵢ * Aᵢ * t
+            w += ifelse(t, Wᵢ, ∅₁)
+            m += ifelse(t, Wᵢ * Aᵢ, ∅₂)
         end
         mu = m / w
-        s = zero(typeof(mu))
+        s = ∅ = zero(typeof(mu))
         @avx for i ∈ eachindex(A)
             Aᵢ = A[i]
             d = Aᵢ - mu
-            s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
+            s += ifelse(Aᵢ==Aᵢ, d * d * W[i], ∅) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w * n / (n-1))
     end
