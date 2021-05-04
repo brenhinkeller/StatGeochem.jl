@@ -24,4 +24,11 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 VectorizationBase = "3d5dd08c-fd9d-11e8-17fa-ed2836048c2f"
 
 [compat]
-SpecialFunctions = "1.3"
+Colors = "0.12"
+Compat = "3"
+GR = "0.57"
+HDF5 = "0.15"
+IfElse = "0.1"
+IndirectArrays = "0.5"
+Interpolations = "0.13"
+SpecialFunctions = "1"
