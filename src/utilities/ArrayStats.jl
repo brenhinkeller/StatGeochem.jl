@@ -138,7 +138,7 @@
     """
     nanadd(a, b) = a + b
     nanadd(a, b::AbstractFloat) = ifelse(b==b, a+b, a)
-    nanadd(a::AbstractFloat, b) = ifelse(a==a, a+b, a)
+    nanadd(a::AbstractFloat, b) = ifelse(a==a, a+b, b)
     nanadd(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b==b, a+b, a), b)
 
     """
