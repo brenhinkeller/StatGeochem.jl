@@ -24,6 +24,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 VectorizationBase = "3d5dd08c-fd9d-11e8-17fa-ed2836048c2f"
 
 [compat]
+julia = "1.5"
 Colors = "0.12"
 Compat = "3"
 FileIO = "1"
@@ -36,4 +37,5 @@ Plots = "1"
 ProgressMeter = "1"
 SpecialFunctions = "1"
 StatsBase = "0.33"
+LoopVectorization = "0.11, 0.12"
 VectorizationBase = "0.18, 0.19"
