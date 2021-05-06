@@ -76,10 +76,10 @@
             pd[m][e*"_sigma"] = fill(NaN, length(allsamples))
 
             t = pr[m]["Elem"] .== e
-            kd = log10.(pr[m]["Value"][t])
+            kd = map(x->(x>0 ? log10(x) : NaN), pr[m]["Value"][t])
             kd_sigma = log10.(pr[m]["Value"][t] .+ pr[m]["SD"][t]) .- kd
-            kdl = log10.(pr[m]["Low"][t])
-            kdh = log10.(pr[m]["High"][t])
+            kdl = map(x->(x>0 ? log10(x) : NaN), pr[m]["Low"][t])
+            kdh = map(x->(x>0 ? log10(x) : NaN), pr[m]["High"][t])
 
             if any(t)
                 rows = findmatches(samples[m][t], allsamples)
@@ -114,7 +114,7 @@
                 plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
             end
 
-            if (count(.~isnan.(kD)) > 2) && (nanrange(r[.~isnan.(kD)]) > 0.015)
+            if (count(.~isnan.(kD)) > 3) && (nanrange(r[.~isnan.(kD)]) > 0.013)
                 # Fit to Blundy and Wood curve
                 t = .~( isnan.(kD) .| isinf.(kD) )
                 param = [maximum(kD[t]), -10000, 0.095] # initial guess
@@ -131,12 +131,19 @@
     end
 
     # Interpolate Eu partition coefficients where missing, assuming
-    # 60# Eu as Eu2+ (c.f. Ba, Sr, Ca) and 40# as Eu3+ (c.f. Sm, Gd)
+    # 60% Eu as Eu2+ (c.f. Ba, Sr, Ca) and 40% as Eu3+ (c.f. Sm, Gd)
     # for m in = ["Albite","Anorthite","Orthoclase","Apatite"]
     for m in pd["minerals"]
         for i = 1:length(pd["samples"])
             if isnan(pd[m]["Eu"][i])
                 pd[m]["Eu"][i] = log10(0.6*10^nanmean([pd[m]["Ba"][i], pd[m]["Sr"][i]]) + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
+            end
+        end
+    end
+    for m in ("Monazite", "Xenotime", "Allanite")
+        for i = 1:length(pd["samples"])
+            if isnan(pd[m]["Eu"][i])
+                pd[m]["Eu"][i] = log10(0.6*0 + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
             end
         end
     end
@@ -151,7 +158,7 @@
         kd[m]["elements"] = allelements
         for e in allelements
             t = .!isnan.(pd[m][e])
-            if any(t) && nanrange(pd["SiO2"][t]) > 5
+            if (count(t) > 2) && (nanrange(pd["SiO2"][t]) > 8)
                 kd[m][e] = mcfit(pd["SiO2"], pd["SiO2_sigma"], pd[m][e], pd[m][e*"_sigma"], 40, 80, 41, binwidth=5)[2]
             else
                 kd[m][e] = ones(41) * nanmean(pd[m][e])
