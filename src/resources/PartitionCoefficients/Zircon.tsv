@@ -1,9 +1,13 @@
-EarthRef.org -- GERM Partition Coefficient (Kd) Database														
-Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen														
-														
-DATA:														
+EarthRef.org -- GERM Partition Coefficient (Kd) Database
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
+
+DATA:
 Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
 Per-Aluminous Granite	Zircon	39	Y	71.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Zircon	58	Ce	2.04				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Zircon	62	Sm	3.79				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Zircon	63	Eu	0.45				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Zircon	64	Gd	9.21				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	65	Tb	24.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	66	Dy	38.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	67	Ho	74.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
@@ -11,13 +15,24 @@ Per-Aluminous Granite	Zircon	68	Er	165				Phenocryst-Matrix	Bea et al. 1994	Soli
 Per-Aluminous Granite	Zircon	69	Tm	282				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	70	Yb	278				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	71	Lu	923				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Zircon	82	Pb	7.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	90	Th	22.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
 Per-Aluminous Granite	Zircon	92	U	254				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Andesite	Zircon	58	Ce			3.49	5.14	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Andesite	Zircon	60	Nd			3.8	4.77	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Andesite	Zircon	62	Sm			4.72	5.16	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Andesite	Zircon	63	Eu			2.39	4.23	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Andesite	Zircon	64	Gd			6.41	6.77	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Andesite	Zircon	66	Dy			31.4	63.4	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Andesite	Zircon	68	Er			64.6	135	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Andesite	Zircon	70	Yb			128	254	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Andesite	Zircon	71	Lu			196	333	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Andesite	Zircon	72	Hf			958	997	Phenocryst-Matrix	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	58	Ce	1.17				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	60	Nd	1.38				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	62	Sm	2.03				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	63	Eu	0.85				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	64	Gd	6.01				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	66	Dy	44.9				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	68	Er	107				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	70	Yb	516				Experimental	Fujimaki 1986	Solid-Melt		12-DEC-2000	NaN	NaN
@@ -27,50 +42,63 @@ High Silica Rhyolite	Zircon	21	Sc			60.3	77	Phenocryst-Matrix	Mahood & Hildreth 
 High Silica Rhyolite	Zircon	24	Cr			119	260	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	25	Mn			1.26	1.78	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	27	Co			9	23	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Zircon	58	Ce			10	23.5	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Zircon	60	Nd			4.6	22	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Zircon	62	Sm			11.1	17.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Zircon	63	Eu			12	20	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	65	Tb	37				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	66	Dy			95	108	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	70	Yb			490	564	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	71	Lu			635	648	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	72	Hf			2645	3742	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Zircon	73	Ta			40.2	54.8	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	58	Ce			2.29	7.38	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	60	Nd			1.97	6.51	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	62	Sm			2.58	6.5	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Zircon	63	Eu			1.07	5.22	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	66	Dy			37.8	53.5	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	68	Er			119	152	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	70	Yb			242	299	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Dacite	Zircon	71	Lu			281	389	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Zircon	58	Ce			0.27	0.31	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Zircon	60	Nd			0.26	0.55	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Zircon	62	Sm			0.87	3.24	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Zircon	63	Eu			0.18	1.57	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Granite	Zircon	66	Dy			25.2	105	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Granite	Zircon	68	Er			81.5	450	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Granite	Zircon	70	Yb			178	890	Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Granite	Zircon	71	Lu	1230				Phenocryst-Matrix	Nagasawa 1970	Solid-Melt		12-DEC-2000	NaN	NaN
 Synthetic Low Aluminium Rhyolite	Zircon	67	Ho	340				Experimental	Watson 1980	Solid-Melt		12-DEC-2000	NaN	NaN
 Synthetic Low Aluminium Rhyolite	Zircon	71	Lu			72	126	Experimental	Watson 1980	Solid-Melt		12-DEC-2000	NaN	NaN
-														
-LINKS TO REFERENCES:														
-Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168														
-Fujimaki 1986 - http://earthref.org/cgi-bin/err.cgi?n=347														
-Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186														
-Nagasawa 1970 - http://earthref.org/cgi-bin/err.cgi?n=209														
-Watson 1980 - http://earthref.org/cgi-bin/err.cgi?n=281														
-														
-ACKNOWLEDGEMENTS:														
-Sponsored by NSF -- EAR 0000998														
-Supported by the San Diego SuperComputer Center														
-														
-DATABASE STATISTICS:														
-EarthRef.org Database Version: 														
-Search Time: 30 January 2013 05:49:31 PM														
-														
-LINKS TO EARTHREF.ORG:														
-Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi														
-Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Zircon&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&														
-														
-SEARCH VALUES:														
-Search Term(s):  														
-Rock Type: Any Rock Type														
-Mineral: Zircon														
-Element Family: Any Element Family														
-Reference: Bea et al. 1994														
-Sort by: Reference														
-														
-NON-GERM ADDITIONS:														
+
+LINKS TO REFERENCES:
+Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168
+Fujimaki 1986 - http://earthref.org/cgi-bin/err.cgi?n=347
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
+Nagasawa 1970 - http://earthref.org/cgi-bin/err.cgi?n=209
+Watson 1980 - http://earthref.org/cgi-bin/err.cgi?n=281
+
+ACKNOWLEDGEMENTS:
+Sponsored by NSF -- EAR 0000998
+Supported by the San Diego SuperComputer Center
+
+DATABASE STATISTICS:
+EarthRef.org Database Version:
+Search Time: 30 January 2013 05:49:31 PM
+
+LINKS TO EARTHREF.ORG:
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Zircon&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
+
+SEARCH VALUES:
+Search Term(s):
+Rock Type: Any Rock Type
+Mineral: Zircon
+Element Family: Any Element Family
+Reference: Bea et al. 1994
+Sort by: Reference
+
+NON-GERM ADDITIONS:
 Torihama Dacite	Zircon		La	0.00046	0.00032			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
 Torihama Dacite	Zircon		Ce	0.36	0.09			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
 Torihama Dacite	Zircon		Pr	0.0172	0.0088			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
@@ -85,6 +113,10 @@ Torihama Dacite	Zircon		Er	136	27			Phenocryst-Matrix	Sano 2002 10.1016/s0009-25
 Torihama Dacite	Zircon		Tm	197	40			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
 Torihama Dacite	Zircon		Yb	277	55			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
 Torihama Dacite	Zircon		Lu	325	62			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	30-DEC-2019	73.34	5
+JAG A-type granite	Zircon		Ce	1.7	1.7			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+JAG A-type granite	Zircon		Sm	12	12			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+JAG A-type granite	Zircon		Eu	7	7			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+JAG A-type granite	Zircon		Gd	27	27			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Tb	47	47			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Dy	96	96			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Ho	148	148			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -92,9 +124,16 @@ JAG A-type granite	Zircon		Er	209	209			Phenocryst-Matrix	Nardi 2013 10.1016/j.c
 JAG A-type granite	Zircon		Tm	240	240			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Yb	363	363			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Lu	397	397			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+JAG A-type granite	Zircon		Nb	21	21			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+JAG A-type granite	Zircon		Ta	6.3	6.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Th	39	39			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		U	183	183			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 JAG A-type granite	Zircon		Y	42	42			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+AGB A-type granite	Zircon		La	0.9	0.9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+AGB A-type granite	Zircon		Ce	1.5	1.5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+AGB A-type granite	Zircon		Sm	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+AGB A-type granite	Zircon		Eu	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+AGB A-type granite	Zircon		Gd	27	27			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Tb	22	22			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Dy	47	47			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Ho	62	62			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -107,16 +146,24 @@ AGB A-type granite	Zircon		Ta	2.4	2.4			Phenocryst-Matrix	Nardi 2013 10.1016/j.c
 AGB A-type granite	Zircon		Th	16	16			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		U	81	81			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Y	31	31			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-BMG A-type granite	Zircon		Tb	35	35			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+BMG A-type granite	Zircon		Ce	6.4	6.4			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Dy	158	158			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Ho	206	206			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Er	252	252			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Tm	311	311			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Yb	403	403			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Lu	393	393			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+BMG A-type granite	Zircon		Nb	26.5	26.5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+BMG A-type granite	Zircon		Ta	14.5	14.5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Th	68	68			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		U	200	200			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 BMG A-type granite	Zircon		Y	159	159			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		La	0.9	0.9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		Ce	1.5	1.5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		Nd	2.1	2.1			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		Sm	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		Eu	6	6			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PERT LV A-type granite	Zircon		Gd	29	29			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Dy	105	105			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Ho	175	175			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Er	270	270			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -124,6 +171,10 @@ PERT LV A-type granite	Zircon		Yb	508	508			Phenocryst-Matrix	Nardi 2013 10.1016
 PERT LV A-type granite	Zircon		Lu	603	603			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Nb	2.62	2.62			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Y	177	177			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+SPL granite	Zircon		Ce	0.3	0.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+SPL granite	Zircon		Sm	3	3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+SPL granite	Zircon		Eu	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+SPL granite	Zircon		Gd	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Tb	17	17			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Dy	32	32			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Ho	55	55			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -136,6 +187,10 @@ SPL granite	Zircon		Ta	0.8	0.8			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.
 SPL granite	Zircon		Th	35	35			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		U	247	247			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Y	42	42			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+CGC granite	Zircon		Ce	1.3	1.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+CGC granite	Zircon		Sm	14	14			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+CGC granite	Zircon		Eu	11	11			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+CGC granite	Zircon		Gd	32	32			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 CGC granite	Zircon		Tb	70	70			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 CGC granite	Zircon		Dy	32	32			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 CGC granite	Zircon		Ho	55	55			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -148,6 +203,11 @@ CGC granite	Zircon		Ta	2.6	2.6			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.
 CGC granite	Zircon		Th	34	34			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 CGC granite	Zircon		U	408	408			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 CGC granite	Zircon		Y	235	235			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Ce	3.8	3.8			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Sm	29	29			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Eu	11	11			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Gd	84	84			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Tb	252	252			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Dy	280	280			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Ho	655	655			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Er	833	833			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -155,9 +215,14 @@ VNT granite	Zircon		Tm	2571	2571			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemge
 VNT granite	Zircon		Yb	1657	1657			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Lu	2398	2398			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Nb	0.3	0.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+VNT granite	Zircon		Ta	15.1	15.1			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Th	69	69			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		U	1346	1346			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 VNT granite	Zircon		Y	590	590			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+GD potassic granodiorite	Zircon		Ce	1.4	1.4			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+GD potassic granodiorite	Zircon		Sm	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+GD potassic granodiorite	Zircon		Eu	8	8			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+GD potassic granodiorite	Zircon		Gd	19	19			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		Tb	27	27			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		Dy	69	69			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		Ho	93	93			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -170,6 +235,10 @@ GD potassic granodiorite	Zircon		Ta	3.3	3.3			Phenocryst-Matrix	Nardi 2013 10.10
 GD potassic granodiorite	Zircon		Th	18	18			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		U	174	174			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		Y	129	129			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+TMZ quartz monzonite	Zircon		Ce	2.3	2.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+TMZ quartz monzonite	Zircon		Sm	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+TMZ quartz monzonite	Zircon		Eu	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+TMZ quartz monzonite	Zircon		Gd	10	10			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Tb	23	23			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Dy	43	43			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Ho	87	87			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -182,6 +251,10 @@ TMZ quartz monzonite	Zircon		Ta	1.9	1.9			Phenocryst-Matrix	Nardi 2013 10.1016/j
 TMZ quartz monzonite	Zircon		Th	18	18			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		U	141	141			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Y	79	79			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+HQM quartz monzonite	Zircon		Ce	1.1	1.1			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+HQM quartz monzonite	Zircon		Sm	3	3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+HQM quartz monzonite	Zircon		Eu	1	1			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+HQM quartz monzonite	Zircon		Gd	8	8			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		Tb	21	21			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		Dy	44	44			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		Ho	104	104			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -194,6 +267,10 @@ HQM quartz monzonite	Zircon		Ta	1.2	1.2			Phenocryst-Matrix	Nardi 2013 10.1016/j
 HQM quartz monzonite	Zircon		Th	13	13			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		U	66	66			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		Y	106	106			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PIQ ultrapotassic syenogranite	Zircon		Ce	2.4	2.4			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PIQ ultrapotassic syenogranite	Zircon		Sm	11	11			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PIQ ultrapotassic syenogranite	Zircon		Eu	15	15			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
+PIQ ultrapotassic syenogranite	Zircon		Gd	24	24			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Tb	37	37			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Dy	59	59			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Ho	96	96			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
