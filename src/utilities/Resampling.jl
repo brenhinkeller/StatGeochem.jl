@@ -774,19 +774,19 @@
 
         # Remove missing data
         hasdata = .!(isnan.(x) .| isnan.(y))
-        x = x[hasdata]
-        y = y[hasdata]
-        σx = σx[hasdata]
-        σy = σy[hasdata]
+        x′ = x[hasdata]
+        y′ = y[hasdata]
+        σx′ = σx[hasdata]
+        σy′ = σy[hasdata]
 
         # Fill in variances where not provided explicitly
-        σx[isnan.(σx)] .= nanstd(x)
-        σy[isnan.(σy)] .= nanstd(y)
+        σx′[isnan.(σx′)] .= nanstd(x′)
+        σy′[isnan.(σy′)] .= nanstd(y′)
 
         # Increase x uncertainty if x sampling is sparse
-        xsorted = sort(x)
+        xsorted = [xmin; sort(x′); xmax]
         minerr = maximum(xsorted[2:end] - xsorted[1:end-1]) / 2
-        σx[σx .< minerr] .= minerr
+        σx′[σx′ .< minerr] .= minerr
 
         # Bin centers
         c = xmin:(xmax-xmin)/(nbins-1):xmax
@@ -794,17 +794,19 @@
 
         # Run the Monte Carlo
         N = fill(0, nbins)
-        m = Array{float(eltype(y))}(undef, nbins)
-        xresampled = similar(x, float(eltype(x)))
-        yresampled = similar(y, float(eltype(y)))
-        @inbounds for n = 1:ceil(Int, minrows/length(x))
-            xresampled .= x .+ σx .* randn!(xresampled)
-            yresampled .= y .+ σy .* randn!(yresampled)
+        m = fill(zero(float(eltype(y′))), nbins)
+        xresampled = similar(x′, float(eltype(x′)))
+        yresampled = similar(y′, float(eltype(y′)))
+        @inbounds for n = 1:ceil(Int, minrows/length(x′))
+            randn!(xresampled)
+            xresampled .= x′ .+ σx′ .* xresampled
+            randn!(yresampled)
+            yresampled .= y′ .+ σy′ .* yresampled
             for j = 1:nbins
                 l = (c[j] - halfwidth)
                 u = (c[j] + halfwidth)
                 for i ∈ eachindex(xresampled)
-                    if l < xresampled[i] < u
+                    if l < xresampled[i] <= u
                         m[j] += yresampled[i]
                         N[j] += 1
                     end
