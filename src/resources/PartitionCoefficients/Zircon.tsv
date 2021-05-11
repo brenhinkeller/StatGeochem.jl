@@ -43,9 +43,6 @@ High Silica Rhyolite	Zircon	24	Cr			119	260	Phenocryst-Matrix	Mahood & Hildreth 
 High Silica Rhyolite	Zircon	25	Mn			1.26	1.78	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	27	Co			9	23	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	58	Ce			10	23.5	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
-High Silica Rhyolite	Zircon	60	Nd			4.6	22	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
-High Silica Rhyolite	Zircon	62	Sm			11.1	17.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
-High Silica Rhyolite	Zircon	63	Eu			12	20	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	65	Tb	37				Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	66	Dy			95	108	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
 High Silica Rhyolite	Zircon	70	Yb			490	564	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
@@ -131,8 +128,6 @@ JAG A-type granite	Zircon		U	183	183			Phenocryst-Matrix	Nardi 2013 10.1016/j.ch
 JAG A-type granite	Zircon		Y	42	42			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		La	0.9	0.9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Ce	1.5	1.5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-AGB A-type granite	Zircon		Sm	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-AGB A-type granite	Zircon		Eu	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Gd	27	27			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Tb	22	22			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 AGB A-type granite	Zircon		Dy	47	47			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -172,8 +167,6 @@ PERT LV A-type granite	Zircon		Lu	603	603			Phenocryst-Matrix	Nardi 2013 10.1016
 PERT LV A-type granite	Zircon		Nb	2.62	2.62			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PERT LV A-type granite	Zircon		Y	177	177			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Ce	0.3	0.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-SPL granite	Zircon		Sm	3	3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-SPL granite	Zircon		Eu	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Gd	9	9			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Tb	17	17			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 SPL granite	Zircon		Dy	32	32			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -236,8 +229,6 @@ GD potassic granodiorite	Zircon		Th	18	18			Phenocryst-Matrix	Nardi 2013 10.1016
 GD potassic granodiorite	Zircon		U	174	174			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 GD potassic granodiorite	Zircon		Y	129	129			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Ce	2.3	2.3			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-TMZ quartz monzonite	Zircon		Sm	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-TMZ quartz monzonite	Zircon		Eu	5	5			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Gd	10	10			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Tb	23	23			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 TMZ quartz monzonite	Zircon		Dy	43	43			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
@@ -268,8 +259,6 @@ HQM quartz monzonite	Zircon		Th	13	13			Phenocryst-Matrix	Nardi 2013 10.1016/j.c
 HQM quartz monzonite	Zircon		U	66	66			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 HQM quartz monzonite	Zircon		Y	106	106			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Ce	2.4	2.4			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-PIQ ultrapotassic syenogranite	Zircon		Sm	11	11			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
-PIQ ultrapotassic syenogranite	Zircon		Eu	15	15			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Gd	24	24			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Tb	37	37			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
 PIQ ultrapotassic syenogranite	Zircon		Dy	59	59			Phenocryst-Matrix	Nardi 2013 10.1016/j.chemgeo.2012.10.043	Solid-Melt	CBK addition	30-DEC-2019	NaN	NaN
