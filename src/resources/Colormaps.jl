@@ -84,7 +84,7 @@
     export water
 
     # Distinguishable colors for plot lines
-    lines = parse.(Color, ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F",])
+    lines = parse.(Color, ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F", "#23366d", "#e73b20", "#741d2d", "#0b6402", "#102ca8", "#545257", "#40211f", "#bf7336", "#afc037", ])
     export lines
 
     # Various one-color ramps
