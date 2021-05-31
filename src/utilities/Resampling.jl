@@ -459,7 +459,7 @@
 
     """
     ```julia
-    bin_bsr([f!::Function], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
+    bsr([f!::Function], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \ty_sigma = zeros(size(y)),
         \tnresamplings = 1000,
@@ -505,13 +505,13 @@
 
     # Examples:
     ```julia
-    (c,m,e) = bin_bsr(nanmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
+    (c,m,e) = bsr(nanbinmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
     ```
     ```julia
-    (c,m,el,eu) = bin_bsr(nanmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
+    (c,m,el,eu) = bsr(nanbinmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
     ```
     """
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
+    function bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(y)),
             nresamplings = 1000,
@@ -554,7 +554,7 @@
             return c, means
         end
     end
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin, xmax, nbins::Integer;
+    function bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin, xmax, nbins::Integer;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(y)),
             nresamplings = 1000,
@@ -605,7 +605,7 @@
             return c, means
         end
     end
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
+    function bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(x)),
             nresamplings = 1000,
@@ -649,27 +649,27 @@
             return c, means
         end
     end
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    export bin_bsr
+    bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
+        bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
+        bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    export bsr
 
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    export bin_bsr_means
+    bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    export bsr_means
 
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    export bin_bsr_medians
+    bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr(nanbinmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr(nanbinmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    export bsr_medians
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios([f!::Function], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+    (c, m, el, eu) = bsr_ratios([f!::Function], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
@@ -682,7 +682,7 @@
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamplings` boostrap resamplings with acceptance probability `p`.
     """
-    function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
+    function bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
             x_sigma::AbstractVector=zeros(size(x)),
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
@@ -719,7 +719,7 @@
 
         return c, m, el, eu
     end
-    function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
+    function bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
             x_sigma::AbstractVector=zeros(size(x)),
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
@@ -756,11 +756,11 @@
 
         return c, m, el, eu
     end
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
-    export bin_bsr_ratios
+    bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+    bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
+        bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+    export bsr_ratios
 
 
 ## --- Quick Monte Carlo binning/interpolation functions
