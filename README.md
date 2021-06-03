@@ -6,9 +6,7 @@ _Some computational tools for geochemistry_
 
 ## Installation
 
-StatGeochem.jl is written in the [Julia programming language](https://julialang.org/).
-
-StatGeochem.jl is registered on the General registry. To install, enter the Julia package manager (type `]` in the REPL) and type:
+StatGeochem.jl is written in the [Julia programming language](https://julialang.org/), and is registered on the General registry. To install, enter the Julia package manager (type `]` in the REPL) and type:
 ```
 pkg> add StatGeochem
 ```
