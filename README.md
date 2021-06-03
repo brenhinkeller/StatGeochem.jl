@@ -8,14 +8,13 @@ _Some computational tools for geochemistry_
 
 StatGeochem.jl is written in the [Julia programming language](https://julialang.org/).
 
-In the Julia package manager (type `]` in the REPL to enter):
+StatGeochem.jl is registered on the General registry. To install, enter the Julia package manager (type `]` in the REPL) and type:
 ```
-pkg> add https://github.com/brenhinkeller/StatGeochem.jl
+pkg> add StatGeochem
 ```
-or equivalently outside of the package manager:
+If you are trying to use a script written prior to ~2021, you may want to use the oldest registered version of the package, which you can install with (e.g.)
 ```Julia
-julia> using Pkg
-julia> Pkg.add(PackageSpec(url="https://github.com/brenhinkeller/StatGeochem.jl"))
+julia> add StatGeochem@v0.1
 ```
 
 ## Usage
