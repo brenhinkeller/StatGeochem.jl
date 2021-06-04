@@ -1,4 +1,5 @@
 # StatGeochem.jl
+[![Dev][docs-dev-img]][docs-dev-url]
 [![Build Status][ci-img]][ci-url]
 [![codecov.io][codecov-img]][codecov-url]
 
@@ -30,6 +31,8 @@ julia> using IJulia
 julia> notebook()
 ```
 
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://brenhinkeller.github.io/StatGeochem.jl/dev/
 [ci-img]: https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg
 [ci-url]: https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI
 [codecov-img]: http://codecov.io/github/brenhinkeller/StatGeochem.jl/coverage.svg?branch=master
