@@ -54,9 +54,9 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using StatGeochemBase
-            DocMeta.setdocmeta!(StatGeochemBase, :DocTestSetup, :(using StatGeochemBase); recursive=true)
-            doctest(StatGeochemBase)'
+            using StatGeochem
+            DocMeta.setdocmeta!(StatGeochem, :DocTestSetup, :(using StatGeochem); recursive=true)
+            doctest(StatGeochem)'
       - run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
