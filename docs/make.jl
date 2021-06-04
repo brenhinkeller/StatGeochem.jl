@@ -1,16 +1,16 @@
-using StatGeochemBase
+using StatGeochem
 using Documenter
 
-DocMeta.setdocmeta!(StatGeochemBase, :DocTestSetup, :(using StatGeochemBase); recursive=true)
+DocMeta.setdocmeta!(StatGeochem, :DocTestSetup, :(using StatGeochem); recursive=true)
 
 makedocs(;
-    modules=[StatGeochemBase],
+    modules=[StatGeochem],
     authors="C. Brenhin Keller",
-    repo="https://github.com/brenhinkeller/StatGeochemBase.jl/blob/{commit}{path}#{line}",
-    sitename="StatGeochemBase.jl",
+    repo="https://github.com/brenhinkeller/StatGeochem.jl/blob/{commit}{path}#{line}",
+    sitename="StatGeochem.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://brenhinkeller.github.io/StatGeochemBase.jl",
+        canonical="https://brenhinkeller.github.io/StatGeochem.jl",
         assets=String[],
     ),
     pages=[
@@ -19,6 +19,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/brenhinkeller/StatGeochemBase.jl",
+    repo="github.com/brenhinkeller/StatGeochem.jl",
     devbranch = "main",
 )
