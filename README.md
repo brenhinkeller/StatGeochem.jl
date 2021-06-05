@@ -5,6 +5,8 @@
 
 _Some computational tools for geochemistry_
 
+In addition to functions provided here directly, StatGeochem also depends heavily upon, and reexports, both [StatGeochemBase.jl](https://github.com/brenhinkeller/StatGeochemBase.jl) and [NaNStatistics.jl](https://github.com/brenhinkeller/NaNStatistics.jl)
+
 ## Installation
 
 StatGeochem.jl is written in the [Julia programming language](https://julialang.org/), and is registered on the General registry. To install, enter the Julia package manager (type `]` in the REPL) and type:

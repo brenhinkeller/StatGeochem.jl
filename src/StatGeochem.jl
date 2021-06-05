@@ -4,7 +4,7 @@ module StatGeochem
 
     using Reexport
     @reexport using NaNStatistics
-    using StatGeochemBase
+    @reexport using StatGeochemBase
 
     # AVX vectorziation tools
     using LoopVectorization
