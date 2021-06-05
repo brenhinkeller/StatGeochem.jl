@@ -72,14 +72,14 @@
     @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.4)
 
     # Upper and lower CIs
-    (c,m,el,eu) = bin_bsr(nanmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
+    (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.4)
     @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=0.5)
     @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=0.5)
 
     # Medians, upper and lower CIs
-    (c,m,el,eu) = bin_bsr(nanmedian!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
+    (c,m,el,eu) = bin_bsr(nanbinmedian!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [10.01, 29.91, 49.9, 69.88, 89.79], atol=1)
     @test isapprox(el, [4.01, 3.91, 3.9, 3.88, 3.79], atol=2)
