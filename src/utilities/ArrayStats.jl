@@ -16,7 +16,7 @@
     Fill a Boolean mask of dimensions `size(A)` that is false wherever `A` is `NaN`
     """
     function nanmask!(mask, A)
-        @avx for i=1:length(A)
+        @inbounds @simd for i=1:length(A)
             mask[i] = A[i]==A[i]
         end
         return mask
@@ -32,7 +32,7 @@
     Replace all `NaN`s in A with zeros of the same type
     """
     function zeronan!(A::Array)
-        @avx for i ∈ eachindex(A)
+        @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
             A[i] = ifelse(Aᵢ==Aᵢ, Aᵢ, 0)
         end
@@ -52,8 +52,6 @@
     nanmax(a, b) = ifelse(a > b, a, b)
     nanmax(a, b::AbstractFloat) = ifelse(b > a, b, a)
     nanmax(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b > a, b, a), b)
-    nanmax(a, b::Vec{N,<:AbstractFloat}) where N = ifelse(b > a, b, a)
-    nanmax(a::Vec{N,<:AbstractFloat}, b::Vec{N,<:AbstractFloat}) where N = ifelse(a==a, ifelse(b > a, b, a), b)
     export nanmax
 
     """
@@ -65,8 +63,6 @@
     nanmin(a, b) = ifelse(a < b, a, b)
     nanmin(a, b::AbstractFloat) = ifelse(b < a, b, a)
     nanmin(a::AbstractFloat, b::AbstractFloat) = ifelse(a==a, ifelse(b < a, b, a), b)
-    nanmin(a, b::Vec{N,<:AbstractFloat}) where N = ifelse(b < a, b, a)
-    nanmin(a::Vec{N,<:AbstractFloat}, b::Vec{N,<:AbstractFloat}) where N = ifelse(a==a, ifelse(b < a, b, a), b)
     export nanmin
 
 ## --- Percentile statistics, excluding NaNs
@@ -199,7 +195,7 @@
     end
     function _nansum(A::Array,::Colon)
         m = ∅ = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
+        @inbounds @simd for i ∈ eachindex(A)
             Aᵢ = A[i]
             m += ifelse(Aᵢ==Aᵢ, Aᵢ, ∅)
         end
@@ -207,7 +203,7 @@
     end
     function _nansum(A::Array{<:Integer},::Colon)
         m = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
+        @inbounds @simd for i ∈ eachindex(A)
             m += A[i]
         end
         return m
@@ -298,22 +294,10 @@
     # Can't have NaNs if array is all Integers
     function _nanmean(A::Array{<:Integer}, ::Colon)
         m = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
+        @inbounds @simd for i ∈ eachindex(A)
             m += A[i]
         end
         return m / length(A)
-    end
-    # Optimized AVX version for floats
-    function _nanmean(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        n = 0
-        m = ∅ = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            t = Aᵢ == Aᵢ
-            n += t
-            m += ifelse(t, Aᵢ, ∅)
-        end
-        return m / n
     end
 
     nanmean(A, W; dims=:, dim=:) = __nanmean(A, W, dims, dim)
@@ -340,23 +324,10 @@
     function _nanmean(A::Array{<:Integer}, W, ::Colon)
         n = zero(eltype(W))
         m = zero(promote_type(eltype(W), eltype(A)))
-        @avx for i ∈ eachindex(A)
+        @inbounds @simd for i ∈ eachindex(A)
             Wᵢ = W[i]
             n += Wᵢ
             m += Wᵢ * A[i]
-        end
-        return m / n
-    end
-    # Optimized AVX method for floats
-    function _nanmean(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
-        n = ∅₁ = zero(eltype(W))
-        m = ∅₂ = zero(promote_type(eltype(W), eltype(A)))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            Wᵢ = W[i]
-            t = Aᵢ == Aᵢ
-            n += ifelse(t, Wᵢ, ∅₁)
-            m += ifelse(t, Wᵢ * Aᵢ, ∅₂)
         end
         return m / n
     end
@@ -518,12 +489,12 @@
         N = sum(mask, dims=region)
         s = sum(A.*mask, dims=region)./N
         d = A .- s # Subtract mean, using broadcasting
-        @avx for i ∈ eachindex(d)
+        @inbounds @simd for i ∈ eachindex(d)
             dᵢ = d[i]
             d[i] = ifelse(mask[i], dᵢ * dᵢ, 0)
         end
         s .= sum(d, dims=region)
-        @avx for i ∈ eachindex(s)
+        @inbounds @simd for i ∈ eachindex(s)
             s[i] = sqrt( s[i] / max((N[i] - 1), 0) )
         end
         return s
@@ -546,24 +517,6 @@
         end
         return sqrt(s / max((n-1), 0))
     end
-    function _nanstd(A::AbstractArray{<:AbstractFloat}, ::Colon)
-        n = 0
-        m = ∅ = zero(eltype(A))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            t = Aᵢ == Aᵢ # False for NaNs
-            n += t
-            m += ifelse(t, Aᵢ, ∅)
-        end
-        mu = m / n
-        s = ∅ = zero(typeof(mu))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            d = ifelse(Aᵢ==Aᵢ, Aᵢ-mu, ∅)
-            s += d * d
-        end
-        return sqrt(s / max((n-1), ∅))
-    end
 
     nanstd(A, W; dims=:, dim=:) = __nanstd(A, W, dims, dim)
     __nanstd(A, W, dims, dim) = _nanstd(A, W, dim) |> vec
@@ -574,12 +527,12 @@
         w = sum(W.*mask, dims=region)
         s = sum(A.*W.*mask, dims=region) ./ w
         d = A .- s # Subtract mean, using broadcasting
-        @avx for i ∈ eachindex(d)
+        @inbounds @simd for i ∈ eachindex(d)
             dᵢ = d[i]
             d[i] = (dᵢ * dᵢ * W[i]) * mask[i]
         end
         s .= sum(d, dims=region)
-        @avx for i ∈ eachindex(s)
+        @inbounds @simd for i ∈ eachindex(s)
             s[i] = sqrt((s[i] * n[i]) / (w[i] * (n[i] - 1)))
         end
         return s
@@ -602,27 +555,6 @@
             Aᵢ = A[i]
             d = Aᵢ - mu
             s += (d * d * W[i]) * (Aᵢ == Aᵢ) # Zero if Aᵢ is NaN
-        end
-        return sqrt(s / w * n / (n-1))
-    end
-    function _nanstd(A::AbstractArray{<:AbstractFloat}, W, ::Colon)
-        n = 0
-        w = ∅₁ = zero(eltype(W))
-        m = ∅₂ = zero(promote_type(eltype(W), eltype(A)))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            Wᵢ = W[i]
-            t = Aᵢ == Aᵢ
-            n += t
-            w += ifelse(t, Wᵢ, ∅₁)
-            m += ifelse(t, Wᵢ * Aᵢ, ∅₂)
-        end
-        mu = m / w
-        s = ∅ = zero(typeof(mu))
-        @avx for i ∈ eachindex(A)
-            Aᵢ = A[i]
-            d = Aᵢ - mu
-            s += ifelse(Aᵢ==Aᵢ, d * d * W[i], ∅) # Zero if Aᵢ is NaN
         end
         return sqrt(s / w * n / (n-1))
     end
@@ -1127,7 +1059,7 @@
     """
     function trapz(edges::AbstractRange, values::AbstractArray)
         result = zero(eltype(values))
-        @avx for i=2:length(edges)
+        @inbounds @simd for i=2:length(edges)
             result += values[i-1]+values[i]
         end
         dx = (edges[end]-edges[1])/(length(edges) - 1)
@@ -1135,7 +1067,7 @@
     end
     function trapz(edges::AbstractArray, values::AbstractArray)
         result = zero(promote_type(eltype(edges), eltype(values)))
-        @avx for i=2:length(edges)
+        @inbounds @simd for i=2:length(edges)
             result += (values[i-1] + values[i]) * (edges[i] - edges[i-1])
         end
         return result / 2

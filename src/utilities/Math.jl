@@ -63,7 +63,7 @@
     with mean `mu` and standard deviation `sigma`, evaluated at `x`
     """
     @inline normpdf(mu,sigma,x) = exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
-    @inline normpdf(mu::AN,sigma::AN,x::AN) = @avx @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
+    @inline normpdf(mu::AN,sigma::AN,x::AN) = @. exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
     @inline normpdf(mu::Number,sigma::Number,x::Number) = exp(-(x-mu)*(x-mu) / (2*sigma*sigma)) / (SQRT2PI*sigma)
     export normpdf
 
@@ -84,7 +84,7 @@
     function normpdf_ll(mu::Number,sigma::Number,x::AbstractArray)
         inv_s2 = 1/(2*sigma*sigma)
         ll = zero(typeof(inv_s2))
-        @avx for i=1:length(x)
+        @inbounds @simd for i=1:length(x)
             ll -= (x[i]-mu)*(x[i]-mu) * inv_s2
         end
         return ll
@@ -92,21 +92,21 @@
     function normpdf_ll(mu::AbstractArray,sigma::Number,x::AbstractArray)
         inv_s2 = 1/(2*sigma*sigma)
         ll = zero(typeof(inv_s2))
-        @avx for i=1:length(x)
+        @inbounds @simd for i=1:length(x)
             ll -= (x[i]-mu[i])*(x[i]-mu[i]) * inv_s2
         end
         return ll
     end
     function normpdf_ll(mu::Number,sigma::AbstractArray,x::AbstractArray)
         ll = zero(float(eltype(sigma)))
-        @avx for i=1:length(x)
+        @inbounds @simd for i=1:length(x)
             ll -= (x[i]-mu)*(x[i]-mu) / (2*sigma[i]*sigma[i])
         end
         return ll
     end
     function normpdf_ll(mu::AbstractArray,sigma::AbstractArray,x::AbstractArray)
         ll = zero(float(eltype(sigma)))
-        @avx for i=1:length(x)
+        @inbounds @simd for i=1:length(x)
             ll -= (x[i]-mu[i])*(x[i]-mu[i]) / (2*sigma[i]*sigma[i])
         end
         return ll
@@ -126,44 +126,24 @@
     """
     @inline normcdf(mu,sigma,x) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
     @inline normcdf(mu::Number,sigma::Number,x::Number) = 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
-    if VERSION >= v"1.6"
-        @inline normcdf(mu::AN,sigma::AN,x::AN) = @avx @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
-    else
-        @inline normcdf(mu::AN,sigma::AN,x::AN) = @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
-    end
+    @inline normcdf(mu::AN,sigma::AN,x::AN) = @. 0.5 + 0.5 * erf((x-mu) / (sigma*SQRT2))
     export normcdf
 
 
-    if VERSION >= v"1.6"
-        """
-        ```julia
-        normcdf!(result,mu,sigma,x)
-        ```
-        In-place version of `normcdf`
-        """
-        function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
-            T = eltype(result)
-            inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
-            @avx for i ∈ 1:length(x)
-                result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
-            end
-            return result
+
+    """
+    ```julia
+    normcdf!(result,mu,sigma,x)
+    ```
+    In-place version of `normcdf`
+    """
+    function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
+        T = eltype(result)
+        inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
+        @inbounds @simd for i ∈ 1:length(x)
+            result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
         end
-    else
-        """
-        ```julia
-        normcdf!(result,mu,sigma,x)
-        ```
-        In-place version of `normcdf`
-        """
-        function normcdf!(result::Array, mu::Number, sigma::Number, x::AbstractArray)
-            T = eltype(result)
-            inv_sigma_sqrt2 = one(T)/(sigma*T(SQRT2))
-            @inbounds @simd for i ∈ 1:length(x)
-                result[i] = T(0.5) + T(0.5) * erf((x[i]-mu) * inv_sigma_sqrt2)
-            end
-            return result
-        end
+        return result
     end
     export normcdf!
 
@@ -393,23 +373,6 @@
         wσ = sqrt(1.0 / sum_of_weights)
         return wx, wσ, mswd
     end
-    # function awmean(x::Array{<:Number}, σ::Array{<:Number})
-    #     n = length(x)
-    #
-    #     sum_of_values = sum_of_weights = χ2 = 0.0
-    #     @avx for i=1:n
-    #         sum_of_values += x[i] / (σ[i]*σ[i])
-    #         sum_of_weights += 1 / (σ[i]*σ[i])
-    #     end
-    #     wx = sum_of_values / sum_of_weights
-    #
-    #     @avx for i=1:n
-    #         χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
-    #     end
-    #     mswd = χ2 / (n-1)
-    #     wσ = sqrt(1.0 / sum_of_weights)
-    #     return wx, wσ, mswd
-    # end
     export awmean
 
     """
@@ -436,22 +399,6 @@
         wσ = sqrt(mswd / sum_of_weights)
         return wx, wσ, mswd
     end
-    # function gwmean(x::Array{<:Number}, σ::Array{<:Number})
-    #     n = length(x)
-    #     sum_of_values = sum_of_weights = χ2 = 0.0
-    #     @avx for i=1:n
-    #         sum_of_values += x[i] / (σ[i]*σ[i])
-    #         sum_of_weights += 1 / (σ[i]*σ[i])
-    #     end
-    #     wx = sum_of_values / sum_of_weights
-    #
-    #     @avx for i=1:n
-    #         χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
-    #     end
-    #     mswd = χ2 / (n-1)
-    #     wσ = sqrt(mswd / sum_of_weights)
-    #     return wx, wσ, mswd
-    # end
     export gwmean
 
     """
@@ -478,23 +425,6 @@
 
         return χ2 / (n-1)
     end
-    # function MSWD(x::Array{<:Number}, σ::Array{<:Number})
-    #     sum_of_values = sum_of_weights = χ2 = 0.0
-    #     n = length(x)
-    #
-    #     @avx for i=1:n
-    #         w = 1 / (σ[i]*σ[i])
-    #         sum_of_values += w * x[i]
-    #         sum_of_weights += w
-    #     end
-    #     wx = sum_of_values / sum_of_weights
-    #
-    #     @avx for i=1:n
-    #         χ2 += (x[i] - wx) * (x[i] - wx) / (σ[i] * σ[i])
-    #     end
-    #
-    #     return χ2 / (n-1)
-    # end
     export MSWD
 
 ## --- Linear regression
