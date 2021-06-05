@@ -41,8 +41,8 @@
         end
 
         m = nanmean(means,dim=2)
-        el = m - pctile(means,2.5,dim=2)
-        eu = pctile(means,97.5,dim=2) - m
+        el = m - nanpctile(means,2.5,dim=2)
+        eu = nanpctile(means,97.5,dim=2) - m
 
         return (c, m, el, eu)
     end
