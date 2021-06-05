@@ -31,6 +31,7 @@ module StatGeochem
     export resourcepath, moduleresourcepath
 
     using FileIO, HDF5
+    using Colors: Color, RGBX, RGB, N0f8
     include("resources/tc1/tc1.jl")
     include("resources/Crust1.jl")
     include("resources/Elevation.jl")
