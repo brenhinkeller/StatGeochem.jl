@@ -577,7 +577,7 @@
     specify a dimension `dim` along which to normalize.
     """
     function renormalize!(A::AbstractArray; dim=:, total=1.0)
-        current_sum = _nansum(A, dim)
+        current_sum = NaNStatistics._nansum(A, dim)
         A .*= total ./ current_sum
     end
     """
