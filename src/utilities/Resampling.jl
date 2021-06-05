@@ -505,10 +505,10 @@
 
     # Examples:
     ```julia
-    (c,m,e) = bin_bsr(nanmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
+    (c,m,e) = bin_bsr(nanbinmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
     ```
     ```julia
-    (c,m,el,eu) = bin_bsr(nanmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
+    (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
     ```
     """
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
@@ -650,21 +650,21 @@
         end
     end
     bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr
 
     bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr_means
 
     bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
     export bin_bsr_medians
 
     """
@@ -757,9 +757,9 @@
         return c, m, el, eu
     end
     bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
     bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
     export bin_bsr_ratios
 
 

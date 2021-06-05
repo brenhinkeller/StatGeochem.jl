@@ -12,16 +12,14 @@ __precompile__()
 
 module StatGeochem
 
-    # Backwards compatibility
-    using Compat
-    # Forwards compatibility
-    VERSION >= v"0.7" && using Statistics, DelimitedFiles, SpecialFunctions
+    using Reexport
+    @reexport using StatGeochemBase
 
     # AVX vectorziation tools
     using LoopVectorization
 
     # General requirements
-    using Random
+    using Statistics, DelimitedFiles, SpecialFunctions, Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
@@ -31,11 +29,6 @@ module StatGeochem
     include("utilities/ArrayStats.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
-
-    using IndirectArrays: IndirectArray
-    using Colors: Color, RGBX, RGB, N0f8
-    include("utilities/ColorsAndImages.jl")
-    include("resources/Colormaps.jl")
 
     include("resources/Chemistry.jl")
     include("utilities/Geochronology.jl")
