@@ -1,19 +1,10 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                                StatGeochem.jl                                 #
-#                                                                               #
-#                                                                               #
-#                                                                               #
-#                                                                               #
-#   Last modified by C. Brenhin Keller 2018-07-12                               #
-#                                                                               #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
 __precompile__()
 
 module StatGeochem
 
     using Reexport
-    @reexport using StatGeochemBase
+    @reexport using NaNStatistics
+    using StatGeochemBase
 
     # AVX vectorziation tools
     using LoopVectorization
