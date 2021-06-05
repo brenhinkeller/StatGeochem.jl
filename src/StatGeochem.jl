@@ -15,9 +15,7 @@ module StatGeochem
     using ProgressMeter: @showprogress, Progress, update!
     using Interpolations
     include("utilities/System.jl")
-    include("utilities/Math.jl")
     include("utilities/Import.jl")
-    include("utilities/ArrayStats.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
 
