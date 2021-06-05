@@ -1,7 +1,7 @@
 name = "StatGeochem"
 uuid = "df4de05a-b714-11e8-3c2a-c30fb13e804c"
 authors = ["C. Brenhin Keller <cbkeller@berkeley.edu>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
@@ -28,10 +28,10 @@ FileIO = "1"
 GR = "0.42 - 0.57"
 HDF5 = "0.13 - 0.15"
 IndirectArrays = "0.5"
-Interpolations = "0.13"
+Interpolations = "0.8 - 0.13"
 LoopVectorization = "0.2 - 0.12"
 Plots = "1"
 ProgressMeter = "1"
 SpecialFunctions = "0.5 - 0.10, 1"
-StatsBase = "0.28 - 0.33"
+StatsBase = "0.20 - 0.33"
 julia = "1"
