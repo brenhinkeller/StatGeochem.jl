@@ -5,7 +5,7 @@
 
 _Some computational tools for geochemistry_
 
-In addition to functions provided here directly, StatGeochem also reexports (and depends upon internally) both [StatGeochemBase.jl](https://github.com/brenhinkeller/StatGeochemBase.jl) and [NaNStatistics.jl](https://github.com/brenhinkeller/NaNStatistics.jl)
+In addition to functions exported by StatGeochem directly, StatGeochem also reexports (and depends upon internally) both [StatGeochemBase.jl](https://github.com/brenhinkeller/StatGeochemBase.jl) and [NaNStatistics.jl](https://github.com/brenhinkeller/NaNStatistics.jl)
 
 ## Installation
 
