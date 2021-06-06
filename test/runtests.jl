@@ -5,6 +5,7 @@ using Test, Statistics, StatsBase
 @testset "Import" begin include("testImport.jl") end
 @testset "Resampling" begin include("testResampling.jl") end
 @testset "Changepoint" begin include("testChangepoint.jl") end
+@testset "Geochemistry" begin include("testGeochemistry.jl") end
 @testset "Other Utilities" begin include("testUtilities.jl") end
 
 # Resources
