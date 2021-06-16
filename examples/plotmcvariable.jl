@@ -100,8 +100,8 @@
     tmin = 0 # Minimum age
     tmax = 3900 # Maximum age
     nbins = 39
-    num = "La" # Numerator
-    denom = "Yb" # Denominator
+    num = "Sm" # Numerator
+    denom = "Nd" # Denominator
 
     # Look only at samples from a specific silica range
     t = 43 .< ign["SiO2"] .< 51 # Mafic
@@ -145,8 +145,8 @@
                         x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
 
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
-        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],mscolor=colors[i],seriestype=:scatter,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],mscolor=colors[i],label="")
     end
     # savefig(h,"$(xelem)_$(num)$(denom).pdf")
     display(h)
@@ -157,8 +157,8 @@
     xmin = 45
     xmax = 75
     nbins = 8
-    num = "Sc" # Numerator
-    denom = "Yb" # Denominator
+    num = "Sm" # Numerator
+    denom = "Nd" # Denominator
 
     h = plot(xlabel=xelem, ylabel="$(num) / $(denom)",xlims=(xmin,xmax),framestyle=:box,grid=:off,legend=:topleft,fg_color_legend=:white) # Format plot
 
@@ -169,12 +169,11 @@
 
         # Resample, returning binned means and uncertainties
         # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-        (c,m,el,eu) = bin_bsr_ratio_medians(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
+        (c,m,el,eu) = bin_bsr_ratios(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
                         x_sigma=ign[xelem*"_sigma"][t], num_sigma=ign[num*"_sigma"][t], denom_sigma=ign[denom*"_sigma"][t])
-
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
-        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i], mscolor=colors[i], seriestype=:scatter,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],label="")
     end
     display(h)
 

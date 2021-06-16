@@ -67,8 +67,8 @@
                         x_sigma=ign[xelem*"_sigma"][t], y_sigma=ign[elem*"_sigma"][t])
 
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
-        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],mscolor=colors[i],seriestype=:scatter,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],mscolor=colors[i],label="")
     end
     display(h)
 ## --- Ratio differentiation example
@@ -89,12 +89,12 @@
 
         # Resample, returning binned means and uncertainties
         # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
-        (c,m,el,eu) = bin_bsr_ratio_medians(ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
+        (c,m,el,eu) = bin_bsr_ratios(nanbinmedian!, ign[xelem][t],ign[num][t],ign[denom][t],xmin,xmax,nbins, p=p[t],
                         x_sigma=ign[xelem*"_sigma"][t], num_sigma=ign[num*"_sigma"][t], denom_sigma=ign[denom*"_sigma"][t])
 
         # Plot results
-        plot!(h, c,m,yerror=(el,eu),color=colors[i],seriestype=:scatter,markerstrokecolor=:auto,label="$(rt[i])-$(rt[i+1]) Ga")
-        plot!(h, c,m,style=:dot,color=colors[i],markerstrokecolor=:auto,label="")
+        plot!(h, c,m,yerror=(el,eu),color=colors[i],mscolor=colors[i],seriestype=:scatter,label="$(rt[i])-$(rt[i+1]) Ga")
+        plot!(h, c,m,style=:dot,color=colors[i],mscolor=colors[i],label="")
     end
     display(h)
 
@@ -166,8 +166,8 @@
     (c, m, el, eu) = constprop(bin_bsr_means, ign, elem, tmin, tmax, nbins, p)
 
     # Plot results
-    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:auto,label="")
-    plot!(h, c,m,style=:dot,color=:darkblue,markerstrokecolor=:auto,label="")
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,mscolor=:darkblue,label="")
+    plot!(h, c,m,style=:dot,color=:darkblue,mscolor=:darkblue,label="")
     plot!(h, xlabel="Age (Ma)", ylabel="$(elem)",xlims=(plotmin,plotmax),framestyle=:box,grid=:off,xflip=true) # Format plot
     savefig(h,"Constant Silica $(elem).pdf")
     display(h)
@@ -187,8 +187,8 @@
     (c, m, el, eu) = constprop(bin_bsr_ratio_medians, ign, num, denom, tmin, tmax, nbins, p)
 
     # Plot results
-    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:auto,label="")
-    plot!(h, c,m,style=:dot,color=:darkblue,markerstrokecolor=:auto,label="")
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,mscolor=:darkblue,label="")
+    plot!(h, c,m,style=:dot,color=:darkblue,mscolor=:darkblue,label="")
     plot!(h, xlabel="Age (Ma)", ylabel="$(num) / $(denom)",xlims=(plotmin,plotmax),framestyle=:box,grid=:off,xflip=true) # Format plot
     savefig(h,"Constant Silica $(num)_$(denom).pdf")
     display(h)
