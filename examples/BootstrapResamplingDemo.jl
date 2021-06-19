@@ -124,7 +124,7 @@
     (c,m,el,eu) = bin_bsr_means(ign["Age"][t],ign[elem][t],xmin,xmax,nbins, p=p[t], x_sigma=ign["Age_sigma"][t])
 
     # Plot results
-    plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:auto,label="")
+    plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,mscolor=:darkred,label="")
     plot!(xlabel="Age (Ma)", ylabel="$elem ($unit)",xlims=(0,4000),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 ## --- Same as above, but for Na2O
