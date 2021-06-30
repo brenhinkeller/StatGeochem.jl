@@ -330,5 +330,16 @@
     end
     export aveslope
 
+## --- Generate random latitude and longitude pairs uniformly distributed across the globe
+
+    CONST_180_PI = 180/pi
+
+    function randlatlon(n::Integer)
+        90 .- CONST_180_PI*acos.(2*rand(n) .- 1), rand(n)*360 .- 180
+    end
+    function randlatlon()
+        90 .- CONST_180_PI*acos.(2*rand() .- 1), rand()*360 .- 180
+    end
+    export randlatlon
 
 ## --- End of File

@@ -47,4 +47,13 @@
     @test data == [-9999 -9999 5 2; -9999 20 100 36; 3 8 35 10; 32 42 50 6; 88 75 27 9; 13 5 1 -9999]
     @test metadata["nodata"] == -9999
 
+    # Random lat-lon generation
+    @test isa(randlatlon(), Tuple{Float64,Float64})
+    lat,lon = randlatlon(100)
+    @test maximum(lat) <= 90
+    @test minimum(lat) >= -90
+    @test maximum(lon) <= 180
+    @test minimum(lon) >= -180
+
+
 ## ---
