@@ -1,4 +1,5 @@
 # StatGeochem.jl
+[![DOI](osf_io_TJHMW.svg)](https://doi.org/10.17605/OSF.IO/TJHMW)
 [![Dev][docs-dev-img]][docs-dev-url]
 [![Build Status][ci-img]][ci-url]
 [![codecov.io][codecov-img]][codecov-url]
