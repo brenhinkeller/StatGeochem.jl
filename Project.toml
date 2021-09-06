@@ -26,7 +26,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 [compat]
 Colors = "0.10 - 0.12"
 FileIO = "1"
-GR = "0.42 - 0.57, 0.58"
+GR = "0.42 - 0.57, 0.58, 0.59"
 HDF5 = "0.13 - 0.15"
 ImageIO = "0.1 - 0.5"
 Interpolations = "0.8 - 0.13"
