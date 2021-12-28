@@ -13,7 +13,6 @@ module StatGeochem
     using Statistics, DelimitedFiles, SpecialFunctions, Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!
-    using Interpolations
     include("utilities/System.jl")
     include("utilities/Import.jl")
     include("utilities/Resampling.jl")
