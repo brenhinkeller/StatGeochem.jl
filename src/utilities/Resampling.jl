@@ -419,8 +419,9 @@
         for i = 1:nbins
             t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
             w = ProbabilityWeights(weight[t])
-            means[i] = mean(y[t], w)
-            errors[i] = std(y[t], w, corrected=true) * sqrt(resamplingratio) / sqrt(count(t))
+            yₜ = y[t]
+            means[i] = mean(yₜ, w)
+            errors[i] = std(yₜ, w, corrected=true) * sqrt(resamplingratio / count(t))
         end
 
         return bincenters, means, errors
@@ -449,9 +450,8 @@
             t = (binedges[i] .< x .<= binedges[i+1])
             yₜ = y[t]
             medians[i] = nanmedian!(yₜ)
-            errors[i] = 1.4826 * nanmad!(yₜ) * sqrt(resamplingratio / (length(yₜ) - countnans(yₜ)))
+            errors[i] = 1.4826 * nanmad!(yₜ) * sqrt(resamplingratio / countnotnans(yₜ))
         end
-
         return bincenters, medians, errors
     end
     export binmedians
