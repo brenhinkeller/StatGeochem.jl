@@ -446,9 +446,10 @@
         medians = Array{Float64}(undef,nbins)
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
-            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
-            medians[i] = median(y[t])
-            errors[i] = 1.4826 * nanmad(y[t]) * sqrt(resamplingratio / count(t))
+            t = (binedges[i] .< x .<= binedges[i+1])
+            yₜ = y[t]
+            medians[i] = nanmedian!(yₜ)
+            errors[i] = 1.4826 * nanmad!(yₜ) * sqrt(resamplingratio / (length(yₜ) - countnans(yₜ)))
         end
 
         return bincenters, medians, errors
@@ -546,9 +547,9 @@
             return c, m, e
         elseif sem == :credibleinterval || sem == :CI || sem == :pctile
             # Lower bound of central 95% CI of means
-            el = m .- nanpctile(means,2.5,dim=2)
+            el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
-            eu = nanpctile(means,97.5,dim=2) .- m
+            eu = nanpctile!(means,97.5,dim=2) .- m
             return c, m, el, eu
         else
             return c, means
@@ -597,8 +598,8 @@
             eu = Array{dtype}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
                 m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
-                el[:,j] .= m[:,j] .- nanpctile(view(means,:,:,j),dim=2)
-                eu[:,j] .= nanpctile(view(means,:,:,j),dim=2) .- m[:,j]
+                el[:,j] .= m[:,j] .- nanpctile!(view(means,:,:,j), 2.5, dim=2)
+                eu[:,j] .= nanpctile!(view(means,:,:,j), 97.5, dim=2) .- m[:,j]
             end
             return c, m, el, eu
         else
@@ -641,9 +642,9 @@
             return c, m, e
         elseif sem == :credibleinterval || sem == :CI || sem == :pctile
             # Lower bound of central 95% CI of means
-            el = m .- nanpctile(means,2.5,dim=2)
+            el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
-            eu = nanpctile(means,97.5,dim=2) .- m
+            eu = nanpctile!(means,97.5,dim=2) .- m
             return c, m, el, eu
         else
             return c, means
@@ -714,8 +715,8 @@
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        el = m .- nanpctile(means,2.5,dim=2) # Lower bound of central 95% CI
-        eu = nanpctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
+        el = m .- nanpctile!(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = nanpctile!(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
@@ -751,8 +752,8 @@
 
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        el = m .- nanpctile(means,2.5,dim=2) # Lower bound of central 95% CI
-        eu = nanpctile(means,97.5,dim=2) .- m # Upper bound of central 95% CI
+        el = m .- nanpctile!(means,2.5,dim=2) # Lower bound of central 95% CI
+        eu = nanpctile!(means,97.5,dim=2) .- m # Upper bound of central 95% CI
 
         return c, m, el, eu
     end
