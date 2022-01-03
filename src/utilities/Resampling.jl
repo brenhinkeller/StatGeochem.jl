@@ -373,6 +373,11 @@
     means, and standard errors of the mean.
 
     To calculate binned medians only (without uncertainties), see `nanmean`
+
+    ### Examples
+    ```julia
+    (c,m,e) = binmeans(x, y, 0, 4000, 40)
+    ```
     """
     function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (xmax-xmin)/nbins
@@ -430,7 +435,9 @@
 
     """
     ```julia
-    (c,m,e) = binmedians(x, y, xmin, xmax, nbins; resamplingratio::Number=1)
+    binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer;
+        \tresamplingratio::Number=1
+    )
     ```
 
     The medians (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
@@ -438,6 +445,11 @@
     and equivalent standard errors of the mean (1.4828 * median abolute deviation)
 
     To calculate binned medians only (without uncertainties), see `nanmedian`
+
+    ### Examples
+    ```julia
+    (c,m,e) = binmedians(x, y, 0, 4000, 40)
+    ```
     """
     function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
         binwidth = (max-min)/nbins
@@ -504,7 +516,7 @@
     Resampling probabilities, either as a scalar or a vector of the same length as `x`
 
 
-    # Examples:
+    ### Examples:
     ```julia
     (c,m,e) = bin_bsr(nanbinmedian!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:sigma)
     ```
