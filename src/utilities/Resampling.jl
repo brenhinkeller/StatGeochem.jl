@@ -720,7 +720,7 @@
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            @views @turbo @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             f!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
@@ -757,7 +757,7 @@
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views @avx @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            @views @turbo @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             f!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
@@ -840,7 +840,7 @@
             cols = size(A,2) ÷ jfactor
 
             result = Array{eltype(A)}(undef,rows,cols)
-            @avx for i=1:rows
+            @turbo for i=1:rows
                 for j=1:cols
                     result[i,j]=A[i*factor,j*jfactor]
                 end
@@ -853,6 +853,8 @@
     export downsample
 
 ## --- Spatiotemporal sample weighting
+
+    const PI_180 = pi/180
 
     """
     ```julia
@@ -895,7 +897,7 @@
                 if nodata[i] # If there is missing data, set k=inf for weight=0
                     k[i] = Inf
                 else # Otherwise, calculate weight
-                    k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
+                    k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
                 end
             end
         else
@@ -905,10 +907,10 @@
                 if nodata[i] # If there is missing data, set k=inf for weight=0
                     k[:,:,i] .= Inf
                 else # Otherwise, calculate weight
-                    @avx @. spatialdistr = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))
+                    @turbo @. spatialdistr = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))
                     Threads.@threads for g = 1:length(spatialscale)
                         for h = 1:length(agescale)
-                            k[g,h,i] = nansum( @avx @. 1.0 / ( (spatialdistr/spatialscalr[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale[h])^lp + 1.0) )
+                            k[g,h,i] = nansum( @turbo @. 1.0 / ( (spatialdistr/spatialscalr[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale[h])^lp + 1.0) )
                         end
                     end
                 end
@@ -951,7 +953,7 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( @avx @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) )
+                k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) )
             end
         end
         return k
@@ -979,7 +981,7 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( @avx @. 1.0 / ( (abs(nums[i] - nums)/scale)^lp + 1.0) )
+                k[i] = nansum( @turbo @. 1.0 / ( (abs(nums[i] - nums)/scale)^lp + 1.0) )
             end
         end
         return k
