@@ -953,7 +953,13 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))/spatialscaleᵣ)^lp + 1.0) )
+                kᵢ = 0.0
+                @turbo for j = 1:length(latsin)
+                    lc = latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j])
+                    dᵣ = acos(min(lc , 1.0))
+                    kᵢ += 1.0 / ( (dᵣ/spatialscaleᵣ)^lp + 1.0)
+                end
+                k[i] = kᵢ
             end
         end
         return k
