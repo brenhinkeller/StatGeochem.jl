@@ -935,9 +935,6 @@
     function invweight_location(lat::AbstractArray, lon::AbstractArray;
         lp::Number=2, spatialscale::Number=1.8)
 
-        # Check if there is lat, lon data
-        nodata = vec(isnan.(lat) .| isnan.(lon))
-
         # Convert lat and lon to radians
         latᵣ = vec(lat*PI_180)
         lonᵣ = vec(lon*PI_180)
@@ -949,12 +946,14 @@
 
         # Allocate and fill ks
         k = Array{Float64}(undef,length(lat))
-        @showprogress 1 "Calculating weights: " for i=1:length(lat)
-            if nodata[i] # If there is missing data, set k=inf for weight=0
+        @showprogress 1 "Calculating weights: " for i ∈ eachindex(latᵣ)
+            if isnan(latᵣ[i]) || isnan(lonᵣ[i])
+                # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
-            else # Otherwise, calculate weight
+            else
+                # Otherwise, calculate weight
                 kᵢ = 0.0
-                @turbo for j = 1:length(latsin)
+                @turbo for j ∈ eachindex(latᵣ)
                     lc = latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j])
                     dᵣ = acos(min(lc , 1.0))
                     kᵢ += 1.0 / ( (dᵣ/spatialscaleᵣ)^lp + 1.0)
@@ -979,15 +978,19 @@
     input array.
     """
     function invweight(nums::AbstractArray, scale::Number; lp=2)
-        # Check if there is data
-        nodata = isnan.(nums)
 
         k = Array{Float64}(undef,length(nums))
         @showprogress 1 "Calculating weights: " for i=1:length(nums)
-            if nodata[i] # If there is missing data, set k=inf for weight=0
+            if isnan(nums[i])
+                # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
-            else # Otherwise, calculate weight
-                k[i] = nansum( @turbo @. 1.0 / ( (abs(nums[i] - nums)/scale)^lp + 1.0) )
+            else
+                # Otherwise, calculate weight
+                kᵢ = 0.0
+                @turbo for j ∈ eachindex(nums)
+                    kᵢ += 1.0 / ( (abs(nums[i] - nums[j])/scale)^lp + 1.0)
+                end
+                k[i] = kᵢ
             end
         end
         return k
