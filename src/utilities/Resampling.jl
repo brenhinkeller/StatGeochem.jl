@@ -882,46 +882,56 @@
         lonᵣ = vec(lon*PI_180)
         spatialscaleᵣ = spatialscale*PI_180
 
+        _invweight(latᵣ, lonᵣ, age, lp, spatialscaleᵣ, agescale)
+    end
+    function _invweight(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ::Number, agescale::Number)
+
         # Precalculate some sines and cosines
         latsin = @turbo sin.(latᵣ)
         latcos = @turbo cos.(latᵣ)
 
         # Allocate and fill ks
-        if isa(spatialscale, Number) && isa(agescale, Number)
-            k = Array{Float64}(undef,length(lat))
-            @showprogress 1 "Calculating weights: " for i ∈ eachindex(latᵣ)
-                if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
-                    # If there is missing data, set k=inf for weight=0
-                    k[i] = Inf
-                else
-                    # Otherwise, calculate weight
-                    kᵢ = 0.0
-                    @turbo for j ∈ eachindex(latᵣ)
-                        Δdᵣ = acos(min( latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j]), 1.0 ))
-                        Δa = abs(age[i] - age[j])
-                        kᵢ += 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
-                    end
-                    k[i] = kᵢ
+        k = Array{Float64}(undef,length(latᵣ))
+        @showprogress 1 "Calculating weights: " for i ∈ eachindex(latᵣ)
+            if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
+                # If there is missing data, set k=inf for weight=0
+                k[i] = Inf
+            else
+                # Otherwise, calculate weight
+                kᵢ = 0.0
+                @turbo for j ∈ eachindex(latᵣ)
+                    Δdᵣ = acos(min( latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j]), 1.0 ))
+                    Δa = abs(age[i] - age[j])
+                    kᵢ += 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
                 end
+                k[i] = kᵢ
             end
-        else
-            k = Array{Float64}(undef,length(spatialscale),length(agescale),length(lat))
-            spatialdistᵣ = similar(lat)
-            @showprogress 1 "Calculating weights: " for i ∈ eachindex(latᵣ)
-                if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
-                    # If there is missing data, set k=inf for weight=0
-                    k[:,:,i] .= Inf
-                else
-                    # Otherwise, calculate weight
-                    @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
-                    Threads.@threads for g = 1:length(spatialscale)
-                        for h = 1:length(agescale)
-                            kᵢ = 0.0
-                            @turbo for j ∈ eachindex(latᵣ)
-                                kᵢ += 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
-                            end
-                            k[g,h,i] = kᵢ
+        end
+        return k
+    end
+    function _invweight(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ, agescale)
+
+        # Precalculate some sines and cosines
+        latsin = @turbo sin.(latᵣ)
+        latcos = @turbo cos.(latᵣ)
+
+        # Allocate and fill ks
+        k = Array{Float64}(undef,length(spatialscaleᵣ),length(agescale),length(latᵣ))
+        spatialdistᵣ = similar(latᵣ)
+        @showprogress 1 "Calculating weights: " for i ∈ eachindex(latᵣ)
+            if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
+                # If there is missing data, set k=inf for weight=0
+                k[:,:,i] .= Inf
+            else
+                # Otherwise, calculate weight
+                @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
+                Threads.@threads for g = 1:length(spatialscaleᵣ)
+                    for h = 1:length(agescale)
+                        kᵢ = 0.0
+                        @turbo for j ∈ eachindex(latᵣ)
+                            kᵢ += 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
                         end
+                        k[g,h,i] = kᵢ
                     end
                 end
             end
