@@ -882,13 +882,13 @@
         nodata = vec(isnan.(lat) .| isnan.(lon) .| isnan.(age))
 
         # Convert lat and lon to radians
-        latr = vec(lat/180*pi)
-        lonr = vec(lon/180*pi)
-        spatialscalr = spatialscale/180*pi
+        latᵣ = vec(lat*PI_180)
+        lonᵣ = vec(lon*PI_180)
+        spatialscaleᵣ = spatialscale*PI_180
 
         # Precalculate some sines and cosines
-        latsin = sin.(latr)
-        latcos = cos.(latr)
+        latsin = @turbo sin.(latᵣ)
+        latcos = @turbo cos.(latᵣ)
 
         # Allocate and fill ks
         if isa(spatialscale, Number) && isa(agescale, Number)
@@ -897,7 +897,7 @@
                 if nodata[i] # If there is missing data, set k=inf for weight=0
                     k[i] = Inf
                 else # Otherwise, calculate weight
-                    k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
+                    k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale)^lp + 1.0) )
                 end
             end
         else
@@ -907,10 +907,10 @@
                 if nodata[i] # If there is missing data, set k=inf for weight=0
                     k[:,:,i] .= Inf
                 else # Otherwise, calculate weight
-                    @turbo @. spatialdistr = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))
+                    @turbo @. spatialdistr = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
                     Threads.@threads for g = 1:length(spatialscale)
                         for h = 1:length(agescale)
-                            k[g,h,i] = nansum( @turbo @. 1.0 / ( (spatialdistr/spatialscalr[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale[h])^lp + 1.0) )
+                            k[g,h,i] = nansum( @turbo @. 1.0 / ( (spatialdistr/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age)/agescale[h])^lp + 1.0) )
                         end
                     end
                 end
@@ -939,13 +939,13 @@
         nodata = vec(isnan.(lat) .| isnan.(lon))
 
         # Convert lat and lon to radians
-        latr = vec(lat/180*pi)
-        lonr = vec(lon/180*pi)
-        spatialscalr = spatialscale/180*pi
+        latᵣ = vec(lat*PI_180)
+        lonᵣ = vec(lon*PI_180)
+        spatialscaleᵣ = spatialscale*PI_180
 
         # Precalculate some sines and cosines
-        latsin = sin.(latr)
-        latcos = cos.(latr)
+        latsin = @turbo sin.(latᵣ)
+        latcos = @turbo cos.(latᵣ)
 
         # Allocate and fill ks
         k = Array{Float64}(undef,length(lat))
@@ -953,7 +953,7 @@
             if nodata[i] # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else # Otherwise, calculate weight
-                k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonr[i] - lonr), 1.0 ))/spatialscalr)^lp + 1.0) )
+                k[i] = nansum( @turbo @. 1.0 / ( (acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))/spatialscaleᵣ)^lp + 1.0) )
             end
         end
         return k
