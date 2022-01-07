@@ -6,13 +6,14 @@ module StatGeochem
     @reexport using NaNStatistics
     @reexport using StatGeochemBase
 
-    # AVX vectorziation tools
+    # Vectorization and parallelization tools
     using LoopVectorization
+    using Polyester
 
     # General requirements
     using Statistics, DelimitedFiles, SpecialFunctions, Random
     using StatsBase: percentile, mean, std, ProbabilityWeights
-    using ProgressMeter: @showprogress, Progress, update!
+    using ProgressMeter: @showprogress, Progress, update!, next!
     include("utilities/System.jl")
     include("utilities/Import.jl")
     include("utilities/Resampling.jl")

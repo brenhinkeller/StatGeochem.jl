@@ -15,50 +15,11 @@
     end
     export system
 
-## --- Retain deprecated functions with matlab-like syntax, to avoid breakages in user scripts that may depend on them
+## --- Some utilities for manipulating data types
 
-    if ~ @isdefined linspace
-        """
-        ```julia
-        linspace(l::Number,u::Number,n::Number)
-        ```
-
-        Returns a linearly spaced array with `n` points between the starting
-        bound `l` and ending bound `u`
-        """
-        function linspace(l::Number,u::Number,n::Number)
-            return range(l,stop=u,length=n)
-        end
-        export linspace
-    end
-
-    if ~ @isdefined contains
-        """
-        ```julia
-        contains(haystack, needle)
-        ```
-
-        Converts both `haystack` and `needle` to strings (if not already strings)
-        and checks whether `string(haystack)` contains `string(needle)`.
-        """
-        contains(haystack::AbstractString, needle::Union{AbstractString,Regex,AbstractChar}) = occursin(needle, haystack)
-        contains(haystack, needle) = occursin(string(needle), string(haystack))
-        export contains
-    end
-
-    if ~ @isdefined containsi
-        """
-        ```julia
-        containsi(haystack, needle)
-        ```
-
-        Converts both `haystack` and `needle` to strings and checks whether
-        `string(haystack)` contains `string(needle)`, ignoring case.
-        """
-        containsi(haystack::AbstractString, needle::Union{AbstractString,AbstractChar}) = occursin(lowercase(needle), lowercase(haystack))
-        containsi(haystack, needle) = occursin(lowercase(string(needle)), lowercase(string(haystack)))
-        export containsi
-    end
-
+    materialize(x) = x
+    materialize(x::Array) = x
+    materialize(x::Number) = x
+    materialize(x::AbstractArray) = collect(x)
 
 ## --- End of File
