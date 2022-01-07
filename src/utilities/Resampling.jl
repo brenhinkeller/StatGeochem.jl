@@ -854,11 +854,6 @@
 
 ## --- Spatiotemporal sample weighting
 
-    materialize(x) = x
-    materialize(x::Array) = x
-    materialize(x::Number) = x
-    materialize(x::AbstractArray) = collect(x)
-
     const PI_180 = pi/180
 
     """
