@@ -11,7 +11,7 @@
 
     dist = changepoint(A, ones(200), nsteps; np=1)
     @test isapprox(nanmean(dist[burnin:end]), 101, atol=4)
-    dist = changepoint(A, ones(200), nseps; npmin=1, npmax=5)[burnin:end,:]
+    dist = changepoint(A, ones(200), nsteps; npmin=1, npmax=5)[burnin:end,:]
     @test isapprox(nanmean(dist[dist.>0]), 101, atol=4)
 
 
