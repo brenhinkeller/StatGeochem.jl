@@ -6,6 +6,7 @@
     ```
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
+
     Full four-element log-linear interpolation, using ionic radii
     """
     function eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
@@ -34,6 +35,7 @@
     ```
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
+
     Simple geometric mean interpolation from Sm and Gd alone
     """
     function eustar(Sm::Number, Gd::Number)
@@ -154,30 +156,52 @@
         \tT_range::Array=[1400, 600],
         \tP_range::Array=[10000,10000];)
     ```
-    Configure and run a MELTS simulation using alphaMELTS. Optional keyword arguments and defaults:
+    Configure and run a MELTS simulation using alphaMELTS.
+    Optional keyword arguments and defaults include:
 
-    `batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"`
+        batchstring::String = "1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n"
 
-    `dT = -10`
+    A string defining the sequence of options that would be entered to produce
+    the desired calculation if running alphaMELTS at the command line. The
+    default string specifies a batch calculation starting at the liquidus.
 
-    `dP = 0`
+        dT = -10
 
-    `index = 1`
+    The temperature step, in degrees, between each step of the MELTS calculation
 
-    `version = "pMELTS"`
+        dP = 0
 
-    `mode = "isobaric"`
+    The pressure step, in bar, between each step of the MELTS calculation
 
-    `fo2path = "FMQ"`
-    Oxygen fugacity buffer to follow, e.g., `FMQ` or `NNO+1`
+        index = 1
 
-    `fractionatesolids::Bool = false`
-    Fractionate all solids
+    An optional variable used to specify a unique suffix for the run directory name
 
-    `suppress::Array{String} = []`
+        version::String = "pMELTS"
+
+    A string specifying the desired version of MELTS. Options include `MELTS` and `pMELTS`.
+
+        mode::String = "isobaric"
+
+    A string specifying the desired calculation mode for MELTS. Options include
+    `isothermal`, `isobaric`, `isentropic`, `isenthalpic`, `isochoric`,
+    `geothermal` and `PTPath`.
+
+        fo2path::String = "FMQ"
+
+    A string specifying the oxygen fugacity buffer to follow, e.g., `FMQ` or `NNO+1`.
+    Available buffers include `IW`,`COH`,`FMQ`,`NNO`,`HM`, and `None`
+
+        fractionatesolids::Bool = false
+
+    Fractionate all solids? default is `false`
+
+        suppress::Array{String} = []
+
     Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
 
-    `verbose::Bool = true`
+        verbose::Bool = true
+
     Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
     function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},

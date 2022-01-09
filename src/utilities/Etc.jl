@@ -4,8 +4,8 @@
     ```julia
     (x,dx,y,dy) = digitize_plotmarkers(img, marker_color, xlims, ylims; atol=0.16)
     ```
-    Calculate approximate x and y positions and uncertainties for colored
-    markers in an image
+    Calculate approximate x and y positions and position uncertainties for
+    distinct colored markers in an image.
     """
     function digitize_plotmarkers(img, marker_color, xlims, ylims; atol=0.16)
 

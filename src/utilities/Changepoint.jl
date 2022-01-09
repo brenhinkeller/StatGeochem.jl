@@ -57,12 +57,23 @@ julia> A = [randn(100).-2; randn(100).+2];
 
 julia> dist = changepoint(A, 10000; np=1);
 
-julia> dist[9000:end]
+julia> dist[9000:end] # after burnin
 1001-element Vector{Int64}:
  101
  101
  101
  101
+   ⋮
+ 101
+ 101
+ 101
+
+ julia> dist = changepoint(A, ones(size(A)), 10000; np=1)
+10000×1 Matrix{Int64}:
+  61
+  61
+  61
+  61
    ⋮
  101
  101
