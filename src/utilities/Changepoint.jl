@@ -44,6 +44,24 @@ Optionally, you may also specify as keyword arguments either `np` or
 Currently prints results to the terminal (stdout), one line per step of the Markov
 chain, but a more efficent output format is probably desirable in a future version
 of this function.
+
+### Examples
+```julia
+julia> A = [randn(100).-2; randn(100).+2];
+
+julia> dist = changepoint(A, 10000; np=1);
+
+julia> dist[9000:end]
+1001-element Vector{Int64}:
+ 101
+ 101
+ 101
+ 101
+   ⋮
+ 101
+ 101
+ 101
+```
 """
 function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
