@@ -38,12 +38,18 @@ use a Markov chain Monte Carlo approach based on that of Gallagher et al., 2010
 number of changepoints that best explain the `data`. Will return the results for
 `nsteps` steps of the Markov chain.
 
-Optionally, you may also specify as keyword arguments either `np` or
-`npmin` and `npmax` to constrain the number of allowed changepoints.
+Optional keyword arguments:
 
-Currently prints results to the terminal (stdout), one line per step of the Markov
-chain, but a more efficent output format is probably desirable in a future version
-of this function.
+    np
+
+Specify an exact integer number of changepoints.
+
+	npmin
+	nmpax
+
+Specify the maximum and minimum possible integer number of changepoints. If `np`
+is not specified, the number of changepoints will allowed to vary freely between
+these bounds, as in the "transdimensional" approach of Gallagher et al.
 
 ### Examples
 ```julia
