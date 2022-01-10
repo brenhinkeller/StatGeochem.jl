@@ -9,7 +9,7 @@
 
     ### Examples
     ```julia
-    img = load("xyscatter.png")
+    img = load("xyscatter.png") # using FileIO, ImageIO
     C = eltype(img)
     (x,dx,y,dy) = digitize_plotmarkers(img, C(0,0.604,0.976,1), [0,10], [0,10])
     ```
@@ -22,8 +22,6 @@
         # Figure out our image dimensions
         xrows = size(t,2)
         yrows = size(t,1)
-        xlims = collect(xlims)
-        ylims = collect(ylims)
 
         # Allocate index arrays
         imin = Array{Float64}(undef,round(Int,xrows/2))
@@ -34,9 +32,10 @@
         # Fill index arrays
         found = false
         markernumber = 0
-        for j=1:xrows
-            if any(t[:,j])
-                list = findall(t[:,j])
+        for j ∈ 1:xrows
+            tⱼ = view(t,:,j)
+            if any(tⱼ)
+                list = findall(tⱼ)
                 if ~found
                     markernumber += 1
                     imin[markernumber] = minimum(list)
@@ -61,10 +60,12 @@
         jmax = jmax[1:markernumber]
 
         # Calculate x and y positions from indices
-        y = ylims[2] .- (imin+imax)/2 * nanrange(ylims) / yrows
-        dy = (imax-imin)/2 * nanrange(ylims) / yrows
-        x = (jmin+jmax)/2 * nanrange(xlims) / xrows .+ xlims[1]
-        dx = (jmax-jmin)/2 * nanrange(xlims) / xrows
+        Δy = ylims[2] - ylims[1]
+        y = ylims[2] .- (imin+imax)/2 * Δy / yrows
+        dy = (imax-imin)/2 * Δy / yrows
+        Δx = xlims[2] - xlims[1]
+        x = (jmin+jmax)/2 * Δx / xrows .+ xlims[1]
+        dx = (jmax-jmin)/2 * Δx / xrows
 
         return x, dx, y, dy
     end
@@ -79,7 +80,7 @@
 
     ### Examples
     ```julia
-    img = load("xysin.png")
+    img = load("xysin.png") # using FileIO, ImageIO
     C = eltype(img)
     (x,y) = digitize_plotline(img, C(0,0.604,0.976,1), [0,2pi], [-1.1,1.1])
     ```
@@ -91,21 +92,21 @@
         # Figure out our image dimensions
         xrows = size(t,2)
         yrows = size(t,1)
-        xlims = collect(xlims)
-        ylims = collect(ylims)
 
         # Calculate x for each column
         x = cntr(range(xlims[1], xlims[2], length=xrows+1))
 
         # y as a function of i-position in image
         # (note: images are typically flipped)
-        yᵢ(i) = ylims[2] - i * nanrange(ylims) / yrows
+        Δy = ylims[2] - ylims[1]
+        yᵢ(i) = ylims[2] - i * Δy / yrows
 
         # Calculate y, defaulting to NaN if no matches
         y = fill(NaN, xrows)
         for j = 1:xrows
-            if any(t[:,j])
-                list = findall(t[:,j])
+            tⱼ = view(t,:,j)
+            if any(tⱼ)
+                list = findall(tⱼ)
                 y[j] = yᵢ(nanmean(list))
             else
                 y[j] = NaN
