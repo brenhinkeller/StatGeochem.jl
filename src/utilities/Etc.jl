@@ -2,10 +2,17 @@
 
     """
     ```julia
-    (x,dx,y,dy) = digitize_plotmarkers(img, marker_color, xlims, ylims; atol=0.16)
+    digitize_plotmarkers(img, marker_color, xlims, ylims; atol=0.16)
     ```
-    Calculate approximate x and y positions and position uncertainties for
-    distinct colored markers in an image.
+    Calculate approximate `x` (horizontal) and `y` (vertical) positions and
+    position uncertainties for distinct colored markers in an image.
+
+    ### Examples
+    ```julia
+    img = load("xyscatter.png")
+    C = eltype(img)
+    (x,dx,y,dy) = digitize_plotmarkers(img, C(0,0.604,0.976,1), [0,10], [0,10])
+    ```
     """
     function digitize_plotmarkers(img, marker_color, xlims, ylims; atol=0.16)
 
@@ -54,9 +61,9 @@
         jmax = jmax[1:markernumber]
 
         # Calculate x and y positions from indices
-        y = ylims[2] - (imin+imax)/2 * nanrange(ylims) / yrows
+        y = ylims[2] .- (imin+imax)/2 * nanrange(ylims) / yrows
         dy = (imax-imin)/2 * nanrange(ylims) / yrows
-        x = (jmin+jmax)/2 * nanrange(xlims) / xrows + xlims[1]
+        x = (jmin+jmax)/2 * nanrange(xlims) / xrows .+ xlims[1]
         dx = (jmax-jmin)/2 * nanrange(xlims) / xrows
 
         return x, dx, y, dy
@@ -65,9 +72,17 @@
 
     """
     ```julia
-    (x,y) = digitize_plotline(img, line_color, xlims, ylims; atol=0.16)
+    digitize_plotline(img, line_color, xlims, ylims; atol=0.16)
     ```
-    Calculate approximate x and y positions for a colored line in an image
+    Calculate approximate `x` (horizontal) and `y` (vertical) positions for
+    a colored line in an image
+
+    ### Examples
+    ```julia
+    img = load("xysin.png")
+    C = eltype(img)
+    (x,y) = digitize_plotline(img, C(0,0.604,0.976,1), [0,2pi], [-1.1,1.1])
+    ```
     """
     function digitize_plotline(img, line_color, xlims, ylims; atol=0.16)
         # Test for approximate equality in color to marker

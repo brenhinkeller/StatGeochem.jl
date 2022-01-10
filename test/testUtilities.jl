@@ -55,5 +55,21 @@
     @test maximum(lon) <= 180
     @test minimum(lon) >= -180
 
+## --- Etc.jl
+
+    # Test digitize_plotmarkers
+    img = load("assets/xyscatter.png")
+    C = eltype(img)
+    (x,dx,y,dy) = digitize_plotmarkers(img, C(0,0.604,0.976,1), [0,10], [0,10])
+    @test isapprox(x, 1:10, atol = 0.1)
+    @test isapprox(y, 1:10, atol = 0.1)
+
+
+    # Test digitize_plotline
+    img = load("assets/xysin.png")
+    C = eltype(img)
+    (x,y) = digitize_plotline(img, C(0,0.604,0.976,1), [0,2pi], [-1.1,1.1])
+    @test isapprox(sin.(x), y, atol=0.1)
+
 
 ## ---

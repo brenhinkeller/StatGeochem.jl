@@ -6,6 +6,8 @@ using Test, Statistics, StatsBase
 @testset "Resampling" begin include("testResampling.jl") end
 @testset "Changepoint" begin include("testChangepoint.jl") end
 @testset "Geochemistry" begin include("testGeochemistry.jl") end
+
+using ImageIO
 @testset "Other Utilities" begin include("testUtilities.jl") end
 
 # Resources
