@@ -7,7 +7,7 @@ using Test, Statistics, StatsBase
 @testset "Changepoint" begin include("testChangepoint.jl") end
 @testset "Geochemistry" begin include("testGeochemistry.jl") end
 
-using ImageIO
+using ImageIO, FileIO
 @testset "Other Utilities" begin include("testUtilities.jl") end
 
 # Resources
