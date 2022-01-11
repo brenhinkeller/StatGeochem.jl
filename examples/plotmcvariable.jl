@@ -32,7 +32,7 @@
     p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
-    err2srel = importdataset("err2srel.csv", ',')
+    err2srel = importdataset("err2srel.csv", ',', importas=:Dict)
     for e in ign["elements"]
         # If there's an err2srel for this variable, create a "_sigma" if possible
         if haskey(err2srel, e) && !haskey(ign, e*"_sigma")

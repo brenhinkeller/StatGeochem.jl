@@ -18,7 +18,7 @@
         if ~ isnothing(m)
             name = m[1]
             push!(pr["minerals"], name)
-            pr[name] = importdataset(joinpath(path, name*".tsv"), '\t', mindefinedcolumns=2)
+            pr[name] = importdataset(joinpath(path, name*".tsv"), '\t', mindefinedcolumns=2, importas=:Dict)
         end
     end
 
