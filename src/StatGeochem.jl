@@ -11,7 +11,7 @@ module StatGeochem
     using Polyester
 
     # General requirements
-    using Statistics, DelimitedFiles, SpecialFunctions, Random
+    using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads
     using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!, next!
     include("utilities/System.jl")

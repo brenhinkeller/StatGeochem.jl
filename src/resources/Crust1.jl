@@ -17,11 +17,11 @@
         if ~isfile(referencepath)
             print("Downloading crust1 files from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
-            download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
-            download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
-            download("https://storage.googleapis.com/statgeochem/crust1.vs", vspath)
-            download("https://storage.googleapis.com/statgeochem/crust1.rho", rhopath)
-            download("https://storage.googleapis.com/statgeochem/crust1.bnds", bndpath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.vs", vspath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.rho", rhopath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.bnds", bndpath)
         end
 
         return 0 # Success

@@ -21,7 +21,7 @@
         if ~isfile(filepath)
             print("Downloading map to $filedir\n")
             run(`mkdir -p $filedir`)
-            download("https://storage.googleapis.com/statgeochem/geolcontwshelf.png", filepath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/geolcontwshelf.png", filepath)
         end
 
         img = load(filepath)
@@ -67,8 +67,8 @@
         if ~isfile(filepath)
             print("Downloading etopo1.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
-            download("https://storage.googleapis.com/statgeochem/etopo1.references.txt", joinpath(filedir,"etopo1.references.txt"))
-            download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/etopo1.references.txt", joinpath(filedir,"etopo1.references.txt"))
+            Downloads.download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
         end
 
         # Read and return the file
@@ -133,8 +133,8 @@
         if ~isfile(filepath)
             print("Downloading srtm15plus.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
-            download("https://storage.googleapis.com/statgeochem/srtm15plus.references.txt", joinpath(filedir,"srtm15plus.references.txt"))
-            download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/srtm15plus.references.txt", joinpath(filedir,"srtm15plus.references.txt"))
+            Downloads.download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)
         end
 
         # Read and return the file

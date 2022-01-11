@@ -13,8 +13,8 @@
         if ~isfile(filepath)
             print("Downloading seafloorage.h5 from google cloud storage to $filedir\n")
             run(`mkdir -p $filedir`)
-            download("https://storage.googleapis.com/statgeochem/seafloorage.references.txt", joinpath(filedir,"seafloorage.references.txt"))
-            download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
+            Downloads.download("https://storage.googleapis.com/statgeochem/seafloorage.references.txt", joinpath(filedir,"seafloorage.references.txt"))
+            Downloads.download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)
         end
 
         # Read and return the file
