@@ -11,7 +11,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading seafloorage.h5 from google cloud storage to $filedir\n")
+            @info "Downloading seafloorage.h5 from google cloud storage to $filedir"
             run(`mkdir -p $filedir`)
             Downloads.download("https://storage.googleapis.com/statgeochem/seafloorage.references.txt", joinpath(filedir,"seafloorage.references.txt"))
             Downloads.download("https://storage.googleapis.com/statgeochem/seafloorage.h5", filepath)

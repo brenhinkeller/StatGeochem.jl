@@ -19,7 +19,7 @@
 
         # Download png map from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading map to $filedir\n")
+            @info "Downloading map to $filedir"
             run(`mkdir -p $filedir`)
             Downloads.download("https://storage.googleapis.com/statgeochem/geolcontwshelf.png", filepath)
         end
@@ -65,7 +65,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading etopo1.h5 from google cloud storage to $filedir\n")
+            @info "Downloading etopo1.h5 from google cloud storage to $filedir"
             run(`mkdir -p $filedir`)
             Downloads.download("https://storage.googleapis.com/statgeochem/etopo1.references.txt", joinpath(filedir,"etopo1.references.txt"))
             Downloads.download("https://storage.googleapis.com/statgeochem/etopo1.h5", filepath)
@@ -131,7 +131,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(filepath)
-            print("Downloading srtm15plus.h5 from google cloud storage to $filedir\n")
+            @info "Downloading srtm15plus.h5 from google cloud storage to $filedir"
             run(`mkdir -p $filedir`)
             Downloads.download("https://storage.googleapis.com/statgeochem/srtm15plus.references.txt", joinpath(filedir,"srtm15plus.references.txt"))
             Downloads.download("https://storage.googleapis.com/statgeochem/srtm15plus.h5", filepath)

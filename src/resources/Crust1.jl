@@ -15,7 +15,7 @@
 
         # Download HDF5 file from Google Cloud if necessary
         if ~isfile(referencepath)
-            print("Downloading crust1 files from google cloud storage to $filedir\n")
+            @info "Downloading crust1 files from google cloud storage to $filedir"
             run(`mkdir -p $filedir`)
             Downloads.download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
             Downloads.download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
