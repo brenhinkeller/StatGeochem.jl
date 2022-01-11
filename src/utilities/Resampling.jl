@@ -423,10 +423,10 @@
         errors = Array{Float64}(undef,nbins)
         for i = 1:nbins
             t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
-            w = ProbabilityWeights(weight[t])
+            w = weight[t]
             yₜ = y[t]
-            means[i] = mean(yₜ, w)
-            errors[i] = std(yₜ, w, corrected=true) * sqrt(resamplingratio / count(t))
+            means[i] = nanmean(yₜ, w)
+            errors[i] = nanstd(yₜ, w) * sqrt(resamplingratio / count(t))
         end
 
         return bincenters, means, errors

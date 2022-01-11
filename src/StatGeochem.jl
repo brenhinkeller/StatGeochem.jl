@@ -12,7 +12,6 @@ module StatGeochem
 
     # General requirements
     using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads
-    using StatsBase: percentile, mean, std, ProbabilityWeights
     using ProgressMeter: @showprogress, Progress, update!, next!
     include("utilities/System.jl")
     include("utilities/Import.jl")

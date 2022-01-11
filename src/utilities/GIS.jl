@@ -241,7 +241,7 @@
                         end
                     end
                     # Record the average slope
-                    slope[i,j] = nearest(T, mean(local_slopes))
+                    slope[i,j] = nearest(T, nanmean(local_slopes))
                 end
             end
 
@@ -258,7 +258,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,1] = nearest(T, mean(local_slopes[1:5]))
+                slope[i,1] = nearest(T, nanmean(local_slopes[1:5]))
             end
 
             # Right edge
@@ -274,7 +274,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[i,end] = nearest(T, mean(local_slopes[[5,6,7,8,1]]))
+                slope[i,end] = nearest(T, nanmean(view(local_slopes, [5,6,7,8,1])))
             end
         end
 
@@ -296,7 +296,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[1,j] = nearest(T, mean(local_slopes[3:7]))
+                slope[1,j] = nearest(T, nanmean(view(local_slopes, 3:7)))
             end
         end
         slope[1,1] = 0
@@ -320,7 +320,7 @@
                         local_slopes[k] = abs(there-here) / distance[k]
                     end
                 end
-                slope[end,j] = nearest(T, mean(local_slopes[[7,8,1,2,3]]))
+                slope[end,j] = nearest(T, nanmean(view(local_slopes, [7,8,1,2,3])))
             end
         end
         slope[end,1] = 0
