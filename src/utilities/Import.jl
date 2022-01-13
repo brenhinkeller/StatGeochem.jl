@@ -11,12 +11,43 @@
     Parse a delimited string `str` with delimiter `delim` into values of type `T`
     and return the answers in a pre-allocated `result` array provided as input.
 
-    If `T` is not specified, it the `eltype` of the `result` array will be used by default.
+    If `T` is not specified explicitly, the `eltype` of the `result` array will
+    be used by default.
+
+    Optional keyword arguments and defaults:
+
+        offset::Integer=0
+
+    Start writing the parsed results into `result` at index `1+offset`
+
+        merge::Bool=false
+
+    Merge repeated delimiters?
+
+        undefval=NaN
+
+    A value to subsitute for any value that cannot be `parse`d to type `T`.
+
+    See also `delim_string_parse` for a non-in-place version that will automatically
+    allocate a result array.
+
+    ### Examples
+    ```julia
+    julia> A = zeros(100);
+
+    julia> n = delim_string_parse!(A, "1,2,3,4,5", ',', Float64)
+    5
+
+    julia> A[1:n]
+    5-element Vector{Float64}:
+     1.0
+     2.0
+     3.0
+     4.0
+     5.0
+    ```
     """
     function delim_string_parse!(result::Array, str::AbstractString, delim::Char, T::Type=eltype(result); offset::Integer=0, merge::Bool=false, undefval=NaN)
-
-        # Make sure the output data type allows our chosen value for undefined data
-        undefval = convert(T, undefval)
 
         # Ignore initial delimiter
         last_delim_pos = 0
@@ -37,7 +68,7 @@
                         if delim_pos > last_delim_pos+1
                             parsed = tryparse(T, str[(last_delim_pos+1):(delim_pos-1)])
                         end
-                        result[n] = isnothing(parsed) ? undefval : parsed
+                        result[n] = isnothing(parsed) ? T(undefval) : parsed
                     end
                     last_delim_pos = delim_pos
                 end
@@ -52,7 +83,7 @@
                         if delim_pos > last_delim_pos+1
                             parsed = tryparse(T, str[(last_delim_pos+1):(delim_pos-1)])
                         end
-                        result[n] = isnothing(parsed) ? undefval : parsed
+                        result[n] = isnothing(parsed) ? T(undefval) : parsed
                         last_delim_pos = delim_pos
                     end
                 end
@@ -63,7 +94,7 @@
         if length(str) > last_delim_pos
             n += 1
             parsed = tryparse(T, str[(last_delim_pos+1):length(str)])
-            result[n] = isnothing(parsed) ? undefval : parsed
+            result[n] = isnothing(parsed) ? T(undefval) : parsed
         end
 
         # Return the number of result values
@@ -79,6 +110,29 @@
     ```
     Parse a delimited string `str` with delimiter `delim` into values of type `T`
     and return the answers as an array with eltype `T`
+
+    Optional keyword arguments and defaults:
+
+        merge::Bool=false
+
+    Merge repeated delimiters?
+
+        undefval=NaN
+
+    A value to subsitute for any value that cannot be `parse`d to type `T`.
+
+    See also `delim_string_parse!` for an in-place version.
+
+    ### Examples
+    ```julia
+    julia> delim_string_parse("1,2,3,4,5", ',', Float64)
+    5-element Vector{Float64}:
+     1.0
+     2.0
+     3.0
+     4.0
+     5.0
+    ```
     """
     function delim_string_parse(str::AbstractString, delim::Char, T::Type=Float64; merge::Bool=false, undefval=NaN)
 
@@ -101,6 +155,16 @@
     Parse a delimited string `str` with delimiter `delim` into substrings that will
     then be operated upon by function `f`. The results of `f` will be returned
     in an array with eltype `T`.
+
+    ### Examples
+    ```julia
+    julia> delim_string_function(x -> delim_string_parse(x, ',', Int32, undefval=0), "1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", '\n', Array{Int32,1})
+    4-element Vector{Vector{Int32}}:
+     [1, 2, 3, 4]
+     [5, 6, 7, 8]
+     [9, 10, 11, 12]
+     [13, 14, 15, 16]
+    ```
     """
     function delim_string_function(f::Function, str::AbstractString, delim::Char, T::Type; merge::Bool=false)
 
@@ -169,6 +233,22 @@
     ```
     Parse a string delimited by both row and column into a single (2-D) matrix. Default column delimiter is newline.
     Similar to `readdlm`, but operating on a string instead of a file.
+
+    ### Examples
+    ```julia
+    julia> parsedlm("1,2,3\n4,5,6\n7,8,9\n", ',', Float64)
+    3×3 Matrix{Float64}:
+     1.0  2.0  3.0
+     4.0  5.0  6.0
+     7.0  8.0  9.0
+     
+    julia> parsedlm("1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", ',', Int64)
+    4×4 Matrix{Int64}:
+      1   2   3   4
+      5   6   7   8
+      9  10  11  12
+     13  14  15  16
+    ```
     """
     function parsedlm(str::AbstractString, delimiter::Char, T::Type=Float64; rowdelimiter::Char='\n')
     	if T <: AbstractFloat
