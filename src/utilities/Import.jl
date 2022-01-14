@@ -241,7 +241,7 @@
      1.0  2.0  3.0
      4.0  5.0  6.0
      7.0  8.0  9.0
-     
+
     julia> parsedlm("1,2,3,4\n5,6,7,8\n9,10,11,12\n13,14,15,16", ',', Int64)
     4×4 Matrix{Int64}:
       1   2   3   4
@@ -347,6 +347,21 @@
     floatify(x, T::Type=Float64)
     ```
     Convert `x` to a floating-point number (default `Float64`) by any means necessary
+
+    ### Examples
+    ```julia
+    julia> StatGeochem.floatify(5)
+    5.0
+
+    julia> StatGeochem.floatify("5")
+    5.0
+
+    julia> StatGeochem.floatify("0x05")
+    5.0
+
+    julia> StatGeochem.floatify("0.5e1")
+    5.0
+    ```
     """
     function floatify(x, T::Type=Float64)
         if isa(x, Number)
