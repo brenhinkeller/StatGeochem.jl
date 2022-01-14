@@ -15,6 +15,9 @@
     For each pair of latitudes and longitudes given by lat and lon, find the
     depth to the 550C isotherm for the 1x1 arc degree grid cell containing
     `lat[i]` and `lon[i]`
+
+    Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006,
+    doi: 10.1016/j.tecto.2005.11.022
     """
     function find_tc1_crust(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
@@ -56,6 +59,9 @@
     For each pair of latitudes and longitudes given by lat and lon, find the
     depth to the 1300C isotherm for the 1x1 arc degree grid cell containing
     `lat[i]` and `lon[i]`
+
+    Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006,
+    doi: 10.1016/j.tecto.2005.11.022
     """
     function find_tc1_lith(lat::Number,lon::Number)
         if !isnan(lat) && !isnan(lon)
@@ -99,6 +105,9 @@
     Return a tuple `(age, age_min, age_max)` where `age`, `age_min`, and
     `age_max` are arrays containing the nominal, upper and lower tc1 age bounds
     for each location pair `lat[i]`, `lon[i]`
+
+    Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006, 
+    doi: 10.1016/j.tecto.2005.11.022
     """
     function find_tc1_age(lat::Number,lon::Number)
         ages=[ NaN  NaN  NaN
