@@ -421,7 +421,26 @@
         end
     end
 
-    function _sanitizevarname(s::AbstractString)
+
+    """
+    ```julia
+    sanitizevarname(s::AbstractString)
+    ```
+    Modify an input string `s` to transform it into an acceptable variable name.
+
+    ### Examples
+    ```julia
+    julia> StatGeochem.sanitizevarname("foo")
+    "foo"
+
+    julia> StatGeochem.sanitizevarname("523foo")
+    "_523foo"
+
+    julia> StatGeochem.sanitizevarname("Length (μm)")
+    "Length_μm"
+    ```
+    """
+    function sanitizevarname(s::AbstractString)
         s = replace(s, r"[\[\](){}]" => "") # Remove parentheses entirely
         s = replace(s, r"^([0-9])" => s"_\1") # Can't begin with a number
         s = replace(s, r"([\0-\x1F -/:-@\[-`{-~])" => s"_") # Everything else becomes an underscore
@@ -511,7 +530,7 @@
         elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
             # Import as NamedTuple (more efficient future default)
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
-            elements = _sanitizevarname.(elements[t])
+            elements = sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
             values = [_columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t)]
             return NamedTuple{symbols}(values)
