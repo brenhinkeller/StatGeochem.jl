@@ -336,7 +336,6 @@
             return false
         end
     end
-    export plausiblynumeric
 
     """
     ```julia
@@ -368,7 +367,6 @@
             true
         end
     end
-    export nonnumeric
 
 ## --- Transforming imported datasets
 
