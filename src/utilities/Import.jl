@@ -311,6 +311,21 @@
     plausiblynumeric(x)
     ```
     Return `true` if `x` can be parsed as a number, else `false`
+
+    ### Examples
+    ```julia
+    julia> StatGeochem.plausiblynumeric(1)
+    true
+
+    julia> StatGeochem.plausiblynumeric("1")
+    true
+
+    julia> StatGeochem.plausiblynumeric("0.5e9")
+    true
+
+    julia> StatGeochem.plausiblynumeric("foo")
+    false
+    ```
     """
     function plausiblynumeric(x)
         if isa(x,Number)
@@ -328,6 +343,21 @@
     nonnumeric(x)
     ```
     Return true for if `x` is not missing but cannot be parsed as a number
+
+    ### Examples
+    ```julia
+    julia> StatGeochem.nonnumeric(1)
+    false
+
+    julia> StatGeochem.nonnumeric("1")
+    false
+
+    julia> StatGeochem.nonnumeric("0.5e9")
+    false
+
+    julia> StatGeochem.nonnumeric("foo")
+    true
+    ```
     """
     function nonnumeric(x)
         if isa(x,Number)
