@@ -26,8 +26,8 @@
 
     # Test adding or averaging option for numeric elements
     addtest = ["a" "b" "a";1 2 3]
-    avg = elementify(addtest)
-    add = elementify(addtest, sumduplicates=true)
+    avg = elementify(addtest, importas=:Dict)
+    add = elementify(addtest, importas=:Dict, sumduplicates=true)
     @test avg["elements"] == avg["elements"]
     @test avg["a"] == 2
     @test add["a"] == 4
