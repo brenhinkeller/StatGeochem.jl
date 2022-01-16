@@ -232,7 +232,7 @@
 
         # Resample
         sdata = bsresample(data, sigma, nrows, p, kernel=kernel, rng=rng)
-        return elementify(sdata, elements, skipstart=0)
+        return elementify(sdata, elements, skipstart=0, importas=:Dict)
     end
     export bsresample
 
@@ -329,7 +329,7 @@
     function randsample(dataset::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
         data = unelementify(dataset, elements, floatout=true)
         sdata = randsample(data, nrows, p)
-        return elementify(sdata, elements, skipstart=0)
+        return elementify(sdata, elements, skipstart=0, importas=:Dict)
     end
     export randsample
 
