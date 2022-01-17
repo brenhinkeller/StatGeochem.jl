@@ -354,7 +354,7 @@
     """
     nonnumeric(x) = true
     nonnumeric(x::Number) = false
-    nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x !== "")
+    nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x != "")
 
 ## --- Transforming imported datasets
 
