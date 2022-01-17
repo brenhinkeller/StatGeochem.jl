@@ -385,14 +385,14 @@
 
 
     columnformat(x, standardize::Bool=true, floattype=Float64) = _columnformat(x, Val(standardize), floattype)
-    function columnformat(x, ::Val{true}, floattype)
+    function _columnformat(x, ::Val{true}, floattype)
         if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
             floatify.(x, floattype)
         else
             string.(x)
         end
     end
-    function columnformat(x, ::Val{false}, floattype)
+    function _columnformat(x, ::Val{false}, floattype)
         if all(xi -> isa(xi, AbstractString), x)
             string.(x)
         elseif all(xi -> isa(xi, AbstractFloat), x)
