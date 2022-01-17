@@ -85,6 +85,16 @@
     @test isa(StatGeochem.columnformat([1,2,3], false), Array{Int64,1})
     @test all(StatGeochem.columnformat([0x01,2,"3"], false) .=== [0x01,2,"3"])
     @test StatGeochem.columnformat([0x01,2,"3"], true) == [1,2,3]
+    @test StatGeochem.columnformat(["asdf","qwer","zxcv"], true) == ["asdf","qwer","zxcv"]
+    @test StatGeochem.columnformat(["","","zxcv"], true) == ["","","zxcv"]
+    @test isequal(StatGeochem.columnformat(["","","5"], true), [NaN, NaN, 5.0])
+
+    @test isequal(StatGeochem.emptys(Any,3), [missing, missing, missing])
+    @test isequal(StatGeochem.emptys(String,3), ["", "", ""])
+    @test all(StatGeochem.emptys(Float16,3) .=== Float16[NaN, NaN, NaN])
+    @test all(StatGeochem.emptys(Float64,3) .=== [NaN, NaN, NaN])
+    @test all(StatGeochem.emptys(Int64,3) .=== [NaN, NaN, NaN])
+
 
 ## --- Concatenating and merging datasets
 
@@ -95,12 +105,18 @@
     @test isa(d2array, Array{Float64,2})
     @test size(d2array) == (2000, length(datadict["elements"]))
 
+    A = ["La" "Ce" "Pr" "ID"; 1.5 1.1 1.0 "x9"; 3.7 2.9 2.5 "SJ21-12"]
+    B = ["La" "Yb"; 1.5 1.1; 1.0 3.7; 2.9 2.5]
+    a = elementify(A, importas=:Tuple)
+    b = elementify(B, importas=:Tuple)
+    d = concatenatedatasets(a,b)
+    @test isa(d, NamedTuple)
+    @test isequal(d.La, [1.5, 3.7, 1.5, 1.0, 2.9])
+    @test isequal(d.Yb, [NaN, NaN, 1.1, 3.7, 2.5])
+    @test isequal(d.ID, ["x9", "SJ21-12", "", "", ""])
 
-    d2 = concatenatedatasets(datatuple, datatuple)
-    @test isa(d2, NamedTuple)
-
-    d2array = unelementify(d2, floatout=true)
-    @test isa(d2array, Array{Float64,2})
-    @test size(d2array) == (2000, length(keys(datatuple)))
+    darray = unelementify(d, floatout=true)
+    @test isa(darray, Array{Float64,2})
+    @test size(darray) == (5, length(keys(d)))
 
 ## ---
