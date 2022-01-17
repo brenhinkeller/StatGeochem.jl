@@ -703,64 +703,32 @@
     ```
     """
     function concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
-        if isempty(keys(d1))
-            result = d2
-        elseif isempty(keys(d2))
-            result = d1
-        else
-            # If 'elements' field doesn't exist, populate it
-            if haskey(d1,"elements")
-                d1_elements = d1["elements"]
-            else
-                d1_elements = sort(collect(keys(d1)))
-            end
-            if haskey(d2,"elements")
-                d2_elements = d2["elements"]
-            else
-                d2_elements = sort(collect(keys(d2)))
-            end
+        # Return early if either is empty
+        isempty(keys(d1)) && return d2
+        isempty(keys(d2)) && return d1
 
-            # Find variable size
-            s1 = size(d1[d1_elements[1]])
-            s2 = size(d2[d2_elements[1]])
+        # Use "elements" field if it exists
+        d1ₑ = haskey(d1,"elements") ? d1["elements"] : sort(collect(keys(d1)))
+        d2ₑ = haskey(d2,"elements") ? d2["elements"] : sort(collect(keys(d2)))
 
-            # Combine datasets
-            result = typeof(d1)()
-            elements = d1_elements ∪ d2_elements
-            if haskey(d1,"elements")
-                result["elements"]  = elements
-            end
-            for e in elements
-                # Make any missing fields
-                if haskey(d1, e) && ~haskey(d2, e)
-                    if eltype(d1[e]) <: Number
-                        d2[e] = fill(float(eltype(d1[e]))(NaN), s2)
-                    else
-                        d2[e] = fill("", s2)
-                    end
-                elseif haskey(d2, e) && ~haskey(d1, e)
-                    if eltype(d2[e]) <: Number
-                        d1[e] = fill(float(eltype(d2[e]))(NaN), s1)
-                    else
-                        d1[e] = fill("", s1)
-                    end
-                end
-
-                # Combine fields
-                result[e] = vcat(d1[e], d2[e])
-            end
-        end
+        # Combine datasets
+        elements = d1ₑ ∪ d2ₑ
+        s1, s2 = size(d1[d1ₑ[1]]),  size(d2[d2ₑ[1]])
+        result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elements)
+        haskey(d1,"elements") && (result["elements"] = elements)
         return result
     end
     function concatenatedatasets(d1::NamedTuple, d2::NamedTuple)
+        # Return early if either is empty
+        isempty(keys(d1)) && return d2
+        isempty(keys(d2)) && return d1
+
+        # Combine datasets
         elements = keys(d1) ∪ keys(d2)
-        NamedTuple{(elements...,)}(vcombine(d1,d2,e) for e in elements)
+        return NamedTuple{(elements...,)}(vcombine(d1,d2,e) for e in elements)
     end
     # Vertically concatenate the fields `e` (if present) of two named tuples
-    function vcombine(d1::NamedTuple, d2::NamedTuple, e::Symbol)
-        s1 = size(d1[first(keys(d1))])
-        s2 = size(d2[first(keys(d2))])
-
+    function vcombine(d1, d2, e, s1=size(d1[first(keys(d1))]), s2=size(d2[first(keys(d2))]))
         if haskey(d1,e) && ~haskey(d2,e)
             T = eltype(d1[e])
             vcat(d1[e], emptys(T, s2))
@@ -772,7 +740,7 @@
         end
     end
     # Fill an array with the designated empty type
-    emptys(::Type, s) = fill(nothing, s)
+    emptys(::Type, s) = fill(missing, s)
     emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
     emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
     emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
