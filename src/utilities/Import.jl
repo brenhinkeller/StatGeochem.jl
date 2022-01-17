@@ -699,6 +699,25 @@
     concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
     ```
     Vertically concatenate two Dict-based datasets, variable-by-variable
+
+    ### Examples
+    ```julia
+    julia> d1 = Dict("La" => rand(5), "Yb" => rand(5))
+    Dict{String, Vector{Float64}} with 2 entries:
+      "Yb" => [0.221085, 0.203369, 0.0657271, 0.124606, 0.0975556]
+      "La" => [0.298578, 0.481674, 0.888624, 0.632234, 0.564491]
+
+    julia> d2 = Dict("La" => rand(5), "Ce" => rand(5))
+    Dict{String, Vector{Float64}} with 2 entries:
+      "Ce" => [0.0979752, 0.108585, 0.718315, 0.771128, 0.698499]
+      "La" => [0.538215, 0.633298, 0.981322, 0.908532, 0.77754]
+
+    julia> concatenatedatasets(d1,d2)
+    Dict{String, Vector{Float64}} with 3 entries:
+      "Ce" => [NaN, NaN, NaN, NaN, NaN, 0.0979752, 0.108585, 0.718315, 0.771128, 0.698499]
+      "Yb" => [0.221085, 0.203369, 0.0657271, 0.124606, 0.0975556, NaN, NaN, NaN, NaN, NaN]
+      "La" => [0.298578, 0.481674, 0.888624, 0.632234, 0.564491, 0.538215, 0.633298, 0.981322, 0.908532, 0.77754]
+    ```
     """
     function concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
         if isempty(keys(d1))
@@ -707,21 +726,28 @@
             result = d1
         else
             # If 'elements' field doesn't exist, populate it
-            if ~haskey(d1,"elements")
-                d1["elements"] = sort(collect(keys(d1)))
+            if haskey(d1,"elements")
+                d1_elements = d1["elements"]
+            else
+                d1_elements = sort(collect(keys(d1)))
             end
-            if ~haskey(d2,"elements")
-                d2["elements"] = sort(collect(keys(d2)))
+            if haskey(d2,"elements")
+                d2_elements = d2["elements"]
+            else
+                d2_elements = sort(collect(keys(d2)))
             end
 
             # Find variable size
-            s1 = size(d1[d1["elements"][1]])
-            s2 = size(d2[d2["elements"][1]])
+            s1 = size(d1[d1_elements[1]])
+            s2 = size(d2[d2_elements[1]])
 
             # Combine datasets
-            result = Dict()
-            result["elements"] = d1["elements"] ∪ d2["elements"]
-            for e in result["elements"]
+            result = typeof(d1)()
+            elements = d1_elements ∪ d2_elements
+            if haskey(d1,"elements")
+                result["elements"]  = elements
+            end
+            for e in elements
                 # Make any missing fields
                 if haskey(d1, e) && ~haskey(d2, e)
                     if eltype(d1[e]) <: Number
