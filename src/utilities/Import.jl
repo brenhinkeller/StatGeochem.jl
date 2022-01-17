@@ -329,7 +329,7 @@
     """
     plausiblynumeric(x) = false
     plausiblynumeric(x::Number) = true
-    plausiblynumeric(x::AbstractString) = tryparse(Float64,x) != nothing
+    plausiblynumeric(x::AbstractString) = tryparse(Float64,x) !== nothing
 
     """
     ```julia
@@ -354,7 +354,7 @@
     """
     nonnumeric(x) = true
     nonnumeric(x::Number) = false
-    nonnumeric(x::AbstractString) = (tryparse(Float64,x) == nothing) && (x !== "")
+    nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x !== "")
 
 ## --- Transforming imported datasets
 
@@ -381,7 +381,7 @@
     """
     floatify(x, T::Type{<:AbstractFloat}=Float64) = T(NaN)
     floatify(x::Number, T::Type{<:AbstractFloat}=Float64) = T(x)
-    floatify(x::AbstractString, T::Type{<:AbstractFloat}=Float64) = (n = tryparse(T,x)) != nothing ? n : T(NaN)
+    floatify(x::AbstractString, T::Type{<:AbstractFloat}=Float64) = (n = tryparse(T,x)) !== nothing ? n : T(NaN)
 
 
     function _columnformat(x, standardize=true, floattype=Float64)
