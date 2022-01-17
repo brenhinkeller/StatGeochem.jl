@@ -956,10 +956,11 @@
         )
 
         # Round output if applicable
+        if digits > 0
+            map!(x -> isa(x, Number) ? round(x, digits=digits) : x, data, data)
+        end
         if sigdigits > 0
-            data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
-        elseif digits > 0
-            data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
+            map!(x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x, data, data)
         end
 
         # Write to file
@@ -984,10 +985,11 @@
         )
 
         # Round output if applicable
+        if digits > 0
+            map!(x -> isa(x, Number) ? round(x, digits=digits) : x, data, data)
+        end
         if sigdigits > 0
-            data .= data .|> x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x
-        elseif digits > 0
-            data .= data .|> x -> isa(x, Number) ? round(x, digits=digits) : x
+            map!(x -> isa(x, Number) ? round(x, sigdigits=sigdigits) : x, data, data)
         end
 
         # Write to file

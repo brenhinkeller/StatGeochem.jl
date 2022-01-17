@@ -37,6 +37,12 @@
     @test exportdataset(datatuple, "tupledataset.csv", ',') == nothing
     @test importdataset("tupledataset.csv", ',', importas=:Tuple) == datatuple
 
+    @test exportdataset(datatuple, "tupledataset.csv", ',', digits=6) == nothing
+    @test importdataset("tupledataset.csv", ',', importas=:Tuple).Lv == round.(datatuple.Lv, digits=6)
+
+    @test exportdataset(datatuple, "tupledataset.csv", ',', sigdigits=5) == nothing
+    @test importdataset("tupledataset.csv", ',', importas=:Tuple).Lv == round.(datatuple.Lv, sigdigits=5)
+
     @test exportdataset(datadict, datadict["elements"], "dictdataset.csv", ',') == nothing
     @test importdataset("dictdataset.csv", ',', importas=:Dict, mindefinedcolumns=2) == datadict
 
