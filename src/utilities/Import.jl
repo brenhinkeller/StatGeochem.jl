@@ -537,7 +537,7 @@
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
             elements = sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = [_columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t)]
+            values = (_columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t))
             return NamedTuple{symbols}(values)
         end
     end
