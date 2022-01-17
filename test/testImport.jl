@@ -89,6 +89,17 @@
     @test StatGeochem.columnformat(["","","zxcv"], true) == ["","","zxcv"]
     @test isequal(StatGeochem.columnformat(["","","5"], true), [NaN, NaN, 5.0])
 
+    @test StatGeochem.isnumeric(missing) == false
+    @test StatGeochem.nonnumeric(missing) == false
+    @test StatGeochem.isnumeric("") == false
+    @test StatGeochem.nonnumeric("") == false
+    @test StatGeochem.isnumeric("5") == true
+    @test StatGeochem.nonnumeric("5") == false
+    @test StatGeochem.isnumeric('x') == false
+    @test StatGeochem.nonnumeric('x') == true
+    @test StatGeochem.isnumeric(NaN) == true
+    @test StatGeochem.nonnumeric(NaN) == false
+
     @test isequal(StatGeochem.emptys(Any,3), [missing, missing, missing])
     @test isequal(StatGeochem.emptys(String,3), ["", "", ""])
     @test all(StatGeochem.emptys(Float16,3) .=== Float16[NaN, NaN, NaN])

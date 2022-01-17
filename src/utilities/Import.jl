@@ -308,28 +308,28 @@
 
     """
     ```julia
-    plausiblynumeric(x)
+    isnumeric(x)
     ```
     Return `true` if `x` can be parsed as a number, else `false`
 
     ### Examples
     ```julia
-    julia> StatGeochem.plausiblynumeric(1)
+    julia> StatGeochem.isnumeric(1)
     true
 
-    julia> StatGeochem.plausiblynumeric("1")
+    julia> StatGeochem.isnumeric("1")
     true
 
-    julia> StatGeochem.plausiblynumeric("0.5e9")
+    julia> StatGeochem.isnumeric("0.5e9")
     true
 
-    julia> StatGeochem.plausiblynumeric("foo")
+    julia> StatGeochem.isnumeric("foo")
     false
     ```
     """
-    plausiblynumeric(x) = false
-    plausiblynumeric(x::Number) = true
-    plausiblynumeric(x::AbstractString) = tryparse(Float64,x) !== nothing
+    isnumeric(x) = false
+    isnumeric(x::Number) = true
+    isnumeric(x::AbstractString) = tryparse(Float64,x) !== nothing
 
     """
     ```julia
@@ -354,6 +354,7 @@
     """
     nonnumeric(x) = true
     nonnumeric(x::Number) = false
+    nonnumeric(x::Missing) = false
     nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x != "")
 
 ## --- Transforming imported datasets
@@ -386,7 +387,7 @@
 
     columnformat(x, standardize::Bool=true, floattype=Float64) = _columnformat(x, Val(standardize), floattype)
     function _columnformat(x, ::Val{true}, floattype)
-        if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
+        if sum(isnumeric.(x)) >= sum(nonnumeric.(x))
             floatify.(x, floattype)
         else
             string.(x)
@@ -502,11 +503,11 @@
                 else
                     column = data[(1+skipstart):end,i]
                 end
-                column_is_numeric = sum(plausiblynumeric.(column)) >= sum(nonnumeric.(column))
+                column_is_numeric = sum(isnumeric.(column)) >= sum(nonnumeric.(column))
 
                 if haskey(result,elements[i])
                     # If key already exists
-                    if column_is_numeric && (standardize || (sum(plausiblynumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
+                    if column_is_numeric && (standardize || (sum(isnumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
                         # If either this column or the existing one is plausibly numeric, sum or average the two
                         if sumduplicates
                             result[elements[i]] = floatify.(result[elements[i]], floattype) + floatify.(column, floattype)
@@ -589,7 +590,7 @@
         if findnumeric
             is_numeric_element = Array{Bool}(undef,length(elements))
             for i = 1:length(elements)
-                is_numeric_element[i] = sum(plausiblynumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
+                is_numeric_element[i] = sum(isnumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
             end
             elements = elements[is_numeric_element]
         end
@@ -637,7 +638,7 @@
         # Figure out how many are numeric (if necessary), so we can export only
         # those if `findnumeric` is set
         if findnumeric
-            elements = filter(x -> sum(plausiblynumeric.(dataset[x])) > sum(nonnumeric.(dataset[x])), elements)
+            elements = filter(x -> sum(isnumeric.(dataset[x])) > sum(nonnumeric.(dataset[x])), elements)
         end
 
         # Generate output array
