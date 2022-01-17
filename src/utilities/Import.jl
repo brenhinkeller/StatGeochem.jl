@@ -327,15 +327,9 @@
     false
     ```
     """
-    function plausiblynumeric(x)
-        if isa(x,Number)
-            return true
-        elseif isa(x,AbstractString) && tryparse(Float64,x) != nothing
-            return true
-        else
-            return false
-        end
-    end
+    plausiblynumeric(x) = false
+    plausiblynumeric(x::Number) = true
+    plausiblynumeric(x::AbstractString) = tryparse(Float64,x) != nothing
 
     """
     ```julia
@@ -358,15 +352,9 @@
     true
     ```
     """
-    function nonnumeric(x)
-        if isa(x,Number)
-            false
-        elseif isa(x,AbstractString) && (tryparse(Float64,x) != nothing || x == "")
-            false
-        else
-            true
-        end
-    end
+    nonnumeric(x) = true
+    nonnumeric(x::Number) = false
+    nonnumeric(x::AbstractString) = (tryparse(Float64,x) == nothing) && (x !== "")
 
 ## --- Transforming imported datasets
 
@@ -391,15 +379,10 @@
     5.0
     ```
     """
-    function floatify(x, T::Type=Float64)
-        if isa(x, Number)
-            T(x)
-        elseif isa(x,AbstractString) && tryparse(T,x) != nothing
-            parse(T, x)
-        else
-            T(NaN)
-        end
-    end
+    floatify(x, T::Type{<:AbstractFloat}=Float64) = T(NaN)
+    floatify(x::Number, T::Type{<:AbstractFloat}=Float64) = T(x)
+    floatify(x::AbstractString, T::Type{<:AbstractFloat}=Float64) = (n = tryparse(T,x)) != nothing ? n : T(NaN)
+
 
     function _columnformat(x, standardize=true, floattype=Float64)
         if standardize
