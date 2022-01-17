@@ -769,6 +769,30 @@
         end
         return result
     end
+    function concatenatedatasets(d1::NamedTuple, d2::NamedTuple)
+        elements = keys(d1) ∪ keys(d2)
+        NamedTuple{(elements...,)}(vcombine(d1,d2,e) for e in elements)
+    end
+    # Vertically concatenate the fields `e` (if present) of two named tuples
+    function vcombine(d1::NamedTuple, d2::NamedTuple, e::Symbol)
+        s1 = size(d1[first(keys(d1))])
+        s2 = size(d2[first(keys(d2))])
+
+        if haskey(d1,e) && ~haskey(d2,e)
+            T = eltype(d1[e])
+            vcat(d1[e], emptys(T, s2))
+        elseif ~haskey(d1,e) && haskey(d2,e)
+            T = eltype(d2[e])
+            vcat(emptys(T, s1), d2[e])
+        else
+            vcat(d1[e], d2[e])
+        end
+    end
+    # Fill an array with the designated empty type
+    emptys(::Type, s) = fill(nothing, s)
+    emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
+    emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
+    emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
     export concatenatedatasets
 
 

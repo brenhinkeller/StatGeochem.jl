@@ -89,4 +89,12 @@
     @test isa(d2array, Array{Float64,2})
     @test size(d2array) == (2000, length(datadict["elements"]))
 
+
+    d2 = concatenatedatasets(datatuple, datatuple)
+    @test isa(d2, NamedTuple)
+
+    d2array = unelementify(d2, floatout=true)
+    @test isa(d2array, Array{Float64,2})
+    @test size(d2array) == (2000, length(keys(datatuple)))
+
 ## ---
