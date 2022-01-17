@@ -78,13 +78,13 @@
     @test StatGeochem.floatify(12345, Float64) === 12345.0
     @test StatGeochem.floatify(12345, Float32) === 12345f0
 
-    @test isa(StatGeochem._columnformat(["asdf","qwer","zxcv"], false), Array{String,1})
-    @test isa(StatGeochem._columnformat([1f0, 2f0, 3f0], false), Array{Float32,1})
-    @test isa(StatGeochem._columnformat([1., 2., 3.], false), Array{Float64,1})
-    @test isa(StatGeochem._columnformat([0x01,0x02,0x03], false), Array{UInt8,1})
-    @test isa(StatGeochem._columnformat([1,2,3], false), Array{Int64,1})
-    @test all(StatGeochem._columnformat([0x01,2,"3"], false) .=== [0x01,2,"3"])
-    @test StatGeochem._columnformat([0x01,2,"3"], true) == [1,2,3]
+    @test isa(StatGeochem.columnformat(["asdf","qwer","zxcv"], false), Array{String,1})
+    @test isa(StatGeochem.columnformat([1f0, 2f0, 3f0], false), Array{Float32,1})
+    @test isa(StatGeochem.columnformat([1., 2., 3.], false), Array{Float64,1})
+    @test isa(StatGeochem.columnformat([0x01,0x02,0x03], false), Array{UInt8,1})
+    @test isa(StatGeochem.columnformat([1,2,3], false), Array{Int64,1})
+    @test all(StatGeochem.columnformat([0x01,2,"3"], false) .=== [0x01,2,"3"])
+    @test StatGeochem.columnformat([0x01,2,"3"], true) == [1,2,3]
 
 ## --- Concatenating and merging datasets
 
