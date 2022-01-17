@@ -384,23 +384,23 @@
     floatify(x::AbstractString, T::Type{<:AbstractFloat}=Float64) = (n = tryparse(T,x)) !== nothing ? n : T(NaN)
 
 
-    function _columnformat(x, standardize=true, floattype=Float64)
-        if standardize
-            if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
-                return floatify.(x, floattype)
-            else
-                return string.(x)
-            end
+    columnformat(x, standardize::Bool=true, floattype=Float64) = _columnformat(x, Val(standardize), floattype)
+    function columnformat(x, ::Val{true}, floattype)
+        if sum(plausiblynumeric.(x)) >= sum(nonnumeric.(x))
+            floatify.(x, floattype)
         else
-            if all(xi -> isa(xi, AbstractString), x)
-                return string.(x)
-            elseif all(xi -> isa(xi, AbstractFloat), x)
-                return float.(x)
-            elseif all(xi -> isa(xi, Integer), x)
-                return Integer.(x)
-            else
-                return x
-            end
+            string.(x)
+        end
+    end
+    function columnformat(x, ::Val{false}, floattype)
+        if all(xi -> isa(xi, AbstractString), x)
+            string.(x)
+        elseif all(xi -> isa(xi, AbstractFloat), x)
+            float.(x)
+        elseif all(xi -> isa(xi, Integer), x)
+            Integer.(x)
+        else
+            x
         end
     end
 
@@ -525,7 +525,7 @@
                         result[elements[i]] = hcat(result[elements[i]], column)
                     end
                 else
-                    result[elements[i]] = _columnformat(column, standardize, floattype)
+                    result[elements[i]] = columnformat(column, standardize, floattype)
                 end
             end
 
@@ -537,7 +537,7 @@
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
             elements = sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = (_columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t))
+            values = (columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t))
             return NamedTuple{symbols}(values)
         end
     end
