@@ -834,24 +834,33 @@
 
 ## --- Downsample an image / array
 
-    function downsample(A::AbstractArray, factor::Integer, jfactor=factor::Integer)
-        if ndims(A)==2
-            rows = size(A,1) ÷ factor
-            cols = size(A,2) ÷ jfactor
+    function downsample(A::Matrix, factor::Integer, jfactor::Integer=factor)
+        rows = size(A,1) ÷ factor
+        cols = size(A,2) ÷ jfactor
 
-            result = similar(A, rows,cols)
-            @turbo for i=1:rows
-                for j=1:cols
-                    iₛ = i*factor
-                    jₛ = j*factor
-                    result[i,j] = A[iₛ, jₛ]
-                end
+        result = similar(A, rows,cols)
+        @turbo for i=1:rows
+            for j=1:cols
+                iₛ = i*factor
+                jₛ = j*factor
+                result[i,j] = A[iₛ, jₛ]
             end
-        else
-            result = A[factor:factor:end]
         end
         return result
     end
+    function downsample(A::AbstractMatrix, factor::Integer, jfactor::Integer=factor)
+        rows = size(A,1) ÷ factor
+        cols = size(A,2) ÷ jfactor
+
+        result = similar(A, rows,cols)
+        @inbounds for i=1:rows
+            for j=1:cols
+                result[i,j] = A[i*factor, j*factor]
+            end
+        end
+        return result
+    end
+    downsample(A::AbstractArray, factor::Integer) = A[factor:factor:end]
     export downsample
 
 ## --- Spatiotemporal sample weighting
