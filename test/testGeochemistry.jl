@@ -74,8 +74,13 @@
 
 if Sys.islinux() || Sys.isapple()
     # Which version of Melts to use
-    Sys.islinux() && alphameltsversion = "linux_alphamelts_1-9"
-    Sys.isapple() && alphameltsversion = "macosx_alphamelts_1-9"
+    if Sys.isapple()
+        alphameltsversion = "macosx_alphamelts_1-9"
+        alphameltsexec = "alphamelts_macosx64"
+    else
+        alphameltsversion = "linux_alphamelts_1-9"
+        alphameltsexec = "alphamelts_linux64"
+    end
 
     # Construct file path
     meltsdir = joinpath(resourcepath, alphameltsversion)
@@ -87,7 +92,7 @@ if Sys.islinux() || Sys.isapple()
         run(`mkdir -p $meltsdir`)
         Downloads.download("https://storage.googleapis.com/statgeochem/$alphameltsversion.zip", filepath)
         run(`unzip -o $filepath -d $resourcepath`)
-        run(`mv $meltsdir/alphamelts_linux64 $meltsdir/alphamelts`)
+        run(`mv $meltsdir/$alphameltsexec $meltsdir/alphamelts`)
     end
 
     meltspath = joinpath(meltsdir, "run_alphamelts.command")
