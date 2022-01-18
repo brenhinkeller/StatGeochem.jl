@@ -259,6 +259,31 @@ if Sys.isunix()
     # @test isapprox(modes["Omph(HP)"],[NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 1.5736, 7.33183, 13.3273, 13.874, 13.8044, 13.7504, 13.6605, 13.6055, 13.2465, 12.8556, 12.8012, 12.909, 12.8774, 12.8621, 12.8379, 12.8239, 12.8205, 12.839, 12.8654, 12.8914, 12.9423, 13.0084, 13.1195, 13.2487, 13.391, 13.5401, 13.7082, 13.9396, 14.1879, 14.4729, 14.754, 15.0912, 15.5081, 15.9689, 16.4671, 17.0194, 17.5064, 17.1991, 16.9685, 16.6926, 16.4602, 16.1634, 15.921, 15.659, 15.4497, 15.2485, 15.0301, 14.8809, 14.6926, 15.0711, 9.19562, NaN, NaN], nans=true)
     print("modes[\"Omph(HP)\"]: ")
     println(modes["Omph(HP)"])
+
+    ## --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
+
+    # Input parameters
+    P_range = [280, 28000] # Pressure range to explore, bar (roughly 1-100 km depth)
+    T_surf = 273.15 # Temperature of surface (K)
+    geotherm = 0.01 # Geothermal gradient of 0.1 K/bar == about 28.4 K/km
+    melt_model = ""
+
+    # Configure (run build and vertex)
+    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm;
+        dataset="hp02ver.dat",
+        excludes=HP_excludes,
+        solution_phases=HP_solution_phases,
+        npoints=200,
+        index=2
+    )
+
+    seismic = perplex_query_seismic(perplexdir, scratchdir, index=2)
+    @test isa(seismic, Dict)
+    @test haskey(seismic, "T(K)")
+    @test isa(seismic["T(K)"], Vector{Float64})
+
+    print("seismic[\"T(K)\"]: ")
+    println(seismic["T(K)"])
 end
 
 ## --- End of File
