@@ -1,5 +1,5 @@
 using StatGeochem
-using Test, Statistics, StatsBase
+using Test, Statistics, StatsBase, Downloads
 
 # Utilities
 @testset "Import" begin include("testImport.jl") end
