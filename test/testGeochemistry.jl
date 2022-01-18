@@ -89,7 +89,7 @@ if Sys.islinux()
         run(`mv $meltsdir/alphamelts_linux64 $meltsdir/alphamelts`)
     end
 
-    meltspath = joinpath(filedir, "run_alphamelts.command")
+    meltspath = joinpath(meltsdir, "run_alphamelts.command")
     scratchdir = "./"
 
     ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
