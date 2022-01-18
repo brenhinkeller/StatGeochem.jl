@@ -81,9 +81,14 @@ if Sys.islinux()
     filepath = joinpath(resourcepath, alphameltsversion*".zip")
 
     # Download precompiled executable
-    download("https://storage.googleapis.com/statgeochem/$alphameltsversion.zip", filepath)
-    run(`unzip -o $filepath -d $resourcepath`)
-    run(`mv $meltsdir/alphamelts_linux64 $meltsdir/alphamelts`)
+    if ~isfile(filepath)
+        @info "Downloading alphamelts to $meltsdir"
+        run(`mkdir -p $meltsdir`)
+        Downloads.download("https://storage.googleapis.com/statgeochem/$alphameltsversion.zip", filepath)
+        run(`unzip -o $filepath -d $resourcepath`)
+        run(`mv $meltsdir/alphamelts_linux64 $meltsdir/alphamelts`)
+    end
+
     meltspath = joinpath(filedir, "run_alphamelts.command")
     scratchdir = "./"
 
