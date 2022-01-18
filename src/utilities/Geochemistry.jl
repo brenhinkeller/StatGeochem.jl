@@ -917,7 +917,7 @@
     Results are returned as a dictionary.
     """
     function perplex_query_seismic(perplexdir::String, scratchdir::String;
-        dof::Integer=1, index::Integer=1, include_fluid::String="n")
+        dof::Integer=1, index::Integer=1, include_fluid::String="n", importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -948,15 +948,15 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        data = Dict()
+        data = nothing
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary
-            data = elementify(data)
+            data = elementify(data, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
@@ -970,7 +970,7 @@
     pseudosection. Results are returned as a dictionary.
     """
     function perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        index::Integer=1, npoints::Integer=200, include_fluid="n")
+        index::Integer=1, npoints::Integer=200, include_fluid="n", importas=:Dict)
         # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -995,15 +995,15 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        data = Dict()
+        data = nothing
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary
-            data = elementify(data)
+            data = elementify(data, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
@@ -1021,7 +1021,7 @@
     grid / pseudosection (dof=2). Results are returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
-        dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true)
+        dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1053,7 +1053,7 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
@@ -1080,7 +1080,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements)
+            result = elementify(data,elements, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1098,7 +1098,7 @@
     returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
-        index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true)
+        index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
         # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1122,7 +1122,7 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
@@ -1149,7 +1149,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements)
+            result = elementify(data,elements, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1172,7 +1172,7 @@
     Currently returns vol %
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
-        dof::Integer=1, index::Integer=1, include_fluid="y")
+        dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1203,13 +1203,13 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary.
             # Perplex sometimes returns duplicates of a single solution model, sum them.
-            result = elementify(data, sumduplicates=true)
+            result = elementify(data, sumduplicates=true, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1226,7 +1226,7 @@
     pre-computed pseudosection. Results are returned as a dictionary.
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        index::Integer=1, npoints::Integer=200, include_fluid="y")
+        index::Integer=1, npoints::Integer=200, include_fluid="y", importas=:Dict)
         # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1250,12 +1250,12 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
             # Convert to a dictionary
-            result = elementify(data, sumduplicates=true)
+            result = elementify(data, sumduplicates=true, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1277,7 +1277,7 @@
     Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String;
-        index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1)
+        index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1308,7 +1308,7 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
@@ -1326,7 +1326,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements)
+            result = elementify(data,elements, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1344,7 +1344,7 @@
     returned as a dictionary. Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
-        index::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
+        index::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true, importas=:Dict)
         # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1368,7 +1368,7 @@
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
 
         # Read results and return them if possible
-        result = Dict()
+        result = importas==:Dict ? Dict() : ()
         try
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
@@ -1386,7 +1386,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements)
+            result = elementify(data,elements, importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
