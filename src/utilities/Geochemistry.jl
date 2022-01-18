@@ -362,17 +362,21 @@
     Read all phase proportions from `Phase_main_tbl.txt` in specified MELTS run directory
     Returns an elementified dictionary
     """
-    function melts_query(scratchdir::String; index=1)
+    function melts_query(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
-        melts = Dict()
+        if importas==:Dict
+            melts = Dict{String, Union{Vector{String}, Dict}}()
+        else
+            melts = Dict{String, Union{Vector{String}, NamedTuple}}()
+        end
         if isfile(prefix*"/Phase_main_tbl.txt")
             data = readdlm(prefix*"/Phase_main_tbl.txt", ' ', skipblanks=false)
             pos = findall(all(isempty.(data), dims=2) |> vec)
             melts["minerals"] = Array{String}(undef, length(pos)-1)
             for i=1:(length(pos)-1)
                 name = data[pos[i]+1,1]
-                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,:], skipnameless=true)
+                melts[name] = elementify(data[pos[i]+2:pos[i+1]-1,:], skipnameless=true, importas=importas)
                 melts["minerals"][i] = name
             end
         end
