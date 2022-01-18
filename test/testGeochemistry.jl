@@ -72,9 +72,10 @@
 
 ## -- Test melts
 
-if Sys.islinux()
+if Sys.islinux() || Sys.isapple()
     # Which version of Melts to use
-    alphameltsversion = "linux_alphamelts_1-9"
+    Sys.islinux() && alphameltsversion = "linux_alphamelts_1-9"
+    Sys.isapple() && alphameltsversion = "macosx_alphamelts_1-9"
 
     # Construct file path
     meltsdir = joinpath(resourcepath, alphameltsversion)
