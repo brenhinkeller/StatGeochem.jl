@@ -35,7 +35,7 @@
         x = floor.(Int, mod.(lon, 360) * 10800/360) .+ 1
 
         # find the y rows, converting from lat to Mercator (lat -80.738:80.738)
-        y = 4320 - floor.(Int, 8640 * asinh.(tan.(lat*pi/180)) / asinh.(tan.(80.738*pi/180)) / 2 ) .+ 1
+        y = 4320 .- floor.(Int, 8640 * asinh.(tan.(lat*pi/180)) / asinh.(tan.(80.738*pi/180)) / 2 ) .+ 1
 
         # Make and fill output array
         out=Array{Float64}(undef,size(x))
