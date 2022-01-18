@@ -80,7 +80,7 @@
     # Earth, using the ETOPO elevation model.
     find_etopoelev(lat,lon) = find_etopoelev(get_etopo(),lat,lon)
     find_etopoelev(etopo::Dict, lat, lon) = find_etopoelev(etopo["elevation"], lat, lon)
-    function find_etopoelev(etopo::AbstractArray, lat, lon)
+    function find_etopoelev(etopo::AbstractArray, lat, lon, T=Float64)
         # Interpret user input
         length(lat) != length(lon) && error("lat and lon must be of equal length\n")
 
@@ -90,7 +90,7 @@
         maxcol = 360 * sf
 
         # Create and fill output vector
-        result = Array{Float64}(undef,size(lat))
+        result = Array{T}(undef,size(lat))
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
@@ -144,25 +144,18 @@
 
     # Find the elevation of points at position (lat,lon) on the surface of the
     # Earth, using the SRTM15plus 15-arc-second elevation model.
-    function find_srtm15plus(srtm15plus,lat,lon)
-
+    find_srtm15plus(lat,lon) = find_srtm15plus(get_srtm15plus(),lat,lon)
+    find_srtm15plus(srtm::Dict, lat, lon) = find_srtm15plus(srtm["elevation"], lat, lon)
+    function find_srtm15plus(srtm::AbstractArray, lat, lon, T=Float64)
         # Interpret user input
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        elseif isa(srtm15plus,Dict)
-            data = srtm15plus["elevation"]
-        elseif isa(srtm15plus, Array)
-            data = srtm15plus
-        else
-            error("wrong srtm15plus variable")
-        end
+        length(lat) != length(lon) && error("lat and lon must be of equal length")
 
         # Scale factor (cells per degree) = 60 * 4 = 240
         # (15 arc seconds goes into 1 arc degree 240 times)
         sf = 240
 
         # Create and fill output vector
-        out = Array{Float64}(undef,size(lat))
+        out = Array{T}(undef,size(lat))
         for i=1:length(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
@@ -173,7 +166,7 @@
                 row = 1 + round(Int,(90+lat[i])*sf)
                 col = 1 + round(Int,(180+lon[i])*sf)
                 # Find result by indexing
-                res = data[row,col]
+                res = srtm[row,col]
                 if res == -32768
                     out[i] = NaN
                 else
