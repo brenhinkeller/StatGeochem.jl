@@ -543,7 +543,7 @@
     export melts_query_solid
 
     # Read system thermodynamic data, return as elementified dictionary
-    function melts_query_system(scratchdir::String; index=1)
+    function melts_query_system(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
@@ -551,10 +551,10 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"System_main_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, standardize=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true, importas=importas)
         else
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
