@@ -112,9 +112,12 @@ if Sys.islinux() || Sys.isapple()
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ")
 
     # Read results
-    melt_comp = melts_query_liquid(scratchdir, index=1)
-    solid_comp = melts_query_solid(scratchdir, index=1)
-    modes = melts_query_modes(scratchdir, index=1)
+    melt_comp = melts_query_liquid(scratchdir, index=1, importas=:Tuple)
+    solid_comp = melts_query_solid(scratchdir, index=1, importas=:Tuple)
+    modes = melts_query_modes(scratchdir, index=1, importas=:Tuple)
+
+    @test isa(melts_clean_modes(scratchdir, index=1), Dict)
+    @test isa(melts_query(scratchdir, index=1), Dict)
 
     @test isa(melt_comp, NamedTuple)
     @test isa(solid_comp, NamedTuple)

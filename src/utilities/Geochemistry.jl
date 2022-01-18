@@ -387,7 +387,7 @@
     Read modal phase proportions from `Phase_mass_tbl.txt` in specified MELTS run
     Returns an elementified dictionary
     """
-    function melts_query_modes(scratchdir::String; index=1)
+    function melts_query_modes(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
@@ -395,10 +395,10 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, standardize=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true, importas=importas)
         else
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
@@ -419,10 +419,10 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Phase_mass_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, standardize=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true, importas=:Dict)
 
             # Start by transferring over all the non-redundant elements
-            modes = Dict()
+            modes = typeof(data)()
             for e in data["elements"]
                 m = replace(e, r"_.*" => s"")
                 if haskey(modes, m)
@@ -497,7 +497,7 @@
     Read liquid composition from `Liquid_comp_tbl.txt` in specified MELTS run directory
     Returns an elementified dictionary
     """
-    function melts_query_liquid(scratchdir::String; index=1)
+    function melts_query_liquid(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
@@ -505,10 +505,10 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Liquid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, standardize=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true, importas=importas)
         else
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
@@ -521,7 +521,7 @@
     Read solid composition from `Solid_comp_tbl.txt` in specified MELTS run directory
     Returns an elementified dictionary
     """
-    function melts_query_solid(scratchdir::String; index=1)
+    function melts_query_solid(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
         # Read results and return them if possible
@@ -529,10 +529,10 @@
             # Read data as an Array{Any}
             data = readdlm(prefix*"Solid_comp_tbl.txt", ' ', skipstart=1)
             # Convert to a dictionary
-            data = elementify(data, standardize=true, skipnameless=true)
+            data = elementify(data, standardize=true, skipnameless=true, importas=importas)
         else
             # Return empty dictionary if file doesn't exist
-            data = Dict()
+            data = importas==:Dict ? Dict() : ()
         end
         return data
     end
