@@ -77,8 +77,8 @@
     (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.4)
-    @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=0.5)
-    @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=0.5)
+    @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=0.8)
+    @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=0.8)
 
     # Medians, upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanbinmedian!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
@@ -110,15 +110,15 @@
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.5)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
 
     # With weights
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, ones(101), x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.5)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.5)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
 
 ## --- Monte Carlo interpolation/fitting
 
