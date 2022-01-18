@@ -839,10 +839,12 @@
             rows = size(A,1) ÷ factor
             cols = size(A,2) ÷ jfactor
 
-            result = Array{eltype(A)}(undef,rows,cols)
+            result = similar(A, rows,cols)
             @turbo for i=1:rows
                 for j=1:cols
-                    result[i,j]=A[i*factor,j*jfactor]
+                    iₛ = i*factor
+                    jₛ = j*factor
+                    result[i,j] = A[iₛ, jₛ]
                 end
             end
         else
