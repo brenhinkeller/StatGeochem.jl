@@ -18,6 +18,7 @@
     data = vcat(elements, hcat(rand(1000, length(elements)-1), string.(rand("abcdefghijklmnopqrstuvwxyz0123456789",1000))))
     datatuple = elementify(data,importas=:Tuple)::NamedTuple
     datadict = elementify(data,importas=:Dict)::Dict
+    @test isa(display(datatuple), Nothing)
 
     @test isa(datatuple, NamedTuple)
     @test unelementify(datatuple) == data
