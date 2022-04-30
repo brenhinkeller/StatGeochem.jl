@@ -97,6 +97,12 @@
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
+    Reference:
+    Amante, C. and B.W. Eakins, 2009. ETOPO1 1 Arc-Minute Global Relief Model:
+    Procedures, Data Sources and Analysis. NOAA Technical Memorandum NESDIS NGDC-24.
+    National Geophysical Data Center, NOAA. doi:10.7289/V5C8276M.
+    http://www.ngdc.noaa.gov/mgg/global/global.html
+
     See also: `find_etopoelev`.
 
     ## Examples
@@ -153,6 +159,12 @@
     Earth, using the ETOPO1 one-arc-degree elevation model.
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    Reference:
+    Amante, C. and B.W. Eakins, 2009. ETOPO1 1 Arc-Minute Global Relief Model:
+    Procedures, Data Sources and Analysis. NOAA Technical Memorandum NESDIS NGDC-24.
+    National Geophysical Data Center, NOAA. doi:10.7289/V5C8276M.
+    http://www.ngdc.noaa.gov/mgg/global/global.html
 
     See also: `get_etopo`.
 
@@ -233,6 +245,8 @@
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
+    Reference: https://doi.org/10.5069/G92R3PT9
+
     See also: `find_srtm15plus`.
 
     ## Examples
@@ -291,6 +305,8 @@
     Earth, using the SRTM15plus 15-arc-second elevation model.
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    Reference: https://doi.org/10.5069/G92R3PT9
 
     See also: `get_srtm15plus`.
 
