@@ -10,7 +10,7 @@
     ```julia
     find_geolcont(lat,lon)
     ```
-    Find which continent a sample originates from.
+    Find which geographic continent a sample originates from.
 
     Continents:
       1: "Africa"
@@ -20,6 +20,8 @@
       5: "Australia"
       6: "Antarctica"
       7: "NA"
+
+    See also: `continents`, `continentcolors`.
 
     ## Examples
     ```julia
@@ -95,6 +97,8 @@
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
+    See also: `find_etopoelev`.
+
     ## Examples
     ```julia
     julia> get_etopo()
@@ -150,9 +154,11 @@
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
+    See also: `get_etopo`.
+
     ## Examples
     ```julia
-    julia> etopo=get_etopo("elevation")
+    julia> etopo = get_etopo("elevation")
     10800×21600 Matrix{Float64}:
        -58.0    -58.0    -58.0  …    -58.0    -58.0    -58.0
        -61.0    -61.0    -61.0       -61.0    -61.0    -61.0
@@ -209,7 +215,51 @@
 
 ## --- SRTM15_PLUS (15 arc second topography)
 
-    # Read srtm15plus file from HDF5 storage, downloading from cloud if necessary
+    """
+    ```julia
+    get_srtm15plus([varname])
+    ```
+    Read SRTM15plus file from HDF5 storage (15 arc second topography from the
+    Shuttle Radar Topography Mission), downloading from cloud if necessary.
+
+    Available `varname`s (ETOPO variable names) include:
+      "elevation"
+      "y_lat_cntr"
+      "x_lon_cntr"
+      "cellsize"
+      "scalefactor"
+      "nanval"
+      "reference"
+
+    Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    See also: `find_srtm15plus`.
+
+    ## Examples
+    ```julia
+    julia> get_srtm15plus()
+    Dict{String, Any} with 7 entries:
+      "cellsize"    => 0.00416667
+      "scalefactor" => 240
+      "x_lon_cntr"  => [-180.0, -179.996, -179.992, -179.988, -179.983,…
+      "reference"   => "http://topex.ucsd.edu/WWW_html/srtm30_plus.html"
+      "y_lat_cntr"  => [-90.0, -89.9958, -89.9917, -89.9875, -89.9833, …
+      "nanval"      => -32768
+      "elevation"   => Int16[-32768 -32768 … -32768 -32768; 3124 3124 ……
+
+    julia> get_srtm15plus("elevation")
+    43201×86401 Matrix{Int16}:
+     -32768  -32768  -32768  -32768  …  -32768  -32768  -32768
+       3124    3124    3124    3124       3113    3113    3124
+       3123    3123    3123    3122       3111    3111    3123
+       3121    3121    3121    3121       3110    3110    3121
+          ⋮                          ⋱                       ⋮
+      -4225   -4224   -4224   -4224      -4224   -4225   -4225
+      -4223   -4222   -4222   -4223      -4223   -4223   -4223
+      -4223   -4223   -4223   -4223      -4223   -4223   -4223
+      -4230   -4230   -4230   -4230  …   -4230   -4230   -4230
+    ```
+    """
     function get_srtm15plus(varname="")
         # Available variable names: "elevation", "y_lat_cntr", "x_lon_cntr",
         # "nanval", "cellsize", "scalefactor", and "reference". Units are
@@ -232,8 +282,37 @@
     end
     export get_srtm15plus
 
-    # Find the elevation of points at position (lat,lon) on the surface of the
-    # Earth, using the SRTM15plus 15-arc-second elevation model.
+
+    """
+    ```julia
+    find_srtm15plus([srtm], lat, lon, [T=Float64])
+    ```
+    Find the elevation of points at position (`lat`, `lon`) on the surface of the
+    Earth, using the SRTM15plus 15-arc-second elevation model.
+
+    Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    See also: `get_srtm15plus`.
+
+    ## Examples
+    ```julia
+    julia> srtm = get_srtm15plus("elevation")
+    43201×86401 Matrix{Int16}:
+     -32768  -32768  -32768  -32768  …  -32768  -32768  -32768
+       3124    3124    3124    3124       3113    3113    3124
+       3123    3123    3123    3122       3111    3111    3123
+       3121    3121    3121    3121       3110    3110    3121
+          ⋮                          ⋱                       ⋮
+      -4225   -4224   -4224   -4224      -4224   -4225   -4225
+      -4223   -4222   -4222   -4223      -4223   -4223   -4223
+      -4223   -4223   -4223   -4223      -4223   -4223   -4223
+      -4230   -4230   -4230   -4230  …   -4230   -4230   -4230
+
+    julia> find_srtm15plus(srtm, 43.702245, -72.0929)
+    0-dimensional Array{Float64, 0}:
+    252.0
+    ```
+    """
     find_srtm15plus(lat,lon) = find_srtm15plus(get_srtm15plus(),lat,lon)
     find_srtm15plus(srtm::Dict, lat, lon) = find_srtm15plus(srtm["elevation"], lat, lon)
     function find_srtm15plus(srtm::AbstractArray, lat, lon, T=Float64)
