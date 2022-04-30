@@ -41,8 +41,8 @@
 
 ## -- Test complete data
 
-	@test all(find_crust1_layer(lats,lons,6) .≈ ([6.3, 6.0], [3.63, 3.5], [2.79, 2.72], [15.4, 17.73]))
-	@test all(find_crust1_layer(lats,lons,7) .≈ ([6.6, 6.6], [3.8, 3.8], [2.86, 2.86], [13.57, 16.21]))
-	@test all(find_crust1_layer(lats,lons,8) .≈ ([7.0, 7.2], [3.99, 4.1], [2.95, 3.03], [7.70, 16.72]))
+	@test all(find_crust1_layer(lats,lons,6) .≈ ([6.3, 6.0], [3.63, 3.5], [2790., 2720.], [15.4, 17.73]))
+	@test all(find_crust1_layer(lats,lons,7) .≈ ([6.6, 6.6], [3.8, 3.8], [2860., 2860.], [13.57, 16.21]))
+	@test all(find_crust1_layer(lats,lons,8) .≈ ([7.0, 7.2], [3.99, 4.1], [2950., 3030.], [7.70, 16.72]))
 
 ## ---

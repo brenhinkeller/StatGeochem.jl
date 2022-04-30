@@ -1,10 +1,12 @@
 ## --- CRUST 1.0
 
-    # Download CRUST 1.0 data and references from cloud
+    """
+    ```julia
+    get_crust1()
+    ```
+    Download CRUST 1.0 data and references.
+    """
     function get_crust1()
-        # Available variable names: "seafloorage", "seafloorage_sigma",
-        # "seafloorrate", "information", and "reference".
-
         # Construct file paths
         filedir = joinpath(resourcepath,"crust1")
         referencepath = joinpath(filedir,"crust1.references.txt")
@@ -28,7 +30,34 @@
     end
     export get_crust1
 
-    # Get all point data (Vp, Vs, Rho, layer thickness) from Crust 1.0 layer
+    """
+    ```julia
+    find_crust1_layer(lat,lon,layer)
+    ```
+    Return all point data (Vp, Vs, Rho, layer thickness) for a given `lat`itude,
+    `lon`gitude, and crustal `layer`.
+
+    Accepts `lat` and `lon` both as `Numbers` and as `AbstractArray`s, but given
+    the overhead of opening and reading the crust1 files, you should generally
+    aim to provide large arrays with as many values in a single query as possible.
+
+    Available `layer`s:
+    `1`) water
+    `2`) ice
+    `3`) upper sediments   (VP, VS, rho not defined in all cells)
+    `4`) middle sediments  "
+    `5`) lower sediments   "
+    `6`) upper crystalline crust
+    `7`) middle crystalline crust
+    `8`) lower crystalline crust
+    Results are returned in form `(Vp, Vs, Rho, thickness)`
+
+    ## Examples
+    ```julia
+    julia> vp, vs, rho, thickness = find_crust1_layer([43.702245], [-72.0929], 8)
+    ([7.0], [3.99], [2950.0], [7.699999999999999])
+    ```
+    """
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
 
@@ -72,7 +101,7 @@
            for i=1:nlon
               vp[:,j,i] = delim_string_parse(readline(vpfile), ' ', Float64, merge=true)
               vs[:,j,i] = delim_string_parse(readline(vsfile), ' ', Float64, merge=true)
-              rho[:,j,i] = delim_string_parse(readline(rhofile), ' ', Float64, merge=true)
+              rho[:,j,i] = delim_string_parse(readline(rhofile), ' ', Float64, merge=true) * 1000 # convert to kg/m3
               bnd[:,j,i] = delim_string_parse(readline(bndfile), ' ', Float64, merge=true)
           end
         end
@@ -117,7 +146,34 @@
     end
     export find_crust1_layer
 
-    # Get seismic data (Vp, Vs, Rho) for crust 1.0 layer
+    """
+    ```julia
+    find_crust1_seismic(lat,lon,layer)
+    ```
+    Return all seismic data (Vp, Vs, Rho) for a given `lat`itude, `lon`gitude,
+    and crustal `layer`.
+
+    Accepts `lat` and `lon` both as `Numbers` and as `AbstractArray`s, but given
+    the overhead of opening and reading the crust1 files, you should generally
+    aim to provide large arrays with as many values in a single query as possible.
+
+    Available `layer`s:
+    `1`) water
+    `2`) ice
+    `3`) upper sediments   (VP, VS, rho not defined in all cells)
+    `4`) middle sediments  "
+    `5`) lower sediments   "
+    `6`) upper crystalline crust
+    `7`) middle crystalline crust
+    `8`) lower crystalline crust
+    Results are returned in form `(Vp, Vs, Rho, thickness)`
+
+    ## Examples
+    ```julia
+    julia> vp, vs, rho = find_crust1_seismic([43.702245], [-72.0929], 8)
+    ([7.0], [3.99], [2950.0])
+    ```
+    """
     function find_crust1_seismic(lat,lon,layer)
 
         if length(lat) != length(lon)
@@ -199,7 +255,35 @@
     end
     export find_crust1_seismic
 
-    # Get layer thickness for crust 1.0 layer
+    """
+    ```julia
+    find_crust1_thickness(lat,lon,layer)
+    ```
+    Return layer thickness for a crust 1.0 `layer` at a given `lat`itude and
+    `lon`gitude.
+
+    Accepts `lat` and `lon` both as `Numbers` and as `AbstractArray`s, but given
+    the overhead of opening and reading the crust1 files, you should generally
+    aim to provide large arrays with as many values in a single query as possible.
+
+    Available `layer`s:
+    `1`) water
+    `2`) ice
+    `3`) upper sediments   (VP, VS, rho not defined in all cells)
+    `4`) middle sediments  "
+    `5`) lower sediments   "
+    `6`) upper crystalline crust
+    `7`) middle crystalline crust
+    `8`) lower crystalline crust
+    Results are returned in form `(Vp, Vs, Rho, thickness)`
+
+    ## Examples
+    ```julia
+    julia> find_crust1_thickness([43.702245], [-72.0929], 8)
+    1-element Vector{Float64}:
+     7.699999999999999
+    ```
+    """
     function find_crust1_thickness(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
 
@@ -267,9 +351,37 @@
     end
     export find_crust1_thickness
 
-    # Get detph to layer base for crust 1.0 layer
+    """
+    ```julia
+    find_crust1_base(lat,lon,layer)
+    ```
+    Return elevation (relative to sea level) of the layer base for a crust 1.0
+    `layer` at a given `lat`itude and `lon`gitude.
+
+    Accepts `lat` and `lon` both as `Numbers` and as `AbstractArray`s, but given
+    the overhead of opening and reading the crust1 files, you should generally
+    aim to provide large arrays with as many values in a single query as possible.
+
+    Available `layer`s:
+    `1`) water
+    `2`) ice
+    `3`) upper sediments   (VP, VS, rho not defined in all cells)
+    `4`) middle sediments  "
+    `5`) lower sediments   "
+    `6`) upper crystalline crust
+    `7`) middle crystalline crust
+    `8`) lower crystalline crust
+    Results are returned in form `(Vp, Vs, Rho, thickness)`
+
+    ## Examples
+    ```julia
+    julia> find_crust1_base([43.702245], [-72.0929], 8)
+    1-element Vector{Float64}:
+     -36.26
+    ```
+    """
     function find_crust1_base(lat,lon,layer)
-        # Layer thickness for a given lat, lon, and crustal layer.
+        # Depth to layer base for a given lat, lon, and crustal layer.
 
         if length(lat) != length(lon)
             error("lat and lon must be equal length\n")

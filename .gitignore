@@ -29,4 +29,5 @@ Manifest.toml
 # Don't include dev tests
 dev/
 scratch/
+test/out*/
 test.jl
