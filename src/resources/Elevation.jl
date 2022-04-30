@@ -6,7 +6,32 @@
     continents = ["Africa","Eurasia","North America","South America","Australia","Antarctica","NA"]
     export continents
 
-    # Find which continent a sample originates from
+    """
+    ```julia
+    find_geolcont(lat,lon)
+    ```
+    Find which continent a sample originates from.
+
+    Continents:
+      1: "Africa"
+      2: "Eurasia"
+      3: "North America"
+      4: "South America"
+      5: "Australia"
+      6: "Antarctica"
+      7: "NA"
+
+    ## Examples
+    ```julia
+    julia> find_geolcont(43.702245, -72.0929)
+    0-dimensional Array{Int64, 0}:
+    3
+
+    julia> continents[find_geolcont(43.702245, -72.0929)]
+    0-dimensional Array{String, 0}:
+    "North America"
+    ```
+    """
     function find_geolcont(lat,lon)
         # Interpret user input
         if length(lat) != length(lon)
