@@ -53,7 +53,46 @@
 
 ## --- ETOPO1 (1 arc minute topography)
 
-    # Read etopo file from HDF5 storage, downloading from cloud if necessary
+    """
+    ```julia
+    get_etopo([varname])
+    ```
+    Read ETOPO1 (1 arc minute topography) file from HDF5 storage, downloading
+    from cloud if necessary.
+
+    Available `varname`s (ETOPO variable names) include:
+      "elevation"
+      "y_lat_cntr"
+      "x_lon_cntr"
+      "cellsize"
+      "scalefactor"
+      "reference"
+
+    Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    ## Examples
+    ```julia
+    julia> get_etopo()
+    Dict{String, Any} with 6 entries:
+      "cellsize"    => 0.0166667
+      "scalefactor" => 60
+      "x_lon_cntr"  => [-179.992, -179.975, -179.958, -179.942, -179.925, -1…
+      "reference"   => "Amante, C. and B.W. Eakins, 2009. ETOPO1 1 Arc-Minut…
+      "y_lat_cntr"  => [-89.9917, -89.975, -89.9583, -89.9417, -89.925, -89.…
+      "elevation"   => [-58.0 -58.0 … -58.0 -58.0; -61.0 -61.0 … -61.0 -61.0…
+
+    julia> get_etopo("elevation")
+    10800×21600 Matrix{Float64}:
+      -58.0    -58.0    -58.0  …    -58.0    -58.0    -58.0
+      -61.0    -61.0    -61.0       -61.0    -61.0    -61.0
+      -62.0    -63.0    -63.0       -63.0    -63.0    -62.0
+      -61.0    -62.0    -62.0       -62.0    -62.0    -61.0
+        ⋮                      ⋱
+     -4226.0  -4226.0  -4227.0     -4227.0  -4227.0  -4227.0
+     -4228.0  -4228.0  -4229.0     -4229.0  -4229.0  -4229.0
+     -4229.0  -4229.0  -4229.0     -4229.0  -4229.0  -4229.0
+    ```
+    """
     function get_etopo(varname="")
         # Available variable names: "elevation", "y_lat_cntr", "x_lon_cntr",
         # "cellsize", "scalefactor", and "reference". Units are meters of
@@ -76,8 +115,34 @@
     end
     export get_etopo
 
-    # Find the elevation of points at position (lat,lon) on the surface of the
-    # Earth, using the ETOPO elevation model.
+
+    """
+    ```julia
+    find_etopoelev([etopo], lat, lon, [T=Float64])
+    ```
+    Find the elevation of points at position (`lat`, `lon`) on the surface of the
+    Earth, using the ETOPO1 one-arc-degree elevation model.
+
+    Units are meters of elevation and decimal degrees of latitude and longitude.
+
+    ## Examples
+    ```julia
+    julia> etopo=get_etopo("elevation")
+    10800×21600 Matrix{Float64}:
+       -58.0    -58.0    -58.0  …    -58.0    -58.0    -58.0
+       -61.0    -61.0    -61.0       -61.0    -61.0    -61.0
+       -62.0    -63.0    -63.0       -63.0    -63.0    -62.0
+       -61.0    -62.0    -62.0       -62.0    -62.0    -61.0
+         ⋮                      ⋱
+     -4226.0  -4226.0  -4227.0     -4227.0  -4227.0  -4227.0
+     -4228.0  -4228.0  -4229.0     -4229.0  -4229.0  -4229.0
+     -4229.0  -4229.0  -4229.0     -4229.0  -4229.0  -4229.0
+
+    julia> find_etopoelev(etopo, 43.702245, -72.0929)
+    0-dimensional Array{Float64, 0}:
+    294.0
+    ```
+    """
     find_etopoelev(lat,lon) = find_etopoelev(get_etopo(),lat,lon)
     find_etopoelev(etopo::Dict, lat, lon) = find_etopoelev(etopo["elevation"], lat, lon)
     function find_etopoelev(etopo::AbstractArray, lat, lon, T=Float64)
