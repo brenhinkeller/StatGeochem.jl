@@ -60,7 +60,7 @@
 
         # Create and fill output vector
         contindex = Array{Int}(undef,size(lat))
-        for i=1:length(lat)
+        for i ∈ eachindex(lat)
          if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
              # Result is unknown if either input is NaN or out of bounds
              contindex[i] = 7
@@ -199,7 +199,7 @@
 
         # Create and fill output vector
         result = Array{T}(undef,size(lat))
-        for i=1:length(lat)
+        for i ∈ eachindex(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
                 result[i] = NaN
@@ -341,7 +341,7 @@
 
         # Create and fill output vector
         out = Array{T}(undef,size(lat))
-        for i=1:length(lat)
+        for i ∈ eachindex(lat)
             if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
                 # Result is NaN if either input is NaN or out of bounds
                 out[i] = NaN

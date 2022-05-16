@@ -40,7 +40,7 @@
         end
         # Estimate SiO2 from rock type
         needssi = isnan.(pr[m]["SiO2"])
-        for i=1:length(str)
+        for i ∈ eachindex(str)
             t = containsi.(pr[m]["Rock Type"], str[i]) .& needssi
             # Average together, such that "basaltic andesite" is halfway between "basalt" and "andesite"
             pr[m]["SiO2"][t] = nanmean([pr[m]["SiO2"][t] val[i]*ones(count(t))], dim=2)
@@ -103,9 +103,9 @@
     # for mineral={'Apatite','Amphibole','Clinopyroxene','Orthopyroxene','Garnet','Sphene','Allanite','Baddeleyite'}
     for m in pd["minerals"]
         h = plot(title=m, legend=:bottomleft)
-        for i = 1:length(pd["samples"])
+        for i ∈ eachindex(pd["samples"])
             kD = fill(NaN,length(ree3))
-            for j = 1:length(ree3)
+            for j ∈ eachindex(ree3)
                 kD[j] = pd[m][ree3[j]][i]
             end
 
@@ -122,7 +122,7 @@
                 plot!(h, r, blundy_wood(r,f.param), label="", color=lines[mod(i,length(lines))+1]) # Plot
 
                 # Replace stored partition coefficients with new fits
-                for j = 1:length(ree3)
+                for j ∈ eachindex(ree3)
                     pd[m][ree3[j]][i] = blundy_wood(r[j],f.param)
                 end
             end
@@ -134,14 +134,14 @@
     # 60% Eu as Eu2+ (c.f. Ba, Sr, Ca) and 40% as Eu3+ (c.f. Sm, Gd)
     # for m in = ["Albite","Anorthite","Orthoclase","Apatite"]
     for m in pd["minerals"]
-        for i = 1:length(pd["samples"])
+        for i ∈ eachindex(pd["samples"])
             if isnan(pd[m]["Eu"][i])
                 pd[m]["Eu"][i] = log10(0.6*10^nanmean([pd[m]["Ba"][i], pd[m]["Sr"][i]]) + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
             end
         end
     end
     for m in ("Monazite", "Xenotime", "Allanite")
-        for i = 1:length(pd["samples"])
+        for i ∈ eachindex(pd["samples"])
             if isnan(pd[m]["Eu"][i])
                 pd[m]["Eu"][i] = log10(0.6*0 + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
             end

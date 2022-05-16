@@ -59,7 +59,7 @@
         delim_pos = 0
         n = offset
         if merge
-            for i = 1:length(str)
+            for i ∈ eachindex(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
@@ -74,7 +74,7 @@
                 end
             end
         else
-            for i = 1:length(str)
+            for i ∈ eachindex(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos
@@ -170,7 +170,7 @@
 
         # Max number of delimted values
         ndelims = 2
-        for i = 1:length(str)
+        for i ∈ eachindex(str)
             if str[i] == delim
                 ndelims += 1
             end
@@ -189,7 +189,7 @@
         delim_pos = 0
         n = 0
         if merge
-            for i = 1:length(str)
+            for i ∈ eachindex(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos+1
@@ -202,7 +202,7 @@
                 end
             end
         else
-            for i = 1:length(str)
+            for i ∈ eachindex(str)
                 if str[i] == delim
                     delim_pos = i
                     if delim_pos > last_delim_pos
@@ -497,7 +497,7 @@
             result["elements"] = elements
 
             # Parse the input array, minus empty-named columns
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 if 1+skipstart == size(data,1)
                     column = data[end,i]
                 else
@@ -589,7 +589,7 @@
         # those if `findnumeric` is set
         if findnumeric
             is_numeric_element = Array{Bool}(undef,length(elements))
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 is_numeric_element[i] = sum(isnumeric.(dataset[elements[i]])) > sum(nonnumeric.(dataset[elements[i]]))
             end
             elements = elements[is_numeric_element]
@@ -601,7 +601,7 @@
             result = Array{Float64}(undef, length(dataset[elements[1]][rows]), length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 result[:,i] = floatify.(dataset[elements[i]][rows], floattype)
             end
         else
@@ -609,7 +609,7 @@
             result = Array{Any}(undef, length(dataset[elements[1]][rows])+1, length(elements))
 
             # Parse the input dict
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = elements[i]
                 result[2:end,i] .= dataset[elements[i]][rows]
@@ -647,7 +647,7 @@
             result = Array{floattype}(undef,length(dataset[elements[1]][rows]),length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 result[:,i] = floatify.(dataset[elements[i]][rows], floattype)
             end
         else
@@ -655,7 +655,7 @@
             result = Array{Any}(undef,length(dataset[elements[1]][rows])+1,length(elements))
 
             # Parse the input dict
-            for i = 1:length(elements)
+            for i ∈ eachindex(elements)
                 # Column name goes in the first row, everything else after that
                 result[1,i] = string(elements[i])
                 result[2:end,i] .= dataset[elements[i]][rows]

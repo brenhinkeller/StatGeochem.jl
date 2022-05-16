@@ -115,7 +115,7 @@
 
         # Make and fill output array
         out=Array{Float64}(undef,size(x))
-        for i=1:length(x)
+        for i ∈ eachindex(x)
             # If there is out data for row(i), col(i)
             if isnan(x[i]) || isnan(y[i]) || x[i]<1 || x[i]>10800 || y[i]<1 || y[i]>8640
                 out[i] = NaN

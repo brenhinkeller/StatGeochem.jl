@@ -127,7 +127,7 @@
         thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j=1:length(lat)
+        for j ∈ eachindex(lat)
             if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
                 vpout[j] = NaN
                 vsout[j] = NaN
@@ -238,7 +238,7 @@
         rhoout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j=1:length(lat)
+        for j ∈ eachindex(lat)
             if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
                 vpout[j] = NaN
                 vsout[j] = NaN
@@ -338,7 +338,7 @@
         thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j=1:length(lat)
+        for j ∈ eachindex(lat)
             if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
                 thkout[j] = NaN
             else
@@ -433,7 +433,7 @@
         baseout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j=1:length(lat)
+        for j ∈ eachindex(lat)
             if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lon[j] < -180
                 baseout[j] = NaN
             else

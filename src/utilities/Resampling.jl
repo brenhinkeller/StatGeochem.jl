@@ -391,7 +391,7 @@
         N = fill(0,nbins)
         mu = fill(0.0,nbins)
         s2 = fill(0.0,nbins)
-        for i = 1:length(x)
+        for i ∈ eachindex(x)
             if (0 < index_float[i] <= nbins) && !isnan(y[i])
                 index = ceil(Int, index_float[i])
                 N[index] += 1
@@ -941,8 +941,8 @@
             else
                 # Otherwise, calculate weight
                 @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
-                @batch for g = 1:length(spatialscaleᵣ)
-                    for h = 1:length(agescale)
+                @batch for g ∈ eachindex(spatialscaleᵣ)
+                    for h ∈ eachindex(agescale)
                         kᵢ = 0.0
                         @turbo for j ∈ 1:N
                             kᵢ += 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)

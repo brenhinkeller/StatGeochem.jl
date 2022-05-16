@@ -98,7 +98,7 @@
     """
     function oxideconversion!(dataset::Dict; unitratio::Number=10000)
         # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
-        # for i=1:length(source)
+        # for i ∈ eachindex(source)
         #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
         # end
 
@@ -108,7 +108,7 @@
         conversionfactor = [2.13932704290547,1.66847584248889,1.88944149488507,1.28648836426407,1.42973254639611,1.65825961736268,1.39919258253823,1.29121895771597,2.1526657060518732,1.34795912485574,1.20459963614796,2.29133490474735,1.46154369861159,1.27258582901258,1.27147688434143,3.66405794688203,1.99806612601372,8.93601190476191]
 
         # If source field exists, fill in destination from source
-        for i = 1:length(source)
+        for i ∈ eachindex(source)
             if haskey(dataset, source[i])
                 if ~haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
                     dataset[dest[i]] = fill(NaN, size(dataset[source[i]]))
@@ -280,19 +280,19 @@
 
         # Make .melts file containing the starting composition you want to run simulations on
         fp = open(prefix*"sc.melts", "w")
-        for i = 1:length(elements)
+        for i ∈ eachindex(elements)
             write(fp,"Initial Composition: $(elements[i]) $(trunc(composition[i],digits=4))\n")
         end
-        for i = 1:length(telements)
+        for i ∈ eachindex(telements)
             write(fp, "Initial Trace: $(telements[i]) $(trunc(tsc[i],digits=4))\n")
         end
 
         write(fp, "Initial Temperature: $(trunc(T_range[1],digits=2))\nInitial Pressure: $(trunc(P_range[1],digits=2))\nlog fo2 Path: $fo2path\n")
 
-        for i = 1:length(fractionate)
+        for i ∈ eachindex(fractionate)
             write(fp,"Fractionate: $(fractionate[i])\n")
         end
-        for i = 1:length(suppress)
+        for i ∈ eachindex(suppress)
             write(fp,"Suppress: $(suppress[i])\n")
         end
 
@@ -628,7 +628,7 @@
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
 
         # Whole-rock composition
-        for i = 1:length(composition)
+        for i ∈ eachindex(composition)
             write(fp,"$(composition[i]) ")
         end
         # Solution model
@@ -712,7 +712,7 @@
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
 
         # Whole-rock composition
-        for i = 1:length(composition)
+        for i ∈ eachindex(composition)
             write(fp,"$(composition[i]) ")
         end
         # Solution model
@@ -792,7 +792,7 @@
         write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
 
         # Whole-rock composition
-        for i = 1:length(composition)
+        for i ∈ eachindex(composition)
             write(fp,"$(composition[i]) ")
         end
         # Solution model
