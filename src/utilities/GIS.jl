@@ -5,12 +5,12 @@
         fid = open(fname)
 
         metadata = Dict{String,Number}()
-        metadata["ncols"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nrows"] = parse(Int64, match(r"  *(.*?)$", readline(fid))[1])
-        metadata["xll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
-        metadata["yll_corner"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
-        metadata["cellsize"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
-        metadata["nodata"] = parse(Float64, match(r"  *(.*?)$", readline(fid))[1])
+        metadata["ncols"] = parse(Int64, first(match(r"  *(.*?)$", readline(fid))))
+        metadata["nrows"] = parse(Int64, first(match(r"  *(.*?)$", readline(fid))))
+        metadata["xll_corner"] = parse(Float64, first(match(r"  *(.*?)$", readline(fid))))
+        metadata["yll_corner"] = parse(Float64, first(match(r"  *(.*?)$", readline(fid))))
+        metadata["cellsize"] = parse(Float64, first(match(r"  *(.*?)$", readline(fid))))
+        metadata["nodata"] = parse(Float64, first(match(r"  *(.*?)$", readline(fid))))
 
         nrows = metadata["nrows"]
         ncols = metadata["ncols"]

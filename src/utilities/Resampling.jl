@@ -216,7 +216,7 @@
     Bootstrap resample a dictionary-based `dataset` with uncertainties stored either
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
-    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(elements[1]));
+    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
             kernel = gaussian,
             rng = MersenneTwister()
         )
@@ -326,7 +326,7 @@
     Bootstrap resample (without uncertainty) a `dataset` dict to length `nrows`.
     Optionally provide weights `p` either as a vector (one-weight-per-sample) or scalar.
     """
-    function randsample(dataset::Dict, nrows::Integer, elements=in["elements"], p=min(0.2,nrows/length(in[elements[1]])))
+    function randsample(dataset::Dict, nrows::Integer, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)])))
         data = unelementify(dataset, elements, floatout=true)
         sdata = randsample(data, nrows, p)
         return elementify(sdata, elements, skipstart=0, importas=:Dict)

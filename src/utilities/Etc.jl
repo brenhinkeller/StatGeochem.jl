@@ -60,11 +60,11 @@
         jmax = jmax[1:markernumber]
 
         # Calculate x and y positions from indices
-        Δy = ylims[2] - ylims[1]
-        y = ylims[2] .- (imin+imax)/2 * Δy / yrows
+        Δy = last(ylims) - first(ylims)
+        y = last(ylims) .- (imin+imax)/2 * Δy / yrows
         dy = (imax-imin)/2 * Δy / yrows
-        Δx = xlims[2] - xlims[1]
-        x = (jmin+jmax)/2 * Δx / xrows .+ xlims[1]
+        Δx = last(xlims) - first(xlims)
+        x = (jmin+jmax)/2 * Δx / xrows .+ first(xlims)
         dx = (jmax-jmin)/2 * Δx / xrows
 
         return x, dx, y, dy
@@ -94,12 +94,12 @@
         yrows = size(t,1)
 
         # Calculate x for each column
-        x = cntr(range(xlims[1], xlims[2], length=xrows+1))
+        x = cntr(range(first(xlims), last(xlims), length=xrows+1))
 
         # y as a function of i-position in image
         # (note: images are typically flipped)
-        Δy = ylims[2] - ylims[1]
-        yᵢ(i) = ylims[2] - i * Δy / yrows
+        Δy = last(ylims) - first(ylims)
+        yᵢ(i) = last(ylims) - i * Δy / yrows
 
         # Calculate y, defaulting to NaN if no matches
         y = fill(NaN, xrows)
