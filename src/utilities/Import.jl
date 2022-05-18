@@ -434,7 +434,7 @@
 
     """
     ```julia
-    elementify(data::Array, elements::Array=data[1,:];
+    elementify(data::Array, [elements::Array=data[1,:]];
         \timportas=:Dict,
         \tstandardize::Bool=true,
         \tfloattype=Float64,
@@ -468,9 +468,25 @@
       "La"       => [1.5, 3.7]
     ```
     """
-    function elementify(data::Array, elements::Array=data[1,:];
+    function elementify(data::Array;
             importas=:Tuple,
             skipstart::Integer=1,
+            standardize::Bool=true,
+            floattype=Float64,
+            skipnameless::Bool=true,
+            sumduplicates::Bool=false
+        )
+        elementify(data, data[1,:];
+            importas=importas,
+            skipstart=skipstart,
+            standardize=standardize,
+            floattype=floattype,
+            skipnameless=skipnameless,
+            sumduplicates=sumduplicates)
+    end
+    function elementify(data::Array, elements::Array;
+            importas=:Tuple,
+            skipstart::Integer=0,
             standardize::Bool=true,
             floattype=Float64,
             skipnameless::Bool=true,
