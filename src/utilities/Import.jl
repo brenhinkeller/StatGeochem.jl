@@ -51,7 +51,7 @@
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if ~isempty(str) && str[1] == delim
+        if ~isempty(str) && first(str) == delim
             last_delim_pos = 1
         end
 
@@ -181,7 +181,7 @@
 
         # Ignore initial delimiter
         last_delim_pos = 0
-        if str[1] == delim
+        if first(str) == delim
             last_delim_pos = 1
         end
 
@@ -468,7 +468,7 @@
       "La"       => [1.5, 3.7]
     ```
     """
-    function elementify(data::Array;
+    function elementify(data::AbstractArray;
             importas=:Tuple,
             skipstart::Integer=1,
             standardize::Bool=true,
@@ -476,7 +476,7 @@
             skipnameless::Bool=true,
             sumduplicates::Bool=false
         )
-        elementify(data, data[1,:];
+        elementify(data, data[firstindex(data),:];
             importas=importas,
             skipstart=skipstart,
             standardize=standardize,
@@ -484,7 +484,7 @@
             skipnameless=skipnameless,
             sumduplicates=sumduplicates)
     end
-    function elementify(data::Array, elements::Array;
+    function elementify(data::AbstractArray, elements::AbstractArray;
             importas=:Tuple,
             skipstart::Integer=0,
             standardize::Bool=true,
@@ -513,36 +513,37 @@
             result["elements"] = elements
 
             # Parse the input array, minus empty-named columns
-            for i ∈ eachindex(elements)
-                if 1+skipstart == size(data,1)
-                    column = data[end,i]
+            i₀ = firstindex(data) + skipstart
+            for j ∈ eachindex(elements)
+                if skipstart == size(data,1)-1
+                    column = data[end,j]
                 else
-                    column = data[(1+skipstart):end,i]
+                    column = data[i₀:end,j]
                 end
                 column_is_numeric = sum(isnumeric.(column)) >= sum(nonnumeric.(column))
 
-                if haskey(result,elements[i])
+                if haskey(result, elements[j])
                     # If key already exists
-                    if column_is_numeric && (standardize || (sum(isnumeric.(result[elements[i]])) >= sum(nonnumeric.(result[elements[i]]))) )
+                    if column_is_numeric && (standardize || (sum(isnumeric.(result[elements[j]])) >= sum(nonnumeric.(result[elements[j]]))) )
                         # If either this column or the existing one is plausibly numeric, sum or average the two
                         if sumduplicates
-                            result[elements[i]] = floatify.(result[elements[i]], floattype) + floatify.(column, floattype)
+                            result[elements[j]] = floatify.(result[elements[j]], floattype) + floatify.(column, floattype)
                         else
-                            if 1+skipstart == size(data,1)
-                                result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )[1]
+                            if skipstart == size(data,1)-1
+                                result[elements[j]] = first( nanmean( hcat(floatify.(result[elements[j]], floattype), floatify.(column, floattype)), dim=2 ) )
                             else
-                                result[elements[i]] = nanmean( hcat(floatify.(result[elements[i]], floattype), floatify.(column, floattype)), dim=2 )
+                                result[elements[j]] = nanmean( hcat(floatify.(result[elements[j]], floattype), floatify.(column, floattype)), dim=2 )
                             end
                         end
                     elseif standardize
                         # If neither is numeric, but standardize is set, must return a string
-                        result[elements[i]] = string.(result[elements[i]]) .* "|" .* string(lastcol)
+                        result[elements[j]] = string.(result[elements[j]]) .* "|" .* string(lastcol)
                     else
                         # If neither is plausibly numeric, contatenate the columns and move on
-                        result[elements[i]] = hcat(result[elements[i]], column)
+                        result[elements[j]] = hcat(result[elements[j]], column)
                     end
                 else
-                    result[elements[i]] = columnformat(column, standardize, floattype)
+                    result[elements[j]] = columnformat(column, standardize, floattype)
                 end
             end
 
@@ -554,7 +555,8 @@
             t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
             elements = sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
-            values = (columnformat(data[1+skipstart:end,i], standardize, floattype) for i in findall(t))
+            i₀ = firstindex(data) + skipstart
+            values = (columnformat(data[i₀:end, j], standardize, floattype) for j in findall(t))
             return NamedTuple{symbols}(values)
         end
     end
@@ -588,7 +590,7 @@
      3.7    2.9    2.5
     ```
     """
-    function unelementify(dataset::Dict, elements::Array=sort(collect(keys(dataset)));
+    function unelementify(dataset::Dict, elements=sort(collect(keys(dataset)));
             floatout::Bool=false,
             floattype=Float64,
             findnumeric::Bool=false,
@@ -614,7 +616,7 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{Float64}(undef, length(dataset[elements[1]][rows]), length(elements))
+            result = Array{Float64}(undef, length(dataset[first(elements)][rows]), length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i ∈ eachindex(elements)
@@ -622,7 +624,7 @@
             end
         else
             # Allocate output Array{Any}
-            result = Array{Any}(undef, length(dataset[elements[1]][rows])+1, length(elements))
+            result = Array{Any}(undef, length(dataset[first(elements)][rows])+1, length(elements))
 
             # Parse the input dict
             for i ∈ eachindex(elements)
@@ -660,7 +662,7 @@
         # Generate output array
         if floatout
             # Allocate output Array{Float64}
-            result = Array{floattype}(undef,length(dataset[elements[1]][rows]),length(elements))
+            result = Array{floattype}(undef,length(dataset[first(elements)][rows]),length(elements))
 
             # Parse the input dict. No column names if `floatout` is set
             for i ∈ eachindex(elements)
@@ -668,7 +670,7 @@
             end
         else
             # Allocate output Array{Any}
-            result = Array{Any}(undef,length(dataset[elements[1]][rows])+1,length(elements))
+            result = Array{Any}(undef,length(dataset[first(elements)][rows])+1,length(elements))
 
             # Parse the input dict
             for i ∈ eachindex(elements)
@@ -730,7 +732,7 @@
 
         # Combine datasets
         elements = d1ₑ ∪ d2ₑ
-        s1, s2 = size(d1[d1ₑ[1]]),  size(d2[d2ₑ[1]])
+        s1, s2 = size(d1[first(d1ₑ)]),  size(d2[first(d2ₑ)])
         result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elements)
         haskey(d1,"elements") && (result["elements"] = elements)
         return result
