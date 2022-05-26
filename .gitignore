@@ -30,4 +30,5 @@ Manifest.toml
 dev/
 scratch/
 test/out*/
+test/grid.asc
 test.jl

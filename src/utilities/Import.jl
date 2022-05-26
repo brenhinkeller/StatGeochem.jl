@@ -854,7 +854,21 @@
         )
 
         # Read file
-        data = readdlm(filepath, delim, skipstart=skipstart)
+        io = open(filepath, "r")
+        if read(io, Char) == '\ufeff'
+            @warn """Skipping hidden \'\\ufeff\' (U+FEFF) character at start of input file.
+
+            This character is often added to CSV files by Microsoft Excel (and some other
+            Microsoft products) as what appears to be what we might call an "extension",
+            which would would cause file parsing to fail if we didn't manually remove it.
+
+            Try using open software like LibreOffice instead of Excel to make this warning go away.
+            """
+        else
+            seekstart(io)
+        end
+        data = readdlm(io, delim, skipstart=skipstart)
+        close(io)
         # Exclude rows with fewer than `mindefinedcolumns` columns
         if mindefinedcolumns > 0
             definedcolumns = vec(sum(.~ isempty.(data), dims=2))
