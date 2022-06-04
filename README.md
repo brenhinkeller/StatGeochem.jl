@@ -4,7 +4,7 @@
 [![Build Status][ci-img]][ci-url]
 [![codecov.io][codecov-img]][codecov-url]
 
-_Some computational tools for statistical geochemistry and petrology_
+_Computational tools for statistical geochemistry and petrology_
 
 In addition to functions exported by StatGeochem directly, StatGeochem also reexports (and depends upon internally) both [StatGeochemBase.jl](https://github.com/brenhinkeller/StatGeochemBase.jl) and [NaNStatistics.jl](https://github.com/brenhinkeller/NaNStatistics.jl)
 
