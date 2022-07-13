@@ -434,7 +434,7 @@
 
     """
     ```julia
-    elementify(data::Array, [elements::Array=data[1,:]];
+    elementify(data::AbstractArray, [elements=data[1,:]];
         \timportas=:Dict,
         \tstandardize::Bool=true,
         \tfloattype=Float64,
@@ -484,7 +484,7 @@
             skipnameless=skipnameless,
             sumduplicates=sumduplicates)
     end
-    function elementify(data::AbstractArray, elements::AbstractArray;
+    function elementify(data::AbstractArray, elements;
             importas=:Tuple,
             skipstart::Integer=0,
             standardize::Bool=true,
@@ -508,9 +508,9 @@
             # Process elements array
             elements = string.(elements)
             if skipnameless
-                elements = elements[elements .!= ""]
+                elements = filter(!isempty, elements)
             end
-            result["elements"] = elements
+            result["elements"] = isa(elements, Vector) ? elements : collect(elements)
 
             # Parse the input array, minus empty-named columns
             i₀ = firstindex(data) + skipstart
@@ -552,11 +552,11 @@
             return result
         elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
             # Import as NamedTuple (more efficient future default)
-            t = skipnameless ? elements .!= "" : isa.(elements, AbstractString)
+            t = Bool[(isa(e, AbstractString) && (skipnameless && e != "")) for e in elements]
             elements = sanitizevarname.(elements[t])
             symbols = ((Symbol(e) for e ∈ elements)...,)
             i₀ = firstindex(data) + skipstart
-            values = (columnformat(data[i₀:end, j], standardize, floattype) for j in findall(t))
+            values = (columnformat(data[i₀:end, j], standardize, floattype) for j in findall(vec(t)))
             return NamedTuple{symbols}(values)
         end
     end
@@ -813,6 +813,7 @@
     ```julia
     function importdataset(filepath, delim;
         \timportas=:Dict,
+        \telements=nothing,
         \tstandardize::Bool=true,
         \tfloattype=Float64,
         \tskipstart::Integer=0,
@@ -827,6 +828,10 @@
 
         \timportas
     Specify the format of the imported dataset. Options include `:Dict` and `:Tuple`
+
+        \telements
+    Specify the names to be used for each element (i.e., column) of the dataset.
+    Default value (`nothing`) will cause `elements` to be read from the first row of the file
 
         \tstandardize
     Convert columns to uniform type wherever possible. Boolean; `true` by default.
@@ -846,6 +851,7 @@
     """
     function importdataset(filepath::AbstractString, delim::AbstractChar;
             importas=:Dict,
+            elements=nothing,
             standardize::Bool=true,
             floattype=Float64,
             skipstart::Integer=0,
@@ -876,12 +882,21 @@
             data = data[t,:]
         end
 
-        return elementify(data,
-            importas=importas,
-            standardize=standardize,
-            floattype=floattype,
-            skipnameless=skipnameless
-        )
+        if isnothing(elements)
+            return elementify(data,
+                importas=importas,
+                standardize=standardize,
+                floattype=floattype,
+                skipnameless=skipnameless
+            )
+        else
+            return elementify(data, elements,
+                importas=importas,
+                standardize=standardize,
+                floattype=floattype,
+                skipnameless=skipnameless
+            )
+        end
     end
     export importdataset
 
