@@ -915,7 +915,8 @@
                 @turbo for j ∈ 1:N
                     Δdᵣ = acos(min( latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j]), 1.0 ))
                     Δa = abs(age[i] - age[j])
-                    kᵢ += 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
+                    kᵢⱼ = 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
+                    kᵢ += kᵢⱼ * (kᵢⱼ == kᵢⱼ)
                 end
                 k[i] = kᵢ
             end
