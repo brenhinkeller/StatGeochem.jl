@@ -892,10 +892,18 @@
         latᵣ = materialize(vec(lat*PI_180))
         lonᵣ = materialize(vec(lon*PI_180))
         spatialscaleᵣ = materialize(spatialscale*PI_180)
+        ageᵥ = materialize(age)
 
-        _invweight(latᵣ, lonᵣ, materialize(age), lp, spatialscaleᵣ, materialize(agescale))
+        if any(isnan, latᵣ) || any(isnan, lonᵣ) || any(isnan, ageᵥ)
+            k = fill(Inf, length(latᵣ))
+            t = @turbo @. !(isnan(latᵣ) | isnan(lonᵣ) | isnan(ageᵥ))
+            k[t] .= invweight_nonans(latᵣ[t], lonᵣ[t], ageᵥ[t], lp, spatialscaleᵣ, materialize(agescale))
+            return k
+        else
+            return invweight_nonans(latᵣ, lonᵣ, ageᵥ, lp, spatialscaleᵣ, materialize(agescale))
+        end
     end
-    function _invweight(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ::Number, agescale::Number)
+    function invweight_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ::Number, agescale::Number)
 
         # Precalculate some sines and cosines
         latsin = @turbo sin.(latᵣ)
@@ -906,25 +914,20 @@
         k = Array{Float64}(undef, N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds @batch for i ∈ 1:N
-            if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
-                # If there is missing data, set k=inf for weight=0
-                k[i] = Inf
-            else
-                # Otherwise, calculate weight
-                kᵢ = 0.0
-                @turbo for j ∈ 1:N
-                    Δdᵣ = acos(min( latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j]), 1.0 ))
-                    Δa = abs(age[i] - age[j])
-                    kᵢⱼ = 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
-                    kᵢ += kᵢⱼ * (kᵢⱼ == kᵢⱼ)
-                end
-                k[i] = kᵢ
+            # Calculate weight
+            kᵢ = 0.0
+            @turbo for j ∈ 1:N
+                Δdᵣ = acos(min( latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j]), 1.0 ))
+                Δa = abs(age[i] - age[j])
+                kᵢⱼ = 1.0 / ((Δdᵣ/spatialscaleᵣ)^lp + 1.0) + 1.0 / ((Δa/agescale)^lp + 1.0)
+                kᵢ += kᵢⱼ
             end
+            k[i] = kᵢ
             (i % 10 == 0) && next!(p)
         end
         return k
     end
-    function _invweight(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ, agescale)
+    function invweight_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ, agescale)
 
         # Precalculate some sines and cosines
         latsin = @turbo sin.(latᵣ)
@@ -936,20 +939,16 @@
         k = Array{Float64}(undef, length(spatialscaleᵣ), length(agescale), N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds for i ∈ 1:N
-            if isnan(latᵣ[i]) || isnan(lonᵣ[i]) || isnan(age[i])
-                # If there is missing data, set k=inf for weight=0
-                k[:,:,i] .= Inf
-            else
-                # Otherwise, calculate weight
-                @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
-                @batch for g ∈ eachindex(spatialscaleᵣ)
-                    for h ∈ eachindex(agescale)
-                        kᵢ = 0.0
-                        @turbo for j ∈ 1:N
-                            kᵢ += 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
-                        end
-                        k[g,h,i] = kᵢ
+            # Calculate weight
+            @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
+            @batch for g ∈ eachindex(spatialscaleᵣ)
+                for h ∈ eachindex(agescale)
+                    kᵢ = 0.0
+                    @inbounds for j ∈ 1:N
+                        kᵢⱼ = 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
+                        kᵢ += kᵢⱼ
                     end
+                    k[g,h,i] = kᵢ
                 end
             end
             (i % 10 == 0) && next!(p)
@@ -978,6 +977,18 @@
         lonᵣ = materialize(vec(lon*PI_180))
         spatialscaleᵣ = materialize(spatialscale*PI_180)
 
+        if any(isnan, latᵣ) || any(isnan, lonᵣ)
+            k = fill(Inf, length(latᵣ))
+            t = @turbo @. !(isnan(latᵣ) | isnan(lonᵣ))
+            k[t] .= invweight_location_nonans(latᵣ[t], lonᵣ[t], lp, spatialscaleᵣ)
+            return k
+        else
+            return invweight_location_nonans(latᵣ, lonᵣ, lp, spatialscaleᵣ)
+        end
+    end
+    # Inner function that can't handle NaNs
+    function invweight_location_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, lp::Number, spatialscaleᵣ::Number)
+
         # Precalculate some sines and cosines
         latsin = @turbo sin.(latᵣ)
         latcos = @turbo cos.(latᵣ)
@@ -987,19 +998,15 @@
         k = Array{Float64}(undef,N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds @batch for i ∈ 1:N
-            if isnan(latᵣ[i]) || isnan(lonᵣ[i])
-                # If there is missing data, set k=inf for weight=0
-                k[i] = Inf
-            else
-                # Otherwise, calculate weight
-                kᵢ = 0.0
-                @turbo for j ∈ 1:N
-                    lc = latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j])
-                    Δdᵣ = acos(min(lc , 1.0))
-                    kᵢ += 1.0 / ( (Δdᵣ/spatialscaleᵣ)^lp + 1.0)
-                end
-                k[i] = kᵢ
+            # Otherwise, calculate weight
+            kᵢ = 0.0
+            @turbo for j ∈ 1:N
+                lc = latsin[i] * latsin[j] + latcos[i] * latcos[j] * cos(lonᵣ[i] - lonᵣ[j])
+                Δdᵣ = acos(min(lc , 1.0))
+                kᵢⱼ = 1.0 / ( (Δdᵣ/spatialscaleᵣ)^lp + 1.0)
+                kᵢ += kᵢⱼ
             end
+            k[i] = kᵢ
             (i % 10 == 0) && next!(p)
         end
         return k
@@ -1019,6 +1026,17 @@
     input array.
     """
     function invweight(nums::AbstractArray, scale::Number; lp=2)
+        numsₘ = materialize(nums)
+        if any(isnan, numsₘ)
+            k = fill(Inf, length(numsₘ))
+            t = @turbo @. !isnan(numsₘ)
+            k[t] .= invweight_nonans(numsₘ[t], scale, lp,)
+            return k
+        else
+            return invweight_nonans(numsₘ, scale, lp,)
+        end
+    end
+    function invweight_nonans(nums::AbstractArray, scale::Number, lp::Number)
 
         N = length(nums)
         k = Array{Float64}(undef, N)
@@ -1031,7 +1049,8 @@
                 # Otherwise, calculate weight
                 kᵢ = 0.0
                 @turbo for j ∈ 1:N
-                    kᵢ += 1.0 / ( (abs(nums[i] - nums[j])/scale)^lp + 1.0)
+                    kᵢⱼ = 1.0 / ( (abs(nums[i] - nums[j])/scale)^lp + 1.0)
+                    kᵢ += kᵢⱼ
                 end
                 k[i] = kᵢ
             end
@@ -1051,7 +1070,7 @@
     a set of geological samples with specified `age` (of crystallization, deposition, etc.).
     """
     function invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
-        return invweight(materialize(age), agescale, lp=lp)
+        return invweight(age, agescale, lp=lp)
     end
     export invweight_age
 
