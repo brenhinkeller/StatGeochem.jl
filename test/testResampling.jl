@@ -7,6 +7,12 @@
     @test bsr!(resampled,index,1:10,fill(0,10),0.5) |> unique ⊆ 1:10
     @test bsr!(resampled,index,1:10,fill(0,10),fill(0.5,1000)) |> unique ⊆ 1:10
 
+    index = Array{Int64}(undef,1000)
+    resampled = Array{Int64}(undef,1000,10)
+    data = repeat(1:10,1,10)
+    @test vec(bsr!(resampled,index,data,zeros(10),0.5)) |> unique ⊆ 1:10
+    @test vec(bsr!(resampled,index,data,zeros(10),fill(0.5,10))) |> unique ⊆ 1:10
+
     resampled = Array{Float64}(undef,1000)
     # Gaussian
     bsr!(resampled, index, ones(10), 0.5, 0.5)
