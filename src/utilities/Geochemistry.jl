@@ -1080,7 +1080,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements, importas=importas)
+            result = elementify(data,elements, skipstart=1,importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1149,7 +1149,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements, importas=importas)
+            result = elementify(data,elements, skipstart=1,importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1326,7 +1326,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements, importas=importas)
+            result = elementify(data,elements, skipstart=1,importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1386,7 +1386,7 @@
             end
 
             # Convert to a dictionary
-            result = elementify(data,elements, importas=importas)
+            result = elementify(data,elements, skipstart=1,importas=importas)
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
