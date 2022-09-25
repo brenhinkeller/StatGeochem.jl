@@ -71,14 +71,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 1
     print("\nmelt(G) + G_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*G_solution_phases, excludes=G_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(G)", index=idx)  # || melt data
@@ -113,14 +113,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 2
     print("\nmelt(G) + W_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*W_solution_phases, excludes=W_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_system(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(G)", index=idx)  # || melt data
@@ -156,14 +156,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 3
     print("\nmelt(G) + JH_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(G)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(G)", index=idx)  # || melt data
@@ -198,14 +198,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 4
     print("\npMELTS(G) + JH_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp02ver.dat", solution_phases="pMELTS(G)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "pMELTS(G)", index=idx)  # || melt data
@@ -240,14 +240,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 5
     print("\nmelt(W) + W_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*W_solution_phases, excludes=W_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(W)", index=idx)  # || melt data
@@ -282,14 +282,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 6
     print("\nmelt(W) + G_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*G_solution_phases, excludes=G_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(W)", index=idx)  # || melt data
@@ -324,14 +324,14 @@
 
     # Input parameters
     P = 10000 # bar
-    T_range = [500+273.15, 1500+273.15]
+    T_range = (500+273.15, 1500+273.15)
     idx = 7
     print("\nmelt(W) + JH_solution_phases\n")
     @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range, dataset="hp11ver.dat", solution_phases="melt(W)\n"*JH_solution_phases, excludes=JH_excludes, index=idx)
 
     # Query the full isobar -- results returned as elementified dictionary
-    T_range_inc = [floor(Int,T_range[1])+1, ceil(Int,T_range[2])-1]
-    npoints = T_range_inc[2] - T_range_inc[1] + 1
+    T_range_inc = (floor(Int,first(T_range))+1, ceil(Int,last(T_range))-1)
+    npoints = last(T_range_inc) - first(T_range_inc) + 1
     bulk = perplex_query_system(perplexdir, scratchdir, index=idx)            # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
     modes = perplex_query_modes(perplexdir, scratchdir, index=idx)            # || phase modes
     melt = perplex_query_phase(perplexdir, scratchdir, "melt(W)", index=idx)  # || melt data

@@ -151,10 +151,10 @@
 
     """
     ```julia
-    melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
-        \telements::Array,
-        \tT_range::Array=[1400, 600],
-        \tP_range::Array=[10000,10000];)
+    melts_configure(meltspath::String, scratchdir::String, composition::AbstractArray{<:Number},
+        \telements::AbstractArray{String},
+        \tT_range=(1400, 600),
+        \tP_range=(10000,10000);)
     ```
     Configure and run a MELTS simulation using alphaMELTS.
     Optional keyword arguments and defaults include:
@@ -196,7 +196,7 @@
 
     Fractionate all solids? default is `false`
 
-        suppress::Array{String} = []
+        suppress::AbstractArray{String} = String[]
 
     Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
 
@@ -204,11 +204,11 @@
 
     Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
-    function melts_configure(meltspath::String, scratchdir::String, composition::Array{Float64},
-        elements::Array, T_range::Array=[1400, 600], P_range::Array=[10000,10000];
+    function melts_configure(meltspath::String, scratchdir::String, composition::Collection{Number},
+        elements::AbstractArray{String}, T_range::Collection{Number}=(1400, 600), P_range::Collection{Number}=(10000,10000);
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false, suppress::Array{String}=String[], verbose::Bool=true)
+        fractionatesolids::Bool=false, suppress::AbstractArray{String}=String[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
@@ -228,7 +228,7 @@
         # Fractionate all water? ("!" for no, "" for yes)
         fractionatewater = "!"
         # Fractionate individual phases (specify as strings in cell array, i.e. {"olivine","spinel"})
-        fractionate = []
+        fractionate = String[]
         # Coninuous (fractional) melting? ("!" for no, "" for yes)
         continuous = "!"
         # Threshold above which melt is extracted (if fractionation is turned on)
@@ -238,9 +238,9 @@
         # Treat water as a trace element
         dotraceh2o = "!"
         # Initial trace compositionT
-        tsc = []
+        tsc = Float64[]
         # Initial trace elements
-        telements = []
+        telements = String[]
         # Default global constraints
         Pmax = 90000
         Pmin = 2
@@ -251,17 +251,17 @@
         ########################## end Default Settings ############################
 
         # Guess if intention is for calculation to end at Tf or Pf as a min or max
-        if T_range[2]<T_range[1]
-            Tmin=T_range[2]
+        if last(T_range)<first(T_range)
+            Tmin=last(T_range)
         end
-        if T_range[2]>T_range[1]
-            Tmax=T_range[2]
+        if last(T_range)>first(T_range)
+            Tmax=last(T_range)
         end
-        if P_range[2]<P_range[1]
-            Pmin=P_range[2]
+        if last(P_range)<first(P_range)
+            Pmin=last(P_range)
         end
-        if P_range[2]>P_range[1]
-            Pmax=P_range[2]
+        if last(P_range)>first(P_range)
+            Pmax=last(P_range)
         end
 
         if fractionatesolids
@@ -287,7 +287,7 @@
             write(fp, "Initial Trace: $(telements[i]) $(trunc(tsc[i],digits=4))\n")
         end
 
-        write(fp, "Initial Temperature: $(trunc(T_range[1],digits=2))\nInitial Pressure: $(trunc(P_range[1],digits=2))\nlog fo2 Path: $fo2path\n")
+        write(fp, "Initial Temperature: $(trunc(first(T_range),digits=2))\nInitial Pressure: $(trunc(first(P_range),digits=2))\nlog fo2 Path: $fo2path\n")
 
         for i ∈ eachindex(fractionate)
             write(fp,"Fractionate: $(fractionate[i])\n")
@@ -564,9 +564,9 @@
 
     """
     ```julia
-    perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Collection{Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        \tP_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
+        \tP_range=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
         \tdataset::String="hp02ver.dat",
         \tindex::Integer=1,
         \tnpoints::Integer=100,
@@ -581,9 +581,9 @@
     geothermal gradient and pressure (depth) range. P specified in bar and T_surf
     in Kelvin, with geothermal gradient in units of Kelvin/bar
     """
-    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-            P_range::Array{<:Number}=[280,28000], T_surf::Number=273.15, geotherm::Number=0.1;
+    function perplex_configure_geotherm(perplexdir::String, scratchdir::String, composition::Collection{<:Number},
+            elements::Collection{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+            P_range::Collection{Number}=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
             dataset::String="hp02ver.dat",
             index::Integer=1,
             npoints::Integer=100,
@@ -624,8 +624,8 @@
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.7
-        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(P_range[1])\n$(P_range[2])\ny\n") # v6.8.1
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v6.8.1
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
@@ -652,9 +652,9 @@
 
     """
     ```julia
-    perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
+    perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Collection{Number},
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
-        \tP::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
+        \tP::Number=10000, T_range::Collection{Number}=(500+273.15, 1500+273.15);
         \tdataset::String="hp11ver.dat",
         \tindex::Integer=1,
         \tnpoints::Integer=100,
@@ -668,9 +668,9 @@
     Set up a PerpleX calculation for a single bulk composition along a specified
     isobaric temperature gradient. P specified in bar and T_range in Kelvin
     """
-    function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-            P::Number=10000, T::Array{<:Number}=[500+273.15, 1500+273.15];
+    function perplex_configure_isobar(perplexdir::String, scratchdir::String, composition::Collection{Number},
+            elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+            P::Number=10000, T_range::Collection{Number}=(500+273.15, 1500+273.15);
             dataset::String="hp11ver.dat",
             index::Integer=1,
             npoints::Integer=100,
@@ -708,8 +708,8 @@
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.7
-        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(T[1])\n$(T[2])\n$P\ny\n") # v6.8.1
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v6.8.7
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v6.8.1
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
@@ -730,9 +730,9 @@
 
     """
     ```julia
-    perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-        \telements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        \tP::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
+    perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Collection{Number},
+        \telements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        \tP::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
         \tdataset::String="hp11ver.dat",
         \tindex::Integer=1,
         \txnodes::Integer=42,
@@ -747,9 +747,9 @@
     Set up a PerpleX calculation for a single bulk composition across an entire
     2d P-T space. P specified in bar and T in Kelvin.
     """
-    function perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Array{<:Number},
-            elements::Array{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-            P::Array{<:Number}=[280, 28000], T::Array{<:Number}=[273.15, 1500+273.15];
+    function perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Collection{Number},
+            elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+            P::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
             dataset::String="hp11ver.dat",
             index::Integer=1,
             xnodes::Integer=42,
@@ -789,7 +789,7 @@
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(T[1])\n$(T[2])\n$(P[1])\n$(P[2])\ny\n") # v6.8.7
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(first(T))\n$(last(T))\n$(first(P))\n$(last(P))\ny\n") # v6.8.7
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
@@ -962,14 +962,14 @@
     end
     """
     ```julia
-    perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
     ```
 
     Query perplex seismic results along a specified P-T path using a pre-computed
     pseudosection. Results are returned as a dictionary.
     """
-    function perplex_query_seismic(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         index::Integer=1, npoints::Integer=200, include_fluid="n", importas=:Dict)
         # Query a new path from a pseudosection
 
@@ -979,8 +979,53 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n2\nn
+        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n2\nn
                 $include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        data = nothing
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
+            data = elementify(data, importas=importas)
+        catch
+            # Return empty dictionary if file doesn't exist
+            data = importas==:Dict ? Dict() : ()
+        end
+        return data
+    end
+    function perplex_query_seismic(perplexdir::String, scratchdir::String, P::AbstractArray, T::AbstractArray;
+        index::Integer=1, include_fluid="n", importas=:Dict)
+        # Query a new path from a pseudosection
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Write TP data to file
+        fp = open(prefix*"TP.tsv", "w")
+        for i in eachindex(T,P)
+            write(fp,"$(T[i])\t$(P[i])\n")
+        end
+        close(fp)
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n4\n2\nTP.tsv\n1\n2\nn\n$include_fluid
+                    13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -1089,7 +1134,7 @@
     end
     """
     ```julia
-    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
+    perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true)
     ```
 
@@ -1097,7 +1142,7 @@
     along a specified P-T path using a pre-computed pseudosection. Results are
     returned as a dictionary.
     """
-    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
         # Query a new path from a pseudosection
 
@@ -1107,7 +1152,7 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
+        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -1218,14 +1263,14 @@
     end
     """
     ```julia
-    perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         \tindex::Integer=1, npoints::Integer=200, include_fluid="y")
     ```
 
     Query modal mineralogy (mass proportions) along a specified P-T path using a
     pre-computed pseudosection. Results are returned as a dictionary.
     """
-    function perplex_query_modes(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         index::Integer=1, npoints::Integer=200, include_fluid="y", importas=:Dict)
         # Query a new path from a pseudosection
 
@@ -1235,7 +1280,7 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n25\nn\n$include_fluid\n0\n")
+        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n25\nn\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -1335,7 +1380,7 @@
     end
     """
     ```julia
-    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         \tindex::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
     ```
 
@@ -1343,7 +1388,7 @@
     along a specified P-T path using a pre-computed pseudosection. Results are
     returned as a dictionary. Set include_fluid="n" to return solid+melt only.
     """
-    function perplex_query_system(perplexdir::String, scratchdir::String, P::Array{<:Number}, T::Array{<:Number};
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         index::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true, importas=:Dict)
         # Query a new path from a pseudosection
 
@@ -1353,7 +1398,7 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n3\nn\n$(T[1])\n$(P[1])\n$(T[2])\n$(P[2])\n$npoints\n36\n1\n$include_fluid\n0\n")
+        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n1\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn't already an output

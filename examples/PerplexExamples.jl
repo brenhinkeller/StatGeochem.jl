@@ -85,7 +85,7 @@
 
     # Input parameters
     P = 1000 # Pressure, bar
-    T_range = [0+273.15, 1500+273.15] # Temperature range, Kelvin
+    T_range = (0+273.15, 1500+273.15) # Temperature range, Kelvin
 
     # # Configure (run build and vertex)
     # melt_model = "melt(G)"
@@ -301,8 +301,8 @@
     # Input parameters
     mingeotherm = 0.009 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
     max_lith_T = 1300 # Maximum temperature of the TBL lithosphere (no point calculating beyond that)
-    P_range = [280, (max_lith_T-273.15)/mingeotherm] # Pressure range to explore, bar (roughly 1-100 km depth)
-    T_range = [273.15, max_lith_T] # Temperature range to explore, K
+    P_range = (280, (max_lith_T-273.15)/mingeotherm) # Pressure range to explore, bar (roughly 1-100 km depth)
+    T_range = (273.15, max_lith_T) # Temperature range to explore, K
     melt_model = ""
 
     # Configure (run build and vertex)
@@ -327,7 +327,7 @@
 ## --- Query seismic properties from a pseudosection
 
     geotherm = 0.15 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
-    @time seismic = perplex_query_seismic(perplexdir, scratchdir, [280, (max_lith_T-273.15)/geotherm], T_range, index=3, npoints=200)
+    @time seismic = perplex_query_seismic(perplexdir, scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200)
 
     h = plot(xlabel="Pressure", ylabel="Property")
     plot!(h,seismic["P(bar)"],seismic["vp,km/s"], label="vp,km/s")
@@ -340,7 +340,7 @@
 ## ---
 
     geotherm = 0.15 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
-    @time bulk = perplex_query_system(perplexdir, scratchdir, [280, (max_lith_T-273.15)/geotherm], T_range, index=3, npoints=200, include_fluid="n")
+    @time bulk = perplex_query_system(perplexdir, scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200, include_fluid="n")
 
     h = plot(xlabel="Pressure", ylabel="Property")
     plot!(h,bulk["P(bar)"],bulk["vp,km/s"], label="vp,km/s")
