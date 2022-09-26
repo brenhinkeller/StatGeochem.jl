@@ -310,6 +310,10 @@ if Sys.isunix()
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(extrema(modes["T(K)"]) .≈ T_range)
 
+    phase = perplex_query_phase(perplexdir, scratchdir, "Opx(HP)", P_range, T_range, index=1, npoints=200)
+    @test isa(phase, Dict) && !isempty(phase)
+    @test haskey(phase,"T(K)") && all(extrema(phase["T(K)"]) .≈ T_range)
+
     system = perplex_query_system(perplexdir, scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(system, Dict) && !isempty(system)
     @test haskey(system,"T(K)") && all(extrema(system["T(K)"]) .≈ T_range)
@@ -328,6 +332,10 @@ if Sys.isunix()
     modes = perplex_query_modes(perplexdir, scratchdir, P, T, index=1)
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(isapprox.(modes["T(K)"], T, atol=0.1))
+
+    phase = perplex_query_phase(perplexdir, scratchdir, "Opx(HP)", P, T, index=1)
+    @test isa(phase, Dict) && !isempty(phase)
+    @test haskey(phase,"T(K)") && all(isapprox.(phase["T(K)"], T, atol=0.1))
 
     system = perplex_query_system(perplexdir, scratchdir, P, T, index=1)
     @test isa(system, Dict) && !isempty(system)
