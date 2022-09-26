@@ -310,6 +310,10 @@ if Sys.isunix()
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(extrema(modes["T(K)"]) .≈ T_range)
 
+    system = perplex_query_system(perplexdir, scratchdir, P_range, T_range, index=1, npoints=200)
+    @test isa(system, Dict) && !isempty(system)
+    @test haskey(system,"T(K)") && all(extrema(system["T(K)"]) .≈ T_range)
+
     # Query seismic properties on diagonal line across P-T space
     seismic = perplex_query_seismic(perplexdir, scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(seismic, Dict) && !isempty(seismic)
@@ -317,21 +321,29 @@ if Sys.isunix()
     @test haskey(seismic, "rho,kg/m3") && !isempty(seismic["rho,kg/m3"]) && !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
 
 
-    # Query seismic properties on a manually-specified diagonal P-T line
+    # Query properties on a manually-specified diagonal P-T line
     P = range(first(P_range), last(P_range), length=16)
     T = range(first(T_range), last(T_range), length=16)
+
+    modes = perplex_query_modes(perplexdir, scratchdir, P, T, index=1)
+    @test isa(modes, Dict) && !isempty(modes)
+    @test haskey(modes,"T(K)") && all(isapprox.(modes["T(K)"], T, atol=0.1))
+
+    system = perplex_query_system(perplexdir, scratchdir, P, T, index=1)
+    @test isa(system, Dict) && !isempty(system)
+    @test haskey(system,"T(K)") && all(isapprox.(system["T(K)"], T, atol=0.1))
+    @test haskey(system, "rho,kg/m3") && !any(x->x<2700, system["rho,kg/m3"]) && !any(x->x>3200, system["rho,kg/m3"])
+
     seismic = perplex_query_seismic(perplexdir, scratchdir, P, T, index=1)
     @test isa(seismic, Dict) && !isempty(seismic)
     @test haskey(seismic,"T(K)")
     if haskey(seismic,"T(K)")
-        @test !isempty(seismic["T(K)"])
         @test isapprox(seismic["T(K)"], T, atol=0.01)
         print("T (K):\t")
         println(seismic["T(K)"])
     end
     @test haskey(seismic, "rho,kg/m3")
     if haskey(seismic, "rho,kg/m3")
-        @test !isempty(seismic["rho,kg/m3"])
         @test !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
         print("rho,kg/m3:\t")
         println(seismic["rho,kg/m3"])

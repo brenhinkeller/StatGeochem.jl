@@ -1201,6 +1201,72 @@
         end
         return result
     end
+    function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
+        index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+        # Query a new path from a pseudosection
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Write TP data to file
+        fp = open(prefix*"TP.tsv", "w")
+        for i in eachindex(T,P)
+            write(fp,"$(T[i])\t$(P[i])\n")
+        end
+        close(fp)
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = importas==:Dict ? Dict() : ()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            # Check if perplex is messing up and outputting mole proportions
+            if nanmean(total_weight) < 50
+                @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
+                # , attempting to correct
+                # for col = findall(t)
+                #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
+                # end
+                # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            end
+            data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
+            if clean_units
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
+            end
+
+            # Convert to a dictionary
+            result = elementify(data,elements, skipstart=1,importas=importas)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
     export perplex_query_phase
 
 
@@ -1281,6 +1347,50 @@
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
         write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n25\nn\n$include_fluid\n0\n")
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = importas==:Dict ? Dict() : ()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary
+            result = elementify(data, sumduplicates=true, importas=importas)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
+    function perplex_query_modes(perplexdir::String, scratchdir::String, P::AbstractArray, T::AbstractArray;
+        index::Integer=1, include_fluid="y", importas=:Dict)
+        # Query a new path from a pseudosection
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Write TP data to file
+        fp = open(prefix*"TP.tsv", "w")
+        for i in eachindex(T,P)
+            write(fp,"$(T[i])\t$(P[i])\n")
+        end
+        close(fp)
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n4\n2\nTP.tsv\n1\n25\nn\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -1389,7 +1499,7 @@
     returned as a dictionary. Set include_fluid="n" to return solid+melt only.
     """
     function perplex_query_system(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-        index::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true, importas=:Dict)
+        index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
         # Query a new path from a pseudosection
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1399,6 +1509,63 @@
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
         write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n1\n$include_fluid\n0\n")
+        close(fp)
+
+        # Make sure there isn't already an output
+        system("rm -f $(prefix)$(index)_1.tab*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+
+        # Read results and return them if possible
+        result = importas==:Dict ? Dict() : ()
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            elements = data[1,:]
+
+            # Renormalize weight percentages
+            t = contains.(elements,"wt%")
+            total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            data[2:end,t] .*= 100 ./ total_weight
+
+            # Clean up element names
+            if clean_units
+                elements = elements .|> x -> replace(x, ",%" => "_pct") # substutue _pct for ,% in column names
+                elements = elements .|> x -> replace(x, ",wt%" => "") # Remove units on major oxides
+            end
+
+            # Convert to a dictionary
+            result = elementify(data,elements, skipstart=1,importas=importas)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+        end
+        return result
+    end
+    function perplex_query_system(perplexdir::String, scratchdir::String, P::AbstractArray, T::AbstractArray;
+        index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+        # Query a new path from a pseudosection
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Write TP data to file
+        fp = open(prefix*"TP.tsv", "w")
+        for i in eachindex(T,P)
+            write(fp,"$(T[i])\t$(P[i])\n")
+        end
+        close(fp)
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        # v6.7.8 pseudosection
+        write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n1\n$include_fluid\n0\n")
         close(fp)
 
         # Make sure there isn't already an output
