@@ -45,6 +45,118 @@
 
     export eustar
 
+## --- CIPW norm
+
+    """
+    ```julia
+    cipw_norm(SiO2, TiO2, Al2O3, Fe2O3, FeO, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Returns
+    ```
+    quartz, orthoclase, plagioclase, corundum, nepheline, diopside, orthopyroxene, olivine, magnetite, ilmenite, apatite
+    ```
+    """
+    function cipw_norm(SiO2, TiO2, Al2O3, Fe2O3, FeO, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        SiO2  /= 60.0843
+        TiO2  /= 79.8988
+        Al2O3 /= 101.9613
+        Fe2O3 /= 159.6922
+        FeO  /= 71.8464
+        MnO  /= 70.9374
+        MgO  /= 40.3044
+        CaO  /= 56.0794
+        Na2O /= 61.9789
+        K2O  /= 94.1960
+        P2O5 /= 141.9445
+
+        FeO = nanadd(FeO, MnO)
+        CaO -= 3.333333333333333 * P2O5
+        apatite = 0.6666666666666666 * P2O5
+        # P2O5 = 0
+        FeO -= TiO2
+        ilmenite = TiO2
+        FeO -= Fe2O3
+        magnetite = Fe2O3
+        # Fe2O3 = 0
+        Al2O3 -= K2O
+        orthoclase = K2O
+        # K2O = 0
+        Al2O3 -= Na2O
+        albite = Na2O
+        if CaO > Al2O3
+            CaO -= Al2O3
+            anorthite = Al2O3
+            Al2O3 = 0
+        else
+            Al2O3 -= CaO
+            anorthite = CaO
+            CaO = 0
+        end
+        if Al2O3 > 0
+            corundum = Al2O3
+            Al2O3 = 0
+        else
+            corundum = 0
+        end
+        Mg′ = MgO / (MgO + FeO)
+        FMO = FeO + MgO
+        FMO_weight = (Mg′*40.3044)+((1-Mg′)*71.8464)
+        if CaO > 0
+            FMO -= CaO
+            diopside = CaO
+        else
+            diopside = 0
+        end
+        orthopyroxene = FMO
+        pSi1 = 6orthoclase + 6albite + 2anorthite + 2diopside + orthopyroxene
+        if pSi1 < SiO2
+            quartz = SiO2 - pSi1
+            nepheline = 0
+            olivine = 0
+        else
+            quartz = 0
+            pSi2 = 6orthoclase + 6albite + 2anorthite + 2diopside
+            pSi3 = SiO2 - pSi2
+            if FMO > 2pSi3
+                orthopyroxene = 0
+                olivine = FMO
+                FMO = 0
+                pSi4 = 6orthoclase + 2anorthite + 2diopside + 0.5olivine
+                pSi5 = SiO2 - pSi4
+                Albite = (pSi5-(2*Na2O))/4
+                nepheline = Na2O-Albite
+            else
+                nepheline = 0
+                orthopyroxene = 2pSi3 - FMO
+                olivine = FMO - pSi3
+            end
+        end
+        orthoclase *= 2
+        nepheline *= 2
+        albite *= 2
+        An′ = anorthite/(anorthite+albite)
+        plag_weight = (An′*278.2093)+((1-An′)*262.2230)
+        plagioclase = albite+anorthite
+
+        quartz *= 60.0843
+        orthoclase *= 278.3315
+        plagioclase *= plag_weight
+        corundum *= 101.9613
+        nepheline *= 142.0544
+        diopside *= (172.248 + FMO_weight)
+        orthopyroxene *= (60.0843 + FMO_weight)
+        olivine *= (60.0843 + 2FMO_weight)
+        magnetite *= 231.5386
+        ilmenite *= 151.7452
+        apatite *= 504.3152
+
+        return (quartz=quartz, orthoclase=orthoclase, plagioclase=plagioclase,
+            corundum=corundum, nepheline=nepheline, diopside=diopside,
+            orthopyroxene=orthopyroxene, olivine=olivine, magnetite=magnetite,
+            ilmenite=ilmenite, apatite=apatite)
+    end
+    # export cipw_norm
+
 ## --- Fe oxide conversions
 
     """
