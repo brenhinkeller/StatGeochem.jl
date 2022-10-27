@@ -60,10 +60,8 @@
     """
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
+        @assert eachindex(lat) == eachindex(lon)
 
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
 
         if ~isa(layer,Integer) || layer < 1 || layer > 8
             error("""Error: layer must be an integer between 1 and 8.
@@ -112,14 +110,6 @@
         close(rhofile)
         close(bndfile)
 
-        # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon .+ 180, 360) .- 180
-        ilat = max.(lat, -90+1e-9)
-
-        # Convert lat and lon to index
-        ilat = 91 .- ceil.(Int,ilat)
-        ilon = 181 .+ floor.(Int,ilon)
-
         # Allocate output arrays
         vpout = Array{Float64}(undef,size(lat))
         vsout = Array{Float64}(undef,size(lat))
@@ -127,17 +117,25 @@
         thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j ∈ eachindex(lat)
-            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
+        @inbounds for j ∈ eachindex(lat)
+            # Avoid edge cases at lat = -90.0, lon = 180.0
+            lonⱼ = mod(lon[j] + 180, 360) - 180
+            latⱼ = lat[j]
+
+            if -90 < latⱼ < 90 && -180 < lonⱼ < 180
+                # Convert lat and lon to index
+                ilat = 91 - ceil(Int,latⱼ)
+                ilon = 181 + floor(Int,lonⱼ)
+
+                vpout[j] = vp[layer,ilat,ilon]
+                vsout[j] = vs[layer,ilat,ilon]
+                rhoout[j] = rho[layer,ilat,ilon]
+                thkout[j] = bnd[layer,ilat,ilon] - bnd[layer+1,ilat,ilon]
+            else
                 vpout[j] = NaN
                 vsout[j] = NaN
                 rhoout[j] = NaN
                 thkout[j] = NaN
-            else
-                vpout[j] = vp[layer,ilat[j],ilon[j]]
-                vsout[j] = vs[layer,ilat[j],ilon[j]]
-                rhoout[j] = rho[layer,ilat[j],ilon[j]]
-                thkout[j] = bnd[layer,ilat[j],ilon[j]] - bnd[layer+1,ilat[j],ilon[j]]
             end
         end
 
@@ -175,10 +173,8 @@
     ```
     """
     function find_crust1_seismic(lat,lon,layer)
-
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
+        # Vp, Vs, and Rho for a given lat, lon, and crustal layer.
+        @assert eachindex(lat) == eachindex(lon)
 
         if ~isa(layer,Integer) || layer < 1 || layer > 9
             error("""Error: layer must be an integer between 1 and 9.
@@ -224,29 +220,29 @@
         close(vsfile)
         close(rhofile)
 
-        # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon .+ 180, 360) .- 180
-        ilat = max.(lat, -90+1e-9)
-
-        # Convert lat and lon to index
-        ilat = 91 .- ceil.(Int,ilat)
-        ilon = 181 .+ floor.(Int,ilon)
-
         # Allocate output arrays
         vpout = Array{Float64}(undef,size(lat))
         vsout = Array{Float64}(undef,size(lat))
         rhoout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j ∈ eachindex(lat)
-            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
+        @inbounds for j ∈ eachindex(lat)
+            # Avoid edge cases at lat = -90.0, lon = 180.0
+            lonⱼ = mod(lon[j] + 180, 360) - 180
+            latⱼ = lat[j]
+
+            if -90 < latⱼ < 90 && -180 < lonⱼ < 180
+                # Convert lat and lon to index
+                ilat = 91 - ceil(Int,latⱼ)
+                ilon = 181 + floor(Int,lonⱼ)
+
+                vpout[j] = vp[layer,ilat,ilon]
+                vsout[j] = vs[layer,ilat,ilon]
+                rhoout[j] = rho[layer,ilat,ilon]
+            else
                 vpout[j] = NaN
                 vsout[j] = NaN
                 rhoout[j] = NaN
-            else
-                vpout[j] = vp[layer,ilat[j],ilon[j]]
-                vsout[j] = vs[layer,ilat[j],ilon[j]]
-                rhoout[j] = rho[layer,ilat[j],ilon[j]]
             end
         end
 
@@ -286,10 +282,7 @@
     """
     function find_crust1_thickness(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
-
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
+        @assert eachindex(lat) == eachindex(lon)
 
         if ~isa(layer,Integer) || layer < 1 || layer > 8
             error("""Error: layer must be an integer between 1 and 8.
@@ -326,23 +319,23 @@
         # Close data files
         close(bndfile)
 
-        # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon .+ 180, 360) .- 180
-        ilat = max.(lat, -90+1e-9)
-
-        # Convert lat and lon to index
-        ilat = 91 .- ceil.(Int,ilat)
-        ilon = 181 .+ floor.(Int,ilon)
-
         # Allocate output arrays
         thkout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j ∈ eachindex(lat)
-            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lat[j] < -180
-                thkout[j] = NaN
+        @inbounds for j ∈ eachindex(lat)
+            # Avoid edge cases at lat = -90.0, lon = 180.0
+            lonⱼ = mod(lon[j] + 180, 360) - 180
+            latⱼ = lat[j]
+
+            if -90 < latⱼ < 90 && -180 < lonⱼ < 180
+                # Convert lat and lon to index
+                ilat = 91 - ceil(Int,latⱼ)
+                ilon = 181 + floor(Int,lonⱼ)
+
+                thkout[j] = bnd[layer,ilat,ilon]-bnd[layer+1,ilat,ilon]
             else
-                thkout[j] = bnd[layer,ilat[j],ilon[j]]-bnd[layer+1,ilat[j],ilon[j]]
+                thkout[j] = NaN
             end
         end
 
@@ -382,10 +375,8 @@
     """
     function find_crust1_base(lat,lon,layer)
         # Depth to layer base for a given lat, lon, and crustal layer.
+        @assert eachindex(lat) == eachindex(lon)
 
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
 
         if ~isa(layer,Integer) || layer < 1 || layer > 8
             error("""layer must be an integer between 1 and 8.
@@ -421,23 +412,23 @@
         # Close data files
         close(bndfile)
 
-        # Avoid edge cases at lat = -90.0, lon = 180.0
-        ilon = mod.(lon .+ 180, 360) .- 180
-        ilat = max.(lat, -90+1e-9)
-
-        # Convert lat and lon to index
-        ilat = 91 .- ceil.(Int,ilat)
-        ilon = 181 .+ floor.(Int,ilon)
-
         # Allocate output arrays
         baseout = Array{Float64}(undef,size(lat))
 
         # Fill output arrays
-        for j ∈ eachindex(lat)
-            if isnan(lat[j]) || isnan(lon[j]) || lat[j] > 90 || lat[j] < -90 || lon[j] > 180 || lon[j] < -180
-                baseout[j] = NaN
+        @inbounds for j ∈ eachindex(lat)
+            # Avoid edge cases at lat = -90.0, lon = 180.0
+            lonⱼ = mod(lon[j] + 180, 360) - 180
+            latⱼ = lat[j]
+
+            if -90 < latⱼ < 90 && -180 < lonⱼ < 180
+                # Convert lat and lon to index
+                ilat = 91 - ceil(Int,latⱼ)
+                ilon = 181 + floor(Int,lonⱼ)
+
+                baseout[j] = bnd[layer+1,ilat,ilon]
             else
-                baseout[j] = bnd[layer+1,ilat[j],ilon[j]]
+                baseout[j] = NaN
             end
         end
 
