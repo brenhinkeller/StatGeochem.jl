@@ -1,8 +1,9 @@
 # StatGeochem.jl
 [![DOI](osf_io_TJHMW.svg)](https://doi.org/10.17605/OSF.IO/TJHMW)
-[![Dev][docs-dev-img]][docs-dev-url]
-[![Build Status][ci-img]][ci-url]
-[![codecov.io][codecov-img]][codecov-url]
+[![Docs][docs-dev-img]][docs-dev-url]
+[![CI][ci-img]][ci-url]
+[![CI (Julia nightly)][ci-nightly-img]][ci-nightly-url]
+[![Coverage][codecov-img]][codecov-url]
 
 _Computational tools for statistical geochemistry and petrology_
 
@@ -37,6 +38,8 @@ julia> notebook()
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://brenhinkeller.github.io/StatGeochem.jl/dev/
 [ci-img]: https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg
-[ci-url]: https://github.com/brenhinkeller/StatGeochem.jl/actions?query=workflow%3ACI
+[ci-url]: https://github.com/brenhinkeller/StatGeochem.jl/actions/workflows/CI.yml
+[ci-nightly-img]:https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI%20(Julia%20nightly)/badge.svg
+[ci-nightly-url]:https://github.com/brenhinkeller/StatGeochem.jl/actions/workflows/CI-julia-nightly.yml
 [codecov-img]: http://codecov.io/github/brenhinkeller/StatGeochem.jl/coverage.svg?branch=main
 [codecov-url]: http://codecov.io/github/brenhinkeller/StatGeochem.jl?branch=main
