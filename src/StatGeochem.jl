@@ -1,7 +1,7 @@
 __precompile__()
 
 module StatGeochem
-
+    
     using Reexport
     @reexport using NaNStatistics
     @reexport using StatGeochemBase
