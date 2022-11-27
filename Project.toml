@@ -27,7 +27,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 [compat]
 Colors = "0.10 - 0.12"
 FileIO = "1"
-GR = "0.42 - 0.69"
+GR = "0.42 - 0.69, 0.71"
 HDF5 = "0.13 - 0.16"
 ImageIO = "0.1 - 0.6"
 LoopVectorization = "0.12.113"
