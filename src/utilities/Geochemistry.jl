@@ -18,7 +18,7 @@
         notnan = .~ isnan.(y)
 
         # Make sure we're interpolating and not extrapolating
-        if any(notnan[1:2]) && any(notnan[3:4])
+        if any(view(notnan, 1:2)) && any(view(notnan, 3:4))
             # Fit a straight line through the chondrite-normalized values
             (a,b) = linreg(r[notnan], y[notnan])
             # De-dormalize output for Eu, interpolating at r = 108.7 pm or x = 3

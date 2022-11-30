@@ -105,17 +105,25 @@
         y = fill(NaN, xrows)
         for j = 1:xrows
             tⱼ = view(t,:,j)
-            if any(tⱼ)
-                list = findall(tⱼ)
-                y[j] = yᵢ(nanmean(list))
-            else
-                y[j] = NaN
-            end
+            y[j] = yᵢ(findmeanindex(tⱼ))
         end
 
         return x, y
     end
     export digitize_plotline
+
+    function findmeanindex(x)
+        @assert isa(firstindex(x), Int)
+        μ = 0
+        n = 0
+        @inbounds for i ∈ eachindex(x)
+            if x[i] == true
+                μ += i
+                n += 1
+            end
+        end
+        return μ/n
+    end
 
 ## --- Retain deprecated functions with matlab-like syntax, to avoid breakages in user scripts that may depend on them
 
