@@ -20,6 +20,10 @@
    lat = [43.7022,-26.2041,-19.5723,-34.9285,46.4908]
    lon = [-72.2896,28.0473,65.7550,138.6007,9.8355]
    @test find_geolcont(lat, lon) == [3, 1, 7, 5, 2]
+   @test find_geolcont(43.702245, -72.0929) == fill(3)
+
+   @test find_geolprov(lat, lon) == [10, 31, 0, 10, 10]
+   @test find_geolprov(43.702245, -72.0929) == fill(10)
 
    A = (1:200)*(1:200)'
    @test find_etopoelev(A, -90:-89, -180:-179) == [1,3721]
