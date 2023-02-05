@@ -370,10 +370,10 @@
 
     """
     function dist_uncert(lats, lons)
-        @assert eachindex(lats) == eachindex(lons) == 1:length(lats)
+        @assert eachindex(lats) == eachindex(lons)
         maxdist = zero(float(eltype(lats)))
-        for i in 1:lastindex(lats)
-            for j in 2:lastindex(lats)
+        for i in eachindex(lats)
+            for j in 1+firstindex(lats):lastindex(lats)
                 dist = haversine(lats[i], lons[i], lats[j], lons[j])
                 dist > maxdist && (maxdist = dist)
             end
