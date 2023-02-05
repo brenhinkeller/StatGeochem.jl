@@ -342,4 +342,44 @@
     end
     export randlatlon
 
+## --- Calculate distance uncertainty in arc degrees
+    """
+    ```julia
+    haversine(lat₁, lon₁, lat₂, lon₂)
+    ```
+    Calculate the arc degree distance between two decimal degree points (lat₁, lon₁) and 
+    (lat₂, lon₂).
+
+    """
+    function haversine(lat₁, lon₁, lat₂, lon₂)
+        lat₁ᵣ, lon₁ᵣ, lat₂ᵣ, lon₂ᵣ = (lat₁, lon₁, lat₂, lon₂) .* (pi/180)
+        dist = acos(sin(lat₁ᵣ) * sin(lat₂ᵣ) + cos(lat₁ᵣ) * cos(lat₂ᵣ) * cos(lon₁ᵣ - lon₂ᵣ))
+        return dist * 180/pi
+    end
+    export haversine
+
+## --- Calculate maximum arc-degree distance between a series of points
+    """
+    ```julia
+    dist_uncert(lats, lons)    
+    ```
+
+    Find the distance uncertainty (in arc degrees) given a list of decimal degree 
+    points `lats` and `lons`. Returns 1/2 of the distance between the farthest
+    two points.
+
+    """
+    function dist_uncert(lats, lons)
+        @assert eachindex(lats) == eachindex(lons) == 1:length(lats)
+        maxdist = zero(float(eltype(lats)))
+        for i in 1:lastindex(lats)
+            for j in 2:lastindex(lats)
+                dist = haversine(lats[i], lons[i], lats[j], lons[j])
+                dist > maxdist && (maxdist = dist)
+            end
+        end
+        return maxdist/2
+    end
+    export dist_uncert
+
 ## --- End of File
