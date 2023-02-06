@@ -105,6 +105,15 @@
     @test StatGeochem.isnumeric(NaN) == true
     @test StatGeochem.nonnumeric(NaN) == false
 
+    @test StatGeochem.symboltuple((:foo, :bar, :baz)) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple(("foo", "bar", "baz")) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple([:foo, :bar, :baz]) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple(["foo", "bar", "baz"]) === (:foo, :bar, :baz)
+    @test StatGeochem.stringarray((:foo, :bar, :baz)) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray(("foo", "bar", "baz")) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray([:foo, :bar, :baz]) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray(["foo", "bar", "baz"]) == ["foo", "bar", "baz"]
+
     @test isequal(StatGeochem.emptys(Any,3), [missing, missing, missing])
     @test isequal(StatGeochem.emptys(String,3), ["", "", ""])
     @test all(StatGeochem.emptys(Float16,3) .=== Float16[NaN, NaN, NaN])

@@ -357,6 +357,15 @@
     nonnumeric(x::Missing) = false
     nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x != "")
 
+    symboltuple(x::NTuple{N, Symbol}) where {N} = x
+    symboltuple(x::NTuple{N}) where {N} = ntuple(i->Symbol(x[i]), N)
+    symboltuple(x::AbstractArray) = ntuple(i->Symbol(x[i+firstindex(x)-1]), length(x))
+
+    stringarray(x::Vector{String}) = x
+    stringarray(x::NTuple{N, String}) where {N} = [s for s in x]
+    stringarray(x::NTuple{N, Symbol}) where {N} = [String(s) for s in x]
+    stringarray(x::AbstractArray) = [String(s) for s in x]
+
 ## --- Transforming imported datasets
 
     """
@@ -430,6 +439,7 @@
         s = replace(s, r"([\0-\x1F -/:-@\[-`{-~])" => s"_") # Everything else becomes an underscore
         return s
     end
+    sanitizevarname(s::Symbol) = s
 
 
     """
@@ -506,7 +516,7 @@
             end
 
             # Process elements array
-            elements = string.(elements)
+            elements = stringarray(elements)
             if skipnameless
                 elements = filter(!isempty, elements)
             end
@@ -552,12 +562,11 @@
             return result
         elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
             # Import as NamedTuple (more efficient future default)
-            t = Bool[(isa(e, AbstractString) && (skipnameless && e != "")) for e in elements]
+            t = Bool[(skipnameless && e !== "") for e in elements]
             elements = sanitizevarname.(elements[t])
-            symbols = ((Symbol(e) for e ∈ elements)...,)
             i₀ = firstindex(data) + skipstart
             values = (columnformat(data[i₀:end, j], standardize, floattype) for j in findall(vec(t)))
-            return NamedTuple{symbols}(values)
+            return NamedTuple{symboltuple(elements)}(values)
         end
     end
     export elementify
@@ -600,7 +609,7 @@
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
-            elements = dataset["elements"]
+            elements = stringarray(dataset["elements"])
         end
 
         # Figure out how many are numeric (if necessary), so we can export only
@@ -653,8 +662,10 @@
             skipnan::Bool=false,
             rows=:
         )
+
         # Figure out how many are numeric (if necessary), so we can export only
         # those if `findnumeric` is set
+        elements = symboltuple(elements)
         if findnumeric
             elements = filter(x -> sum(isnumeric.(dataset[x])) > sum(nonnumeric.(dataset[x])), elements)
         end
