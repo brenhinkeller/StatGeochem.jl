@@ -357,14 +357,6 @@
     nonnumeric(x::Missing) = false
     nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x != "")
 
-    symboltuple(x::NTuple{N, Symbol}) where {N} = x
-    symboltuple(x::NTuple{N}) where {N} = ntuple(i->Symbol(x[i]), N)
-    symboltuple(x::AbstractArray) = ntuple(i->Symbol(x[i+firstindex(x)-1]), length(x))
-
-    stringarray(x::Vector{String}) = x
-    stringarray(x::NTuple{N, String}) where {N} = [s for s in x]
-    stringarray(x::NTuple{N, Symbol}) where {N} = [String(s) for s in x]
-    stringarray(x::AbstractArray) = [String(s) for s in x]
 
 ## --- Transforming imported datasets
 
@@ -441,6 +433,24 @@
     end
     sanitizevarname(s::Symbol) = s
 
+    symboltuple(x::NTuple{N, Symbol}) where {N} = x
+    symboltuple(x::NTuple{N}) where {N} = ntuple(i->Symbol(x[i]), N)
+    symboltuple(x) = ((Symbol(s) for s in x)...,)
+
+    stringarray(x::Vector{String}) = x
+    stringarray(x::NTuple{N, String}) where {N} = [s for s in x]
+    stringarray(x) = [String(s) for s in x]
+
+
+    function TupleDataset(d::Dict, elements=sanitizevarname.(keys(d)))
+        return NamedTuple{symboltuple(elements)}(values(d))
+    end
+    export TupleDataset
+
+    function DictDataset(d::NamedTuple, elements=keys(d))
+        return Dict(String(e) => d[e] for e in elements)
+    end
+    export DictDataset
 
     """
     ```julia
@@ -707,6 +717,12 @@
 
 ## --- Concatenating / stacking datasets
 
+    # Fill an array with the designated empty type
+    emptys(::Type, s) = fill(missing, s)
+    emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
+    emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
+    emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
+
     """
     ```julia
     concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
@@ -769,11 +785,6 @@
             vcat(d1[e], d2[e])
         end
     end
-    # Fill an array with the designated empty type
-    emptys(::Type, s) = fill(missing, s)
-    emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
-    emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
-    emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
     export concatenatedatasets
 
 

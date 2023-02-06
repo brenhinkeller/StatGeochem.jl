@@ -45,6 +45,14 @@
     @test isapprox(mean(dbs["y"]), 11, atol=1)
     @test isapprox(std(dbs["y"]), 6.06, atol=1)
 
+    dt = TupleDataset(d)
+    @test isa(dt, NamedTuple)
+    dbs = bsresample(dt, 1000, (:x, :y), 0.5)
+    @test isapprox(mean(dbs[:x]), 5.5, atol=0.5)
+    @test isapprox(std(dbs[:x]), 3.03, atol=0.5)
+    @test isapprox(mean(dbs[:y]), 11, atol=1)
+    @test isapprox(std(dbs[:y]), 6.06, atol=1)
+
     @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
     @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     @test binmeans(1:100, 1:100, 0, 100, 10, ones(100)) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
