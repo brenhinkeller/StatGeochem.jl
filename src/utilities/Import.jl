@@ -279,24 +279,28 @@
     	# Allocate space for the imported array and fill with emptyval
     	parsedmatrix = fill(emptyval, maxrows, maxcolumns)
 
-    	k = kₗ = 0 # Last delimiter position
+    	kₗ = kₙ = firstindex(str) # Last delimiter position
     	for i = 1:maxrows
     		for j = 1:maxcolumns
-    			while (k+1 <= maxchars) && (str[k+1] != delimiter) && (str[k+1] != rowdelimiter)
-    				k += 1
+    			while (kₙ < maxchars) && (str[kₙ] !== delimiter) && (str[kₙ] !== rowdelimiter)
+    				kₙ = nextind(str, kₙ)
     			end
 
-    			# Otherwise, parse the string
-    			parsed = tryparse(T, str[kₗ+1:k])
-    			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+                if kₙ>kₗ
+                    # Parse the string
+                    k = (str[kₙ]===delimiter || str[kₙ]===rowdelimiter) ? prevind(str,kₙ) : kₙ
+        			parsed = tryparse(T, str[kₗ:k])
+        			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+                end
 
                 # If we're at the end of the string, move on
-                (k+1 > maxchars) && break
+                (kₙ == maxchars) && break
 
     			# Step over the delimiter
-    			kₗ = k += 1
-    			# If we've hit a row delimiter, move to next row
-    			(str[k] == rowdelimiter) && break
+    			kₗ = kₙ = nextind(str, kₙ)
+
+                # If we've hit a row delimiter, move to next row
+                (str[kₙ] == rowdelimiter) && break
     		end
     	end
     	return parsedmatrix
