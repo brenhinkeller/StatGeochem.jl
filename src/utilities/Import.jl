@@ -250,12 +250,7 @@
      13  14  15  16
     ```
     """
-    function parsedlm(str::AbstractString, delimiter::Char, T::Type=Float64; rowdelimiter::Char='\n')
-    	if T <: AbstractFloat
-    		emptyval = T(NaN)
-    	else
-    		emptyval = zero(T)
-    	end
+    function parsedlm(str::AbstractString, delimiter::Char, ::Type{T}=Float64; rowdelimiter::Char='\n') where {T}
 
     	# Count rows, and find maximum number of delimiters per row
     	numcolumns = maxcolumns = maxrows = 0
@@ -273,22 +268,23 @@
     	end
     	# If the last line isn't blank, add one more to the row counter
     	(cₗ != rowdelimiter) && (maxrows += 1)
-    	maxchars = length(str)
-
 
     	# Allocate space for the imported array and fill with emptyval
-    	parsedmatrix = fill(emptyval, maxrows, maxcolumns)
+    	parsedmatrix = emptys(T, maxrows, maxcolumns)
 
-    	kₗ = kₙ = firstindex(str) # Last delimiter position
-    	for i = 1:maxrows
+        maxchars = length(str)
+    	kₗ = kₙ = firstindex(str) # Last and next delimiter position
+    	@inbounds for i = 1:maxrows
     		for j = 1:maxcolumns
-    			while (kₙ < maxchars) && (str[kₙ] !== delimiter) && (str[kₙ] !== rowdelimiter)
+                c = str[kₙ]
+    			while (kₙ < maxchars) && (c !== delimiter) && (c !== rowdelimiter)
     				kₙ = nextind(str, kₙ)
+                    c = str[kₙ]
     			end
 
                 if kₙ>kₗ
                     # Parse the string
-                    k = (str[kₙ]===delimiter || str[kₙ]===rowdelimiter) ? prevind(str,kₙ) : kₙ
+                    k = (c===delimiter || c===rowdelimiter) ? prevind(str,kₙ) : kₙ
         			parsed = tryparse(T, str[kₗ:k])
         			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
                 end
@@ -723,10 +719,10 @@
 ## --- Concatenating / stacking datasets
 
     # Fill an array with the designated empty type
-    emptys(::Type, s) = fill(missing, s)
-    emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
-    emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
-    emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
+    emptys(::Type, s...) = fill(missing, s...)
+    emptys(::Type{T}, s...) where T <: AbstractString = fill("", s...)
+    emptys(::Type{T}, s...) where T <: Number = fill(NaN, s...)
+    emptys(::Type{T}, s...) where T <: AbstractFloat = fill(T(NaN), s...)
 
     """
     ```julia
