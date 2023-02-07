@@ -442,13 +442,14 @@
     stringarray(x) = [String(s) for s in x]
 
 
-    function TupleDataset(d::Dict, elements=sanitizevarname.(keys(d)))
-        return NamedTuple{symboltuple(elements)}(values(d))
+    function TupleDataset(d::Dict, elements=keys(d))
+        symbols = symboltuple(sanitizevarname.(elements))
+        return NamedTuple{symbols}(d[e] for e in elements)
     end
     export TupleDataset
 
     function DictDataset(d::NamedTuple, elements=keys(d))
-        return Dict(String(e) => d[e] for e in elements)
+        return Dict(String(e) => d[Symbol(e)] for e in elements)
     end
     export DictDataset
 
@@ -512,7 +513,7 @@
             skipnameless::Bool=true,
             sumduplicates::Bool=false
         )
-        if importas == :Dict || importas==:dict
+        if importas === :Dict || importas === :dict
             # Output as dictionary
             if standardize
                 # Constrain types somewhat for a modicum of type-stability

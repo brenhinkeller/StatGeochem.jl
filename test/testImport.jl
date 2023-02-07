@@ -22,8 +22,10 @@
 
     @test isa(datatuple, NamedTuple)
     @test unelementify(datatuple) == data
+    @test unelementify(DictDataset(datatuple)::Dict, elements) == data
     @test isa(datadict, Dict)
     @test unelementify(datadict) == data
+    @test unelementify(TupleDataset(datadict, elements)::NamedTuple) == data
 
     # Test adding or averaging option for numeric elements
     addtest = ["a" "b" "a";1 2 3]
