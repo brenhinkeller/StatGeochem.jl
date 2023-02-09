@@ -72,7 +72,9 @@
     # Find the maximum arc-degree distance between a list of points
     lats = [0, 0, 0, 0]
     lons = [0, 30, 23, 90]
-    @test isapprox(dist_uncert(lats, lons), 45)
+    @test isapprox(dist_uncert(lats, lons)[1], 0)
+    @test isapprox(dist_uncert(lats, lons)[2], 45)
+    @test isapprox(dist_uncert(lats, lons)[3], 45)
 
 
 ## --- Etc.jl
