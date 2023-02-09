@@ -250,12 +250,7 @@
      13  14  15  16
     ```
     """
-    function parsedlm(str::AbstractString, delimiter::Char, T::Type=Float64; rowdelimiter::Char='\n')
-    	if T <: AbstractFloat
-    		emptyval = T(NaN)
-    	else
-    		emptyval = zero(T)
-    	end
+    function parsedlm(str::AbstractString, delimiter::Char, ::Type{T}=Float64; rowdelimiter::Char='\n') where {T}
 
     	# Count rows, and find maximum number of delimiters per row
     	numcolumns = maxcolumns = maxrows = 0
@@ -273,30 +268,35 @@
     	end
     	# If the last line isn't blank, add one more to the row counter
     	(cₗ != rowdelimiter) && (maxrows += 1)
-    	maxchars = length(str)
-
 
     	# Allocate space for the imported array and fill with emptyval
-    	parsedmatrix = fill(emptyval, maxrows, maxcolumns)
+    	parsedmatrix = emptys(T, maxrows, maxcolumns)
 
-    	k = kₗ = 0 # Last delimiter position
-    	for i = 1:maxrows
+        maxchars = length(str)
+    	kₗ = kₙ = firstindex(str) # Last and next delimiter position
+    	@inbounds for i = 1:maxrows
     		for j = 1:maxcolumns
-    			while (k+1 <= maxchars) && (str[k+1] != delimiter) && (str[k+1] != rowdelimiter)
-    				k += 1
+                c = str[kₙ]
+    			while (kₙ < maxchars) && (c !== delimiter) && (c !== rowdelimiter)
+    				kₙ = nextind(str, kₙ)
+                    c = str[kₙ]
     			end
 
-    			# Otherwise, parse the string
-    			parsed = tryparse(T, str[kₗ+1:k])
-    			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+                if kₙ>kₗ
+                    # Parse the string
+                    k = (c===delimiter || c===rowdelimiter) ? prevind(str,kₙ) : kₙ
+        			parsed = tryparse(T, str[kₗ:k])
+        			isnothing(parsed) || (parsedmatrix[i,j] = parsed)
+                end
 
                 # If we're at the end of the string, move on
-                (k+1 > maxchars) && break
+                (kₙ == maxchars) && break
 
     			# Step over the delimiter
-    			kₗ = k += 1
-    			# If we've hit a row delimiter, move to next row
-    			(str[k] == rowdelimiter) && break
+    			kₗ = kₙ = nextind(str, kₙ)
+
+                # If we've hit a row delimiter, move to next row
+                (str[kₙ] == rowdelimiter) && break
     		end
     	end
     	return parsedmatrix
@@ -356,6 +356,7 @@
     nonnumeric(x::Number) = false
     nonnumeric(x::Missing) = false
     nonnumeric(x::AbstractString) = (tryparse(Float64,x) === nothing) && (x != "")
+
 
 ## --- Transforming imported datasets
 
@@ -430,7 +431,27 @@
         s = replace(s, r"([\0-\x1F -/:-@\[-`{-~])" => s"_") # Everything else becomes an underscore
         return s
     end
+    sanitizevarname(s::Symbol) = s
 
+    symboltuple(x::NTuple{N, Symbol}) where {N} = x
+    symboltuple(x::NTuple{N}) where {N} = ntuple(i->Symbol(x[i]), N)
+    symboltuple(x) = ((Symbol(s) for s in x)...,)
+
+    stringarray(x::Vector{String}) = x
+    stringarray(x::NTuple{N, String}) where {N} = [s for s in x]
+    stringarray(x) = [String(s) for s in x]
+
+
+    function TupleDataset(d::Dict, elements=keys(d))
+        symbols = symboltuple(sanitizevarname.(elements))
+        return NamedTuple{symbols}(d[e] for e in elements)
+    end
+    export TupleDataset
+
+    function DictDataset(d::NamedTuple, elements=keys(d))
+        return Dict(String(e) => d[Symbol(e)] for e in elements)
+    end
+    export DictDataset
 
     """
     ```julia
@@ -492,7 +513,7 @@
             skipnameless::Bool=true,
             sumduplicates::Bool=false
         )
-        if importas == :Dict || importas==:dict
+        if importas === :Dict || importas === :dict
             # Output as dictionary
             if standardize
                 # Constrain types somewhat for a modicum of type-stability
@@ -506,7 +527,7 @@
             end
 
             # Process elements array
-            elements = string.(elements)
+            elements = stringarray(elements)
             if skipnameless
                 elements = filter(!isempty, elements)
             end
@@ -552,12 +573,11 @@
             return result
         elseif importas==:Tuple || importas==:tuple || importas==:NamedTuple
             # Import as NamedTuple (more efficient future default)
-            t = Bool[(isa(e, AbstractString) && (skipnameless && e != "")) for e in elements]
+            t = Bool[(skipnameless && e !== "") for e in elements]
             elements = sanitizevarname.(elements[t])
-            symbols = ((Symbol(e) for e ∈ elements)...,)
             i₀ = firstindex(data) + skipstart
             values = (columnformat(data[i₀:end, j], standardize, floattype) for j in findall(vec(t)))
-            return NamedTuple{symbols}(values)
+            return NamedTuple{symboltuple(elements)}(values)
         end
     end
     export elementify
@@ -600,7 +620,7 @@
 
         # Find the elements in the input dict if they exist and aren't otherwise specified
         if any(elements .== "elements")
-            elements = dataset["elements"]
+            elements = stringarray(dataset["elements"])
         end
 
         # Figure out how many are numeric (if necessary), so we can export only
@@ -653,8 +673,10 @@
             skipnan::Bool=false,
             rows=:
         )
+
         # Figure out how many are numeric (if necessary), so we can export only
         # those if `findnumeric` is set
+        elements = symboltuple(elements)
         if findnumeric
             elements = filter(x -> sum(isnumeric.(dataset[x])) > sum(nonnumeric.(dataset[x])), elements)
         end
@@ -695,6 +717,12 @@
     export unelementify
 
 ## --- Concatenating / stacking datasets
+
+    # Fill an array with the designated empty type
+    emptys(::Type, s...) = fill(missing, s...)
+    emptys(::Type{T}, s...) where T <: AbstractString = fill("", s...)
+    emptys(::Type{T}, s...) where T <: Number = fill(NaN, s...)
+    emptys(::Type{T}, s...) where T <: AbstractFloat = fill(T(NaN), s...)
 
     """
     ```julia
@@ -758,11 +786,6 @@
             vcat(d1[e], d2[e])
         end
     end
-    # Fill an array with the designated empty type
-    emptys(::Type, s) = fill(missing, s)
-    emptys(::Type{T}, s) where T <: AbstractString = fill("", s)
-    emptys(::Type{T}, s) where T <: Number = fill(NaN, s)
-    emptys(::Type{T}, s) where T <: AbstractFloat = fill(T(NaN), s)
     export concatenatedatasets
 
 

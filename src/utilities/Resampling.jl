@@ -273,16 +273,11 @@
     function bsresample(data::AbstractArray, sigma, nrows, p=min(0.2,nrows/size(data,1));
             kernel = gaussian,
             rng = MersenneTwister(),
-            return_index = false
         )
         index = Array{Int}(undef, nrows)
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
         bsr!(kernel, resampled, index, data, sigma, p, rng=rng)
-        if return_index
-            return resampled, index
-        else
-            return resampled
-        end
+        return resampled
     end
     """
     ```julia
@@ -296,22 +291,44 @@
     """
     function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
             kernel = gaussian,
-            rng = MersenneTwister()
+            rng = MersenneTwister(),
+            sigma = :auto,
         )
         # 2d array of nominal values
         data = unelementify(dataset, elements, floatout=true)
 
         # 2d array of absolute 1-sigma uncertainties
-        if haskey(dataset, "err") && isa(dataset["err"], Dict)
-            sigma = unelementify(dataset["err"], elements, floatout=true)
-        else
-            sigma = unelementify(dataset, elements.*"_sigma", floatout=true)
+        if sigma === :auto
+            if haskey(dataset, "err") && isa(dataset["err"], Dict)
+                sigma = unelementify(dataset["err"], elements, floatout=true)
+            else
+                sigma = unelementify(dataset, elements.*"_sigma", floatout=true)
+            end
         end
 
         # Resample
         sdata = bsresample(data, sigma, nrows, p, kernel=kernel, rng=rng)
         return elementify(sdata, elements, skipstart=0, importas=:Dict)
     end
+    function bsresample(dataset::NamedTuple, nrows, elements, p=min(0.2,nrows/length(dataset[first(elements)]));
+            kernel = gaussian,
+            rng = MersenneTwister(),
+            sigma = :auto,
+        )
+        # 2d array of nominal values
+        data = unelementify(dataset, elements, floatout=true)
+
+        # 2d array of absolute 1-sigma uncertainties
+        if sigma === :auto
+            elements_sigma = (String(e)*"_sigma" for e in elements)
+            sigma = unelementify(dataset, elements_sigma, floatout=true)
+        end
+
+        # Resample
+        sdata = bsresample(data, sigma, nrows, p, kernel=kernel, rng=rng)
+        return elementify(sdata, elements, skipstart=0, importas=:Tuple)
+    end
+
     export bsresample
 
 
@@ -631,11 +648,11 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        if sem == :sigma
+        if sem === :sigma
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
@@ -674,7 +691,7 @@
 
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        if sem == :sigma
+        if sem === :sigma
             m = Array{dtype}(undef, nbins, size(y,2))
             e = Array{dtype}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
@@ -682,7 +699,7 @@
                 e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
             end
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             m = Array{dtype}(undef, nbins, size(y,2))
             el = Array{dtype}(undef, nbins, size(y,2))
             eu = Array{dtype}(undef, nbins, size(y,2))
@@ -726,11 +743,11 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        if sem == :sigma
+        if sem === :sigma
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means

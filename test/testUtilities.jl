@@ -48,6 +48,7 @@
     @test metadata["nodata"] == -9999
 
 
+
     # Random lat-lon generation
     @test isa(randlatlon(), Tuple{Float64,Float64})
     lat,lon = randlatlon(100)
@@ -58,20 +59,20 @@
 
 
     # Calculate arc-degree distance
-    isapprox(haversine(1, 0, 0, 0), 1)
-    isapprox(haversine(0, 1, 0, 0), 1)
-    isapprox(haversine(0, 0, 1, 0), 1)
-    isapprox(haversine(0, 0, 0, 1), 1)
-    isapprox(haversine(0, 0, 0, 0), 0)
+    @test isapprox(haversine(1, 0, 0, 0), 1)
+    @test isapprox(haversine(0, 1, 0, 0), 1)
+    @test isapprox(haversine(0, 0, 1, 0), 1)
+    @test isapprox(haversine(0, 0, 0, 1), 1)
+    @test isapprox(haversine(0, 0, 0, 0), 0)
 
-    isapprox(haversine(90, 2, 0, 0), 90)
-    isapprox(haversine(0, 0, 90, 2), 90)
+    @test isapprox(haversine(90, 2, 0, 0), 90)
+    @test isapprox(haversine(0, 0, 90, 2), 90)
 
 
     # Find the maximum arc-degree distance between a list of points
     lats = [0, 0, 0, 0]
     lons = [0, 30, 23, 90]
-    isapprox(dist_uncert(lats, lons), 45)
+    @test isapprox(dist_uncert(lats, lons), 45)
 
 
 ## --- Etc.jl
