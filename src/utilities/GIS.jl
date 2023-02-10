@@ -347,7 +347,8 @@
     ```julia
     haversine(lat₁, lon₁, lat₂, lon₂)
     ```
-    Calculate the arc degree distance between two decimal degree points (lat₁, lon₁) and (lat₂, lon₂).
+    Calculate the arc degree distance between two decimal degree points (lat₁, lon₁) and 
+    (lat₂, lon₂).
 
     """
     function haversine(lat₁, lon₁, lat₂, lon₂)
@@ -363,9 +364,13 @@
     dist_uncert(lats, lons)    
     ```
 
-    Find the decimal degree center and associated distance uncertainty (in arc degrees) from lists `lats` and `lons` of decimal 
-    degree coordinates. Returns latitude and longitude of the center, and 1/2 of the distance between the farthest two points.
+    Find the decimal degree center and associated uncertainty (in arc degrees) from 
+    lists `lats` and `lons` of decimal degree coordinates. 
 
+    ### Examples
+    ```julia
+    (lat_ctr, lon_ctr, uncertainty) = dist_uncert(lats, lons)
+    ```
     """
     function dist_uncert(lats, lons)
         @assert eachindex(lats) == eachindex(lons)
