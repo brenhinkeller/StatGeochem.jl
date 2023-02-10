@@ -363,8 +363,8 @@
     dist_uncert(lats, lons)    
     ```
 
-    Find the decimal degree center and associated distance uncertainty (in arc degrees) given a list of decimal degree points 
-    `lats` and `lons`. Returns latitude and longitude of the center, and 1/2 of the distance between the farthest two points.
+    Find the decimal degree center and associated distance uncertainty (in arc degrees) from lists `lats` and `lons` of decimal 
+    degree coordinates. Returns latitude and longitude of the center, and 1/2 of the distance between the farthest two points.
 
     """
     function dist_uncert(lats, lons)
@@ -372,8 +372,8 @@
         maxdist = zero(float(eltype(lats)))
         for i in eachindex(lats)
             for j in 1+firstindex(lats):lastindex(lats)
-                # If a point is compared to itself, distance is 0
-                if i !=j
+                # If a point is compared to itself, distance is 0; comparison is susceptible to roundoff error
+                if i != j
                     dist = haversine(lats[i], lons[i], lats[j], lons[j])
                     dist > maxdist && (maxdist = dist)
                 end
