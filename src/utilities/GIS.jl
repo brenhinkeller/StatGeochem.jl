@@ -372,8 +372,11 @@
         maxdist = zero(float(eltype(lats)))
         for i in eachindex(lats)
             for j in 1+firstindex(lats):lastindex(lats)
-                dist = haversine(lats[i], lons[i], lats[j], lons[j])
-                dist > maxdist && (maxdist = dist)
+                # If a point is compared to itself, distance is 0
+                if i !=j
+                    dist = haversine(lats[i], lons[i], lats[j], lons[j])
+                    dist > maxdist && (maxdist = dist)
+                end
             end
         end
         return (nanmaximum(lats)+nanminimum(lats))/2, (nanmaximum(lons)+nanminimum(lons))/2, maxdist/2
