@@ -22,8 +22,10 @@
 
     @test isa(datatuple, NamedTuple)
     @test unelementify(datatuple) == data
+    @test unelementify(DictDataset(datatuple)::Dict, elements) == data
     @test isa(datadict, Dict)
     @test unelementify(datadict) == data
+    @test unelementify(TupleDataset(datadict, elements)::NamedTuple) == data
 
     # Test adding or averaging option for numeric elements
     addtest = ["a" "b" "a";1 2 3]
@@ -104,6 +106,15 @@
     @test StatGeochem.nonnumeric('x') == true
     @test StatGeochem.isnumeric(NaN) == true
     @test StatGeochem.nonnumeric(NaN) == false
+
+    @test StatGeochem.symboltuple((:foo, :bar, :baz)) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple(("foo", "bar", "baz")) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple([:foo, :bar, :baz]) === (:foo, :bar, :baz)
+    @test StatGeochem.symboltuple(["foo", "bar", "baz"]) === (:foo, :bar, :baz)
+    @test StatGeochem.stringarray((:foo, :bar, :baz)) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray(("foo", "bar", "baz")) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray([:foo, :bar, :baz]) == ["foo", "bar", "baz"]
+    @test StatGeochem.stringarray(["foo", "bar", "baz"]) == ["foo", "bar", "baz"]
 
     @test isequal(StatGeochem.emptys(Any,3), [missing, missing, missing])
     @test isequal(StatGeochem.emptys(String,3), ["", "", ""])

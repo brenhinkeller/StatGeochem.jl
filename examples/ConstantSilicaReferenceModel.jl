@@ -1,8 +1,7 @@
 ## --- Load the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
-    using Plots; gr();
-    using Statistics, DelimitedFiles, SpecialFunctions
+    using Plots
 
 ## --- Download and unzip Keller and Schoene (2012) dataset
 
@@ -25,7 +24,7 @@
     k = ign["k"]
 
     # Probability of keeping a given data point when sampling
-    p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
+    p = 1.0 ./ ((k .* nanmedian(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
     p[vec(ign["Elevation"].<-100)] .= 0 # Consider only continental crust
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv

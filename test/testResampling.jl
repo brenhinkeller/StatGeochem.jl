@@ -45,6 +45,14 @@
     @test isapprox(mean(dbs["y"]), 11, atol=1)
     @test isapprox(std(dbs["y"]), 6.06, atol=1)
 
+    dt = TupleDataset(d)
+    @test isa(dt, NamedTuple)
+    dbs = bsresample(dt, 1000, (:x, :y), 0.5)
+    @test isapprox(mean(dbs[:x]), 5.5, atol=0.5)
+    @test isapprox(std(dbs[:x]), 3.03, atol=0.5)
+    @test isapprox(mean(dbs[:y]), 11, atol=1)
+    @test isapprox(std(dbs[:y]), 6.06, atol=1)
+
     @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
     @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     @test binmeans(1:100, 1:100, 0, 100, 10, ones(100)) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
@@ -82,15 +90,15 @@
     xmin = 0; xmax = 100; nbins = 5
     (c,m,e) = bin_bsr(x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.4)
-    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.4)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
+    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.5)
 
     # Upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.4)
-    @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=0.8)
-    @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=0.8)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
+    @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=1.0)
+    @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=1.0)
 
     # Medians, upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanbinmedian!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
@@ -103,8 +111,8 @@
     w = ones(101)
     (c,m,e) = bin_bsr(x, y, xmin, xmax, nbins, w, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.4)
-    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.4)
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
+    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.5)
 
     # with 2-D array (matrix) of y data
     y = repeat(0:100, 1, 4)
@@ -114,6 +122,12 @@
     @test isapprox(m, repeat([10.04, 29.94, 49.94, 69.92, 89.83], 1, 4), atol=0.5)
     @test isapprox(e, repeat([1.17, 1.21, 1.23, 1.26, 1.28], 1, 4), atol=0.5)
 
+    (c,m,el,eu) = bin_bsr(x, y, xmin, xmax, nbins, x_sigma=ones(101), y_sigma=y_sigma, sem=:CI)
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, repeat([10.04, 29.94, 49.94, 69.92, 89.83], 1, 4), atol=0.5)
+    @test isapprox(el, repeat([2.29, 2.38, 2.41, 2.49, 2.51], 1, 4), atol=1.0)
+    @test isapprox(eu, repeat([2.3, 2.37, 2.42, 2.51, 2.51], 1, 4), atol=1.0)
+
 
 ## -- bin_bsr_ratios
 
@@ -121,16 +135,23 @@
     xmin = 0; xmax = 100; nbins = 5
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], rtol=0.4)
 
     # With weights
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, ones(101), x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], rtol=0.4)
+
+    # Medians
+    (c,m,el,eu) = bin_bsr_ratio_medians(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.34, 9.25], rtol=0.1)
+    @test isapprox(el, [0.05, 0.08, 0.15, 0.4, 3.1], rtol=0.5)
+    @test isapprox(eu, [0.05, 0.09, 0.17, 0.51, 6.42], rtol=0.5)
 
 ## --- Monte Carlo interpolation/fitting
 

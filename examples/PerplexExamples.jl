@@ -3,8 +3,7 @@
 
 ## --- Import some useful packages
     using StatGeochem
-    using Plots; gr();
-    using Statistics, DelimitedFiles, SpecialFunctions
+    using Plots
 
 ## --- Configure
 

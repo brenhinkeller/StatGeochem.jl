@@ -16,7 +16,7 @@
 
     """
     ```julia
-    bsr!([f::Function], resampled::Array, index::Vector{Int}, data, sigma, p;
+    bsr!([f::Function=gaussian], resampled::Array, index::Vector{Int}, data, sigma, p;
         \trng::AbstractRNG=MersenneTwister()
     )
     ```
@@ -273,16 +273,11 @@
     function bsresample(data::AbstractArray, sigma, nrows, p=min(0.2,nrows/size(data,1));
             kernel = gaussian,
             rng = MersenneTwister(),
-            return_index = false
         )
         index = Array{Int}(undef, nrows)
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
         bsr!(kernel, resampled, index, data, sigma, p, rng=rng)
-        if return_index
-            return resampled, index
-        else
-            return resampled
-        end
+        return resampled
     end
     """
     ```julia
@@ -296,22 +291,44 @@
     """
     function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
             kernel = gaussian,
-            rng = MersenneTwister()
+            rng = MersenneTwister(),
+            sigma = :auto,
         )
         # 2d array of nominal values
         data = unelementify(dataset, elements, floatout=true)
 
         # 2d array of absolute 1-sigma uncertainties
-        if haskey(dataset, "err") && isa(dataset["err"], Dict)
-            sigma = unelementify(dataset["err"], elements, floatout=true)
-        else
-            sigma = unelementify(dataset, elements.*"_sigma", floatout=true)
+        if sigma === :auto
+            if haskey(dataset, "err") && isa(dataset["err"], Dict)
+                sigma = unelementify(dataset["err"], elements, floatout=true)
+            else
+                sigma = unelementify(dataset, elements.*"_sigma", floatout=true)
+            end
         end
 
         # Resample
         sdata = bsresample(data, sigma, nrows, p, kernel=kernel, rng=rng)
         return elementify(sdata, elements, skipstart=0, importas=:Dict)
     end
+    function bsresample(dataset::NamedTuple, nrows, elements, p=min(0.2,nrows/length(dataset[first(elements)]));
+            kernel = gaussian,
+            rng = MersenneTwister(),
+            sigma = :auto,
+        )
+        # 2d array of nominal values
+        data = unelementify(dataset, elements, floatout=true)
+
+        # 2d array of absolute 1-sigma uncertainties
+        if sigma === :auto
+            elements_sigma = (String(e)*"_sigma" for e in elements)
+            sigma = unelementify(dataset, elements_sigma, floatout=true)
+        end
+
+        # Resample
+        sdata = bsresample(data, sigma, nrows, p, kernel=kernel, rng=rng)
+        return elementify(sdata, elements, skipstart=0, importas=:Tuple)
+    end
+
     export bsresample
 
 
@@ -550,7 +567,7 @@
 
     """
     ```julia
-    bin_bsr([f!::Function], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
+    bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \ty_sigma = zeros(size(y)),
         \tnresamplings = 1000,
@@ -631,11 +648,11 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        if sem == :sigma
+        if sem === :sigma
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
@@ -674,7 +691,7 @@
 
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-        if sem == :sigma
+        if sem === :sigma
             m = Array{dtype}(undef, nbins, size(y,2))
             e = Array{dtype}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
@@ -682,7 +699,7 @@
                 e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
             end
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             m = Array{dtype}(undef, nbins, size(y,2))
             el = Array{dtype}(undef, nbins, size(y,2))
             eu = Array{dtype}(undef, nbins, size(y,2))
@@ -726,11 +743,11 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         m = nanmean(means,dim=2) # Mean-of-means
-        if sem == :sigma
+        if sem === :sigma
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem == :credibleinterval || sem == :CI || sem == :pctile
+        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
@@ -740,27 +757,18 @@
             return c, means
         end
     end
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, args...; sem=:sigma, kwargs...) = bin_bsr(nanbinmean!, x, y, args...; sem=sem, kwargs...)
     export bin_bsr
 
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_means(args...; kwargs...) = bin_bsr(nanbinmean!, args...; kwargs...)
     export bin_bsr_means
 
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_medians(args...; kwargs...) = bin_bsr(nanbinmedian!, args...; kwargs...)
     export bin_bsr_medians
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios([f!::Function], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+    (c, m, el, eu) = bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
@@ -847,11 +855,23 @@
 
         return c, m, el, eu
     end
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+    bin_bsr_ratios(x::AbstractVector, args...; kwargs...) = bin_bsr_ratios(nanbinmean!, x, args...; kwargs...)
     export bin_bsr_ratios
+
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_ratio_medians(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+        \tx_sigma = zeros(size(x)),
+        \tnum_sigma = zeros(size(num)),
+        \tdenom_sigma = zeros(size(denom)),
+        \tnresamplings = 1000,
+        \tp::Union{Number,Vector} = 0.2
+    )
+    ```
+    Equivalent to `bin_bsr_ratios(nanbinmedian!, ...)`
+    """
+    bin_bsr_ratio_medians(args...; kwargs...) = bin_bsr_ratios(nanbinmedian!,args...; kwargs...)
+    export bin_bsr_ratio_medians
 
 
 ## --- Quick Monte Carlo binning/interpolation functions
