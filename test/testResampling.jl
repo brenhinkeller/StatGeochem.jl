@@ -135,16 +135,23 @@
     xmin = 0; xmax = 100; nbins = 5
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], rtol=0.4)
 
     # With weights
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, ones(101), x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
-    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], atol=0.4)
-    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], atol=0.8)
-    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], atol=0.8)
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], rtol=0.4)
+
+    # Medians
+    (c,m,el,eu) = bin_bsr_ratio_medians(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.34, 9.25], rtol=0.1)
+    @test isapprox(el, [0.05, 0.08, 0.15, 0.4, 3.1], rtol=0.5)
+    @test isapprox(eu, [0.05, 0.09, 0.17, 0.51, 6.42], rtol=0.5)
 
 ## --- Monte Carlo interpolation/fitting
 

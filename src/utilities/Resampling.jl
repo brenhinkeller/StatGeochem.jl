@@ -16,7 +16,7 @@
 
     """
     ```julia
-    bsr!([f::Function], resampled::Array, index::Vector{Int}, data, sigma, p;
+    bsr!([f::Function=gaussian], resampled::Array, index::Vector{Int}, data, sigma, p;
         \trng::AbstractRNG=MersenneTwister()
     )
     ```
@@ -567,7 +567,7 @@
 
     """
     ```julia
-    bin_bsr([f!::Function], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
+    bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \ty_sigma = zeros(size(y)),
         \tnresamplings = 1000,
@@ -757,27 +757,18 @@
             return c, means
         end
     end
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:sigma, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr(x::AbstractVector, y::AbstractVecOrMat, args...; sem=:sigma, kwargs...) = bin_bsr(nanbinmean!, x, y, args...; sem=sem, kwargs...)
     export bin_bsr
 
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_means(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmean!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_means(args...; kwargs...) = bin_bsr(nanbinmean!, args...; kwargs...)
     export bin_bsr_means
 
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
-    bin_bsr_medians(x::AbstractVector, y::AbstractVecOrMat, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), y_sigma=zeros(size(y)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr(nanbinmedian!,x,y,xmin,xmax,nbins,w,x_sigma=x_sigma,y_sigma=y_sigma,nresamplings=nresamplings,sem=sem,p=p)
+    bin_bsr_medians(args...; kwargs...) = bin_bsr(nanbinmedian!, args...; kwargs...)
     export bin_bsr_medians
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios([f!::Function], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+    (c, m, el, eu) = bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
@@ -864,11 +855,23 @@
 
         return c, m, el, eu
     end
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
-    bin_bsr_ratios(x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector; x_sigma=zeros(size(x)), num_sigma=zeros(size(num)), denom_sigma=zeros(size(denom)), nresamplings=1000, sem=:pctile, p=0.2) =
-        bin_bsr_ratios(nanbinmean!,x,num,denom,xmin,xmax,nbins,w,x_sigma=x_sigma,num_sigma=num_sigma,denom_sigma=denom_sigma,nresamplings=nresamplings,p=p)
+    bin_bsr_ratios(x::AbstractVector, args...; kwargs...) = bin_bsr_ratios(nanbinmean!, x, args...; kwargs...)
     export bin_bsr_ratios
+
+    """
+    ```julia
+    (c, m, el, eu) = bin_bsr_ratio_medians(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+        \tx_sigma = zeros(size(x)),
+        \tnum_sigma = zeros(size(num)),
+        \tdenom_sigma = zeros(size(denom)),
+        \tnresamplings = 1000,
+        \tp::Union{Number,Vector} = 0.2
+    )
+    ```
+    Equivalent to `bin_bsr_ratios(nanbinmedian!, ...)`
+    """
+    bin_bsr_ratio_medians(args...; kwargs...) = bin_bsr_ratios(nanbinmedian!,args...; kwargs...)
+    export bin_bsr_ratio_medians
 
 
 ## --- Quick Monte Carlo binning/interpolation functions
