@@ -1,11 +1,7 @@
 ## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
-    using Plots; gr();
-
-    if VERSION>=v"0.7"
-        using Statistics, DelimitedFiles, SpecialFunctions
-    end
+    using Plots
 
 ## --- Download and unzip Keller and Schoene (2012) dataset
 
@@ -29,7 +25,7 @@
     k = ign["k"]
 
     # Probability of keeping a given data point when sampling
-    p = 1.0 ./ ((k .* median(5.0 ./ k)) .+ 1.0) # Keep rougly one-fith of the data in each resampling
+    p = 1.0 ./ ((k .* nanmedian(5.0 ./ k)) .+ 1.0) # Keep roughly one-fith of the data in each resampling
 
     # Set absolute uncertainties for each element where possible, using errors defined inerr2srel.csv
     err2srel = importdataset("err2srel.csv", ',', importas=:Dict)
@@ -224,4 +220,3 @@
     exportdataset(data,"MajorDifferentiation.csv",',')
 
 ## --- End of File
-""

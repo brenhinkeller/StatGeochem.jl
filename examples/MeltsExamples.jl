@@ -1,7 +1,6 @@
 ## --- Load required packages
     using StatGeochem
-    using Plots; gr()
-    using Statistics, DelimitedFiles, SpecialFunctions
+    using Plots
 
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
     # Note: melts_configure requires a working alphamelts installation.
@@ -40,7 +39,7 @@
 ## --- Plot solid composition
     h = plot(xlabel="Percent melt",ylabel="Abudance (wt. %) in solid")
     for e in ["SiO2","Al2O3","CaO","MgO","FeO","Na2O","K2O"]
-        plot!(h,100-solid_comp["mass"],solid_comp[e],label=e)
+        plot!(h,100 .- solid_comp["mass"],solid_comp[e],label=e)
     end
     plot!(h,xlims=(0,100),framestyle=:box,fg_color_legend=:white,legend=:right)
     display(h)
