@@ -397,8 +397,9 @@
     ```
     Return the centroid of a set of latitudes and longitudes on a sphere
     """
-    function centroid(lats::AbstractArray{T}, lons::AbstractArray{T}) where {T}
-        x, y, z = similar(lats), similar(lats), similar(lats)
+    function centroid(lats::AbstractArray{T1}, lons::AbstractArray{T2}) where {T1,T2}
+        T = float(promote_type(T1, T2))
+        x, y, z = similar(lats, T), similar(lats, T), similar(lats, T)
         @inbounds for i in eachindex(lats, lons)
             φ = deg2rad(90 - lats[i])
             θ = deg2rad(lons[i])
@@ -415,9 +416,9 @@
 
     """
     ```julia
-    x, y, z = cartesian(ρ, θ, φ)
+    x, y, z = cartesian(ρ, φ, θ)
     ```
-    Convert from coordinates (`ρ`,`θ`,`φ`) to cartesian coordinates (`x`,`y`,`z`).
+    Convert from coordinates (`ρ`,`φ`,`θ`) to cartesian coordinates (`x`,`y`,`z`).
     """
     function cartesian(ρ::Number, φ::Number, θ::Number)
         x = ρ * sin(φ) * cos(θ)
@@ -430,7 +431,7 @@
     ```julia
     ρ, θ, φ = cartesian(x, y, z))
     ```
-    Convert from cartesian coordinates (`x`,`y`,`z`) to spherical coordinates (`ρ`,`θ`,`φ`).
+    Convert from cartesian coordinates (`x`,`y`,`z`) to spherical coordinates (`ρ`,`φ`,`θ`).
     """
     function spherical(x::Number, y::Number, z::Number)
         ρ = sqrt(x^2 + y^2 + z^2)
