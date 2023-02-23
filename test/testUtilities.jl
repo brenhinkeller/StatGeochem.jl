@@ -68,13 +68,14 @@
     @test isapprox(haversine(90, 2, 0, 0), 90)
     @test isapprox(haversine(0, 0, 90, 2), 90)
 
+    # Centroid of a set of lats and lons on a sphere
+    lats, lons = [-1, 1, 0, 0.], [0, 0, -1, 1.]
+    @test all(StatGeochem.centroid(lats, lons) .≈ (0.0, 0.0))
 
-    # Find the maximum arc-degree distance between a list of points
-    lats = [0, 0, 0, 0]
-    lons = [0, 30, 23, 90]
-    @test isapprox(dist_uncert(lats, lons)[1], 0)
-    @test isapprox(dist_uncert(lats, lons)[2], 45)
-    @test isapprox(dist_uncert(lats, lons)[3], 45)
+    # Maximum arc-degree distance between a list of points on a sphere
+    @test all(dist_uncert(lats, lons) .≈ (0.0, 0.0, 1.0))
+    lats, lons = [0, 0, 0, 0], [0, 30, 23, 90]
+    @test all(dist_uncert(lats, lons) .≈ (0.0, 34.15788270532762, 45.0))
 
 
 ## --- Etc.jl
