@@ -364,22 +364,81 @@
     dist_uncert(lats, lons)    
     ```
 
-    Find the distance uncertainty (in arc degrees) given a list of decimal degree 
-    points `lats` and `lons`. Returns 1/2 of the distance between the farthest
-    two points.
+    Find the decimal degree center and associated uncertainty (in arc degrees) from 
+    lists `lats` and `lons` of decimal degree coordinates. 
 
+    ### Examples
+    ```julia
+    (lat_ctr, lon_ctr, uncertainty) = dist_uncert(lats, lons)
+    ```
     """
     function dist_uncert(lats, lons)
         @assert eachindex(lats) == eachindex(lons)
+        latc, lonc = centroid(lats, lons)
         maxdist = zero(float(eltype(lats)))
         for i in eachindex(lats)
             for j in 1+firstindex(lats):lastindex(lats)
-                dist = haversine(lats[i], lons[i], lats[j], lons[j])
-                dist > maxdist && (maxdist = dist)
+                # If a point is compared to itself, distance is 0; comparison is susceptible to roundoff error
+                if i != j
+                    dist = haversine(lats[i], lons[i], lats[j], lons[j])
+                    dist > maxdist && (maxdist = dist)
+                end
             end
         end
-        return maxdist/2
+        return latc, lonc, maxdist/2
     end
     export dist_uncert
+    
+## --- Other lat and lon conversions
+
+    """
+    ```julia
+    centroid(lats, lons)
+    ```
+    Return the centroid of a set of latitudes and longitudes on a sphere
+    """
+    function centroid(lats::AbstractArray{T1}, lons::AbstractArray{T2}) where {T1,T2}
+        T = float(promote_type(T1, T2))
+        x, y, z = similar(lats, T), similar(lats, T), similar(lats, T)
+        @inbounds for i in eachindex(lats, lons)
+            φ = deg2rad(90 - lats[i])
+            θ = deg2rad(lons[i])
+            x[i], y[i], z[i] = cartesian(one(T), φ, θ)
+        end
+        x₀ = nanmean(x)
+        y₀ = nanmean(y)
+        z₀ = nanmean(z)
+        ρ, φ, θ = spherical(x₀, y₀, z₀)
+        latc = 90 - rad2deg(φ)
+        lonc = rad2deg(θ)
+        return latc, lonc
+    end
+
+    """
+    ```julia
+    x, y, z = cartesian(ρ, φ, θ)
+    ```
+    Convert from coordinates (`ρ`,`φ`,`θ`) to cartesian coordinates (`x`,`y`,`z`).
+    """
+    function cartesian(ρ::Number, φ::Number, θ::Number)
+        x = ρ * sin(φ) * cos(θ)
+        y = ρ * sin(φ) * sin(θ)
+        z = ρ * cos(φ)
+        return x, y, z
+    end
+
+    """
+    ```julia
+    ρ, θ, φ = cartesian(x, y, z))
+    ```
+    Convert from cartesian coordinates (`x`,`y`,`z`) to spherical coordinates (`ρ`,`φ`,`θ`).
+    """
+    function spherical(x::Number, y::Number, z::Number)
+        ρ = sqrt(x^2 + y^2 + z^2)
+        φ = acos(z/ρ)
+        θ = atan(y/x)
+        return ρ, φ, θ
+    end
+
 
 ## --- End of File
