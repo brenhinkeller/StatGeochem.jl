@@ -13,8 +13,8 @@
     scratchdir = "scratch/"
 
     # Conditions
-    P_range = [20000,20000]
-    T_range = [1700,800]
+    P_range = (20000,20000)
+    T_range = (1700,800)
     # Starting composition
     elements = ["SiO2",  "TiO2","Al2O3","Fe2O3","Cr2O3",  "FeO",  "MnO",  "MgO",   "NiO",  "CoO",  "CaO",  "Na2O", "K2O", "P2O5", "H2O",]
     composition=[44.8030, 0.1991, 4.4305, 0.9778, 0.3823, 7.1350, 0.1344, 37.6345, 0.2489, 0.0129, 3.5345, 0.3584, 0.0289, 0.0209, 0.15,] #mcdbse (McDonough Pyrolite)

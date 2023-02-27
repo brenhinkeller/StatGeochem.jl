@@ -1,7 +1,7 @@
 name = "StatGeochem"
 uuid = "df4de05a-b714-11e8-3c2a-c30fb13e804c"
 authors = ["C. Brenhin Keller <cbkeller@berkeley.edu>"]
-version = "0.5.8"
+version = "0.5.9"
 
 
 [deps]

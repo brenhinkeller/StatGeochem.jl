@@ -197,7 +197,7 @@
 ## --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
 
     # Input parameters
-    P_range = [280, 28000] # Pressure range to explore, bar (roughly 1-100 km depth)
+    P_range = (280, 28000) # Pressure range to explore, bar (roughly 1-100 km depth)
     T_surf = 273.15 # Temperature of surface (K)
     geotherm = 0.01 # Geothermal gradient of 0.1 K/bar == about 28.4 K/km
     melt_model = ""
@@ -252,7 +252,7 @@
 ## --- Compare seismic properties for several different geotherms, as a function of Pressure
 
     # Input parameters
-    P_range = [280, 14000] # Pressure range to explore, bar (roughly 1-50 km depth)
+    P_range = (280, 14000) # Pressure range to explore, bar (roughly 1-50 km depth)
     T_surf = 273.15 # Temperature of surface (K)
     dataset="hp02ver.dat"
     yelem = "vp,km/s"
@@ -275,7 +275,7 @@
 ## --- Compare seismic properties for several different geotherms, as a function of temperature
 
     # Input parameters
-    P_range = [280, 16000] # Pressure range to explore, bar (roughly 1-60 km depth)
+    P_range = (280, 16000) # Pressure range to explore, bar (roughly 1-60 km depth)
     T_surf = 273.15 # Temperature of surface (K)
     dataset="hp02ver.dat"
     yelem = "vp,km/s"
