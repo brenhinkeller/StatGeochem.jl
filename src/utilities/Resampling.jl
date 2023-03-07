@@ -270,14 +270,15 @@
     Bootstrap resample a (sample-per-row / element-per-column) array of `data`
     with uncertainties `sigma` and resampling probabilities `p`
     """
-    function bsresample(data::AbstractArray, sigma, nrows, p=min(0.2,nrows/size(data,1));
+    function bsresample(data::AbstractArray, sigma, nrows::Integer, p=min(0.2,nrows/size(data,1));
             kernel = gaussian,
             rng = MersenneTwister(),
+            return_index = false,
         )
         index = Array{Int}(undef, nrows)
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
         bsr!(kernel, resampled, index, data, sigma, p, rng=rng)
-        return resampled
+        return return_index ? (resampled, index) : resampled
     end
     """
     ```julia
@@ -289,7 +290,7 @@
     Bootstrap resample a dictionary-based `dataset` with uncertainties stored either
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
-    function bsresample(dataset::Dict, nrows, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
+    function bsresample(dataset::Dict, nrows::Integer, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
             kernel = gaussian,
             rng = MersenneTwister(),
             sigma = :auto,
