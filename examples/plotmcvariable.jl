@@ -205,7 +205,7 @@
 
     rt = [0,1,2,3,4] # Time range (Ga)
     data = Dict()
-    for elem in ["Al2O3", "MgO", "Na2O", "Fe2O3T", "K2O", "CaO"]
+    for elem in ("Al2O3", "MgO", "Na2O", "Fe2O3T", "K2O", "CaO")
         for i=1:length(rt)-1
             t = rt[i]*1000 .< ign["Age"] .< rt[i+1]*1000
 
@@ -219,4 +219,39 @@
     end
     exportdataset(data,"MajorDifferentiation.csv",',')
 
+## --- Export averages over time
+
+    xmin = 0 # Minimum Age
+    xmax = 3900 # Maximum Age
+    nbins = 39
+
+    # Look only at samples from a specific silica range
+    t = 43 .< ign["SiO2"] .< 51; name="Basaltic" # Mafic
+    # t = 51 .< ign["SiO2"] .< 62; name="Intermediate" # Intermediate
+    # t = 62 .< ign["SiO2"] .< 74; name="Granitic" # Felsic
+    # t = 40 .< ign["SiO2"] .< 80; name="All" # All normal igneous
+
+    major = ("SiO2", "TiO2", "Al2O3", "FeOT", "MgO", "CaO", "MnO", "Na2O", "K2O", "P2O5")
+    trace = ("Li", "Rb", "Cs", "Sr", "Ba", "Sc", "Y",
+      "La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Yb", "Lu",
+      "Zr", "Hf", "V", "Nb", "Ta", "Cr", "Mo", "W", "Co", "Ni"
+    )
+
+    data = Dict{String,Array{Union{Float64, String}}}()
+    data["elements"] = ["Age (Ma)"]
+    for elem in (major ∪ trace)
+        # Resample, returning binned means and uncertainties
+        (c,m,e) = bin_bsr(ign["Age"][t], ign[elem][t], xmin, xmax, nbins;
+            p = p[t],
+            x_sigma = ign["Age_sigma"][t],
+            y_sigma = ign[elem*"_sigma"][t]
+        )
+        data["Age (Ma)"] = c
+        data[elem] = m
+        push!(data["elements"], elem)
+        data[elem*"_sigma"] = e
+        push!(data["elements"], elem*"_sigma")
+    end
+
+    exportdataset(data, name*"Averages.csv",',')
 ## --- End of File
