@@ -1264,7 +1264,8 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n")
+        # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
+        write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
@@ -1330,7 +1331,8 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         # v6.7.8 pseudosection
-        write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n0\n")
+        # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
+        write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n5\n0\n")
         close(fp)
 
         # Make sure there isn"t already an output
