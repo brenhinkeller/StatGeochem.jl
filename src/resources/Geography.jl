@@ -82,9 +82,12 @@
     ```julia
     find_geolprov(lat,lon)
     ```
-    Find which tectonic setting a sample originates from.
+    Find which tectonic setting a sample originates from, based on a modified version
+    of the USGS map of tectonic provinces of the world
+    (c.f. https://commons.wikimedia.org/wiki/File:World_geologic_provinces.jpg)
 
     Settings:
+    ```
       10: Accreted Arc
       11: Island Arc
       12: Continental Arc
@@ -96,6 +99,11 @@
       32: Platform
       33: Basin
       00: No data
+    ```
+
+    Settings returned are most representative modern setting at a given location
+    and may not represent the tectonic setting where rocks (especially older/Precambrian
+    rocks) originally formed.
 
     ## Examples
     ```julia
