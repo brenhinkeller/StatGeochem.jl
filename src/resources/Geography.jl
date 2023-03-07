@@ -13,6 +13,7 @@
     Find which geographic continent a sample originates from.
 
     Continents:
+    ```
       1: "Africa"
       2: "Eurasia"
       3: "North America"
@@ -20,6 +21,7 @@
       5: "Australia"
       6: "Antarctica"
       7: "NA"
+    ```
 
     See also: `continents`, `continentcolors`.
 
