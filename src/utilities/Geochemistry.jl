@@ -15,12 +15,13 @@
 
         # Normalize to chondrite
         y = log.([Tb/0.0374, Gd/0.2055, Sm/0.1530, Nd/0.4670])
-        notnan = .~ isnan.(y)
+        notnan = .!isnan.(y)
 
         # Make sure we're interpolating and not extrapolating
         if any(view(notnan, 1:2)) && any(view(notnan, 3:4))
             # Fit a straight line through the chondrite-normalized values
-            (a,b) = linreg(r[notnan], y[notnan])
+            x = r[notnan]
+            (a,b) = hcat(fill!(similar(x), 1), x) \ y[notnan]
             # De-dormalize output for Eu, interpolating at r = 108.7 pm or x = 3
             eu_interp = 0.0580*exp(a + b*108.7)
         else
