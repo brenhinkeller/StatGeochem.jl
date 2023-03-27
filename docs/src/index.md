@@ -4,7 +4,7 @@ CurrentModule = StatGeochem
 
 # StatGeochem
 
-Documentation for [StatGeochem](https://github.com/brenhinkeller/StatGeochem.jl).
+Documentation for the [StatGeochem.jl](https://github.com/brenhinkeller/StatGeochem.jl) package.
 
 ```@index
 ```
