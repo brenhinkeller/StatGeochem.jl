@@ -59,18 +59,18 @@
 
     #          SiO2,  TiO2,  Al2O3,  FeOT,   MnO,   MgO,   CaO,   Na2O,  K2O,  P2O5
     majors = [58.509, 1.022, 14.858, 4.371, 0.141, 4.561, 5.912, 3.296, 2.399, 0.279]
-    @test tzirc(majors..., 100) ≈ 602.8489762809595
-    @test tzircZr(majors..., 800) ≈ 832.9689080567883
-    @test all(tzircM((repeat([m],2) for m in majors)...,) .≈ 2.335918319204001)
+    @test tzirc(majors..., 100) ≈ 603.4774053095614
+    @test tzircZr(majors..., 800) ≈ 826.1071302971219
+    @test mean(tzircM((repeat([m],2) for m in majors)...,)) ≈ 2.328787411099651
 
-    @test StatGeochem.Ayers_tsphene(majors...) ≈ 637.139776663209
-    @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 2.3545537746637324
-    @test all(StatGeochem.Ayers_tspheneC.((repeat([m],2) for m in majors)...,) .≈ 2.4338232746497326)
+    @test StatGeochem.Ayers_tsphene(majors...) ≈ 637.7486728299519
+    @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 2.3486842447760026
+    @test mean(StatGeochem.Ayers_tspheneC.((repeat([m],2) for m in majors)...,)) ≈ 2.4263934899817188
 
     #                SiO2,   TiO2,  Al2O3,  FeOT,   MgO,  CaO,   Na2O,  K2O,   Li2O, H2O
     montel_elems = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.01, 4.0]
-    @test StatGeochem.Montel_tmonaziteREE(montel_elems..., 750.0) ≈ 12.03834338792398
-    @test StatGeochem.Montel_tmonazite(montel_elems..., 100,100,100,0,0,0) ≈ 630.4499586271999
+    @test StatGeochem.Montel_tmonaziteREE(montel_elems..., 750.0) ≈ 11.884450325741755
+    @test StatGeochem.Montel_tmonazite(montel_elems..., 100,100,100,0,0,0) ≈ 631.2376817530326
 
     @test StatGeochem.Rusiecka_tmonaziteREE(200, 750) ≈ 0.27430570654873154
     @test StatGeochem.Rusiecka_txenotimeY(200, 750) ≈ 41.9312030248943
@@ -82,8 +82,12 @@
 
     #          SiO2,  TiO2,  Al2O3,  FeOT,   MgO,   CaO,   Na2O,  K2O,  P2O5
     majors = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.279]
-    @test StatGeochem.Tollari_tapatite(majors...) ≈ 521.0594433599132
+    @test StatGeochem.Tollari_tapatite(majors...) ≈ 528.5868109033141
     @test StatGeochem.Tollari_tapatiteP2O5(58.509,5.912,750.) ≈ 0.5011681927262436
+
+    @test StatGeochem.Hayden_trutile(majors...) ≈ 822.7645622408794
+    @test StatGeochem.Hayden_trutileTiO2(majors...,750.) ≈ 0.045228791859556305
+
 
 ## -- Test melts
 

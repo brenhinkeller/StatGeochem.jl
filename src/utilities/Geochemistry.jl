@@ -1867,7 +1867,7 @@
         Ca = CaO/56.0774
         Al = Al2O3/50.9806
         Si = SiO2/60.0843
-        Ti = TiO2/55.8667
+        Ti = TiO2/79.865
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
         Mn = MnO/70.9374
@@ -1875,11 +1875,7 @@
 
         # Normalize cation fractions
         normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
-        K = K / normconst
-        Na = Na / normconst
-        Ca = Ca / normconst
-        Al = Al / normconst
-        Si = Si / normconst
+        K, Na, Ca, Al, Si = (K, Na, Ca, Al, Si) ./ normconst
 
         M = (Na + K + 2*Ca)/(Al * Si)
         return M
@@ -1891,7 +1887,7 @@
         Ca = CaO/56.0774
         Al = Al2O3/50.9806
         Si = SiO2/60.0843
-        Ti = TiO2/55.8667
+        Ti = TiO2/79.865
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
         Mn = MnO/70.9374
@@ -1949,6 +1945,8 @@
     export tzirc
 
 
+## --- Sphene saturation calculations
+
     function Ayers_tspheneC(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
         #Cations
         Na = Na2O/30.9895
@@ -1956,7 +1954,7 @@
         Ca = CaO/56.0774
         Al = Al2O3/50.9806
         Si = SiO2/60.0843
-        Ti = TiO2/55.8667
+        Ti = TiO2/79.865
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
         Mn = MnO/70.9374
@@ -1964,11 +1962,7 @@
 
         # Normalize cation fractions
         normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
-        K = K / normconst
-        Na = Na / normconst
-        Ca = Ca / normconst
-        Al = Al / normconst
-        Si = Si / normconst
+        K, Na, Ca, Al, Si = (K, Na, Ca, Al, Si) ./ normconst
 
         eCa = Ca - Al/2 + Na/2 + K/2
         return (10 * eCa) / (Al * Si)
@@ -2005,6 +1999,57 @@
     end
     export Ayers_tsphene
 
+## --- Rutile saturation calculations
+
+    function FM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/79.865
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        P = P2O5/70.9723
+
+        # Normalize cation fractions
+        normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, P))
+        Na, K, Ca, Mg, Fe, Al, Si = (Na, K, Ca, Mg, Fe, Al, Si) ./ normconst
+
+        return (Na + K + 2(Ca + Mg + Fe)) / (Al * Si)
+    end
+
+
+    """
+    ```julia
+    TC = Hayden_trutile(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate rutile saturation temperature in degrees Celcius
+    following the rutile saturation model of Hayden and Watson, 2007
+    (doi: 10.1016/j.epsl.2007.04.020)
+    """
+    function Hayden_trutile(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        TK = 5305.0 / (7.95 - log10(TiO2 * 10000 * 47.867/(47.867+15.999*2)) + 0.124*FM(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5))
+        TC = TK - 273.15
+    end
+
+    """
+    ```julia
+    TC = Hayden_trutile(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5, TC)
+    ```
+    Calculate the TiO2 concentration in weight percent required for rutile
+    saturation at temperature `TC` degrees Celcius, following the rutile
+    saturation model of Hayden and Watson, 2007
+    (doi: 10.1016/j.epsl.2007.04.020)
+    """
+    function Hayden_trutileTiO2(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number, TC::Number)
+        TK = TC + 273.15
+        return exp10(7.95 - 5315.0/TK + 0.124*FM(SiO2, TiO2, Al2O3, FeOT, MgO, CaO, Na2O, K2O, P2O5)) * (47.867+15.999*2)/47.867 * 1e-5
+    end
+
+
+## --- Monazite and xenotime saturation calculations
 
     """
     ```julia
@@ -2043,7 +2088,7 @@
         Ca = CaO/56.0774
         Al = Al2O3/50.9806
         Si = SiO2/60.0843
-        Ti = TiO2/55.8667
+        Ti = TiO2/79.865
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
         # Anions
@@ -2051,12 +2096,7 @@
 
         # Calculate cation fractions
         normconst = nansum((H, Li, Na, K, Ca, Al, Si, Ti, Fe, Mg))
-        Li = Li / normconst
-        Na = Na / normconst
-        K = K / normconst
-        Ca = Ca / normconst
-        Al = Al / normconst
-        Si = Si / normconst
+        Li, Na, K, Ca, Al, Si = (Li, Na, K, Ca, Al, Si) ./ normconst
 
         # Note that the paper incorrectly describes this equation as being
         # written in terms of atomic percent ("at.%"), but in fact it appears
@@ -2134,6 +2174,8 @@
         return Y_ppm
     end
 
+## --- Apatite saturation calculations
+
     """
     ```julia
     P2O5 = Harrison_tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, T)
@@ -2208,7 +2250,7 @@
         Ca = CaO/56.0774
         Al2 = Al2O3/101.960077
         Si = SiO2/60.0843
-        Ti = TiO2/55.8667
+        Ti = TiO2/79.865
         Fe = FeOT/71.8444
         Mg = MgO/24.3050
         P2 = P2O5/141.94252
@@ -2218,8 +2260,8 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
         P2O5ₘ = P2 / normconst * 100
-        T = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
-        return T
+        TC = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
+        return TC
     end
 
 
