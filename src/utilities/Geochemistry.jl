@@ -2266,8 +2266,31 @@
 
 ## --- Ti-in-zircon thermometry
 
+    """
+    ```julia
+    Ti = Ferry_Ti_in_zircon(TC::Number, aSiO2::Number, aTiO2::Number)
+    ```
+    Parts per million by weight of titanium in zircon at temperature `TC` degrees
+    Celsius given `aSiO2` silica activity and `aTiO2` titanium activity, following
+    the equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
     function Ferry_Ti_in_zircon(TC::Number, aSiO2::Number, aTiO2::Number)
         exp10(5.711 - 4800.0/(TC+273.15) - log10(aSiO2) +log10(aTiO2))
+    end
+
+
+    """
+    ```julia
+    Ti = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
+    ```
+    Parts per million by weight of zirconium in rutile at temperature `TC`
+    degrees Celsius given `aSiO2` silica activity, following the
+    equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
+    function Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
+        exp10(7.420 - 4530.0/(TC+273.15) - log10(aSiO2))
     end
 
 ## --- End of File

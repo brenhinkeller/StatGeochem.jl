@@ -91,7 +91,7 @@
 ## -- Test thermometers
 
     @test StatGeochem.Ferry_Ti_in_zircon(750,1,1) ≈ 10.46178465494583
-
+    @test StatGeochem.Ferry_Zr_in_rutile(750,1) ≈ 982.8714076786658
 
 ## -- Test melts
 
