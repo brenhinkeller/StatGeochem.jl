@@ -2264,5 +2264,10 @@
         return TC
     end
 
+## --- Ti-in-zircon thermometry
+
+    function Ferry_Ti_in_zircon(TC::Number, aSiO2::Number, aTiO2::Number)
+        exp10(5.711 - 4800.0/(TC+273.15) - log10(aSiO2) +log10(aTiO2))
+    end
 
 ## --- End of File

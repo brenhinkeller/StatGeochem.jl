@@ -88,6 +88,10 @@
     @test StatGeochem.Hayden_trutile(majors...) ≈ 822.7645622408794
     @test StatGeochem.Hayden_trutileTiO2(majors...,750.) ≈ 0.045228791859556305
 
+## -- Test thermometers
+
+    @test StatGeochem.Ferry_Ti_in_zircon(750,1,1) ≈ 10.46178465494583
+
 
 ## -- Test melts
 
