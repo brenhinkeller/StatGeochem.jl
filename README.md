@@ -42,4 +42,4 @@ julia> notebook()
 [ci-nightly-img]:https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI%20(Julia%20nightly)/badge.svg
 [ci-nightly-url]:https://github.com/brenhinkeller/StatGeochem.jl/actions/workflows/CI-julia-nightly.yml
 [codecov-img]: http://codecov.io/github/brenhinkeller/StatGeochem.jl/coverage.svg?branch=main
-[codecov-url]: http://codecov.io/github/brenhinkeller/StatGeochem.jl?branch=main
+[codecov-url]: http://app.codecov.io/github/brenhinkeller/StatGeochem.jl?branch=main
