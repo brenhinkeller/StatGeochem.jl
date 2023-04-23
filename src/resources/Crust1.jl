@@ -42,14 +42,16 @@
     aim to provide large arrays with as many values in a single query as possible.
 
     Available `layer`s:
-    `1`) water
-    `2`) ice
-    `3`) upper sediments   (VP, VS, rho not defined in all cells)
-    `4`) middle sediments  "
-    `5`) lower sediments   "
-    `6`) upper crystalline crust
-    `7`) middle crystalline crust
-    `8`) lower crystalline crust
+    ```
+    1 : water
+    2 : ice
+    3 : upper sediments   (VP, VS, rho not defined in all cells)
+    4 : middle sediments  "
+    5 : lower sediments   "
+    6 : upper crystalline crust
+    7 : middle crystalline crust
+    8 : lower crystalline crust
+    ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
     ## Examples
@@ -156,14 +158,16 @@
     aim to provide large arrays with as many values in a single query as possible.
 
     Available `layer`s:
-    `1`) water
-    `2`) ice
-    `3`) upper sediments   (VP, VS, rho not defined in all cells)
-    `4`) middle sediments  "
-    `5`) lower sediments   "
-    `6`) upper crystalline crust
-    `7`) middle crystalline crust
-    `8`) lower crystalline crust
+    ```
+    1 : water
+    2 : ice
+    3 : upper sediments   (VP, VS, rho not defined in all cells)
+    4 : middle sediments  "
+    5 : lower sediments   "
+    6 : upper crystalline crust
+    7 : middle crystalline crust
+    8 : lower crystalline crust
+    ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
     ## Examples
@@ -263,14 +267,16 @@
     aim to provide large arrays with as many values in a single query as possible.
 
     Available `layer`s:
-    `1`) water
-    `2`) ice
-    `3`) upper sediments   (VP, VS, rho not defined in all cells)
-    `4`) middle sediments  "
-    `5`) lower sediments   "
-    `6`) upper crystalline crust
-    `7`) middle crystalline crust
-    `8`) lower crystalline crust
+    ```
+    1 : water
+    2 : ice
+    3 : upper sediments   (VP, VS, rho not defined in all cells)
+    4 : middle sediments  "
+    5 : lower sediments   "
+    6 : upper crystalline crust
+    7 : middle crystalline crust
+    8 : lower crystalline crust
+    ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
     ## Examples
@@ -356,14 +362,16 @@
     aim to provide large arrays with as many values in a single query as possible.
 
     Available `layer`s:
-    `1`) water
-    `2`) ice
-    `3`) upper sediments   (VP, VS, rho not defined in all cells)
-    `4`) middle sediments  "
-    `5`) lower sediments   "
-    `6`) upper crystalline crust
-    `7`) middle crystalline crust
-    `8`) lower crystalline crust
+    ```
+    1 : water
+    2 : ice
+    3 : upper sediments   (VP, VS, rho not defined in all cells)
+    4 : middle sediments  "
+    5 : lower sediments   "
+    6 : upper crystalline crust
+    7 : middle crystalline crust
+    8 : lower crystalline crust
+    ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
     ## Examples
