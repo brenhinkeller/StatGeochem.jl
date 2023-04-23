@@ -25,6 +25,9 @@
    @test find_geolprov(lat, lon) == [10, 31, 0, 10, 10]
    @test find_geolprov(43.702245, -72.0929) == fill(10)
 
+   @test find_land(lat, lon) == Bool[1, 1, 0, 1, 1]
+   @test find_land(43.702245, -72.0929) == fill(true)
+
    A = (1:200)*(1:200)'
    @test find_etopoelev(A, -90:-89, -180:-179) == [1,3721]
    @test find_srtm15plus(A, -90:0.1:-89.5, -180:0.1:-179.5) == [1, 625, 2401, 5329, 9409, 14641]

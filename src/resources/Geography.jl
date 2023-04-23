@@ -1,3 +1,50 @@
+## --- Land
+
+    """
+    ```julia
+    find_land(lat,lon)
+    ```
+    Find whether or not a given set of poitnts on the globe is above sea level
+    based on the `etopo` elevation dataset
+
+    ## Examples
+    ```julia
+    julia> find_land(43.702245, -72.0929)
+    0-dimensional Array{Bool, 0}:
+    1
+    ```
+    """
+    function find_land(lat, lon)
+        # Interpret user input
+        @assert eachindex(lat) == eachindex(lon)
+        filepath = joinpath(moduleresourcepath,"land.h5")
+        land = h5read(filepath, "vars/land")
+
+        # Scale factor (cells per degree) = 60 = arc minutes in an arc degree
+        sf = 30
+        maxrow = 180 * sf
+        maxcol = 360 * sf
+
+        # Create and fill output vector
+        result = zeros(Bool, size(lat))
+        for i ∈ eachindex(lat, lon)
+            if (-90 <= lat[i] <= 90) && (-180 <= lon[i] < 180)
+                # Convert latitude and longitude into indicies of the elevation map array
+                row = 1 + trunc(Int,(90+lat[i])*sf)
+                row == (maxrow+1) && (row = maxrow) # Edge case
+
+                col = 1 + trunc(Int,(180+lon[i])*sf)
+                col == (maxcol+1) && (col = maxcol) # Edge case
+
+                # Find result by indexing
+                result[i] = land[row,col]
+            end
+        end
+
+        return result
+    end
+    export find_land
+
 ## --- Geolcont
 
     continentcolors = parse.(Color, ["#333399","#0066CC","#06A9C1","#66CC66","#FFCC33","#FFFF00","#FFFFFF"])
