@@ -27,7 +27,7 @@
 
         # Create and fill output vector
         result = zeros(Bool, size(lat))
-        for i ∈ eachindex(lat, lon)
+        for i ∈ eachindex(lat)
             if (-90 <= lat[i] <= 90) && (-180 <= lon[i] < 180)
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)

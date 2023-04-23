@@ -110,7 +110,7 @@
     find_etopoelev(etopo::Dict, lat, lon) = find_etopoelev(etopo["elevation"], lat, lon)
     function find_etopoelev(etopo::AbstractArray, lat, lon, T=Float64)
         # Interpret user input
-        length(lat) != length(lon) && error("lat and lon must be of equal length\n")
+        @assert eachindex(lat) == eachindex(lon)
 
         # Scale factor (cells per degree) = 60 = arc minutes in an arc degree
         sf = 60
@@ -119,7 +119,7 @@
 
         # Create and fill output vector
         result = Array{T}(undef,size(lat))
-        for i ∈ eachindex(lat,lon)
+        for i ∈ eachindex(lat)
             if (-90 <= lat[i] <= 90) && (-180 <= lon[i] <= 180)
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)
