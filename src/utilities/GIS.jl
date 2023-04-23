@@ -334,11 +334,29 @@
 
     CONST_180_PI = 180/pi
 
-    function randlatlon(n::Integer)
-        90 .- CONST_180_PI*acos.(2*rand(n) .- 1), rand(n)*360 .- 180
+    function randlatlon(n::Integer; land=false)
+        if land
+            c = 0
+            while c < n
+                lats, lons = 90 .- CONST_180_PI*acos.(2*rand(5n) .- 1), rand(5n)*360 .- 180
+                notland = .!find_land(lats, lons)
+                @inbounds for i in eachindex(notland)
+                    c += !notland[i]
+                    if c > n
+                        notland[i] = true
+                    end
+                end
+                c < n && (c=0)
+                deleteat!(lats, notland)
+                deleteat!(lons, notland)
+            end
+        else
+            lats, lons = 90 .- CONST_180_PI*acos.(2*rand(n) .- 1), rand(n)*360 .- 180
+        end
+        return lats, lons
     end
     function randlatlon()
-        90 .- CONST_180_PI*acos.(2*rand() .- 1), rand()*360 .- 180
+        90 - CONST_180_PI*acos(2*rand() - 1), rand()*360 - 180
     end
     export randlatlon
 
@@ -347,7 +365,7 @@
     ```julia
     haversine(lat₁, lon₁, lat₂, lon₂)
     ```
-    Calculate the arc degree distance between two decimal degree points (lat₁, lon₁) and 
+    Calculate the arc degree distance between two decimal degree points (lat₁, lon₁) and
     (lat₂, lon₂).
 
     """
@@ -361,11 +379,11 @@
 ## --- Calculate maximum arc-degree distance between a series of points
     """
     ```julia
-    dist_uncert(lats, lons)    
+    dist_uncert(lats, lons)
     ```
 
-    Find the decimal degree center and associated uncertainty (in arc degrees) from 
-    lists `lats` and `lons` of decimal degree coordinates. 
+    Find the decimal degree center and associated uncertainty (in arc degrees) from
+    lists `lats` and `lons` of decimal degree coordinates.
 
     ### Examples
     ```julia
@@ -388,7 +406,7 @@
         return latc, lonc, maxdist/2
     end
     export dist_uncert
-    
+
 ## --- Other lat and lon conversions
 
     """

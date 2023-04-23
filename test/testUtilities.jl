@@ -57,6 +57,13 @@
     @test maximum(lon) <= 180
     @test minimum(lon) >= -180
 
+    lat,lon = randlatlon(100,land=true)
+    @test maximum(lat) <= 90
+    @test minimum(lat) >= -90
+    @test maximum(lon) <= 180
+    @test minimum(lon) >= -180
+    @test all(find_land(lat, lon))
+    @test length(lat) == length(lon) == 100
 
     # Calculate arc-degree distance
     @test isapprox(haversine(1, 0, 0, 0), 1)
