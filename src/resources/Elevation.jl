@@ -119,24 +119,20 @@
 
         # Create and fill output vector
         result = Array{T}(undef,size(lat))
-        for i ∈ eachindex(lat)
-            if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
-                # Result is NaN if either input is NaN or out of bounds
-                result[i] = NaN
-            else
+        for i ∈ eachindex(lat,lon)
+            if (-90 <= lat[i] <= 90) && (-180 <= lon[i] <= 180)
                 # Convert latitude and longitude into indicies of the elevation map array
                 row = 1 + trunc(Int,(90+lat[i])*sf)
-                if row == (maxrow+1) # Edge case
-                    row = maxrow
-                end
+                row == (maxrow+1) && (row = maxrow)  # Edge case
 
                 col = 1 + trunc(Int,(180+lon[i])*sf)
-                if col == (maxcol+1) # Edge case
-                    col = maxcol
-                end
+                col == (maxcol+1) && (col = maxcol) # Edge case
 
                 # Find result by indexing
                 result[i] = etopo[row,col]
+            else
+                # Result is NaN if either input is NaN or out of bounds
+                result[i] = NaN
             end
         end
 

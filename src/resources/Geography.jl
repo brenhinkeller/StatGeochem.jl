@@ -60,16 +60,16 @@
         # Create and fill output vector
         contindex = Array{Int}(undef,size(lat))
         for i ∈ eachindex(lat)
-            if isnan(lat[i]) || isnan(lon[i]) || lat[i]>90 || lat[i]<-90 || lon[i]>180 || lon[i]<-180
-                # Result is unknown if either input is NaN or out of bounds
-                contindex[i] = 7
-            else
+            if (-90 <= lat[i] <= 90) && (-180 <= lon[i] <= 180)
                 # Convert latitude and longitude into indicies of the elevation map array
                 # Note that STRTM15 plus has N+1 columns where N = 360*sf
                 row = 1 + trunc(Int,(90-lat[i])*512/180)
                 col = 1 + trunc(Int,(180+lon[i])*512/180)
                 # Find result by indexing
                 contindex[i] = ind[row,col]
+            else
+                # Result is unknown if either input is NaN or out of bounds
+                contindex[i] = 7
             end
         end
 
