@@ -184,7 +184,7 @@
     """
     function find_geolprov(lat, lon)
         @assert eachindex(lat) == eachindex(lon)
-        filepath = joinpath(moduleresourcepath,"geolprov.h5")
+        filepath = artifact"geolprov/geolprov.h5"
         geolprov = h5read(filepath, "geolprov")
 
         result = zeros(Int, size(lat))

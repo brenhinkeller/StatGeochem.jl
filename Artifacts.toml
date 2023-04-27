@@ -5,3 +5,11 @@ lazy = true
     [[litho1-gridded.download]]
     url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
     sha256 = "c73926dc7482bbdd8003c97335fc543a9a061bf02e41c4f54faa03e65a6d9b41"
+
+[geolprov]
+git-tree-sha1 = "0db81becec2ea2dadded1b3fca2fb4f498b39433"
+lazy = true
+
+    [[geolprov.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolprov/geolprov.tar.gz"
+    sha256 = "759ff443d53940f5e3d9fd2c4171ccf8f09482e4f80071720c4f380e38478463"
