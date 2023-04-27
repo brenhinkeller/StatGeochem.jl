@@ -27,6 +27,47 @@ function litho1layer(layer::Symbol)
     end
 end
 
+"""
+```julia
+find_litho1_property(lat, lon, layer::Symbol, property::Symbol)
+```
+Return values for a LITHO1.0 `property` of a given `layer` at one or more given
+`lat`itudes and `lon`gitudes, to the nearest 0.5-arc-degree grid point.
+
+Accepts `lat` and `lon` both as `Numbers` and as `AbstractArray`s, but given
+the overhead of opening and reading the LITHO1.0 files, you should generally
+aim to provide large arrays with as many values in a single query as possible.
+
+Available properties include:
+```
+    :vp             | p-wave velocity [m/s]
+    :vs             | s-wave velocity [m/s]
+    :rho            | density [kg/m^3]
+    :bottom         | depth to bottom of the layer [km] (above sea level = negative)
+    :thickness      | layer thickness [km]
+```
+while avialble `layer`s are:
+```
+    1 | :ice
+    2 | :water
+    3 | :upper_sediments
+    4 | :middle_sediments
+    5 | :lower_sediments
+    6 | :upper_crust
+    7 | :middle_crust
+    8 | :lower_crust
+    9 | :sclm (or :lithosphere)
+    10 | :asthenosphere
+```
+
+## Examples
+```julia
+julia> find_litho1_property([43.702245, 44], [-72.0929, -73], :upper_crust, :vp)
+2-element Vector{Float64}:
+ 6219.99
+ 6253.16
+```
+"""
 function find_litho1_property(lat, lon, layer, property::Symbol)
     @assert eachindex(lat)==eachindex(lon)
     layerindex = litho1layer(layer)::Int
