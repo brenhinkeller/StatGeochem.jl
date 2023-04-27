@@ -30,6 +30,59 @@
     end
     export get_crust1
 
+    function crust1layer(layer::Number)
+        if isinteger(layer) && (1 <= layer <= 9)
+            Int(layer)
+        else
+            @error """crust1 layer $layer not found.
+            Available layers include:
+                1 | :water
+                2 | :ice
+                3 | :upper_sediments
+                4 | :middle_sediments
+                5 | :lower_sediments
+                6 | :upper_crust
+                7 | :middle_crust
+                8 | :lower_crust
+                9 | :mantle
+            """
+        end
+    end
+    function crust1layer(layer::Symbol)
+        if layer===:water
+            1
+        elseif layer===:ice
+            2
+        elseif layer===:upper_sediments
+            3
+        elseif layer===:middle_sediments
+            4
+        elseif layer===:lower_sediments
+            5
+        elseif layer===:upper_crust
+            6
+        elseif layer===:middle_crust
+            7
+        elseif layer===:lower_crust
+            8
+        elseif layer===:mantle
+            9
+        else
+            @error """crust1 layer $layer not found.
+            Available layers include:
+                1 | :water
+                2 | :ice
+                3 | :upper_sediments
+                4 | :middle_sediments
+                5 | :lower_sediments
+                6 | :upper_crust
+                7 | :middle_crust
+                8 | :lower_crust
+                9 | :mantle
+            """
+        end
+    end
+
     """
     ```julia
     find_crust1_layer(lat,lon,layer)
@@ -43,14 +96,15 @@
 
     Available `layer`s:
     ```
-    1 : water
-    2 : ice
-    3 : upper sediments   (VP, VS, rho not defined in all cells)
-    4 : middle sediments  "
-    5 : lower sediments   "
-    6 : upper crystalline crust
-    7 : middle crystalline crust
-    8 : lower crystalline crust
+        1 | :water
+        2 | :ice
+        3 | :upper_sediments
+        4 | :middle_sediments
+        5 | :lower_sediments
+        6 | :upper_crust
+        7 | :middle_crust
+        8 | :lower_crust
+        9 | :mantle
     ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
@@ -63,22 +117,7 @@
     function find_crust1_layer(lat,lon,layer)
         # Get Vp, Vs, Rho, and thickness for a given lat, lon, and crustal layer.
         @assert eachindex(lat) == eachindex(lon)
-
-
-        if ~isa(layer,Integer) || layer < 1 || layer > 8
-            error("""Error: layer must be an integer between 1 and 8.
-            Available layers:
-            1) water
-            2) ice
-            3) upper sediments   (VP, VS, rho not defined in all cells)
-            4) middle sediments  "
-            5) lower sediments   "
-            6) upper crystalline crust
-            7) middle crystalline crust
-            8) lower crystalline crust
-            Results are returned in form (Vp, Vs, Rho, thickness)
-            """)
-        end
+        layerindex = crust1layer(layer)
 
         nlayers=9
         nlon=360
@@ -129,10 +168,10 @@
                 ilat = 91 - ceil(Int,latⱼ)
                 ilon = 181 + floor(Int,lonⱼ)
 
-                vpout[j] = vp[layer,ilat,ilon]
-                vsout[j] = vs[layer,ilat,ilon]
-                rhoout[j] = rho[layer,ilat,ilon]
-                thkout[j] = bnd[layer,ilat,ilon] - bnd[layer+1,ilat,ilon]
+                vpout[j] = vp[layerindex,ilat,ilon]
+                vsout[j] = vs[layerindex,ilat,ilon]
+                rhoout[j] = rho[layerindex,ilat,ilon]
+                thkout[j] = bnd[layerindex,ilat,ilon] - bnd[layerindex+1,ilat,ilon]
             else
                 vpout[j] = NaN
                 vsout[j] = NaN
@@ -159,14 +198,15 @@
 
     Available `layer`s:
     ```
-    1 : water
-    2 : ice
-    3 : upper sediments   (VP, VS, rho not defined in all cells)
-    4 : middle sediments  "
-    5 : lower sediments   "
-    6 : upper crystalline crust
-    7 : middle crystalline crust
-    8 : lower crystalline crust
+        1 | :water
+        2 | :ice
+        3 | :upper_sediments
+        4 | :middle_sediments
+        5 | :lower_sediments
+        6 | :upper_crust
+        7 | :middle_crust
+        8 | :lower_crust
+        9 | :mantle
     ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
@@ -174,27 +214,15 @@
     ```julia
     julia> vp, vs, rho = find_crust1_seismic([43.702245], [-72.0929], 8)
     ([7.0], [3.99], [2950.0])
+
+    julia> vp, vs, rho = find_crust1_seismic([43.702245], [-72.0929], :lower_crust)
+    ([7.0], [3.99], [2950.0])
     ```
     """
     function find_crust1_seismic(lat,lon,layer)
         # Vp, Vs, and Rho for a given lat, lon, and crustal layer.
         @assert eachindex(lat) == eachindex(lon)
-
-        if ~isa(layer,Integer) || layer < 1 || layer > 9
-            error("""Error: layer must be an integer between 1 and 9.
-            Available layers:
-            1) water
-            2) ice
-            3) upper sediments   (VP, VS, rho not defined in all cells)
-            4) middle sediments  "
-            5) lower sediments   "
-            6) upper crystalline crust
-            7) middle crystalline crust
-            8) lower crystalline crust
-            9) Top of mantle below crust
-            Results are returned in form (Vp, Vs, Rho)
-            """)
-        end
+        layerindex = crust1layer(layer)
 
         nlayers=9
         nlon=360
@@ -240,9 +268,9 @@
                 ilat = 91 - ceil(Int,latⱼ)
                 ilon = 181 + floor(Int,lonⱼ)
 
-                vpout[j] = vp[layer,ilat,ilon]
-                vsout[j] = vs[layer,ilat,ilon]
-                rhoout[j] = rho[layer,ilat,ilon]
+                vpout[j] = vp[layerindex,ilat,ilon]
+                vsout[j] = vs[layerindex,ilat,ilon]
+                rhoout[j] = rho[layerindex,ilat,ilon]
             else
                 vpout[j] = NaN
                 vsout[j] = NaN
@@ -268,14 +296,15 @@
 
     Available `layer`s:
     ```
-    1 : water
-    2 : ice
-    3 : upper sediments   (VP, VS, rho not defined in all cells)
-    4 : middle sediments  "
-    5 : lower sediments   "
-    6 : upper crystalline crust
-    7 : middle crystalline crust
-    8 : lower crystalline crust
+        1 | :water
+        2 | :ice
+        3 | :upper_sediments
+        4 | :middle_sediments
+        5 | :lower_sediments
+        6 | :upper_crust
+        7 | :middle_crust
+        8 | :lower_crust
+        9 | :mantle
     ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
@@ -284,26 +313,16 @@
     julia> find_crust1_thickness([43.702245], [-72.0929], 8)
     1-element Vector{Float64}:
      7.699999999999999
+
+    julia> find_crust1_thickness([43.702245], [-72.0929], :lower_crust)
+    1-element Vector{Float64}:
+    7.699999999999999
     ```
     """
     function find_crust1_thickness(lat,lon,layer)
         # Layer thickness for a given lat, lon, and crustal layer.
         @assert eachindex(lat) == eachindex(lon)
-
-        if ~isa(layer,Integer) || layer < 1 || layer > 8
-            error("""Error: layer must be an integer between 1 and 8.
-            Available layers:
-            1) water
-            2) ice
-            3) upper sediments   (VP, VS, rho not defined in all cells)
-            4) middle sediments  "
-            5) lower sediments   "
-            6) upper crystalline crust
-            7) middle crystalline crust
-            8) lower crystalline crust
-            Result is thickness of the requested layer
-            """)
-        end
+        layerindex = crust1layer(layer)
 
         nlayers=9
         nlon=360
@@ -339,7 +358,7 @@
                 ilat = 91 - ceil(Int,latⱼ)
                 ilon = 181 + floor(Int,lonⱼ)
 
-                thkout[j] = bnd[layer,ilat,ilon]-bnd[layer+1,ilat,ilon]
+                thkout[j] = bnd[layerindex,ilat,ilon]-bnd[layerindex+1,ilat,ilon]
             else
                 thkout[j] = NaN
             end
@@ -363,14 +382,15 @@
 
     Available `layer`s:
     ```
-    1 : water
-    2 : ice
-    3 : upper sediments   (VP, VS, rho not defined in all cells)
-    4 : middle sediments  "
-    5 : lower sediments   "
-    6 : upper crystalline crust
-    7 : middle crystalline crust
-    8 : lower crystalline crust
+        1 | :water
+        2 | :ice
+        3 | :upper_sediments
+        4 | :middle_sediments
+        5 | :lower_sediments
+        6 | :upper_crust
+        7 | :middle_crust
+        8 | :lower_crust
+        9 | :mantle
     ```
     Results are returned in form `(Vp, Vs, Rho, thickness)`
 
@@ -379,27 +399,17 @@
     julia> find_crust1_base([43.702245], [-72.0929], 8)
     1-element Vector{Float64}:
      -36.26
+
+    julia> find_crust1_base([43.702245], [-72.0929], :lower_crust)
+    1-element Vector{Float64}:
+    -36.26
     ```
     """
     function find_crust1_base(lat,lon,layer)
         # Depth to layer base for a given lat, lon, and crustal layer.
         @assert eachindex(lat) == eachindex(lon)
+        layerindex = crust1layer(layer)
 
-
-        if ~isa(layer,Integer) || layer < 1 || layer > 8
-            error("""layer must be an integer between 1 and 8.
-            Available layers:
-            1) water
-            2) ice
-            3) upper sediments   (VP, VS, rho not defined in all cells)
-            4) middle sediments  "
-            5) lower sediments   "
-            6) upper crystalline crust
-            7) middle crystalline crust
-            8) lower crystalline crust
-            Result is depth from sea level to base of the requested layer
-            """)
-        end
         nlayers=9
         nlon=360
         nlat=180
@@ -434,7 +444,7 @@
                 ilat = 91 - ceil(Int,latⱼ)
                 ilon = 181 + floor(Int,lonⱼ)
 
-                baseout[j] = bnd[layer+1,ilat,ilon]
+                baseout[j] = bnd[layerindex+1,ilat,ilon]
             else
                 baseout[j] = NaN
             end

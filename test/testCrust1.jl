@@ -26,6 +26,9 @@
 	@test all(isapprox.(find_crust1_seismic(lats,lons,6), ([6.3, 6.0, NaN], [3.63, 3.5, NaN], [2790.0, 2720.0, NaN]), nans=true))
 	@test all(isapprox.(find_crust1_seismic(lats,lons,7), ([6.6, 6.6, NaN], [3.80, 3.8, NaN], [2860.0, 2860.0, NaN]), nans=true))
 	@test all(isapprox.(find_crust1_seismic(lats,lons,8), ([7.0, 7.2, NaN], [3.99, 4.1, NaN], [2950.0, 3030.0, NaN]), nans=true))
+	@test all(isapprox.(find_crust1_seismic(lats,lons,:upper_crust), ([6.3, 6.0, NaN], [3.63, 3.5, NaN], [2790.0, 2720.0, NaN]), nans=true))
+	@test all(isapprox.(find_crust1_seismic(lats,lons,:middle_crust), ([6.6, 6.6, NaN], [3.80, 3.8, NaN], [2860.0, 2860.0, NaN]), nans=true))
+	@test all(isapprox.(find_crust1_seismic(lats,lons,:lower_crust), ([7.0, 7.2, NaN], [3.99, 4.1, NaN], [2950.0, 3030.0, NaN]), nans=true))
 
 ## --  Test layer thickness data
 
