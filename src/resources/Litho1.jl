@@ -1,6 +1,5 @@
 litho1layer(layer::Number) = Int(layer)
 function litho1layer(layer::Symbol)
-    layernumber = 0
     if layer===:ice
         1
     elseif layer===:water
@@ -22,8 +21,19 @@ function litho1layer(layer::Symbol)
     elseif layer===:asthenosphere
         10
     else
-        @warn "litho1 layer $layer not found"
-        0
+        @error """litho1 layer $layer not found.
+        Available layers include:
+            1 | :ice
+            2 | :water
+            3 | :upper_sediments
+            4 | :middle_sediments
+            5 | :lower_sediments
+            6 | :upper_crust
+            7 | :middle_crust
+            8 | :lower_crust
+            9 | :sclm (or :lithosphere)
+            10 | :asthenosphere
+        """
     end
 end
 
@@ -86,8 +96,8 @@ function find_litho1_property(lat, lon, layer, property::Symbol)
     elseif property===:thickness
         data = h5read(litho1path, "thickness")::Array{Float64,3}
     else
-        @warn """litho1 property `$property` not found. Available options include:
-                    :vp, :vs, :rho, :bottom, :thickness
+        @error """litho1 property `$property` not found. Available options include:
+            :vp, :vs, :rho, :bottom, :thickness
         """
         return result
     end
