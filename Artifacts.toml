@@ -13,3 +13,11 @@ lazy = true
     [[geolprov.download]]
     url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolprov/geolprov.tar.gz"
     sha256 = "759ff443d53940f5e3d9fd2c4171ccf8f09482e4f80071720c4f380e38478463"
+
+[geolcont]
+git-tree-sha1 = "b26dd01402318c741aae99632699452728065fab"
+lazy = true
+
+    [[geolcont.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolcont/geolcont.tar.gz"
+    sha256 = "cb0b5cc169dd1e48570f09a48986c573b5b3236527cd8c1ee8b608200203baa7"

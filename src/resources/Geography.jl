@@ -87,15 +87,7 @@
         @assert eachindex(lat) == eachindex(lon)
 
         # Construct file path
-        filedir = joinpath(resourcepath,"maps")
-        filepath = joinpath(filedir,"geolcontwshelf.png")
-
-        # Download png map from Google Cloud if necessary
-        if ~isfile(filepath)
-            @info "Downloading map to $filedir"
-            run(`mkdir -p $filedir`)
-            Downloads.download("https://storage.googleapis.com/statgeochem/geolcontwshelf.png", filepath)
-        end
+        filepath = artifact"geolcont/geolcontwshelf.png"
 
         img = load(filepath)
 
