@@ -1,7 +1,7 @@
 ## --- Query TC1 properties
 
-    const tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_550.csv"), ',')
-    const tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',')
+    const tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_550.csv"), ',', Float64)
+    const tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',', Float64)
     const tc1_age = readdlm(joinpath(moduleresourcepath,"tc1","tc1_age.csv"), ',', Int)
 
     """
@@ -31,9 +31,7 @@
     end
     function find_tc1_crust(lat::AbstractArray,lon::AbstractArray)
         # Check input dimensions match
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
+        eachindex(lat) == eachindex(lon) || @error "lat and lon must be equal size"
 
         # Query the tc1_550 array for our lat and lon
         crust = fill(NaN, size(lat))
@@ -63,29 +61,26 @@
     Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006,
     doi: 10.1016/j.tecto.2005.11.022
     """
-    function find_tc1_lith(lat::Number,lon::Number)
-        if !isnan(lat) && !isnan(lon)
+    function find_tc1_lith(lat::Number, lon::Number)
+        if (-90 <= lat <= 90) && (-180 <= lon <= 180)
             i = round(Int, 91-lat)
             j = round(Int, lon+181)
-            lith=tc1_1300[i,j]
+            return tc1_1300[i,j]
         else
-            lith = NaN
+            return NaN
         end
-        return lith
     end
-    function find_tc1_lith(lat::AbstractArray,lon::AbstractArray)
+    function find_tc1_lith(lat::AbstractArray, lon::AbstractArray)
         # Check input dimensions match
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
+        eachindex(lat) == eachindex(lon) || @error "lat and lon must be equal size"
 
         # Query the tc1_1300 array for our lat and lon
         lith = fill(NaN, size(lat))
-        for n=1:length(lat)
-            if !isnan(lat[n]) && !isnan(lon[n])
+        for n in eachindex(lat)
+            if (-90 <= lat[n] <= 90) && (-180 <= lon[n] <= 180)
                 i = round(Int, 91-lat[n])
                 j = round(Int, lon[n]+181)
-                lith[n]=tc1_1300[i,j]
+                lith[n] = tc1_1300[i,j]
             end
         end
         return lith
@@ -121,20 +116,17 @@
               2750 2500 3000
               3250 3000 3500]
 
-        if !isnan(lat) && !isnan(lon)
+        if (-90 <= lat <= 90) && (-180 <= lon <= 180)
             i = round(Int, 91-lat)
             j = round(Int, lon+181)
-            result = (ages[tc1_age[i,j],:]...,)
+            return ntuple(k->ages[tc1_age[i,j],k], 3)
         else
-            result = (NaN, NaN, NaN,)
+            return (NaN, NaN, NaN,)
         end
-        return result
     end
     function find_tc1_age(lat::AbstractArray,lon::AbstractArray)
         # Check input dimensions match
-        if length(lat) != length(lon)
-            error("lat and lon must be equal length\n")
-        end
+        eachindex(lat) == eachindex(lon) || @error "lat and lon must be equal size"
 
         ages=[ NaN  NaN  NaN
                 25    0   50
@@ -151,8 +143,8 @@
         age = fill(NaN, size(lat))
         minage = fill(NaN, size(lat))
         maxage = fill(NaN, size(lat))
-        for n=1:length(lat)
-            if !isnan(lat[n]) && !isnan(lon[n])
+        for n in eachindex(lat)
+            if (-90 <= lat[n] <= 90) && (-180 <= lon[n] <= 180)
                 i = round(Int, 91-lat[n])
                 j = round(Int, lon[n]+181)
                 ageindex = tc1_age[i,j]
