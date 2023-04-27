@@ -1,8 +1,8 @@
 ## --- Query TC1 properties
 
-    tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_550.csv"), ',')
-    tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',')
-    tc1_age = readdlm(joinpath(moduleresourcepath,"tc1","tc1_age.csv"), ',', Int)
+    const tc1_550 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_550.csv"), ',')
+    const tc1_1300 = readdlm(joinpath(moduleresourcepath,"tc1","tc1_1300.csv"), ',')
+    const tc1_age = readdlm(joinpath(moduleresourcepath,"tc1","tc1_age.csv"), ',', Int)
 
     """
     `find_tc1_crust(lat::Number,lon::Number)`
@@ -106,7 +106,7 @@
     `age_max` are arrays containing the nominal, upper and lower tc1 age bounds
     for each location pair `lat[i]`, `lon[i]`
 
-    Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006, 
+    Data is sourced from the global 1x1° "TC1" thermal model of Artemieva 2006,
     doi: 10.1016/j.tecto.2005.11.022
     """
     function find_tc1_age(lat::Number,lon::Number)

@@ -12,4 +12,5 @@ using ImageIO, FileIO
 
 # Resources
 @testset "Crust 1.0" begin include("testCrust1.jl") end
+@testset "Litho 1.0" begin include("testLitho1.jl") end
 @testset "Other Resources" begin include("testResources.jl") end

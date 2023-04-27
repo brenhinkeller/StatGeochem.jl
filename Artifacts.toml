@@ -1,0 +1,7 @@
+[litho1-gridded]
+git-tree-sha1 = "e672fbe1c9714b4ab1484cdfef6342ef6aba382c"
+lazy = true
+
+    [[litho1-gridded.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
+    sha256 = "c73926dc7482bbdd8003c97335fc543a9a061bf02e41c4f54faa03e65a6d9b41"
