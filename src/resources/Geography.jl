@@ -4,8 +4,8 @@
     ```julia
     find_land(lat,lon)
     ```
-    Find whether or not a given set of poitnts on the globe is above sea level
-    based on the `etopo` elevation dataset
+    Find whether or not a given set of `lat`itude, `lon`gitude points on the globe
+    is above sea level, based on the `etopo` bedrock elevation dataset
 
     ## Examples
     ```julia
@@ -17,10 +17,10 @@
     function find_land(lat, lon)
         # Interpret user input
         @assert eachindex(lat) == eachindex(lon)
-        filepath = joinpath(moduleresourcepath,"land.h5")
+        filepath = artifact"land/land.h5"
         land = h5read(filepath, "vars/land")
 
-        # Scale factor (cells per degree) = 60 = arc minutes in an arc degree
+        # Scale factor (cells per degree) = 30 = arc minutes in an arc degree
         sf = 30
         maxrow = 180 * sf
         maxcol = 360 * sf

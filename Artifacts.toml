@@ -1,10 +1,11 @@
-[litho1-gridded]
-git-tree-sha1 = "e672fbe1c9714b4ab1484cdfef6342ef6aba382c"
+[geolcont]
+git-tree-sha1 = "b26dd01402318c741aae99632699452728065fab"
 lazy = true
 
-    [[litho1-gridded.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
-    sha256 = "c73926dc7482bbdd8003c97335fc543a9a061bf02e41c4f54faa03e65a6d9b41"
+    [[geolcont.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolcont/geolcont.tar.gz"
+    sha256 = "cb0b5cc169dd1e48570f09a48986c573b5b3236527cd8c1ee8b608200203baa7"
+
 
 [geolprov]
 git-tree-sha1 = "0db81becec2ea2dadded1b3fca2fb4f498b39433"
@@ -14,10 +15,20 @@ lazy = true
     url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolprov/geolprov.tar.gz"
     sha256 = "759ff443d53940f5e3d9fd2c4171ccf8f09482e4f80071720c4f380e38478463"
 
-[geolcont]
-git-tree-sha1 = "b26dd01402318c741aae99632699452728065fab"
+
+[land]
+git-tree-sha1 = "dfbed6c1a33a33939c9b3281088937495931fff9"
 lazy = true
 
-    [[geolcont.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolcont/geolcont.tar.gz"
-    sha256 = "cb0b5cc169dd1e48570f09a48986c573b5b3236527cd8c1ee8b608200203baa7"
+    [[land.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/land/land.tar.gz"
+    sha256 = "4128b28ba85e50cc875966e5cb4f22ef59014ceab3dadae6c136e0c47f246bc5"
+
+
+[litho1-gridded]
+git-tree-sha1 = "e672fbe1c9714b4ab1484cdfef6342ef6aba382c"
+lazy = true
+
+    [[litho1-gridded.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
+    sha256 = "c73926dc7482bbdd8003c97335fc543a9a061bf02e41c4f54faa03e65a6d9b41"
