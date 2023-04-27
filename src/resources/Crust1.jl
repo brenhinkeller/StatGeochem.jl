@@ -1,35 +1,5 @@
 ## --- CRUST 1.0
 
-    """
-    ```julia
-    get_crust1()
-    ```
-    Download CRUST 1.0 data and references.
-    """
-    function get_crust1()
-        # Construct file paths
-        filedir = joinpath(resourcepath,"crust1")
-        referencepath = joinpath(filedir,"crust1.references.txt")
-        vppath = joinpath(filedir,"crust1.vp")
-        vspath = joinpath(filedir,"crust1.vs")
-        rhopath = joinpath(filedir,"crust1.rho")
-        bndpath = joinpath(filedir,"crust1.bnds")
-
-        # Download HDF5 file from Google Cloud if necessary
-        if ~isfile(referencepath)
-            @info "Downloading crust1 files from google cloud storage to $filedir"
-            run(`mkdir -p $filedir`)
-            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.references.txt", referencepath)
-            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.vp", vppath)
-            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.vs", vspath)
-            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.rho", rhopath)
-            Downloads.download("https://storage.googleapis.com/statgeochem/crust1.bnds", bndpath)
-        end
-
-        return 0 # Success
-    end
-    export get_crust1
-
     function crust1layer(layer::Number)
         if isinteger(layer) && (1 <= layer <= 9)
             Int(layer)
@@ -130,10 +100,10 @@
         bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
-        vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
-        vsfile = open(joinpath(resourcepath,"crust1","crust1.vs"), "r")
-        rhofile = open(joinpath(resourcepath,"crust1","crust1.rho"), "r")
-        bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
+        vpfile = open(artifact"crust1/crust1.vp", "r")
+        vsfile = open(artifact"crust1/crust1.vs", "r")
+        rhofile = open(artifact"crust1/crust1.rho", "r")
+        bndfile = open(artifact"crust1/crust1.bnds", "r")
 
         # Read data files into array
         for j=1:nlat
@@ -234,9 +204,9 @@
         rho = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
-        vpfile = open(joinpath(resourcepath,"crust1","crust1.vp"), "r")
-        vsfile = open(joinpath(resourcepath,"crust1","crust1.vs"), "r")
-        rhofile = open(joinpath(resourcepath,"crust1","crust1.rho"), "r")
+        vpfile = open(artifact"crust1/crust1.vp", "r")
+        vsfile = open(artifact"crust1/crust1.vs", "r")
+        rhofile = open(artifact"crust1/crust1.rho", "r")
 
         # Read data files into array
         for j=1:nlat
@@ -332,7 +302,7 @@
         bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
-        bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
+        bndfile = open(artifact"crust1/crust1.bnds", "r")
 
         # Read data files into array
         for j=1:nlat
@@ -418,7 +388,7 @@
         bnd = Array{Float64,3}(undef,nlayers,nlat,nlon)
 
         # Open data files
-        bndfile = open(joinpath(resourcepath,"crust1","crust1.bnds"), "r")
+        bndfile = open(artifact"crust1/crust1.bnds", "r")
 
         # Read data files into array
         for j=1:nlat

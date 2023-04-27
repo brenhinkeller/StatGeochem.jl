@@ -1,3 +1,12 @@
+[crust1]
+git-tree-sha1 = "39e08e99c29e50884520dbd78e5f520bdde1b503"
+lazy = true
+
+    [[crust1.download]]
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/crust1/crust1.tar.gz"
+    sha256 = "dd66bd0c9957dcfde5887643bcec049d7eab02bfcd460b5e2fd9d6a970d72241"
+
+
 [geolcont]
 git-tree-sha1 = "b26dd01402318c741aae99632699452728065fab"
 lazy = true
