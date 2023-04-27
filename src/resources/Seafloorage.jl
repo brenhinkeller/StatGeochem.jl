@@ -7,11 +7,13 @@
     Read seafloor age file from HDF5 storage, downloading from cloud if necessary.
 
     Available `varname`s (variable names) include:
+    ```
       "seafloorage"
       "seafloorage_sigma",
       "seafloorrate"
       "information"
       "reference"
+    ```
 
     Units are millions of years for age and mm/yr for rate.
 

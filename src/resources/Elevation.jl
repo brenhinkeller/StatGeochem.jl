@@ -7,13 +7,15 @@
     Read ETOPO1 (1 arc minute topography) file from HDF5 storage, downloading
     from cloud if necessary.
 
-    Available `varname`s (ETOPO variable names) include:
+    Available `varname`s (variable names) include:
+    ```
       "elevation"
       "y_lat_cntr"
       "x_lon_cntr"
       "cellsize"
       "scalefactor"
       "reference"
+    ```
 
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
@@ -150,7 +152,8 @@
     Read SRTM15plus file from HDF5 storage (15 arc second topography from the
     Shuttle Radar Topography Mission), downloading from cloud if necessary.
 
-    Available `varname`s (ETOPO variable names) include:
+    Available `varname`s (variable names) include:
+    ```
       "elevation"
       "y_lat_cntr"
       "x_lon_cntr"
@@ -158,7 +161,7 @@
       "scalefactor"
       "nanval"
       "reference"
-
+    ```
     Units are meters of elevation and decimal degrees of latitude and longitude.
 
     Reference: https://doi.org/10.5069/G92R3PT9
