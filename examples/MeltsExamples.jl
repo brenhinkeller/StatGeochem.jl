@@ -3,10 +3,19 @@
     using Plots
 
 ## --- # # # # # # # # # # # pMelts equil. batch melting # # # # # # # # # # # #
+
+    # # Download precompiled executable from caltech
+    # alphameltsversion = "linux_alphamelts_1-9"
+    # download("https://magmasource.caltech.edu/alphamelts/zipfiles/$alphameltsversion.zip","./$alphameltsversion.zip")
+    # run(`unzip -o $alphameltsversion.zip`);
+    # run(`mv $alphameltsversion/alphamelts_linux64 $alphameltsversion/alphamelts`);
+
     # Note: melts_configure requires a working alphamelts installation.
     # If you don't have alphamelts, you'll need to download, install, and
     # configure it. The absolute path to the alphamelts perl script must be input here:
     meltspath = "/usr/local/bin/run_alphamelts.command"
+    # meltspath = abspath("$alphameltsversion/run_alphamelts.command")
+
 
     # The absolute or relative path to a direcory where you want to run MELTS -
     # A number of configuration and output files will be written here.
