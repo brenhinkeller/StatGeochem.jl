@@ -1,4 +1,31 @@
-function claiborne_zircon_kd(elem, T)
+"""
+```julia
+claiborne_zircon_kd(elem::String, T::Number)
+```
+Returns the temperature-dependent zircon/melt partition coefficients of
+Claiborne et al. (2017) for the given element `elem` at temperature `T`
+degrees C, using equations of the form `a * exp(b/TK)` where `TK = T + 273.15`
+
+In addition to the elements for which Claiborne provides equations, we also
+extrapolate these partition coefficients to include `"La"` and `"Pr"` using a
+lattce strain model, following the equations of Blundy and Wood (2003).
+
+Reference:
+Claiborne, L. L., Miller, C. F., Gualda, G. A., Carley, T. L., Covey, A. K.,
+Wooden, J. L., & Fleming, M. A. (2018). Zircon as magma monitor: Robust,
+temperature‐dependent partition coefficients from glass and zircon surface and
+rim measurements from natural systems. in Microstructural geochronology:
+Planetary records down to atom scale, 1-33.
+https://doi.org/10.1002/9781119227250.ch1
+
+
+## Examples
+```julia
+julia> claiborne_zircon_kd("Yb", 600)
+1016.9198328977473
+```
+"""
+function claiborne_zircon_kd(elem::String, T::Number)
     # Convert temperature to Kelvin
     T += 273.15
     # Calculate partition coefficient
@@ -12,6 +39,12 @@ function claiborne_zircon_kd(elem, T)
         0.0036*exp(9806/T)
     elseif elem=="Nb"
         0.0003*exp(7241/T)
+    elseif elem=="La"
+        # Extended by lattice strain model, see extend_claiborne.jl
+        1.3798739589052778e-6 * exp(2589.726053162119/T)
+    elseif elem=="Pr"
+        # Extended by lattice strain model, see extend_claiborne.jl
+        5.133827751234487e-5 * exp(5290.150996818675/T)
     elseif elem=="Nd"
         0.0001*exp(5867/T)
     elseif elem=="Sm"
