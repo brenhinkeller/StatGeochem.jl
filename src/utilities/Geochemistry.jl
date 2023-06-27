@@ -2279,6 +2279,22 @@
         exp10(5.711 - 4800.0/(TC+273.15) - log10(aSiO2) +log10(aTiO2))
     end
 
+    """
+    ```julia
+    Ti = Crisp_Ti_in_zircon(TC::Number, Pbar::Number, aSiO2::Number, aTiO2::Number)
+    ```
+    Parts per million by weight of titanium in zircon at temperature `TC` degrees
+    Celsius and pressure `Pbar` bar given `aSiO2` silica activity and `aTiO2`
+    titanium activity, following the equations of Crisp et al., 2023.
+    (doi: 10.1016/j.gca.2023.04.031)
+    """
+    function Crisp_Ti_in_zircon(TC::Number, Pbar::Number, aSiO2::Number, aTiO2::Number)
+        T = TC+273.15
+        P = Pbar*1e-4
+        f = 1.0/(1.0+10.0^(0.775P - 3.3713))
+        exp10(5.847 - 4800.86/T - 0.121*P - 0.005615*P^3 - log10(aSiO2)*f +log10(aTiO2)) / f
+    end
+
 
     """
     ```julia
