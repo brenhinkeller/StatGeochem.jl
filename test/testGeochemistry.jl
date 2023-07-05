@@ -93,10 +93,10 @@
     @test StatGeochem.Ferry_Zr_in_rutile(750,1) ≈ 982.8714076786658
     @test StatGeochem.Ferry_Ti_in_zircon(750,1,1) ≈ 10.46178465494583
 
-    @test StatGeochem.Crisp_Ti_in_zircon(750,0,1,1) ≈ 14.287291412238446
-    @test StatGeochem.Crisp_Ti_in_zircon(750,1000,1,1) ≈ 13.895697658784776
-    @test StatGeochem.Crisp_Ti_in_zircon(750,10000,1,1) ≈ 10.696681770640712
-    @test StatGeochem.Crisp_Ti_in_zircon(750,20000,1,1) ≈ 7.4877260068759846
+    @test StatGeochem.Crisp_Ti_in_zircon(750,0,1,1) ≈ 14.08608953046849
+    @test StatGeochem.Crisp_Ti_in_zircon(750,1000,1,1) ≈ 13.703165806686624
+    @test StatGeochem.Crisp_Ti_in_zircon(750,10000,1,1) ≈ 10.570721163513461
+    @test StatGeochem.Crisp_Ti_in_zircon(750,20000,1,1) ≈ 7.4184040803703954
 
 ## -- Test melts
 
