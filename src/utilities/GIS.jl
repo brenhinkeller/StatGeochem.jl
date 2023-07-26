@@ -395,7 +395,7 @@
     ```julia
     centroid(lats, lons)
     ```
-    Return the centroid of a set of latitudes and longitudes on a sphere
+    Return the centroid of a set of latitudes and longitudes on a sphere.
     """
     function centroid(lats::AbstractArray{T1}, lons::AbstractArray{T2}) where {T1,T2}
         T = float(promote_type(T1, T2))
@@ -413,12 +413,13 @@
         lonc = rad2deg(θ)
         return latc, lonc
     end
+    export centroid
 
     """
     ```julia
     x, y, z = cartesian(ρ, φ, θ)
     ```
-    Convert from coordinates (`ρ`,`φ`,`θ`) to cartesian coordinates (`x`,`y`,`z`).
+    Convert from spherical coordinates (`ρ`,`φ`,`θ`) to cartesian coordinates (`x`,`y`,`z`).
     """
     function cartesian(ρ::Number, φ::Number, θ::Number)
         x = ρ * sin(φ) * cos(θ)
@@ -426,10 +427,11 @@
         z = ρ * cos(φ)
         return x, y, z
     end
+    export cartesian
 
     """
     ```julia
-    ρ, θ, φ = cartesian(x, y, z))
+    ρ, θ, φ = spherical(x, y, z)
     ```
     Convert from cartesian coordinates (`x`,`y`,`z`) to spherical coordinates (`ρ`,`φ`,`θ`).
     """
@@ -439,6 +441,7 @@
         θ = atan(y/x)
         return ρ, φ, θ
     end
+    export spherical
 
 
 ## --- End of File
