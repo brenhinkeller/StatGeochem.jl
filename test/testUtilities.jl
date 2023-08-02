@@ -77,9 +77,12 @@
 
     # Centroid of a set of lats and lons on a sphere
     lats, lons = [-1, 1, 0, 0.], [0, 0, -1, 1.]
-    @test all(StatGeochem.centroid(lats, lons) .≈ (0.0, 0.0))
+    @test all(centroid(lats, lons) .≈ (0.0, 0.0))
+    lats, lons = [43.69852352,43.69852385,43.69944918,43.69945593,], [-116.0948702,-116.0936334,-116.0936182,-116.0948765,];
+    @test all(centroid(lats, lons) .≈ (43.698988121696146, -116.0942495750004))
 
     # Maximum arc-degree distance between a list of points on a sphere
+    lats, lons = [-1, 1, 0, 0.], [0, 0, -1, 1.]
     @test all(dist_uncert(lats, lons) .≈ (0.0, 0.0, 1.0))
     lats, lons = [0, 0, 0, 0], [0, 30, 23, 90]
     @test all(dist_uncert(lats, lons) .≈ (0.0, 34.15788270532762, 45.0))

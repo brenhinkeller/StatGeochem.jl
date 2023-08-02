@@ -456,7 +456,7 @@
     function spherical(x::Number, y::Number, z::Number)
         ρ = sqrt(x^2 + y^2 + z^2)
         φ = acos(z/ρ)
-        θ = atan(y/x)
+        θ = atan(y,x)
         return ρ, φ, θ
     end
     export spherical
