@@ -87,6 +87,8 @@
     lats, lons = [0, 0, 0, 0], [0, 30, 23, 90]
     @test all(dist_uncert(lats, lons) .≈ (0.0, 34.15788270532762, 45.0))
 
+    xyz = 2rand(3) .- 1
+    @test xyz ≈ [cartesian(spherical(xyz...,)...,)...,]
 
 ## --- Etc.jl
 
