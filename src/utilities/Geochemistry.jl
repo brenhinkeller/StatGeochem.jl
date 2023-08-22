@@ -470,7 +470,7 @@
 
     """
     ```julia
-    melts_query_modes(scratchdir::String; index=1)
+    melts_query(scratchdir::String; index=1)
     ```
     Read all phase proportions from `Phase_main_tbl.txt` in specified MELTS run directory
     Returns an elementified dictionary
@@ -655,7 +655,13 @@
     end
     export melts_query_solid
 
-    # Read system thermodynamic data, return as elementified dictionary
+    """
+    ```julia
+    melts_query_system(scratchdir::String; index=1, importas=:Dict)
+    ```
+    Read system thermodynamic and composition data from `System_main_tbl.txt` in
+    specified MELTS run directory. Returns an elementified dictionary or tuple.
+    """
     function melts_query_system(scratchdir::String; index=1, importas=:Dict)
         prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
