@@ -1436,43 +1436,43 @@
 
         # Read results and return them if possible
         result = importas==:Dict ? Dict() : ()
-        try
-            if dof == 1 
+        
+        if dof == 1 
+            try
                 # Read data as an Array{Any}
                 data = readdlm("$(prefix)$(index)_1.phm", skipstart=8)
-                # Convert to a dictionary.
-                table = elementify(data, importas=importas)
-                # Create results dictionary
-                phase_names = unique(table["Name"])
-                t_steps = unique(table["T(K)"])
-                result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
-                id = 1
-                # Loop through table
-                for t in t_steps 
-                    # Index table 
-                    t_idx = table["T(K)"] .== t
-                    # Index phase name and weight(kg) 
-                    name = table["Name"][t_idx]
-                    kg = table["phase,kg"][t_idx]
-                    # Calculate wt% and add to results dictionary
-                    for i in zip(name, kg)
-                       result[i[1]][id] = (i[2]/nansum(kg)) * 100
-                    end
-                    id+=1
-
+            catch
+                # Return empty dictionary if file doesn't exist
+                @warn "$(prefix)$(index)_1.phm could not be parsed, perplex may not have run"
+            end
+            # Convert to a dictionary.
+            table = elementify(data, importas=importas)
+            # Create results dictionary
+            phase_names = unique(table["Name"])
+            t_steps = unique(table["T(K)"])
+            result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
+            id = 1
+            # Loop through table
+            for t in t_steps 
+                # Index table 
+                t_idx = table["T(K)"] .== t
+                # Index phase name and weight(kg) 
+                name = table["Name"][t_idx]
+                kg = table["phase,kg"][t_idx]
+                # Calculate wt% and add to results dictionary
+                for i in zip(name, kg)
+                    result[i[1]][id] = (i[2]/nansum(kg)) * 100
                 end
-                result["T(K)"] = t_steps
+                id+=1
+
             end
-            else 
-                # Read data as an Array{Any}
-                data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
-                # Convert to a dictionary.
-                # Perplex sometimes returns duplicates of a single solution model, sum them.
-                result = elementify(data, sumduplicates=true, importas=importas)
-            end
-        catch
-            # Return empty dictionary if file doesn't exist
-            @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
+            result["T(K)"] = t_steps
+        else 
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+            # Convert to a dictionary.
+            # Perplex sometimes returns duplicates of a single solution model, sum them.
+            result = elementify(data, sumduplicates=true, importas=importas)
         end
         return result
     end
