@@ -795,7 +795,7 @@
             npoints::Integer=100,
             solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
-            mode_basis::String="vol",
+            mode_basis::String="wt",
             composition_basis::String="wt",
             fluid_eos::Integer=5
         )
