@@ -1414,7 +1414,7 @@
         fp = open(prefix*"werami.bat", "w")
         if dof == 1
             # v6.7.8 1d path
-            write(fp,"$index\n3\n38\n3\nn\n37\n0\n")
+            write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n")
         elseif dof == 2
             # v6.7.8 2d grid
             write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
