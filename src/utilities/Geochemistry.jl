@@ -842,7 +842,7 @@
         system("cd $prefix; $build < build.bat > build.log")
 
         # Run PerpleX vertex calculations
-        result = system("cd $prefix; echo $index | $vertex > vertex.log")
+        result = system("cd $prefix; printf \"$index\ny\ny\ny\ny\ny\ny\ny\ny\n\" | $vertex > vertex.log")
         return result
     end
     export perplex_configure_isobar
