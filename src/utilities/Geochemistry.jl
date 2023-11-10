@@ -1424,15 +1424,15 @@
         close(fp)
 
         # Make sure there isn"t already an output
-        system("rm -f $(prefix)$(index)_1.tab*")
+        system("rm -f $(prefix)$(index)_1.phm*")
 
         # Extract Perplex results with werami
         system("cd $prefix; $werami < werami.bat > werami.log")
 
         # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.phm")
         # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.tab")
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.phm")
 
         # Read results and return them if possible
         result = importas==:Dict ? Dict() : ()
