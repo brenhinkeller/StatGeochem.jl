@@ -779,7 +779,7 @@
         \tnpoints::Integer=100,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tmode_basis::String="wt",  #["vol", "wt", "mol"]
         \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
         \tfluid_eos::Integer=5)
     ```
