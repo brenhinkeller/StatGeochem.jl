@@ -1837,7 +1837,7 @@
 
     function perplex_phase_is_solid(phase_name)
         !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
-        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals"]))
+        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals", "CO2", "Missing", "system"]))
     end
     export perplex_phase_is_solid
 
