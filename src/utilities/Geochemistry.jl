@@ -1434,9 +1434,9 @@
         # Merge delimiters
         system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.phm")
         # Replace "Missing data" with just "Missing" 
-        file_content = read("$prefix$index_1.phm", String)
+        file_content = read("$(prefix)$(index)_1.phm", String)
         modified_content = replace(file_content, "Missing data" => replace("Missing data", "Missing data" => "Missing"))
-        write("$prefix$index_1.phm", modified_content)
+        write("$(prefix)$(index)_1.phm", modified_content)
 
         # Read results and return them if possible
         result = importas==:Dict ? Dict() : ()
