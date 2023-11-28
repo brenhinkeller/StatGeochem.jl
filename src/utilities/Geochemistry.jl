@@ -781,7 +781,7 @@
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
         \tmode_basis::String="vol",  #["vol", "wt", "mol"]
         \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
-        \tnonlinear_subdivision::Boolean=false,
+        \tnonlinear_subdivision::Bool=false,
         \tfluid_eos::Integer=5)
     ```
 
@@ -798,7 +798,7 @@
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
             mode_basis::String="wt",
             composition_basis::String="wt",
-            nonlinear_subdivision::Boolean=false,
+            nonlinear_subdivision::Bool=false,
             fluid_eos::Integer=5
         )
 
