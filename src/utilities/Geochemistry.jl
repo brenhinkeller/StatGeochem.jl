@@ -781,6 +781,7 @@
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
         \tmode_basis::String="wt",  #["vol", "wt", "mol"]
         \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+        \tnonlinear_subdivision::Bool=false,
         \tfluid_eos::Integer=5)
     ```
 
@@ -797,6 +798,7 @@
             excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
             mode_basis::String="wt",
             composition_basis::String="wt",
+            nonlinear_subdivision::Bool=false,
             fluid_eos::Integer=5
         )
 
@@ -819,6 +821,12 @@
         system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
         system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
         system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # Turn on nonlinear subdivision and change resolution
+        if nonlinear_subdivision
+            system("sed -e \"s/non_linear_switch .*|/nonlinear_subdivision              T |/\" -i.backup $(prefix)perplex_option.dat")
+            system("sed -e \"s/initial_resolution .*|/initial_resolution              1/2 1/4 |/\" -i.backup $(prefix)perplex_option.dat")
+        end
 
         # Create build batch file
         # Options based on Perplex v6.8.7
