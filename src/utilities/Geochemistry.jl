@@ -825,7 +825,7 @@
         # Turn on nonlinear subdivision and change resolution
         if nonlinear_subdivision
             system("sed -e \"s/non_linear_switch .*|/non_linear_switch              T |/\" -i.backup $(prefix)perplex_option.dat")
-            system("sed -e \"s/initial_resolution .*|/initial_resolution              1/2 1/4 |/\" -i.backup $(prefix)perplex_option.dat")
+            system("sed -e \"s:initial_resolution .*|:initial_resolution        1/2 1/4 |:\" -i.backup $(prefix)perplex_option.dat")
         end
 
         # Create build batch file
