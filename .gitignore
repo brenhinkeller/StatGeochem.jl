@@ -17,6 +17,7 @@
 *.jpg
 *.gif
 *.pdf
+*.png
 
 # Various julia files to ignore
 *.jld
