@@ -7,11 +7,11 @@ module StatGeochem
     @reexport using StatGeochemBase
 
     # Vectorization and parallelization tools
-    using LoopVectorization
-    using Polyester
+    using LoopVectorization: @turbo
+    using Polyester: @batch
 
     # General requirements
-    using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads
+    using DelimitedFiles, Random, Downloads
     using ProgressMeter: @showprogress, Progress, update!, next!
     const Collection{T} = Union{AbstractArray{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
@@ -31,7 +31,8 @@ module StatGeochem
     moduleresourcepath = joinpath(Base.source_dir(),"resources")
     export resourcepath, moduleresourcepath
 
-    using FileIO, ImageIO, HDF5
+    using FileIO: load
+    using HDF5: h5read
     using Colors: Color, RGBX, RGB, N0f8
     include("resources/tc1/tc1.jl")
     include("resources/Crust1.jl")
