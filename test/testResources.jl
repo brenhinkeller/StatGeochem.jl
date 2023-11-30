@@ -19,7 +19,7 @@
    @test claiborne_zircon_kd("La", 800) ≈ 1.5412711665791843e-5
 
 
-## --- Elevation.jl
+## -- Geography.jl
 
    lat = [43.7022,-26.2041,-19.5723,-34.9285,46.4908]
    lon = [-72.2896,28.0473,65.7550,138.6007,9.8355]
@@ -31,6 +31,8 @@
 
    @test find_land(lat, lon) == Bool[1, 1, 0, 1, 1]
    @test find_land(43.702245, -72.0929) == fill(true)
+
+## --- Elevation.jl
 
    A = (1:200)*(1:200)'
    @test find_etopoelev(A, -90:-89, -180:-179) == [1,3721]
