@@ -44,4 +44,9 @@ module StatGeochem
     # Custom pretty printing for some types
     include("utilities/Display.jl")
 
+    # Methods exclusively for package extensions
+    mapplot() = @warn "`mapplot` requires Plots.jl"
+    mapplot!() = @warn "`mapplot!` requires Plots.jl"
+    export mapplot, mapplot!
+
 end # module

@@ -32,9 +32,6 @@
    @test find_land(lat, lon) == Bool[1, 1, 0, 1, 1]
    @test find_land(43.702245, -72.0929) == fill(true)
 
-   # h = mapplot(lon, lat)
-   # @test isa(ans, Plots.Plot)
-
 ## --- Elevation.jl
 
    A = (1:200)*(1:200)'
