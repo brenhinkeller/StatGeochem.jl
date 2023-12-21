@@ -48,6 +48,8 @@ module StatGeochem
     # Methods exclusively for package extensions
     mapplot() = @warn "`mapplot` requires Plots.jl"
     mapplot!() = @warn "`mapplot!` requires Plots.jl"
-    export mapplot, mapplot!
+    mapplot() = @warn "`spidergram` requires Plots.jl"
+    mapplot!() = @warn "`spidergram!` requires Plots.jl"
+    export mapplot, mapplot!, spidergram, spidergram!
 
 end # module
