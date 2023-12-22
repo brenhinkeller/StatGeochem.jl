@@ -69,20 +69,20 @@ module StatGeochemPlotsExt
     If `data` is not passed as an array, `chondrite` must be a named tuple in element 
     order.
     """
-    spidergram(data; chondrite=taylormclennan, kwargs...) = 
+    StatGeochem.spidergram(data; chondrite=taylormclennan, kwargs...) = 
         spidergram!(plot(), data; chondrite=chondrite, kwargs...)
     
-    function spidergram!(h, data::Dict; chondrite::NamedTuple=taylormclennan, kwargs...)
+    function StatGeochem.spidergram!(h, data::Dict; chondrite::NamedTuple=taylormclennan, kwargs...)
         Key = keytype(data)
         data = [data[Key(k)] for k in keys(chondrite)]
         _spidergram!(h, data, values(chondrite); kwargs...)
     end
-    function spidergram!(h, data::NamedTuple; chondrite::NamedTuple=taylormclennan, kwargs...)
+    function StatGeochem.spidergram!(h, data::NamedTuple; chondrite::NamedTuple=taylormclennan, kwargs...)
         data = [data[Symbol(k)] for k in keys(chondrite)]
         _spidergram!(h, data, values(chondrite); kwargs...)
     end
 
-    spidergram!(h, data::AbstractArray; chondrite=taylormclennan, kwargs...) = 
+    StatGeochem.spidergram!(h, data::AbstractArray; chondrite=taylormclennan, kwargs...) = 
         _spidergram!(h, data, collect(values(chondrite)); kwargs...)
 
     function _spidergram!(h, data::AbstractArray, chondrite; kwargs...,)
