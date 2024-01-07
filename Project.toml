@@ -1,6 +1,6 @@
 name = "StatGeochem"
 uuid = "df4de05a-b714-11e8-3c2a-c30fb13e804c"
-authors = ["C. Brenhin Keller <cbkeller@berkeley.edu>"]
+authors = ["C. Brenhin Keller <cbkeller@dartmouth.edu>"]
 version = "0.6.2"
 
 [deps]
