@@ -857,6 +857,91 @@
 
     """
     ```julia
+    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
+        \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+        \tnonlinear_subdivision::Bool=false,
+        \tfluid_eos::Integer=5)
+    ```
+
+    Set up a PerpleX calculation for a single bulk composition along a specified
+    pressure–temperature path with T as the independent variable. 
+    
+    P specified in bar and T_range in Kelvin
+    """
+    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
+        elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        dataset::String="hp11ver.dat",
+        index::Integer=1,
+        PTdir::String,
+        solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
+        excludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        T_range::NTuple{2,Number}=(500+273.15, 1500+273.15),
+        mode_basis::String="vol",  #["vol", "wt", "mol"]
+        composition_basis::String="wt",  #["vol", "wt", "mol"]
+        nonlinear_subdivision::Bool=false,
+        fluid_eos::Integer=5,
+        )
+
+        build = joinpath(perplexdir, "build")# path to PerpleX build
+        vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
+
+        # Configure working directory
+        prefix = joinpath(scratchdir, "out$(index)/")
+        system("rm -rf $prefix; mkdir -p $prefix")
+
+        # Place required data files
+        system("cp $(joinpath(perplexdir,dataset)) $prefix")
+        system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
+        system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
+        system("cp $(joinpath(perplexdir, PTdir)) $prefix")
+
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        
+        # Turn on nonlinear subdivision and change resolution
+        if nonlinear_subdivision
+            system("sed -e \"s/non_linear_switch .*|/non_linear_switch              T |/\" -i.backup $(prefix)perplex_option.dat")
+            system("sed -e \"s:initial_resolution .*|:initial_resolution        1/2 1/4 |:\" -i.backup $(prefix)perplex_option.dat")
+        end
+
+        # Create build batch file
+        # Options based on Perplex v6.8.7
+        fp = open(prefix*"build.bat", "w")
+
+        # Name, components, and basic options. P-T conditions.
+        # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
+        elementstring = join(elements .* "\n")
+
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\nn")
+        
+        # Whole-rock composition
+        for i ∈ eachindex(composition)
+            write(fp,"$(composition[i]) ")
+        end
+
+        # Solution model
+        write(fp,"\nn\ny\nn$excludes\ny\nsolution_model.dat\nP-T Path")
+        close(fp)
+
+        # build PerpleX problem definition
+        system("cd $prefix; $build < build.bat > build.log")
+
+        # Run PerpleX vertex calculations
+        result = system("cd $prefix; printf \"$index\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\n0\" | $vertex > vertex.log")
+        return result
+    end
+    export perplex_configure_path
+
+    """
+    ```julia
     perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Collection{Number},
         \telements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
         \tP::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
