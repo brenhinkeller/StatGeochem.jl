@@ -875,9 +875,9 @@
     
     P specified in bar and T_range in Kelvin
     """
-    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
+    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String,
         elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
-        T_range::NTuple{2,Number}=(500+273.15, 1500+273.15), PTdir::String;
+        T_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
         dataset::String="hp11ver.dat",
         index::Integer=1,
         solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
