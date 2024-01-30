@@ -858,7 +858,8 @@
     """
     ```julia
     perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
-        \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+        \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        \tT_range::NTuple{2,Number}=(500+273.15, 1500+273.15), PTdir::String;
         \tdataset::String="hp11ver.dat",
         \tindex::Integer=1,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
@@ -876,12 +877,11 @@
     """
     function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
         elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        T_range::NTuple{2,Number}=(500+273.15, 1500+273.15), PTdir::String;
         dataset::String="hp11ver.dat",
         index::Integer=1,
-        PTdir::String,
         solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         excludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        T_range::NTuple{2,Number}=(500+273.15, 1500+273.15),
         mode_basis::String="vol",  #["vol", "wt", "mol"]
         composition_basis::String="wt",  #["vol", "wt", "mol"]
         nonlinear_subdivision::Bool=false,
@@ -920,7 +920,7 @@
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
 
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\nn")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny")
         
         # Whole-rock composition
         for i ∈ eachindex(composition)
