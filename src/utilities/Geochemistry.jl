@@ -924,7 +924,7 @@
         
         # Whole-rock composition
         for i ∈ eachindex(composition)
-            write(fp,"$(composition[i])")
+            write(fp,"$(composition[i]) ")
         end
 
         # Solution model
