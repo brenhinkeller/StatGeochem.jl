@@ -857,9 +857,9 @@
 
     """
     ```julia
-    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number},
+    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String
         \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
-        \tT_range::NTuple{2,Number}=(500+273.15, 1500+273.15), PTdir::String;
+        \tT_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
         \tdataset::String="hp11ver.dat",
         \tindex::Integer=1,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
@@ -896,10 +896,10 @@
         system("rm -rf $prefix; mkdir -p $prefix")
 
         # Place required data files
-        system("cp $(joinpath(perplexdir,dataset)) $prefix")
+        system("cp $(joinpath(perplexdir, dataset)) $prefix")
         system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
         system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
-        system("cp $(joinpath(perplexdir, PTdir)) $prefix")
+        system("cp $PTdir $prefix")
 
         # Specify whether we want volume or weight percentages
         system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
@@ -920,15 +920,15 @@
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
 
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny\n")
         
         # Whole-rock composition
         for i ∈ eachindex(composition)
-            write(fp,"$(composition[i]) ")
+            write(fp,"$(composition[i])")
         end
 
         # Solution model
-        write(fp,"\nn\ny\nn$excludes\ny\nsolution_model.dat\nP-T Path")
+        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nP-T Path")
         close(fp)
 
         # build PerpleX problem definition
