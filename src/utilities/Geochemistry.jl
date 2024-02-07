@@ -1487,7 +1487,7 @@
     """
     ```julia
     perplex_query_modes(perplexdir::String, scratchdir::String;
-        \tdof::Integer=1, index::Integer=1, include_fluid="y")
+        \tdof::Integer=1, PTPath::Bool = false, index::Integer=1, include_fluid="y")
     ```
 
     Query modal mineralogy (mass proportions) along a previously configured 1-d
@@ -1497,7 +1497,7 @@
     Currently returns wt% 
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
-        dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict)
+        dof::Integer=1, PTPath::Bool = false, index::Integer=1, include_fluid="y", importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1505,9 +1505,12 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        if dof == 1
-            # v6.7.8 1d path
+        if dof == 1 # v6.7.8 1d path
+            if PTPath # P–T path
+                write(fp, "$index\n3\n36\n3\nn\n0\n")
+            else # (isobar or geotherm)
             write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n")
+            end
         elseif dof == 2
             # v6.7.8 2d grid
             write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
@@ -1546,24 +1549,48 @@
             table = elementify(data, importas=importas)
             # Create results dictionary
             phase_names = unique(table["Name"])
-            t_steps = unique(table["T(K)"])
-            result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
-            id = 1
-            # Loop through table
-            for t in t_steps 
-                # Index table 
-                t_idx = table["T(K)"] .== t
-                # Index phase name and weight(kg) 
-                name = table["Name"][t_idx]
-                kg = table["phase,kg"][t_idx]
-                # Calculate wt% and add to results dictionary
-                for i in zip(name, kg)
-                    result[i[1]][id] = (i[2]/nansum(kg)) * 100
-                end
-                id+=1
 
+            if PTPath #PT path
+                nodes = unique(table["node#"])
+
+                # Create result dictionary
+                result = Dict{String, Vector{Float64}}(i => zeros(length(nodes)) for i in phase_names)
+
+                # Loop through table
+                for n in nodes
+                    # Index table 
+                    n_idx = table["node#"] .== n
+                    # Index phase name and weight(kg) 
+                    name = table["Name"][n_idx]
+                    wt = table["wt,%"][n_idx]
+                    # Add wt% to results dictionary
+                    for i in zip(name, wt)
+                        result[i[1]][floor(Int, n)] += i[2]
+                    end
+                end
+                result["T(K)"] = table["T(K)"]
+                result["P(bar)"] = table["P(bar)"]
+                result["node"] = table["node#"]
+
+            else # isobar or geotherm
+                t_steps = unique(table["T(K)"])
+                result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
+                id = 1
+                # Loop through table
+                for t in t_steps 
+                    # Index table 
+                    t_idx = table["T(K)"] .== t
+                    # Index phase name and weight(kg) 
+                    name = table["Name"][t_idx]
+                    kg = table["phase,kg"][t_idx]
+                    # Calculate wt% and add to results dictionary
+                    for i in zip(name, kg)
+                        result[i[1]][id] = (i[2]/nansum(kg)) * 100
+                    end
+                    id+=1
+                end
+                result["T(K)"] = t_steps
             end
-            result["T(K)"] = t_steps
         else 
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
@@ -1571,79 +1598,6 @@
             # Perplex sometimes returns duplicates of a single solution model, sum them.
             result = elementify(data, sumduplicates=true, importas=importas)
         end
-        return result
-    end
-    """
-    ```julia
-    perplex_query_modes(perplexdir::String, scratchdir::String, PTPath::Bool = false;
-    index::Integer=1, importas=:Dict)
-    ```
-
-    Query modal mineralogy (mass proportions) along a P–T path (path is given in vertex).
-    Results are returned as a dictionary.
-
-    Currently returns wt% 
-    """
-    function perplex_query_modes(perplexdir::String, scratchdir::String; PTPath::Bool,
-        index::Integer=1, importas=:Dict)
-        # Query a P–T path 
-
-        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
-        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
-
-        # Create werami batch file
-        fp = open(prefix*"werami.bat", "w")
-        if PTPath # P–T path
-            write(fp, "$index\n3\n36\n3\nn\n0\n")
-        else
-            error("P–T path option is false")
-        end
-        close(fp)
-
-        # Make sure there isn"t already an output
-        system("rm -f $(prefix)$(index)_1.phm*")
-
-        # Extract Perplex results with werami
-        system("cd $prefix; $werami < werami.bat > werami.log")
-
-        # Ignore initial and trailing whitespace
-        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.phm")
-        # Merge delimiters
-        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.phm")
-        
-        # Read results and return them if possible
-        result = importas==:Dict ? Dict() : ()
-
-        try
-            # Read data as an Array{Any}
-            data = readdlm("$(prefix)$(index)_1.phm", skipstart=8)
-        catch
-            # Return empty dictionary if file doesn't exist
-            @warn "$(prefix)$(index)_1.phm could not be parsed, perplex may not have run"
-        end
-
-        table = elementify(data, importas=importas)
-        phase_names = unique(table["Name"])
-        nodes = unique(table["node#"])
-
-        # Create result dictionary
-        result = Dict{String, Vector{Float64}}(i => zeros(length(nodes)) for i in phase_names)
-
-            # Loop through table
-            for n in nodes
-                # Index table 
-                n_idx = table["node#"] .== n
-                # Index phase name and weight(kg) 
-                name = table["Name"][n_idx]
-                wt = table["wt,%"][n_idx]
-                # Add wt% to results dictionary
-                for i in zip(name, wt)
-                    result[i[1]][floor(Int, n)] += i[2]
-                end
-            end
-            result["T(K)"] = table["T(K)"]
-            result["P(bar)"] = table["P(bar)"]
-            result["node"] = table["node#"]
         return result
     end
     """
