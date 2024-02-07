@@ -1575,6 +1575,79 @@
     end
     """
     ```julia
+    perplex_query_modes(perplexdir::String, scratchdir::String, PTPath::Bool = false;
+    index::Integer=1, importas=:Dict)
+    ```
+
+    Query modal mineralogy (mass proportions) along a P–T path (path is given in vertex).
+    Results are returned as a dictionary.
+
+    Currently returns wt% 
+    """
+    function perplex_query_modes(perplexdir::String, scratchdir::String, PTPath::Bool = false;
+        index::Integer=1, importas=:Dict)
+        # Query a P–T path 
+
+        werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+        prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+
+        # Create werami batch file
+        fp = open(prefix*"werami.bat", "w")
+        if PTPath # P–T path
+            write(fp, "$index\n3\n36\n3\nn\n0\n")
+        else
+            error("P–T path option is false")
+        end
+        close(fp)
+
+        # Make sure there isn"t already an output
+        system("rm -f $(prefix)$(index)_1.phm*")
+
+        # Extract Perplex results with werami
+        system("cd $prefix; $werami < werami.bat > werami.log")
+
+        # Ignore initial and trailing whitespace
+        system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.phm")
+        # Merge delimiters
+        system("sed -e \"s/  */ /g\" -i.backup $(prefix)$(index)_1.phm")
+        
+        # Read results and return them if possible
+        result = importas==:Dict ? Dict() : ()
+
+        try
+            # Read data as an Array{Any}
+            data = readdlm("$(prefix)$(index)_1.phm", skipstart=8)
+        catch
+            # Return empty dictionary if file doesn't exist
+            @warn "$(prefix)$(index)_1.phm could not be parsed, perplex may not have run"
+        end
+
+        table = elementify(data, importas=importas)
+        phase_names = unique(table["Name"])
+        nodes = unique(table["node#"])
+
+        # Create result dictionary
+        result = Dict{String, Vector{Float64}}(i => zeros(length(nodes)) for i in phase_names)
+
+            # Loop through table
+            for n in nodes
+                # Index table 
+                n_idx = table["node#"] .== n
+                # Index phase name and weight(kg) 
+                name = table["Name"][n_idx]
+                wt = table["wt,%"][n_idx]
+                # Add wt% to results dictionary
+                for i in zip(name, wt)
+                    result[i[1]][floor(Int, n)] += i[2]
+                end
+            end
+            result["T(K)"] = table["T(K)"]
+            result["P(bar)"] = table["P(bar)"]
+            result["node"] = table["node#"]
+            
+    end
+    """
+    ```julia
     perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
         \tindex::Integer=1, npoints::Integer=200, include_fluid="y")
     ```
