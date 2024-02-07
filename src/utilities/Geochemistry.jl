@@ -1584,7 +1584,7 @@
 
     Currently returns wt% 
     """
-    function perplex_query_modes(perplexdir::String, scratchdir::String, PTPath::Bool = false;
+    function perplex_query_modes(perplexdir::String, scratchdir::String; PTPath::Bool,
         index::Integer=1, importas=:Dict)
         # Query a P–T path 
 
