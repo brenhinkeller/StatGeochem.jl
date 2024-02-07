@@ -1644,7 +1644,7 @@
             result["T(K)"] = table["T(K)"]
             result["P(bar)"] = table["P(bar)"]
             result["node"] = table["node#"]
-            
+        return result
     end
     """
     ```julia
