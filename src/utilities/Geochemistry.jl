@@ -40,7 +40,7 @@
 
     Simple geometric mean interpolation from Sm and Gd alone, assuming the chondritic 
     abundances of Sun and McDonough 1989 (doi: 10.1144/gsl.sp.1989.042.01.19), that is
-    Eu$\^{*}$ = `0.0580*sqrt(Sm/0.1530 * Gd/0.2055)`
+    Eu$^{*}$ = `0.0580*sqrt(Sm/0.1530 * Gd/0.2055)`
     """
     function eustar(Sm::Number, Gd::Number)
         # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
