@@ -7,7 +7,8 @@
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
 
-    Full four-element log-linear interpolation, using ionic radii
+    Full four-element log-linear interpolation, assuming 3+ ionic radii and the
+    chondritic abundances of Sun and McDonough 1989 (doi: 10.1144/gsl.sp.1989.042.01.19)
     """
     function eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
         # Ionic radii, in pm [Tb, Gd, Sm, Nd]
@@ -37,7 +38,9 @@
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
 
-    Simple geometric mean interpolation from Sm and Gd alone
+    Simple geometric mean interpolation from Sm and Gd alone, assuming the chondritic 
+    abundances of Sun and McDonough 1989 (doi: 10.1144/gsl.sp.1989.042.01.19), that is
+    Eu$\^{*}$ = `0.0580*sqrt(Sm/0.1530 * Gd/0.2055)`
     """
     function eustar(Sm::Number, Gd::Number)
         # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
