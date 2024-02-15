@@ -69,24 +69,8 @@ module StatGeochemPlotsExt
     If `data` is not passed as an array, `chondrite` must be a named tuple in element 
     order.
     """
-    StatGeochem.spidergram(data; chondrite=taylormclennan, kwargs...) = 
-        spidergram!(plot(), data; chondrite=chondrite, kwargs...)
-    
-    function StatGeochem.spidergram!(h, data::Dict; chondrite::NamedTuple=taylormclennan, kwargs...)
-        Key = keytype(data)
-        data = [data[Key(k)] for k in keys(chondrite)]
-        _spidergram!(h, data, values(chondrite); kwargs...)
-    end
-    function StatGeochem.spidergram!(h, data::NamedTuple; chondrite::NamedTuple=taylormclennan, kwargs...)
-        data = [data[Symbol(k)] for k in keys(chondrite)]
-        _spidergram!(h, data, values(chondrite); kwargs...)
-    end
-
-    StatGeochem.spidergram!(h, data::AbstractArray; chondrite=taylormclennan, kwargs...) = 
-        _spidergram!(h, data, collect(values(chondrite)); kwargs...)
-
-    function _spidergram!(h, data::AbstractArray, chondrite; kwargs...,)
-        Plots.plot!(h, 
+    function StatGeochem.spidergram(data; chondrite=taylormclennan, markershape=:circle, kwargs...)
+        h = Plots.plot(
             ylabel="Chondrite Normalized",
             fg_color_legend=:white,
             framestyle=:box,
@@ -98,10 +82,42 @@ module StatGeochemPlotsExt
                 "Yb","Lu"]),
             yminorticks=log.(1:10),
         )
-        Plots.plot!(h, collect([1:4; 6:15]), data ./ chondrite; kwargs...)
+        spidergram!(h, data; chondrite=chondrite, markershape=markershape, kwargs...)
+    end
+    
+    function StatGeochem.spidergram!(h, data::Dict; chondrite::NamedTuple=taylormclennan, 
+            markershape=:circle, kwargs...
+        )
 
+        REEindex = NamedTuple{keys(chondrite)}(i for i in collect([1:4; 6:15]))
+        Key = keytype(data)
+        
+        x = collect(values(REEindex))
+        y = [(haskey(data, Key(k)) ? data[Key(k)]/chondrite[Symbol(k)] : NaN) for k in keys(chondrite)]
+        _spidergram!(h, x, y; markershape=markershape, kwargs...)
+    end
+    
+    function StatGeochem.spidergram!(h, data::NamedTuple; chondrite::NamedTuple=taylormclennan, 
+            markershape=:circle, kwargs...
+        )
+        
+        REEindex = NamedTuple{keys(chondrite)}(i for i in collect([1:4; 6:15]))
+    
+        x = [REEindex[Symbol(k)] for k in keys(data)]
+        y = [data[k]/chondrite[k] for k in keys(data)]
+        _spidergram!(h, x, y; markershape=markershape, kwargs...)
+    end
+    
+    StatGeochem.spidergram!(h, data::AbstractArray; chondrite=taylormclennan, 
+            markershape=:circle, kwargs...) = 
+        _spidergram!(h, collect([1:4; 6:15]), data ./ collect(values(chondrite)); 
+            markershape=markershape, kwargs...
+        )
+    
+    function _spidergram!(h, x::AbstractArray, y::AbstractArray; kwargs...,)
+        Plots.plot!(h, x[.!isnan.(y)], y[.!isnan.(y)]; kwargs...)
         return h
     end
-
+    
     export spidergram, spidergram!
 end
