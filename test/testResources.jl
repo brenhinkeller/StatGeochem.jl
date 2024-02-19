@@ -39,5 +39,11 @@
    @test find_srtm15plus(A, -90:0.1:-89.5, -180:0.1:-179.5) == [1, 625, 2401, 5329, 9409, 14641]
    @test find_seafloorage(A, 80.738:-0.1:80, 0:0.1:0.7) == [1, 80, 266, 570, 975, 1472, 2090, 2667]
 
+## --- Chemistry.jl
+
+   @test molarmass["Si"] ≈ 28.085
+   @test molarmasspercation["TiO2"] ≈ 79.8651
+   @test ionicradius.La ≈ 117.2
+   @test ioniccharge.La == +3
 
 ## ---
