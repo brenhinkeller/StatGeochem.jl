@@ -1274,7 +1274,7 @@
     ```
 
     Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
-    along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
+    along a previously configured 1-d path (dof=1, isobar, geotherm, or P–T path) or 2-d
     grid / pseudosection (dof=2). Results are returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
@@ -1491,13 +1491,13 @@
     ```
 
     Query modal mineralogy (mass proportions) along a previously configured 1-d
-    path (dof=1, isobar or geotherm) or 2-d grid / pseudosection (dof=2).
+    path (dof=1, isobar, geotherm, or P–T path) or 2-d grid / pseudosection (dof=2).
     Results are returned as a dictionary.
 
     Currently returns wt% 
     """
     function perplex_query_modes(perplexdir::String, scratchdir::String;
-        dof::Integer=1, PTPath::Bool = false, index::Integer=1, include_fluid="y", importas=:Dict)
+        dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict)
         # Query a pre-defined path (isobar or geotherm)
 
         werami = joinpath(perplexdir, "werami")# path to PerpleX werami
@@ -1506,11 +1506,7 @@
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
         if dof == 1 # v6.7.8 1d path
-            if PTPath # P–T path
-                write(fp, "$index\n3\n36\n3\nn\n0\n")
-            else # (isobar or geotherm)
             write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n")
-            end
         elseif dof == 2
             # v6.7.8 2d grid
             write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
@@ -1550,7 +1546,7 @@
             # Create results dictionary
             phase_names = unique(table["Name"])
 
-            if PTPath #PT path
+            if haskey(table, "node#") #PT path
                 nodes = unique(table["node#"])
 
                 # Create result dictionary
@@ -1562,10 +1558,10 @@
                     n_idx = table["node#"] .== n
                     # Index phase name and weight(kg) 
                     name = table["Name"][n_idx]
-                    wt = table["wt,%"][n_idx]
-                    # Add wt% to results dictionary
-                    for i in zip(name, wt)
-                        result[i[1]][floor(Int, n)] += i[2]
+                    kg = table["phase,kg"][n_idx]
+                    #  Calculate wt% and add to results dictionary
+                    for i in zip(name, kg)
+                        result[i[1]][floor(Int64, n)] = (i[2]/nansum(kg)) * 100
                     end
                 end
                 result["T(K)"] = table["T(K)"]
