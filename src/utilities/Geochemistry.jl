@@ -857,14 +857,14 @@
 
     """
     ```julia
-    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String
+    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="",
         \telements::String=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
         \tT_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
         \tdataset::String="hp11ver.dat",
         \tindex::Integer=1,
         \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
         \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
-        \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+        \tmode_basis::String="wt",  #["vol", "wt", "mol"]
         \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
         \tnonlinear_subdivision::Bool=false,
         \tfluid_eos::Integer=5)
