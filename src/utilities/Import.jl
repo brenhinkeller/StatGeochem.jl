@@ -541,30 +541,29 @@
                 else
                     column = data[i₀:end,j]
                 end
-                column_is_numeric = sum(isnumeric.(column)) >= sum(nonnumeric.(column))
 
-                if haskey(result, elements[j])
-                    # If key already exists
-                    if column_is_numeric && (standardize || (sum(isnumeric.(result[elements[j]])) >= sum(nonnumeric.(result[elements[j]]))) )
-                        # If either this column or the existing one is plausibly numeric, sum or average the two
-                        if sumduplicates
-                            result[elements[j]] = floatify.(result[elements[j]], floattype) + floatify.(column, floattype)
-                        else
-                            if skipstart == size(data,1)-1
-                                result[elements[j]] = first( nanmean( hcat(floatify.(result[elements[j]], floattype), floatify.(column, floattype)), dim=2 ) )
-                            else
-                                result[elements[j]] = nanmean( hcat(floatify.(result[elements[j]], floattype), floatify.(column, floattype)), dim=2 )
-                            end
-                        end
-                    elseif standardize
-                        # If neither is numeric, but standardize is set, must return a string
-                        result[elements[j]] = string.(result[elements[j]]) .* "|" .* string(lastcol)
-                    else
-                        # If neither is plausibly numeric, contatenate the columns and move on
-                        result[elements[j]] = hcat(result[elements[j]], column)
-                    end
-                else
+                if !haskey(result, elements[j])
                     result[elements[j]] = columnformat(column, standardize, floattype)
+                else
+                    lastcol = result[elements[j]]
+                    treat_as_numbers = ((sum(isnumeric.(column)) >= sum(nonnumeric.(column))) || (sum(isnumeric.(lastcol)) >= sum(nonnumeric.(lastcol))))
+                    if treat_as_numbers 
+                        if sumduplicates
+                            @warn "Duplicate key $(elements[j]) found, summing"
+                            result[elements[j]] = nanadd(floatify.(lastcol, floattype), floatify.(column, floattype))
+                        else
+                            @warn "Duplicate key $(elements[j]) found, averaging"
+                            result[elements[j]] = nanadd(floatify.(lastcol, floattype), floatify.(column, floattype)) ./ 2.0
+                        end
+                    else
+                        n = 1
+                        while haskey(result, elements[j]*string(n))
+                            n+=1
+                        end
+                        @warn "Duplicate key $(elements[j]) found, replaced with $(elements[j]*string(n))"
+                        elements[j] = elements[j]*string(n)
+                        result[elements[j]] = columnformat(column, standardize, floattype)
+                    end
                 end
             end
 
