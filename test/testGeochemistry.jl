@@ -319,6 +319,26 @@ if Sys.isunix()
     print("seismic[\"T(K)\"]: ")
     println(seismic["T(K)"])
 
+    ## --- # # # # # # # # # # # P–T path example # # # # # # # # # # # #
+
+    # Input parameters
+    T_range = (550+273.15, 1050+273.15) #K
+    PTdir = ""
+
+    @time perplex_configure_path(perplexdir, scratchdir, composition, PTdir, elements, T_range, 
+        dataset = "hp11ver.dat", index=1, solution_phases=HP_solution_phases, excludes=HP_excludes)
+    
+    modes = perplex_query_modes(perplexdir, scratchdir, index=1)
+
+    @test isa(modes, Dict)
+    @test haskey(modes,"node")
+    @test haskey(modes, "Omph(HP)")
+    if haskey(modes, "Omph(HP)")
+        print("modes[\"Omph(HP)\"]: ")
+        println(modes["Omph(HP)"])
+        # @test isapprox(modes["Omph(HP)"],[NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 1.5736, 7.33183, 13.3273, 13.874, 13.8044, 13.7504, 13.6605, 13.6055, 13.2465, 12.8556, 12.8012, 12.909, 12.8774, 12.8621, 12.8379, 12.8239, 12.8205, 12.839, 12.8654, 12.8914, 12.9423, 13.0084, 13.1195, 13.2487, 13.391, 13.5401, 13.7082, 13.9396, 14.1879, 14.4729, 14.754, 15.0912, 15.5081, 15.9689, 16.4671, 17.0194, 17.5064, 17.1991, 16.9685, 16.6926, 16.4602, 16.1634, 15.921, 15.659, 15.4497, 15.2485, 15.0301, 14.8809, 14.6926, 15.0711, 9.19562, NaN, NaN], nans=true)
+    end
+
     ## --- # # # # # # # # # # # Pseudosection example # # # # # # # # # # # # #
 
     P_range = (1000, 5000) # Pressure range to explore, bar (roughly 1-100 km depth)

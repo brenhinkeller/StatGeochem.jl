@@ -860,6 +860,124 @@
 
     """
     ```julia
+    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="",
+        \telements::String=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        \tT_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
+        \tdataset::String="hp11ver.dat",
+        \tindex::Integer=1,
+        \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
+        \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        \tmode_basis::String="wt",  #["vol", "wt", "mol"]
+        \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+        \tnonlinear_subdivision::Bool=false,
+        \tfluid_eos::Integer=5)
+    ```
+
+    Set up a PerpleX calculation for a single bulk composition along a specified
+    pressure–temperature path with T as the independent variable. 
+    
+    P specified in bar and T_range in Kelvin
+    """
+    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="",
+        elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        T_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
+        dataset::String="hp11ver.dat",
+        index::Integer=1,
+        solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
+        excludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+        mode_basis::String="wt",  #["vol", "wt", "mol"]
+        composition_basis::String="wt",  #["vol", "wt", "mol"]
+        nonlinear_subdivision::Bool=false,
+        fluid_eos::Integer=5,
+        )
+
+        build = joinpath(perplexdir, "build")# path to PerpleX build
+        vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
+
+        # Configure working directory
+        prefix = joinpath(scratchdir, "out$(index)/")
+        system("rm -rf $prefix; mkdir -p $prefix")
+
+        # Place required data files
+        system("cp $(joinpath(perplexdir, dataset)) $prefix")
+        system("cp $(joinpath(perplexdir,"perplex_option.dat")) $prefix")
+        system("cp $(joinpath(perplexdir,"solution_model.dat")) $prefix")
+        
+
+        # Specify whether we want volume or weight percentages
+        system("sed -e \"s/proportions .*|/proportions                    $mode_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_system .*|/composition_system             $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        system("sed -e \"s/composition_phase .*|/composition_phase              $composition_basis |/\" -i.backup $(prefix)perplex_option.dat")
+        
+        # Turn on nonlinear subdivision and change resolution
+        if nonlinear_subdivision
+            system("sed -e \"s/non_linear_switch .*|/non_linear_switch              T |/\" -i.backup $(prefix)perplex_option.dat")
+            system("sed -e \"s:initial_resolution .*|:initial_resolution        1/2 1/4 |:\" -i.backup $(prefix)perplex_option.dat")
+        end
+
+        # Create default P–T.dat path if one is not provided
+        if PTdir == ""
+            # Input parameters
+            P_range = (2000, 6000, 10000, 14000, 18000) #bar
+            T_range = (550+273.15, 1050+273.15) #K
+            T_int = 10 #Interval for T 
+
+            T = T_range[1]:T_int:T_range[2]
+            P = zeros(length(T))
+
+            for i in 1:length(T)
+                if i == length(T)
+                    P[i] = P_range[end]
+                else
+                    P[i] = P_range[floor(Int64, (i/length(T)) * length(P_range) + 1)]
+                end 
+            end
+
+            PTdir = joinpath(prefix, "P–T.dat")
+            # PTdir = "P–T.dat"
+            # Save P–T path as .dat file
+            # writedlm(joinpath(perplexdir, "P–T.dat"), [T P]) 
+            # Apparently you need to have it as T and then P despite what Perplex tells you
+            open(PTdir, "w") do file
+                for i in zip(T, P)
+                    write(file, "$(i[1])\t$(i[2])\n")
+                end
+            end
+        end
+
+        # system("cp $PTdir $prefix")
+
+        # Create build batch file
+        # Options based on Perplex v6.8.7
+        fp = open(prefix*"build.bat", "w")
+
+        # Name, components, and basic options. P-T conditions.
+        # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
+        elementstring = join(elements .* "\n")
+
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny\n")
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\nP–T.dat\n2\ny\n") #6.8.7
+
+        # Whole-rock composition
+        for i ∈ eachindex(composition)
+            write(fp,"$(composition[i]) ")
+        end
+
+        # Solution model
+        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nP-T Path")
+        close(fp)
+
+        # build PerpleX problem definition
+        system("cd $prefix; $build < build.bat > build.log")
+
+        # Run PerpleX vertex calculations
+        result = system("cd $prefix; printf \"$index\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\n0\" | $vertex > vertex.log")
+        return result
+    end
+    export perplex_configure_path
+
+    """
+    ```julia
     perplex_configure_pseudosection(perplexdir::String, scratchdir::String, composition::Collection{Number},
         \telements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
         \tP::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
@@ -1192,7 +1310,7 @@
     ```
 
     Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
-    along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
+    along a previously configured 1-d path (dof=1, isobar, geotherm, or P–T path) or 2-d
     grid / pseudosection (dof=2). Results are returned as a dictionary.
     """
     function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
@@ -1409,7 +1527,7 @@
     ```
 
     Query modal mineralogy (mass proportions) along a previously configured 1-d
-    path (dof=1, isobar or geotherm) or 2-d grid / pseudosection (dof=2).
+    path (dof=1, isobar, geotherm, or P–T path) or 2-d grid / pseudosection (dof=2).
     Results are returned as a dictionary.
 
     Currently returns wt% 
@@ -1423,8 +1541,7 @@
 
         # Create werami batch file
         fp = open(prefix*"werami.bat", "w")
-        if dof == 1
-            # v6.7.8 1d path
+        if dof == 1 # v6.7.8 1d path
             write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n")
         elseif dof == 2
             # v6.7.8 2d grid
@@ -1464,24 +1581,49 @@
             table = elementify(data, importas=importas)
             # Create results dictionary
             phase_names = unique(table["Name"])
-            t_steps = unique(table["T(K)"])
-            result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
-            id = 1
-            # Loop through table
-            for t in t_steps 
-                # Index table 
-                t_idx = table["T(K)"] .== t
-                # Index phase name and weight(kg) 
-                name = table["Name"][t_idx]
-                kg = table["phase,kg"][t_idx]
-                # Calculate wt% and add to results dictionary
-                for i in zip(name, kg)
-                    result[i[1]][id] = (i[2]/nansum(kg)) * 100
-                end
-                id+=1
 
+            if haskey(table, "node#") #PT path
+                nodes = unique(table["node#"])
+
+                # Create result dictionary
+                result = Dict{String, Vector{Float64}}(i => zeros(length(nodes)) for i in phase_names)
+                result["P(bar)"] = zeros(length(nodes))
+
+                # Loop through table
+                for n in nodes
+                    # Index table 
+                    n_idx = table["node#"] .== n
+                    # Index phase name and weight(kg) 
+                    name = table["Name"][n_idx]
+                    kg = table["phase,kg"][n_idx]
+                    #  Calculate wt% and add to results dictionary
+                    for i in zip(name, kg)
+                        result[i[1]][floor(Int64, n)] = (i[2]/nansum(kg)) * 100
+                    end
+                    result["P(bar)"][floor(Int64, n)] = table["P(bar)"][n_idx][1]
+                end
+                result["T(K)"] = unique(table["T(K)"])
+                result["node"] = nodes
+
+            else # isobar or geotherm
+                t_steps = unique(table["T(K)"])
+                result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
+                id = 1
+                # Loop through table
+                for t in t_steps 
+                    # Index table 
+                    t_idx = table["T(K)"] .== t
+                    # Index phase name and weight(kg) 
+                    name = table["Name"][t_idx]
+                    kg = table["phase,kg"][t_idx]
+                    # Calculate wt% and add to results dictionary
+                    for i in zip(name, kg)
+                        result[i[1]][id] = (i[2]/nansum(kg)) * 100
+                    end
+                    id+=1
+                end
+                result["T(K)"] = t_steps
             end
-            result["T(K)"] = t_steps
         else 
             # Read data as an Array{Any}
             data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
