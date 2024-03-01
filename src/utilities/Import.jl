@@ -831,9 +831,25 @@
 
 ## --- High-level import/export functions
 
+    function guessdelimiter(s::AbstractString)
+        if length(s)>3 
+            if s[end-3:end] == ".csv"
+                ','
+            elseif s[end-3:end] == ".tsv"
+                '\t'
+            elseif s[end-3:end] == ".psv"
+                '|'
+            else
+                '\t'
+            end
+        else
+            '\t'
+        end
+    end
+
     """
     ```julia
-    function importdataset(filepath, delim;
+    function importdataset(filepath, [delim];
         \timportas=:Dict,
         \telements=nothing,
         \tstandardize::Bool=true,
@@ -871,7 +887,7 @@
         \tmindefinedcolumns
     Skip rows with fewer than this number of delimiters. `0` by default.
     """
-    function importdataset(filepath::AbstractString, delim::AbstractChar;
+    function importdataset(filepath::AbstractString, delim::AbstractChar=guessdelimiter(filepath);
             importas=:Dict,
             elements=nothing,
             standardize::Bool=true,
