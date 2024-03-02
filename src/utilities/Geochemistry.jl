@@ -177,7 +177,11 @@
         # If FeOT or Fe2O3T already exists, use that
         if isnan(FeOT)
             if isnan(Fe2O3T)
-                FeOT=nanadd(Fe2O3*conversionfactor, FeO)
+                if isnan(Fe2O3)
+                    FeOT = FeO
+                else
+                    FeOT = Fe2O3*conversionfactor + FeO
+                end
             else
                 FeOT=Fe2O3T*conversionfactor
             end
