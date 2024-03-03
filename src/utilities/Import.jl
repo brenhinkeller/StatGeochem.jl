@@ -974,7 +974,7 @@
         \trows
     specify which rows of the dataset to export. Default `:` exports all rows.
     """
-    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar;
+    function exportdataset(dataset::Union{Dict,NamedTuple}, filepath::AbstractString, delim::AbstractChar=guessdelimiter(filepath);
             floatout::Bool=false,
             findnumeric::Bool=false,
             skipnan::Bool=true,
@@ -1003,7 +1003,7 @@
         return writedlm(filepath, data, delim)
     end
     # As above, but specifying which elements to export
-    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar;
+    function exportdataset(dataset::Union{Dict,NamedTuple}, elements::Array, filepath::AbstractString, delim::AbstractChar=guessdelimiter(filepath);
             floatout::Bool=false,
             findnumeric::Bool=false,
             skipnan::Bool=true,

@@ -42,6 +42,9 @@
     @test importdataset("tupledataset.csv", ',', importas=:Tuple, elements=elements, skipstart=1) == datatuple
     @test importdataset("tupledataset.csv", ',', importas=:Tuple, elements=(elements...,), skipstart=1) == datatuple
 
+    @test exportdataset(datatuple, "tupledataset.tsv") == nothing
+    @test importdataset("tupledataset.csv", importas=:Tuple) == datatuple
+
     @test exportdataset(datatuple, "tupledataset.csv", ',', digits=6) == nothing
     @test importdataset("tupledataset.csv", ',', importas=:Tuple).Lv == round.(datatuple.Lv, digits=6)
 
