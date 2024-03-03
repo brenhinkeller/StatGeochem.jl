@@ -5,11 +5,14 @@
     @test eustar(34.7773, 6.5433, 5.9037, 0.8904) ≈ 2.0825737578695205
 
     # Iron oxide conversions
+
     @test feoconversion(3.5, NaN, NaN, NaN) == 3.5
     @test feoconversion(3.5, NaN, 7.5, NaN) == 7.5
     @test feoconversion(3.5, NaN, 7.5, 10) == 7.5
+    @test feoconversion(3.5, NaN, NaN, 10) == 8.998102538090137
     @test feoconversion(3.5, 4.4, NaN, NaN) ≈ 7.45916511675966
     @test feoconversion(NaN, 4.4, NaN, NaN) ≈ 3.9591651167596607
+    @test isnan(feoconversion(NaN, NaN, NaN, NaN))
 
     # Other oxide conversion
     D = elementify(["Fe" "Mg" "Ca" "P"; 10000 10000 10000 10000; 10000 10000 10000 10000], importas=:Dict)
