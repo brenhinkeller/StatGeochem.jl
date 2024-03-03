@@ -179,6 +179,8 @@
             if isnan(Fe2O3T)
                 if isnan(Fe2O3)
                     FeOT = FeO
+                elseif isnan(FeO)
+                    FeOT = Fe2O3*conversionfactor
                 else
                     FeOT = Fe2O3*conversionfactor + FeO
                 end
