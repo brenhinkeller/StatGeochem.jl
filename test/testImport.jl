@@ -43,7 +43,7 @@
     @test importdataset("tupledataset.csv", ',', importas=:Tuple, elements=(elements...,), skipstart=1) == datatuple
 
     @test exportdataset(datatuple, "tupledataset.tsv") == nothing
-    @test importdataset("tupledataset.csv", importas=:Tuple) == datatuple
+    @test importdataset("tupledataset.tsv", '\t', importas=:Tuple) == datatuple
 
     @test exportdataset(datatuple, "tupledataset.csv", ',', digits=6) == nothing
     @test importdataset("tupledataset.csv", ',', importas=:Tuple).Lv == round.(datatuple.Lv, digits=6)
@@ -151,4 +151,10 @@
     @test isa(darray, Array{Float64,2})
     @test size(darray) == (5, length(keys(d)))
 
-## ---
+## --- Clean up
+
+    rm("dictdataset.csv")
+    rm("tupledataset.csv")
+    rm("tupledataset.tsv")
+
+## --- End of File

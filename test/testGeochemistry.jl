@@ -22,6 +22,17 @@
     @test all(D["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
     @test all(D["P2O5"] .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
 
+
+    DT = elementify(unelementify(D), importas=:Tuple)
+    for e in (:FeOT, :MgO, :CaO, :P2O5)
+        DT[e] .= NaN 
+    end
+    oxideconversion!(DT)
+    @test all(DT.FeOT .≈ (molarmass["Fe"]+molarmass["O"])/molarmass["Fe"])
+    @test all(DT.MgO .≈ (molarmass["Mg"]+molarmass["O"])/molarmass["Mg"])
+    @test all(DT.CaO .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
+    @test all(DT.P2O5 .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
+
     # Weathering indices
     @test CIA(14.8577, 4.5611, 3.29641, 2.3992) ≈ 47.66582778067264
     @test WIP(3.2964, 4.5611, 2.3992, 5.9121) ≈ 78.40320264846837
