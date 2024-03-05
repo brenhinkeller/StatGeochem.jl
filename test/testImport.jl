@@ -151,6 +151,10 @@
     @test isa(darray, Array{Float64,2})
     @test size(darray) == (5, length(keys(d)))
 
+    d = concatenatedatasets(a,b,a,b,a; elements=(:La,))
+    @test isa(d, NamedTuple)
+    @test isequal(d.La, [a.La; b.La; a.La; b.La; a.La])
+
 ## --- Clean up
 
     rm("dictdataset.csv")

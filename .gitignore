@@ -11,6 +11,7 @@
 # Ignore data and image files by default
 *.h5
 *.csv
+*.tsv
 *.mat
 *.xls
 *.xlsx

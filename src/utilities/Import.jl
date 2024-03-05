@@ -725,9 +725,11 @@
 
     """
     ```julia
-    concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
+    concatenatedatasets(d1::NamedTuple, d2::NamedTuple,... ;[elements::Vector{Symbol}])
+    concatenatedatasets(d1::AbstractDict, d2::AbstractDict,... ;[elements::Vector{String}])
     ```
-    Vertically concatenate two Dict-based datasets, variable-by-variable
+    Vertically concatenate two or more Dict- or Tuple-based datasets, variable-by-variable.
+    Optionally, a list of variables to include may be specified in `elements`
 
     ### Examples
     ```julia
@@ -748,7 +750,18 @@
       "La" => [0.298578, 0.481674, 0.888624, 0.632234, 0.564491, 0.538215, 0.633298, 0.981322, 0.908532, 0.77754]
     ```
     """
-    function concatenatedatasets(d1::AbstractDict, d2::AbstractDict)
+    concatenatedatasets(args...; kwargs...) = concatenatedatasets((args...,); kwargs...)
+    function concatenatedatasets(dst::Tuple; elements=Symbol[])
+        if length(dst) == 1
+            only(dst)
+        elseif length(dst) == 2
+            concatenatedatasets(dst[1], dst[2]; elements)
+        else
+            c = concatenatedatasets(dst[1], dst[2]; elements)
+            concatenatedatasets((c, dst[3:end]...); elements)
+        end
+    end
+    function concatenatedatasets(d1::AbstractDict, d2::AbstractDict; elements=String[])
         # Return early if either is empty
         isempty(keys(d1)) && return d2
         isempty(keys(d2)) && return d1
@@ -757,20 +770,25 @@
         d1ₑ = haskey(d1,"elements") ? d1["elements"] : sort(collect(keys(d1)))
         d2ₑ = haskey(d2,"elements") ? d2["elements"] : sort(collect(keys(d2)))
 
-        # Combine datasets
-        elements = d1ₑ ∪ d2ₑ
+        if isempty(elements)
+            # Combine datasets
+            elements = d1ₑ ∪ d2ₑ
+        end
+
         s1, s2 = size(d1[first(d1ₑ)]),  size(d2[first(d2ₑ)])
         result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elements)
         haskey(d1,"elements") && (result["elements"] = elements)
         return result
     end
-    function concatenatedatasets(d1::NamedTuple, d2::NamedTuple)
+    function concatenatedatasets(d1::NamedTuple, d2::NamedTuple; elements=Symbol[])
         # Return early if either is empty
         isempty(keys(d1)) && return d2
         isempty(keys(d2)) && return d1
 
         # Combine datasets
-        elements = keys(d1) ∪ keys(d2)
+        if isempty(elements)
+            elements = keys(d1) ∪ keys(d2)
+        end
         return NamedTuple{(elements...,)}(vcombine(d1,d2,e) for e in elements)
     end
     # Vertically concatenate the fields `e` (if present) of two named tuples
