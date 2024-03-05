@@ -442,14 +442,57 @@
     stringarray(x) = [String(s) for s in x]
 
 
+    """
+    ```julia
+    TupleDataset(d::Dict, elements=keys(d))
+    ```
+    Convert a dict-based dataset to a tuple-based dataset. 
+
+    See also `DictDataset`
+
+    ### Examples
+    ```julia
+    julia> d
+    Dict{String, Vector{Float64}} with 2 entries:
+      "Yb" => [0.823733, 0.0531003, 0.47996, 0.560998, 0.001816, 0.455064, 0.694017, 0.737816, 0.0755015, 0.46098 …
+      "La" => [0.440947, 0.937551, 0.464318, 0.694184, 0.253974, 0.521292, 0.857979, 0.0545946, 0.716639, 0.597616…
+    
+    julia> t = TupleDataset(d)
+    NamedTuple with 2 elements:
+      Yb  = Vector{Float64}(100,)   [0.8237334494155881 ... 0.012863893327602627]
+      La  = Vector{Float64}(100,)   [0.44094669199955616 ... 0.5371416189174069]
+    ```
+    """
     function TupleDataset(d::Dict, elements=keys(d))
         symbols = symboltuple(sanitizevarname.(elements))
         return NamedTuple{symbols}(d[e] for e in elements)
     end
     export TupleDataset
 
-    function DictDataset(d::NamedTuple, elements=keys(d))
-        return Dict(String(e) => d[Symbol(e)] for e in elements)
+
+    """
+    ```julia
+    DictDataset(t::NamedTuple, elements=keys(t))
+    ```
+    Convert a tuple-based dataset to a dict-based dataset. 
+
+    See also `TupleDataset`
+
+    ### Examples
+    ```julia
+    julia> t 
+    NamedTuple with 2 elements:
+      La  = Vector{Float64}(100,)   [0.6809734028326375 ... 0.30665937715972313]
+      Yb  = Vector{Float64}(100,)   [0.8851029525168138 ... 0.866246147690925]
+    
+    julia> d = DictDataset(t)
+    Dict{String, Vector{Float64}} with 2 entries:
+      "Yb" => [0.885103, 0.284384, 0.351527, 0.643542, 0.631274, 0.653966, 0.968414, 0.00204819, 0.0655173, 0.5343…
+      "La" => [0.680973, 0.35098, 0.0198742, 0.139642, 0.0703337, 0.0328973, 0.639431, 0.245205, 0.424142, 0.48889…    
+    ```
+    """
+    function DictDataset(t::NamedTuple, elements=keys(t))
+        d = Dict(String(e) => t[Symbol(e)] for e in elements)
     end
     export DictDataset
 
