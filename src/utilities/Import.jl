@@ -766,15 +766,12 @@
         isempty(keys(d1)) && return d2
         isempty(keys(d2)) && return d1
 
-        # Use "elements" field if it exists
+        # Determine keys to include. Use "elements" field if it exists
         d1ₑ = haskey(d1,"elements") ? d1["elements"] : sort(collect(keys(d1)))
         d2ₑ = haskey(d2,"elements") ? d2["elements"] : sort(collect(keys(d2)))
+        isempty(elements) && (elements = d1ₑ ∪ d2ₑ)
 
-        if isempty(elements)
-            # Combine datasets
-            elements = d1ₑ ∪ d2ₑ
-        end
-
+        # Combine datasets
         s1, s2 = size(d1[first(d1ₑ)]),  size(d2[first(d2ₑ)])
         result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elements)
         haskey(d1,"elements") && (result["elements"] = elements)
@@ -785,11 +782,12 @@
         isempty(keys(d1)) && return d2
         isempty(keys(d2)) && return d1
 
+        # Determine keys to include
+        isempty(elements) && (elements = keys(d1) ∪ keys(d2))
+
         # Combine datasets
-        if isempty(elements)
-            elements = keys(d1) ∪ keys(d2)
-        end
-        return NamedTuple{(elements...,)}(vcombine(d1,d2,e) for e in elements)
+        s1, s2 = size(d1[first(keys(d1))]), size(d2[first(keys(d2))])
+        return NamedTuple{(elements...,)}(vcombine(d1,d2,e,s1,s2) for e in elements)
     end
     # Vertically concatenate the fields `e` (if present) of two named tuples
     function vcombine(d1, d2, e, s1=size(d1[first(keys(d1))]), s2=size(d2[first(keys(d2))]))
