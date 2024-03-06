@@ -463,7 +463,7 @@
       La  = Vector{Float64}(100,)   [0.44094669199955616 ... 0.5371416189174069]
     ```
     """
-    function TupleDataset(d::Dict, elements=keys(d))
+    function TupleDataset(d::Dict, elements=haskey(d,"elements") ? d["elements"] : keys(d))
         symbols = symboltuple(sanitizevarname.(elements))
         return NamedTuple{symbols}(d[e] for e in elements)
     end
@@ -794,14 +794,14 @@
     ```
     """
     concatenatedatasets(args...; kwargs...) = concatenatedatasets((args...,); kwargs...)
-    function concatenatedatasets(dst::Tuple; elements=Symbol[])
+    function concatenatedatasets(dst::Tuple; kwargs...)
         if length(dst) == 1
             only(dst)
         elseif length(dst) == 2
-            concatenatedatasets(dst[1], dst[2]; elements)
+            concatenatedatasets(dst[1], dst[2]; kwargs...)
         else
-            c = concatenatedatasets(dst[1], dst[2]; elements)
-            concatenatedatasets((c, dst[3:end]...); elements)
+            c = concatenatedatasets(dst[1], dst[2]; kwargs...)
+            concatenatedatasets((c, dst[3:end]...); kwargs...)
         end
     end
     function concatenatedatasets(d1::AbstractDict, d2::AbstractDict; elements=String[])

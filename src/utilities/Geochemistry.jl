@@ -206,64 +206,26 @@
 
     """
     ```julia
-    dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
+    converted_dataset = oxideconversion(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
     ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...).
-
-    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
-    set unitratio = 1
+    As `oxideconversion!`, but returning a copy rather than modifying in-place
     """
-    function oxideconversion(dataset::Dict; unitratio::Number=10000)
-        result = copy(dataset)
-        return oxideconversion!(result)
-    end
+    oxideconversion(ds::Union{Dict,NamedTuple}; kwargs...) = oxideconversion!(deepcopy(ds); kwargs...)
     export oxideconversion
     
     """
     ```julia
-    dataset = oxideconversion!(dataset::Dict; unitratio::Number=10000)
+    oxideconversion!(dataset::Dict; unitratio::Number=10000)
     ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place.
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place if extant.
 
-    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
+    If metals are expected as PPM, set unitratio=10000 (default); if metals are as wt%,
     set unitratio = 1
+
+    See also `oxideconversion`, c.f. `metalconversion!`
     """
-    function oxideconversion!(dataset::Dict; unitratio::Number=10000)
-        # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
-        # for i ∈ eachindex(source)
-        #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
-        # end
-
-        # Array of elements to convert
-        source = ("Si","Ti","Al","Fe","Fe","Mg","Ca","Mn","Li","Na","K","P","Cr","Ni","Co","C","S","H")
-        dest = ("SiO2","TiO2","Al2O3","FeOT","Fe2O3T","MgO","CaO","MnO","Li2O","Na2O","K2O","P2O5","Cr2O3","NiO","CoO","CO2","SO2","H2O")
-        conversionfactor = (2.13932704290547,1.66847584248889,1.88944149488507,1.28648836426407,1.42973254639611,1.65825961736268,1.39919258253823,1.29121895771597,2.1526657060518732,1.34795912485574,1.20459963614796,2.29133490474735,1.46154369861159,1.27258582901258,1.27147688434143,3.66405794688203,1.99806612601372,8.93601190476191)
-
-        # If source field exists, fill in destination from source
-        for i ∈ eachindex(source)
-            if haskey(dataset, source[i])
-                if ~haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
-                    dataset[dest[i]] = fill(NaN, size(dataset[source[i]]))
-                    if haskey(dataset, "elements")
-                        dataset["elements"] = dataset["elements"] ∪ (dest[i],)
-                    end
-                end
-                oxide = dataset[dest[i]]
-                metal = dataset[source[i]]
-                fillifnan!(oxide, metal, conversionfactor[i]/unitratio)
-            end
-        end
-
-        return dataset
-    end
-
     function oxideconversion!(dataset::NamedTuple; unitratio::Number=10000)
-        # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
-        # for i ∈ eachindex(source)
-        #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
-        # end
-
-        # Array of elements to convert
+        # List of elements to convert
         source = (:Si, :Ti, :Al, :Fe, :Fe, :Mg, :Ca, :Mn, :Li, :Na, :K, :P, :Cr, :Ni, :Co, :C, :S, :H)
         dest = (:SiO2, :TiO2, :Al2O3, :FeOT, :Fe2O3T, :MgO, :CaO, :MnO, :Li2O, :Na2O, :K2O, :P2O5, :Cr2O3, :NiO, :CoO, :CO2, :SO2, :H2O)
         conversionfactor = (2.13932704290547,1.66847584248889,1.88944149488507,1.28648836426407,1.42973254639611,1.65825961736268,1.39919258253823,1.29121895771597,2.1526657060518732,1.34795912485574,1.20459963614796,2.29133490474735,1.46154369861159,1.27258582901258,1.27147688434143,3.66405794688203,1.99806612601372,8.93601190476191)
@@ -272,17 +234,86 @@
         for i ∈ eachindex(source)
             if haskey(dataset, source[i])
                 if haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
-                    oxide = dataset[dest[i]]
-                    metal = dataset[source[i]]
+                    oxide, metal = dataset[dest[i]], dataset[source[i]]
                     fillifnan!(oxide, metal, conversionfactor[i]/unitratio)
                 end
             end
         end
-
         return dataset
     end
+    oxideconversion!(ds::Dict; kwargs...) = (oxideconversion!(TupleDataset(ds); kwargs...); ds)
     export oxideconversion!
 
+
+    """
+    ```julia
+    converted_dataset = metalconversion(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
+    ```
+    As `metalconversion!`, but returning a copy rather than modifying in-place
+    """
+    metalconversion(ds::Union{Dict,NamedTuple}; kwargs...) = metalconversion!(copy(ds); kwargs...)
+    export metalconversion
+
+    """
+    ```julia
+    dataset = metalconversion!(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
+    ```
+    Convert minor element oxides (MnO, Cr2O3, NiO, ...) into corresponding metals (Mn, Cr, Ni, ...) in place if extant.
+
+    If metals are expected as parts per million (ppm), set unitratio=10000 (default); if metals are as wt%, set unitratio = 1
+
+    See also `metalconversion`, c.f. `oxideconversion!`
+    """
+    function metalconversion!(dataset::NamedTuple; unitratio::Number=10000)
+        # List of elements to convert
+        dest = (:Mn, :P, :Cr, :Ni, :Co, :Sr, :Ba, :Li, :S,)
+        source = (:MnO, :P2O5, :Cr2O3, :NiO, :CoO, :SrO, :BaO, :Li2O, :SO3)
+        conversionfactor = (0.7744619872751028, 0.4364268173666496, 0.6842080746199798, 0.785801615263874, 0.786486968277016, 0.8455993051534453, 0.8956541815613328, 0.46454031259412965, 0.4004646689233921)
+
+        # If source field exists, fill in destination from source
+        for i ∈ eachindex(source)
+            if haskey(dataset, source[i])
+                if haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
+                    metal, oxide = dataset[dest[i]], dataset[source[i]]
+                    fillifnan!(metal, oxide, conversionfactor[i]*unitratio)
+                end
+            end
+        end
+        return dataset
+    end
+    metalconversion!(ds::Dict; kwargs...) = (metalconversion!(TupleDataset(ds); kwargs...); ds)
+    export metalconversion!
+
+
+
+    """
+    ```julia
+    carbonateconversion!(dataset::NamedTuple)
+    ```
+    Convert carbonates (CaCO3, MgCO3) into corresponding metal oxides and CO2 if extant, in place.
+    """
+    function carbonateconversion!(ds::NamedTuple)
+        source = (:CaCO3, :CaCO3, :MgCO3, :MgCO3, :TIC,)
+        dest = (:CaO, :CO2, :MgO, :CO2, :CO2)
+        conversionfactor = (0.5602899095181764, 0.43971009048182363, 0.4780282993132732, 0.5219717006867268, 3.664057946882025)
+        if haskey(ds, :CaCO3) && haskey(ds, :MgCO3)
+            t = .!(isnan.(ds.CaCO3) .| isnan.(ds.MgCO3))
+            if haskey(ds, :CO2)
+                fillifnan!(ds.CO2, ds.CaCO3*0.43971009048182363 .+ ds.MgCO3*0.5219717006867268, 1)
+            end
+        end
+        for i in eachindex(source)
+            if haskey(ds, source[i])
+                if haskey(ds, dest[i])
+                    d, s = ds[dest[i]], ds[source[i]]
+                    fillifnan!(d, s, conversionfactor[i])
+                end
+            end
+        end
+        return ds
+    end
+    carbonateconversion!(ds::Dict) = (carbonateconversion!(TupleDataset(ds)); ds)
+    export carbonateconversion!
 
 ## --- Chemical Index of Alteration
 

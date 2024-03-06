@@ -5,7 +5,6 @@
     @test eustar(34.7773, 6.5433, 5.9037, 0.8904) ≈ 2.0825737578695205
 
     # Iron oxide conversions
-
     @test feoconversion(3.5, NaN, NaN, NaN) == 3.5
     @test feoconversion(3.5, NaN, 7.5, NaN) == 7.5
     @test feoconversion(3.5, NaN, 7.5, 10) == 7.5
@@ -15,23 +14,37 @@
     @test isnan(feoconversion(NaN, NaN, NaN, NaN))
 
     # Other oxide conversion
-    D = elementify(["Fe" "Mg" "Ca" "P"; 10000 10000 10000 10000; 10000 10000 10000 10000], importas=:Dict)
-    D = oxideconversion(D)
-    @test all(D["FeOT"] .≈ (molarmass["Fe"]+molarmass["O"])/molarmass["Fe"])
-    @test all(D["MgO"] .≈ (molarmass["Mg"]+molarmass["O"])/molarmass["Mg"])
-    @test all(D["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
-    @test all(D["P2O5"] .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
+    D = ["Fe" "Mg" "Ca" "P" "FeOT" "MgO" "CaO" "P2O5"; 10000 10000 10000 10000 NaN NaN NaN NaN; 10000 10000 10000 10000 NaN NaN NaN NaN]
+    M = elementify(D, importas=:Dict)
+    O = oxideconversion(M)
+    @test all(O["FeOT"] .≈ (molarmass["Fe"]+molarmass["O"])/molarmass["Fe"])
+    @test all(O["MgO"] .≈ (molarmass["Mg"]+molarmass["O"])/molarmass["Mg"])
+    @test all(O["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
+    @test all(O["P2O5"] .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
 
-
-    DT = elementify(unelementify(D), importas=:Tuple)
-    for e in (:FeOT, :MgO, :CaO, :P2O5)
-        DT[e] .= NaN 
-    end
+    DT = deepcopy(TupleDataset(M))
     oxideconversion!(DT)
     @test all(DT.FeOT .≈ (molarmass["Fe"]+molarmass["O"])/molarmass["Fe"])
     @test all(DT.MgO .≈ (molarmass["Mg"]+molarmass["O"])/molarmass["Mg"])
     @test all(DT.CaO .≈ (molarmass["Ca"]+molarmass["O"])/molarmass["Ca"])
     @test all(DT.P2O5 .≈ (molarmass["P"]+2.5*molarmass["O"])/molarmass["P"])
+
+    D = ["NiO" "CoO" "BaO" "SO3" "Ni" "Co" "Ba" "S"; 1 1 1 1 NaN NaN NaN NaN; 1 1 1 1 NaN NaN NaN NaN]
+    O = elementify(D, importas=:Dict)
+    M = metalconversion(O)
+    @test all(M["Ni"] .≈ 10000molarmass["Ni"]/(molarmass["Ni"]+molarmass["O"]))
+    @test all(M["Co"] .≈ 10000molarmass["Co"]/(molarmass["Co"]+molarmass["O"]))
+    @test all(M["Ba"] .≈ 10000molarmass["Ba"]/(molarmass["Ba"]+molarmass["O"]))
+    @test all(M["S"] .≈ 10000molarmass["S"]/(molarmass["S"]+3molarmass["O"]))
+
+
+    # Carbonate conversions
+    D = ["CaCO3" "MgCO3" "CaO" "MgO" "CO2"; 1 1 NaN NaN NaN; 1 1 NaN NaN NaN]
+    C = elementify(D, importas=:Dict)
+    carbonateconversion!(C)
+    @test all(C["MgO"] .≈ (molarmass["Mg"]+molarmass["O"])/(molarmass["Mg"]+molarmass["C"]+3molarmass["O"]))
+    @test all(C["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/(molarmass["Ca"]+molarmass["C"]+3molarmass["O"]))
+    @test all(C["CO2"] .≈ (molarmass["C"]+2molarmass["O"])/(molarmass["Ca"]+molarmass["C"]+3molarmass["O"]) + (molarmass["C"]+2molarmass["O"])/(molarmass["Mg"]+molarmass["C"]+3molarmass["O"]))
 
     # Weathering indices
     @test CIA(14.8577, 4.5611, 3.29641, 2.3992) ≈ 47.66582778067264
