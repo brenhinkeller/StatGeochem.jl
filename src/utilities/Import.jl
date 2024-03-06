@@ -806,31 +806,41 @@
     end
     function concatenatedatasets(d1::AbstractDict, d2::AbstractDict; elements=String[])
         # Return early if either is empty
-        isempty(keys(d1)) && return d2
-        isempty(keys(d2)) && return d1
+        isempty(d1) && return d2
+        isempty(d2) && return d1
 
         # Determine keys to include. Use "elements" field if it exists
         d1ₑ = haskey(d1,"elements") ? d1["elements"] : sort(collect(keys(d1)))
         d2ₑ = haskey(d2,"elements") ? d2["elements"] : sort(collect(keys(d2)))
-        isempty(elements) && (elements = d1ₑ ∪ d2ₑ)
+        available = d1ₑ ∪ d2ₑ
+        if isempty(elements)
+            elementsᵢ = available
+        else
+            elementsᵢ = elements ∩ available
+        end
 
         # Combine datasets
         s1, s2 = size(d1[first(d1ₑ)]),  size(d2[first(d2ₑ)])
-        result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elements)
-        haskey(d1,"elements") && (result["elements"] = elements)
+        result = typeof(d1)(e => vcombine(d1,d2,e,s1,s2) for e in elementsᵢ)
+        haskey(d1,"elements") && (result["elements"] = elementsᵢ)
         return result
     end
     function concatenatedatasets(d1::NamedTuple, d2::NamedTuple; elements=Symbol[])
         # Return early if either is empty
-        isempty(keys(d1)) && return d2
-        isempty(keys(d2)) && return d1
+        isempty(d1) && return d2
+        isempty(d2) && return d1
 
         # Determine keys to include
-        isempty(elements) && (elements = keys(d1) ∪ keys(d2))
+        available = keys(d1) ∪ keys(d2)
+        if isempty(elements)
+            elementsᵢ = available
+        else
+            elementsᵢ = elements ∩ available
+        end
 
         # Combine datasets
         s1, s2 = size(d1[first(keys(d1))]), size(d2[first(keys(d2))])
-        return NamedTuple{(elements...,)}(vcombine(d1,d2,e,s1,s2) for e in elements)
+        return NamedTuple{(elementsᵢ...,)}(vcombine(d1,d2,e,s1,s2) for e in elementsᵢ)
     end
     # Vertically concatenate the fields `e` (if present) of two named tuples
     function vcombine(d1, d2, e, s1=size(d1[first(keys(d1))]), s2=size(d2[first(keys(d2))]))
