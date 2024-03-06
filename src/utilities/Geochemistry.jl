@@ -195,13 +195,30 @@
 
 ## --- Oxide conversions
 
-    function fillifnan!(dest::AbstractArray, source::AbstractArray, factor::Number=1.0)
+    function fillifnan!(dest::AbstractArray, source::AbstractArray)
+        @inbounds for i in eachindex(dest, source)
+            if isnan(dest[i]) && !isnan(source[i])
+                dest[i] = source[i]
+            end
+        end
+        return dest
+    end
+    function fillifnan!(dest::AbstractArray, source::AbstractArray, factor::Number)
         @inbounds for i in eachindex(dest, source)
             if isnan(dest[i]) && !isnan(source[i])
                 dest[i] = source[i] * factor
             end
         end
         return dest
+    end
+
+    function nannegative!(a::AbstractArray)
+        @inbounds for i in eachindex(a)
+            if a[i] < 0
+                a[i] = NaN
+            end
+        end
+        return a
     end
 
     """
@@ -290,18 +307,20 @@
     ```julia
     carbonateconversion!(dataset::NamedTuple)
     ```
-    Convert carbonates (CaCO3, MgCO3) into corresponding metal oxides and CO2 if extant, in place.
+    Convert carbonates (CaCO3, MgCO3) into corresponding metal oxides and CO2 if extant, in place,
+    as well as synchonizing TIC, TOC, TC, C and CO2. All are assumed to be reported in the same units,
+    (likely wt. %) except for C, which is assumed to be equivalent to unitratio * TC, 
     """
-    function carbonateconversion!(ds::NamedTuple)
+    function carbonateconversion!(ds::NamedTuple; unitratio=10000)
+        # Calculate CO2 if both CaCO3 and MgCO3 are reported
+        if haskey(ds, :CaCO3) && haskey(ds, :MgCO3) && haskey(ds, :CO2)
+            fillifnan!(ds.CO2, ds.CaCO3*0.43971009048182363 .+ ds.MgCO3*0.5219717006867268)
+        end
+
+        # Populate oxides and CO2 from carbonates and TIC
         source = (:CaCO3, :CaCO3, :MgCO3, :MgCO3, :TIC,)
         dest = (:CaO, :CO2, :MgO, :CO2, :CO2)
         conversionfactor = (0.5602899095181764, 0.43971009048182363, 0.4780282993132732, 0.5219717006867268, 3.664057946882025)
-        if haskey(ds, :CaCO3) && haskey(ds, :MgCO3)
-            t = .!(isnan.(ds.CaCO3) .| isnan.(ds.MgCO3))
-            if haskey(ds, :CO2)
-                fillifnan!(ds.CO2, ds.CaCO3*0.43971009048182363 .+ ds.MgCO3*0.5219717006867268, 1)
-            end
-        end
         for i in eachindex(source)
             if haskey(ds, source[i])
                 if haskey(ds, dest[i])
@@ -310,6 +329,28 @@
                 end
             end
         end
+
+        # Fill TC from C and TIC from CO2
+        if haskey(ds,:TC) && haskey(ds, :C)
+            fillifnan!(ds.TC, ds.C, 1e-4)
+        end
+        if haskey(ds,:TIC) && haskey(ds, :CO2)
+            fillifnan!(ds.TIC, ds.CO2, 0.27292144788565975)
+        end
+
+        # Synchronise TOC, TIC, TC
+        if haskey(ds, :TC) && haskey(ds, :TOC) && haskey(ds, :TIC)
+            fillifnan!(ds.TC, ds.TOC + ds.TIC)
+            fillifnan!(ds.TOC, ds.TC - ds.TIC)
+            nannegative!(ds.TOC)
+            fillifnan!(ds.TIC, ds.TC - ds.TOC)
+            nannegative!(ds.TIC)
+            if haskey(ds, :CO2)
+                # If we have new TIC values, fill CO2 again
+                fillifnan!(ds.CO2, ds.TIC, 3.664057946882025)
+            end
+        end
+
         return ds
     end
     carbonateconversion!(ds::Dict) = (carbonateconversion!(TupleDataset(ds)); ds)
