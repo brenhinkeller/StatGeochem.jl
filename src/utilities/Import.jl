@@ -592,10 +592,10 @@
                     treat_as_numbers = ((sum(isnumeric.(column)) >= sum(nonnumeric.(column))) || (sum(isnumeric.(lastcol)) >= sum(nonnumeric.(lastcol))))
                     if treat_as_numbers 
                         if sumduplicates
-                            @warn "Duplicate key $(elements[j]) found, summing"
+                            @info "Duplicate key $(elements[j]) found, summing"
                             result[elements[j]] = nanadd(floatify.(lastcol, floattype), floatify.(column, floattype))
                         else
-                            @warn "Duplicate key $(elements[j]) found, averaging"
+                            @info "Duplicate key $(elements[j]) found, averaging"
                             result[elements[j]] = nanadd(floatify.(lastcol, floattype), floatify.(column, floattype)) ./ 2.0
                         end
                     else
@@ -603,7 +603,7 @@
                         while haskey(result, elements[j]*string(n))
                             n+=1
                         end
-                        @warn "Duplicate key $(elements[j]) found, replaced with $(elements[j]*string(n))"
+                        @info "Duplicate key $(elements[j]) found, replaced with $(elements[j]*string(n))"
                         elements[j] = elements[j]*string(n)
                         result[elements[j]] = columnformat(column, standardize, floattype)
                     end
