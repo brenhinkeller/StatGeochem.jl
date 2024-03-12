@@ -282,7 +282,7 @@
     end
     """
     ```julia
-    resampled = bsresample(dataset::Dict, nrows, [elements], [p];
+    resampled = bsresample(dataset::Union{Dict,NamedTuple}, nrows, [elements], [p];
         \t kernel = gaussian,
         \t rng = MersenneTwister()
     )
@@ -333,7 +333,7 @@
     export bsresample
 
 
-    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function randsample!(resampled::DenseArray, data::Collection, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         ndata = size(data,1)
         ncolumns = size(resampled,2)
@@ -366,7 +366,7 @@
 
         return resampled
     end
-    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function randsample!(resampled::DenseArray, data::Collection, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         ndata = size(data,1)
         ncolumns = size(resampled,2)
@@ -402,12 +402,12 @@
 
     """
     ```julia
-    randsample(data::Array, nrows, [p])
+    randsample(data, nrows, [p])
     ```
     Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
     Optionally provide weights `p` either as a vector (one-weight-per-sample) or scalar.
     """
-    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1));
+    function randsample(data::Collection, nrows::Integer, p=min(0.2,nrows/size(data,1));
             rng::AbstractRNG=MersenneTwister(),
             buffer::Vector{Int}=Array{Int}(undef,size(data,1))
         )
@@ -434,7 +434,7 @@
 
     """
     ```julia
-    (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer
+    (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer;
         \trelbinwidth::Number=1
     )
     ```
@@ -446,7 +446,8 @@
 
     See also `histcounts` for a more efficient implementation without variable bin width.
     """
-    function bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; 
+    bincounts(x::Collection, edges::AbstractRange; kwargs...) = bincounts(x,minimum(edges),maximum(edges),length(edges); kwargs...)
+    function bincounts(x::Collection, xmin::Number, xmax::Number, nbins::Integer; 
             relbinwidth::Number=1
         )
         # Tally the number of samples (either resampled or corrected/original) that fall into each bin
@@ -468,10 +469,8 @@
 
     """
     ```julia
-    (c,m,e) = binmeans(x, y, xmin, xmax, nbins, [weight]; 
-        \tresamplingratio::Number=1
-        \trelbinwidth::Number=1
-    )
+    binmeans(x, y, xmin:step:xmax, [weight]; resamplingratio=1, relbinwidth=1)
+    binmeans(x, y, xmin, xmax, nbins, [weight]; resamplingratio=1, relbinwidth=1)
     ```
     The means (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
     equally spaced `x` bins between `xmin` and `xmax`, returning bincenters,
@@ -487,7 +486,8 @@
     (c,m,e) = binmeans(x, y, 0, 4000, 40)
     ```
     """
-    function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; 
+    binmeans(x::Collection, y::Collection, edges::AbstractRange, args...; kwargs...) = binmeans(x,y,minimum(edges),maximum(edges),length(edges), args...; kwargs...)
+    function binmeans(x::Collection, y::Collection, xmin::Number, xmax::Number, nbins::Integer; 
             resamplingratio::Number=1, 
             relbinwidth::Number=1
         )
@@ -508,7 +508,7 @@
 
         return bincenters, means, errors
     end
-    function binmeans(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer, weight::AbstractArray; 
+    function binmeans(x::Collection, y::Collection, min::Number, max::Number, nbins::Integer, weight::Collection; 
             resamplingratio::Number=1, 
             relbinwidth::Number=1
         )
@@ -553,7 +553,8 @@
     (c,m,e) = binmedians(x, y, 0, 4000, 40)
     ```
     """
-    function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; 
+    binmedians(x::Collection, y::Collection, edges::AbstractRange; kwargs...) = binmedians(x,y,minimum(edges),maximum(edges),length(edges); kwargs...)
+    function binmedians(x::Collection, y::Collection, min::Number, max::Number, nbins::Integer; 
             resamplingratio::Number=1, 
             relbinwidth::Number=1
         )

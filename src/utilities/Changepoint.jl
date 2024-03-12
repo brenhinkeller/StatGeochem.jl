@@ -80,7 +80,7 @@ julia> dist[9000:end] # after burnin
  101
 ```
 """
-function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
+function changepoint(data::Collection, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
     MOVE = 0.70
     BIRTH = 0.15
@@ -238,7 +238,7 @@ function changepoint(data::AbstractArray, nsteps::Integer; np::Integer=0, npmin:
 	end
 	return result
 end
-function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
+function changepoint(data::Collection, sigma::Collection, nsteps::Integer; np::Integer=0, npmin::Integer=0, npmax::Integer=min(size(data,1) ÷ 2, 11))
 
     MOVE = 0.70
     BIRTH = 0.15
@@ -341,7 +341,7 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 				update_changepoint_mu!(m, data, boundariesₚ, npₚ)
 
 				# Calculate log likelihood for proposal
-				lqz = sum(1 ./ (2*sigma.*sigma))
+				lqz = sum(1 ./ (2 .* sigma .* sigma))
 				llₚ = normpdf_ll(m, sigma, data)
 				DEBUG && println("Birth: -lqz+llₚ-ll = $(-lqz) + $llₚ - $ll")
 				if log(u) < llₚ-lqz-ll
@@ -371,7 +371,7 @@ function changepoint(data::AbstractArray, sigma::AbstractArray, nsteps::Integer;
 				# Calculate log likelihood for proposal
 				llₚ = normpdf_ll(m, sigma, data)
 
-				lqz = sum(1 ./ (2*sigma.*sigma))
+				lqz = sum(1 ./ (2 .* sigma .* sigma))
 				DEBUG && println("Death: lqz+llₚ-ll = $lqz + $llₚ - $ll")
 				if log(u) < llₚ+lqz-ll
 					DEBUG && println("Accepted!")

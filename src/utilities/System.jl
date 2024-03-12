@@ -52,6 +52,6 @@
     materialize(x) = x
     materialize(x::Array) = x
     materialize(x::Number) = x
-    materialize(x::AbstractArray) = collect(x)
+    materialize(x::Collection) = collect(x)
 
 ## --- End of File

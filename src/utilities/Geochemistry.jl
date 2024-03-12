@@ -384,8 +384,8 @@
 
     """
     ```julia
-    melts_configure(meltspath::String, scratchdir::String, composition::AbstractArray{<:Number},
-        \telements::AbstractArray{String},
+    melts_configure(meltspath::String, scratchdir::String, composition::Collection{Number},
+        \telements::Collection{String},
         \tT_range=(1400, 600),
         \tP_range=(10000,10000);)
     ```
@@ -429,7 +429,7 @@
 
     Fractionate all solids? default is `false`
 
-        suppress::AbstractArray{String} = String[]
+        suppress::Collection{String} = String[]
 
     Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
 
@@ -438,10 +438,10 @@
     Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
     function melts_configure(meltspath::String, scratchdir::String, composition::Collection{Number},
-        elements::AbstractArray{String}, T_range::Collection{Number}=(1400, 600), P_range::Collection{Number}=(10000,10000);
+        elements::Collection{String}, T_range::Collection{Number}=(1400, 600), P_range::Collection{Number}=(10000,10000);
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false, suppress::AbstractArray{String}=String[], verbose::Bool=true)
+        fractionatesolids::Bool=false, suppress::Collection{String}=String[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS

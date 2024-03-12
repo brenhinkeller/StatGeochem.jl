@@ -13,7 +13,7 @@ module StatGeochem
     # General requirements
     using DelimitedFiles, Random, Downloads
     using ProgressMeter: @showprogress, Progress, update!, next!
-    const Collection{T} = Union{AbstractArray{<:T}, NTuple{N,T}} where N
+    const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
     include("utilities/Import.jl")
     include("utilities/Resampling.jl")
