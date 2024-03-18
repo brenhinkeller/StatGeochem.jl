@@ -23,7 +23,7 @@
 
 
     # Test ESRI arc/info ASCII grid import function
-    grid = """
+    gridfiletext = """
     ncols         4
     nrows         6
     xllcorner     0.0
@@ -39,7 +39,7 @@
     """
 
     f = open("grid.asc","w")
-    print(f, grid)
+    print(f, gridfiletext)
     close(f)
 
     (data, metadata) = importAAIGrid("grid.asc", Int64, undefval=-999)

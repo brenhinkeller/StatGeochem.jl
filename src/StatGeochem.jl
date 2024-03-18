@@ -40,6 +40,7 @@ module StatGeochem
     include("resources/Geography.jl")
     include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
+    include("resources/timescale/Timescale.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
 
     # Custom pretty printing for some types

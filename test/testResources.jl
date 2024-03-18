@@ -46,4 +46,12 @@
    @test ionicradius.La ≈ 117.2
    @test ioniccharge.La == +3
 
+## --- Timescale.jl
+
+   @test timescale isa NamedTuple
+   @test timescale.Age_min["holocene"] === 0.
+   @test timescale.Age_min["archean"] === 2500.
+   @test timescale.Age_max["archean"] === 4000.
+   @test timescale.Age_min["hadean"] === 4000.
+
 ## ---
