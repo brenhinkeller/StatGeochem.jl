@@ -1,0 +1,183 @@
+Name	Age_min	Age_min_sigma	Age_max	Age_max_sigma
+meghalayan	0	0.000001	0.0043	0.0001
+northgrippian	0.0043	0.0001	0.0082	0.0001
+greenlandian	0.0082	0.0001	0.0118	0.0001
+holocene	0	0.000001	0.0118	0.0001
+tarantian	0.0118	0.0001	0.126	0.001
+late pleistocene	0.0118	0.0001	0.126	0.001
+upper pleistocene	0.0118	0.0001	0.126	0.001
+chibanian	0.126	0.001	0.781	0.001
+ionian	0.126	0.001	0.781	0.001
+middle pleistocene	0.126	0.001	0.781	0.001
+calabrian	0.781	0.001	1.806	0.001
+gelasian	1.806	0.001	2.588	0.001
+pleistocene	0.0118	0.0001	2.588	0.001
+quaternary	0	0.000001	2.588	0.001
+piacenzian	2.588	0.001	3.6	0.001
+zanclean	3.6	0.001	5.333	0.001
+pliocene	2.588	0.001	5.333	0.001
+messinian	5.333	0.001	7.246	0.001
+tortonian	7.246	0.001	11.63	0.01
+serravallian	11.63	0.01	13.82	0.01
+langhian	13.82	0.01	15.97	0.01
+burdigalian	15.97	0.01	20.44	0.01
+aquitanian	20.44	0.01	23.03	0.01
+miocene	5.333	0.001	23.03	0.01
+neogene	2.588	0.001	23.03	0.01
+chattian	23.03	0.01	28.1	0.1
+rupelian	28.1	0.1	33.9	0.1
+oligocene	23.03	0.01	33.9	0.1
+priabonian	33.9	0.1	37.8	0.25
+bartonian	37.8	0.25	41.2	0.25
+lutetian	41.2	0.25	47.8	0.15
+ypresian	47.8	0.15	56	0.1
+eocene	33.9	0.1	56	0.1
+thanetian	56	0.1	59.2	0.1
+selandian	59.2	0.1	61.6	0.1
+danian	61.6	0.1	66.016	0.025
+paleocene	56	0.1	66.016	0.025
+paleogene	23.03	0.01	66.016	0.025
+cenozoic	0	0.000001	66.016	0.025
+maastrichtian	66.016	0.025	72.1	0.1
+campanian	72.1	0.1	83.6	0.1
+santonian	83.6	0.1	86.3	0.25
+coniacian	86.3	0.25	89.8	0.15
+turonian	89.8	0.15	93.9	0.1
+cenomanian	93.9	0.1	100.5	0.2
+late cretaceous	66.016	0.025	100.5	0.2
+albian	100.5	0.2	113	0.2
+aptian	113	0.2	126.3	0.2
+barremian	126.3	0.2	130.8	0.25
+hauterivian	130.8	0.25	133.9	0.3
+valanginian	133.9	0.3	139.4	0.35
+berriasian	139.4	0.35	145	0.4
+early cretaceous	100.5	0.2	145	0.4
+cretaceous	66.016	0.025	145	0.4
+tithonian	145	0.4	152.1	0.45
+kimmeridgian	152.1	0.45	157.3	0.5
+oxfordian	157.3	0.5	163.5	0.55
+late jurassic	145	0.4	163.5	0.55
+callovian	163.5	0.55	166.1	0.6
+bathonian	166.1	0.6	168.3	0.65
+bajocian	168.3	0.65	170.3	0.7
+aalenian	170.3	0.7	174.1	0.5
+middle jurassic	163.5	0.55	174.1	0.5
+toarcian	174.1	0.5	182.7	0.35
+pliensbachian	182.7	0.35	190.8	0.5
+sinemurian	190.8	0.5	199.3	0.15
+hettangian	199.3	0.15	201.31	0.18
+early jurassic	174.1	0.5	201.31	0.18
+jurassic	145	0.4	201.31	0.18
+rhaetian	201.31	0.18	209.5	0.5
+norian	209.5	0.5	228.4	1
+carnian	228.4	1	237	0.5
+late triassic	201.31	0.18	237	0.5
+ladinian	237	0.5	241.5	0.5
+anisian	241.5	0.5	247.1	0.1
+middle triassic	237	0.5	247.1	0.1
+olenekian	247.1	0.1	250	0.25
+induan	250	0.25	251.902	0.024
+early triassic	247.1	0.1	251.902	0.024
+triassic	201.31	0.18	251.902	0.024
+mesozoic	66.016	0.025	251.902	0.024
+changhsingian	251.902	0.024	254.2	0.15
+wuchiapingian	254.2	0.15	259.8	0.15
+lopingian	251.902	0.024	259.8	0.15
+capitanian	259.8	0.15	265.1	0.2
+wordian	265.1	0.2	268.8	0.25
+roadian	268.8	0.25	272.3	0.25
+guadalupian	259.8	0.15	272.3	0.25
+kungurian	272.3	0.25	279.3	0.3
+artinskian	279.3	0.3	290.1	0.1
+sakmarian	290.1	0.1	295.5	0.2
+asselian	295.5	0.2	298.9	0.1
+cisuralian	272.3	0.25	298.9	0.1
+permian	251.902	0.024	298.9	0.1
+gzhelian	298.9	0.1	303.7	0.05
+kasimovian	303.7	0.05	307	0.1
+late pennsylvanian	298.9	0.1	307	0.1
+moscovian	307	0.1	315.2	0.1
+middle pennsylvanian	307	0.1	315.2	0.1
+bashkirian	315.2	0.1	323.2	0.2
+early pennsylvanian	315.2	0.1	323.2	0.2
+pennsylvanian	298.9	0.1	323.2	0.2
+serpukhovian	323.2	0.2	330.9	0.2
+late mississippian	323.2	0.2	330.9	0.2
+visean	330.9	0.2	346.7	0.2
+middle mississippian	330.9	0.2	346.7	0.2
+tournasian	346.7	0.2	358.9	0.2
+early mississippian	346.7	0.2	358.9	0.2
+mississippian	346.7	0.2	358.9	0.2
+carboniferous	298.9	0.1	358.9	0.2
+famennian	358.9	0.2	371.855	0.075
+frasnian	371.855	0.075	382.7	0.5
+late devonian	358.9	0.2	382.7	0.5
+givetian	382.7	0.5	387.7	0.4
+eifelian	387.7	0.4	393.3	0.6
+middle devonian	382.7	0.5	393.3	0.6
+emsian	393.3	0.6	407.6	1.3
+pragian	407.6	1.3	410.8	1.4
+lochkovian	410.8	1.4	419.2	1.6
+early devonian	393.3	0.6	419.2	1.6
+devonian	358.9	0.2	419.2	1.6
+pridoli	419.2	1.6	423	1.15
+ludfordian	423	1.15	425.6	0.45
+gorstian	425.6	0.45	427.4	0.25
+ludlow	419.2	1.6	427.4	0.25
+homerian	427.4	0.25	430.5	0.35
+sheinwoodian	430.5	0.35	433.4	0.4
+wenlock	427.4	0.25	433.4	0.4
+telychian	433.4	0.4	438.5	0.55
+aeronian	438.5	0.55	440.8	0.6
+rhuddanian	440.8	0.6	443.8	0.75
+llandovery	433.4	0.4	443.8	0.75
+silurian	419.2	1.6	443.8	0.75
+hirnantian	443.8	0.75	445.2	0.7
+katian	445.2	0.7	453	0.35
+sandbian	453	0.35	458.4	0.45
+late ordovician	443.8	0.75	458.4	0.45
+darriwilian	458.4	0.45	467.3	0.55
+dapingian	467.3	0.55	470	0.7
+middle ordovician	458.4	0.45	470	0.7
+floian	470	0.7	477.7	0.7
+tremadocian	477.7	0.7	485.4	0.95
+early ordovician	470	0.7	485.4	0.95
+ordovician	443.8	0.75	485.4	0.95
+age 10	485.4	0.95	489.5	1
+jiangshanian	489.5	1	494	1
+paibian	494	1	497	1
+furongian	485.4	0.95	497	1
+guzhangian	497	1	500.5	1
+drumian	500.5	1	504.5	1
+wuliuan	504.5	1	509	0.5
+age 5	504.5	1	509	0.5
+miaolingian	497	1	509	0.5
+age 4	509	0.5	514	1
+age 3	514	1	521	1
+epoch 2	509	0.5	521	1
+age 2	521	1	529	1
+fortunian	529	1	541	0.5
+terreneuvian	521	1	541	0.5
+cambrian	485.4	0.95	541	0.5
+paleozoic	251.902	0.024	541	0.5
+phanerozoic	0	0.000001	541	0.5
+ediacaran	541	0.5	635	1
+cryogenian	635	1	717	1
+tonian	717	1	1000	10
+neoproterozoic	541	0.5	1000	10
+stenian	1000	10	1200	10
+ecstasin	1200	10	1400	10
+calymmian	1400	10	1600	10
+mesoproterozoic	1000	10	1600	10
+statherian	1600	10	1800	10
+orosirian	1800	10	2050	10
+rhyacian	2050	10	2300	10
+siderian	2300	10	2500	10
+paleoproterozoic	1600	10	2500	10
+proterozoic	541	0.5	2500	10
+neoarchean	2500	10	2800	10
+mesoarchean	2800	10	3200	10
+paleoarchean	3200	10	3600	10
+eoarchean	3600	10	4000	10
+archean	2500	10	4000	10
+hadean	4000	10	4567	10
