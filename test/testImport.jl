@@ -155,6 +155,8 @@
     @test isa(d, NamedTuple)
     @test isequal(d.La, [a.La; b.La; a.La; b.La; a.La])
 
+    @test hashdataset(d) == [0x69f0025597bf6523, 0xe8341bcc0a64d447, 0x69f0025597bf6523, 0x6eb8871cf9477895, 0x4f3831d3feae830b, 0x69f0025597bf6523, 0xe8341bcc0a64d447, 0x69f0025597bf6523, 0x6eb8871cf9477895, 0x4f3831d3feae830b, 0x69f0025597bf6523, 0xe8341bcc0a64d447]
+
 ## --- Clean up
 
     rm("dictdataset.csv")

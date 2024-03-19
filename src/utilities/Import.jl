@@ -856,6 +856,58 @@
     end
     export concatenatedatasets
 
+## --- Hashing of imported datasets
+
+    function rescale(x::Number, digits::Integer=1)
+        n = if isfinite(x) && !iszero(x)
+            -(floor(Int, log10(abs(x)))-digits+1)
+        else
+            0
+        end
+        return trunc(x * 10.0^n)
+    end
+
+    prehash(x, digits::Integer) = hash(x)
+    prehash(x::Number, digits::Integer) = prehash(Float64(x), digits)
+    prehash(x::Float64, digits::Integer) = reinterpret(UInt64, rescale(x, digits))
+
+
+    """
+    ```julia
+    hashdataset(ds::Union{Dict, NamedTuple}; digits::Number=3, elements=keys(ds))
+    ```
+    Calculate a hash value for each row of a dataset.
+    By default, this considers only the first 3 `digits` of each number, regardless of scale.
+
+    ### Examples
+    ```julia
+    julia> ds = (La=rand(5), Yb=rand(5)/10)
+    NamedTuple with 2 elements:
+    La  = Vector{Float64}(5,)     [0.580683620945775 ... 0.23810020661332487]
+    Yb  = Vector{Float64}(5,)     [0.014069255862588826 ... 0.067367584177675]
+
+    julia> hashdataset(ds)
+    5-element Vector{UInt64}:
+    0x89a02fa88348e07c
+    0x181e78f0ad2af144
+    0xa3811bd05cca4743
+    0xfcfe1b6edf0c81cf
+    0x647868efa9352972
+    ```
+    """
+    function hashdataset(ds::Union{Dict, NamedTuple}; digits::Number=3, elements=keys(ds))
+        I = eachindex(ds[first(elements)])
+        for e in elements
+            @assert eachindex(ds[e]) == I
+        end
+        hashes = similar(ds[first(elements)], UInt64)
+        for i in eachindex(hashes)
+            dt = ntuple(j -> prehash(ds[elements[j]][i], digits), length(elements))
+            hashes[i] = hash(dt)
+        end
+        return hashes
+    end
+    export hashdataset
 
 ## --- Renormalization of imported datasets
 
