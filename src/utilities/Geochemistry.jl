@@ -1050,19 +1050,22 @@
                 end 
             end
 
-            PTdir = joinpath(prefix, "P–T.dat")
+            PTfile = joinpath(prefix, "P–T.dat")
             # PTdir = "P–T.dat"
             # Save P–T path as .dat file
-            # writedlm(joinpath(perplexdir, "P–T.dat"), [T P]) 
             # Apparently you need to have it as T and then P despite what Perplex tells you
-            open(PTdir, "w") do file
+            open(PTfile, "w") do file
                 for i in zip(T, P)
                     write(file, "$(i[1])\t$(i[2])\n")
                 end
             end
-        end
 
-        # system("cp $PTdir $prefix")
+            system("cp $(PTfile) $perplexdir")
+            PTdir = "P–T.dat"
+
+        else
+            system("cp $PTdir $perplexdir")
+        end
 
         # Create build batch file
         # Options based on Perplex v6.8.7
@@ -1073,7 +1076,7 @@
         elementstring = join(elements .* "\n")
 
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\nP–T.dat\n2\ny\n") #6.8.7
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\ny\n") #6.8.7
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
