@@ -942,9 +942,6 @@
 
             system("cp $(PTfile) $perplexdir")
             PTdir = "P–T.dat"
-
-        else
-            system("cp $PTdir $perplexdir")
         end
 
         # Create build batch file
