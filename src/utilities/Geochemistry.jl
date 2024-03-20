@@ -941,8 +941,12 @@
             end
 
             system("cp $(PTfile) $perplexdir")
+            system("cp $(PTfile) $prefix")
             PTdir = "P–T.dat"
+        else 
+            system("cp $(PTdir) $prefix")
         end
+
 
         # Create build batch file
         # Options based on Perplex v6.8.7
