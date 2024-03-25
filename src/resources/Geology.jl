@@ -1,6 +1,9 @@
-gts = importdataset(joinpath(moduleresourcepath,"timescale","gts_intervals.tsv"), '\t', importas=:Tuple)
 
+## --- Geologic timescale
+
+gts = importdataset(joinpath(moduleresourcepath,"timescale","gts_intervals.tsv"), '\t', importas=:Tuple)
 e = (:Age_min, :Age_min_sigma, :Age_max, :Age_max_sigma)
+
 
 const timescale = NamedTuple{e}(((Dict{String,Float64}() for _ in e)...,))
 for i in eachindex(gts.Name)
@@ -11,3 +14,6 @@ for i in eachindex(gts.Name)
 end
 export timescale 
 
+## --- Rock type classification
+
+const rock_type_key = importdataset(joinpath(moduleresourcepath,"rock_type_key.tsv"), '\t', importas=:Tuple)
