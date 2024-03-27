@@ -354,8 +354,9 @@ if Sys.isunix()
     # Input parameters
     T_range = (550+273.15, 1050+273.15) #K
     PTdir = ""
+    PTfilename = ""
 
-    @time perplex_configure_path(perplexdir, scratchdir, composition, PTdir, elements, T_range, 
+    @time perplex_configure_path(perplexdir, scratchdir, composition, PTdir, PTfilename, elements, T_range, 
         dataset = "hp11ver.dat", index=1, solution_phases=HP_solution_phases, excludes=HP_excludes)
     
     modes = perplex_query_modes(perplexdir, scratchdir, index=1)
