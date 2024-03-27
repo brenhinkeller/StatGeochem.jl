@@ -352,6 +352,26 @@
             end
         end
 
+        # Fill C from any available source
+        if haskey(ds,:TC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TC, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds,:TIC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC + ds.TIC, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds,:CO2) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC + ds.CO2/3.664057946882025, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC, 1e4)
+        end
+        if haskey(ds,:TIC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TIC, 1e4)
+        end
+        if haskey(ds,:CO2) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.CO2, 1e4/3.664057946882025)
+        end
+
         return ds
     end
     carbonateconversion!(ds::Dict) = (carbonateconversion!(TupleDataset(ds)); ds)
