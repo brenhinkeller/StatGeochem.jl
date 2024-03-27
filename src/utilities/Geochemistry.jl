@@ -857,7 +857,7 @@
 
     """
     ```julia
-    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="",
+    perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename::String="",
         \telements::String=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
         \tT_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
         \tdataset::String="hp11ver.dat",
@@ -875,7 +875,7 @@
     
     P specified in bar and T_range in Kelvin
     """
-    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="",
+    function perplex_configure_path(perplexdir::String, scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename = "",
         elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
         T_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
         dataset::String="hp11ver.dat",
@@ -942,11 +942,10 @@
 
             system("cp $(PTfile) $perplexdir")
             system("cp $(PTfile) $prefix")
-            PTdir = "P–T.dat"
+            PTfilename = "P–T.dat"
         else 
             system("cp $(PTdir) $prefix")
         end
-
 
         # Create build batch file
         # Options based on Perplex v6.8.7
@@ -957,7 +956,7 @@
         elementstring = join(elements .* "\n")
 
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\ny\n") #6.8.7
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
