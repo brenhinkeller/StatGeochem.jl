@@ -49,6 +49,15 @@
     @test all(C["TIC"] .≈ 0.9616817911685506*molarmass["C"]/(molarmass["C"] + 2molarmass["O"]))
     @test all(C["TOC"] .≈ 1 - 0.9616817911685506*molarmass["C"]/(molarmass["C"] + 2molarmass["O"]))
 
+    D = ["CaCO3" "MgCO3" "CaO" "MgO" "CO2" "TOC" "TIC" "TC" "C"; 1 1 NaN NaN NaN NaN NaN NaN NaN; 1 1 NaN NaN NaN NaN NaN NaN NaN]
+    C = elementify(D, importas=:Dict)
+    carbonateconversion!(C)
+    @test all(C["MgO"] .≈ (molarmass["Mg"]+molarmass["O"])/(molarmass["Mg"]+molarmass["C"]+3molarmass["O"]))
+    @test all(C["CaO"] .≈ (molarmass["Ca"]+molarmass["O"])/(molarmass["Ca"]+molarmass["C"]+3molarmass["O"]))
+    @test all(C["CO2"] .≈ (molarmass["C"]+2molarmass["O"])/(molarmass["Ca"]+molarmass["C"]+3molarmass["O"]) + (molarmass["C"]+2molarmass["O"])/(molarmass["Mg"]+molarmass["C"]+3molarmass["O"]))
+    @test all(C["TIC"] .≈ 0.9616817911685506*molarmass["C"]/(molarmass["C"] + 2molarmass["O"]))
+    @test all(C["C"] .≈ 1e4*0.9616817911685506*molarmass["C"]/(molarmass["C"] + 2molarmass["O"]))
+
     # Weathering indices
     @test CIA(14.8577, 4.5611, 3.29641, 2.3992) ≈ 47.66582778067264
     @test WIP(3.2964, 4.5611, 2.3992, 5.9121) ≈ 78.40320264846837
