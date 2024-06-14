@@ -2613,6 +2613,20 @@
 
     """
     ```julia
+    TC = Ferry_Ti_in_zirconT(TC::Number, aSiO2::Number, aTiO2::Number)
+    ```
+    Calculate zircon temperature saturation in degrees Celcius
+    Ti is parts per million by weight of titanium in zircon,
+    `aSiO2` silica activity and `aTiO2` titanium activity, following
+    the equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
+    function Ferry_Ti_in_zirconT(Ti::Number, aSiO2::Number, aTiO2::Number)
+        1 / ((5.711) - log10(aSiO2) + log10(aTiO2) - log10(Ti)) * (4800.0) .- 273.15
+    end
+
+    """
+    ```julia
     Ti = Crisp_Ti_in_zircon(TC::Number, Pbar::Number, aSiO2::Number, aTiO2::Number)
     ```
     Parts per million by weight of titanium in zircon at temperature `TC` degrees
@@ -2627,7 +2641,6 @@
         exp10(5.84 - 4800.0/T - 0.12*P - 0.0056*P^3 - log10(aSiO2)*f +log10(aTiO2)) / f
     end
 
-
     """
     ```julia
     Ti = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
@@ -2640,5 +2653,20 @@
     function Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
         exp10(7.420 - 4530.0/(TC+273.15) - log10(aSiO2))
     end
+
+    # calculate the temperature of rutile saturation in degrees Celsius
+    """
+    ```julia
+    TC = Ferry_Zr_in_rutileT(Ti::Number, aSiO2::Number)
+    ```
+    Calculate rutile temperature saturation in degrees Celcius
+    Ti is parts per million by weight of zirconium in rutile,
+    `aSiO2` silica activity, following the equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
+    function Ferry_Zr_in_rutileT(Ti::Number, aSiO2::Number)
+        1 / ((7.420) - log10(aSiO2) - log10(Ti)) * (4530.0) .- 273.15
+    end
+
 
 ## --- End of File

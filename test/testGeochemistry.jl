@@ -130,7 +130,9 @@
 ## -- Test thermometers
 
     @test StatGeochem.Ferry_Zr_in_rutile(750,1) ≈ 982.8714076786658
+    @test StatGeochem.Ferry_Zr_in_rutileT(982.8714076786658,1) ≈ 750.0
     @test StatGeochem.Ferry_Ti_in_zircon(750,1,1) ≈ 10.46178465494583
+    @test StatGeochem.Ferry_Ti_in_zirconT(10.46178465494583, 1, 1) ≈ 750.0
 
     @test StatGeochem.Crisp_Ti_in_zircon(750,0,1,1) ≈ 14.08608953046849
     @test StatGeochem.Crisp_Ti_in_zircon(750,1000,1,1) ≈ 13.703165806686624
