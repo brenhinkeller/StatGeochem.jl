@@ -2615,8 +2615,8 @@
     ```julia
     TC = Ferry_Ti_in_zirconT(TC::Number, aSiO2::Number, aTiO2::Number)
     ```
-    Calculate zircon temperature saturation in degrees Celcius
-    Ti is parts per million by weight of titanium in zircon,
+    Calculate titanium-in-zircon temperature in degrees Celcius `TC`
+    given `Ti` parts per million by weight of titanium in zircon,
     `aSiO2` silica activity and `aTiO2` titanium activity, following
     the equations of Ferry and Watson, 2007.
     (doi: 10.1007/s00410-007-0201-0)
@@ -2643,7 +2643,7 @@
 
     """
     ```julia
-    Ti = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
+    Zr = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
     ```
     Parts per million by weight of zirconium in rutile at temperature `TC`
     degrees Celsius given `aSiO2` silica activity, following the
@@ -2657,15 +2657,15 @@
     # calculate the temperature of rutile saturation in degrees Celsius
     """
     ```julia
-    TC = Ferry_Zr_in_rutileT(Ti::Number, aSiO2::Number)
+    TC = Ferry_Zr_in_rutileT(Zr::Number, aSiO2::Number)
     ```
-    Calculate rutile temperature saturation in degrees Celcius
-    Ti is parts per million by weight of zirconium in rutile,
+    Calculate zirconium-in-rutile temperature in degrees Celcius
+    given `Zr` parts per million by weight of zirconium in rutile and 
     `aSiO2` silica activity, following the equations of Ferry and Watson, 2007.
     (doi: 10.1007/s00410-007-0201-0)
     """
-    function Ferry_Zr_in_rutileT(Ti::Number, aSiO2::Number)
-        1 / ((7.420) - log10(aSiO2) - log10(Ti)) * (4530.0) .- 273.15
+    function Ferry_Zr_in_rutileT(Zr::Number, aSiO2::Number)
+        1 / ((7.420) - log10(aSiO2) - log10(Zr)) * (4530.0) .- 273.15
     end
 
 
