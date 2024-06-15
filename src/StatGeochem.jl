@@ -15,7 +15,6 @@ module StatGeochem
     using ProgressMeter: @showprogress, Progress, update!, next!
     const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
-    include("utilities/Import.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
 

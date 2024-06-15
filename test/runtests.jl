@@ -3,7 +3,6 @@ using Test, Statistics, StatsBase, Downloads
 
 @testset "All tests" begin
     # Utilities
-    @testset "Import" begin include("testImport.jl") end
     @testset "Resampling" begin include("testResampling.jl") end
     @testset "Changepoint" begin include("testChangepoint.jl") end
     @testset "Geochemistry" begin include("testGeochemistry.jl") end
