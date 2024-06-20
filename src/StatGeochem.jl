@@ -44,11 +44,11 @@ module StatGeochem
     # Custom pretty printing for some types
     include("utilities/Display.jl")
 
-    # Methods exclusively for package extensions
-    mapplot() = @warn "`mapplot` requires Plots.jl"
-    mapplot!() = @warn "`mapplot!` requires Plots.jl"
-    spidergram() = @warn "`spidergram` requires Plots.jl"
-    spidergram!() = @warn "`spidergram!` requires Plots.jl"
+    # Functions for which methods will be added in package extensions
+    function mapplot end
+    function mapplot! end
+    function spidergram end
+    function spidergram! end
     export mapplot, mapplot!, spidergram, spidergram!
 
 end # module
