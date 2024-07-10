@@ -205,7 +205,7 @@ if Sys.isunix()
 
     # Choose perpleX version
     # perplexversion = "perplex-6.8.7"
-    perplexverion= "perplex-stable"
+    perplexversion= "perplex-stable"
 
     # Construct file path
     perplexdir = joinpath(resourcepath, perplexversion)
