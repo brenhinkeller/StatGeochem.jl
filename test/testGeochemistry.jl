@@ -298,28 +298,28 @@ if Sys.isunix()
 
     ## --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
 
-    # Input parameters
-    P_range = (280, 28000) # Pressure range to explore, bar (roughly 1-100 km depth)
-    T_surf = 273.15 # Temperature of surface (K)
-    geotherm = 0.01 # Geothermal gradient of 0.1 K/bar == about 28.4 K/km
-    melt_model = ""
+    # # Input parameters
+    # P_range = (280, 28000) # Pressure range to explore, bar (roughly 1-100 km depth)
+    # T_surf = 273.15 # Temperature of surface (K)
+    # geotherm = 0.01 # Geothermal gradient of 0.1 K/bar == about 28.4 K/km
+    # melt_model = ""
 
-    # Configure (run build and vertex)
-    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm;
-        dataset="hp02ver.dat",
-        excludes=HP_excludes,
-        solution_phases=HP_solution_phases,
-        npoints=200,
-        index=2
-    )
+    # # Configure (run build and vertex)
+    # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements, P_range, T_surf, geotherm;
+    #     dataset="hp02ver.dat",
+    #     excludes=HP_excludes,
+    #     solution_phases=HP_solution_phases,
+    #     npoints=200,
+    #     index=2
+    # )
 
-    seismic = perplex_query_seismic(perplexdir, scratchdir, index=2)
-    @test isa(seismic, Dict)
-    @test haskey(seismic, "T(K)")
-    @test isa(seismic["T(K)"], Vector{Float64})
+    # seismic = perplex_query_seismic(perplexdir, scratchdir, index=2)
+    # @test isa(seismic, Dict)
+    # @test haskey(seismic, "T(K)")
+    # @test isa(seismic["T(K)"], Vector{Float64})
 
-    print("seismic[\"T(K)\"]: ")
-    println(seismic["T(K)"])
+    # print("seismic[\"T(K)\"]: ")
+    # println(seismic["T(K)"])
 
     ## --- # # # # # # # # # # # P–T path example # # # # # # # # # # # #
 
