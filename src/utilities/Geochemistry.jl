@@ -971,7 +971,7 @@
         system("cd $prefix; $build < build.bat > build.log")
 
         # Run PerpleX vertex calculations
-        result = system("cd $prefix; printf \"$index\n$fractionate\n" | $vertex > vertex.log")
+        result = system("cd $prefix; printf \"$index\n$fractionate\n\" | $vertex > vertex.log")
         return result
     end
     export perplex_configure_path
