@@ -886,6 +886,7 @@
         composition_basis::String="wt",  #["vol", "wt", "mol"]
         nonlinear_subdivision::Bool=false,
         fluid_eos::Integer=5,
+        fractionate::Integer=0,
         )
 
         build = joinpath(perplexdir, "build")# path to PerpleX build
@@ -948,15 +949,14 @@
         end
 
         # Create build batch file
-        # Options based on Perplex v6.8.7
         fp = open(prefix*"build.bat", "w")
 
         # Name, components, and basic options. P-T conditions.
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
 
-        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTdir\n2\n$(first(T_range))\n$(last(T_range))\ny\n")
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\n2\n$(first(T_range)) $(last(T_range))\ny\n") #stable
+        # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
         # Whole-rock composition
         for i ∈ eachindex(composition)
@@ -971,7 +971,7 @@
         system("cd $prefix; $build < build.bat > build.log")
 
         # Run PerpleX vertex calculations
-        result = system("cd $prefix; printf \"$index\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\ny\n0\" | $vertex > vertex.log")
+        result = system("cd $prefix; printf \"$index\n$fractionate\n" | $vertex > vertex.log")
         return result
     end
     export perplex_configure_path
