@@ -867,7 +867,8 @@
         \tmode_basis::String="wt",  #["vol", "wt", "mol"]
         \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
         \tnonlinear_subdivision::Bool=false,
-        \tfluid_eos::Integer=5)
+        \tfluid_eos::Integer=5,
+        \tfractionate::Integer=0)
     ```
 
     Set up a PerpleX calculation for a single bulk composition along a specified
@@ -955,7 +956,7 @@
         # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
         elementstring = join(elements .* "\n")
 
-        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\n2\n$(first(T_range)) $(last(T_range))\ny\n") #stable
+        write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\ny\n$PTfilename\n2\n$(first(T_range)) $(last(T_range))\ny\n") #stable
         # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
         # Whole-rock composition
