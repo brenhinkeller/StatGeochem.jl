@@ -712,8 +712,8 @@
             composition_basis::String="wt",
             fluid_eos::Integer=5
         )
-
-        build = joinpath(perplexdir, "build")# path to PerpleX build
+        # instead of perplexdir, we probably want something like Perple_X_jll.PATH[]
+        build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
         vertex = joinpath(perplexdir, "vertex")# path to PerpleX vertex
 
         #Configure working directory
@@ -973,6 +973,9 @@
 
         # Run PerpleX vertex calculations
         result = system("cd $prefix; printf \"$index\n$fractionate\n\" | $vertex > vertex.log")
+        # cd(prefix)
+        # printf("$index\n$fractionate\n")
+        # run($vertex)
         return result
     end
     export perplex_configure_path

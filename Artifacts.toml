@@ -3,41 +3,45 @@ git-tree-sha1 = "39e08e99c29e50884520dbd78e5f520bdde1b503"
 lazy = true
 
     [[crust1.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/crust1/crust1.tar.gz"
     sha256 = "dd66bd0c9957dcfde5887643bcec049d7eab02bfcd460b5e2fd9d6a970d72241"
-
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/crust1/crust1.tar.gz"
 
 [geolcont]
 git-tree-sha1 = "b26dd01402318c741aae99632699452728065fab"
 lazy = true
 
     [[geolcont.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolcont/geolcont.tar.gz"
     sha256 = "cb0b5cc169dd1e48570f09a48986c573b5b3236527cd8c1ee8b608200203baa7"
-
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolcont/geolcont.tar.gz"
 
 [geolprov]
 git-tree-sha1 = "0db81becec2ea2dadded1b3fca2fb4f498b39433"
 lazy = true
 
     [[geolprov.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolprov/geolprov.tar.gz"
     sha256 = "759ff443d53940f5e3d9fd2c4171ccf8f09482e4f80071720c4f380e38478463"
-
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/geolprov/geolprov.tar.gz"
 
 [land]
 git-tree-sha1 = "dfbed6c1a33a33939c9b3281088937495931fff9"
 lazy = true
 
     [[land.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/land/land.tar.gz"
     sha256 = "4128b28ba85e50cc875966e5cb4f22ef59014ceab3dadae6c136e0c47f246bc5"
-
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/land/land.tar.gz"
 
 [litho1-gridded]
 git-tree-sha1 = "e672fbe1c9714b4ab1484cdfef6342ef6aba382c"
 lazy = true
 
     [[litho1-gridded.download]]
-    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
     sha256 = "c73926dc7482bbdd8003c97335fc543a9a061bf02e41c4f54faa03e65a6d9b41"
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
+
+[perplex-datafiles]
+git-tree-sha1 = "2330aa8d576c1123c1325f3b3036c5c1428f2276"
+lazy = true 
+
+    [[perplex-datafiles.download]]
+    sha256 = "54ff70b3e5e1c8c090b81c688113a9580926dff658d179dc4e6e4ef2fba61121"
+    url = "https://github.com/brenhinkeller/statgeochem-artifacts/blob/main/perplex-datafiles/perplex-datafiles.tar.gz"
