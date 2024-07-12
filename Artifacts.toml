@@ -39,7 +39,7 @@ lazy = true
     url = "https://github.com/brenhinkeller/statgeochem-artifacts/raw/main/litho1/litho1-gridded.tar.gz"
 
 [perplex-datafiles]
-git-tree-sha1 = "219f9a82ccc86150b50e8dfa2bf47c5f3f8aa64f"
+git-tree-sha1 = "0c9b23e810caa55824d5ec173f9dd9af9e276189"
 lazy = true 
 
     [[perplex-datafiles.download]]
