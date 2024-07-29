@@ -11,7 +11,7 @@ module StatGeochem
     using Polyester
 
     # General requirements
-    using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads
+    using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads, LazyArtifacts
     using ProgressMeter: @showprogress, Progress, update!, next!
     const Collection{T} = Union{AbstractArray{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
@@ -26,7 +26,6 @@ module StatGeochem
     include("utilities/Etc.jl")
 
     # Resources
-    using LazyArtifacts
     resourcepath = joinpath(homedir(),"resources")
     moduleresourcepath = joinpath(Base.source_dir(),"resources")
     export resourcepath, moduleresourcepath
