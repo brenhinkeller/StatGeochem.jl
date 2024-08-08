@@ -38,4 +38,11 @@
    @test find_seafloorage(A, 80.738:-0.1:80, 0:0.1:0.7) == [1, 80, 266, 570, 975, 1472, 2090, 2667]
 
 
-## ---
+## --- Artifact tests
+using LazyArtifacts
+
+path = StatGeochem.artifact"perplex-datafiles"
+@test isdir(path)
+
+path = StatGeochem.artifact"perplex-datafiles/perplex-datafiles/solution_model.dat"
+@test isfile(path)

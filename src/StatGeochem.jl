@@ -34,6 +34,7 @@ module StatGeochem
     using Colors: Color, RGBX, RGB, N0f8
     include("resources/tc1/tc1.jl")
     include("resources/Crust1.jl")
+    include("resources/Perplex.jl")
     include("resources/Litho1.jl")
     include("resources/Geography.jl")
     include("resources/Elevation.jl")
