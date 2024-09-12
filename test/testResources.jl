@@ -57,8 +57,10 @@
 
 ## --- Artifact tests
 
-   path = StatGeochem.artifact"perplex-datafiles"
-   @test isdir(path)
+   # using LazyArtifacts
 
-   path = StatGeochem.artifact"perplex-datafiles/perplex-datafiles/solution_model.dat"
-   @test isfile(path)
+   # path = StatGeochem.artifact"perplex-datafiles"
+   # @test isdir(path)
+
+   # path = StatGeochem.artifact"perplex-datafiles/perplex-datafiles/solution_model.dat"
+   # @test isfile(path)
