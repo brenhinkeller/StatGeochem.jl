@@ -23,7 +23,7 @@
 
 
     # Test ESRI arc/info ASCII grid import function
-    grid = """
+    gridfiletext = """
     ncols         4
     nrows         6
     xllcorner     0.0
@@ -39,7 +39,7 @@
     """
 
     f = open("grid.asc","w")
-    print(f, grid)
+    print(f, gridfiletext)
     close(f)
 
     (data, metadata) = importAAIGrid("grid.asc", Int64, undefval=-999)
@@ -47,7 +47,7 @@
     @test data == [-9999 -9999 5 2; -9999 20 100 36; 3 8 35 10; 32 42 50 6; 88 75 27 9; 13 5 1 -9999]
     @test metadata["nodata"] == -9999
 
-
+    rm("grid.asc")
 
     # Random lat-lon generation
     @test isa(randlatlon(), Tuple{Float64,Float64})

@@ -7,7 +7,8 @@
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
 
-    Full four-element log-linear interpolation, using ionic radii
+    Full four-element log-linear interpolation, assuming 3+ ionic radii and the
+    chondritic abundances of Sun and McDonough 1989 (doi: 10.1144/gsl.sp.1989.042.01.19)
     """
     function eustar(Nd::Number, Sm::Number, Gd::Number, Tb::Number)
         # Ionic radii, in pm [Tb, Gd, Sm, Nd]
@@ -37,7 +38,9 @@
     Calculate expected europium concentration, Eu*, based on abundance of
     adjacent rare earths.
 
-    Simple geometric mean interpolation from Sm and Gd alone
+    Simple geometric mean interpolation from Sm and Gd alone, assuming the chondritic 
+    abundances of Sun and McDonough 1989 (doi: 10.1144/gsl.sp.1989.042.01.19), that is
+    Eu* = `0.0580*sqrt(Sm/0.1530 * Gd/0.2055)`
     """
     function eustar(Sm::Number, Gd::Number)
         # Geometric mean in regular space is equal to the arithmetic mean in log space. Fancy that!
@@ -174,7 +177,13 @@
         # If FeOT or Fe2O3T already exists, use that
         if isnan(FeOT)
             if isnan(Fe2O3T)
-                FeOT=nanadd(Fe2O3*conversionfactor, FeO)
+                if isnan(Fe2O3)
+                    FeOT = FeO
+                elseif isnan(FeO)
+                    FeOT = Fe2O3*conversionfactor
+                else
+                    FeOT = Fe2O3*conversionfactor + FeO
+                end
             else
                 FeOT=Fe2O3T*conversionfactor
             end
@@ -186,55 +195,187 @@
 
 ## --- Oxide conversions
 
-    """
-    ```julia
-    dataset = oxideconversion(dataset::Dict; unitratio::Number=10000)
-    ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...).
-
-    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
-    set unitratio = 1
-    """
-    function oxideconversion(dataset::Dict; unitratio::Number=10000)
-        result = copy(dataset)
-        return oxideconversion!(result)
+    function fillifnan!(dest::AbstractArray, source::AbstractArray)
+        @inbounds for i in eachindex(dest, source)
+            if isnan(dest[i]) && !isnan(source[i])
+                dest[i] = source[i]
+            end
+        end
+        return dest
     end
-    export oxideconversion
+    function fillifnan!(dest::AbstractArray, source::AbstractArray, factor::Number)
+        @inbounds for i in eachindex(dest, source)
+            if isnan(dest[i]) && !isnan(source[i])
+                dest[i] = source[i] * factor
+            end
+        end
+        return dest
+    end
+
+    function nannegative!(a::AbstractArray)
+        @inbounds for i in eachindex(a)
+            if a[i] < 0
+                a[i] = NaN
+            end
+        end
+        return a
+    end
+
     """
     ```julia
-    dataset = oxideconversion!(dataset::Dict; unitratio::Number=10000)
+    converted_dataset = oxideconversion(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
     ```
-    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place.
-
-    If metals are as PPM, set unitratio=10000 (default); if metals are as wt%,
-    set unitratio = 1
+    As `oxideconversion!`, but returning a copy rather than modifying in-place
     """
-    function oxideconversion!(dataset::Dict; unitratio::Number=10000)
-        # Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3)...
-        # for i ∈ eachindex(source)
-        #     conversionfactor(i)=mass.percation.(dest[i])./mass.(source[i]);
-        # end
+    oxideconversion(ds::Union{Dict,NamedTuple}; kwargs...) = oxideconversion!(deepcopy(ds); kwargs...)
+    export oxideconversion
+    
+    """
+    ```julia
+    oxideconversion!(dataset::Dict; unitratio::Number=10000)
+    ```
+    Convert major elements (Ti, Al, etc.) into corresponding oxides (TiO2, Al2O3, ...) in place if extant.
 
-        # Array of elements to convert
-        source = ["Si","Ti","Al","Fe","Fe","Mg","Ca","Mn","Li","Na","K","P","Cr","Ni","Co","C","S","H"]
-        dest = ["SiO2","TiO2","Al2O3","FeOT","Fe2O3T","MgO","CaO","MnO","Li2O","Na2O","K2O","P2O5","Cr2O3","NiO","CoO","CO2","SO2","H2O"]
-        conversionfactor = [2.13932704290547,1.66847584248889,1.88944149488507,1.28648836426407,1.42973254639611,1.65825961736268,1.39919258253823,1.29121895771597,2.1526657060518732,1.34795912485574,1.20459963614796,2.29133490474735,1.46154369861159,1.27258582901258,1.27147688434143,3.66405794688203,1.99806612601372,8.93601190476191]
+    If metals are expected as PPM, set unitratio=10000 (default); if metals are as wt%,
+    set unitratio = 1
+
+    See also `oxideconversion`, c.f. `metalconversion!`
+    """
+    function oxideconversion!(dataset::NamedTuple; unitratio::Number=10000)
+        # List of elements to convert
+        source = (:Si, :Ti, :Al, :Fe, :Fe, :Mg, :Ca, :Mn, :Li, :Na, :K, :P, :Cr, :Ni, :Co, :S, :H)
+        dest = (:SiO2, :TiO2, :Al2O3, :FeOT, :Fe2O3T, :MgO, :CaO, :MnO, :Li2O, :Na2O, :K2O, :P2O5, :Cr2O3, :NiO, :CoO, :SO3, :H2O)
+        conversionfactor = (2.13932704290547,1.66847584248889,1.88944149488507,1.28648836426407,1.42973254639611,1.65825961736268,1.39919258253823,1.29121895771597,2.1526657060518732,1.34795912485574,1.20459963614796,2.29133490474735,1.46154369861159,1.27258582901258,1.27147688434143,2.4970991890205863,8.93601190476191)
+        @assert eachindex(source) == eachindex(dest) == eachindex(conversionfactor)
 
         # If source field exists, fill in destination from source
         for i ∈ eachindex(source)
             if haskey(dataset, source[i])
-                if ~haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
-                    dataset[dest[i]] = fill(NaN, size(dataset[source[i]]))
+                if haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
+                    oxide, metal = dataset[dest[i]], dataset[source[i]]
+                    fillifnan!(oxide, metal, conversionfactor[i]/unitratio)
                 end
-                t = isnan.(dataset[dest[i]]) .& (.~ isnan.(dataset[source[i]]))
-                dataset[dest[i]][t] = dataset[source[i]][t] .* (conversionfactor[i] / unitratio)
+            end
+        end
+        return dataset
+    end
+    oxideconversion!(ds::Dict; kwargs...) = (oxideconversion!(TupleDataset(ds); kwargs...); ds)
+    export oxideconversion!
+
+
+    """
+    ```julia
+    converted_dataset = metalconversion(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
+    ```
+    As `metalconversion!`, but returning a copy rather than modifying in-place
+    """
+    metalconversion(ds::Union{Dict,NamedTuple}; kwargs...) = metalconversion!(copy(ds); kwargs...)
+    export metalconversion
+
+    """
+    ```julia
+    dataset = metalconversion!(dataset::Union{Dict,NamedTuple}; unitratio::Number=10000)
+    ```
+    Convert minor element oxides (MnO, Cr2O3, NiO, ...) into corresponding metals (Mn, Cr, Ni, ...) in place if extant.
+
+    If metals are expected as parts per million (ppm), set unitratio=10000 (default); if metals are as wt%, set unitratio = 1
+
+    See also `metalconversion`, c.f. `oxideconversion!`
+    """
+    function metalconversion!(dataset::NamedTuple; unitratio::Number=10000)
+        # List of elements to convert
+        dest = (:Mn, :P, :Cr, :Ni, :Co, :Sr, :Ba, :Li, :S,)
+        source = (:MnO, :P2O5, :Cr2O3, :NiO, :CoO, :SrO, :BaO, :Li2O, :SO3)
+        conversionfactor = (0.7744619872751028, 0.4364268173666496, 0.6842080746199798, 0.785801615263874, 0.786486968277016, 0.8455993051534453, 0.8956541815613328, 0.46454031259412965, 0.4004646689233921)
+
+        # If source field exists, fill in destination from source
+        for i ∈ eachindex(source)
+            if haskey(dataset, source[i])
+                if haskey(dataset, dest[i]) # If destination field doesn't exist, make it.
+                    metal, oxide = dataset[dest[i]], dataset[source[i]]
+                    fillifnan!(metal, oxide, conversionfactor[i]*unitratio)
+                end
+            end
+        end
+        return dataset
+    end
+    metalconversion!(ds::Dict; kwargs...) = (metalconversion!(TupleDataset(ds); kwargs...); ds)
+    export metalconversion!
+
+
+
+    """
+    ```julia
+    carbonateconversion!(dataset::NamedTuple)
+    ```
+    Convert carbonates (CaCO3, MgCO3) into corresponding metal oxides and CO2 if extant, in place,
+    as well as synchonizing TIC, TOC, TC, C and CO2. All are assumed to be reported in the same units,
+    (likely wt. %) except for C, which is assumed to be equivalent to unitratio * TC, 
+    """
+    function carbonateconversion!(ds::NamedTuple; unitratio=10000)
+        # Calculate CO2 if both CaCO3 and MgCO3 are reported
+        if haskey(ds, :CaCO3) && haskey(ds, :MgCO3) && haskey(ds, :CO2)
+            fillifnan!(ds.CO2, ds.CaCO3*0.43971009048182363 .+ ds.MgCO3*0.5219717006867268)
+        end
+
+        # Populate oxides and CO2 from carbonates and TIC
+        source = (:CaCO3, :CaCO3, :MgCO3, :MgCO3, :TIC,)
+        dest = (:CaO, :CO2, :MgO, :CO2, :CO2)
+        conversionfactor = (0.5602899095181764, 0.43971009048182363, 0.4780282993132732, 0.5219717006867268, 3.664057946882025)
+        for i in eachindex(source)
+            if haskey(ds, source[i])
+                if haskey(ds, dest[i])
+                    d, s = ds[dest[i]], ds[source[i]]
+                    fillifnan!(d, s, conversionfactor[i])
+                end
             end
         end
 
-        return dataset
-    end
-    export oxideconversion!
+        # Fill TC from C and TIC from CO2
+        if haskey(ds,:TC) && haskey(ds, :C)
+            fillifnan!(ds.TC, ds.C, 1e-4)
+        end
+        if haskey(ds,:TIC) && haskey(ds, :CO2)
+            fillifnan!(ds.TIC, ds.CO2, 0.27292144788565975)
+        end
 
+        # Synchronise TOC, TIC, TC
+        if haskey(ds, :TC) && haskey(ds, :TOC) && haskey(ds, :TIC)
+            fillifnan!(ds.TC, ds.TOC + ds.TIC)
+            fillifnan!(ds.TOC, ds.TC - ds.TIC)
+            nannegative!(ds.TOC)
+            fillifnan!(ds.TIC, ds.TC - ds.TOC)
+            nannegative!(ds.TIC)
+            if haskey(ds, :CO2)
+                # If we have new TIC values, fill CO2 again
+                fillifnan!(ds.CO2, ds.TIC, 3.664057946882025)
+            end
+        end
+
+        # Fill C from any available source
+        if haskey(ds,:TC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TC, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds,:TIC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC + ds.TIC, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds,:CO2) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC + ds.CO2/3.664057946882025, 1e4)
+        end
+        if haskey(ds,:TOC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TOC, 1e4)
+        end
+        if haskey(ds,:TIC) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.TIC, 1e4)
+        end
+        if haskey(ds,:CO2) && haskey(ds, :C)
+            fillifnan!(ds.C, ds.CO2, 1e4/3.664057946882025)
+        end
+
+        return ds
+    end
+    carbonateconversion!(ds::Dict) = (carbonateconversion!(TupleDataset(ds)); ds)
+    export carbonateconversion!
 
 ## --- Chemical Index of Alteration
 
@@ -264,8 +405,8 @@
 
     """
     ```julia
-    melts_configure(meltspath::String, scratchdir::String, composition::AbstractArray{<:Number},
-        \telements::AbstractArray{String},
+    melts_configure(meltspath::String, scratchdir::String, composition::Collection{Number},
+        \telements::Collection{String},
         \tT_range=(1400, 600),
         \tP_range=(10000,10000);)
     ```
@@ -309,7 +450,7 @@
 
     Fractionate all solids? default is `false`
 
-        suppress::AbstractArray{String} = String[]
+        suppress::Collection{String} = String[]
 
     Supress individual phases (specify as strings in array, i.e. `["leucite"]`)
 
@@ -318,10 +459,10 @@
     Print verbose MELTS output to terminal (else, write it to `melts.log`)
     """
     function melts_configure(meltspath::String, scratchdir::String, composition::Collection{Number},
-        elements::AbstractArray{String}, T_range::Collection{Number}=(1400, 600), P_range::Collection{Number}=(10000,10000);
+        elements::Collection{String}, T_range::Collection{Number}=(1400, 600), P_range::Collection{Number}=(10000,10000);
         batchstring::String="1\nsc.melts\n10\n1\n3\n1\nliquid\n1\n1.0\n0\n10\n0\n4\n0\n",
         dT=-10, dP=0, index=1, version="pMELTS",mode="isobaric",fo2path="FMQ",
-        fractionatesolids::Bool=false, suppress::AbstractArray{String}=String[], verbose::Bool=true)
+        fractionatesolids::Bool=false, suppress::Collection{String}=String[], verbose::Bool=true)
 
         ############################ Default Settings ###############################
         ##MELTS or pMELTS
@@ -1240,6 +1381,20 @@
 
     """
     ```julia
+    TC = Ferry_Ti_in_zirconT(TC::Number, aSiO2::Number, aTiO2::Number)
+    ```
+    Calculate titanium-in-zircon temperature in degrees Celcius `TC`
+    given `Ti` parts per million by weight of titanium in zircon,
+    `aSiO2` silica activity and `aTiO2` titanium activity, following
+    the equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
+    function Ferry_Ti_in_zirconT(Ti::Number, aSiO2::Number, aTiO2::Number)
+        1 / ((5.711) - log10(aSiO2) + log10(aTiO2) - log10(Ti)) * (4800.0) .- 273.15
+    end
+
+    """
+    ```julia
     Ti = Crisp_Ti_in_zircon(TC::Number, Pbar::Number, aSiO2::Number, aTiO2::Number)
     ```
     Parts per million by weight of titanium in zircon at temperature `TC` degrees
@@ -1254,10 +1409,9 @@
         exp10(5.84 - 4800.0/T - 0.12*P - 0.0056*P^3 - log10(aSiO2)*f +log10(aTiO2)) / f
     end
 
-
     """
     ```julia
-    Ti = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
+    Zr = Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
     ```
     Parts per million by weight of zirconium in rutile at temperature `TC`
     degrees Celsius given `aSiO2` silica activity, following the
@@ -1267,5 +1421,20 @@
     function Ferry_Zr_in_rutile(TC::Number, aSiO2::Number)
         exp10(7.420 - 4530.0/(TC+273.15) - log10(aSiO2))
     end
+
+    # calculate the temperature of rutile saturation in degrees Celsius
+    """
+    ```julia
+    TC = Ferry_Zr_in_rutileT(Zr::Number, aSiO2::Number)
+    ```
+    Calculate zirconium-in-rutile temperature in degrees Celcius
+    given `Zr` parts per million by weight of zirconium in rutile and 
+    `aSiO2` silica activity, following the equations of Ferry and Watson, 2007.
+    (doi: 10.1007/s00410-007-0201-0)
+    """
+    function Ferry_Zr_in_rutileT(Zr::Number, aSiO2::Number)
+        1 / ((7.420) - log10(aSiO2) - log10(Zr)) * (4530.0) .- 273.15
+    end
+
 
 ## --- End of File

@@ -1,0 +1,471 @@
+Material	Rock_Group	Rock_Subgroup	Rock_Composition	Rock_Facies	Rock_Texture	Rock_Name
+xenolith						xenolit
+			felsic			leuco
+			mafic			melano
+			silica			siliceous
+	igneous					igneous
+	igneous				megacrystic	megacryst
+	igneous				porphyritic	porph
+	igneous		felsic			felsic
+	igneous		felsic			silicic
+	igneous		felsic			acid
+	igneous		felsic			ttg
+	igneous		intermediate			intermediate
+	igneous		mafic			mafic
+	igneous		mafic			basic
+	igneous		ultramafic			ultramafi
+	igneous		ultramafic			ultrabasic
+	igneous		peralkaline			peralkaline
+	igneous		peralkaline			foid
+	igneous		peralkaline			feldspathoid
+	igneous		peralkaline			nephelin
+	igneous		peralkaline			ultrapotassic
+	igneous		alkaline			alkaline
+	igneous	volcanic		lava		lava
+	igneous	volcanic		lava		flow
+	igneous	volcanic		lava	eutaxitic	eutaxite
+	igneous	volcanic		tuff		tuff
+	igneous	volcanic		tuff		pyrocl
+	igneous	volcanic		tephra		ash
+	igneous	volcanic		tephra		lapilli
+	igneous	volcanic		tephra		bomb
+	igneous	volcanic		tephra		cinder
+	igneous	volcanic		tephra		tephra
+	igneous	volcanic		tephra		pumice
+	igneous	volcanic		tephra		ejecta
+	igneous	volcanic				spatter
+	igneous	volcanic		glass		glass
+	igneous	volcanic		glass		hyaloclastite
+	igneous	volcanic	alkaline	diatreme		pipe
+	igneous	volcanic	alkaline	diatreme		diatreme
+	igneous	volcanic			porphyritic	vitrophyr
+	igneous	plutonic		hypabyssal	granophyric	granophyr
+	igneous	plutonic		hypabyssal	porphyritic	porphyry
+	igneous	plutonic		hypabyssal		hypabyssal
+plug	igneous	plutonic		hypabyssal		plug
+dike	igneous	plutonic		hypabyssal		cone sheet
+sill	igneous	plutonic				sill
+dike	igneous	plutonic				dike
+dike	igneous	plutonic				dyke
+	igneous	plutonic				chilled margin
+	igneous	plutonic				plut
+stock	igneous	plutonic				stock
+	igneous	plutonic				lopolith
+	igneous	plutonic				laccolith
+	igneous	plutonic				batholith
+	igneous	plutonic				intrus
+	igneous	plutonic				intrusive breccia
+	igneous	plutonic			cumulate	cumulat
+enclave	igneous	plutonic				enclave
+	igneous	volcanic				volc
+	igneous	volcanic				extrus
+	igneous	volcanic				caldera
+	igneous	volcaniclastic				bentonite
+	igneous	volcaniclastic				tonstein
+	igneous	volcaniclastic				peperite
+	igneous	volcaniclastic				volcaniclastic
+	igneous	volcaniclastic				lahar
+	igneous	volcanic	felsic			rhyolit
+	igneous	volcanic	felsic			liparite
+	igneous	volcanic	felsic			rhyodacite
+	igneous	volcanic	felsic			toscanite
+	igneous	volcanic	felsic			dellenite
+	igneous	volcanic	felsic			lenticulite
+	igneous	volcanic	felsic	glass		obsidian
+	igneous	volcanic	felsic	glass		perlite
+	igneous	volcanic	felsic	tuff		ignimbrite
+	igneous	volcanic	felsic	tephra		fiamme
+	igneous	volcanic	felsic			dacit
+	igneous	volcanic	felsic			santorinite
+	igneous	volcanic	intermediate			andesit
+	igneous	volcanic	intermediate			boninit
+	igneous	volcanic	intermediate			icelandite
+	igneous	volcanic	intermediate			marianite
+	igneous	volcanic	intermediate			adakit
+	igneous	volcanic	intermediate			latit
+	igneous	volcanic	intermediate			vulsinit
+	igneous	volcanic	mafic			mafite
+	igneous	volcanic	mafic			basite
+	igneous	volcanic	mafic			basalt
+	igneous	volcanic	mafic			tholeiit
+	igneous	volcanic	mafic			pitchstone
+	igneous	volcanic	mafic			picrite
+	igneous	volcanic	mafic			anamesite
+	igneous	volcanic	mafic			hawaiite
+	igneous	volcanic	mafic			mugearite
+	igneous	volcanic	mafic			oceanite
+	igneous	volcanic	mafic		porphyritic	melaphyre
+	igneous	volcanic	mafic	pillow		pillow
+	igneous	volcanic	mafic	tephra		scoria
+	igneous	volcanic	mafic	glass		tachylite
+	igneous	volcanic	mafic	lava		pahoehoe
+	igneous	volcanic	ultramafic			ultramafite
+	igneous	volcanic	ultramafic		spinifex	komatiit
+	igneous	volcanic	ultramafic		spinifex	spinifex
+	igneous	volcanic	ultramafic			meimechite
+	igneous	volcanic	ultramafic			ultramafitite
+	igneous	volcanic	alkaline			absarokite
+	igneous	volcanic	peralkaline			alnoit
+	igneous	volcanic	peralkaline			analcimite
+	igneous	volcanic	peralkaline			ankaratrite
+	igneous	volcanic	alkaline			arsoite
+	igneous	volcanic	alkaline			augitite
+	igneous	volcanic	alkaline			banakite
+	igneous	volcanic	peralkaline			benmoreite
+	igneous	volcanic	peralkaline			bergalite
+	igneous	volcanic	peralkaline			camptonite
+	igneous	volcanic	alkaline			ciminite
+	igneous	volcanic	alkaline			comendite
+	igneous	volcanic	peralkaline			damkjernite
+	igneous	volcanic	peralkaline			damtjernite
+	igneous	volcanic	alkaline			etindite
+	igneous	volcanic	peralkaline			foidite
+	igneous	volcanic	peralkaline			fonolit
+	igneous	volcanic	peralkaline			fortunite
+	igneous	volcanic	peralkaline			gauteite
+	igneous	volcanic	peralkaline			grazinite
+	igneous	volcanic	peralkaline			hauynit
+	igneous	volcanic	peralkaline			hauynophyre
+	igneous	volcanic	peralkaline			kalsilit
+	igneous	volcanic	peralkaline			katungite
+	igneous	volcanic	alkaline			kenyte
+	igneous	volcanic	alkaline			keratophyre
+	igneous	volcanic	alkaline			kersantite
+	igneous	volcanic	peralkaline			kimberlit
+	igneous	volcanic	peralkaline			kivit
+	igneous	volcanic	peralkaline			lamproi
+	igneous	volcanic	peralkaline			leucitit
+	igneous	volcanic	peralkaline			limburgite
+	igneous	volcanic	peralkaline			linosaite
+	igneous	volcanic	peralkaline			madupite
+	igneous	volcanic	peralkaline			mafurite
+	igneous	volcanic	peralkaline			melafoidit
+	igneous	volcanic	peralkaline			melilit
+	igneous	volcanic	peralkaline			melnoit
+	igneous	volcanic	peralkaline			mikenite
+	igneous	volcanic	alkaline			minette
+	igneous	volcanic	peralkaline			monchiquite
+	igneous	volcanic	peralkaline			mondhaldeite
+	igneous	volcanic	peralkaline			nephelinit
+	igneous	volcanic	peralkaline			orangeite
+	igneous	volcanic	peralkaline			ordanchite
+	igneous	volcanic	peralkaline			orendite
+	igneous	volcanic	peralkaline			ottajanite
+	igneous	volcanic	alkaline			pantellerit
+	igneous	volcanic	peralkaline			phonolit
+	igneous	volcanic	peralkaline			polzenite
+	igneous	volcanic	peralkaline			rushayite
+	igneous	volcanic	peralkaline			sannaite
+	igneous	volcanic	alkaline			shoshonit
+	igneous	volcanic	peralkaline			tinguaite
+	igneous	volcanic	alkaline			trachyt
+	igneous	volcanic	alkaline			tristanite
+	igneous	volcanic	peralkaline			ugandite
+	igneous	volcanic	alkaline			vogesite
+	igneous	volcanic	alkaline			vsbergite
+	igneous	volcanic	peralkaline			wyomingite
+	igneous	plutonic	quartz			quartzolit
+	igneous	plutonic	felsic			silexite
+	igneous	plutonic	felsic			granit
+	igneous	plutonic	felsic		granophyric	microgranite
+	igneous	plutonic	felsic		pegmatitic	pegmat
+	igneous	plutonic	felsic		granophyric	aplit
+	igneous	volcanic	felsic	hypabyssal		felsite
+	igneous	plutonic	felsic			charnockit
+	igneous	plutonic	felsic			granophyre
+	igneous	plutonic	felsic		rapakivi	rapakivi
+	igneous	plutonic	felsic		rapakivi	wiborgite
+	igneous	plutonic	felsic		rapakivi	pyterlite
+	igneous	plutonic	felsic			mangerit
+	igneous	plutonic	felsic			granodiorit
+	igneous	plutonic	felsic			opdalite
+	igneous	plutonic	felsic			trondhjemit
+	igneous	plutonic	intermediate			tonalit
+	igneous	plutonic	intermediate			adamellit
+	igneous	plutonic	intermediate			enderbite
+	igneous	plutonic	intermediate			diorit
+	igneous	plutonic	intermediate			jotunite
+	igneous	plutonic	intermediate			marscoite
+	igneous	plutonic	intermediate			sanukit
+	igneous	plutonic	intermediate			monzonit
+	igneous	plutonic	intermediate			appinite
+	igneous	plutonic	mafic			gabbro
+	igneous	plutonic	mafic			norit
+	igneous	plutonic	mafic			troctolit
+	igneous	plutonic	mafic			mafraite
+	igneous	plutonic	mafic			allivalite
+	igneous	plutonic	mafic			anorthosit
+	igneous	plutonic	mafic	hypabyssal		diabase
+	igneous	plutonic	mafic	hypabyssal		dolerit
+	igneous	plutonic	mafic			leucophyre
+	igneous	plutonic	mafic			glenmuirite
+	igneous	plutonic	mafic			jotunite
+	igneous	plutonic	mafic			labradorite
+	igneous	plutonic	mafic			luscladite
+	igneous	plutonic	mafic			theralite
+	igneous	plutonic	mafic			sebastianite
+	igneous	plutonic	mafic			amphibolit
+	igneous	plutonic	mafic			corganite
+	igneous	plutonic	mafic			corgaspinite
+	igneous	plutonic	ultramafic			pyroxenit
+	igneous	plutonic	ultramafic			bronzit
+	igneous	plutonic	ultramafic			enstatit
+	igneous	plutonic	ultramafic			websterit
+	igneous	plutonic	ultramafic			hornblendit
+	igneous	plutonic	ultramafic			cortlandite
+	igneous	plutonic	ultramafic			olivinite
+	igneous	plutonic	ultramafic			dunit
+	igneous	plutonic	ultramafic			lherzolit
+	igneous	plutonic	ultramafic			peridot
+	igneous	plutonic	ultramafic			harzburgit
+	igneous	plutonic	ultramafic			wehrlit
+	igneous	plutonic	ultramafic			alkremite
+	igneous	plutonic	ultramafic			chromit
+xenolith	igneous	plutonic	ultramafic			mantle xenolith
+	igneous	plutonic	felsic			alaskite
+	igneous	plutonic	alkaline			ankaramite
+	igneous	plutonic	peralkaline			apatitite
+	igneous	plutonic	peralkaline			basanit
+	igneous	plutonic	peralkaline		cumulate	bebedourite
+	igneous	plutonic	alkaline			biotitite
+	igneous	plutonic	peralkaline			borolanite
+	igneous	plutonic	alkaline			bostonite
+	igneous	plutonic	peralkaline			buchonite
+	igneous	plutonic	peralkaline			campanite
+	igneous	plutonic	peralkaline			crinanite
+	igneous	plutonic	alkaline			durbachite
+	igneous	plutonic	peralkaline			essexite
+	igneous	plutonic	peralkaline			fergusite
+	igneous	plutonic	peralkaline			foyaite
+	igneous	plutonic	alkaline			glimmerite
+	igneous	plutonic	peralkaline			ijolite
+	igneous	plutonic	peralkaline			jacupirangite
+	igneous	plutonic	peralkaline			juvite
+	igneous	plutonic	alkaline			kaersutitite
+	igneous	plutonic	peralkaline			kamafugite
+	igneous	plutonic	alkaline			kentallenite
+	igneous	plutonic	alkaline			kullaite
+	igneous	plutonic	peralkaline			lamprophyre
+	igneous	plutonic	alkaline			larvikite
+	igneous	plutonic	alkaline			lestiwarite
+	igneous	plutonic	peralkaline			lujavrit
+	igneous	plutonic	peralkaline			melteigite
+	igneous	plutonic	peralkaline			missourite
+	igneous	plutonic	peralkaline			murambite
+	igneous	plutonic	peralkaline			naujait
+	igneous	plutonic	peralkaline			nelsonite
+	igneous	plutonic	peralkaline			niligongite
+	igneous	plutonic	alkaline			nordmarkite
+	igneous	plutonic	alkaline			orthoclasite
+	igneous	plutonic	alkaline			ongonite
+	igneous	plutonic	peralkaline			phoscorite
+	igneous	plutonic	alkaline			puglianite
+	igneous	plutonic	peralkaline			riedenite
+	igneous	plutonic	peralkaline			shonkinite
+	igneous	plutonic	peralkaline			sommaite
+	igneous	plutonic	alkaline			syenit
+	igneous	plutonic	peralkaline			synnyrite
+	igneous	plutonic	peralkaline			tahitite
+	igneous	plutonic	peralkaline			tannbuschite
+	igneous	plutonic	peralkaline			tephrite
+	igneous	plutonic	peralkaline			teschenite
+	igneous	plutonic	peralkaline			turjaite
+	igneous	plutonic	peralkaline			uncompahgrite
+	igneous	plutonic	peralkaline			urtite
+	igneous	plutonic	alkaline			vaugnerite
+	igneous	plutonic	alkaline			vibetoite
+	igneous	plutonic	peralkaline			vicoite
+	igneous	plutonic	alkaline			yamaskite
+	igneous		carbonate			carbonatit
+	igneous		carbonate			beforsite
+	igneous		carbonate			rauhaugite
+	igneous		carbonate			aillikite
+	igneous	plutonic	carbonate			alvikite
+	igneous	plutonic	carbonate			sovite
+	metamorphic					metamorphic
+	metamorphic				gneissose	gneiss
+	metamorphic				schistose	schist
+	metamorphic				granoblastic	granofels
+	metamorphic				mylonitic	mylonit
+	metamorphic	cataclastic			cataclastic	cataclas
+	metamorphic	cataclastic			cataclastic	gouge
+	metamorphic	cataclastic			cataclastic	fault breccia
+	metamorphic	cataclastic			glassy	pseudotachylite
+	metamorphic			granulite	migmatitic	migmat
+	metamorphic			granulite	migmatitic	diatexite
+	metamorphic			granulite	migmatitic	metatexite
+	metamorphic			granulite	migmatitic	leucosome
+	metamorphic			granulite	migmatitic	melanosome
+	metamorphic			granulite	migmatitic	paleosome
+	metamorphic	metaigneous	mafic	blueschist		blueschist
+	metamorphic	metaigneous	mafic	greenschist		greenschist
+	metamorphic	metaigneous	mafic	granulite		granulit
+	metamorphic	metaigneous	mafic	amphibolite		amphibolit
+	metamorphic	metaigneous	mafic	eclogite		eclogit
+	metamorphic	metaigneous	ultramafic	eclogite		piclogite
+	metamorphic			contact		sanidinite
+	metamorphic			zeolite		zeolite
+	metamorphic			prehnite-pumpellyite		prehnite
+	metamorphic			greenschist		chloritite
+	metamorphic			greenschist		epidotite
+	metamorphic					garnetite
+	metamorphic	metaigneous	felsic			halleflinta
+	metamorphic	metavolcanic	felsic			leptite
+	metamorphic	metavolcanic	felsic	hydrothermal		lithophys
+	metamorphic	metaplutonic	felsic		gneissose	augen
+	metamorphic	metaigneous	intermediate	hydrothermal		propylite
+	metamorphic	metaigneous	mafic	greenschist		greenstone
+	metamorphic	metaigneous	mafic			metabasite
+	metamorphic	metaigneous	mafic	eclogite		eclogite
+	metamorphic	metaigneous	mafic	amphibolite		amphibolite
+	metamorphic	metavolcanic	mafic	hydrothermal		spilit
+	metamorphic	metavolcanic	mafic	hydrothermal		palagonite
+	metamorphic	metaplutonic	mafic	contact		beerbachite
+	metamorphic	metaplutonic	felsic			greisen
+	metamorphic	metaplutonic	felsic	greenschist		unakite
+	metamorphic	metaigneous	ultramafic			serpentin
+	metamorphic	metaigneous	ultramafic			soapstone
+	metamorphic	metaigneous	ultramafic			steatite
+	metamorphic	metaigneous	ultramafic			talc
+	metamorphic	metaigneous			gneiss	orthogneiss
+	metamorphic	metasedimentary			gneiss	paragneiss
+	metamorphic	metasedimentary		contact	granoblastic	hornfels
+	metamorphic	metasedimentary	carbonate	contact		skarn
+	metamorphic	metasedimentary		contact		tactite
+	metamorphic	metasedimentary		contact		calc silicate
+	metamorphic	metasedimentary		contact		calc-silicate
+	metamorphic	metasedimentary		contact		buchite
+	metamorphic	metasedimentary	carbonate			marble
+	metamorphic	metasedimentary	silica			quartzite
+	metamorphic	metasedimentary				khondalite
+	metamorphic	metasedimentary	shale			slate
+	metamorphic	metasedimentary	shale			phyllite
+	metamorphic	metasedimentary	shale			grayschist
+	metamorphic	metasedimentary				mica schist
+	metamorphic	metasedimentary				jasperoid
+	metamorphic	metasedimentary	silica			jaspillite
+	metamorphic	metasedimentary	silica			taconite
+	metamorphic	hydrothermal	silica	hydrothermal		quartz vein
+	metamorphic	hydrothermal	carbonate	hydrothermal		calcite vein
+	metamorphic	hydrothermal	carbonate	hydrothermal		carbonate vein
+	sedimentary					sedimentary
+	sedimentary	biogenic	carbonate			chalk
+	sedimentary	biogenic	carbonate			coquina
+	sedimentary	biogenic	carbonate			stromatolite
+	sedimentary	chemical	carbonate			carbonate
+	sedimentary	chemical	carbonate			lime
+	sedimentary	chemical	carbonate			dolo
+	sedimentary	chemical	carbonate			domite
+	sedimentary	chemical	carbonate			siderite
+	sedimentary	chemical	carbonate			marl
+	sedimentary	chemical	carbonate			micrite
+	sedimentary	chemical	carbonate			packstone
+	sedimentary	chemical	carbonate			wackestone
+	sedimentary	chemical	carbonate			grainstone
+	sedimentary	chemical	carbonate			boundstone
+	sedimentary	chemical	carbonate			ooid
+	sedimentary	chemical	carbonate			oolite
+	sedimentary	chemical	carbonate			tufa
+	sedimentary	chemical	carbonate			travertine
+	sedimentary	chemical	carbonate			caliche
+	sedimentary	chemical	carbonate			calcareous
+	sedimentary	clastic				sediment
+	sedimentary	clastic				clastic
+	sedimentary	clastic				alluv
+	sedimentary	clastic				fluv
+	sedimentary	clastic	soil			soil
+	sedimentary	clastic	soil			laterit
+	sedimentary	clastic	soil			silcrete
+	sedimentary	clastic	soil			regolith
+	sedimentary	clastic	soil			andosol
+	sedimentary	clastic	soil			paleosol
+	sedimentary	clastic				siliciclast
+	sedimentary	clastic				breccia
+	sedimentary	clastic				conglomerat
+	sedimentary	clastic				rudaceous
+	sedimentary	clastic				diamictite
+	sedimentary	clastic				tillite
+	sedimentary	clastic				gravel
+	sedimentary	clastic	silica			sand
+	sedimentary	clastic	silica			psamm
+	sedimentary	clastic	silica			arenit
+	sedimentary	clastic	silica			arenaceous
+	sedimentary	clastic	silica			arkos
+	sedimentary	clastic				silt
+	sedimentary	clastic				aleurite
+	sedimentary	biogenic	carbon			amber
+	sedimentary	biogenic	carbon			oil
+	sedimentary	biogenic	carbon			coal
+	sedimentary	biogenic	carbon			peat
+	sedimentary	biogenic	carbon			lignite
+	sedimentary	biogenic	carbon			bitumen
+	sedimentary	biogenic	carbon			anthracite
+	sedimentary	biogenic	carbon			carbonaceous
+	sedimentary	biogenic	carbon			black shale
+	sedimentary	biogenic	carbon			tasmanite
+	sedimentary	clastic	shale			shale
+	sedimentary	clastic	shale			lutite
+	sedimentary	clastic	shale			lutaceous
+	sedimentary	clastic	shale			mud
+	sedimentary	clastic	shale			clay
+	sedimentary	clastic	shale			shale
+	sedimentary	clastic	shale			wacke
+	sedimentary	clastic	shale			argillite
+	sedimentary	clastic	shale			argillaceous
+	sedimentary	clastic	shale			flysch
+	sedimentary	clastic	shale			pelit
+	sedimentary	clastic	shale			turbidite
+	sedimentary	chemical				concretion
+	sedimentary	biogenic				biogenic
+	sedimentary	biogenic				glauconite
+	sedimentary	biogenic				ooze
+	sedimentary	biogenic	silica			diatom
+	sedimentary	biogenic	silica			radiolari
+	sedimentary	biogenic	silica			porcellanit
+	sedimentary	biogenic	silica			spiculit
+	sedimentary	chemical	silica			chert
+	sedimentary	chemical	silica			flint
+	sedimentary	chemical	silica			siliceous
+	sedimentary	chemical	silica			novaculite
+	sedimentary	chemical	silica			iron formation
+	sedimentary	chemical	silica			bif
+	sedimentary	chemical				ironstone
+	sedimentary	chemical	evaporite			evaporite
+	sedimentary	chemical	evaporite			salt
+	sedimentary	chemical	evaporite			anhydrite
+	sedimentary	chemical	evaporite			gypsum
+	sedimentary	chemical	evaporite			trona
+	sedimentary	chemical	evaporite			halite
+	sedimentary	chemical	evaporite			sylvite
+	sedimentary	chemical	phosphate			phosphat
+	sedimentary	chemical	phosphate			phosphorit
+	metamorphic	hydrothermal		hydrothermal		ore
+	metamorphic	hydrothermal		hydrothermal		vein
+	metamorphic	hydrothermal	silica	hydrothermal		quartzgang
+	metamorphic	hydrothermal	silica	hydrothermal		quartz gang
+	metamorphic	hydrothermal		hydrothermal		alter
+	metamorphic	hydrothermal		hydrothermal		gossan
+	metamorphic	hydrothermal	sulfide	hydrothermal		exhalite
+	metamorphic	hydrothermal		hydrothermal		fenite
+	metamorphic	hydrothermal		hydrothermal		albitite
+	metamorphic	hydrothermal		hydrothermal		alunit
+	metamorphic	hydrothermal		hydrothermal		sericit
+	metamorphic	hydrothermal		hydrothermal		epidosite
+	metamorphic	hydrothermal		hydrothermal		saussurit
+	metamorphic	hydrothermal		hydrothermal		rodingit
+	metamorphic	hydrothermal		hydrothermal		minerali
+	metamorphic	hydrothermal		hydrothermal		metasomat
+	metamorphic	hydrothermal		hydrothermal		hydrotherm
+	metamorphic	hydrothermal		hydrothermal		pneumatolyt
+	metamorphic	hydrothermal		hydrothermal		metaliferous
+	metamorphic	hydrothermal		hydrothermal		tourmalin
+	metamorphic	hydrothermal		hydrothermal		fluorite
+	metamorphic	hydrothermal	sulfide	hydrothermal		pyrite
+	metamorphic	hydrothermal	sulfide	hydrothermal		sphalerit
+	metamorphic	hydrothermal	sulfide	hydrothermal		galena
+	metamorphic	hydrothermal	sulfide	hydrothermal		sulfide
+	metamorphic	hydrothermal	sulfide	hydrothermal		sulphide
+	metamorphic	hydrothermal		hydrothermal		gang
+	meteorite					eucrite
+	meteorite					chondrite
+	meteorite					pallasite

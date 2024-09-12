@@ -7,15 +7,14 @@ module StatGeochem
     @reexport using StatGeochemBase
 
     # Vectorization and parallelization tools
-    using LoopVectorization
-    using Polyester
+    using LoopVectorization: @turbo
+    using Polyester: @batch
 
     # General requirements
-    using Statistics, DelimitedFiles, SpecialFunctions, Random, Downloads, LazyArtifacts
+    using DelimitedFiles, Random, Downloads, LazyArtifacts
     using ProgressMeter: @showprogress, Progress, update!, next!
-    const Collection{T} = Union{AbstractArray{<:T}, NTuple{N,T}} where N
+    const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
-    include("utilities/Import.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
 
@@ -30,18 +29,28 @@ module StatGeochem
     moduleresourcepath = joinpath(Base.source_dir(),"resources")
     export resourcepath, moduleresourcepath
 
-    using FileIO, ImageIO, HDF5, Perple_X_jll
+    using Perple_X_jll
+    include("resources/Perplex.jl")
+
+    using FileIO: load
+    using HDF5: h5read
     using Colors: Color, RGBX, RGB, N0f8
     include("resources/tc1/tc1.jl")
     include("resources/Crust1.jl")
-    include("resources/Perplex.jl")
     include("resources/Litho1.jl")
+    include("resources/Geology.jl")
     include("resources/Geography.jl")
-    include("resources/Elevation.jl")
     include("resources/Seafloorage.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
 
     # Custom pretty printing for some types
     include("utilities/Display.jl")
+
+    # Functions for which methods will be added in package extensions
+    function mapplot end
+    function mapplot! end
+    function spidergram end
+    function spidergram! end
+    export mapplot, mapplot!, spidergram, spidergram!
 
 end # module

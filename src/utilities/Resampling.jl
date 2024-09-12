@@ -282,7 +282,7 @@
     end
     """
     ```julia
-    resampled = bsresample(dataset::Dict, nrows, [elements], [p];
+    resampled = bsresample(dataset::Union{Dict,NamedTuple}, nrows, [elements], [p];
         \t kernel = gaussian,
         \t rng = MersenneTwister()
     )
@@ -333,7 +333,7 @@
     export bsresample
 
 
-    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function randsample!(resampled::DenseArray, data::Collection, nrows::Integer, p::Number, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         ndata = size(data,1)
         ncolumns = size(resampled,2)
@@ -366,7 +366,7 @@
 
         return resampled
     end
-    function randsample!(resampled::AbstractArray, data::AbstractArray, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
+    function randsample!(resampled::DenseArray, data::Collection, nrows::Integer, p::AbstractVector, rng::AbstractRNG=MersenneTwister(), buffer::Vector{Int}=Array{Int}(undef,size(data,1)))
         # Prepare
         ndata = size(data,1)
         ncolumns = size(resampled,2)
@@ -402,12 +402,12 @@
 
     """
     ```julia
-    randsample(data::Array, nrows, [p])
+    randsample(data, nrows, [p])
     ```
     Bootstrap resample (without uncertainty) a `data` array to length `nrows`.
     Optionally provide weights `p` either as a vector (one-weight-per-sample) or scalar.
     """
-    function randsample(data::AbstractArray, nrows::Integer, p=min(0.2,nrows/size(data,1));
+    function randsample(data::Collection, nrows::Integer, p=min(0.2,nrows/size(data,1));
             rng::AbstractRNG=MersenneTwister(),
             buffer::Vector{Int}=Array{Int}(undef,size(data,1))
         )
@@ -434,26 +434,33 @@
 
     """
     ```julia
-    (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
+    (bincenters, N) = bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer;
+        \trelbinwidth::Number=1
+    )
     ```
     Tally the number of samples that fall into each of `nbins` equally spaced `x`
     bins between `xmin` and `xmax`, aligned with bin edges as
     `xmin:(xmax-xmin)/nbins:xmax`
+
+    A `relbinwidth` of `1` represents normal space-filling bins, while a larger value implies bin overlap.
+
+    See also `histcounts` for a more efficient implementation without variable bin width.
     """
-    function bincounts(x::AbstractArray, xmin::Number, xmax::Number, nbins::Integer)
+    bincounts(x::Collection, edges::AbstractRange; kwargs...) = bincounts(x,minimum(edges),maximum(edges),length(edges); kwargs...)
+    function bincounts(x::Collection, xmin::Number, xmax::Number, nbins::Integer; 
+            relbinwidth::Number=1
+        )
         # Tally the number of samples (either resampled or corrected/original) that fall into each bin
         binwidth = (xmax-xmin)/nbins
+        hw = binwidth*relbinwidth/2
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
 
-        # Calculate index from x value
-        scalefactor = nbins / (xmax - xmin)
-        index = (x .- xmin) .* scalefactor
-
         # Add up the results
-        N = fill(0,nbins)
-        @inbounds for i in index
-            if 0 < i <= nbins
-                N[ceil(Int, i)] += 1
+        N = fill(0, nbins)
+        @inbounds for n ∈ eachindex(bincenters)
+            l, u = bincenters[n]-hw, bincenters[n]+hw
+            for i ∈ eachindex(x)
+                N[n] += l < x[i] <= u
             end
         end
         return bincenters, N
@@ -462,65 +469,60 @@
 
     """
     ```julia
-    (c,m,e) = binmeans(x, y, xmin, xmax, nbins, [weight]; resamplingratio::Number=1)
+    binmeans(x, y, xmin:step:xmax, [weight]; resamplingratio=1, relbinwidth=1)
+    binmeans(x, y, xmin, xmax, nbins, [weight]; resamplingratio=1, relbinwidth=1)
     ```
     The means (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
     equally spaced `x` bins between `xmin` and `xmax`, returning bincenters,
     means, and standard errors of the mean.
 
-    To calculate binned medians only (without uncertainties), see `nanmean`
+    A `relbinwidth` of `1` represents normal space-filling bins, while a larger value implies bin overlap.
+
+    To more efficiently calculate binned means without variable bin widths (or suncertainties), 
+    see instead `nanbinmean`/`nanbinmean!`.
 
     ### Examples
     ```julia
     (c,m,e) = binmeans(x, y, 0, 4000, 40)
     ```
     """
-    function binmeans(x::AbstractArray, y::AbstractArray, xmin::Number, xmax::Number, nbins::Integer; resamplingratio::Number=1)
+    binmeans(x::Collection, y::Collection, edges::AbstractRange, args...; kwargs...) = binmeans(x,y,minimum(edges),maximum(edges),length(edges), args...; kwargs...)
+    function binmeans(x::Collection, y::Collection, xmin::Number, xmax::Number, nbins::Integer; 
+            resamplingratio::Number=1, 
+            relbinwidth::Number=1
+        )
         binwidth = (xmax-xmin)/nbins
+        hw = binwidth*relbinwidth/2
         bincenters = (xmin+binwidth/2):binwidth:(xmax-binwidth/2)
 
-        # Calculate index from x value
-        scalefactor = nbins / (xmax - xmin)
-        index_float = (x .- xmin) .* scalefactor
-
-        # Calculate the nanmeans and nansems
-        N = fill(0,nbins)
-        mu = fill(0.0,nbins)
-        s2 = fill(0.0,nbins)
-        for i ∈ eachindex(x)
-            if (0 < index_float[i] <= nbins) && !isnan(y[i])
-                index = ceil(Int, index_float[i])
-                N[index] += 1
-                delta = y[i] - mu[index]
-                mu[index] += delta / N[index]
-                s2[index] += delta * (y[i] - mu[index])
-            end
+        T = Base.promote_op(/, eltype(y), Int)
+        means = Array{T}(undef,nbins)
+        errors = Array{T}(undef,nbins)
+        t = falses(size(y))
+        for i = 1:nbins
+            t .= (bincenters[i]-hw) .< x .<= (bincenters[i]+hw)
+            yₜ = view(y,t)
+            means[i] = nanmean(yₜ)
+            errors[i] = nanstd(yₜ, mean=means[i]) * sqrt(resamplingratio / count(t))
         end
 
-        # Calculate standard errors
-        se = Array{Float64}(undef, nbins)
-        for i=1:nbins
-            if N[i] > 0
-                s2[i] /= N[i] - 1 # Variance
-                se[i] = sqrt(s2[i] * resamplingratio / N[i])
-            else
-                mu[i] = NaN
-                se[i] = NaN
-            end
-        end
-        return bincenters, mu, se
+        return bincenters, means, errors
     end
-    function binmeans(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer, weight::AbstractArray; resamplingratio::Number=1)
+    function binmeans(x::Collection, y::Collection, min::Number, max::Number, nbins::Integer, weight::Collection; 
+            resamplingratio::Number=1, 
+            relbinwidth::Number=1
+        )
         binwidth = (max-min)/nbins
-        binedges = range(min,max,length=nbins+1)
+        hw = binwidth*relbinwidth/2
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
-        means = Array{Float64}(undef,nbins)
-        errors = Array{Float64}(undef,nbins)
+        T = Base.promote_op(/, eltype(y), Int)
+        means = Array{T}(undef,nbins)
+        errors = Array{T}(undef,nbins)
+        t = falses(size(y))
         for i = 1:nbins
-            t = (binedges[i] .< x .<= binedges[i+1]) .& (y.==y)
-            w = weight[t]
-            yₜ = y[t]
+            t .= (bincenters[i]-hw) .< x .<= (bincenters[i]+hw)
+            yₜ, w = view(y,t), view(weight,t)
             means[i] = nanmean(yₜ, w)
             errors[i] = nanstd(yₜ, w) * sqrt(resamplingratio / count(t))
         end
@@ -531,31 +533,41 @@
 
     """
     ```julia
-    binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer;
+    (c,m,e) = binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer;
         \tresamplingratio::Number=1
+        \trelbinwidth::Number=1
     )
     ```
 
     The medians (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
     equally spaced `x` bins between `xmin` and `xmax`, returning bincenters, medians,
-    and equivalent standard errors of the mean (1.4828 * median abolute deviation)
+    and equivalent standard errors of the mean (1.4828 * median abolute deviation).
 
-    To calculate binned medians only (without uncertainties), see `nanmedian`
+    A `relbinwidth` of `1` represents normal space-filling bins, while a larger value implies bin overlap.
+
+    To more efficiently calculate binned medians without variable bin widths (or suncertainties), 
+    see instead `nanbinmedian`/`nanbinmedian!`.
 
     ### Examples
     ```julia
     (c,m,e) = binmedians(x, y, 0, 4000, 40)
     ```
     """
-    function binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer; resamplingratio::Number=1)
+    binmedians(x::Collection, y::Collection, edges::AbstractRange; kwargs...) = binmedians(x,y,minimum(edges),maximum(edges),length(edges); kwargs...)
+    function binmedians(x::Collection, y::Collection, min::Number, max::Number, nbins::Integer; 
+            resamplingratio::Number=1, 
+            relbinwidth::Number=1
+        )
         binwidth = (max-min)/nbins
-        binedges = range(min,max,length=nbins+1)
+        hw = binwidth*relbinwidth/2
         bincenters = (min+binwidth/2):binwidth:(max-binwidth/2)
 
-        medians = Array{Float64}(undef,nbins)
-        errors = Array{Float64}(undef,nbins)
+        T = Base.promote_op(/, eltype(y), Int)
+        medians = Array{T}(undef,nbins)
+        errors = Array{T}(undef,nbins)
+        t = falses(size(y))
         for i = 1:nbins
-            t = (binedges[i] .< x .<= binedges[i+1])
+            t .= ((bincenters[i]-hw) .< x .<= (bincenters[i]+hw))
             yₜ = y[t]
             medians[i] = nanmedian!(yₜ)
             errors[i] = 1.4826 * nanmad!(yₜ) * sqrt(resamplingratio / countnotnans(yₜ))

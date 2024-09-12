@@ -22,13 +22,19 @@
                 if length(x[s]) < 2
                     print("\t[$(x[s])]")
                 else
-                    print("\t[$(x[s][1]) ... $(x[s][end])]")
+                    print("\t[$(first(x[s])) ... $(last(x[s]))]")
+                end
+            elseif t<:NTuple
+                if length(x[s]) < 2
+                    print("\t[$(x[s])]")
+                else
+                    print("\t[$(first(x[s])) ... $(last(x[s]))]")
                 end
             elseif t<:AbstractString
                 if length(x[s]) < 50
                     print("\t\"$(x[s])\"")
                 else
-                    print("\t\"$(x[s][1:50])...")
+                    print("\t\"$(x[s][firstindex(x[s])+(1:50)])...")
                 end
             end
             print("\n")

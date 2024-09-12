@@ -1,5 +1,6 @@
 .DS_Store
 *.swp
+*.vscode
 
 # Other languages
 *.c
@@ -11,12 +12,14 @@
 # Ignore data and image files by default
 *.h5
 *.csv
+*.tsv
 *.mat
 *.xls
 *.xlsx
 *.jpg
 *.gif
 *.pdf
+*.png
 
 # Various julia files to ignore
 *.jld

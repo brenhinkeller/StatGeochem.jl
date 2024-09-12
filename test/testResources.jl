@@ -19,7 +19,7 @@
    @test claiborne_zircon_kd("La", 800) ≈ 1.5412711665791843e-5
 
 
-## --- Elevation.jl
+## -- Geography.jl
 
    lat = [43.7022,-26.2041,-19.5723,-34.9285,46.4908]
    lon = [-72.2896,28.0473,65.7550,138.6007,9.8355]
@@ -32,11 +32,28 @@
    @test find_land(lat, lon) == Bool[1, 1, 0, 1, 1]
    @test find_land(43.702245, -72.0929) == fill(true)
 
+   # Elevation datasets
    A = (1:200)*(1:200)'
    @test find_etopoelev(A, -90:-89, -180:-179) == [1,3721]
    @test find_srtm15plus(A, -90:0.1:-89.5, -180:0.1:-179.5) == [1, 625, 2401, 5329, 9409, 14641]
    @test find_seafloorage(A, 80.738:-0.1:80, 0:0.1:0.7) == [1, 80, 266, 570, 975, 1472, 2090, 2667]
 
+## --- Chemistry.jl
+
+   @test molarmass["Si"] ≈ 28.085
+   @test molarmasspercation["TiO2"] ≈ 79.8651
+   @test ionicradius.La ≈ 117.2
+   @test ioniccharge.La == +3
+
+## --- Geology.jl
+
+   @test timescale isa NamedTuple
+   @test timescale.Age_min["holocene"] === 0.
+   @test timescale.Age_min["archean"] === 2500.
+   @test timescale.Age_max["archean"] === 4000.
+   @test timescale.Age_min["hadean"] === 4000.
+
+   @test StatGeochem.rock_type_key isa NamedTuple
 
 ## --- Artifact tests
 using LazyArtifacts

@@ -1,0 +1,1 @@
+The unprojected maps/images in this folder are downscalings of https://en.wikipedia.org/wiki/File:Blue_Marble_2002.png, which was produced from NASA imagery (primarily MODIS) and is in the public domain.
