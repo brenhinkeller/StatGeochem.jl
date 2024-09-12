@@ -1,6 +1,4 @@
 ## -- Perplex interface: 1. Configuration
-#TODO: check if this is okay?
-using Perple_X_jll 
 
 """
 ```julia
@@ -21,7 +19,6 @@ Set up a PerpleX calculation for a single bulk composition along a specified
 geothermal gradient and pressure (depth) range. P specified in bar and T_surf
 in Kelvin, with geothermal gradient in units of Kelvin/bar
 """
-# TODO: test configure geotherm manually
 function perplex_configure_geotherm(scratchdir::String, composition::Collection{Number},
         elements::Collection{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
         P_range::NTuple{2,Number}=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
@@ -128,11 +125,6 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
         fluid_eos::Integer=5
     )
 
-    # TODO: use build/vertex from Perple_X_jll for isobar
-    # steps: cd to PATH
-    # copy datafiles to current dir
-    # then: export DYLD_LIBRARY_PATH and run ./build or ./vertex
-
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
 
@@ -210,7 +202,6 @@ pressure–temperature path with T as the independent variable.
 
 P specified in bar and T_range in Kelvin
 """
-# TODO: test configure path manually
 function perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename = "",
     elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
     T_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
@@ -278,7 +269,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
             end
         end
 
-        system("cp $(PTfile) $perplexdir")
+        # system("cp $(PTfile) $perplexdir")
         system("cp $(PTfile) $prefix")
         PTfilename = "P–T.dat"
     else 
@@ -507,7 +498,7 @@ export perplex_query_point
 
 """
 ```julia
-perplex_query_seismic(perplexdir::String, scratchdir::String;
+perplex_query_seismic(scratchdir::String;
     \tdof::Integer=1, index::Integer=1, include_fluid="n")
 ```
 
@@ -515,18 +506,18 @@ Query perplex seismic results along a previously configured 1-d path (dof=1,
 isobar or geotherm) or 2-d grid / pseudosection (dof=2).
 Results are returned as a dictionary.
 """
-function perplex_query_seismic(perplexdir::String, scratchdir::String;
+function perplex_query_seismic(scratchdir::String;
     dof::Integer=1, index::Integer=1, include_fluid::String="n", importas=:Dict)
     # Query a pre-defined path (isobar or geotherm)
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
     if dof == 1
-        # v6.7.8 1d path
-        write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+        write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n") # v7.1.6 1d path
+        # write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n") # v6.7.8 1d path
     elseif dof == 2
         # v6.7.8 2d grid
         write(fp,"$index\n2\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n")
@@ -538,8 +529,11 @@ function perplex_query_seismic(perplexdir::String, scratchdir::String;
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -561,18 +555,18 @@ function perplex_query_seismic(perplexdir::String, scratchdir::String;
 end
 """
 ```julia
-perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
 ```
 
 Query perplex seismic results along a specified P-T path using a pre-computed
 pseudosection. Results are returned as a dictionary.
 """
-function perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+function perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     index::Integer=1, npoints::Integer=200, include_fluid="n", importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
@@ -585,8 +579,11 @@ function perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -606,11 +603,11 @@ function perplex_query_seismic(perplexdir::String, scratchdir::String, P::NTuple
     end
     return data
 end
-function perplex_query_seismic(perplexdir::String, scratchdir::String, P::AbstractArray, T::AbstractArray;
+function perplex_query_seismic(scratchdir::String, P::AbstractArray, T::AbstractArray;
     index::Integer=1, include_fluid="n", importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Write TP data to file
@@ -623,15 +620,17 @@ function perplex_query_seismic(perplexdir::String, scratchdir::String, P::Abstra
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
     # v6.7.8 pseudosection
-    write(fp,"$index\n4\n2\nTP.tsv\n1\n2\nn\n$include_fluid
-                13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
+    write(fp,"$index\n4\n2\nTP.tsv\n1\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n")
     close(fp)
 
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -656,7 +655,7 @@ export perplex_query_seismic
 
 """
 ```julia
-perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
+perplex_query_phase(scratchdir::String, phase::String;
     \tdof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true)
 ```
 
@@ -664,22 +663,25 @@ Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
 along a previously configured 1-d path (dof=1, isobar, geotherm, or P–T path) or 2-d
 grid / pseudosection (dof=2). Results are returned as a dictionary.
 """
-function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String;
+function perplex_query_phase(scratchdir::String, phase::String;
     dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
     # Query a pre-defined path (isobar or geotherm)
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
     if dof == 1
+        # v7.1.6, 1d path
+        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
+
         # v6.7.8, 1d path
-        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+        # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
         # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
     elseif dof == 2
-        # v6.7.8, 2d grid
-        write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8
+        # 2d grid
+        write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8/v7.1.6
     else
         error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
     end
@@ -688,8 +690,11 @@ function perplex_query_phase(perplexdir::String, scratchdir::String, phase::Stri
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -733,7 +738,7 @@ function perplex_query_phase(perplexdir::String, scratchdir::String, phase::Stri
 end
 """
 ```julia
-perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true)
 ```
 
@@ -741,25 +746,29 @@ Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
 along a specified P-T path using a pre-computed pseudosection. Results are
 returned as a dictionary.
 """
-function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
+    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6 pseudosection
+
     # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+    # write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8 pseudosection
     close(fp)
 
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -801,11 +810,11 @@ function perplex_query_phase(perplexdir::String, scratchdir::String, phase::Stri
     end
     return result
 end
-function perplex_query_phase(perplexdir::String, scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
+function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
     index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Write TP data to file
@@ -817,16 +826,20 @@ function perplex_query_phase(perplexdir::String, scratchdir::String, phase::Stri
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
+    write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6
+
     # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-    write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+    # write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8
     close(fp)
 
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -873,7 +886,7 @@ export perplex_query_phase
 
 """
 ```julia
-perplex_query_modes(perplexdir::String, scratchdir::String;
+perplex_query_modes(scratchdir::String;
     \tdof::Integer=1, index::Integer=1, include_fluid="y")
 ```
 
@@ -883,17 +896,18 @@ Results are returned as a dictionary.
 
 Currently returns wt% 
 """
-function perplex_query_modes(perplexdir::String, scratchdir::String;
+function perplex_query_modes(scratchdir::String;
     dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict)
     # Query a pre-defined path (isobar or geotherm)
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    if dof == 1 # v6.7.8 1d path
-        write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n")
+    if dof == 1 
+        write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n0\n1\n0\n") # v7.1.6 1d path
+        # write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n") # v6.7.8 1d path
     elseif dof == 2
         # v6.7.8 2d grid
         write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
@@ -905,8 +919,11 @@ function perplex_query_modes(perplexdir::String, scratchdir::String;
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.phm*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.phm")
@@ -986,31 +1003,34 @@ function perplex_query_modes(perplexdir::String, scratchdir::String;
 end
 """
 ```julia
-perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     \tindex::Integer=1, npoints::Integer=200, include_fluid="y")
 ```
 
 Query modal mineralogy (mass proportions) along a specified P-T path using a
 pre-computed pseudosection. Results are returned as a dictionary.
 """
-function perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+function perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     index::Integer=1, npoints::Integer=200, include_fluid="y", importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
+    # v6.7.8/7.1.6 pseudosection
     write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n25\nn\n$include_fluid\n0\n")
     close(fp)
 
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -1030,10 +1050,10 @@ function perplex_query_modes(perplexdir::String, scratchdir::String, P::NTuple{2
     end
     return result
 end
-function perplex_query_modes(perplexdir::String, scratchdir::String, P::AbstractArray, T::AbstractArray;
+function perplex_query_modes(scratchdir::String, P::AbstractArray, T::AbstractArray;
     index::Integer=1, include_fluid="y", importas=:Dict)
     # Query a new path from a pseudosection
-    werami = joinpath(perplexdir, "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Write TP data to file
@@ -1045,15 +1065,17 @@ function perplex_query_modes(perplexdir::String, scratchdir::String, P::Abstract
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
-    write(fp,"$index\n4\n2\nTP.tsv\n1\n25\nn\n$include_fluid\n0\n")
+    write(fp,"$index\n4\n2\nTP.tsv\n1\n25\nn\n$include_fluid\n0\n")  # v6.7.8/v7.1.6 pseudosection
     close(fp)
 
     # Make sure there isn"t already an output
     system("rm -f $(prefix)$(index)_1.tab*")
 
+    # Add any needed library paths
+    ldpathadjust = "DYLD_LIBRARY_PATH=$(first(Perple_X_jll.LIBPATH_list)):\$DYLD_LIBRARY_PATH"
+
     # Extract Perplex results with werami
-    system("cd $prefix; $werami < werami.bat > werami.log")
+    system("export $ldpathadjust; cd $prefix; $werami < werami.bat > werami.log")
 
     # Ignore initial and trailing whitespace
     system("sed -e \"s/^  *//\" -e \"s/  *\$//\" -i.backup $(prefix)$(index)_1.tab")
@@ -1218,7 +1240,7 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
     index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
     # Query a new path from a pseudosection
 
-    werami = joinpath(Perple_X_jll.PATH[], "werami")# path to PerpleX werami
+    werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
 
     # Write TP data to file
@@ -1230,7 +1252,7 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
+    # v6.7.8/7.1.6 pseudosection
     write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n1\n$include_fluid\n0\n")
     close(fp)
 

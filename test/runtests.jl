@@ -1,9 +1,5 @@
 using StatGeochem
-using Test, Statistics, StatsBase, Downloads, Perple_X_jll
-
-#TODO: move back to Resources when done testing
-@testset "Other Resources" begin include("testResources.jl") end
-@testset "Perplex" begin include("testPerplex.jl") end
+using Test, Statistics, Downloads, Perple_X_jll
 
 # Utilities
 @testset "Import" begin include("testImport.jl") end
@@ -15,5 +11,8 @@ using ImageIO, FileIO
 @testset "Other Utilities" begin include("testUtilities.jl") end
 
 # Resources
+@testset "Perplex" begin include("testPerplex.jl") end
 @testset "Crust 1.0" begin include("testCrust1.jl") end
 @testset "Litho 1.0" begin include("testLitho1.jl") end
+@testset "Other Resources" begin include("testResources.jl") end
+
