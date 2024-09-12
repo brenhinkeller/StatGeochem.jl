@@ -1,5 +1,5 @@
 using StatGeochem
-using Test, Statistics, Downloads, Perple_X_jll
+using Test, Statistics, Downloads
 
 @testset "All tests" begin
     # Utilities
