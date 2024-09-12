@@ -11,7 +11,7 @@ module StatGeochem
     using Polyester: @batch
 
     # General requirements
-    using DelimitedFiles, Random, Downloads
+    using DelimitedFiles, Random, Downloads, LazyArtifacts
     using ProgressMeter: @showprogress, Progress, update!, next!
     const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
     include("utilities/System.jl")
@@ -25,10 +25,12 @@ module StatGeochem
     include("utilities/Etc.jl")
 
     # Resources
-    using LazyArtifacts
     resourcepath = joinpath(homedir(),"resources")
     moduleresourcepath = joinpath(Base.source_dir(),"resources")
     export resourcepath, moduleresourcepath
+
+    using Perple_X_jll
+    include("resources/Perplex.jl")
 
     using FileIO: load
     using HDF5: h5read

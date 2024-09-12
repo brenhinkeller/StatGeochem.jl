@@ -55,4 +55,12 @@
 
    @test StatGeochem.rock_type_key isa NamedTuple
 
-## ---
+## --- Artifact tests
+
+   # using LazyArtifacts
+
+   # path = StatGeochem.artifact"perplex-datafiles"
+   # @test isdir(path)
+
+   # path = StatGeochem.artifact"perplex-datafiles/perplex-datafiles/solution_model.dat"
+   # @test isfile(path)
