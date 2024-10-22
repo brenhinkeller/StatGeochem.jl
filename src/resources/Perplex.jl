@@ -3,9 +3,9 @@
 """
 ```julia
 perplex_configure_geotherm(scratchdir::String, composition::Collection{Number},
-    \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+    \telements::String=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"],
     \tP_range=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
-    \tdataset::String="hp02ver.dat",
+    \tdataset::String="hp62ver.dat",
     \tindex::Integer=1,
     \tnpoints::Integer=100,
     \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
@@ -20,9 +20,9 @@ geothermal gradient and pressure (depth) range. P specified in bar and T_surf
 in Kelvin, with geothermal gradient in units of Kelvin/bar
 """
 function perplex_configure_geotherm(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"],
+        elements::Collection{String}=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"],
         P_range::NTuple{2,Number}=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
-        dataset::String="hp02ver.dat",
+        dataset::String="hp62ver.dat",
         index::Integer=1,
         npoints::Integer=100,
         solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
@@ -63,7 +63,7 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
     # Name, components, and basic options. P-T conditions.
     # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
     elementstring = join(elements .* "\n")
-    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v7.1.6
+    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v7.1.6/7.1.8
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v6.8.1
 
     # Whole-rock composition
@@ -72,9 +72,9 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
     end
     # Solution model
     if length(excludes) > 0
-        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nGeothermal")
+        write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nGeothermal") 
     else
-        write(fp,"\nn\nn\ny\nsolution_model.dat\n$(solution_phases)\nGeothermal")
+        write(fp,"\nn\nn\ny\nsolution_model.dat\n$(solution_phases)\n$fluid_eos\nGeothermal") 
     end
     close(fp)
 
@@ -95,7 +95,7 @@ export perplex_configure_geotherm
 """
 ```julia
 perplex_configure_isobar(scratchdir::String, composition::Collection{Number},
-    \telements::String=["SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"]
+    \telements::String=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"]
     \tP::Number=10000, T_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
     \tdataset::String="hp11ver.dat",
     \tindex::Integer=1,
@@ -112,7 +112,7 @@ Set up a PerpleX calculation for a single bulk composition along a specified
 isobaric temperature gradient. P specified in bar and T_range in Kelvin
 """
 function perplex_configure_isobar(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
         P::Number=10000, T_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
         dataset::String="hp11ver.dat",
         index::Integer=1,
@@ -159,7 +159,8 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
     # Name, components, and basic options. P-T conditions.
     # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
     elementstring = join(elements .* "\n")
-    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v7.1.6
+    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v7.1.8
+    # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v7.1.6
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v6.8.1
 
     # Whole-rock composition
@@ -167,7 +168,7 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
         write(fp,"$(composition[i]) ")
     end
     # Solution model
-    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nIsobaric")
+    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nIsobaric\n")
     close(fp)
 
     # Add any needed library paths
@@ -184,9 +185,9 @@ export perplex_configure_isobar
 """
 ```julia
 perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename::String="",
-    \telements::String=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+    \telements::String=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
     \tT_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
-    \tdataset::String="hp11ver.dat",
+    \tdataset::String="hp62ver.dat",
     \tindex::Integer=1,
     \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
     \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
@@ -203,9 +204,9 @@ pressure–temperature path with T as the independent variable.
 P specified in bar and T_range in Kelvin
 """
 function perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename = "",
-    elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+    elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
     T_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
-    dataset::String="hp11ver.dat",
+    dataset::String="hp62ver.dat",
     index::Integer=1,
     solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
     excludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
@@ -283,7 +284,8 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
     elementstring = join(elements .* "\n")
 
-    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\ny\n$PTfilename\ny\n") #7.1.6
+    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\ny\n") #7.1.8
+    # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\ny\n$PTfilename\ny\n") #7.1.6
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
     # Whole-rock composition
@@ -292,7 +294,9 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     end
 
     # Solution model
-    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nP-T Path")
+    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n5\nP-T Path") #7.1.8
+    # write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nP-T Path") #7.1.6
+
     close(fp)
 
     # Add any needed library paths
@@ -311,9 +315,9 @@ export perplex_configure_path
 """
 ```julia
 perplex_configure_pseudosection(scratchdir::String, composition::Collection{Number},
-    \telements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+    \telements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
     \tP::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
-    \tdataset::String="hp11ver.dat",
+    \tdataset::String="hp62ver.dat",
     \tindex::Integer=1,
     \txnodes::Integer=42,
     \tynodes::Integer=42,
@@ -328,9 +332,9 @@ Set up a PerpleX calculation for a single bulk composition across an entire
 2d P-T space. P specified in bar and T in Kelvin.
 """
 function perplex_configure_pseudosection(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=("SIO2","TIO2","AL2O3","FEO","MGO","CAO","NA2O","K2O","H2O"),
+        elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
         P::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
-        dataset::String="hp11ver.dat",
+        dataset::String="hp62ver.dat",
         index::Integer=1,
         xnodes::Integer=42,
         ynodes::Integer=42,
@@ -370,14 +374,14 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
     # Name, components, and basic options. P-T conditions.
     # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
     elementstring = join(elements .* "\n")
-    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\n$fluid_eos\nn\n2\n$(first(T))\n$(last(T))\n$(first(P))\n$(last(P))\ny\n") # v6.8.7
+    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\nn\n2\n$(first(T))\n$(last(T))\n$(first(P))\n$(last(P))\ny\n") # v6.8.7
 
     # Whole-rock composition
     for i ∈ eachindex(composition)
         write(fp,"$(composition[i]) ")
     end
     # Solution model
-    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\nPseudosection")
+    write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nPseudosection")
     close(fp)
 
     # Add any needed library paths
