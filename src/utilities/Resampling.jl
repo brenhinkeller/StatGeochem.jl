@@ -819,7 +819,7 @@
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views @turbo @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            @views @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             f!(fraction_means, N, view(dbs,:,1), fractions, xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
@@ -856,7 +856,7 @@
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
-            @views @turbo @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
+            @views @. fractions = dbs[:,2] / (dbs[:,2] + dbs[:,3])
             f!(fraction_means, W, view(dbs,:,1), fractions, view(dbs,:,4), xmin, xmax, nbins)
             @. means[:,i] = fraction_means / (1 - fraction_means)
         end
@@ -1007,7 +1007,7 @@
 
         if any(isnan, latᵣ) || any(isnan, lonᵣ) || any(isnan, ageᵥ)
             k = fill(Inf, length(latᵣ))
-            t = @turbo @. !(isnan(latᵣ) | isnan(lonᵣ) | isnan(ageᵥ))
+            t = @. !(isnan(latᵣ) | isnan(lonᵣ) | isnan(ageᵥ))
             k[t] .= invweight_nonans(latᵣ[t], lonᵣ[t], ageᵥ[t], lp, spatialscaleᵣ, materialize(agescale))
             return k
         else
@@ -1017,8 +1017,8 @@
     function invweight_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ::Number, agescale::Number)
 
         # Precalculate some sines and cosines
-        latsin = @turbo sin.(latᵣ)
-        latcos = @turbo cos.(latᵣ)
+        latsin = @. sin(latᵣ)
+        latcos = @. cos(latᵣ)
 
         # Allocate and fill ks
         N = length(latᵣ)
@@ -1041,8 +1041,8 @@
     function invweight_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, age::AbstractArray, lp::Number, spatialscaleᵣ, agescale)
 
         # Precalculate some sines and cosines
-        latsin = @turbo sin.(latᵣ)
-        latcos = @turbo cos.(latᵣ)
+        latsin = @. sin(latᵣ)
+        latcos = @. cos(latᵣ)
 
         # Allocate and fill ks
         N = length(latᵣ)
@@ -1051,7 +1051,7 @@
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds for i ∈ 1:N
             # Calculate weight
-            @turbo @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
+            @. spatialdistᵣ = acos(min( latsin[i] * latsin + latcos[i] * latcos * cos(lonᵣ[i] - lonᵣ), 1.0 ))
             @batch for g ∈ eachindex(spatialscaleᵣ)
                 for h ∈ eachindex(agescale)
                     kᵢ = 0.0
@@ -1090,7 +1090,7 @@
 
         if any(isnan, latᵣ) || any(isnan, lonᵣ)
             k = fill(Inf, length(latᵣ))
-            t = @turbo @. !(isnan(latᵣ) | isnan(lonᵣ))
+            t = @. !(isnan(latᵣ) | isnan(lonᵣ))
             k[t] .= invweight_location_nonans(latᵣ[t], lonᵣ[t], lp, spatialscaleᵣ)
             return k
         else
@@ -1101,8 +1101,8 @@
     function invweight_location_nonans(latᵣ::AbstractArray, lonᵣ::AbstractArray, lp::Number, spatialscaleᵣ::Number)
 
         # Precalculate some sines and cosines
-        latsin = @turbo sin.(latᵣ)
-        latcos = @turbo cos.(latᵣ)
+        latsin = @. sin(latᵣ)
+        latcos = @. cos(latᵣ)
 
         # Allocate and fill ks
         N = length(latᵣ)
@@ -1140,7 +1140,7 @@
         numsₘ = materialize(nums)
         if any(isnan, numsₘ)
             k = fill(Inf, length(numsₘ))
-            t = @turbo @. !isnan(numsₘ)
+            t = @. !isnan(numsₘ)
             k[t] .= invweight_nonans(numsₘ[t], scale, lp,)
             return k
         else
