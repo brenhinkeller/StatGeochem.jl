@@ -53,13 +53,13 @@
     @test isapprox(mean(dbs[:y]), 11, atol=1)
     @test isapprox(std(dbs[:y]), 6.06, atol=1)
 
-    @test bincounts(1:100, 0.0:11.11111111111111:100.0) == (5:10:95, fill(10,10))
+    @test bincounts(1:100, 0.0:10:100.0) == (5:10:95, fill(10,10))
     @test bincounts(1:100, 0, 100, 10) == (5:10:95, fill(10,10))
     c,N = bincounts(1:100, 0, 100, 10; relbinwidth=3)
     @test c == 5:10:95
     @test N == [20, 30, 30, 30, 30, 30, 30, 30, 30, 20]
 
-    @test binmeans(1:100, 1:100, 0.0:11.11111111111111:100.0) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
+    @test binmeans(1:100, 1:100, 0.0:10:100.0) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     @test binmeans(1:100, 1:100, 0, 100, 10) == (5:10:95, 5.5:10:95.5, fill(0.9574271077563381,10))
     c,m,e = binmeans(1:100, 1:100, 0, 100, 10; relbinwidth=3)
     @test c == 5:10:95
@@ -71,7 +71,7 @@
     @test m == [10.5, 15.5, 25.5, 35.5, 45.5, 55.5, 65.5, 75.5, 85.5, 90.5]
     @test e ≈ [1.3228756555322954, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.607275126832159, 1.3228756555322954]
 
-    @test binmedians(1:100,1:100,0.0:11.11111111111111:100.0) == (5:10:95, 5.5:10:95.5, fill(1.1720982147414096,10))
+    @test binmedians(1:100,1:100,0.0:10:100.0) == (5:10:95, 5.5:10:95.5, fill(1.1720982147414096,10))
     @test binmedians(1:100,1:100,0,100,10) == (5:10:95, 5.5:10:95.5, fill(1.1720982147414096,10))
     c,m,e = binmedians(1:100, 1:100, 0, 100, 10; relbinwidth=3)
     @test c == 5:10:95
@@ -108,13 +108,26 @@
 
     x = 0:100; y = 0:100
     xmin = 0; xmax = 100; nbins = 5
+    step = (xmax-xmin)/nbins
     (c,m,e) = bin_bsr(x, y, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
+    @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.5)
+
+    (c,m,e) = bin_bsr(x, y, xmin:step:xmax, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
     @test isapprox(e, [1.17, 1.21, 1.23, 1.26, 1.28], atol=0.5)
 
     # Upper and lower CIs
     (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
+    @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=1.0)
+    @test isapprox(eu, [2.3, 2.37, 2.42, 2.51, 2.51], atol=1.0)
+
+    # Upper and lower CIs
+    (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, xmin:step:xmax, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [10.04, 29.94, 49.94, 69.92, 89.83], atol=0.5)
     @test isapprox(el, [2.29, 2.38, 2.41, 2.49, 2.51], atol=1.0)
@@ -153,7 +166,14 @@
 
     x = 0:100; num = 0:100; denom=reverse(num)
     xmin = 0; xmax = 100; nbins = 5
+    step = (xmax-xmin)/nbins
     (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin, xmax, nbins, x_sigma=ones(101))
+    @test c == 10.0:20.0:90.0
+    @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
+    @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)
+    @test isapprox(eu, [0.03, 0.05, 0.1, 0.29, 3.03], rtol=0.4)
+
+    (c,m,el,eu) = bin_bsr_ratios(x, num, denom, xmin:step:xmax, x_sigma=ones(101))
     @test c == 10.0:20.0:90.0
     @test isapprox(m, [0.11, 0.43, 1.0, 2.33, 8.99], rtol=0.1)
     @test isapprox(el, [0.03, 0.05, 0.09, 0.26, 2.11], rtol=0.4)

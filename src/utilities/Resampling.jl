@@ -446,7 +446,7 @@
 
     See also `histcounts` for a more efficient implementation without variable bin width.
     """
-    bincounts(x::Collection, edges::AbstractRange; kwargs...) = bincounts(x,minimum(edges),maximum(edges),length(edges); kwargs...)
+    bincounts(x::Collection, edges::AbstractRange; kwargs...) = bincounts(x,minimum(edges),maximum(edges),length(edges)-1; kwargs...)
     function bincounts(x::Collection, xmin::Number, xmax::Number, nbins::Integer; 
             relbinwidth::Number=1
         )
@@ -486,7 +486,7 @@
     (c,m,e) = binmeans(x, y, 0, 4000, 40)
     ```
     """
-    binmeans(x::Collection, y::Collection, edges::AbstractRange, args...; kwargs...) = binmeans(x,y,minimum(edges),maximum(edges),length(edges), args...; kwargs...)
+    binmeans(x::Collection, y::Collection, edges::AbstractRange, args...; kwargs...) = binmeans(x,y,minimum(edges),maximum(edges),length(edges)-1, args...; kwargs...)
     function binmeans(x::Collection, y::Collection, xmin::Number, xmax::Number, nbins::Integer; 
             resamplingratio::Number=1, 
             relbinwidth::Number=1
@@ -533,10 +533,8 @@
 
     """
     ```julia
-    (c,m,e) = binmedians(x::AbstractArray, y::AbstractArray, min::Number, max::Number, nbins::Integer;
-        \tresamplingratio::Number=1
-        \trelbinwidth::Number=1
-    )
+    binmedians(x, y, xmin:step:xmax; resamplingratio=1 relbinwidth=1)
+    binmedians(x, y, xmin, xmax, nbins; resamplingratio=1 relbinwidth=1)
     ```
 
     The medians (ignoring NaNs) of `y` values binned by `x`, into each of `nbins`
@@ -550,10 +548,11 @@
 
     ### Examples
     ```julia
+    (c,m,e) = binmedians(x, y, 0:100:4000)
     (c,m,e) = binmedians(x, y, 0, 4000, 40)
     ```
     """
-    binmedians(x::Collection, y::Collection, edges::AbstractRange; kwargs...) = binmedians(x,y,minimum(edges),maximum(edges),length(edges); kwargs...)
+    binmedians(x::Collection, y::Collection, edges::AbstractRange; kwargs...) = binmedians(x,y,minimum(edges),maximum(edges),length(edges)-1; kwargs...)
     function binmedians(x::Collection, y::Collection, min::Number, max::Number, nbins::Integer; 
             resamplingratio::Number=1, 
             relbinwidth::Number=1
@@ -580,6 +579,13 @@
 
     """
     ```julia
+    bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin:step:xmax, [w];
+        \tx_sigma = zeros(size(x)),
+        \ty_sigma = zeros(size(y)),
+        \tnresamplings = 1000,
+        \tsem = :sigma,
+        \tp = 0.2
+    )
     bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \ty_sigma = zeros(size(y)),
@@ -632,7 +638,8 @@
     (c,m,el,eu) = bin_bsr(nanbinmean!, x, y, 0, 4000, 40, x_sigma=0.05x, p=probability, sem=:pctile)
     ```
     """
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer;
+    bin_bsr(f!::Function, x::AbstractVector, y::AbstractVecOrMat, edges::AbstractRange, args...; kwargs...) = bin_bsr(f!, x, y, minimum(edges),maximum(edges),length(edges)-1, args...; kwargs...)
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(y)),
             nresamplings = 1000,
@@ -675,7 +682,7 @@
             return c, means
         end
     end
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin, xmax, nbins::Integer;
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(y)),
             nresamplings = 1000,
@@ -726,7 +733,7 @@
             return c, means
         end
     end
-    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
+    function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
             x_sigma = zeros(size(x)),
             y_sigma = zeros(size(x)),
             nresamplings = 1000,
@@ -781,7 +788,14 @@
 
     """
     ```julia
-    (c, m, el, eu) = bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
+    bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];
+        \tx_sigma = zeros(size(x)),
+        \tnum_sigma = zeros(size(num)),
+        \tdenom_sigma = zeros(size(denom)),
+        \tnresamplings = 1000,
+        \tp::Union{Number,Vector} = 0.2
+    )
+    bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
         \tx_sigma = zeros(size(x)),
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
@@ -793,7 +807,15 @@
     Returns the bincenters `c`, means `m`, as well as upper (`el`) and lower (`eu`) 95% CIs of the mean
     for a ratio `num`/`den` binned by `x` into `nbins` equal bins between `xmin` and `xmax`,
     after `nresamplings` boostrap resamplings with acceptance probability `p`.
+
+    ### Examples
+    ```julia
+    julia> (c, m, el, eu) = bin_bsr_ratios(nanbinmean!, x, num, denom, xmin:step:xmax; x_sigma=0.05x)
+
+    julia> (c, m, el, eu) = bin_bsr_ratios(nanbinmean!, x, num, denom, xmin, xmax, nbins; x_sigma=0.05x)
+    ```
     """
+    bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, edges::AbstractRange, args...; kwargs...) = bin_bsr_ratios(f!, x, num, denom, minimum(edges), maximum(edges), length(edges)-1, args...; kwargs...)
     function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
             x_sigma::AbstractVector=zeros(size(x)),
             num_sigma::AbstractVector=zeros(size(num)),
