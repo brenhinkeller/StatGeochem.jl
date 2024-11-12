@@ -503,7 +503,8 @@ export perplex_query_point
 """
 ```julia
 perplex_query_seismic(scratchdir::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="n")
+    \tdof::Integer=1, index::Integer=1, include_fluid="n",
+    \tmanual_grid::Bool=false, npoints::Integer=100)
 ```
 
 Query perplex seismic results along a previously configured 1-d path (dof=1,
@@ -511,7 +512,8 @@ isobar or geotherm) or 2-d grid / pseudosection (dof=2).
 Results are returned as a dictionary.
 """
 function perplex_query_seismic(scratchdir::String;
-    dof::Integer=1, index::Integer=1, include_fluid::String="n", importas=:Dict)
+    dof::Integer=1, index::Integer=1, include_fluid::String="n", importas=:Dict,
+    manual_grid::Bool=false, npoints::Integer=100)
     # Query a pre-defined path (isobar or geotherm)
 
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
@@ -519,14 +521,29 @@ function perplex_query_seismic(scratchdir::String;
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    if dof == 1
-        write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n") # v7.1.6 1d path
-        # write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n") # v6.7.8 1d path
-    elseif dof == 2
-        # v6.7.8 2d grid
-        write(fp,"$index\n2\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n")
-    else
-        error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+    if manual_grid
+        # Edit perplex_option.dat to specify a manual grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
+        if dof == 1
+            write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n$npoints\n0\n") # v7.1.8+ 1d path
+            # write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\n0\n") # v6.7.8 1d path
+        elseif dof == 2
+            # v7.1.8+ 2d grid
+            write(fp,"$index\n2\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n$npoints\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
+    else 
+        # Edit perplex_option.dat to specify an automatic grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   T |/\" -i.backup $(prefix)perplex_option.dat")
+        if dof == 1
+            write(fp,"$index\n3\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n") # v7.1.6 1d path
+        elseif dof==2 
+            # v6.7.8 2d grid
+            write(fp,"$index\n2\n2\nn\n$include_fluid\n13\nn\n$include_fluid\n15\nn\n$include_fluid\n0\nn\n1\n0\n")
+        else 
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
     end
     close(fp)
 
@@ -660,7 +677,8 @@ export perplex_query_seismic
 """
 ```julia
 perplex_query_phase(scratchdir::String, phase::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true)
+    \tdof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true
+    \tmanual_grid::Bool=false, npoints::Integer=100)
 ```
 
 Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
@@ -668,7 +686,8 @@ along a previously configured 1-d path (dof=1, isobar, geotherm, or P–T path) 
 grid / pseudosection (dof=2). Results are returned as a dictionary.
 """
 function perplex_query_phase(scratchdir::String, phase::String;
-    dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+    dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict,
+    manual_grid::Bool=false, npoints::Integer=100)
     # Query a pre-defined path (isobar or geotherm)
 
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
@@ -676,19 +695,34 @@ function perplex_query_phase(scratchdir::String, phase::String;
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    if dof == 1
-        # v7.1.6, 1d path
-        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
 
-        # v6.7.8, 1d path
-        # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
-        # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-    elseif dof == 2
-        # 2d grid
-        write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8/v7.1.6
-    else
-        error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+    if manual_grid
+        # Edit perplex_option.dat to specify a manual grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
+        # if dof == 1
+            #v7.1.8+, 1d path
+            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n$npoints\n0\n")
+    
+            # v7.1.6, 1d path
+            # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
+    
+            # v6.7.8, 1d path
+            # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
+            # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
+        # elseif dof == 2
+            # 2d grid
+            # write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8/v7.1.6
+        # else
+            # error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        # end
+    else 
+        # Edit perplex_option.dat to specify an automatic grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   T |/\" -i.backup $(prefix)perplex_option.dat")
+
+        #v7.1.8+, 1d path
+        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
     end
+
     close(fp)
 
     # Make sure there isn"t already an output
@@ -743,7 +777,7 @@ end
 """
 ```julia
 perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true)
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
 ```
 
 Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
@@ -759,7 +793,7 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6 pseudosection
+    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6+ pseudosection
 
     # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
     # write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8 pseudosection
@@ -891,7 +925,8 @@ export perplex_query_phase
 """
 ```julia
 perplex_query_modes(scratchdir::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="y")
+    \tdof::Integer=1, index::Integer=1, include_fluid="y",
+    \tmanualgrid::Bool=false, npoints::Integer=100)
 ```
 
 Query modal mineralogy (mass proportions) along a previously configured 1-d
@@ -901,7 +936,8 @@ Results are returned as a dictionary.
 Currently returns wt% 
 """
 function perplex_query_modes(scratchdir::String;
-    dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict)
+    dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict,
+    manual_grid::Bool=false, npoints::Integer=100)
     # Query a pre-defined path (isobar or geotherm)
 
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
@@ -909,14 +945,32 @@ function perplex_query_modes(scratchdir::String;
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    if dof == 1 
-        write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n0\n1\n0\n") # v7.1.6 1d path
-        # write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n") # v6.7.8 1d path
-    elseif dof == 2
-        # v6.7.8 2d grid
-        write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
+    if manual_grid
+         # Edit perplex_option.dat to specify a manual grid size
+         system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
+        if dof == 1 
+            write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\nn\n$npoints\n0\n") # v7.1.8+ 1d path
+            # write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n0\n1\n0\n") # v7.1.6 1d path
+            # write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n") # v6.7.8 1d path
+        elseif dof == 2
+            # v6.7.8 2d grid 
+            #TODO: check this with a pseudosection example
+            write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
     else
-        error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+         # Edit perplex_option.dat to specify an automatic grid size
+         system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   T |/\" -i.backup $(prefix)perplex_option.dat")
+
+        if dof == 1 
+            write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n0\n1\n0\n") # v7.1.6 1d path
+        elseif dof == 2
+            # v6.7.8 2d grid
+            write(fp,"$index\n2\n25\nn\n$include_fluid\nn\n1\n0\n")
+        else
+            error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
+        end
     end
     close(fp)
 
@@ -1008,7 +1062,7 @@ end
 """
 ```julia
 perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y")
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", manual_grid::Bool=false)
 ```
 
 Query modal mineralogy (mass proportions) along a specified P-T path using a
@@ -1105,7 +1159,8 @@ export perplex_query_modes
 """
 ```julia
 perplex_query_system(scratchdir::String;
-    \tindex::Integer=1, include_fluid="y", clean_units::Bool=true)
+    \tindex::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict,
+    \tmanual_grid::Bool=false, npoints::Integer=100)
 ```?
 
 Query all perplex-calculated properties for the system (with or without fluid)
@@ -1114,7 +1169,8 @@ grid / pseudosection (dof=2). Results are returned as a dictionary.
 Set include_fluid="n" to return solid+melt only.
 """
 function perplex_query_system(scratchdir::String;
-    index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict)
+    index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict,
+    manual_grid::Bool=false, npoints::Integer=100)
     # Query a pre-defined path (isobar or geotherm)
     werami = joinpath(Perple_X_jll.PATH[], "werami")# path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
@@ -1122,8 +1178,19 @@ function perplex_query_system(scratchdir::String;
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
 
-    # v 7.1.6 (same for both dof=1 and dof=2)
-    write(fp,"$index\n3\n36\n1\n$include_fluid\nn\n1\n0\n")
+    if manual_grid
+        # Edit perplex_option.dat to specify a manual grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # v 7.1.8+ (same for both dof=1 and dof=2)
+        write(fp,"$index\n3\n36\n1\n$include_fluid\nn\n$npoints\n0\n")
+    else 
+        # Edit perplex_option.dat to specify an automatic grid size
+        system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   T |/\" -i.backup $(prefix)perplex_option.dat")
+
+        # v 7.1.6+ (same for both dof=1 and dof=2)
+        write(fp,"$index\n3\n36\n1\n$include_fluid\nn\n1\n0\n") #uses coarsest grid option
+    end
 
     # if dof == 1
     #     # v6.7.8, 1d path
@@ -1196,7 +1263,7 @@ function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    # v6.7.8 pseudosection
+    # v6.7.8+ pseudosection
     write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n1\n$include_fluid\n0\n")
     close(fp)
 
