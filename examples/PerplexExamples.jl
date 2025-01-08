@@ -8,9 +8,10 @@
 ## --- Configure
 
     # Absolute paths to perplex resources
-    perplexdir = joinpath(resourcepath,"perplex-stable")
+    # perplexdir = joinpath(resourcepath,"perplex-stable")
     scratchdir = "./scratch/" # Location of directory to store output files
 
+##-- 
     # Attempt to install perplex, if not already extant
     if !isfile(joinpath(perplexdir,"vertex"))
         # Make sure resourcepath exists
@@ -77,7 +78,8 @@
     JH_excludes = "ts\nparg\ngl\nged\nfanth\n"
 
     # Emphasis on phases from Holland and Powell -- all phases can be used with hp02ver.dat.
-    HP_solution_phases = "Omph(HP)\nOpx(HP)\nGlTrTsPg\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nChl(HP)\nCtd(HP)\nSapp(HP)\nSt(HP)\nIlHm(A)\nDo(HP)\nT\nB\nF\n"
+    # HP_solution_phases = "Omph(HP)\nOpx(HP)\nGlTrTsPg\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nChl(HP)\nCtd(HP)\nSapp(HP)\nSt(HP)\nIlHm(A)\nDo(HP)\nT\nB\nF\n"
+    HP_solution_phases = "Omph(HP)\nOpx(HP)\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nCtd(HP)\nSt(HP)\nIlHm(A)\nDo(HP)\nT\nB\nF\n"
     HP_excludes = ""
 
 ## --- # # # # # # # # # # # # # Isobaric example # # # # # # # # # # # # # # # #
@@ -96,7 +98,7 @@
     # )
 
     melt_model = "melt(HP)"
-    @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range,
+    @time perplex_configure_isobar(scratchdir, composition, elements, P, T_range,
         dataset="hp02ver.dat",
         npoints=100,
         excludes=HP_excludes,
@@ -106,13 +108,15 @@
 ## --- Query all properties at a single temperature -- results returned as text
 
     T = 850+273.15
-    data_isobaric = perplex_query_point(perplexdir, scratchdir, T) |> print
+    # data_isobaric = perplex_query_point(perplexdir, scratchdir, T) |> print
+    data_isobaric = perplex_query_point(scratchdir, T) |> print
+
 
 ## --- Query the full isobar -- results returned as dict
 
-    bulk = perplex_query_system(perplexdir, scratchdir)             # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
-    modes = perplex_query_modes(perplexdir, scratchdir)             # || phase modes
-    melt = perplex_query_phase(perplexdir, scratchdir, melt_model)  # || melt data
+    bulk = perplex_query_system(scratchdir)             # Get system data for all temperatures. Set include_fluid = "n" to get solid+melt only
+    modes = perplex_query_modes(scratchdir)             # || phase modes
+    melt = perplex_query_phase(scratchdir, melt_model)  # || melt data
 
     # Melt wt.% seems to be slightly inaccurate; use values from modes instead
     melt["wt_pct"] = modes[melt_model]
@@ -163,8 +167,11 @@
 ## --- Plot modes of all phases as a function of temperature
 
     h = plot(xlabel="T (C)", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
-    for m in modes["elements"][3:end]
-        plot!(h, modes["T(K)"] .- 273.15, modes[m], label=m)
+    # for m in modes["elements"][3:end]
+    for m in keys(modes)
+        if m != "system" && m != "T(K)"
+            plot!(h, modes["T(K)"] .- 273.15, modes[m], label=m)
+        end
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     savefig(h,"PhaseModes.pdf")
@@ -173,8 +180,11 @@
 ## --- Plot modes of all phases as a function of melt percent
 
     h = plot(xlabel="Percent melt", ylabel="Weight percent", title="$melt_model + G_solution_phases, $P bar")
-    for m in modes["elements"][3:end]
-        plot!(h, modes[melt_model], modes[m], label=m)
+    # for m in modes["elements"][3:end]
+    for m in keys(modes)
+        if m != "system" && m != "T(K)"
+            plot!(h, modes[melt_model], modes[m], label=m)
+        end
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     savefig(h,"PhaseModesvsF.pdf")
@@ -183,7 +193,7 @@
 ## --- Plot seismic properties
 
     # Query seismic properties along the whole profile
-    seismic = perplex_query_seismic(perplexdir, scratchdir)
+    seismic = perplex_query_seismic(scratchdir)
     seismic["vp/vs"][seismic["vp/vs"] .> 100] .= NaN # Exclude cases where vs drops to zero
 
     h = plot(xlabel="Pressure", ylabel="Property")
@@ -203,9 +213,9 @@
     melt_model = ""
 
     # Configure (run build and vertex)
-    @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+    @time perplex_configure_geotherm(scratchdir, composition, elements,
         P_range, T_surf, geotherm, dataset="hp02ver.dat", excludes=HP_excludes,
-        solution_phases=HP_solution_phases, npoints=200, index=2)
+        solution_phases=HP_solution_phases, npoints=200, index=2, mode_basis="wt")
 
     # # Alternative configuration, using hpha02ver.dat
     # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
@@ -220,11 +230,14 @@
 
 ## --- Plot modes of all phases as a function of temperature
 
-    modes = perplex_query_modes(perplexdir, scratchdir, index=2)             # || phase modes
+    modes = perplex_query_modes(scratchdir, index=2)             # || phase modes
 
     h = plot(xlabel="T (C)", ylabel="Weight percent")
-    for m in modes["elements"][3:end]
-        plot!(h, modes["T(K)"] .- 273.15, modes[m], label=m)
+    # for m in modes["elements"][3:end]
+    for m in keys(modes)
+        if m != "system" && m != "T(K)"
+            plot!(h, modes["T(K)"] .- 273.15, modes[m], label=m)
+        end
     end
     plot!(h,fg_color_legend=:white, framestyle=:box)
     savefig(h,"GeothermPhaseModes.pdf")
@@ -233,7 +246,7 @@
 ## --- Plot seismic properties
 
     # Query seismic properties along the whole profile
-    seismic = perplex_query_seismic(perplexdir, scratchdir, index=2)
+    seismic = perplex_query_seismic(scratchdir, index=2)
     seismic["vp/vs"][seismic["vp/vs"] .> 100] .= NaN # Exclude cases where vs drops to zero
 
     h = plot(xlabel="Pressure", ylabel="Property")
@@ -247,7 +260,7 @@
 ## --- Query all properties at a single pressure
 
     P = 10000
-    data_geotherm = perplex_query_point(perplexdir, scratchdir, P, index=2) |> print
+    data_geotherm = perplex_query_point(scratchdir, P, index=2) |> print
 
 ## --- Compare seismic properties for several different geotherms, as a function of Pressure
 
@@ -262,11 +275,11 @@
     for i=1:5
         geotherm = i/50
         # Configure (run build and vertex)
-        @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+        @time perplex_configure_geotherm(scratchdir, composition, elements,
             P_range, T_surf, geotherm, dataset=dataset, excludes=HP_excludes,
             solution_phases=HP_solution_phases, npoints=200, index=10+i)
         # Query perplex results
-        seismic = perplex_query_seismic(perplexdir, scratchdir, index=10+i)
+        seismic = perplex_query_seismic(scratchdir, index=10+i)
         # Plot results
         plot!(h,seismic["P(bar)"],seismic[yelem], label="$geotherm K/bar")
         display(h)
@@ -285,11 +298,11 @@
     for i=1:5
         geotherm = i/50
         # Configure (run build and vertex)
-        @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+        @time perplex_configure_geotherm(scratchdir, composition, elements,
             P_range, T_surf, geotherm, dataset=dataset, excludes=HP_excludes,
             solution_phases=HP_solution_phases, npoints=200, index=10+i)
         # Query perplex results
-        seismic = perplex_query_seismic(perplexdir, scratchdir, index=10+i)
+        seismic = perplex_query_seismic(scratchdir, index=10+i)
         # Plot results
         plot!(h,seismic["T(K)"],seismic[yelem], label="$geotherm K/bar")
         display(h)
@@ -305,15 +318,15 @@
     melt_model = ""
 
     # Configure (run build and vertex)
-    @time perplex_configure_pseudosection(perplexdir, scratchdir, composition,
-        elements, P_range, T_range, dataset="hpha02ver.dat", excludes=HP_excludes,
-        solution_phases=melt_model*HP_solution_phases, index=3, xnodes=200, ynodes=200)
+    @time perplex_configure_pseudosection(scratchdir, composition,
+        elements, P_range, T_range, dataset="hp02ver.dat", excludes=HP_excludes,
+        solution_phases=melt_model*HP_solution_phases, index=3, xnodes=100, ynodes=100)
 
 
 ## --- Query modes from a pseudosection
 
     geotherm = 0.015 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
-    @time modes = perplex_query_modes(perplexdir, scratchdir, [280, (max_lith_T-273.15)/geotherm], T_range, index=3, npoints=200)
+    @time modes = perplex_query_modes(scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=100)
 
     h = plot(xlabel="T (C)", ylabel="Weight percent")
     for m in modes["elements"][3:end]
@@ -326,7 +339,7 @@
 ## --- Query seismic properties from a pseudosection
 
     geotherm = 0.15 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
-    @time seismic = perplex_query_seismic(perplexdir, scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200)
+    @time seismic = perplex_query_seismic(scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200)
 
     h = plot(xlabel="Pressure", ylabel="Property")
     plot!(h,seismic["P(bar)"],seismic["vp,km/s"], label="vp,km/s")
@@ -334,12 +347,12 @@
     plot!(h,seismic["P(bar)"],seismic["rho,kg/m3"]/1000, label="rho, g/cc")
     plot!(h,seismic["P(bar)"],seismic["T(K)"]/1000, label="T(K)/1000")
     # savefig(h,"GeothermSeismicProperties.pdf")
-    # display(h)
+    display(h)
 
 ## ---
 
     geotherm = 0.15 # Geothermal gradient, K/bar. For reference, 0.1 K/bar ≈ 28.4 K/km
-    @time bulk = perplex_query_system(perplexdir, scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200, include_fluid="n")
+    @time bulk = perplex_query_system(scratchdir, (280, (max_lith_T-273.15)/geotherm), T_range, index=3, npoints=200, include_fluid="n")
 
     h = plot(xlabel="Pressure", ylabel="Property")
     plot!(h,bulk["P(bar)"],bulk["vp,km/s"], label="vp,km/s")
@@ -347,6 +360,6 @@
     plot!(h,bulk["P(bar)"],bulk["rho,kg/m3"]/1000, label="rho, g/cc")
     plot!(h,bulk["P(bar)"],bulk["T(K)"]/1000, label="T(K)/1000")
     # savefig(h,"GeothermSeismicProperties.pdf")
-    # display(h)
+    display(h)
 
 ## --- End of File
