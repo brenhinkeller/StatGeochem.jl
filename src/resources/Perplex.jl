@@ -701,7 +701,7 @@ function perplex_query_phase(scratchdir::String, phase::String;
         system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
         # if dof == 1
             #v7.1.8+, 1d path
-            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n$npoints\n0\n")
+            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n$npoints\n5\n0\n") #5 is for the case of immiscible phases
     
             # v7.1.6, 1d path
             # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
