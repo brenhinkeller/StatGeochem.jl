@@ -1,0 +1,54 @@
+DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
+Synthetic silicic peraluminous melt	Muscovite	14	Si	0.73	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	22	Ti	7.28	1.19			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	13	Al	1.97	0.06			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	12	Mg	16	2.98			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	20	Са	0.12	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	25	Mn	1	0.14			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	26	Fe	5.17	0.34			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	38	Sr	0.52	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	56	Ва	5.62	1.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	11	Na	0.4	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	19	K	2.54	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.51	0.11			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.23	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	9	F	1.92	0.15			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
+Synthetic silicic peraluminous melt	Muscovite	14	Si	0.74	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	22	Ti	4.44	0.59			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	13	Al	1.89	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	12	Mg	10.75	1.38			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	20	Са	0.14	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	25	Mn	1	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	26	Fe	4.28	0.37			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	38	Sr	0.49	0.09			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	56	Ва	3.41	0.42			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	11	Na	0.35	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	19	K	2.58	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.75	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.24	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	9	F	1.81	0.07			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
+Synthetic silicic peraluminous melt	Muscovite	14	Si	0.69	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	22	Ti	8.29	1.36			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	13	Al	2.06	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	12	Mg	20.75	5.27			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	20	Са	0.03	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	25	Mn	1.5	0.15			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	26	Fe	6.91	0.76			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	11	Na	0.24	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	19	K	2.46	0.05			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.56	0.05			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.16	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic silicic peraluminous melt	Muscovite	9	F	1.68	0.08			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
+Synthetic pegmatite	Muscovite	9	F	1.04				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 4		74.4	5
+Synthetic pegmatite	Muscovite	3	Li	0.17				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 4		74.4	5
+Synthetic pegmatite	Muscovite	4	Be	0.34				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 4		74.4	5
+Synthetic pegmatite	Muscovite	9	F	0.95				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 17		72.7	5
+Synthetic pegmatite	Muscovite	3	Li	0.12				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 17		72.7	5
+Synthetic pegmatite	Muscovite	4	Be	1.61				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 17		72.7	5
+Synthetic pegmatite	Muscovite	9	F	1.14				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 20		73.8	5
+Synthetic pegmatite	Muscovite	3	Li	0.22				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 20		73.8	5
+Synthetic pegmatite	Muscovite	4	Be	1.59				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 20		73.8	5
+Synthetic pegmatite	Muscovite	9	F	0.94				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 77		74.3	5
+Synthetic pegmatite	Muscovite	3	Li	0.24				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 77		74.3	5
+Synthetic pegmatite	Muscovite	4	Be	0.85				Experimental	Pichavant et al. 20166	Solid-Melt	Sample 77		74.3	5
