@@ -100,7 +100,6 @@
     # where a = 4π E Na / RT
     @. blundy_wood(x,param) = param[1] + param[2] * (param[3]/2*(x-param[3])^2 + 1/3*(x-param[3])^3)
 
-    # for mineral={'Apatite','Amphibole','Clinopyroxene','Orthopyroxene','Garnet','Sphene','Allanite','Baddeleyite'}
     for m in pd["minerals"]
         h = plot(title=m, legend=:bottomleft)
         for i ∈ eachindex(pd["samples"])

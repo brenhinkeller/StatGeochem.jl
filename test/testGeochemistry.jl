@@ -92,7 +92,7 @@
     @test perplex_abbreviate_name.(full_names) == abbreviations
     @test perplex_phase_is_solid.(("melt(HGP)", "q", "diL", "andr", "T(K)")) == (false, true, false, true, false)
 
-    @test findall(germ_perplex_name_matches.(germ_kd["minerals"], germ_kd["minerals"])) == [3, 12, 18]
+    @test findall(germ_perplex_name_matches.(germ_kd["minerals"], germ_kd["minerals"])) == [3, 12, 19]
 
 ## --- Saturation models
 
