@@ -44,6 +44,7 @@
    @test molarmasspercation["TiO2"] ≈ 79.8651
    @test ionicradius.La ≈ 117.2
    @test ioniccharge.La == +3
+   @test atomicnumber.La == 57
 
 ## --- Geology.jl
 
