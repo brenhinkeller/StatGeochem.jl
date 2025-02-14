@@ -1,0 +1,17 @@
+DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
+Synthetic anorthositic melt	Zoisite	57	La	3.87				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	58	Ce	4.66				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	59	Pr	4.95				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	60	Nd	4.91				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	62	Sm	4.7				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	63	Eu	4.11				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	64	Gd	3.6				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	65	Tb	2.98				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	66	Dy	2.57				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	39	Y	2.3				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	67	Ho	2.1				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	68	Er	1.65				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	69	Tm	1.4				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	70	Yb	1.05				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
+Synthetic anorthositic melt	Zoisite	71	Lu	0.93				Experimental	Frei et al. 2003	Solid-Melt			44.9	5
