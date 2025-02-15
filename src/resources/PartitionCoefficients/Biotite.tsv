@@ -1,349 +1,374 @@
-EarthRef.org -- GERM Partition Coefficient (Kd) Database
-Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
-
-DATA:
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
-Per-Aluminous Granite	Biotite	3	Li	45.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	4	Be	15.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	21	Sc	42.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	23	V	79.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	24	Cr	42.3				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	28	Ni	9.66				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	30	Zn	2.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	37	Rb	6.98				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	38	Sr	.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	39	Y	.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	41	Nb	24.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	42	Mo	1.58				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	55	Cs	26.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	56	Ba	.59				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	57	La	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	58	Ce	.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	59	Pr	.07				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	60	Nd	.08				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	62	Sm	.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	63	Eu	.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	64	Gd	.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	65	Tb	.18				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	66	Dy	.17				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	67	Ho	.16				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	68	Er	.22				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	69	Tm	.22				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	70	Yb	.12				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	71	Lu	.2				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	73	Ta	29.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	81	Tl	8.6				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	82	Pb	.04				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	90	Th	.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Per-Aluminous Granite	Biotite	92	U	.26				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	25	Mn	7.47				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	26	Fe	25.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	28	Ni	23.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	29	Cu				1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	30	Zn	16.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	31	Ga	4.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	32	Ge				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	37	Rb	5.27				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	38	Sr	.31				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	39	Y	.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	40	Zr	.59				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	41	Nb			7.5		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	56	Ba	13.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Biotite	82	Pb	.89				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	25	Mn	15.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	26	Fe	59.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	29	Cu	20.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	30	Zn	31.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	31	Ga	3.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	32	Ge				4.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	37	Rb	9.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	38	Sr	7.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	39	Y	2.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	40	Zr	.47				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	41	Nb	9.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	82	Pb	2.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	25	Mn	5.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	26	Fe	22.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	28	Ni			15.1		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	29	Cu	72.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	30	Zn	11.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	31	Ga	1.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	32	Ge				1.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	37	Rb	2.46				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	38	Sr	.25				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	39	Y	2.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	40	Zr	.19				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	41	Nb	4.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	56	Ba	6.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Biotite	82	Pb	.21				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	3	Li	.144				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	37	Rb	5.18				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	38	Sr	.183				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	39	Y	.007				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	40	Zr	.0232				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	41	Nb	.0853				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	55	Cs	.626				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	56	Ba	3.48				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	58	Ce	.0078				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	73	Ta	.1069				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Lamprophyre	Biotite	90	Th				.0145	Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	40	Zr	.1362				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	57	La	.0322				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	58	Ce	.0175				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	60	Nd	.0255				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	62	Sm	.0365				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	66	Dy	.0406				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	68	Er	.0424				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	70	Yb	.0484				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	71	Lu	.0494				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Per-Alkaline Basalt	Biotite	72	Hf	.1456				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Dacite	Biotite	11	Na	.096				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	12	Mg	22.2				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	13	Al	1.33				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	14	Si	.537				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	19	K	2.5				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	20	Ca	.615				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	21	Sc	11.3				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	24	Cr	12.6				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	25	Mn	6				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	27	Co	28.5				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	37	Rb	2.24				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	55	Cs	2.02				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	56	Ba	9.7				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	57	La	.272				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	58	Ce	.318				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	62	Sm	.26				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	63	Eu	.237				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	64	Gd	.282				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	65	Tb	.258				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	70	Yb	.44				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	71	Lu	.33				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	72	Hf	2.1				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite	Biotite	90	Th	.31				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Granite	Biotite	9	F			1.59	7.19	Experimental	Icenhower & London 1997	Solid-Melt		12-DEC-2000
-Granite	Biotite	17	Cl			1.22	6.25	Experimental	Icenhower & London 1997	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	3	Li	.064				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	4	Be	.95				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	9	F	2				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	37	Rb	2.48				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	38	Sr	.159				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	39	Y	.018				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	40	Zr	.017				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	41	Nb	.088				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	56	Ba	3.68				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	57	La	.028				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	57	La	.028				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	60	Nd	.012				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	64	Gd	.016				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	72	Hf	.19				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	82	Pb	.1				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	90	Th	.0014				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Biotite	92	U	.0011				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	21	Sc			13.1	18.1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	24	Cr			3.7	6.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	25	Mn			7.9	13.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	27	Co			79	101	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	30	Zn			13	19	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	37	Rb			3	5.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	55	Cs			1.2	3.1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	56	Ba			3.7	7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	57	La			2.59	3.55	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	58	Ce			2.15	3.49	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	60	Nd			1.8	2.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	62	Sm			1.28	1.76	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	63	Eu			.73	1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	65	Tb			.66	1.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	66	Dy			.5	1.05	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	70	Yb			.32	.69	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	71	Lu			.39	.8	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	72	Hf			.47	.68	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	73	Ta			1.31	1.36	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	90	Th			.511	1.74	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Biotite	92	U			.131	.19	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000
-Dacite	Biotite	3	Li	.39				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	21	Sc	11.3				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	24	Cr	19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	25	Mn	5.95				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	27	Co	28.5				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	30	Zn	20				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	37	Rb	3.53				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	38	Sr	.363				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	49	In	3.9				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	55	Cs	2.35				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	56	Ba	8.67				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	57	La	.318				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	58	Ce	.377				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	62	Sm	.39				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	63	Eu	.328				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	64	Gd	.442				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	65	Tb	.393				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	70	Yb	.67				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	71	Lu	.743				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	72	Hf	2.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Dacite	Biotite	90	Th	.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	21	Sc			4.9	20	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	24	Cr			8.3	31	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	25	Mn			13.6	205	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	30	Zn			42	230	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	37	Rb			2.3	4.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	38	Sr			.29	.53	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	39	Y			1	1.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	40	Zr			.79	1.8	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	41	Nb			4	9.5	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	42	Mo			1.7	5.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	55	Cs			1.2	4.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	56	Ba			5.6	36	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	57	La			.76	15.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	58	Ce			.86	11	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	60	Nd			.9	5.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	62	Sm			1	4.3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	63	Eu			.59	4.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	65	Tb			.87	3.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	66	Dy			.76	3.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	70	Yb			.6	3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	71	Lu			.6	3.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	72	Hf			.44	.84	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	73	Ta			1.2	1.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	82	Pb			.1	1.6	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	90	Th			.27	2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	92	U			.46	1.2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000
-Dacite	Biotite	19	K	5.63				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	37	Rb	3.26				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	38	Sr	.12				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	56	Ba	6.36				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	19	K	2.65				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	37	Rb	3.06				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	38	Sr	.0812				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	56	Ba	1.09				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Rhyolite-Dacite	Biotite	19	K	1.01				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Rhyolite-Dacite	Biotite	37	Rb	.936				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Rhyolite-Dacite	Biotite	38	Sr	.672				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Rhyolite-Dacite	Biotite	56	Ba	15.3				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	58	Ce	.037				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	60	Nd	.044				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	62	Sm	.058				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	63	Eu	.145				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	64	Gd	.082				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	66	Dy	.097				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	68	Er	.162				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Dacite	Biotite	70	Yb	.179				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	58	Ce	.034				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	60	Nd	.032				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	62	Sm	.031				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	63	Eu	.03				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	64	Gd	.03				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	66	Dy	.03				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	68	Er	.034				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Phonolite	Biotite	70	Yb	.042				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	58	Ce	.234				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	60	Nd	.339				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	62	Sm	.392				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	63	Eu	.501				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	64	Gd	.353				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	66	Dy	.2				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	68	Er	.171				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	70	Yb	.165				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Rhyolite	Biotite	71	Lu	.208				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Latite	Biotite	21	Sc	2.23				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	24	Cr	.13				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	27	Co	4				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	28	Ni	3.33				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	37	Rb	1.52				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	38	Sr	.43				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	40	Zr	.14				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	51	Sb	.3				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	55	Cs	.38				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	56	Ba	5.66				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	57	La	.28				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	63	Eu	.4				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	65	Tb	.35				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	72	Hf	.23				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	73	Ta	.97				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	90	Th	.16				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Latite	Biotite	92	U	.17				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	21	Sc			2.81	5.56	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	24	Cr			1.52	10	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	27	Co			6.32	133	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	28	Ni			4.25	175	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	37	Rb			1.35	1.58	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	38	Sr			.2	.78	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	40	Zr			.13	.28	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	51	Sb	.08				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	55	Cs			.56	.79	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	56	Ba			4.04	21.5	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	57	La			.17	.57	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	63	Eu			.34	.81	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	65	Tb			.24	.71	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	72	Hf			.13	.15	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	73	Ta			.74	1.02	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	90	Th			.09	.11	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte	Biotite	92	U	.08				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	21	Sc	10.1				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	24	Cr	14				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	27	Co	36.2				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	28	Ni	108				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	37	Rb	.82				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	40	Zr	.09				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	51	Sb	.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	55	Cs	.19				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	56	Ba	52				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	57	La	.12				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	63	Eu	.56				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	65	Tb	.2				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	72	Hf	.06				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	73	Ta	.33				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	90	Th	.03				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Trachyte-Phonolite	Biotite	92	U	.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	21	Sc	8.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	24	Cr	5.4				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	27	Co	23				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	28	Ni	1.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	37	Rb	1.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	38	Sr	.7				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	40	Zr	2.5				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	55	Cs	1.09				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	56	Ba	10				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	57	La	.7				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	63	Eu	1.08				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	65	Tb	1.06				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	72	Hf	1.8				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	73	Ta	.56				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	90	Th	.12				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Biotite	92	U	.13				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-
-LINKS TO REFERENCES:
-Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168
-Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
-Foley et al. 1996 - http://earthref.org/cgi-bin/err.cgi?n=342
-Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
-Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112
-Icenhower & London 1997 - http://earthref.org/cgi-bin/err.cgi?n=120
-Latourrette et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=155
-Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186
-Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190
-Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217
-Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
-Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
-Villemant 1988 - http://earthref.org/cgi-bin/err.cgi?n=278
-Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277
-
-ACKNOWLEDGEMENTS:
-Sponsored by NSF -- EAR 0000998
-Supported by the San Diego SuperComputer Center
-
-DATABASE STATISTICS:
-EarthRef.org Database Version: 
-Search Time: 29 January 2013 12:00:05 PM
-
-LINKS TO EARTHREF.ORG:
-Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
-Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=biotite&term=&term=&term_type=mineral&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
-
-SEARCH VALUES:
-Search Term(s):  biotite (Mineral)
-Rock Type: Any Rock Type
-Mineral: Any Mineral
-Element Family: Any Element Family
-Reference: Bea et al. 1994
-Sort by: Reference
-
+EarthRef.org -- GERM Partition Coefficient (Kd) Database														
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen														
+														
+DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
+Per-Aluminous Granite	Biotite	3	Li	45.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	4	Be	15.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	21	Sc	42.4				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	23	V	79.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	24	Cr	42.3				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	28	Ni	9.66				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	30	Zn	2.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	37	Rb	6.98				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	38	Sr	0.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	39	Y	0.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	41	Nb	24.5				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	42	Mo	1.58				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	55	Cs	26.8				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	56	Ba	0.59				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	57	La	0.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	58	Ce	0.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	59	Pr	0.07				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	60	Nd	0.08				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	62	Sm	0.06				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	63	Eu	0.05				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	64	Gd	0.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	65	Tb	0.18				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	66	Dy	0.17				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	67	Ho	0.16				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	68	Er	0.22				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	69	Tm	0.22				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	70	Yb	0.12				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	71	Lu	0.2				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	73	Ta	29.1				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	81	Tl	8.6				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	82	Pb	0.04				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	90	Th	0.01				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Aluminous Granite	Biotite	92	U	0.26				Phenocryst-Matrix	Bea et al. 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	25	Mn	7.47				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	26	Fe	25.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	28	Ni	23.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	29	Cu				1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	30	Zn	16.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	31	Ga	4.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	32	Ge				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	37	Rb	5.27				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	38	Sr	0.31				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	39	Y	0.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	40	Zr	0.59				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	41	Nb			7.5		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	56	Ba	13.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	82	Pb	0.89				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	25	Mn	15.5				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	26	Fe	59.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	29	Cu	20.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	30	Zn	31.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	31	Ga	3.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	32	Ge				4.3	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	37	Rb	9.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	38	Sr	7.2				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	39	Y	2.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	40	Zr	0.47				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	41	Nb	9.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	82	Pb	2.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	25	Mn	5.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	26	Fe	22.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	28	Ni			15.1		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	29	Cu	72.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	30	Zn	11.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	31	Ga	1.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	32	Ge				1.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	37	Rb	2.46				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	38	Sr	0.25				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	39	Y	2.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	40	Zr	0.19				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	41	Nb	4.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	56	Ba	6.4				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Low Silica Rhyolite	Biotite	82	Pb	0.21				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	3	Li	0.144				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	37	Rb	5.18				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	38	Sr	0.183				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	39	Y	0.007				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	40	Zr	0.0232				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	41	Nb	0.0853				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	55	Cs	0.626				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	56	Ba	3.48				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	58	Ce	0.0078				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	73	Ta	0.1069				Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Lamprophyre	Biotite	90	Th				0.0145	Phenocryst-Matrix	Foley et al. 1996	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	40	Zr	0.1362				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	57	La	0.0322				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	58	Ce	0.0175				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	60	Nd	0.0255				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	62	Sm	0.0365				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	66	Dy	0.0406				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	68	Er	0.0424				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	70	Yb	0.0484				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	71	Lu	0.0494				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Per-Alkaline Basalt	Biotite	72	Hf	0.1456				Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	11	Na	0.096				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	12	Mg	22.2				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	13	Al	1.33				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	14	Si	0.537				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	19	K	2.5				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	20	Ca	0.615				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	21	Sc	11.3				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	24	Cr	12.6				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	25	Mn	6				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	27	Co	28.5				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	37	Rb	2.24				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	55	Cs	2.02				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	56	Ba	9.7				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	57	La	0.272				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	58	Ce	0.318				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	62	Sm	0.26				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	63	Eu	0.237				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	64	Gd	0.282				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	65	Tb	0.258				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	70	Yb	0.44				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	71	Lu	0.33				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	72	Hf	2.1				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	90	Th	0.31				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Biotite	9	F			1.59	7.19	Experimental	Icenhower & London 1997	Solid-Melt		12-DEC-2000	NaN	NaN
+Granite	Biotite	17	Cl			1.22	6.25	Experimental	Icenhower & London 1997	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	3	Li	0.064				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	4	Be	0.95				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	9	F	2				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	37	Rb	2.48				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	38	Sr	0.159				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	39	Y	0.018				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	40	Zr	0.017				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	41	Nb	0.088				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	56	Ba	3.68				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	57	La	0.028				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	57	La	0.028				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	60	Nd	0.012				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	64	Gd	0.016				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	72	Hf	0.19				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	82	Pb	0.1				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	90	Th	0.0014				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+Basanite-Basalt	Biotite	92	U	0.0011				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	21	Sc			13.1	18.1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	24	Cr			3.7	6.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	25	Mn			7.9	13.4	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	27	Co			79	101	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	30	Zn			13	19	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	37	Rb			3	5.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	55	Cs			1.2	3.1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	56	Ba			3.7	7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	57	La			2.59	3.55	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	58	Ce			2.15	3.49	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	60	Nd			1.8	2.7	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	62	Sm			1.28	1.76	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	63	Eu			0.73	1	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	65	Tb			0.66	1.3	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	66	Dy			0.5	1.05	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	70	Yb			0.32	0.69	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	71	Lu			0.39	0.8	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	72	Hf			0.47	0.68	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	73	Ta			1.31	1.36	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	90	Th			0.511	1.74	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+High Silica Rhyolite	Biotite	92	U			0.131	0.19	Phenocryst-Matrix	Mahood & Hildreth 1983	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	3	Li	0.39				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	21	Sc	11.3				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	24	Cr	19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	25	Mn	5.95				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	27	Co	28.5				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	30	Zn	20				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	37	Rb	3.53				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	38	Sr	0.363				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	49	In	3.9				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	55	Cs	2.35				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	56	Ba	8.67				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	57	La	0.318				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	58	Ce	0.377				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	62	Sm	0.39				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	63	Eu	0.328				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	64	Gd	0.442				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	65	Tb	0.393				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	70	Yb	0.67				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	71	Lu	0.743				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	72	Hf	2.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	90	Th	0.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	21	Sc			4.9	20	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	24	Cr			8.3	31	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	25	Mn			13.6	205	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	30	Zn			42	230	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	37	Rb			2.3	4.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	38	Sr			0.29	0.53	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	39	Y			1	1.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	40	Zr			0.79	1.8	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	41	Nb			4	9.5	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	42	Mo			1.7	5.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	55	Cs			1.2	4.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	56	Ba			5.6	36	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	57	La			0.76	15.1	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	58	Ce			0.86	11	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	60	Nd			0.9	5.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	62	Sm			1	4.3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	63	Eu			0.59	4.7	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	65	Tb			0.87	3.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	66	Dy			0.76	3.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	70	Yb			0.6	3	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	71	Lu			0.6	3.4	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	72	Hf			0.44	0.84	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	73	Ta			1.2	1.9	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	82	Pb			0.1	1.6	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	90	Th			0.27	2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	92	U			0.46	1.2	Phenocryst-Matrix	Nash & Crecraft 1985	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	19	K	5.63				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	37	Rb	3.26				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	38	Sr	0.12				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	56	Ba	6.36				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	19	K	2.65				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	37	Rb	3.06				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	38	Sr	0.0812				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	56	Ba	1.09				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite-Dacite	Biotite	19	K	1.01				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite-Dacite	Biotite	37	Rb	0.936				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite-Dacite	Biotite	38	Sr	0.672				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite-Dacite	Biotite	56	Ba	15.3				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	58	Ce	0.037				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	60	Nd	0.044				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	62	Sm	0.058				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	63	Eu	0.145				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	64	Gd	0.082				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	66	Dy	0.097				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	68	Er	0.162				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Dacite	Biotite	70	Yb	0.179				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	58	Ce	0.034				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	60	Nd	0.032				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	62	Sm	0.031				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	63	Eu	0.03				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	64	Gd	0.03				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	66	Dy	0.03				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	68	Er	0.034				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Phonolite	Biotite	70	Yb	0.042				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	58	Ce	0.234				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	60	Nd	0.339				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	62	Sm	0.392				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	63	Eu	0.501				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	64	Gd	0.353				Interpolated	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	66	Dy	0.2				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	68	Er	0.171				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	70	Yb	0.165				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Rhyolite	Biotite	71	Lu	0.208				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	21	Sc	2.23				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	24	Cr	0.13				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	27	Co	4				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	28	Ni	3.33				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	37	Rb	1.52				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	38	Sr	0.43				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	40	Zr	0.14				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	51	Sb	0.3				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	55	Cs	0.38				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	56	Ba	5.66				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	57	La	0.28				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	63	Eu	0.4				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	65	Tb	0.35				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	72	Hf	0.23				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	73	Ta	0.97				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	90	Th	0.16				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Latite	Biotite	92	U	0.17				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	21	Sc			2.81	5.56	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	24	Cr			1.52	10	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	27	Co			6.32	133	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	28	Ni			4.25	175	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	37	Rb			1.35	1.58	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	38	Sr			0.2	0.78	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	40	Zr			0.13	0.28	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	51	Sb	0.08				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	55	Cs			0.56	0.79	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	56	Ba			4.04	21.5	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	57	La			0.17	0.57	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	63	Eu			0.34	0.81	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	65	Tb			0.24	0.71	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	72	Hf			0.13	0.15	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	73	Ta			0.74	1.02	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	90	Th			0.09	0.11	Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte	Biotite	92	U	0.08				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	21	Sc	10.1				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	24	Cr	14				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	27	Co	36.2				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	28	Ni	108				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	37	Rb	0.82				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	40	Zr	0.09				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	51	Sb	0.01				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	55	Cs	0.19				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	56	Ba	52				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	57	La	0.12				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	63	Eu	0.56				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	65	Tb	0.2				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	72	Hf	0.06				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	73	Ta	0.33				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	90	Th	0.03				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Trachyte-Phonolite	Biotite	92	U	0.02				Phenocryst-Matrix	Villemant 1988	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	21	Sc	8.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	24	Cr	5.4				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	27	Co	23				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	28	Ni	1.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	37	Rb	1.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	38	Sr	0.7				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	40	Zr	2.5				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	55	Cs	1.09				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	56	Ba	10				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	57	La	0.7				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	63	Eu	1.08				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	65	Tb	1.06				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	72	Hf	1.8				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	73	Ta	0.56				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	90	Th	0.12				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+Alkali Basalt	Biotite	92	U	0.13				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000	NaN	NaN
+														
+LINKS TO REFERENCES:														
+Bea et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=168														
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337														
+Foley et al. 1996 - http://earthref.org/cgi-bin/err.cgi?n=342														
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346														
+Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112														
+Icenhower & London 1997 - http://earthref.org/cgi-bin/err.cgi?n=120														
+Latourrette et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=155														
+Mahood & Hildreth 1983 - http://earthref.org/cgi-bin/err.cgi?n=186														
+Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190														
+Nash & Crecraft 1985 - http://earthref.org/cgi-bin/err.cgi?n=217														
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232														
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240														
+Villemant 1988 - http://earthref.org/cgi-bin/err.cgi?n=278														
+Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277														
+														
+ACKNOWLEDGEMENTS:														
+Sponsored by NSF -- EAR 0000998														
+Supported by the San Diego SuperComputer Center														
+														
+DATABASE STATISTICS:														
+EarthRef.org Database Version: 														
+Search Time: 29 January 2013 12:00:05 PM														
+														
+LINKS TO EARTHREF.ORG:														
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi														
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=biotite&term=&term=&term_type=mineral&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&														
+														
+SEARCH VALUES:														
+Search Term(s):  biotite (Mineral)														
+Rock Type: Any Rock Type														
+Mineral: Any Mineral														
+Element Family: Any Element Family														
+Reference: Bea et al. 1994														
+Sort by: Reference														
+														
+NON-GERM ADDITIONS:														
+Peraluminous Rhyolite	Biotite	3	Li	3.66	0.732			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	4	Be	0.06	0.012			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	5	B	0.004	0.00048			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	15	P	0.06	0.0066			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	22	Ti	92.8	5.568			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	25	Mn	4.12	0.3296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	30	Zn	18.8	5.452			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	32	Ge	0.81	0.081			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	37	Rb	2.87	0.2296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	38	Sr	0.11	0.0363			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	40	Zr	0.14	0.0224			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	41	Nb	9.75	1.0725			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	50	Sn	0.44	0.088			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	55	Cs	0.46	0.046			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	56	Ba	5.02	1.757			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	57	La	0.005	0.00185			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	62	Sm	0.01	0.0113			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	63	Eu	0.11	0.0781			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	64	Gd	0.02	0.0158			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	70	Yb	0.03	0.0255			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	73	Ta	2.35	0.4465			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	74	W	0.38	0.057			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	82	Pb	0.24	0.0264			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	92	U	0.01	0.0017			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5

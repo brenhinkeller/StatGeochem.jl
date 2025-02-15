@@ -158,18 +158,18 @@
         for e in allelements
             t = .!isnan.(pd[m][e])
             if (count(t) > 2) && (nanrange(pd["SiO2"][t]) > 8)
-                kd[m][e] = mcfit(pd["SiO2"], pd["SiO2_sigma"], pd[m][e], pd[m][e*"_sigma"], 40, 80, 41, binwidth=5)[2]
+                kd[m][e] = round.(mcfit(pd["SiO2"], pd["SiO2_sigma"], pd[m][e], pd[m][e*"_sigma"], 40, 80, 41, binwidth=5)[2], sigdigits=7)
             else
-                kd[m][e] = ones(41) * nanmean(pd[m][e])
+                kd[m][e] = round.(ones(41) * nanmean(pd[m][e]), sigdigits=7)
             end
-            kd[m][e*"_sigma"] = nanstd(pd[m][e])
+            kd[m][e*"_sigma"] = round(nanstd(pd[m][e]),sigdigits=7)
         end
     end
     kd["SiO2"] = collect(40:80.)
 
     # Set Albite partiton coefficients
     for e in kd["Albite"]["elements"]
-        kd["Albite"][e] = nanmean([kd["Albite"][e] kd["Orthoclase"][e] kd["Anorthite"][e]], dim=2)
+        kd["Albite"][e] = round.(nanmean([kd["Albite"][e] kd["Orthoclase"][e] kd["Anorthite"][e]], dim=2), sigdigits=7)
     end
     kd["note"] = ["kd for Albite is nanmean of AlkaliFeldspar, Orthoclase, and Anorthite",]
 
