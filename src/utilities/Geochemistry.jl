@@ -843,14 +843,15 @@
             any(perplex_name .== ["ann"]) ||
             any(contains.(perplex_name, ["Bi(", "Bio("]))
         elseif germ_name == "Phlogopite"
-            any(lowercase(perplex_name) .== ["naph", "phl"])
+            any(lowercase(perplex_name) .== ["naph", "phl", "fphl"])
         elseif germ_name == "Muscovite"
             any(lowercase(perplex_name) .== ["pheng(hp)", "mapa", "mu",]) ||
-            any(contains.(perplex_name, ["Mica",]))
+            any(contains.(perplex_name, ["Mica", "KN-Phen"]))
         # Pyroxene
         elseif germ_name == "Clinopyroxene"
-            any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd"]) ||
-            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"]))
+            any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd", "lcendi", "lcfshd",]) ||
+            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"])) ||
+            any(lowercase(perplex_name) .== ["mont",]) # Assume monticellite has similar partition coefficients to cpx
         elseif germ_name == "Orthopyroxene"
             any(lowercase(perplex_name) .== ["en", "fs"]) ||
             contains(perplex_name, "Opx")
@@ -861,13 +862,14 @@
         # Garnet
         elseif germ_name == "Garnet"
             any(lowercase(perplex_name) .== ["py", "spss", "alm", "andr", "gr"]) ||
-            any(contains.(perplex_name, ["Grt", "Gt(", "Maj"]))
+            any(contains.(perplex_name, ["Grt", "Gt(", "Maj", "GrPyAlSp"]))
         elseif germ_name == "Zoisite"
             any(lowercase(perplex_name) .== ["zo", "cz", "ep", "fep"]) ||
             any(contains.(perplex_name, ["Ep(",]))
         # Oxides
         elseif germ_name == "Ilmenite"
-            perplex_name == "ilm" || any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
+            perplex_name == "ilm" || 
+            any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
         elseif germ_name == "Magnetite"
             perplex_name == "mt"
         elseif germ_name == "Rutile"
@@ -883,7 +885,7 @@
             any(contains.(perplex_name, ["O(", "Ol("]))
         # Spinel
         elseif germ_name == "Spinel"
-            any(lowercase(perplex_name) .== ["sp", "usp"]) ||
+            any(lowercase(perplex_name) .== ["sp", "usp", "gahcsp"]) ||
             contains(perplex_name, "Sp(")
         # Accessories
         elseif germ_name == "Sphene"
