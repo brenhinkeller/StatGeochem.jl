@@ -826,11 +826,14 @@
     function germ_perplex_name_matches(germ_name, perplex_name)
         # Feldspar
         if germ_name == "Albite"
-            any(perplex_name .== ["ab", "abh"])
+            any(perplex_name .== ["ab", "abh"]) ||
+            any(contains.(perplex_name, ["albite",]))
         elseif germ_name == "Anorthite"
-            perplex_name == "an"
+            perplex_name == "an" ||
+            any(contains.(perplex_name, ["anorthite",]))
         elseif germ_name == "Orthoclase"
-            any(perplex_name .== ["mic", "Kf", "San", "San(TH)"])
+            any(perplex_name .== ["mic", "Kf", "San", "San(TH)"]) ||
+            any(contains.(perplex_name, ["orthoclase",]))
         # Amphibole
         elseif germ_name == "Amphibole"
             any(lowercase(perplex_name) .== ["gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts"]) ||
@@ -841,6 +844,9 @@
             any(contains.(perplex_name, ["Bi(", "Bio("]))
         elseif germ_name == "Phlogopite"
             any(lowercase(perplex_name) .== ["naph", "phl"])
+        elseif germ_name == "Muscovite"
+            any(lowercase(perplex_name) .== ["pheng(hp)", "mapa", "mu",]) ||
+            any(contains.(perplex_name, ["Mica",]))
         # Pyroxene
         elseif germ_name == "Clinopyroxene"
             any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd"]) ||
@@ -856,6 +862,9 @@
         elseif germ_name == "Garnet"
             any(lowercase(perplex_name) .== ["py", "spss", "alm", "andr", "gr"]) ||
             any(contains.(perplex_name, ["Grt", "Gt(", "Maj"]))
+        elseif germ_name == "Zoisite"
+            any(lowercase(perplex_name) .== ["zo", "cz", "ep", "fep"]) ||
+            any(contains.(perplex_name, ["Ep(",]))
         # Oxides
         elseif germ_name == "Ilmenite"
             perplex_name == "ilm" || any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
