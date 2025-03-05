@@ -4,10 +4,12 @@ authors = ["C. Brenhin Keller <cbkeller@dartmouth.edu>"]
 version = "0.8.4"
 
 [deps]
+ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
 Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 Downloads = "f43a241f-c20a-4ad4-852c-f6b1247861c6"
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+GeoMakie = "db073c08-6b98-4ee5-b6a4-5efafb3259c6"
 HDF5 = "f67ccb44-e63f-5c2f-98bd-6dc0ccc4ba2f"
 ImageIO = "82e4d734-157c-48bb-816b-45c225c6df19"
 LazyArtifacts = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
@@ -26,10 +28,12 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StatGeochemPlotsExt = "Plots"
 
 [compat]
+ColorSchemes = "3.29.0"
 Colors = "0.10 - 0.12, 0.13"
 DelimitedFiles = "1"
 Downloads = "1"
 FileIO = "1"
+GeoMakie = "0.7.10"
 HDF5 = "0.13 - 0.17"
 ImageIO = "0.1 - 0.6"
 LazyArtifacts = "1"
