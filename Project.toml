@@ -1,7 +1,7 @@
 name = "StatGeochem"
 uuid = "df4de05a-b714-11e8-3c2a-c30fb13e804c"
 authors = ["C. Brenhin Keller <cbkeller@dartmouth.edu>"]
-version = "0.8.3"
+version = "0.8.4"
 
 [deps]
 ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
