@@ -748,9 +748,9 @@ function perplex_query_phase(scratchdir::String, phase::String;
 
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
-        total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+        avg_weight = nanmean(Float64.(data[2:end,t]),dim=1)
         # Check if perplex is messing up and outputting mole proportions
-        if nanmean(total_weight) < 50
+        if nansum(avg_weight) < 50
             @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
             # Attempt to change back to weight percentages
             # for col = findall(t)
@@ -758,6 +758,7 @@ function perplex_query_phase(scratchdir::String, phase::String;
             # end
             # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
         end
+        total_weight = nansum(Float64.(data[2:end,t]),dim=2)
         data[2:end,t] .*= 100 ./ total_weight
 
         # Clean up element names
