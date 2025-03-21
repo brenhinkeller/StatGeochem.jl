@@ -260,19 +260,15 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
             end 
         end
 
-        PTfile = joinpath(prefix, "P–T.dat")
-        # PTdir = "P–T.dat"
         # Save P–T path as .dat file
         # Apparently you need to have it as T and then P despite what Perplex tells you
+        PTfilename = "P–T.dat"
+        PTfile = joinpath(prefix, PTfilename)
         open(PTfile, "w") do file
             for i in zip(T, P)
                 write(file, "$(i[1])\t$(i[2])\n")
             end
         end
-
-        # system("cp $(PTfile) $perplexdir")
-        system("cp $(PTfile) $prefix")
-        PTfilename = "P–T.dat"
     else 
         system("cp $(PTdir) $prefix")
     end
