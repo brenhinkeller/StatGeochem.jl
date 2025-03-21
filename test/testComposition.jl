@@ -48,7 +48,15 @@ xn = normalize(xl, anhydrous=true)
 # Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 100)
 @test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
-@test length(ca) == 100
-@test eachindex(ca) == 1:100
 @test ca[1] isa NCKFMASHTOCrtrace{Float64}
 @test ca[1:10] isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test length(ca) === 100
+@test eachindex(ca) === Base.OneTo(100)
+@test ca.SiO2 isa Vector{Float64}
+@test length(ca.SiO2) === 100
+@test eachindex(ca.SiO2) === Base.OneTo(100)
+@test ca.SiO2 === ca[:SiO2]
+@test ca.La isa Vector{Float64}
+@test length(ca.La) === 100
+@test eachindex(ca.La) === Base.OneTo(100)
+@test ca.La === ca[:La]
