@@ -24,24 +24,25 @@ export CompositionArray
 @inline Base.getindex(x::CompositionArray, key::Symbol) = getproperty(x, key)
 
 # Major and trace elements: general fallback method
-majors(x::CompositionArray) = filter(k->contains(String(k),"O"), keys(x))
-traces(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x))
+majorelements(x::CompositionArray) = filter(k->contains(String(k),"O"), keys(x))
+traceelements(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x))
 # Major and trace elements: forward to Composition type if known
-majors(x::CompositionArray{T}) where {T<:AbstractComposition} = majors(T)
-traces(x::CompositionArray{T}) where {T<:AbstractComposition} = traces(T)
+majorelements(x::CompositionArray{T}) where {T<:AbstractComposition} = majorelements(T)
+traceelements(x::CompositionArray{T}) where {T<:AbstractComposition} = traceelements(T)
 
 
-function normalize!(x::CompositionArray; anhydrous::Bool=false)
+# Add methods to existing `renormalize!` function from StatGeochemBase
+function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LinearTraceComposition{T}}
     for i in eachindex(x)
-        normconst = zero(eltype(eltype(x)))
-        for e in majors(x)
+        normconst = zero(T)
+        for e in majorelements(x)
             if !isnan(x[e][i]) && (!anhydrous || !(e === :H2O || e === :CO2))
-                normconst += x[e] / 100
+                normconst += x[e][i] / 100
             end
         end
-        for e in traces(x)
+        for e in traceelements(x)
             if !isnan(x[e][i])
-                normconst += x[e] / 1_000_000
+                normconst += x[e][i] / 1_000_000
             end
         end
         for e in keys(x)
@@ -50,24 +51,24 @@ function normalize!(x::CompositionArray; anhydrous::Bool=false)
     end
     return x
 end
-function normalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
+function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
     for i in eachindex(x)
         normconst = zero(T)
-        for e in majors(x)
-            if !isnan(x[e]) && (!anhydrous || !(e === :H2O || e === :CO2))
-                normconst += x[e] / 100
+        for e in majorelements(x)
+            if !isnan(x[e][i]) && (!anhydrous || !(e === :H2O || e === :CO2))
+                normconst += x[e][i] / 100
             end
         end
-        for e in traces(x)
-            if !isnan(x[e])
-                normconst += exp(x[e]) / 1_000_000
+        for e in traceelements(x)
+            if !isnan(x[e][i])
+                normconst += exp(x[e][i]) / 1_000_000
             end
         end
         lognormconst = log(normconst)
-        for e in majors(x)
+        for e in majorelements(x)
             x[e][i] /= normconst
         end
-        for e in majors(x)
+        for e in traceelements(x)
             x[e][i] -= lognormconst
         end
     end

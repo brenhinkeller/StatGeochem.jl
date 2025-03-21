@@ -16,7 +16,7 @@ module StatGeochem
     using DelimitedFiles: readdlm, writedlm
     using Downloads: download
     using ProgressMeter: @showprogress, update!, next!, Progress
-    using Random: rand!, randn!, AbstractRNG, MersenneTwister, Xoshiro
+    using Random
     using StructArrays
     include("utilities/System.jl")
     include("utilities/Resampling.jl")
