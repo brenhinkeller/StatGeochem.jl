@@ -19,6 +19,7 @@ module StatGeochem
     include("utilities/Changepoint.jl")
 
     include("resources/Chemistry.jl")
+    include("utilities/Composition.jl")
     include("utilities/Geochronology.jl")
     include("utilities/Geochemistry.jl")
     include("utilities/GIS.jl")
