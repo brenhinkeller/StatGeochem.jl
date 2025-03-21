@@ -44,3 +44,11 @@ xn = normalize(xl, anhydrous=true)
 @test propertynames(xn)[1:11] == StatGeochem.majors(xn) == StatGeochem.majors(NCKFMASHTOCrlogtrace)
 @test propertynames(xn)[12:40] == StatGeochem.traces(xn) == StatGeochem.traces(NCKFMASHTOCrlogtrace)
 @test xn isa NCKFMASHTOCrlogtrace{Float64}
+
+# Composition arrays
+ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 100)
+@test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test length(ca) == 100
+@test eachindex(ca) == 1:100
+@test ca[1] isa NCKFMASHTOCrtrace{Float64}
+@test ca[1:10] isa CompositionArray{NCKFMASHTOCrtrace{Float64}}

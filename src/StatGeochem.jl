@@ -17,12 +17,14 @@ module StatGeochem
     using Downloads: download
     using ProgressMeter: @showprogress, update!, next!, Progress
     using Random: rand!, randn!, AbstractRNG, MersenneTwister, Xoshiro
+    using StructArrays
     include("utilities/System.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
 
     include("resources/Chemistry.jl")
     include("utilities/Composition.jl")
+    include("utilities/CompositionArrays.jl")
     include("utilities/Geochronology.jl")
     include("utilities/Geochemistry.jl")
     include("utilities/GIS.jl")
