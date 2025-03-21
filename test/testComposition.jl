@@ -7,8 +7,9 @@ xn = normalize(x)
 @test sum(e->xn[e], StatGeochem.majors(xn)) ≈ 99.86110228500358 
 xn = normalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.83028850953377
+@test propertynames(xn)[1:10] == StatGeochem.majors(xn) == StatGeochem.majors(NCKFMASHTOtrace)
+@test propertynames(xn)[11:40] == StatGeochem.traces(xn) == StatGeochem.traces(NCKFMASHTOtrace)
 @test xn isa NCKFMASHTOtrace{Float64}
-@test propertynames(xn)[1:10] == StatGeochem.majors(xn)
 
 xl = NCKFMASHTOlogtrace(x)
 @test xl isa NCKFMASHTOlogtrace{Float64}
@@ -18,7 +19,8 @@ xn = normalize(xl)
 @test sum(e->xn[e], StatGeochem.majors(xn)) ≈ 99.86110228500358 
 xn = normalize(xl, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.83028850953377
-@test propertynames(xn)[1:10] == StatGeochem.majors(xn)
+@test propertynames(xn)[1:10] == StatGeochem.majors(xn) == StatGeochem.majors(NCKFMASHTOlogtrace)
+@test propertynames(xn)[11:40] == StatGeochem.traces(xn) == StatGeochem.traces(NCKFMASHTOlogtrace)
 @test xn isa NCKFMASHTOlogtrace{Float64}
 
 x = NCKFMASHTOCrtrace((1.0:length(fieldnames(NCKFMASHTOCrtrace)))...,)
@@ -28,7 +30,8 @@ xn = normalize(x)
 @test sum(e->xn[e], StatGeochem.majors(xn)) ≈ 99.8858879401411
 xn = normalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:10]) ≈ 99.86309677278784
-@test propertynames(xn)[1:11] == StatGeochem.majors(xn)
+@test propertynames(xn)[1:11] == StatGeochem.majors(xn) == StatGeochem.majors(NCKFMASHTOCrtrace)
+@test propertynames(xn)[12:40] == StatGeochem.traces(xn) == StatGeochem.traces(NCKFMASHTOCrtrace)
 @test xn isa NCKFMASHTOCrtrace{Float64}
 
 xl = NCKFMASHTOCrlogtrace(x)
@@ -38,5 +41,6 @@ xn = normalize(xl)
 @test sum(e->xn[e], StatGeochem.majors(xn)) ≈ 99.8858879401411
 xn = normalize(xl, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:10]) ≈ 99.86309677278784
-@test propertynames(xn)[1:11] == StatGeochem.majors(xn)
+@test propertynames(xn)[1:11] == StatGeochem.majors(xn) == StatGeochem.majors(NCKFMASHTOCrlogtrace)
+@test propertynames(xn)[12:40] == StatGeochem.traces(xn) == StatGeochem.traces(NCKFMASHTOCrlogtrace)
 @test xn isa NCKFMASHTOCrlogtrace{Float64}

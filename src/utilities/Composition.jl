@@ -50,9 +50,12 @@ Base.haskey(x::C, key::Symbol) where {C<:AbstractComposition} = hasfield(C, key)
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
 
 # Major elements are assumed to be oxides, if concrete type does not override
-majors(x::AbstractComposition) = filter(x->contains(String(x),"O"), keys(x))
+majors(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
+majors(::T) where {T<:AbstractComposition} = majors(T)
+
 # Trace elements are assumed to be everything but oxides, if concrete type does not override
-traces(x::AbstractComposition) = filter(x->!contains(String(x),"O"), keys(x))
+traces(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(String(k),"O"), fieldnames(T))
+traces(::T) where {T<:AbstractComposition} = traces(T)
 
 # Variants where trace elements may or may not be stored in log concentration space
 abstract type LinearTraceComposition{T} <: AbstractComposition{T} end
@@ -178,6 +181,9 @@ struct NCKFMASHTOlogtrace{T} <: LogTraceComposition{T}
 end
 export NCKFMASHTOlogtrace
 
+# Majors, traces and conversions
+majors(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O)
+traces(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 NCKFMASHTOlogtrace(x::NCKFMASHTOtrace) = NCKFMASHTOlogtrace((x[e] for e in majors(x))..., (log(x[e]) for e in traces(x))...,)
 NCKFMASHTOtrace(x::NCKFMASHTOlogtrace) = NCKFMASHTOtrace((x[e] for e in majors(x))..., (exp(x[e]) for e in traces(x))...,)
 
@@ -269,5 +275,8 @@ struct NCKFMASHTOCrlogtrace{T} <: LogTraceComposition{T}
 end
 export NCKFMASHTOCrlogtrace
 
+# Majors, traces and conversions
+majors(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :Cr2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O)
+traces(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 NCKFMASHTOCrlogtrace(x::NCKFMASHTOCrtrace) = NCKFMASHTOCrlogtrace((x[e] for e in majors(x))..., (log(x[e]) for e in traces(x))...,)
 NCKFMASHTOCrtrace(x::NCKFMASHTOCrlogtrace) = NCKFMASHTOCrtrace((x[e] for e in majors(x))..., (exp(x[e]) for e in traces(x))...,)
