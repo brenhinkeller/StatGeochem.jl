@@ -1,38 +1,7 @@
 ## --- Test PerpleX
 if Sys.isunix()
 
-    # Choose perpleX version
-    # perplexversion = "perplex-6.8.7"
-    # perplexversion= "perplex-stable"
-
-    # Construct file path
-    # perplexdir = joinpath(resourcepath, perplexversion)
     scratchdir = "./"
-
-    # if Sys.islinux()
-    #     # Download precompiled executable
-    #     if !isfile(joinpath(perplexdir,"vertex"))
-    #         @info "Downloading PerpleX to $perplexdir"
-    #         run(`mkdir -p $perplexdir`)
-    #         file = Downloads.download("https://storage.googleapis.com/statgeochem/$perplexversion-linux.tar.gz",joinpath(resourcepath,"$perplexversion-linux.tar.gz"))
-    #         run(`tar -xzf $file -C $perplexdir`)
-    #     end
-    # else
-    #     # Compile from source
-    #     if !isfile(joinpath(perplexdir,"vertex"))
-    #         # Check if there is a fortran compiler
-    #         run(`gfortran -v`)
-
-    #         # Download Perplex v6.8.7 -- known to work with interface used here
-    #         file = Downloads.download("https://storage.googleapis.com/statgeochem/$perplexversion.zip", joinpath(resourcepath,"$perplexversion.zip"))
-
-    #         # # For a more updated perplex version, you might also try
-    #         # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
-
-    #         run(`unzip -u $file -d $resourcepath`) # Extract
-    #         system("cd $perplexdir; make") # Compile
-    #     end
-    # end
 
     # Kelemen (2014) primitive continental basalt excluding Mn and Ti since most melt models can"t handle them..
     elements =    [ "SIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
@@ -51,6 +20,7 @@ if Sys.isunix()
 
     # Configure (run build and vertex)
     melt_model = "melt(HP)"
+    @info "perplex_configure_isobar:"
     @time perplex_configure_isobar(scratchdir, composition, elements, P, T_range,
         dataset="hp02ver.dat",
         npoints=100,
@@ -62,8 +32,7 @@ if Sys.isunix()
 
     T = 850+273.15
     data_isobaric = perplex_query_point(scratchdir, T)
-    system("ls ./out1/")
-    # system("cat ./out1/werami.log")
+    # system("ls ./out1/")
 
     @test isfile("./out1/1_1.txt")
     @test isa(data_isobaric, String)
@@ -74,8 +43,8 @@ if Sys.isunix()
     @test isa(bulk, NamedTuple)
     @test haskey(bulk, :SIO2)
     if haskey(bulk, :SIO2)
-        print("bulk.SIO2: ")
-        println(bulk.SIO2)
+        # print("bulk.SIO2: ")
+        # println(bulk.SIO2)
         @test haskey(bulk, :SIO2) && all(isapprox.(bulk.SIO2, 50.66433039859823, atol=0.1))
         @test !isempty(bulk.SIO2)
     end
@@ -86,8 +55,8 @@ if Sys.isunix()
     @test haskey(melt, :SIO2)
 
     if haskey(melt, :SIO2)
-        print("melt.SiO2: ")
-        println(melt.SIO2)
+        # print("melt.SiO2: ")
+        # println(melt.SIO2)
         @test !isempty(melt.SIO2) && !any(x->x<45, melt.SIO2) && !any(x->x>75, melt.SIO2)
         @test isapprox(melt.SIO2,  [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 66.23928873932091, 66.20069536595133, 66.1129689269046, 65.96817295304906, 65.77167961077932, 65.5254393152636, 65.23386085968349, 64.87278962035367, 64.45898710820259, 64.04463202231602, 63.2097683951158, 62.229362662382414, 61.2299, 60.24657590136964, 59.299682210095334, 58.39293503576102, 57.528805752880565, 56.697199999999995, 55.900244720195786, 55.151072424463784, 54.444161889086686, 53.77171075434216, 53.13486811907912, 52.53058424082473, 51.97033118219873, 51.615110323022066, 51.531989693602064, 51.49388455183463, 51.45425369117167, 51.4165640084052, 51.38137430931284, 51.34737946104821, 51.31412565706284, 51.282015384604605, 51.252599999999994, 51.2249358574551, 51.196284641114616, 51.169935818955075, 51.1451744274128, 51.11510000000001, 50.45745550320106, 50.40943024565815], nans=true, atol = 0.1)
     end
@@ -96,10 +65,14 @@ if Sys.isunix()
     @test isa(modes, Dict)
     @test haskey(modes, "Do(HP)")
     if haskey(modes, "Do(HP)")
-        print("modes[\"Do(HP)\"]: ")
-        println(modes["Do(HP)"])
+        # print("modes[\"Do(HP)\"]: ")
+        # println(modes["Do(HP)"])
         @test isapprox(modes["Do(HP)"],  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.381821359304602, 1.375915226299608, 1.3738211840050927, 1.374457738329655, 1.3705253254297285, 1.366661347624855, 1.3645275034904318, 1.3701797192769967, 1.375450810802064, 1.3797663596440084, 1.38170983102423, 1.3835908068064018, 1.3914280845348614, 1.4096547846120548, 1.4188273299579084, 1.417632212772262, 1.416519868920687, 1.415345984868765, 1.415345984868765, 1.4144863360848499, 1.4126771598516183, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], nans=true, atol = 0.1)
-        # @test isapprox(modes["Omph(HP)"],[NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 1.5736, 7.33183, 13.3273, 13.874, 13.8044, 13.7504, 13.6605, 13.6055, 13.2465, 12.8556, 12.8012, 12.909, 12.8774, 12.8621, 12.8379, 12.8239, 12.8205, 12.839, 12.8654, 12.8914, 12.9423, 13.0084, 13.1195, 13.2487, 13.391, 13.5401, 13.7082, 13.9396, 14.1879, 14.4729, 14.754, 15.0912, 15.5081, 15.9689, 16.4671, 17.0194, 17.5064, 17.1991, 16.9685, 16.6926, 16.4602, 16.1634, 15.921, 15.659, 15.4497, 15.2485, 15.0301, 14.8809, 14.6926, 15.0711, 9.19562, NaN, NaN], nans=true)
+    end
+    if haskey(modes, "Omph(HP)")
+        # print("modes[\"Omph(HP)\"]: ")
+        # println(modes["Omph(HP)"])
+        @test isapprox(modes["Omph(HP)"],[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0339723566900236, 14.960931973118665, 15.062263362661524, 15.164506420058737, 15.268082701516247, 15.372961492756188, 15.47935889951888, 16.023147006631838, 17.195113428726106, 18.546171502024475, 18.513626566383596, 18.921480372141023, 18.938381437801173, 18.95517180349422, 18.971868712229128, 18.987725829804052, 19.003917068704503, 19.019482276868484, 19.034156503334277, 19.04772018291329, 18.955385576325604, 18.66836547025949, 18.700498131123354, 18.672603711178727, 18.689706911851058, 18.70741316163515, 18.726321687261198, 18.74703357720072, 18.769573446275686, 18.793658820257388, 18.821264934638325, 18.852397423440955, 18.8867110753726, 18.978007255636545, 19.10394367818196, 19.245715839150208, 19.40418088373046, 19.579886180363193, 19.774964084364957, 19.991810067185163, 20.241688665240932, 20.52557287224623, 20.84732371711889, 21.210565263460555, 21.618170448738216, 22.09663695953447, 22.646817318444732, 23.25441852307975, 23.214082721363855, 22.81470048851166, 22.43291893689257, 22.066189222773463, 21.721311293034898, 21.399604352976905, 21.097623567233256, 20.8182863046844, 20.557653077344202, 20.318180516294838, 20.09688085563381, 19.885716974177978, 19.695776424220245, 19.521123834193872, 18.711834731308517, 0.0, 0.0], nans=true, atol = 0.1)
     end
 
     # --- # # # # # # # # # # # Geothermal gradient example # # # # # # # # # # # #
@@ -111,6 +84,7 @@ if Sys.isunix()
     melt_model = ""
 
     # Configure (run build and vertex)
+    @info "perplex_configure_geotherm:"
     @time perplex_configure_geotherm(scratchdir, composition, elements, P_range, T_surf, geotherm;
         dataset="hp02ver.dat",
         excludes=HP_excludes,
@@ -123,9 +97,9 @@ if Sys.isunix()
     @test isa(seismic, Dict)
     @test haskey(seismic, "T(K)")
     @test isa(seismic["T(K)"], Vector{Float64})
-
-    print("seismic[\"T(K)\"]: ")
-    println(seismic["T(K)"])
+    # print("seismic[\"T(K)\"]: ")
+    # println(seismic["T(K)"])
+    @test isapprox(seismic["T(K)"], [275.95, 278.75, 281.55, 284.35, 287.15, 289.95, 292.75, 295.55, 298.35, 301.15, 303.95, 306.75, 309.55, 312.35, 315.15, 317.95, 320.75, 323.55, 326.35, 329.15, 331.95, 334.75, 337.55, 340.35, 343.15, 345.95, 348.75, 351.55, 354.35, 357.15, 359.95, 362.75, 365.55, 368.35, 371.15, 373.95, 376.75, 379.55, 382.35, 385.15, 387.95, 390.75, 393.55, 396.35, 399.15, 401.95, 404.75, 407.55, 410.35, 413.15, 415.95, 418.75, 421.55, 424.35, 427.15, 429.95, 432.75, 435.55, 438.35, 441.15, 443.95, 446.75, 449.55, 452.35, 455.15, 457.95, 460.75, 463.55, 466.35, 469.15, 471.95, 474.75, 477.55, 480.35, 483.15, 485.95, 488.75, 491.55, 494.35, 497.15, 499.95, 502.75, 505.55, 508.35, 511.15, 513.95, 516.75, 519.55, 522.35, 525.15, 527.95, 530.75, 533.55, 536.35, 539.15, 541.95, 544.75, 547.55, 550.35, 553.15], nans=true, atol = 0.1)
 
     ## --- # # # # # # # # # # # P–T path example # # # # # # # # # # # #
 
@@ -134,6 +108,7 @@ if Sys.isunix()
     PTdir = ""
     PTfilename = ""
 
+    @info "perplex_configure_path:"
     @time perplex_configure_path(scratchdir, composition, PTdir, PTfilename, elements, T_range, 
         dataset = "hp02ver.dat", index=1, solution_phases=HP_solution_phases, excludes=HP_excludes)
     
@@ -143,8 +118,9 @@ if Sys.isunix()
     @test haskey(modes,"node")
     @test haskey(modes, "O(HP)")
     if haskey(modes, "O(HP)")
-        print("modes[\"O(HP)\"]: ")
-        println(modes["O(HP)"])
+        # print("modes[\"O(HP)\"]: ")
+        # println(modes["O(HP)"])
+        @test isapprox(modes["O(HP)"], [0.13263234069934907])
     end
 
     # --- # # # # # # # # # # # Pseudosection example # # # # # # # # # # # # #
@@ -157,6 +133,7 @@ if Sys.isunix()
     excludes = ""
 
     # Configure (run build and vertex)
+    @info "perplex_configure_pseudosection:"
     @time perplex_configure_pseudosection(scratchdir, composition,
         elements, P_range, T_range, dataset="hp02ver.dat", excludes=excludes,
         solution_phases=melt_model*solution_phases, index=1, xnodes=50, ynodes=50)
@@ -203,14 +180,16 @@ if Sys.isunix()
     @test haskey(seismic,"T(K)")
     if haskey(seismic,"T(K)")
         @test isapprox(seismic["T(K)"], T, atol=0.01)
-        print("T (K):\t")
-        println(seismic["T(K)"])
+        # print("T (K):\t")
+        # println(seismic["T(K)"])
+        @test isapprox(seismic["T(K)"], [673.15, 686.483, 699.817, 713.15, 726.483, 739.817, 753.15, 766.483, 779.817, 793.15, 806.483, 819.817, 833.15, 846.483, 859.817, 873.15], atol=0.1)
     end
     @test haskey(seismic, "rho,kg/m3")
     if haskey(seismic, "rho,kg/m3")
         @test !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
-        print("rho,kg/m3:\t")
-        println(seismic["rho,kg/m3"])
+        # print("rho,kg/m3:\t")
+        # println(seismic["rho,kg/m3"])
+        @test isapprox(seismic["rho,kg/m3"], [2875.21, 2875.21, 2875.21, 2875.21, 2875.2, 2875.34, 2875.32, 2905.4, 2927.22, 2933.56, 2933.46, 2933.36, 2933.26, 2933.15, 2956.4, 2962.18], atol=0.1)
     end
 
 end
