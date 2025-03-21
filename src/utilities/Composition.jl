@@ -59,10 +59,10 @@ abstract type LinearTraceComposition{T} <: AbstractComposition{T} end
 abstract type LogTraceComposition{T} <: AbstractComposition{T} end
 
 # Normalization
-function normalize(x::C) where {T, C<:LinearTraceComposition{T}}
+function normalize(x::C; anhydrous::Bool=false) where {T, C<:LinearTraceComposition{T}}
     normconst = zero(T)
     for e in majors(x)
-        if !isnan(x[e])
+        if !isnan(x[e]) && (!anhydrous || !(e === :H2O || e === :CO2))
             normconst += x[e] / 100
         end
     end
@@ -73,10 +73,10 @@ function normalize(x::C) where {T, C<:LinearTraceComposition{T}}
     end
     return C((x[e]/normconst for e in fieldnames(C))...,)
 end
-function normalize(x::C) where {T, C<:LogTraceComposition{T}}
+function normalize(x::C; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
     normconst = zero(T)
     for e in majors(x)
-        if !isnan(x[e])
+        if !isnan(x[e]) && (!anhydrous || !(e === :H2O || e === :CO2))
             normconst += x[e] / 100
         end
     end
