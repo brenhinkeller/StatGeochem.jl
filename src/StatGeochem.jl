@@ -5,15 +5,18 @@ module StatGeochem
     using Reexport
     @reexport using NaNStatistics
     @reexport using StatGeochemBase
+    using StatGeochemBase: Collection
 
     # Vectorization and parallelization tools
     using LoopVectorization: @turbo
     using Polyester: @batch
 
     # General requirements
-    using DelimitedFiles, Random, Downloads, LazyArtifacts
-    using ProgressMeter: @showprogress, Progress, update!, next!
-    const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
+    using LazyArtifacts
+    using DelimitedFiles: readdlm, writedlm
+    using Downloads: download
+    using ProgressMeter: @showprogress, update!, next!, Progress
+    using Random: rand!, randn!, AbstractRNG, MersenneTwister, Xoshiro
     include("utilities/System.jl")
     include("utilities/Resampling.jl")
     include("utilities/Changepoint.jl")
