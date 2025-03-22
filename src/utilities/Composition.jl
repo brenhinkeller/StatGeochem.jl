@@ -60,6 +60,13 @@ function Base.isapprox(x::C1, y::C2; kwargs...) where {C1<:AbstractComposition, 
     end
     return true
 end
+@generated function Base.isnan(x::C) where {C<:AbstractComposition}
+    result = Expr(:(||))
+    for e in fieldnames(C)
+        push!(result.args, :(isnan(x.$e)))
+    end
+    return result 
+end
 
 # Generating zero and random compositions
 @generated function Base.zero(::Type{C}) where {T, C<:AbstractComposition{T}}
