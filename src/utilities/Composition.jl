@@ -53,6 +53,13 @@ end
     end
     return result
 end
+function Base.isapprox(x::C1, y::C2; kwargs...) where {C1<:AbstractComposition, C2<:AbstractComposition}
+    (fieldnames(C1) === fieldnames(C2)) || return false
+    for e in fieldnames(C1)
+        isapprox(x[e], y[e]; kwargs...) || return false
+    end
+    return true
+end
 
 # Generating zero and random compositions
 @generated function Base.zero(::Type{C}) where {T, C<:AbstractComposition{T}}
@@ -123,6 +130,36 @@ function normalize(x::C; anhydrous::Bool=false) where {T, C<:LogTraceComposition
     return x/normconst
 end
 export normalize
+
+function isnormalized(x::C; anhydrous::Bool=false) where {T, C<:LinearTraceComposition{T}}
+    normconst = zero(T)
+    for e in majorelements(x)
+        if !isnan(x[e]) && (!anhydrous || !(e === :H2O || e === :CO2))
+            normconst += x[e] / 100
+        end
+    end
+    for e in traceelements(x)
+        if !isnan(x[e])
+            normconst += x[e] / 1_000_000
+        end
+    end
+    return normconst ≈ one(T)
+end
+function isnormalized(x::C; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
+    normconst = zero(T)
+    for e in majorelements(x)
+        if !isnan(x[e]) && (!anhydrous || !(e === :H2O || e === :CO2))
+            normconst += x[e] / 100
+        end
+    end
+    for e in traceelements(x)
+        if !isnan(x[e])
+            normconst += exp(x[e]) / 1_000_000
+        end
+    end
+    return normconst ≈ one(T)
+end
+export isnormalized
 
 struct NCKFMASHTOtrace{T} <: LinearTraceComposition{T}
     SiO2::T

@@ -50,19 +50,21 @@ xn = normalize(xl, anhydrous=true)
 @test 0.5*xn + 0.5*xn == xn
 
 # Composition arrays
-ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 100)
+ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
 @test ca[1] isa NCKFMASHTOCrtrace{Float64}
 @test ca[1:10] isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
-@test length(ca) === 100
-@test eachindex(ca) === Base.OneTo(100)
+@test view(ca, 1:10) isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test copy(ca[1:10]) isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test length(ca) === 99
+@test eachindex(ca) === Base.OneTo(99)
 @test ca.SiO2 isa Vector{Float64}
-@test length(ca.SiO2) === 100
-@test eachindex(ca.SiO2) === Base.OneTo(100)
+@test length(ca.SiO2) === 99
+@test eachindex(ca.SiO2) === Base.OneTo(99)
 @test ca.SiO2 === ca[:SiO2]
 @test ca.La isa Vector{Float64}
-@test length(ca.La) === 100
-@test eachindex(ca.La) === Base.OneTo(100)
+@test length(ca.La) === 99
+@test eachindex(ca.La) === Base.OneTo(99)
 @test ca.La === ca[:La]
 
 # Randomize and normalize composition arrays
@@ -72,10 +74,25 @@ StatGeochem.rand!(ca)
 renormalize!(ca; anhydrous=true)
 @test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca)))  ≈ 99.99 atol=0.02
 
+cam = partiallymix!(copy(ca), 1)
+@test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
+@test isnormalized(cam[50], anhydrous=true)
+@test !isnormalized(cam[50], anhydrous=false)
+cam = partiallymix!(copy(ca), 0.5)
+@test cam[50] ≈ 0.5ca[50] + 0.5(0.5*ca[1] + 0.5*ca[99])
+@test isnormalized(cam[50], anhydrous=true)
 
-ca = CompositionArray{NCKFMASHTOlogtrace{Float64}}(undef, 100)
+ca = CompositionArray{NCKFMASHTOlogtrace{Float64}}(undef, 99)
 StatGeochem.rand!(ca)
 @test nanmean(ca.SiO2) ≈ 10 atol = 2
 @test sum(e->ca[1][e], majorelements(ca)) ≈ 99.99 atol=0.02
 renormalize!(ca; anhydrous=true)
 @test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca)))  ≈ 99.99 atol=0.02
+
+cam = partiallymix!(copy(ca), 1)
+@test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
+@test isnormalized(cam[50], anhydrous=true)
+@test !isnormalized(cam[50], anhydrous=false)
+cam = partiallymix!(copy(ca), 0.5)
+@test cam[50] ≈ 0.5ca[50] + 0.5(0.5*ca[1] + 0.5*ca[99])
+@test isnormalized(cam[50], anhydrous=true)

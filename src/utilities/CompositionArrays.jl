@@ -17,6 +17,8 @@ export CompositionArray
 @inline Base.getindex(x::CompositionArray, inds::Vararg{Int}) = getindex(getfield(x, :data), inds...)
 @inline Base.size(x::CompositionArray, args...) = size(getfield(x, :data), args...)
 @inline Base.axes(x::CompositionArray, args...) = axes(getfield(x, :data), args...)
+@inline Base.view(x::CompositionArray, args...) = CompositionArray(view(getfield(x, :data), args...))
+@inline Base.copy(x::CompositionArray) = CompositionArray(copy(getfield(x, :data)))
 
 # Key-based indexing
 @inline Base.keys(x::CompositionArray) = propertynames(x)
@@ -30,8 +32,6 @@ traceelements(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x)
 majorelements(x::CompositionArray{T}) where {T<:AbstractComposition} = majorelements(T)
 traceelements(x::CompositionArray{T}) where {T<:AbstractComposition} = traceelements(T)
 
-
-# Add methods to existing `renormalize!` function from StatGeochemBase
 function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LinearTraceComposition{T}}
     for i in eachindex(x)
         normconst = zero(T)
@@ -75,6 +75,15 @@ function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=fa
     return x
 end
 
-# function mix!(x::CompositionArray{C}) where {T, C<:LinearTraceComposition{T}}
-# 
-# end
+function partiallymix!(x::CompositionArray, mixingfraction::Number)
+    @assert 0 <= mixingfraction <= 1 "Mixing fraction must be between 0 and 1"
+    unmixingfraction = 1 - mixingfraction
+    Δi = lastindex(x)-firstindex(x)
+    for i in (firstindex(x)+1):(lastindex(x)-1)
+        fᵢ = (i - firstindex(x))/Δi
+        mixᵢ = (fᵢ*last(x)+ (1-fᵢ)*first(x))
+        x[i] = unmixingfraction * x[i] + mixingfraction * mixᵢ
+    end
+    return x
+end
+export partiallymix!
