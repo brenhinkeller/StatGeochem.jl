@@ -108,46 +108,65 @@ traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
 export traceelements
 
 # Normalization
-zeroifnan(x::T) where {T} = isnan(x) ? zero(T) : x
 @generated function normconst(x::C) where {T, C<:LinearTraceComposition{T}}
-    result = Expr(:call, :+)
+    additions = Expr(:block)
     for e in majorelements(C)
-        push!(result.args, :(zeroifnan(x.$e)/100))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/100; end))
     end
     for e in traceelements(C)
-        push!(result.args, :(zeroifnan(x.$e)/1_000_000))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/1_000_000; end))
     end
-    return result
+    return Expr(
+        :block,
+        :(c = zero($T)),
+        additions,
+        :(return c)
+    )
 end
 @generated function normconst(x::C) where {T, C<:LogTraceComposition{T}}
-    result = Expr(:call, :+)
+    additions = Expr(:block)
     for e in majorelements(C)
-        push!(result.args, :(zeroifnan(x.$e)/100))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/100; end))
     end
     for e in traceelements(C)
-        push!(result.args, :(zeroifnan(exp(x.$e))/1_000_000))
+        push!(additions.args, :(if !isnan(x.$e); c += exp(x.$e)/1_000_000; end))
     end
-    return result
+    return Expr(
+        :block,
+        :(c = zero($T)),
+        additions,
+        :(return c)
+    )
 end
 @generated function normconstanhydrous(x::C) where {T, C<:LinearTraceComposition{T}}
-    result = Expr(:call, :+)
+    additions = Expr(:block)
     for e in filter(e->!(e===:H2O || e===:CO2), majorelements(C))
-        push!(result.args, :(zeroifnan(x.$e)/100))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/100; end))
     end
     for e in traceelements(C)
-        push!(result.args, :(zeroifnan(x.$e)/1_000_000))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/1_000_000; end))
     end
-    return result
+    return Expr(
+        :block,
+        :(c = zero($T)),
+        additions,
+        :(return c)
+    )
 end
 @generated function normconstanhydrous(x::C) where {T, C<:LogTraceComposition{T}}
-    result = Expr(:call, :+)
+    additions = Expr(:block)
     for e in filter(e->!(e===:H2O || e===:CO2), majorelements(C))
-        push!(result.args, :(zeroifnan(x.$e)/100))
+        push!(additions.args, :(if !isnan(x.$e); c += x.$e/100; end))
     end
     for e in traceelements(C)
-        push!(result.args, :(zeroifnan(exp(x.$e))/1_000_000))
+        push!(additions.args, :(if !isnan(x.$e); c += exp(x.$e)/1_000_000; end))
     end
-    return result
+    return Expr(
+        :block,
+        :(c = zero($T)),
+        additions,
+        :(return c)
+    )
 end
 
 function normalize(x::AbstractComposition; anhydrous::Bool=false) 
