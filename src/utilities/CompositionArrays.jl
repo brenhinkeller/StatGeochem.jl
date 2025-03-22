@@ -74,3 +74,7 @@ function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=fa
     end
     return x
 end
+
+# function mix!(x::CompositionArray{C}) where {T, C<:LinearTraceComposition{T}}
+# 
+# end

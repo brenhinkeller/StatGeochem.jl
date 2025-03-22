@@ -5,56 +5,83 @@ abstract type AbstractComposition{T} end
 abstract type LinearTraceComposition{T} <: AbstractComposition{T} end
 abstract type LogTraceComposition{T} <: AbstractComposition{T} end
 
-# Generic pretty printing for any AbstractComposition
-function Base.display(x::C) where {C<:AbstractComposition}
-    i = 1
-    println("$C with $(length(keys(x))) elements:")
-    l = max(length.(string.(keys(x)))...)
-    for s in keys(x)
-        t = typeof(x[s])
-        sp = " "^(l-length(string(s)))
-        print("  $s$sp  = $t")
-        if t<:Number
-            print("\t$(x[s])")
-        elseif t<:AbstractRange
-            print("\t$(x[s])")
-        elseif t<:AbstractArray
-            print(size(x[s]))
-            if length(x[s]) < 2
-                print("\t[$(x[s])]")
-            else
-                print("\t[$(first(x[s])) ... $(last(x[s]))]")
-            end
-        elseif t<:NTuple
-            if length(x[s]) < 2
-                print("\t[$(x[s])]")
-            else
-                print("\t[$(first(x[s])) ... $(last(x[s]))]")
-            end
-        elseif t<:AbstractString
-            if length(x[s]) < 50
-                print("\t\"$(x[s])\"")
-            else
-                print("\t\"$(x[s][firstindex(x[s])+(1:50)])...")
-            end
-        end
-        print("\n")
-        i += 1
-        if i > 222
-            print(".\n.\n.\n")
-            break
-        end
-    end
-end
-
 # Default methods which assume fields are elements, which will be used
 # if a concrete type does not override with something more specific
 Base.keys(x::C) where {C<:AbstractComposition} = fieldnames(C)
 Base.haskey(x::C, key::Symbol) where {C<:AbstractComposition} = hasfield(C, key)
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
-Base.zero(x::C) where {T, C<:AbstractComposition{T}} = C((zero(T) for _ in fieldnames(C))...,)
-Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LinearTraceComposition{T}} = normalize(C((rand(rng, T)*20 for _ in majorelements(C))..., (exp(randn(rng, T)) for _ in traceelements(C))...,))
-Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LogTraceComposition{T}} = normalize(C((rand(rng, T)*20 for _ in majorelements(C))..., (randn(rng, T) for _ in traceelements(C))...,))
+
+# Partial math interface, using generated functions so that we don't have to manually
+# write out all the field names for every concrete subtype of AbstractComposition
+@generated function Base.:*(x::C, n::Number) where {C<:LinearTraceComposition}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(x.$e * n))
+    end
+    return result
+end
+@generated function Base.:*(x::C, n::Number) where {C<:LogTraceComposition}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(x.$e * n))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(x.$e + logn))
+    end
+    return Expr(
+        :block,
+        :(logn = log(n)),
+        :(return $result),
+    )
+end
+Base.:*(n::Number, x::AbstractComposition) = x * n          # Scalar multiplication is commutative
+Base.:/(x::AbstractComposition, n::Number) = x * inv(n)     # Division by a scalar is multiplciation by multiplicative inverse
+@generated function Base.:+(x::C, y::C) where {C<:LinearTraceComposition}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(x.$e + y.$e))
+    end
+    return result
+end
+@generated function Base.:+(x::C, y::C) where {C<:LogTraceComposition}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(x.$e + y.$e))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(logaddexp(x.$e, y.$e)))
+    end
+    return result
+end
+
+# Generating zero and random compositions
+@generated function Base.zero(::Type{C}) where {T, C<:AbstractComposition{T}}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(zero(T)))
+    end
+    return result
+end
+@generated function Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LinearTraceComposition{T}}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(rand(rng, T)*20))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(exp(randn(rng, T))))
+    end
+    return :(normalize($result))
+end
+@generated function Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LogTraceComposition{T}}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(rand(rng, T)*20))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(randn(rng, T)))
+    end
+    return :(normalize($result))
+end
 
 # Major elements are assumed to be oxides, if concrete type does not override
 majorelements(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
@@ -79,7 +106,7 @@ function normalize(x::C; anhydrous::Bool=false) where {T, C<:LinearTraceComposit
             normconst += x[e] / 1_000_000
         end
     end
-    return C((x[e]/normconst for e in fieldnames(C))...,)
+    return x/normconst
 end
 function normalize(x::C; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
     normconst = zero(T)
@@ -93,8 +120,7 @@ function normalize(x::C; anhydrous::Bool=false) where {T, C<:LogTraceComposition
             normconst += exp(x[e]) / 1_000_000
         end
     end
-    lognormconst = log(normconst)
-    return C((x[e]/normconst for e in majorelements(x))..., (x[e]-lognormconst for e in traceelements(x))...,)
+    return x/normconst
 end
 export normalize
 

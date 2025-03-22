@@ -10,6 +10,7 @@ xn = normalize(x, anhydrous=true)
 @test propertynames(xn)[1:10] == majorelements(xn) == majorelements(NCKFMASHTOtrace)
 @test propertynames(xn)[11:40] == traceelements(xn) == traceelements(NCKFMASHTOtrace)
 @test xn isa NCKFMASHTOtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
 
 xl = NCKFMASHTOlogtrace(x)
 @test xl isa NCKFMASHTOlogtrace{Float64}
@@ -22,6 +23,7 @@ xn = normalize(xl, anhydrous=true)
 @test propertynames(xn)[1:10] == majorelements(xn) == majorelements(NCKFMASHTOlogtrace)
 @test propertynames(xn)[11:40] == traceelements(xn) == traceelements(NCKFMASHTOlogtrace)
 @test xn isa NCKFMASHTOlogtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
 
 x = NCKFMASHTOCrtrace((1.0:length(fieldnames(NCKFMASHTOCrtrace)))...,)
 @test x isa NCKFMASHTOCrtrace{Float64}
@@ -33,6 +35,7 @@ xn = normalize(x, anhydrous=true)
 @test propertynames(xn)[1:11] == majorelements(xn) == majorelements(NCKFMASHTOCrtrace)
 @test propertynames(xn)[12:40] == traceelements(xn) == traceelements(NCKFMASHTOCrtrace)
 @test xn isa NCKFMASHTOCrtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
 
 xl = NCKFMASHTOCrlogtrace(x)
 @test xl isa NCKFMASHTOCrlogtrace{Float64}
@@ -44,6 +47,7 @@ xn = normalize(xl, anhydrous=true)
 @test propertynames(xn)[1:11] == majorelements(xn) == majorelements(NCKFMASHTOCrlogtrace)
 @test propertynames(xn)[12:40] == traceelements(xn) == traceelements(NCKFMASHTOCrlogtrace)
 @test xn isa NCKFMASHTOCrlogtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
 
 # Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 100)

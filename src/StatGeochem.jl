@@ -12,9 +12,10 @@ module StatGeochem
     using Polyester: @batch
 
     # General requirements
-    using LazyArtifacts
     using DelimitedFiles: readdlm, writedlm
     using Downloads: download
+    using LazyArtifacts: @artifact_str
+    using LogExpFunctions: logaddexp
     using ProgressMeter: @showprogress, update!, next!, Progress
     using Random
     using StructArrays
