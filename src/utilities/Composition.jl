@@ -5,6 +5,19 @@ abstract type AbstractComposition{T} end
 abstract type LinearTraceComposition{T} <: AbstractComposition{T} end
 abstract type LogTraceComposition{T} <: AbstractComposition{T} end
 
+# Default constructor, given a an AbstractArray or NTuple of the appropriate length
+@generated function (::Type{C})(v::Collection) where {T,C<:AbstractComposition{T}}
+    result = :($C())
+    for i in 1:fieldcount(C)
+        push!(result.args, :($T(v[$i])))
+    end
+    return Expr(
+        :block,
+        :(@assert length(v) == fieldcount($C) "Collection must contain same number of elements as the composition $C you are trying to construct"),
+        :(return $result)
+    )
+end
+
 # Default methods which assume fields are elements, which will be used
 # if a concrete type does not override with something more specific
 Base.keys(x::C) where {C<:AbstractComposition} = fieldnames(C)

@@ -2,7 +2,7 @@
 
 x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test x isa NCKFMASHTOtrace{Float64}
-@test x == NCKFMASHTOtrace((1:40.)...,)
+@test x === NCKFMASHTOtrace{Float64}(1:40)
 xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
 xn = normalize(x, anhydrous=true) 
@@ -16,7 +16,7 @@ xn = normalize(x, anhydrous=true)
 
 xl = NCKFMASHTOlogtrace(x)
 @test xl isa NCKFMASHTOlogtrace{Float64}
-@test xl == NCKFMASHTOlogtrace((1:10.)..., log.(11:40.)...,)
+@test xl === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
 xn = normalize(xl) 
 @test xn isa NCKFMASHTOlogtrace{Float64}
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
@@ -31,7 +31,7 @@ xn = normalize(xl, anhydrous=true)
 
 x = NCKFMASHTOCrtrace((1.0:length(fieldnames(NCKFMASHTOCrtrace)))...,)
 @test x isa NCKFMASHTOCrtrace{Float64}
-@test x == NCKFMASHTOCrtrace((1:40.)...,)
+@test x === NCKFMASHTOCrtrace{Float64}(1:40)
 xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
 xn = normalize(x, anhydrous=true) 
@@ -45,7 +45,7 @@ xn = normalize(x, anhydrous=true)
 
 xl = NCKFMASHTOCrlogtrace(x)
 @test xl isa NCKFMASHTOCrlogtrace{Float64}
-@test xl == NCKFMASHTOCrlogtrace((1:11.)..., log.(12:40.)...,)
+@test xl === NCKFMASHTOCrlogtrace{Float64}([1:11; log.(12:40)])
 xn = normalize(xl) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
 xn = normalize(xl, anhydrous=true) 
