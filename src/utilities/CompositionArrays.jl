@@ -75,13 +75,14 @@ function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=fa
     return x
 end
 
-function partiallymix!(x::CompositionArray, mixingfraction::Number)
+function partiallymix!(x::CompositionArray, mixingfraction::Number, ifirst=findfirst(!isnan, getfield(x,:data)), ilast=findlast(!isnan, getfield(x,:data)))
     @assert 0 <= mixingfraction <= 1 "Mixing fraction must be between 0 and 1"
     unmixingfraction = 1 - mixingfraction
-    Δi = lastindex(x)-firstindex(x)
-    for i in (firstindex(x)+1):(lastindex(x)-1)
-        fᵢ = (i - firstindex(x))/Δi
-        mixᵢ = (fᵢ*last(x)+ (1-fᵢ)*first(x))
+    xfirst, xlast = x[ifirst], x[ilast]
+    Δi = ilast-ifirst
+    for i in ifirst:ilast
+        fᵢ = (i - ifirst)/Δi
+        mixᵢ = (fᵢ*xlast + (1-fᵢ)*xfirst)
         x[i] = unmixingfraction * x[i] + mixingfraction * mixᵢ
     end
     return x
