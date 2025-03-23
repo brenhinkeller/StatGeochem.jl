@@ -24,7 +24,7 @@
         showcollection(io, x)
     end
     function Base.show(io::IO, ::MIME"text/plain", x::CompositionArray{T,N}) where {T,N}
-        println(io, "CompositionArray{$T,$N} with $(length(keys(x))) elements:")
+        println(io, "CompositionArray{$T,$N}$(size(x)) with $(length(keys(x))) elements:")
         showcollection(io, x)
     end
 

@@ -32,44 +32,13 @@ traceelements(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x)
 majorelements(x::CompositionArray{T}) where {T<:AbstractComposition} = majorelements(T)
 traceelements(x::CompositionArray{T}) where {T<:AbstractComposition} = traceelements(T)
 
-function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LinearTraceComposition{T}}
+# Extend StatGeochemBase.renormalize! for CompositionArray{<:AbstractComposition}
+function StatGeochemBase.renormalize!(x::CompositionArray{<:AbstractComposition}; anhydrous::Bool=false)
     for i in eachindex(x)
-        normconst = zero(T)
-        for e in majorelements(x)
-            if !isnan(x[e][i]) && (!anhydrous || !(e === :H2O || e === :CO2))
-                normconst += x[e][i] / 100
-            end
-        end
-        for e in traceelements(x)
-            if !isnan(x[e][i])
-                normconst += x[e][i] / 1_000_000
-            end
-        end
-        for e in keys(x)
-            x[e][i] /= normconst
-        end
-    end
-    return x
-end
-function StatGeochemBase.renormalize!(x::CompositionArray{C}; anhydrous::Bool=false) where {T, C<:LogTraceComposition{T}}
-    for i in eachindex(x)
-        normconst = zero(T)
-        for e in majorelements(x)
-            if !isnan(x[e][i]) && (!anhydrous || !(e === :H2O || e === :CO2))
-                normconst += x[e][i] / 100
-            end
-        end
-        for e in traceelements(x)
-            if !isnan(x[e][i])
-                normconst += exp(x[e][i]) / 1_000_000
-            end
-        end
-        lognormconst = log(normconst)
-        for e in majorelements(x)
-            x[e][i] /= normconst
-        end
-        for e in traceelements(x)
-            x[e][i] -= lognormconst
+        xᵢ = x[i]
+        c = anhydrous ? normconstanhydrous(xᵢ) : normconst(xᵢ)
+        if !(c ≈ 1)
+            x[i] = xᵢ/c
         end
     end
     return x
