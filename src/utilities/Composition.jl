@@ -5,6 +5,16 @@ abstract type AbstractComposition{T} end
 abstract type LinearTraceComposition{T} <: AbstractComposition{T} end
 abstract type LogTraceComposition{T} <: AbstractComposition{T} end
 
+# Major elements are assumed to be oxides, if concrete type does not override
+majorelements(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
+majorelements(::T) where {T<:AbstractComposition} = majorelements(T)
+export majorelements
+
+# Trace elements are assumed to be everything but oxides, if concrete type does not override
+traceelements(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(String(k),"O"), fieldnames(T))
+traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
+export traceelements
+
 # Default constructor, given a an AbstractArray or NTuple of the appropriate length
 @generated function (::Type{C})(v::Collection) where {T,C<:AbstractComposition{T}}
     result = :($C())
@@ -18,21 +28,20 @@ abstract type LogTraceComposition{T} <: AbstractComposition{T} end
     )
 end
 
+# Extract elements as an NTuple
+@generated function Base.ntuple(x::C) where {C<:AbstractComposition}
+    result = Expr(:tuple,)
+    for e in fieldnames(C)
+        push!(result.args, :(x.$e))
+    end
+    return result
+end
+
 # Default methods which assume fields are elements, which will be used
 # if a concrete type does not override with something more specific
 Base.keys(x::C) where {C<:AbstractComposition} = fieldnames(C)
 Base.haskey(x::C, key::Symbol) where {C<:AbstractComposition} = hasfield(C, key)
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
-
-# Major elements are assumed to be oxides, if concrete type does not override
-majorelements(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
-majorelements(::T) where {T<:AbstractComposition} = majorelements(T)
-export majorelements
-
-# Trace elements are assumed to be everything but oxides, if concrete type does not override
-traceelements(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(String(k),"O"), fieldnames(T))
-traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
-export traceelements
 
 # Partial math interface, using generated functions so that we don't have to manually
 # write out all the field names for every concrete subtype of AbstractComposition

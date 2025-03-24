@@ -3,6 +3,7 @@
 x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test x isa NCKFMASHTOtrace{Float64}
 @test x === NCKFMASHTOtrace{Float64}(1:40)
+@test ntuple(x) === ntuple(Float64, 40)
 xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
 xn = normalize(dehydrate(x)) 
@@ -19,6 +20,7 @@ xn = normalize(x, anhydrous=true)
 x = NCKFMASHTOlogtrace(x)
 @test x isa NCKFMASHTOlogtrace{Float64}
 @test x === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
+@test ntuple(x) === ((1:10.)..., log.(11:40)...,)
 xn = normalize(x) 
 @test xn isa NCKFMASHTOlogtrace{Float64}
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
@@ -36,6 +38,7 @@ xn = normalize(x, anhydrous=true)
 x = NCKFMASHTOCrtrace((1.0:length(fieldnames(NCKFMASHTOCrtrace)))...,)
 @test x isa NCKFMASHTOCrtrace{Float64}
 @test x === NCKFMASHTOCrtrace{Float64}(1:40)
+@test ntuple(x) === ntuple(Float64, 40)
 xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
 xn = normalize(dehydrate(x)) 
@@ -52,6 +55,7 @@ xn = normalize(x, anhydrous=true)
 x = NCKFMASHTOCrlogtrace(x)
 @test x isa NCKFMASHTOCrlogtrace{Float64}
 @test x === NCKFMASHTOCrlogtrace{Float64}([1:11; log.(12:40)])
+@test ntuple(x) === ((1:11.)..., log.(12:40)...,)
 xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
 xn = normalize(dehydrate(x)) 
