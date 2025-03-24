@@ -57,6 +57,15 @@ xn = normalize(xl, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
+# Composition distributions
+μ = rand(40)
+Σ = [Float64(i==j) for i in 1:40, j in 1:40]
+d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
+@test d isa CompositionNormal{Float64, NCKFMASHTOCrtrace{Float64}}
+@test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrtrace{Float64}}
+@test rand(d) isa NCKFMASHTOCrtrace{Float64}
+@test rand(d,10) isa Vector{NCKFMASHTOCrtrace{Float64}}
+
 # Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}

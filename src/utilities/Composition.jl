@@ -381,3 +381,26 @@ majorelements(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:SiO2
 traceelements(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 NCKFMASHTOCrlogtrace(x::NCKFMASHTOCrtrace) = NCKFMASHTOCrlogtrace((x[e] for e in majorelements(x))..., (log(x[e]) for e in traceelements(x))...,)
 NCKFMASHTOCrtrace(x::NCKFMASHTOCrlogtrace) = NCKFMASHTOCrtrace((x[e] for e in majorelements(x))..., (exp(x[e]) for e in traceelements(x))...,)
+
+
+## -- Distributions of compositions
+abstract type CompositionDistribution{C} end
+
+struct CompositionNormal{T, C<:AbstractComposition{T}, D<:MvNormal{T}} <: CompositionDistribution{C}
+    mvndist::D
+    buffer::Vector{T}
+end
+function CompositionNormal(::Type{C}, μ::AbstractVector, Σ::AbstractMatrix) where {T, C<:AbstractComposition{T}}
+    @assert length(μ) == fieldcount(C)
+    @assert size(Σ,1) == size(Σ,1) == fieldcount(C)
+    d = MvNormal(μ, Σ)
+    return CompositionNormal{T,C,typeof(d)}(d, zeros(T, fieldcount(C)))
+end
+export CompositionNormal
+
+# Interface for drawing Compositions from MvNormal distribution
+Random.gentype(::Type{<:CompositionDistribution{C}}) where {C<:AbstractComposition} = C
+function Random.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
+    rand!(rng, d.self.mvndist, d.self.buffer) 
+    return C(d.self.buffer)
+end
