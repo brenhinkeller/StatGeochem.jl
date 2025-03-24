@@ -24,6 +24,16 @@ Base.keys(x::C) where {C<:AbstractComposition} = fieldnames(C)
 Base.haskey(x::C, key::Symbol) where {C<:AbstractComposition} = hasfield(C, key)
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
 
+# Major elements are assumed to be oxides, if concrete type does not override
+majorelements(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
+majorelements(::T) where {T<:AbstractComposition} = majorelements(T)
+export majorelements
+
+# Trace elements are assumed to be everything but oxides, if concrete type does not override
+traceelements(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(String(k),"O"), fieldnames(T))
+traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
+export traceelements
+
 # Partial math interface, using generated functions so that we don't have to manually
 # write out all the field names for every concrete subtype of AbstractComposition
 @generated function Base.:*(x::C, n::Number) where {C<:LinearTraceComposition}
@@ -110,16 +120,6 @@ end
     return :(normalize($result))
 end
 
-# Major elements are assumed to be oxides, if concrete type does not override
-majorelements(::Type{T}) where {T<:AbstractComposition} = filter(k->contains(String(k),"O"), fieldnames(T))
-majorelements(::T) where {T<:AbstractComposition} = majorelements(T)
-export majorelements
-
-# Trace elements are assumed to be everything but oxides, if concrete type does not override
-traceelements(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(String(k),"O"), fieldnames(T))
-traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
-export traceelements
-
 # Normalization
 @generated function normconst(x::C) where {T, C<:LinearTraceComposition{T}}
     additions = Expr(:block)
@@ -193,6 +193,20 @@ function isnormalized(x::AbstractComposition; anhydrous::Bool=false)
     return c ≈ 1
 end
 export isnormalized
+
+# Other things we might want to do to compositions
+@generated function dehydrate(x::C) where {T, C<:AbstractComposition{T}}
+    result = :($C())
+    for e in fieldnames(C)
+        if e===:H2O || e ===:CO2
+            push!(result.args, :(zero(T)))
+        else
+            push!(result.args, :(x.$e))
+        end
+    end
+    return result
+end
+export dehydrate
 
 struct NCKFMASHTOtrace{T} <: LinearTraceComposition{T}
     SiO2::T
@@ -402,5 +416,5 @@ export CompositionNormal
 Random.gentype(::Type{<:CompositionDistribution{C}}) where {C<:AbstractComposition} = C
 function Random.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
     rand!(rng, d.self.mvndist, d.self.buffer) 
-    return C(d.self.buffer)
+    return normalize(C(d.self.buffer))
 end
