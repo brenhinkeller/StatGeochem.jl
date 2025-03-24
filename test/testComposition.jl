@@ -16,15 +16,15 @@ xn = normalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
-xl = NCKFMASHTOlogtrace(x)
-@test xl isa NCKFMASHTOlogtrace{Float64}
-@test xl === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
-xn = normalize(xl) 
+x = NCKFMASHTOlogtrace(x)
+@test x isa NCKFMASHTOlogtrace{Float64}
+@test x === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
+xn = normalize(x) 
 @test xn isa NCKFMASHTOlogtrace{Float64}
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
-xn = normalize(dehydrate(xl)) 
+xn = normalize(dehydrate(x)) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.83028850953377
-xn = normalize(xl, anhydrous=true) 
+xn = normalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.83028850953377
 @test propertynames(xn)[1:10] == majorelements(xn) == majorelements(NCKFMASHTOlogtrace)
 @test propertynames(xn)[11:40] == traceelements(xn) == traceelements(NCKFMASHTOlogtrace)
@@ -49,14 +49,14 @@ xn = normalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
-xl = NCKFMASHTOCrlogtrace(x)
-@test xl isa NCKFMASHTOCrlogtrace{Float64}
-@test xl === NCKFMASHTOCrlogtrace{Float64}([1:11; log.(12:40)])
-xn = normalize(xl) 
+x = NCKFMASHTOCrlogtrace(x)
+@test x isa NCKFMASHTOCrlogtrace{Float64}
+@test x === NCKFMASHTOCrlogtrace{Float64}([1:11; log.(12:40)])
+xn = normalize(x) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
-xn = normalize(dehydrate(xl)) 
+xn = normalize(dehydrate(x)) 
 @test sum(e->xn[e], majorelements(xn)) ≈ 99.86309677278784
-xn = normalize(xl, anhydrous=true) 
+xn = normalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:10]) ≈ 99.86309677278784
 @test propertynames(xn)[1:11] == majorelements(xn) == majorelements(NCKFMASHTOCrlogtrace)
 @test propertynames(xn)[12:40] == traceelements(xn) == traceelements(NCKFMASHTOCrlogtrace)
