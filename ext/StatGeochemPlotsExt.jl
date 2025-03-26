@@ -26,26 +26,32 @@ module StatGeochemPlotsExt
     export mapplot, mapplot!
 
 
-    taylormclennan = (
+    chondrite = (
         La = 0.367,Ce = 0.957,Pr = 0.137,Nd = 0.711,Sm = 0.231,Eu = 0.087,Gd = 0.306,
         Tb = 0.058,Dy = 0.381,Ho = 0.085,Er = 0.249,Tm = 0.036,Yb = 0.248,Lu = 0.038,
     )
+    PAAS = (
+        La = 38,Ce = 80,Pr = 8.9,Nd = 32,Sm = 5.6,Eu = 1.1,Gd = 4.7,
+        Tb = 0.77,Dy = 4.4,Ho = 1.0,Er = 2.9,Tm = 0.40,Yb = 2.8,Lu = 0.43,
+    )
 
     """
-    Construct a `chondrite` normalized multi-element diagram (spider diagram) from the 
-    rare earth elements in `data`. 
+    Construct a normalized multi-element diagram (spider diagram) from the rare earth 
+    elements in `data`. 
 
     Use `spidergram` to create a new plot object, and `spidergram!` to add to an existing 
     one:
     ```julia
-    spidergram(data; [chondrite], kwargs...)              # Create a new spider diagram
-    spidergram!(plotobj, data; [chondrite], kwargs...)    # Add to the plot `plotobj`
+    spidergram(data; [normalizer], kwargs...)              # Create a new spider diagram
+    spidergram!(plotobj, data; [normalizer], kwargs...)    # Add to the plot `plotobj`
     ```
 
-    If no chondrite values are specified, `data` will be normalized to the values reported
-    by Taylor and McLennan (1985).
+    Specify a `normalizer` set of REE values (in ppm) to normalize `data.` Chondrite and 
+    PAAS (post-Archean Australian shale) from Taylor and McLennan (1985) are pre-defined 
+    respectively as `chondrite` and `PAAS`. If no values are specified, `data` will be 
+    normalized to chondrite values.
 
-    Values in `data` and `chondrite` may be passed as a dictonary, named tuple, or an 
+    Values in `data` and `normalizer` may be passed as a dictonary, named tuple, or an 
     array. All arrays should be in element order:
 
         La, Ce, Pr, Nd, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu
@@ -66,12 +72,20 @@ module StatGeochemPlotsExt
         "Pr" => 2.344
         ⋮    => ⋮
 
-    If `data` is not passed as an array, `chondrite` must be a named tuple in element 
+    If `data` is not passed as an array, `normalizer` must be a named tuple in element 
     order.
     """
-    function StatGeochem.spidergram(data; chondrite=taylormclennan, markershape=:circle, kwargs...)
+    function StatGeochem.spidergram(data; normalizer=chondrite, markershape=:circle, kwargs...)
+        if normalizer==chondrite
+            norm_name="Chondrite"
+        elseif normalizer==PAAS 
+            norm_name="PAAS"
+        else 
+            norm_name=""
+        end
+
         h = Plots.plot(
-            ylabel="Chondrite Normalized",
+            ylabel="$norm_name Normalized",
             fg_color_legend=:white,
             framestyle=:box,
             grid=false,
@@ -82,35 +96,35 @@ module StatGeochemPlotsExt
                 "Yb","Lu"]),
             yminorticks=log.(1:10),
         )
-        spidergram!(h, data; chondrite=chondrite, markershape=markershape, kwargs...)
+        spidergram!(h, data; normalizer=normalizer, markershape=markershape, kwargs...)
     end
     
-    function StatGeochem.spidergram!(h, data::Dict; chondrite::NamedTuple=taylormclennan, 
+    function StatGeochem.spidergram!(h, data::Dict; normalizer::NamedTuple=chondrite, 
             markershape=:circle, kwargs...
         )
 
-        REEindex = NamedTuple{keys(chondrite)}(i for i in collect([1:4; 6:15]))
+        REEindex = NamedTuple{keys(normalizer)}(i for i in collect([1:4; 6:15]))
         Key = keytype(data)
         
         x = collect(values(REEindex))
-        y = [(haskey(data, Key(k)) ? data[Key(k)]/chondrite[Symbol(k)] : NaN) for k in keys(chondrite)]
+        y = [(haskey(data, Key(k)) ? data[Key(k)]/normalizer[Symbol(k)] : NaN) for k in keys(normalizer)]
         _spidergram!(h, x, y; markershape=markershape, kwargs...)
     end
     
-    function StatGeochem.spidergram!(h, data::NamedTuple; chondrite::NamedTuple=taylormclennan, 
+    function StatGeochem.spidergram!(h, data::NamedTuple; normalizer::NamedTuple=chondrite, 
             markershape=:circle, kwargs...
         )
         
-        REEindex = NamedTuple{keys(chondrite)}(i for i in collect([1:4; 6:15]))
+        REEindex = NamedTuple{keys(normalizer)}(i for i in collect([1:4; 6:15]))
     
         x = [REEindex[Symbol(k)] for k in keys(data)]
-        y = [data[k]/chondrite[k] for k in keys(data)]
+        y = [data[k]/normalizer[k] for k in keys(data)]
         _spidergram!(h, x, y; markershape=markershape, kwargs...)
     end
     
-    StatGeochem.spidergram!(h, data::AbstractArray; chondrite=taylormclennan, 
+    StatGeochem.spidergram!(h, data::AbstractArray; normalizer=chondrite, 
             markershape=:circle, kwargs...) = 
-        _spidergram!(h, collect([1:4; 6:15]), data ./ collect(values(chondrite)); 
+        _spidergram!(h, collect([1:4; 6:15]), data ./ collect(values(normalizer)); 
             markershape=markershape, kwargs...
         )
     
