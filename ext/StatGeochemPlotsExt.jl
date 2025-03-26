@@ -82,8 +82,6 @@ module StatGeochemPlotsExt
             framestyle=:box,
             grid=false,
             yaxis=:log10,
-            ylims=(10^0, 10^3),
-            yticks=(10.0.^(0:3), ("1", "10", "100", "1000")),
             xticks=(1:15, ["La","Ce","Pr","Nd","","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm",
                 "Yb","Lu"]),
             yminorticks=log.(1:10),
