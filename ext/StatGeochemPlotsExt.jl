@@ -74,18 +74,10 @@ module StatGeochemPlotsExt
 
     If `data` is not passed as an array, `normalizer` must be a named tuple in element 
     order.
+
     """
     function StatGeochem.spidergram(data; normalizer=chondrite, markershape=:circle, kwargs...)
-        if normalizer==chondrite
-            norm_name="Chondrite"
-        elseif normalizer==PAAS 
-            norm_name="PAAS"
-        else 
-            norm_name=""
-        end
-
         h = Plots.plot(
-            ylabel="$norm_name Normalized",
             fg_color_legend=:white,
             framestyle=:box,
             grid=false,
@@ -96,6 +88,17 @@ module StatGeochemPlotsExt
                 "Yb","Lu"]),
             yminorticks=log.(1:10),
         )
+
+        if normalizer==chondrite
+            ylabel!("Chondrite Normalized")
+            ylims!(10^0, 10^3)
+            yticks!(10.0.^(0:3), ["1", "10", "100", "1000"])
+        elseif normalizer==PAAS 
+            ylabel!("PAAS Normalized")
+            ylims!(10^-1, 10^2)
+            yticks!(10.0.^(-1:2), ["0.1", "1", "10", "100",])
+        end
+
         spidergram!(h, data; normalizer=normalizer, markershape=markershape, kwargs...)
     end
     
