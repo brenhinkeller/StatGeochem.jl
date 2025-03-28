@@ -69,6 +69,75 @@ xn = normalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
+x = NCKFMASTtrace((1.0:length(fieldnames(NCKFMASTtrace)))...,)
+@test x isa NCKFMASTtrace{Float64}
+@test x === NCKFMASTtrace{Float64}(1:38)
+@test ntuple(x) === ntuple(Float64, 38)
+xn = normalize(x) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+xn = normalize(dehydrate(x)) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+xn = normalize(x, anhydrous=true) 
+@test sum(e->xn[e], propertynames(xn)[1:8]) ≈ 99.8045494240446
+@test propertynames(xn)[1:8] == majorelements(xn) == majorelements(NCKFMASTtrace)
+@test propertynames(xn)[9:38] == traceelements(xn) == traceelements(NCKFMASTtrace)
+@test xn isa NCKFMASTtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
+@test !isnan(xn)
+@test isnan(xn * NaN)
+
+x = NCKFMASTlogtrace(x)
+@test x isa NCKFMASTlogtrace{Float64}
+@test x === NCKFMASTlogtrace{Float64}([1:8; log.(9:38)])
+@test ntuple(x) === ((1:8.)..., log.(9:38)...,)
+xn = normalize(x) 
+@test xn isa NCKFMASTlogtrace{Float64}
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+xn = normalize(dehydrate(x)) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+xn = normalize(x, anhydrous=true) 
+@test sum(e->xn[e], propertynames(xn)[1:8]) ≈ 99.8045494240446
+@test propertynames(xn)[1:8] == majorelements(xn) == majorelements(NCKFMASTlogtrace)
+@test propertynames(xn)[9:38] == traceelements(xn) == traceelements(NCKFMASTlogtrace)
+@test xn isa NCKFMASTlogtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
+@test !isnan(xn)
+@test isnan(xn * NaN)
+
+x = NCKFMASTCrtrace((1.0:length(fieldnames(NCKFMASTCrtrace)))...,)
+@test x isa NCKFMASTCrtrace{Float64}
+@test x === NCKFMASTCrtrace{Float64}(1:38)
+@test ntuple(x) === ntuple(Float64, 38)
+xn = normalize(x) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+xn = normalize(dehydrate(x)) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+xn = normalize(x, anhydrous=true) 
+@test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.8455721816923
+@test propertynames(xn)[1:9] == majorelements(xn) == majorelements(NCKFMASTCrtrace)
+@test propertynames(xn)[10:38] == traceelements(xn) == traceelements(NCKFMASTCrtrace)
+@test xn isa NCKFMASTCrtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
+@test !isnan(xn)
+@test isnan(xn * NaN)
+
+x = NCKFMASTCrlogtrace(x)
+@test x isa NCKFMASTCrlogtrace{Float64}
+@test x === NCKFMASTCrlogtrace{Float64}([1:9; log.(10:38)])
+@test ntuple(x) === ((1:9.)..., log.(10:38)...,)
+xn = normalize(x) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+xn = normalize(dehydrate(x)) 
+@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+xn = normalize(x, anhydrous=true) 
+@test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.8455721816923
+@test propertynames(xn)[1:9] == majorelements(xn) == majorelements(NCKFMASTCrlogtrace)
+@test propertynames(xn)[10:38] == traceelements(xn) == traceelements(NCKFMASTCrlogtrace)
+@test xn isa NCKFMASTCrlogtrace{Float64}
+@test 0.5*xn + 0.5*xn == xn
+@test !isnan(xn)
+@test isnan(xn * NaN)
+
 # Composition distributions
 μ = rand(40)
 Σ = [Float64(i==j) for i in 1:40, j in 1:40]
