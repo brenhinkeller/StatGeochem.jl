@@ -28,6 +28,66 @@ export traceelements
     )
 end
 
+# Default conversions between compositions
+@generated function (::Type{C})(c::D) where {T, C<:LinearTraceComposition, D<:LinearTraceComposition{T}}
+    result = :($C())
+    for e in fieldnames(C)
+        if hasfield(D, e)
+            push!(result.args, :(c.$e))
+        else
+            push!(result.args, :(zero($T)))
+        end
+    end
+    return result
+end
+@generated function (::Type{C})(c::D) where {T, C<:LogTraceComposition, D<:LogTraceComposition{T}}
+    result = :($C())
+    for e in fieldnames(C)
+        if hasfield(D, e)
+            push!(result.args, :(c.$e))
+        else
+            push!(result.args, :(zero($T)))
+        end
+    end
+    return result
+end
+@generated function (::Type{C})(c::D) where {T, C<:LinearTraceComposition, D<:LogTraceComposition{T}}
+    result = :($C())
+    for e in majorelements(C)
+        if e ∈ majorelements(D)
+            push!(result.args, :(c.$e))
+        else
+            push!(result.args, :(zero($T)))
+        end
+    end
+    for e in traceelements(C)
+        if e ∈ traceelements(D)
+            push!(result.args, :($T(exp(c.$e))))
+        else
+            push!(result.args, :(zero($T)))
+        end
+    end
+    return result
+end
+@generated function (::Type{C})(c::D) where {T, C<:LogTraceComposition, D<:LinearTraceComposition{T}}
+    result = :($C())
+    for e in majorelements(C)
+        if e ∈ majorelements(D)
+            push!(result.args, :(c.$e))
+        else
+            push!(result.args, :(zero($T)))
+        end
+    end
+    for e in traceelements(C)
+        if e ∈ traceelements(D)
+            push!(result.args, :($T(log(c.$e))))
+        else
+            push!(result.args, :(typemin($T)))
+        end
+    end
+    return result
+end
+
 # Extract elements as an NTuple
 @generated function Base.ntuple(x::C) where {C<:AbstractComposition}
     result = Expr(:tuple,)
@@ -308,8 +368,6 @@ export NCKFMASHTOlogtrace
 # majorelements, traceelements and conversions
 majorelements(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O)
 traceelements(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
-NCKFMASHTOlogtrace(x::NCKFMASHTOtrace) = NCKFMASHTOlogtrace((x[e] for e in majorelements(x))..., (log(x[e]) for e in traceelements(x))...,)
-NCKFMASHTOtrace(x::NCKFMASHTOlogtrace) = NCKFMASHTOtrace((x[e] for e in majorelements(x))..., (exp(x[e]) for e in traceelements(x))...,)
 
 struct NCKFMASHTOCrtrace{T} <: LinearTraceComposition{T}
     SiO2::T
@@ -402,8 +460,6 @@ export NCKFMASHTOCrlogtrace
 # majorelements, traceelements and conversions
 majorelements(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :Cr2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O)
 traceelements(::Type{<:Union{NCKFMASHTOCrtrace, NCKFMASHTOCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
-NCKFMASHTOCrlogtrace(x::NCKFMASHTOCrtrace) = NCKFMASHTOCrlogtrace((x[e] for e in majorelements(x))..., (log(x[e]) for e in traceelements(x))...,)
-NCKFMASHTOCrtrace(x::NCKFMASHTOCrlogtrace) = NCKFMASHTOCrtrace((x[e] for e in majorelements(x))..., (exp(x[e]) for e in traceelements(x))...,)
 
 
 ## -- Distributions of compositions
