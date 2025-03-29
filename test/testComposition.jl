@@ -138,6 +138,22 @@ xn = renormalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
+# Composition distributions
+μ = rand(40)
+Σ = [Float64(i==j) for i in 1:40, j in 1:40]
+d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
+@test d == CompositionNormal(NCKFMASHTOCrtrace{Float64}(μ), Σ)
+@test d isa CompositionNormal{Float64, NCKFMASHTOCrtrace{Float64}}
+@test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrtrace{Float64}}
+@test rand(d) isa NCKFMASHTOCrtrace{Float64}
+@test rand(d,10) isa Vector{NCKFMASHTOCrtrace{Float64}}
+@test mean(d) === NCKFMASHTOCrtrace{Float64}(μ)
+@test var(d) === NCKFMASHTOCrtrace{Float64}(diag(Σ))
+@test std(d) === NCKFMASHTOCrtrace{Float64}(sqrt.(diag(Σ)))
+@test cov(d) == Σ
+@test pdf(d, μ) ≈ pdf(d, mean(d)) ≈ 1.0874333119089363e-16
+@test logpdf(d, μ) ≈ logpdf(d, mean(d)) ≈ -36.75754132818691
+
 # Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
@@ -155,22 +171,6 @@ ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test length(ca.La) === 99
 @test eachindex(ca.La) === Base.OneTo(99)
 @test ca.La === ca[:La]
-
-# Composition distributions
-μ = rand(40)
-Σ = [Float64(i==j) for i in 1:40, j in 1:40]
-d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
-@test d == CompositionNormal(NCKFMASHTOCrtrace{Float64}(μ), Σ)
-@test d isa CompositionNormal{Float64, NCKFMASHTOCrtrace{Float64}}
-@test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrtrace{Float64}}
-@test rand(d) isa NCKFMASHTOCrtrace{Float64}
-@test rand(d,10) isa Vector{NCKFMASHTOCrtrace{Float64}}
-@test mean(d) === NCKFMASHTOCrtrace{Float64}(μ)
-@test var(d) === NCKFMASHTOCrtrace{Float64}(diag(Σ))
-@test std(d) === NCKFMASHTOCrtrace{Float64}(sqrt.(diag(Σ)))
-@test cov(d) == Σ
-@test pdf(d, μ) ≈ pdf(d, mean(d)) ≈ 1.0874333119089363e-16
-@test logpdf(d, μ) ≈ logpdf(d, mean(d)) ≈ -36.75754132818691
 
 # Randomize and renormalize composition arrays
 StatGeochem.rand!(ca)
@@ -201,3 +201,16 @@ cam = partiallymix!(copy(ca), 1)
 cam = partiallymix!(copy(ca), 0.5)
 @test cam[50] ≈ 0.5ca[50] + 0.5(0.5*ca[1] + 0.5*ca[99])
 @test isnormalized(cam[50], anhydrous=true)
+
+# Statistical properties of composition arrays
+μ = renormalize(NCKFMASTtrace{Float64}(38:-1:1))
+Σ = [Float64(i==j) for i in 1:38, j in 1:38]
+d = CompositionNormal(μ, Σ)
+ca = CompositionArray{NCKFMASTtrace{Float64}}(undef, 10000)
+StatGeochem.rand!(ca, d)
+@test nanmean(ca) ≈ μ rtol=0.1
+@test nanvar(ca) ≈ var(d) rtol=0.3
+@test nanstd(ca) ≈ std(d) rtol=0.1
+@test nansem(ca) ≈ std(d)/sqrt(length(ca)) rtol=0.1
+@test nancov(ca) ≈ cov(d) rtol=0.3
+@test nancovem(ca) ≈ cov(d)/length(ca) rtol=0.3

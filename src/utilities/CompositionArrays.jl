@@ -58,6 +58,48 @@ function partiallymix!(x::CompositionArray, mixingfraction::Number, ifirst=findf
 end
 export partiallymix!
 
+# Extend NaNStatistics for CompositionArrays
+function NaNStatistics.nanmean(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    μ = ntuple(i->T(nanmean(x[e[i]])), fieldcount(C))
+    return C(μ)
+end
+function NaNStatistics.nanvar(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    σ² = ntuple(i->T(nanvar(x[e[i]])), fieldcount(C))
+    return C(σ²)
+end
+function NaNStatistics.nanstd(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    σ = ntuple(i->T(nanstd(x[e[i]])), fieldcount(C))
+    return C(σ)
+end
+function NaNStatistics.nansem(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    σ = ntuple(i->T(nansem(x[e[i]])), fieldcount(C))
+    return C(σ)
+end
+function NaNStatistics.nancov(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    Σ = zeros(T, fieldcount(C), fieldcount(C))
+    @inbounds for i in eachindex(e)
+        for j in 1:i
+            Σ[i,j] = Σ[j,i] = nancov(x[e[i]], x[e[j]])
+        end
+    end
+    return Σ
+end
+function NaNStatistics.nancovem(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    Σ = zeros(T, fieldcount(C), fieldcount(C))
+    @inbounds for i in eachindex(e)
+        for j in 1:i
+            Σ[i,j] = Σ[j,i] = nancovem(x[e[i]], x[e[j]])
+        end
+    end
+    return Σ
+end
+
 ## -- Distributions of compositions
 
 # Abstract type for composition distributions
