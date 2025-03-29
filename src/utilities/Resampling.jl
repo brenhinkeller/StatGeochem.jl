@@ -1149,40 +1149,40 @@
 
     """
     ```julia
-    k = invweight(nums::AbstractArray, scale::Number; lp=2)
+    k = invweight(x::AbstractArray, xscale::Number; lp=2)
     ```
 
-    Find the inverse weights for a single array `nums` for a given `scale`, and
+    Find the inverse weights for a single array `x` for a given `xscale`, and
     exponent `lp` (default lp = 2).
 
     Returns an array k where k[i] is the "inverse weight" for element i of the
     input array.
     """
-    function invweight(nums::AbstractArray, scale::Number; lp=2)
-        numsₘ = materialize(nums)
-        if any(isnan, numsₘ)
-            k = fill(Inf, length(numsₘ))
-            t = @. !isnan(numsₘ)
-            k[t] .= invweight_nonans(numsₘ[t], scale, lp,)
+    function invweight(x::AbstractArray, xscale::Number; lp=2)
+        xₘ = materialize(x)
+        if any(isnan, xₘ)
+            k = fill(Inf, length(xₘ))
+            t = @. !isnan(xₘ)
+            k[t] .= invweight_nonans(xₘ[t], xscale, lp,)
             return k
         else
-            return invweight_nonans(numsₘ, scale, lp,)
+            return invweight_nonans(xₘ, xscale, lp,)
         end
     end
-    function invweight_nonans(nums::AbstractArray, scale::Number, lp::Number)
+    function invweight_nonans(x::AbstractArray, xscale::Number, lp::Number)
 
-        N = length(nums)
+        N = length(x)
         k = Array{Float64}(undef, N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds @batch for i ∈ 1:N
-            if isnan(nums[i])
+            if isnan(x[i])
                 # If there is missing data, set k=inf for weight=0
                 k[i] = Inf
             else
                 # Otherwise, calculate weight
                 kᵢ = 0.0
                 @turbo for j ∈ 1:N
-                    kᵢⱼ = 1.0 / ( (abs(nums[i] - nums[j])/scale)^lp + 1.0)
+                    kᵢⱼ = 1.0 / ( (abs(x[i] - x[j])/xscale)^lp + 1.0)
                     kᵢ += kᵢⱼ
                 end
                 k[i] = kᵢ
