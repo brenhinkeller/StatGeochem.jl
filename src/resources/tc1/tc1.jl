@@ -30,12 +30,9 @@
         return crust
     end
     function find_tc1_crust(lat::AbstractArray,lon::AbstractArray)
-        # Check input dimensions match
-        eachindex(lat) == eachindex(lon) || @error "lat and lon must be equal size"
-
-        # Query the tc1_550 array for our lat and lon
+        # Query the tc1_550 array for our lat and lon pairs
         crust = fill(NaN, size(lat))
-        for n=1:length(lat)
+        for n in eachindex(lat,lon)
             if !isnan(lat[n]) && !isnan(lon[n])
                 i = round(Int, 91-lat[n])
                 j = round(Int, lon[n]+181)

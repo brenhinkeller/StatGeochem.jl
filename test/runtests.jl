@@ -1,5 +1,5 @@
 using StatGeochem
-using Test, Statistics, Downloads
+using Test, Statistics, Downloads, LinearAlgebra, Distributions
 
 # Utilities
 @testset "Resampling" begin include("testResampling.jl") end

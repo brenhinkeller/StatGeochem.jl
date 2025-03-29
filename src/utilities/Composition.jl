@@ -176,7 +176,7 @@ end
     for e in traceelements(C)
         push!(result.args, :(exp(randn(rng, T))))
     end
-    return :(normalize($result))
+    return :(renormalize($result))
 end
 @generated function Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LogTraceComposition{T}}
     result = :($C())
@@ -186,7 +186,7 @@ end
     for e in traceelements(C)
         push!(result.args, :(randn(rng, T)))
     end
-    return :(normalize($result))
+    return :(renormalize($result))
 end
 
 # Normalization
@@ -251,11 +251,11 @@ end
     )
 end
 
-function normalize(x::AbstractComposition; anhydrous::Bool=false) 
+function renormalize(x::AbstractComposition; anhydrous::Bool=false) 
     c = anhydrous ? normconstanhydrous(x) : normconst(x)
     return x/c
 end
-export normalize
+export renormalize
 
 function isnormalized(x::AbstractComposition; anhydrous::Bool=false)
     c = anhydrous ? normconstanhydrous(x) : normconst(x)
@@ -636,26 +636,3 @@ export NCKFMASTCrlogtrace
 # majorelements, traceelements and conversions
 majorelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :Cr2O3, :FeO, :MgO, :CaO, :Na2O, :K2O,)
 traceelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
-
-
-## -- Distributions of compositions
-abstract type CompositionDistribution{C} end
-
-struct CompositionNormal{T, C<:AbstractComposition{T}, D<:MvNormal{T}} <: CompositionDistribution{C}
-    mvndist::D
-    buffer::Vector{T}
-end
-function CompositionNormal(::Type{C}, μ::AbstractVector, Σ::AbstractMatrix) where {T, C<:AbstractComposition{T}}
-    @assert length(μ) == fieldcount(C)
-    @assert size(Σ,1) == size(Σ,1) == fieldcount(C)
-    d = MvNormal(μ, Σ)
-    return CompositionNormal{T,C,typeof(d)}(d, zeros(T, fieldcount(C)))
-end
-export CompositionNormal
-
-# Interface for drawing Compositions from MvNormal distribution
-Random.gentype(::Type{<:CompositionDistribution{C}}) where {C<:AbstractComposition} = C
-function Random.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
-    rand!(rng, d.self.mvndist, d.self.buffer) 
-    return normalize(C(d.self.buffer))
-end

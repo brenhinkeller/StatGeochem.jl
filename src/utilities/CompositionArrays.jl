@@ -57,3 +57,57 @@ function partiallymix!(x::CompositionArray, mixingfraction::Number, ifirst=findf
     return x
 end
 export partiallymix!
+
+## -- Distributions of compositions
+
+# Abstract type for composition distributions
+# Concrete subtypes are expected to have fields including 
+#   `dist` - a Distributions.jl-compatible distribution of length equal to numbe of fields in the composition `C`
+#   `buffer` - a Vector of length equal to numbe of fields in the composition `C`
+abstract type CompositionDistribution{C} end
+
+
+# Distributions.jl-style interface: forward to underlying distribution
+Distributions.pdf(d::CompositionDistribution, x::AbstractVector) = pdf(d.dist, x)
+Distributions.logpdf(d::CompositionDistribution, x::AbstractVector) = logpdf(d.dist, x)
+function Distributions.pdf(d::CompositionDistribution{C}, x::C) where {C<:AbstractComposition}
+    d.buffer .= ntuple(x)
+    return pdf(d, d.buffer)
+end
+function Distributions.logpdf(d::CompositionDistribution{C}, x::C) where {C<:AbstractComposition}
+    d.buffer .= ntuple(x)
+    return logpdf(d, d.buffer)
+end
+Distributions.mean(d::CompositionDistribution{C}) where C = C(mean(d.dist))
+Distributions.var(d::CompositionDistribution{C}) where C = C(var(d.dist))
+Distributions.std(d::CompositionDistribution{C}) where C = C(sqrt.(var(d.dist)))
+Distributions.cov(d::CompositionDistribution) = cov(d.dist)
+Base.:(==)(a::CompositionDistribution, b::CompositionDistribution) = false
+Base.:(==)(a::C, b::C) where {C<:CompositionDistribution} = isequal(a.dist, b.dist)
+
+# The default concret type, based on multivariate normal
+struct CompositionNormal{T, C<:AbstractComposition{T}, D<:MvNormal{T}} <: CompositionDistribution{C}
+    dist::D
+    buffer::Vector{T}
+end
+function CompositionNormal(::Type{C}, μ::AbstractVector, Σ::AbstractMatrix) where {T, C<:AbstractComposition{T}}
+    @assert length(μ) == fieldcount(C)
+    @assert size(Σ,1) == size(Σ,1) == fieldcount(C)
+    d = MvNormal(μ, Σ)
+    return CompositionNormal{T,C,typeof(d)}(d, zeros(T, fieldcount(C)))
+end
+function CompositionNormal(μ::C, Σ::AbstractMatrix) where {T, C<:AbstractComposition{T}}
+    @assert size(Σ,1) == size(Σ,1) == fieldcount(C)
+    d = MvNormal(collect(ntuple(μ)), Σ)
+    return CompositionNormal{T,C,typeof(d)}(d, zeros(T, fieldcount(C)))
+end
+export CompositionNormal
+
+
+# Interface for drawing Compositions from MvNormal distribution
+# (using Random interface, rather than Distributions.jl interface)
+Random.gentype(::Type{<:CompositionDistribution{C}}) where {C<:AbstractComposition} = C
+function Random.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
+    rand!(rng, d.self.dist, d.self.buffer) 
+    return renormalize(C(d.self.buffer))
+end
