@@ -38,7 +38,7 @@
     test["Longitude_sigma"] = 0.01 * ones(size(test["Longitude"]))
 
     # We'll use a 1% relative (1-sigma) default analytical uncertainty for the rest of the elements
-    for i=4:length(elements)
+    for i=4:lastindex(elements)
         test[elements[i]*"_sigma"] = test[elements[i]] * 0.01
     end
 
