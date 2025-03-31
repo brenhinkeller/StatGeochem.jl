@@ -15,8 +15,8 @@
     be expected for a single element in nature, they are suffixed to the atomic symbol, 
     e.g. `Fe2` vs `Fe3`.
 
-    Radii are those reported as "crystal" ionic radii by Shannon [1],  as tabulated at
-    https://en.wikipedia.org/wiki/Ionic_radius#Tables
+    Radii are those reported as "crystal" ionic radii in 6-fold coordination by Shannon [1],  
+    as tabulated at https://en.wikipedia.org/wiki/Ionic_radius#Tables
 
     [1]  R. D. Shannon (1976). "Revised effective ionic radii and systematic studies of interatomic 
     distances in halides and chalcogenides". Acta Crystallogr A. 32 (5): 751-767.
@@ -77,7 +77,7 @@
         Sb = 90.,
         Te = 207.,
         I = 206.,
-        Cs = 167.,
+        Cs = 181.,
         Ba = 149.,
         La = 117.2,
         Ce3 = 115.,
@@ -85,7 +85,7 @@
         Pr = 113.,
         Nd = 112.3,
         Sm = 109.8,
-        Eu2 = 131,
+        Eu2 = 131.,
         Eu3 = 108.7,
         Gd = 107.8,
         Tb = 106.3,
