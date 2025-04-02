@@ -1,112 +1,779 @@
-EarthRef.org -- GERM Partition Coefficient (Kd) Database
-Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
-
-DATA:
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
-Synthetic Basalt	Rutile	40	Zr	2.8				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	41	Nb	28				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	73	Ta	36				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008
-Basalt	Rutile	23	V	118				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	25	Mn				.34	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	37	Rb	.0076				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	38	Sr	.036				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	39	Y				.076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	40	Zr	3.07				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	41	Nb	136				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	56	Ba	.0137				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	58	Ce				.087	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	60	Nd				.277	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	63	Eu	.00037				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	64	Gd				.0037	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	66	Dy				.00076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	70	Yb	.0093				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	71	Lu	.0124				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	72	Hf	4.98				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	73	Ta			8.82		Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Basalt	Rutile	90	Th				.54	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	23	V			118	124	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	25	Mn				.34	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	37	Rb			.0076	.019	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	38	Sr			.036	.048	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	39	Y			.076	.459	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	40	Zr			3.07	3.79	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	41	Nb			136	540	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	56	Ba			.0137	.02	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	57	La				.237	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	58	Ce			.087	.296	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	60	Nd			.277	.684	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	62	Sm				2.4	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	63	Eu			.0004	.0044	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	64	Gd			.0037	.018	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	66	Dy				.0008	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	68	Er				.675	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	70	Yb			.0093	.0158	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	71	Lu			.0124	.016	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	72	Hf			4.98	4.61	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	73	Ta			8.03	24.9	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	82	Pb				.0154	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Tonalite	Rutile	90	Th				.54	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008
-Andesite	Rutile	41	Nb	26.5				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
-Andesite	Rutile	73	Ta	44				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
-Trachyte	Rutile	41	Nb	29.8				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
-Trachyte	Rutile	73	Ta	44.7				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	38	Sr	.518				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	40	Zr	4.76				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	41	Nb	52.6				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	58	Ce	.73				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
-Tonalite	Rutile	73	Ta	99.5				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000
-Synthetic Basalt	Rutile	23	V			.19	4.3	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	24	Cr			4.8	108	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	27	Co			.011	.058	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	29	Cu			3.2	4.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	30	Zn			3	10	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	38	Sr			.003	.0038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	40	Zr			1.1	8.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	41	Nb			14.4	96	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	51	Sb			.32	2.1	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	57	La			.0001	.0031	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	58	Ce			.0001	.0007	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	59	Pr			.0001	.00024	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	62	Sm			.0007	.002	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	64	Gd			.0007	.0011	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	71	Lu			.018	.038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	72	Hf			1.6	12	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	73	Ta			24	195	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	74	W			.5	14.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	90	Th			.0001	.00017	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Synthetic Basalt	Rutile	92	U			.2	3.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008
-Basalt	Rutile	41	Nb	16				Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000
-Haplobasalt, Basalt	Rutile	41	Nb	13.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
-Haplobasalt, Basalt	Rutile	41	Nb	2.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
-Haplobasalt, Basalt	Rutile	73	Ta	5				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
-Haplobasalt, Basalt	Rutile	73	Ta	16.6				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000
-
-LINKS TO REFERENCES:
-Bennett et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99681
-Foley et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=341
-Green & Pearson 1987 - http://earthref.org/cgi-bin/err.cgi?n=94
-Jenner et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=129
-Klemme et al. 2005 - http://earthref.org/cgi-bin/err.cgi?n=98600
-McCallum & Charette 1978 - http://earthref.org/cgi-bin/err.cgi?n=191
-Wendlandt 1990 - http://earthref.org/cgi-bin/err.cgi?n=287
-
-ACKNOWLEDGEMENTS:
-Sponsored by NSF -- EAR 0000998
-Supported by the San Diego SuperComputer Center
-
-DATABASE STATISTICS:
-EarthRef.org Database Version: 
-Search Time: 30 January 2013 05:46:44 PM
-
-LINKS TO EARTHREF.ORG:
-Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
-Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=rutile&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
-
-SEARCH VALUES:
-Search Term(s):  rutile (Mineral)
-Rock Type: Any Rock Type
-Mineral: Any Mineral
-Element Family: Any Element Family
-Reference: Bennett et al. 2004
-Sort by: Reference
-
+EarthRef.org -- GERM Partition Coefficient (Kd) Database														
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen														
+														
+DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
+Synthetic Basalt	Rutile	40	Zr	2.8				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	41	Nb	28				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	73	Ta	36				Experimental	Bennett et al. 2004	Solid-Melt		08-DEC-2008		
+Basalt	Rutile	23	V	118				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	25	Mn				0.34	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	37	Rb	0.0076				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	38	Sr	0.036				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	39	Y				0.076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	40	Zr	3.07				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	41	Nb	136				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	56	Ba	0.0137				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	58	Ce				0.087	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	60	Nd				0.277	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	63	Eu	0.00037				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	64	Gd				0.0037	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	66	Dy				0.00076	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	70	Yb	0.0093				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	71	Lu	0.0124				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	72	Hf	4.98				Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	73	Ta			8.82		Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Basalt	Rutile	90	Th				0.54	Experimental	Foley et al. 2000	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	23	V			118	124	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	25	Mn				0.34	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	37	Rb			0.0076	0.019	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	38	Sr			0.036	0.048	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	39	Y			0.076	0.459	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	40	Zr			3.07	3.79	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	41	Nb			136	540	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	56	Ba			0.0137	0.02	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	57	La				0.237	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	58	Ce			0.087	0.296	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	60	Nd			0.277	0.684	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	62	Sm				2.4	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	63	Eu			0.0004	0.0044	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	64	Gd			0.0037	0.018	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	66	Dy				0.0008	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	68	Er				0.675	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	70	Yb			0.0093	0.0158	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	71	Lu			0.0124	0.016	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	72	Hf			4.98	4.61	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	73	Ta			8.03	24.9	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	82	Pb				0.0154	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Tonalite	Rutile	90	Th				0.54	Experimental	Foley et al. 2000	Solid-Melt		08-DEC-2008		
+Andesite	Rutile	41	Nb	26.5				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000		
+Andesite	Rutile	73	Ta	44				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Rutile	41	Nb	29.8				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Rutile	73	Ta	44.7				Experimental	Green & Pearson 1987	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	38	Sr	0.518				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	40	Zr	4.76				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	41	Nb	52.6				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	58	Ce	0.73				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000		
+Tonalite	Rutile	73	Ta	99.5				Experimental	Jenner et al. 1994	Solid-Melt		12-DEC-2000		
+Synthetic Basalt	Rutile	23	V			0.19	4.3	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	24	Cr			4.8	108	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	27	Co			0.011	0.058	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	29	Cu			3.2	4.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	30	Zn			3	10	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	38	Sr			0.003	0.0038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	40	Zr			1.1	8.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	41	Nb			14.4	96	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	51	Sb			0.32	2.1	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	57	La			0.0001	0.0031	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	58	Ce			0.0001	0.0007	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	59	Pr			0.0001	0.00024	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	62	Sm			0.0007	0.002	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	64	Gd			0.0007	0.0011	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	71	Lu			0.018	0.038	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	72	Hf			1.6	12	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	73	Ta			24	195	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	74	W			0.5	14.5	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	90	Th			0.0001	0.00017	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Synthetic Basalt	Rutile	92	U			0.2	3.8	Experimental	Klemme et al. 2005	Solid-Melt		08-DEC-2008		
+Basalt	Rutile	41	Nb	16				Experimental	McCallum & Charette 1978	Solid-Melt		12-DEC-2000		
+Haplobasalt, Basalt	Rutile	41	Nb	13.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000		
+Haplobasalt, Basalt	Rutile	41	Nb	2.1				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000		
+Haplobasalt, Basalt	Rutile	73	Ta	5				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000		
+Haplobasalt, Basalt	Rutile	73	Ta	16.6				Experimental	Wendlandt 1990	Solid-Melt		12-DEC-2000		
+														
+LINKS TO REFERENCES:														
+Bennett et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99681														
+Foley et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=341														
+Green & Pearson 1987 - http://earthref.org/cgi-bin/err.cgi?n=94														
+Jenner et al. 1994 - http://earthref.org/cgi-bin/err.cgi?n=129														
+Klemme et al. 2005 - http://earthref.org/cgi-bin/err.cgi?n=98600														
+McCallum & Charette 1978 - http://earthref.org/cgi-bin/err.cgi?n=191														
+Wendlandt 1990 - http://earthref.org/cgi-bin/err.cgi?n=287														
+														
+ACKNOWLEDGEMENTS:														
+Sponsored by NSF -- EAR 0000998														
+Supported by the San Diego SuperComputer Center														
+														
+DATABASE STATISTICS:														
+EarthRef.org Database Version: 														
+Search Time: 30 January 2013 05:46:44 PM														
+														
+LINKS TO EARTHREF.ORG:														
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi														
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=rutile&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&														
+														
+SEARCH VALUES:														
+Search Term(s):  rutile (Mineral)														
+Rock Type: Any Rock Type														
+Mineral: Any Mineral														
+Element Family: Any Element Family														
+Reference: Bennett et al. 2004														
+Sort by: Reference														
+														
+CBK additions:														
+MORBTi FMQ-2	Rutile	21	Sc	0.31	0.03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	24	Cr	14.81	2.16			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	25	Mn	0	0			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	26	Fe	0.01	0.01			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	28	Ni					Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	39	Y	1.48E-02	1.99E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	40	Zr	3.9	0.26			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	41	Nb	45.34	3.44			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	57	La					Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	58	Ce	9.96E-04	2.01E-05			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	59	Pr	3.64E-04	9.92E-06			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	60	Nd	4.82E-03	2.31E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	62	Sm	6.51E-03	1.43E-04			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	63	Eu	1.36E-03	3.43E-05			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	64	Gd	3.37E-03	1.62E-04			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	66	Dy	2.24E-03	8.91E-04			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	67	Ho	2.08E-03	5.19E-04			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	68	Er	5.07E-03	1.96E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	70	Yb	6.13E-03	1.74E-04			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	71	Lu	9.20E-03	1.06E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	72	Hf	5.96	0.31			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-2	Rutile	73	Ta	115.05	14.11			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	21	Sc	0.3	0.01			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	24	Cr	17.19	1.54			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	25	Mn	0.01	0			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	26	Fe	0.06	0			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	28	Ni	0.15	0.02			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	39	Y	1.43E-02	2.00E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	40	Zr	3.63	0.12			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	41	Nb	39.29	2.19			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	57	La	2.02E-03	2.45E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	58	Ce	3.42E-03	2.78E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	59	Pr	2.58E-03	1.87E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	60	Nd	4.80E-03	1.52E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	62	Sm	4.03E-03	3.13E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	63	Eu	3.26E-03	2.32E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	64	Gd	6.65E-03	4.18E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	66	Dy	3.26E-03	2.15E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	67	Ho	2.91E-03	2.02E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	68	Er	4.70E-03	1.38E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	70	Yb	7.29E-03	2.37E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	71	Lu	8.82E-03	2.38E-03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	72	Hf	5.62	0.28			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+MORBTi FMQ-1	Rutile	73	Ta	55.83	11.21			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	52.74	5
+DacTI FMQ-2	Rutile	21	Sc	1.3	0.13			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	24	Cr	44.96	3.03			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	25	Mn	0.1	0.06			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	26	Fe	0.1	0.05			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	28	Ni					Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	39	Y	0.11	0.09			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	40	Zr	10.53	0.41			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	41	Nb	120.04	8.14			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	57	La	0.13	0.06			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	58	Ce	0.12	0.05			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	59	Pr	0.13	0.07			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	60	Nd	0.13	0.06			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	62	Sm	0.09	0.08			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	63	Eu	0.14	0.05			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	64	Gd	0.15	0.08			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	66	Dy	0.15	0.06			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	67	Ho	0.11	0.09			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	68	Er	0.11	0.09			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	70	Yb	0.14	0.1			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	71	Lu	0.15	0.11			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	72	Hf	14.69	1.34			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+DacTI FMQ-2	Rutile	73	Ta	218.36	39.79			Experimental	Holycross & Cottrell, 2020	Solid-Melt	SiO2 renormalized without doped TiO2	30-MAR-2025	66.56	5
+SP070713-4	Rutile	11	Na	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	12	Mg	0.0113	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	13	Al	0.0598	0.0024			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	19	K	<3e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	21	Sc	0.907	0.391			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	23	V	18.72	0.81			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	24	Cr	6.1	0.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	25	Mn	0.0039	0.0018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	26	Fe	0.026	0.004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	27	Co	0.498	0.141			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	28	Ni	0.34	0.11			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	29	Cu	12.9	4.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	30	Zn	20.1	3.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	38	Sr	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	39	Y	0.0057	0.0014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	40	Zr	7.6	0.57			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	41	Nb	89.6	16			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	56	Ba	<5e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	72	Hf	10.7	0.75			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	73	Ta	164.2	79.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	74	W	58.5	11			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	90	Th	0.0026	0.0017			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP070713-4	Rutile	92	U	0.174	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.8	5
+SP220713-4	Rutile	11	Na	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	12	Mg	0.0096	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	13	Al	0.0306	0.0009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	19	K	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	20	Ca	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	21	Sc	0.41	0.04			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	23	V	11.85	0.74			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	24	Cr	8.4	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	25	Mn	0.0026	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	26	Fe	0.025	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	27	Co	0.038	0.015			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	28	Ni	0.24	0.08			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	29	Cu	13.7	4.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	30	Zn	13.5	3.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	38	Sr	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	39	Y	0.0017	0.0005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	40	Zr	4.57	0.54			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	41	Nb	55.7	4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	56	Ba	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	72	Hf	7.16	1.17			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	73	Ta	125.3	19.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	74	W	36.6	6.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	90	Th	0.0015	0.0014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP220713-4	Rutile	92	U	0.126	0.003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.5	5
+SP300713-3	Rutile	11	Na	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	12	Mg	0.0096	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	13	Al	0.0332	0.0011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	19	K	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	20	Ca	<4e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	21	Sc	0.585	0.05			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	23	V	13.45	0.56			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	24	Cr	17.4	0.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	25	Mn	0.0035	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	26	Fe	0.026	0.003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	27	Co	0.049	0.037			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	28	Ni	0.24	0.09			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	29	Cu	14.8	3.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	30	Zn	15.8	3.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	38	Sr	<9e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	39	Y	0.0022	0.0016			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	40	Zr	5.73	0.34			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	41	Nb	71.5	6.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	56	Ba	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	72	Hf	8.41	0.78			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	73	Ta	206.7	43.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	74	W	43.7	3.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	90	Th	0.0007	0.0001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP300713-3	Rutile	92	U	0.218	0.017			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.2	5
+SP070813-2	Rutile	11	Na	<5e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	12	Mg	0.0093	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	13	Al	0.0167	0.0009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	19	K	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	20	Ca	<3e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	21	Sc	0.444	0.021			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	23	V	8.9	0.66			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	24	Cr	25.1	4.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	25	Mn	0.0024	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	26	Fe	0.074	0.035			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	27	Co	0.596	0.19			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	28	Ni	0.76	0.76			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	29	Cu	10.7	1.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	30	Zn	14.3	2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	38	Sr	<5e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	39	Y	0.0016	0.0007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	40	Zr	3.2	0.17			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	41	Nb	47.5	11			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	56	Ba	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	72	Hf	4.77	0.22			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	73	Ta	173.3	93.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	74	W	24.9	3.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	90	Th	0.0006	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP070813-2	Rutile	92	U	0.181	0.031			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	62.6	5
+SP100813-5	Rutile	11	Na	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	12	Mg	0.0227	0.0018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	13	Al	0.0363	0.0015			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	19	K	<9e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	21	Sc	0.612	0.044			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	23	V	10.15	0.47			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	24	Cr	46.1	4.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	25	Mn	0.0142	0.0019			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	27	Co	1.903	0.79			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	29	Cu	14.7	2.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	30	Zn	13.8	1.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	38	Sr	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	39	Y	0.015	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	40	Zr	5.08	0.27			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	41	Nb	57.6	6.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	56	Ba	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	72	Hf	6.78	0.38			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	73	Ta	129	36			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	74	W	14	1.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	90	Th	0.0117	0.0059			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP100813-5	Rutile	92	U	0.286	0.018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	64.9	5
+SP050313-3	Rutile	11	Na	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	12	Mg	0.0069	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	13	Al	0.0089	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	19	K	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	21	Sc	0.278	0.014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	23	V	2.265	0.084			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	24	Cr	27.5	2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	25	Mn	0.0031	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	26	Fe	0.051	0.015			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	28	Ni	0.15	0.27			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	29	Cu	3.5	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	30	Zn	3.7	0.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	31	Ga	0.044	0.022			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	38	Sr	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	39	Y	0.001	0.0013			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	40	Zr	2.19	0.16			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	41	Nb	31	1.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	56	Ba	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	72	Hf	3.17	0.33			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	73	Ta	171.4	45.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	74	W	9.5	1.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	90	Th	0.0005	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP050313-3	Rutile	92	U	0.262	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	58.6	5
+SP020313-5	Rutile	11	Na	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	12	Mg	0.0056	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	13	Al	0.0072	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	19	K	<3e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	21	Sc	0.214	0.02			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	23	V	0.971	0.017			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	24	Cr	19.6	2.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	25	Mn	0.0026	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	26	Fe	0.059	0.005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	27	Co	0.016	0.014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	28	Ni	0.11	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	29	Cu	3.2	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	30	Zn	4.5	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	31	Ga	0.015	0.009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	38	Sr	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	39	Y	0.0008	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	40	Zr	1.6	0.08			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	41	Nb	16	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	56	Ba	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	72	Hf	2.31	0.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	73	Ta	44.1	9.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	74	W	7	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	90	Th	0.0006	0.0009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP020313-5	Rutile	92	U	0.338	0.03			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP270213-5	Rutile	11	Na	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	12	Mg	0.0073	0.0015			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	13	Al	0.0073	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	19	K	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	21	Sc	0.214	0.018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	23	V	0.508	0.016			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	24	Cr	24.6	1.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	25	Mn	0.0042	0.0005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	26	Fe	0.086	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	27	Co	0.005	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	28	Ni	0.09	0.05			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	29	Cu	3.4	0.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	30	Zn	6.1	0.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	31	Ga	0.015	0.004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	38	Sr	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	39	Y	0.0018	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	40	Zr	1.68	0.04			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	41	Nb	15.9	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	56	Ba	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	72	Hf	2.36	0.13			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	73	Ta	58.8	14.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	74	W	11	1.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	90	Th	0.0008	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP270213-5	Rutile	92	U	0.377	0.036			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP130813-3	Rutile	11	Na	<1e-5	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	12	Mg	0.0049	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	13	Al	0.0058	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	19	K	<3e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	21	Sc	0.213	0.016			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	23	V	0.166	0.007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	24	Cr	15.7	2.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	25	Mn	0.0063	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	26	Fe	0.114	0.012			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	28	Ni	0.14	0.05			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	29	Cu	1.9	0.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	30	Zn	2.8	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	31	Ga	0.003	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	38	Sr	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	39	Y	0.0009	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	40	Zr	1.29	0.08			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	41	Nb	14.4	0.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	56	Ba	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	72	Hf	2.04	0.12			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	73	Ta	100.9	20.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	74	W	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	90	Th	0.0007	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP130813-3	Rutile	92	U	0.166	0.01			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	48.4	5
+SP180213-5	Rutile	11	Na	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	12	Mg	0.0031	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	13	Al	0.0046	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	19	K	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	20	Ca	<3e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	21	Sc	0.166	0.01			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	23	V	0.136	0.009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	24	Cr	9.6	1.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	25	Mn	0.0042	0.0005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	26	Fe	0.057	0.004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	27	Co	0.01	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	28	Ni	0.07	0			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	29	Cu	0.8	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	30	Zn	8.9	4.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	31	Ga	0.013	0.01			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	38	Sr	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	39	Y	0.0015	0.0011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	40	Zr	1.67	0.08			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	41	Nb	12.7	1.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	56	Ba	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	72	Hf	2.5	0.17			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	73	Ta	56.8	8.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	74	W	8.1	0.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	90	Th	0.0009	0.0007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP180213-5	Rutile	92	U	0.42	0.044			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50.7	5
+SP210213-5	Rutile	11	Na	<3e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	12	Mg	0.0052	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	13	Al	0.0063	0.0001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	19	K	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	20	Ca	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	21	Sc	0.197	0.022			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	23	V	0.142	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	24	Cr	17	1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	25	Mn	0.0069	0.0014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	26	Fe	0.084	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	27	Co	0.015	0.004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	28	Ni	0.1	0.06			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	29	Cu	1.2	0.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	30	Zn	3.5	0.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	31	Ga	0.015	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	38	Sr	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	39	Y	0.0021	0.0001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	40	Zr	1.28	0.07			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	41	Nb	11	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	56	Ba	<3e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	72	Hf	1.8	0.12			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	73	Ta	41.8	1.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	74	W	10	1.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	90	Th	0.0011	0.0005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP210213-5	Rutile	92	U	0.293	0.009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49.4	5
+SP250713-4	Rutile	11	Na	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	12	Mg	0.0067	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	13	Al	0.0091	0.0012			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	19	K	<5e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	20	Ca	<3e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	21	Sc	0.276	0.011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	23	V	0.106	0.005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	24	Cr	2.1	0.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	25	Mn	0.035	0.0026			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	26	Fe	0.178	0.022			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	27	Co	0.023	0.011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	28	Ni	0.13	0.03			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	29	Cu	0.9	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	30	Zn	3.9	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	31	Ga	0.023	0.004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	38	Sr	<9e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	39	Y	0.0022	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	40	Zr	2.14	0.22			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	41	Nb	22.5	2.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	56	Ba	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	72	Hf	3.09	0.26			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	73	Ta	96.5	24.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	74	W	17.3	1.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	90	Th	0.0011	0.0009			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP250713-4	Rutile	92	U	0.945	0.035			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP240213-5	Rutile	11	Na	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	12	Mg	0.0049	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	13	Al	0.0063	0.0001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	19	K	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	21	Sc	0.166	0.01			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	23	V	0.039	0.003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	24	Cr	5.9	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	25	Mn	0.0389	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	26	Fe	0.129	0.005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	27	Co	0.009	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	28	Ni	0.09	0.01			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	29	Cu	0.2	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	30	Zn	1.9	0.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	31	Ga	0.012	0.007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	38	Sr	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	39	Y	0.0008	0.0004			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	40	Zr	1.21	0.03			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	41	Nb	10.6	0.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	56	Ba	<1e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	72	Hf	1.7	0.05			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	73	Ta	38.5	3.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	74	W	7.6	0.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	90	Th	0.0003	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+SP240213-5	Rutile	92	U	0.286	0.012			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	49	5
+PC100813	Rutile	11	Na	<5e-5	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	12	Mg	0.0155	0.0003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	13	Al	0.0129	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	19	K	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	21	Sc	0.217	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	23	V	0.036	0.003			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	24	Cr	0.33	0.02			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	25	Mn	0.6678	0.0431			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	26	Fe	0.276	0.018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	27	Co	0.034	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	28	Ni	0.07	0			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	29	Cu	0.13	0			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	30	Zn	0.12	0			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	31	Ga	0.025	0.008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	38	Sr	<2e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	39	Y	0.0012	0.0002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	40	Zr	1.07	0.03			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	41	Nb	7.4	0.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	56	Ba	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	72	Hf	1.36	0.12			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	73	Ta	16.2	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	74	W	1.1	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	90	Th	0.0001	0.0001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+PC100813	Rutile	92	U	0.234	0.011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	50	5
+SP220713-1	Rutile	11	Na	<2e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	12	Mg	0.2566	0.0256			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	13	Al	0.0453	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	19	K	<4e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	20	Ca	<3e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	21	Sc	0.087	0.013			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	23	V	2.701	0.534			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	24	Cr	51.2	38			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	25	Mn	0.1762	0.2264			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	28	Ni	1.2	0.52			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	29	Cu	8.4	2.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	30	Zn	11.4	2.5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	38	Sr	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	39	Y	0.0302	0.0129			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	40	Zr	4.37	0.28			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	41	Nb	19.5	1.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	56	Ba	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	72	Hf	5.08	0.33			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	73	Ta	38.1	7.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	74	W	4	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	90	Th	0.0856	0.0496			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP220713-1	Rutile	92	U	0.026	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	57.9	5
+SP050313-1	Rutile	11	Na	<4e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	12	Mg	0.2565	0.021			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	13	Al	0.0144	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	19	K	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	20	Ca	<4e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	21	Sc	0.028	0.002			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	23	V	2.99	0.285			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	24	Cr	39.3	3.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	26	Fe	0.472	0.056			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	29	Cu	5	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	30	Zn	7.9	0.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	38	Sr	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	39	Y	0.0052	0.0021			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	40	Zr	3.56	0.19			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	41	Nb	24.8	1.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	56	Ba	<2e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	72	Hf	5.28	0.38			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	73	Ta	83.6	42.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	74	W	3.1	0.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	90	Th	0.1127	0.0565			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP050313-1	Rutile	92	U	0.228	0.033			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.5	5
+SP020313-1	Rutile	11	Na	<4e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	12	Mg	0.2254	0.02			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	13	Al	0.0191	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	19	K	<5e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	21	Sc	0.076	0.008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	23	V	1.948	0.124			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	24	Cr	62.3	18			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	29	Cu	6.2	0.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	30	Zn	11.4	1.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	31	Ga	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	38	Sr	<9e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	39	Y	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	40	Zr	3.25	0.18			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	41	Nb	21.5	1.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	56	Ba	<3e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	72	Hf	4.69	0.25			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	73	Ta	79.8	16.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	74	W	3	0.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	90	Th	0.0577	0.0292			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP020313-1	Rutile	92	U	0.291	0.022			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.6	5
+SP130813-2	Rutile	11	Na	<3e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	12	Mg	0.1715	0.0139			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	13	Al	0.0189	0.0008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	19	K	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	20	Ca	<4e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	21	Sc	0.115	0.022			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	23	V	0.679	0.036			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	24	Cr	51.8	12			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	26	Fe	0.767	0.092			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	28	Ni	0.09	0.04			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	29	Cu	3.8	1.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	30	Zn	14.6	2.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	31	Ga	0.016	0.006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	38	Sr	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	39	Y	0.0174	0.007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	40	Zr	3.97	0.22			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	41	Nb	26.1	5			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	56	Ba	<4e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	72	Hf	5.71	0.31			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	73	Ta	90.5	27.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	74	W	1.7	0.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	90	Th	0.0098	0.0049			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP130813-2	Rutile	92	U	1.096	0.067			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	56	5
+SP020313-2	Rutile	11	Na	<9e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	12	Mg	0.2144	0.0181			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	13	Al	0.0254	0.0011			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	19	K	<9e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	20	Ca	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	21	Sc	0.042	0.005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	23	V	3.562	0.159			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	24	Cr	53.3	6.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	29	Cu	6.7	0.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	30	Zn	7.2	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	31	Ga	0.003	0.001			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	38	Sr	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	39	Y	0.0256	0.0103			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	40	Zr	3.66	0.18			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	41	Nb	21.8	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	56	Ba	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	72	Hf	5.22	0.27			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	73	Ta	101.9	21.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	74	W	2.3	0.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	90	Th	0.057	0.0286			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP020313-2	Rutile	92	U	0.245	0.051			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54.8	5
+SP220713-2	Rutile	11	Na	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	12	Mg	0.2269	0.0212			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	13	Al	0.0167	0.0007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	19	K	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	21	Sc	0.199	0.051			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	23	V	2.169	0.119			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	24	Cr	57.9	7.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	29	Cu	14.7	9.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	30	Zn	9.4	4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	31	Ga	0.011	0.005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	38	Sr	<6e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	39	Y	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	40	Zr	3.42	0.18			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	41	Nb	20.8	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	56	Ba	<5e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	72	Hf	4.95	0.26			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	73	Ta	74.9	15.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	74	W	3.8	0.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	90	Th	0.0303	0.0152			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP220713-2	Rutile	92	U	0.267	0.018			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.9	5
+SP050313-4	Rutile	11	Na	<2e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	12	Mg	0.246	0.0209			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	13	Al	0.0177	0.0007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	19	K	<4e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	21	Sc	0.088	0.007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	23	V	0.393	0.017			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	24	Cr	59.7	5.8			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	26	Fe	0.862	0.194			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	29	Cu	4.8	0.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	30	Zn	7.8	2.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	31	Ga	0.106	0.043			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	38	Sr	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	39	Y	0.0151	0.0061			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	40	Zr	2.92	0.15			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	41	Nb	14.2	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	56	Ba	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	72	Hf	4.49	0.23			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	73	Ta	61.4	12.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	74	W	0.8	0.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	90	Th	0.0452	0.0228			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP050313-4	Rutile	92	U	0.263	0.019			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	52.5	5
+SP130813-4	Rutile	11	Na	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	12	Mg	0.2446	0.0198			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	13	Al	0.0312	0.0014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	19	K	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	20	Ca	<4e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	21	Sc	0.522	0.038			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	23	V	3.257	0.153			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	24	Cr	40.2	4.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	26	Fe	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	28	Ni	0.2	0.08			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	29	Cu	5.9	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	30	Zn	6.8	1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	31	Ga	0.086	0.035			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	38	Sr	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	39	Y	0.0218	0.0087			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	40	Zr	3.96	0.23			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	41	Nb	29.8	2.6			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	56	Ba	<2e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	72	Hf	6.23	0.38			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	73	Ta	93.4	23.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	74	W	9.4	1.1			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	90	Th	0.019	0.0095			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP130813-4	Rutile	92	U	0.577	0.036			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	55.2	5
+SP020313-3	Rutile	11	Na	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	12	Mg	0.2216	0.0203			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	13	Al	0.0149	0.0006			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	19	K	<8e-8	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	20	Ca	<1e-2	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	21	Sc	0.454	0.037			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	23	V	1.805	0.093			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	24	Cr	49.9	5.4			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	26	Fe	0.46	0.131			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	27	Co	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	28	Ni	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	29	Cu	7.5	1.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	30	Zn	22	6.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	31	Ga	0.093	0.038			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	38	Sr	<1e-3	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	39	Y	0.0036	0.0014			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	40	Zr	3.45	0.19			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	41	Nb	30	2.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	56	Ba	<8e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	72	Hf	4.87	0.56			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	73	Ta	80.9	20			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	74	W	9.9	2.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	90	Th	0.0042	0.0021			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP020313-3	Rutile	92	U	0.634	0.051			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	54	5
+SP050313-2	Rutile	11	Na	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	12	Mg	0.2172	0.0175			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	13	Al	0.0117	0.0005			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	19	K	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	20	Ca	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	21	Sc	0.478	0.038			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	23	V	0.342	0.015			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	24	Cr	47	4.9			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	25	Mn	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	26	Fe	0.289	0.04			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	27	Co	0.023	0.008			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	28	Ni	0.08	0.03			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	29	Cu	4	0.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	30	Zn	10.2	2.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	31	Ga	0.089	0.036			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	38	Sr	<7e-4	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	39	Y	0.0016	0.0007			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	40	Zr	2.95	0.16			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	41	Nb	22.8	1.7			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	56	Ba	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	72	Hf	4.29	0.56			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	73	Ta	77.3	16.2			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	74	W	3	0.3			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	90	Th	---	---			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5
+SP050313-2	Rutile	92	U	0.69	0.05			Experimental	Mallmann et al. 2014	Solid-Melt		30-MAR-2025	53.1	5

@@ -262,21 +262,20 @@ Low Silica Rhyolite	Amphibole	40	Zr			.53	.91	Phenocryst-Matrix	Ewart & Griffin 
 Low Silica Rhyolite	Amphibole	41	Nb			1.5	6.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Low Silica Rhyolite	Amphibole	56	Ba			.16	.92	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Low Silica Rhyolite	Amphibole	82	Pb			.25	.61	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	25	Mn	6.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	27	Co	7.26				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	28	Ni				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	30	Zn				1.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	30	Zn	1.26				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	32	Ge	.24				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	37	Rb	11.1				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Aenigmatite	25	Mn	6.7	1.2			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Aenigmatite	26	Fe	7.26	0.32			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Aenigmatite	28	Ni				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	30	Zn	1.26	0.05			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	32	Ga	0.24	0.03			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	37	Ge	11.1	3.4			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Per-Alkaline Rhyolite	Amphibole	37	Rb				.013	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Per-Alkaline Rhyolite	Amphibole	38	Sr				.38	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	39	Y	.017				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	40	Zr	.047				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	41	Nb	.76				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	39	Y	0.017	0.003			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	40	Zr	0.047	0.001			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	41	Nb	0.76		0.02		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Per-Alkaline Rhyolite	Amphibole	82	Pb				.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	90	Th	.45				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	92	U	1.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	90	Th	0.45	0.17			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
+Per-Alkaline Rhyolite	Amphibole	92	U	1.6	1.0			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
 Calc-Alkaline Andesite	Amphibole	40	Zr			1.339	1.789	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
 Calc-Alkaline Andesite	Amphibole	57	La			.3664	.7219	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
 Calc-Alkaline Andesite	Amphibole	58	Ce			.574	1.112	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
@@ -597,8 +596,8 @@ Trachyte-Basalt	Amphibole	68	Er	1.05				Phenocryst-Matrix	Nagasawa 1973	Solid-Me
 Trachyte-Basalt	Amphibole	70	Yb	.88				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
 Trachyte-Basalt	Amphibole	71	Lu	.89				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
 Dacite	Amphibole	3	Li			.18	.22	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	12	Mg			.386	.41	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	19	K	24.2				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Amphibole	11	Na			.386	.41	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
+Dacite	Amphibole	12	Mg	    		24.2	50.6	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
 Dacite	Amphibole	19	K			.065	.081	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
 Dacite	Amphibole	21	Sc			5.8	6.3	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
 Dacite	Amphibole	26	Fe			11	11.9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000

@@ -1,3 +1,4 @@
+## --- Load required packages
     using StatGeochem
     using Plots
     using LsqFit: curve_fit
@@ -28,8 +29,8 @@
     err = [5,6.5,5.5,5,3.5,4,3,4,3,5,5,4,5,11.5,11.5,5,5,5,5,9,5,5,5.5,9,5,4,8,7.5,5,5,5,5,5,20]
 
     # Determine the unique reference / rock type pairs
-    samples = Dict{String,Vector{Tuple{String,String,Float64,Float64}}}()
-    allsamples = Tuple{String,String,Float64,Float64}[]
+    samples = Dict{String,Vector{Tuple{String,String,String,Float64,Float64}}}()
+    allsamples = Tuple{String,String,String,Float64,Float64}[]
     allelements = String[]
     for m in pr["minerals"]
         if ~haskey(pr[m],"SiO2")
@@ -50,7 +51,7 @@
         # Save unique samples
         println(m)
         flush(stdout)
-        samples[m] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
+        samples[m] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), string.(pr[m]["Mineral"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
         append!(allsamples, unique(samples[m]))
 
         # Save unique elements
@@ -65,8 +66,8 @@
     pd["samples"] = allsamples
     pd["Reference"] = allsamples .|> x -> x[1]
     pd["Rock Type"] = allsamples .|> x -> x[2]
-    pd["SiO2"] = allsamples .|> x -> x[3]
-    pd["SiO2_sigma"] = allsamples .|> x -> x[4]
+    pd["SiO2"] = allsamples .|> x -> x[4]
+    pd["SiO2_sigma"] = allsamples .|> x -> x[5]
     pd["minerals"] = pr["minerals"]
     for m in pd["minerals"]
         pd[m] = Dict{String, Union{Vector{Float64}, Vector{String}}}()
@@ -89,44 +90,104 @@
         end
     end
 
-## --- Fit REEs as a function of activation energy and bulk modulus
+## --- Fit invariant-charge elements as a function of activation energy and bulk modulus
 
-    ree3 = ["La","Pr","Nd","Sm","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu",] # 3+ rare earth elements
-    r = [0.106,0.101,0.100,0.096,0.094,0.092,0.091,0.089,0.088,0.087,0.086,0.085,] # Atomic Radii
-    rp = 0.085:0.001:0.107 # Radius range to plot over
+    # Minerals with well-behaved 1+ onuma diagrams
+    m1p = ["Albite", "Allanite", "Amphibole", "Apatite", "Biotite", "Bridgmanite", "Olivine", "Orthopyroxene"]
+
+    # Minerals with well-behaved 2+ onuma diagrams
+    m2p = ["Albite", "Apatite", "Cordierite", "Perovskite",]
+
+    # Minerals with well-behaved ree 3+ onuma diagrams
+    mree3p = ["Albite", "Allanite", "Amphibole", "Anorthite", "Apatite", "Baddeleyite", "Biotite", "Bridgmanite", "Clinopyroxene", "Cordierite", "Garnet", "Ilmenite", "Leucite", "Magnetite", "Melilite", "Monazite", "Muscovite", "Nepheline", "Olivine", "Orthoclase", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Whitlockite", "Xenotime", "Zircon", "Zoisite"]
+
+    # Minerals with well-behaved 3+ onuma diagrams
+    m3p = ["Bridgmanite", "Clinopyroxene", "Garnet", "Orthopyroxene", "Perovskite", "Rutile"]
+
+    m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Zircon"]
+
+
+    # Need more data:
+    # Spinel (different kinds?) check existing REE data
+
+    e1 = (:Li, :Na, :Ag, :K, :Rb, :Cs)
+    e1r = [ionicradius[e] for e in  e1]
+
+    e2 = (:Be, :Fe2, :Co, :Ni, :Mg, :Zn, :Cd, :Ca, :Eu2, :Sr, :Pb, :Ba)
+    e2r = [ionicradius[e] for e in  e2]
+
+    ree3 = (:La, :Ce3, :Pr, :Nd, :Sm, :Eu3, :Gd, :Tb, :Dy, :Ho, :Y, :Er, :Tm, :Yb, :Lu,)
+    ree3r = [ionicradius[e] for e in  ree3]
+
+    e3 = (:Cr, :Fe3, :Sc, :V3, :Lu, :Y, ree3...,)
+    e3r = [ionicradius[e] for e in (:Cr3, :Fe3, :Sc, :V3, :Lu, :Y,  ree3...,)]
+
+    e4 = (:Ti, :Sn, :Hf, :Zr, :Ce4, :U4, :Th)
+    e4r = [ionicradius[e] for e in  e4]
 
     # Equation we're fitting to (from Blundy and Wood, 1994):
-    # lnD0 + a * (r0/2*(x-r0)^2 + 1/3*(x-r0)^3)
-    # where a = 4π E Na / RT
-    @. blundy_wood(x,param) = param[1] + param[2] * (param[3]/2*(x-param[3])^2 + 1/3*(x-param[3])^3)
+    # log10D0 + 4π a * (r0/2*(x-r0)^2 + 1/3*(x-r0)^3)/log(10)
+    # where a = E Na / RT
+    function blundy_wood(x,param)
+        logD0, a, r0 = param
+        return @. logD0 + 4π*a * (r0/2*(x-r0)^2 + 1/3*(x-r0)^3)/log(10)
+    end
 
-    for m in pd["minerals"]
-        h = plot(title=m, legend=:bottomleft)
-        for i ∈ eachindex(pd["samples"])
-            kD = fill(NaN,length(ree3))
-            for j ∈ eachindex(ree3)
-                kD[j] = pd[m][ree3[j]][i]
-            end
+    #      log10(d0)   Ea/RT   r0 [pm]
+    lower = [-10.0,    -1.0,      0]
+    upper = [ 10.0,     0.0,    200]
 
-            if count(.~isnan.(kD)) > 1
-                # plot!(h, r, kD, label="$i", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
-                plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
-            end
+    for j in 1:5
+        charge = ("1+", "2+", "3+ree", "3+", "4+")[j]
+        e = String.((e1, e2, ree3, e3, e4)[j])
+        r = (e1r, e2r, ree3r, e3r, e4r)[j]
+        rplot = range(extrema(r)..., length=100)
 
-            if (count(.~isnan.(kD)) > 3) && (nanrange(r[.~isnan.(kD)]) > 0.013)
-                # Fit to Blundy and Wood curve
-                t = .~( isnan.(kD) .| isinf.(kD) )
-                param = [maximum(kD[t]), -10000, 0.095] # initial guess
-                f = curve_fit(blundy_wood, r[t], kD[t], param) # Fit
-                plot!(h, r, blundy_wood(r,f.param), label="", color=lines[mod(i,length(lines))+1]) # Plot
+        for m in (m1p, m2p, mree3p, m3p, m4p)[j]
 
-                # Replace stored partition coefficients with new fits
-                for j ∈ eachindex(ree3)
-                    pd[m][ree3[j]][i] = blundy_wood(r[j],f.param)
+            h = plot(title=m, 
+                legend=:bottomleft, 
+                ylabel="log10(Kd)",
+                xlabel="Ionic radius [pm]",
+                xticks=(r,e), 
+                xrotation=-45, 
+                framestyle=:box,)
+            for i ∈ eachindex(pd["samples"])
+                kD = fill(NaN,length(e))
+                for j ∈ eachindex(e)
+                    eⱼ = e[j]
+                    if haskey(pd[m], eⱼ)
+                        kD[j] = pd[m][eⱼ][i]
+                    else
+                        kD[j] = NaN
+                    end
+                end
+
+                if count(.~isnan.(kD)) > 1
+                    plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
+                end
+
+                if (count(.~isnan.(kD)) > 2) && ((nanrange(r[.~isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.~isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
+                    # Fit to Blundy and Wood curve
+                    t = .~( isnan.(kD) .| isinf.(kD) )
+                    param = [maximum(kD[t]), -1e-4, nanmean(r)] # initial guess
+                    f = curve_fit(blundy_wood, r[t], kD[t], param; lower, upper) # Fit
+                    @info "$m : $(f.param)"
+                    if (f.param[2] < 0) || charge=="3+ree" # If there is no curvature, we probably haven't fit very well
+                        plot!(h, rplot, blundy_wood(rplot,f.param), label="", color=lines[mod(i,length(lines))+1])
+            
+                        # Replace stored partition coefficients with new fits
+                        for j in eachindex(e)
+                            eⱼ = e[j]
+                            if haskey(pd[m], eⱼ) && (isnan(pd[m][eⱼ][i]) || charge=="3+ree")
+                                pd[m][eⱼ][i] = blundy_wood(r[j],f.param)
+                            end
+                        end
+                    end
                 end
             end
+            savefig(h, "Calc_$(m)_$(charge).pdf")
         end
-        savefig(h, "Calc_$(m)_REE.pdf")
     end
 
     # Interpolate Eu partition coefficients where missing, assuming
@@ -135,7 +196,7 @@
     for m in pd["minerals"]
         for i ∈ eachindex(pd["samples"])
             if isnan(pd[m]["Eu"][i])
-                pd[m]["Eu"][i] = log10(0.6*10^nanmean([pd[m]["Ba"][i], pd[m]["Sr"][i]]) + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
+                pd[m]["Eu"][i] = log10(0.6*10^nanmean([pd[m]["Sr"][i], pd[m]["Pb"][i]]) + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
             end
         end
     end
@@ -167,11 +228,6 @@
     end
     kd["SiO2"] = collect(40:80.)
 
-    # Set Albite partiton coefficients
-    for e in kd["Albite"]["elements"]
-        kd["Albite"][e] = round.(nanmean([kd["Albite"][e] kd["Orthoclase"][e] kd["Anorthite"][e]], dim=2), sigdigits=7)
-    end
-    kd["note"] = ["kd for Albite is nanmean of AlkaliFeldspar, Orthoclase, and Anorthite",]
 
 ## --- Save results
 

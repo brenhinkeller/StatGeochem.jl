@@ -348,27 +348,63 @@ Reference: Bea et al. 1994
 Sort by: Reference														
 														
 NON-GERM ADDITIONS:														
-Peraluminous Rhyolite	Biotite	3	Li	3.66	0.732			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	4	Be	0.06	0.012			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	5	B	0.004	0.00048			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	15	P	0.06	0.0066			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	22	Ti	92.8	5.568			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	25	Mn	4.12	0.3296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	30	Zn	18.8	5.452			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	32	Ge	0.81	0.081			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	37	Rb	2.87	0.2296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	38	Sr	0.11	0.0363			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	40	Zr	0.14	0.0224			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	41	Nb	9.75	1.0725			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	50	Sn	0.44	0.088			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	55	Cs	0.46	0.046			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	56	Ba	5.02	1.757			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	57	La	0.005	0.00185			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	62	Sm	0.01	0.0113			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	63	Eu	0.11	0.0781			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	64	Gd	0.02	0.0158			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	70	Yb	0.03	0.0255			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	73	Ta	2.35	0.4465			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	74	W	0.38	0.057			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	82	Pb	0.24	0.0264			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Biotite	92	U	0.01	0.0017			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+Peraluminous Rhyolite	Biotite	3	Li	3.66	0.732			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	4	Be	0.06	0.012			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	5	B	0.004	0.00048			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	15	P	0.06	0.0066			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	22	Ti	92.8	5.568			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	25	Mn	4.12	0.3296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	30	Zn	18.8	5.452			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	32	Ge	0.81	0.081			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	37	Rb	2.87	0.2296			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	38	Sr	0.11	0.0363			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	40	Zr	0.14	0.0224			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	41	Nb	9.75	1.0725			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	50	Sn	0.44	0.088			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	55	Cs	0.46	0.046			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	56	Ba	5.02	1.757			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	57	La	0.005	0.00185			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	62	Sm	0.01	0.0113			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	63	Eu	0.11	0.0781			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	64	Gd	0.02	0.0158			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	70	Yb	0.03	0.0255			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	73	Ta	2.35	0.4465			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	74	W	0.38	0.057			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	82	Pb	0.24	0.0264			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Peraluminous Rhyolite	Biotite	92	U	0.01	0.0017			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition		71.36	5
+Synthetic rhyodacitic glass	Biotite	56	Ba	1.79	0.07			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	20	Ca	0.016	0.011			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	58	Ce	0.32	0.07			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	27	Co	47	16			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	24	Cr	2.8	1.5			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	55	Cs	0.62	0.16			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	29	Cu	0.9	0.2			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	66	Dy	0.29	0.07			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	68	Er	1.7	0.7			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	63	Eu	0.082	0.024			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	26	Fe	9.4	1.8			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	64	Gd	0.041	0.008			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	67	Ho	0.071	0.018			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	19	K	3.28	0.13			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	57	La	0.61	0.015			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	71	Lu	0.33	0.14			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	12	Mg	57	23			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	42	Mo	0.29	0.15			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	11	Na	0.28	0.04			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	41	Nb	3.69	0.63			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	60	Nd	0.18	0.14			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	28	Ni	174	144			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	82	Pb	0.74	0.11			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	59	Pr	0.29	0.16			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	37	Rb	3.8	1.1			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	62	Sm	0.053	0.011			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	38	Sr	0.57	0.1			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	73	Ta	1.89	0.24			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	65	Tb	0.058	0.014			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	22	Ti	17	8			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	69	Tm	0.29	0.13			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	23	V	35	7			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	74	W	1.2	0.8			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	70	Yb	0.3	0.21			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	30	Zn	5.8	5.4			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
+Synthetic rhyodacitic glass	Biotite	40	Zr	0.42	0.27			Experimental	Were & Keppler, 2021	Solid-Melt	CBK addition	03/30/25	69	5
