@@ -15,7 +15,7 @@ module StatGeochem
     using DelimitedFiles: readdlm, writedlm
     using Distributions
     using Downloads: download
-    using LazyArtifacts: @artifact_str
+    using LazyArtifacts
     using LogExpFunctions: logaddexp
     using ProgressMeter: @showprogress, update!, next!, Progress
     using Random
