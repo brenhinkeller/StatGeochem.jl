@@ -790,10 +790,9 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6+ pseudosection
-
+    
     # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-    # write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8 pseudosection
+    write(fp,"$index\n3\nn\n$(first(T))\n$(first(P))\n$(last(T))\n$(last(P))\n$npoints\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8, v7.1.9+ pseudosection
     close(fp)
 
     # Make sure there isn"t already an output
@@ -822,12 +821,7 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
         # Check if perplex is messing up and outputting mole proportions
         if nanmean(total_weight) < 50
-            @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
-            # , attempting to correct
-            # for col = findall(t)
-            #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-            # end
-            # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            @warn "Perple_X may be reporting mole fractions instead of weight percentages"
         end
         data[2:end,t] .*= 100 ./ total_weight
 
@@ -861,10 +855,9 @@ function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
-    write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n0\n") # v7.1.6
 
-    # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-    # write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8
+    # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5).
+    write(fp,"$index\n4\n2\nTP.tsv\n1\n36\n2\n$phase\n$include_fluid\n5\n0\n") # v6.7.8, 7.1.9+
     close(fp)
 
     # Make sure there isn"t already an output
@@ -893,12 +886,7 @@ function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
         # Check if perplex is messing up and outputting mole proportions
         if nanmean(total_weight) < 50
-            @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
-            # , attempting to correct
-            # for col = findall(t)
-            #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-            # end
-            # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+            @warn "Perple_X may be reporting mole fractions instead of weight percentages"
         end
         data[2:end,t] .*= 100 ./ total_weight
 
