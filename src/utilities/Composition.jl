@@ -96,6 +96,22 @@ end
     end
     return result
 end
+@generated function majorelementvalues(x::C) where {C<:AbstractComposition}
+    result = Expr(:tuple,)
+    for e in majorelements(C)
+        push!(result.args, :(x.$e))
+    end
+    return result
+end
+export majorelementvalues
+@generated function traceelementvalues(x::C) where {C<:AbstractComposition}
+    result = Expr(:tuple,)
+    for e in traceelements(C)
+        push!(result.args, :(x.$e))
+    end
+    return result
+end
+export traceelementvalues
 
 # Default methods which assume fields are elements, which will be used
 # if a concrete type does not override with something more specific

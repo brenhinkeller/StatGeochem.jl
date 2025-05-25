@@ -4,10 +4,12 @@ x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test x isa NCKFMASHTOtrace{Float64}
 @test x === NCKFMASHTOtrace{Float64}(1:40)
 @test ntuple(x) === ntuple(Float64, 40)
+@test majorelementvalues(x) === ((1:10.)...,)
+@test traceelementvalues(x) === ((11:40.)...,)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
+@test sum(majorelementvalues(xn)) ≈ 99.86110228500358 
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.83028850953377
+@test sum(majorelementvalues(xn)) ≈ 99.83028850953377
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.83028850953377
 @test propertynames(xn)[1:10] == majorelements(xn) == majorelements(NCKFMASHTOtrace)
@@ -21,11 +23,13 @@ x = NCKFMASHTOlogtrace(x)
 @test x isa NCKFMASHTOlogtrace{Float64}
 @test x === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
 @test ntuple(x) === ((1:10.)..., log.(11:40)...,)
+@test majorelementvalues(x) === ((1:10.)...,)
+@test traceelementvalues(x) === (log.(11:40.)...,)
 xn = renormalize(x) 
 @test xn isa NCKFMASHTOlogtrace{Float64}
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.86110228500358 
+@test sum(majorelementvalues(xn)) ≈ 99.86110228500358 
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.83028850953377
+@test sum(majorelementvalues(xn)) ≈ 99.83028850953377
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.83028850953377
 @test propertynames(xn)[1:10] == majorelements(xn) == majorelements(NCKFMASHTOlogtrace)
@@ -39,10 +43,12 @@ x = NCKFMASHTOCrtrace((1.0:length(fieldnames(NCKFMASHTOCrtrace)))...,)
 @test x isa NCKFMASHTOCrtrace{Float64}
 @test x === NCKFMASHTOCrtrace{Float64}(1:40)
 @test ntuple(x) === ntuple(Float64, 40)
+@test majorelementvalues(x) === ((1:11.)...,)
+@test traceelementvalues(x) === ((12:40.)...,)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
+@test sum(majorelementvalues(xn)) ≈ 99.8858879401411
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.86309677278784
+@test sum(majorelementvalues(xn)) ≈ 99.86309677278784
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:10]) ≈ 99.86309677278784
 @test propertynames(xn)[1:11] == majorelements(xn) == majorelements(NCKFMASHTOCrtrace)
@@ -56,10 +62,12 @@ x = NCKFMASHTOCrlogtrace(x)
 @test x isa NCKFMASHTOCrlogtrace{Float64}
 @test x === NCKFMASHTOCrlogtrace{Float64}([1:11; log.(12:40)])
 @test ntuple(x) === ((1:11.)..., log.(12:40)...,)
+@test majorelementvalues(x) === ((1:11.)...,)
+@test traceelementvalues(x) === (log.(12:40.)...,)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8858879401411
+@test sum(majorelementvalues(xn)) ≈ 99.8858879401411
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.86309677278784
+@test sum(majorelementvalues(xn)) ≈ 99.86309677278784
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:10]) ≈ 99.86309677278784
 @test propertynames(xn)[1:11] == majorelements(xn) == majorelements(NCKFMASHTOCrlogtrace)
@@ -73,10 +81,12 @@ x = NCKFMASTtrace((1.0:length(fieldnames(NCKFMASTtrace)))...,)
 @test x isa NCKFMASTtrace{Float64}
 @test x === NCKFMASTtrace{Float64}(1:38)
 @test ntuple(x) === ntuple(Float64, 38)
+@test majorelementvalues(x) === ((1:8.)...,)
+@test traceelementvalues(x) === ((9:38.)...,)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+@test sum(majorelementvalues(xn)) ≈ 99.8045494240446
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+@test sum(majorelementvalues(xn)) ≈ 99.8045494240446
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:8]) ≈ 99.8045494240446
 @test propertynames(xn)[1:8] == majorelements(xn) == majorelements(NCKFMASTtrace)
@@ -90,11 +100,13 @@ x = NCKFMASTlogtrace(x)
 @test x isa NCKFMASTlogtrace{Float64}
 @test x === NCKFMASTlogtrace{Float64}([1:8; log.(9:38)])
 @test ntuple(x) === ((1:8.)..., log.(9:38)...,)
+@test majorelementvalues(x) === ((1:8.)...,)
+@test traceelementvalues(x) === (log.(9:38.)...,)
 xn = renormalize(x) 
 @test xn isa NCKFMASTlogtrace{Float64}
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+@test sum(majorelementvalues(xn)) ≈ 99.8045494240446
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8045494240446
+@test sum(majorelementvalues(xn)) ≈ 99.8045494240446
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:8]) ≈ 99.8045494240446
 @test propertynames(xn)[1:8] == majorelements(xn) == majorelements(NCKFMASTlogtrace)
@@ -109,9 +121,9 @@ x = NCKFMASTCrtrace((1.0:length(fieldnames(NCKFMASTCrtrace)))...,)
 @test x === NCKFMASTCrtrace{Float64}(1:38)
 @test ntuple(x) === ntuple(Float64, 38)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+@test sum(majorelementvalues(xn)) ≈ 99.8455721816923
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+@test sum(majorelementvalues(xn)) ≈ 99.8455721816923
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.8455721816923
 @test propertynames(xn)[1:9] == majorelements(xn) == majorelements(NCKFMASTCrtrace)
@@ -126,9 +138,9 @@ x = NCKFMASTCrlogtrace(x)
 @test x === NCKFMASTCrlogtrace{Float64}([1:9; log.(10:38)])
 @test ntuple(x) === ((1:9.)..., log.(10:38)...,)
 xn = renormalize(x) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+@test sum(majorelementvalues(xn)) ≈ 99.8455721816923
 xn = renormalize(dehydrate(x)) 
-@test sum(e->xn[e], majorelements(xn)) ≈ 99.8455721816923
+@test sum(majorelementvalues(xn)) ≈ 99.8455721816923
 xn = renormalize(x, anhydrous=true) 
 @test sum(e->xn[e], propertynames(xn)[1:9]) ≈ 99.8455721816923
 @test propertynames(xn)[1:9] == majorelements(xn) == majorelements(NCKFMASTCrlogtrace)
