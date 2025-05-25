@@ -2,14 +2,13 @@
 
 """
 ```julia
-perplex_configure_geotherm(scratchdir::String, composition::Collection{Number},
-    \telements::String=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"],
+perplex_configure_geotherm(scratchdir::String, composition, [elements],
     \tP_range=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
-    \tdataset::String="hp62ver.dat",
+    \tdataset::String="hp633ver.dat",
     \tindex::Integer=1,
     \tnpoints::Integer=100,
-    \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-    \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+    \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
+    \texcludes::String="ged\\nfanth\\ng\\n",
     \tmode_basis::String="vol",  #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
     \tfluid_eos::Integer=5)
@@ -19,14 +18,19 @@ Set up a PerpleX calculation for a single bulk composition along a specified
 geothermal gradient and pressure (depth) range. P specified in bar and T_surf
 in Kelvin, with geothermal gradient in units of Kelvin/bar
 """
-function perplex_configure_geotherm(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"],
+function perplex_configure_geotherm(scratchdir, composition::AbstractComposition, args...; dataset="hp633ver.dat", kwargs...)
+    data = majorelementvalues(composition)
+    elements = String.(majorelements(composition))
+    perplex_dataset_uppercase(dataset) && (elements = uppercase.(elements))
+    return perplex_configure_geotherm(scratchdir, data, elements, args...; dataset, kwargs...)
+end
+function perplex_configure_geotherm(scratchdir::String, composition::Collection{Number}, elements::Collection{<:AbstractString},
         P_range::NTuple{2,Number}=(280,28000), T_surf::Number=273.15, geotherm::Number=0.1;
-        dataset::String="hp62ver.dat",
+        dataset::String="hp633ver.dat",
         index::Integer=1,
         npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+        solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
+        excludes::String="ged\nfanth\ngl\n",
         mode_basis::String="vol",
         composition_basis::String="wt",
         fluid_eos::Integer=5
@@ -61,15 +65,22 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
     fp = open(prefix*"build.bat", "w")
 
     # Name, components, and basic options. P-T conditions.
-    # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-    elementstring = join(elements .* "\n")
+    elementstring = ""
+    for i in eachindex(composition, elements)
+        if !isnan(composition[i])
+            elementstring *= elements[i] * "\n"
+        end
+    end
     write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v7.1.6/7.1.8
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v6.8.1
 
     # Whole-rock composition
-    for i ∈ eachindex(composition)
-        write(fp,"$(composition[i]) ")
+    for i ∈ eachindex(composition, elements)
+        if !isnan(composition[i])
+            write(fp,"$(composition[i]) ")
+        end
     end
+
     # Solution model
     if length(excludes) > 0
         write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nGeothermal") 
@@ -94,14 +105,13 @@ export perplex_configure_geotherm
 
 """
 ```julia
-perplex_configure_isobar(scratchdir::String, composition::Collection{Number},
-    \telements::String=["SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"]
+perplex_configure_isobar(scratchdir::String, composition, [elements],
     \tP::Number=10000, T_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
-    \tdataset::String="hp11ver.dat",
+    \tdataset::String="hp633ver.dat",
     \tindex::Integer=1,
     \tnpoints::Integer=100,
-    \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-    \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+    \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
+    \texcludes::String="ged\\nfanth\\ng\\n",
     \tmode_basis::String="vol",  #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
     \tnonlinear_subdivision::Bool=false,
@@ -111,14 +121,19 @@ perplex_configure_isobar(scratchdir::String, composition::Collection{Number},
 Set up a PerpleX calculation for a single bulk composition along a specified
 isobaric temperature gradient. P specified in bar and T_range in Kelvin
 """
-function perplex_configure_isobar(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
+function perplex_configure_isobar(scratchdir, composition::AbstractComposition, args...; dataset="hp633ver.dat", kwargs...)
+    data = majorelementvalues(composition)
+    elements = String.(majorelements(composition))
+    perplex_dataset_uppercase(dataset) && (elements = uppercase.(elements))
+    return perplex_configure_isobar(scratchdir, data, elements, args...; dataset, kwargs...)
+end
+function perplex_configure_isobar(scratchdir::String, composition::Collection{Number}, elements::Collection{<:AbstractString},
         P::Number=10000, T_range::NTuple{2,Number}=(500+273.15, 1500+273.15);
-        dataset::String="hp11ver.dat",
+        dataset::String="hp633ver.dat",
         index::Integer=1,
         npoints::Integer=100,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+        solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
+        excludes::String="ged\nfanth\ngl\n",
         mode_basis::String="wt",
         composition_basis::String="wt",
         nonlinear_subdivision::Bool=false,
@@ -157,16 +172,23 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
     fp = open(prefix*"build.bat", "w")
 
     # Name, components, and basic options. P-T conditions.
-    # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-    elementstring = join(elements .* "\n")
+    elementstring = ""
+    for i in eachindex(composition, elements)
+        if !isnan(composition[i])
+            elementstring *= elements[i] * "\n"
+        end
+    end
     write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v7.1.8
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v7.1.6
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v6.8.1
 
     # Whole-rock composition
-    for i ∈ eachindex(composition)
-        write(fp,"$(composition[i]) ")
+    for i ∈ eachindex(composition, elements)
+        if !isnan(composition[i])
+            write(fp,"$(composition[i]) ")
+        end
     end
+
     # Solution model
     write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nIsobaric\n")
     close(fp)
@@ -187,10 +209,10 @@ export perplex_configure_isobar
 perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename::String="",
     \telements::String=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
     \tT_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
-    \tdataset::String="hp62ver.dat",
+    \tdataset::String="hp633ver.dat",
     \tindex::Integer=1,
-    \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-    \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+    \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
+    \texcludes::String="ged\\nfanth\\ng\\n",
     \tmode_basis::String="wt",  #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
     \tnonlinear_subdivision::Bool=false,
@@ -206,10 +228,10 @@ P specified in bar and T_range in Kelvin
 function perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdir::String="", PTfilename = "",
     elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
     T_range::NTuple{2,Number}=(500+273.15, 1050+273.15);
-    dataset::String="hp62ver.dat",
+    dataset::String="hp633ver.dat",
     index::Integer=1,
-    solution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-    excludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+    solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
+    excludes::String="ged\nfanth\ngl\n",
     mode_basis::String="wt",  #["vol", "wt", "mol"]
     composition_basis::String="wt",  #["vol", "wt", "mol"]
     nonlinear_subdivision::Bool=false,
@@ -277,16 +299,21 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     fp = open(prefix*"build.bat", "w")
 
     # Name, components, and basic options. P-T conditions.
-    # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-    elementstring = join(elements .* "\n")
-
+    elementstring = ""
+    for i in eachindex(composition, elements)
+        if !isnan(composition[i])
+            elementstring *= elements[i] * "\n"
+        end
+    end
     write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\ny\n") #7.1.8
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\ny\n$PTfilename\ny\n") #7.1.6
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
     # Whole-rock composition
-    for i ∈ eachindex(composition)
-        write(fp,"$(composition[i]) ")
+    for i ∈ eachindex(composition, elements)
+        if !isnan(composition[i])
+            write(fp,"$(composition[i]) ")
+        end
     end
 
     # Solution model
@@ -310,15 +337,14 @@ export perplex_configure_path
 
 """
 ```julia
-perplex_configure_pseudosection(scratchdir::String, composition::Collection{Number},
-    \telements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
+perplex_configure_pseudosection(scratchdir::String, composition, [elements::Collection{String}],
     \tP::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
-    \tdataset::String="hp62ver.dat",
+    \tdataset::String="hp633ver.dat",
     \tindex::Integer=1,
     \txnodes::Integer=42,
     \tynodes::Integer=42,
-    \tsolution_phases::String="O(HP)\\nOpx(HP)\\nOmph(GHP)\\nGt(HP)\\noAmph(DP)\\ncAmph(DP)\\nT\\nB\\nChl(HP)\\nBio(TCC)\\nMica(CF)\\nCtd(HP)\\nIlHm(A)\\nSp(HP)\\nSapp(HP)\\nSt(HP)\\nfeldspar_B\\nDo(HP)\\nF\\n",
-    \texcludes::String="ts\\nparg\\ngl\\nged\\nfanth\\ng\\n",
+    \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
+    \texcludes::String="ged\\nfanth\\ng\\n",
     \tmode_basis::String="vol", #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt", #["wt", "mol"]
     \tfluid_eos::Number=5)
@@ -327,19 +353,24 @@ perplex_configure_pseudosection(scratchdir::String, composition::Collection{Numb
 Set up a PerpleX calculation for a single bulk composition across an entire
 2d P-T space. P specified in bar and T in Kelvin.
 """
-function perplex_configure_pseudosection(scratchdir::String, composition::Collection{Number},
-        elements::Collection{String}=("SiO2","TiO2","Al2O3","FeO","MgO","CaO","Na2O","K2O","H2O"),
+function perplex_configure_pseudosection(scratchdir, composition::AbstractComposition, args...; dataset="hp633ver.dat", kwargs...)
+    data = majorelementvalues(composition)
+    elements = String.(majorelements(composition))
+    perplex_dataset_uppercase(dataset) && (elements = uppercase.(elements))
+    return perplex_configure_pseudosection(scratchdir, data, elements, args...; dataset, kwargs...)
+end
+function perplex_configure_pseudosection(scratchdir::String, composition::Collection{Number}, elements::Collection{<:AbstractString},
         P::NTuple{2,Number}=(280, 28000), T::NTuple{2,Number}=(273.15, 1500+273.15);
-        dataset::String="hp62ver.dat",
+        dataset::String="hp633ver.dat",
         index::Integer=1,
         xnodes::Integer=42,
         ynodes::Integer=42,
-        solution_phases::String="O(HP)\nOpx(HP)\nOmph(GHP)\nGt(HP)\noAmph(DP)\ncAmph(DP)\nT\nB\nChl(HP)\nBio(TCC)\nMica(CF)\nCtd(HP)\nIlHm(A)\nSp(HP)\nSapp(HP)\nSt(HP)\nfeldspar_B\nDo(HP)\nF\n",
-        excludes::String="ts\nparg\ngl\nged\nfanth\ng\n",
+        solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
+        excludes::String="ged\nfanth\ngl\n",
         mode_basis::String="vol",
         composition_basis::String="wt",
         fluid_eos::Number=5
-    )
+    )        
 
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
@@ -368,15 +399,22 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
     fp = open(prefix*"build.bat", "w")
 
     # Name, components, and basic options. P-T conditions.
-    # default fluid_eos = 5: Holland and Powell (1998) "CORK" fluid equation of state
-    elementstring = join(elements .* "\n")
+    elementstring = ""
+    for i in eachindex(composition, elements)
+        if !isnan(composition[i])
+            elementstring *= elements[i] * "\n"
+        end
+    end
     write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\nn\n2\n$(first(T))\n$(last(T))\n$(first(P))\n$(last(P))\ny\n") # v6.8.7
 
     # Whole-rock composition
-    for i ∈ eachindex(composition)
-        write(fp,"$(composition[i]) ")
+    for i ∈ eachindex(composition, elements)
+        if !isnan(composition[i])
+            write(fp,"$(composition[i]) ")
+        end
     end
-    # Solution model
+
+    # Solution models
     write(fp,"\nn\ny\nn\n$excludes\ny\nsolution_model.dat\n$solution_phases\n$fluid_eos\nPseudosection")
     close(fp)
 
@@ -575,7 +613,10 @@ end
 perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
     \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
 ```
-
+```julia
+perplex_query_seismic(scratchdir::String, P::AbstractArray, T::AbstractArray;
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
+```
 Query perplex seismic results along a specified P-T path using a pre-computed
 pseudosection. Results are returned as a dictionary.
 """
@@ -744,17 +785,10 @@ function perplex_query_phase(scratchdir::String, phase::String;
 
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
-        avg_weight = nanmean(Float64.(data[2:end,t]),dim=1)
-        # Check if perplex is messing up and outputting mole proportions
-        if nansum(avg_weight) < 50
-            @warn "Perplex seems to be reporting mole fractions instead of weight percentages"
-            # Attempt to change back to weight percentages
-            # for col = findall(t)
-            #     data[2:end,col] .*= molarmass[replace(elements[col], ",wt%" => "")]
-            # end
-            # total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        end
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
+        end
         data[2:end,t] .*= 100 ./ total_weight
 
         # Clean up element names
@@ -774,6 +808,10 @@ end
 """
 ```julia
 perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+```
+```julia
+perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
     \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
 ```
 
@@ -819,9 +857,8 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        # Check if perplex is messing up and outputting mole proportions
-        if nanmean(total_weight) < 50
-            @warn "Perple_X may be reporting mole fractions instead of weight percentages"
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
 
@@ -884,9 +921,8 @@ function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        # Check if perplex is messing up and outputting mole proportions
-        if nanmean(total_weight) < 50
-            @warn "Perple_X may be reporting mole fractions instead of weight percentages"
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
 
@@ -1047,6 +1083,10 @@ end
 """
 ```julia
 perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", manual_grid::Bool=false)
+```
+```julia
+perplex_query_modes(scratchdir::String, P::AbstractArray, T::AbstractArray;
     \tindex::Integer=1, npoints::Integer=200, include_fluid="y", manual_grid::Bool=false)
 ```
 
@@ -1213,6 +1253,9 @@ function perplex_query_system(scratchdir::String;
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
+        end
         data[2:end,t] .*= 100 ./ total_weight
 
         # Clean up element names
@@ -1232,6 +1275,10 @@ end
 """
 ```julia
 function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+    \tindex::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
+```
+```julia
+function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractArray;
     \tindex::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
 ```
 
@@ -1276,6 +1323,9 @@ function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
+        end
         data[2:end,t] .*= 100 ./ total_weight
 
         # Clean up element names
@@ -1336,6 +1386,9 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
+        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+            @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
+        end
         data[2:end,t] .*= 100 ./ total_weight
 
         # Clean up element names

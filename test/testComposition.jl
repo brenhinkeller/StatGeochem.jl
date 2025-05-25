@@ -150,6 +150,21 @@ xn = renormalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
+# Additional composition types
+x = NCKFMASHTOCO2trace((1.0:length(fieldnames(NCKFMASHTOCO2trace)))...,)
+@test x isa NCKFMASHTOCO2trace{Float64}
+@test x === NCKFMASHTOCO2trace{Float64}(1:41)
+@test ntuple(x) === ntuple(Float64, 41)
+@test majorelementvalues(x) === ((1:11.)...,)
+@test traceelementvalues(x) === ((12:41.)...,)
+
+x = NCKFMASHTOCO2logtrace(x)
+@test x isa NCKFMASHTOCO2logtrace{Float64}
+@test x === NCKFMASHTOCO2logtrace{Float64}([1:11; log.(12:41)])
+@test ntuple(x) === ((1:11.)..., log.(12:41)...,)
+@test majorelementvalues(x) === ((1:11.)...,)
+@test traceelementvalues(x) === (log.(12:41.)...,)
+
 # Test alternate constructors
 elements =       [ "SiO2", "Al2O3",  "FeO",  "MgO",  "CaO", "Na2O",  "K2O",  "H2O",  "CO2",]
 concentrations = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]

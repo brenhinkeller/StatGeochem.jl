@@ -4,11 +4,11 @@ if Sys.isunix()
     scratchdir = "./"
 
     # Kelemen (2014) primitive continental basalt excluding Mn and Ti since most melt models can"t handle them..
-    elements =    [ "SIO2", "AL2O3",  "FEO",  "MGO",  "CAO", "NA2O",  "K2O",  "H2O",  "CO2",]
-    composition = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
+    elements =       [ "SiO2", "Al2O3",  "FeO",  "MgO",  "CaO", "Na2O",  "K2O",  "H2O",  "CO2",]
+    concentrations = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
+    composition = NCKFMASHTOCO2trace{Float64}(concentrations, elements)
 
     # Emphasis on phases from Holland and Powell -- all phases can be used with hp02ver.dat.
-    # HP_solution_phases = "Omph(HP)\nOpx(HP)\nGlTrTsPg\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nChl(HP)\nCtd(HP)\nSapp(HP)\nSt(HP)\nIlHm(A)\nDo(HP)\nT\nB\nF\n"
     HP_solution_phases = "Omph(HP)\nOpx(HP)\nAnth\nO(HP)\nSp(HP)\nGt(HP)\nfeldspar_B\nMica(CF)\nBio(TCC)\nCtd(HP)\nSt(HP)\nDo(HP)\nT\nB\nF\n"
     HP_excludes = ""
 
@@ -21,7 +21,7 @@ if Sys.isunix()
     # Configure (run build and vertex)
     melt_model = "melt(HP)"
     @info "perplex_configure_isobar:"
-    @time perplex_configure_isobar(scratchdir, composition, elements, P, T_range,
+    @time perplex_configure_isobar(scratchdir, composition, P, T_range,
         dataset="hp02ver.dat",
         npoints=100,
         excludes=HP_excludes,
@@ -32,8 +32,6 @@ if Sys.isunix()
 
     T = 850+273.15
     data_isobaric = perplex_query_point(scratchdir, T)
-    # system("ls ./out1/")
-
     @test isfile("./out1/1_1.txt")
     @test isa(data_isobaric, String)
 
@@ -55,7 +53,7 @@ if Sys.isunix()
     @test haskey(melt, :SIO2)
 
     if haskey(melt, :SIO2)
-        # print("melt.SiO2: ")
+        # print("melt.SIO2: ")
         # println(melt.SIO2)
         @test !isempty(melt.SIO2) && !any(x->x<45, melt.SIO2) && !any(x->x>75, melt.SIO2)
         @test isapprox(melt.SIO2,  [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, 66.23928873932091, 66.20069536595133, 66.1129689269046, 65.96817295304906, 65.77167961077932, 65.5254393152636, 65.23386085968349, 64.87278962035367, 64.45898710820259, 64.04463202231602, 63.2097683951158, 62.229362662382414, 61.2299, 60.24657590136964, 59.299682210095334, 58.39293503576102, 57.528805752880565, 56.697199999999995, 55.900244720195786, 55.151072424463784, 54.444161889086686, 53.77171075434216, 53.13486811907912, 52.53058424082473, 51.97033118219873, 51.615110323022066, 51.531989693602064, 51.49388455183463, 51.45425369117167, 51.4165640084052, 51.38137430931284, 51.34737946104821, 51.31412565706284, 51.282015384604605, 51.252599999999994, 51.2249358574551, 51.196284641114616, 51.169935818955075, 51.1451744274128, 51.11510000000001, 50.45745550320106, 50.40943024565815], nans=true, atol = 0.1)
@@ -85,7 +83,7 @@ if Sys.isunix()
 
     # Configure (run build and vertex)
     @info "perplex_configure_geotherm:"
-    @time perplex_configure_geotherm(scratchdir, composition, elements, P_range, T_surf, geotherm;
+    @time perplex_configure_geotherm(scratchdir, composition, P_range, T_surf, geotherm;
         dataset="hp02ver.dat",
         excludes=HP_excludes,
         solution_phases=HP_solution_phases,
@@ -109,11 +107,10 @@ if Sys.isunix()
     PTfilename = ""
 
     @info "perplex_configure_path:"
-    @time perplex_configure_path(scratchdir, composition, PTdir, PTfilename, elements, T_range, 
+    @time perplex_configure_path(scratchdir, concentrations, PTdir, PTfilename, uppercase.(elements), T_range, 
         dataset = "hp02ver.dat", index=1, solution_phases=HP_solution_phases, excludes=HP_excludes)
     
     modes = perplex_query_modes(scratchdir, index=1, manual_grid=true, npoints=100)
-    # print(modes)
     @test isa(modes, Dict)
     @test haskey(modes,"node")
     @test haskey(modes, "O(HP)")
@@ -125,7 +122,7 @@ if Sys.isunix()
 
     # --- # # # # # # # # # # # Pseudosection example # # # # # # # # # # # # #
 
-    P_range = (1000, 5000) # Pressure range to explore, bar (roughly 1-100 km depth)
+    P_range = (1000, 5000) # Pressure range to explore, bar
     T_range = (400+273.15, 600+273.15) # Temperature range to explore, K
     melt_model = ""
 
@@ -134,9 +131,12 @@ if Sys.isunix()
 
     # Configure (run build and vertex)
     @info "perplex_configure_pseudosection:"
-    @time perplex_configure_pseudosection(scratchdir, composition,
-        elements, P_range, T_range, dataset="hp02ver.dat", excludes=excludes,
-        solution_phases=melt_model*solution_phases, index=1, xnodes=50, ynodes=50)
+    @time perplex_configure_pseudosection(scratchdir, composition, P_range, T_range, 
+        dataset="hp02ver.dat", 
+        excludes=excludes,
+        solution_phases=melt_model*solution_phases, 
+        index=1, xnodes=50, ynodes=50
+    )
 
     # Query modes on diagonal line across P-T space
     modes = perplex_query_modes(scratchdir, P_range, T_range, index=1, npoints=200)

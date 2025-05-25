@@ -406,6 +406,101 @@ export NCKFMASHTOlogtrace
 majorelements(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O)
 traceelements(::Type{<:Union{NCKFMASHTOtrace, NCKFMASHTOlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 
+struct NCKFMASHTOCO2trace{T} <: LinearTraceComposition{T}
+    SiO2::T
+    TiO2::T
+    Al2O3::T
+    FeO::T
+    MgO::T
+    CaO::T
+    Na2O::T
+    K2O::T
+    O2::T
+    H2O::T
+    CO2::T
+    P::T
+    Rb::T
+    Cs::T
+    Sr::T
+    Ba::T
+    Sc::T
+    V::T
+    Cr::T
+    Mn::T
+    Co::T
+    Ni::T
+    La::T
+    Ce::T
+    Nd::T
+    Sm::T
+    Eu::T
+    Gd::T
+    Tb::T
+    Dy::T
+    Yb::T
+    Lu::T
+    Y::T
+    Zr::T
+    Hf::T
+    Nb::T
+    Ta::T
+    Mo::T
+    W::T
+    Th::T
+    U::T
+end
+export NCKFMASHTOCO2trace
+
+struct NCKFMASHTOCO2logtrace{T} <: LogTraceComposition{T}
+    SiO2::T
+    TiO2::T
+    Al2O3::T
+    FeO::T
+    MgO::T
+    CaO::T
+    Na2O::T
+    K2O::T
+    O2::T
+    H2O::T
+    CO2::T
+    P::T
+    Rb::T
+    Cs::T
+    Sr::T
+    Ba::T
+    Sc::T
+    V::T
+    Cr::T
+    Mn::T
+    Co::T
+    Ni::T
+    La::T
+    Ce::T
+    Nd::T
+    Sm::T
+    Eu::T
+    Gd::T
+    Tb::T
+    Dy::T
+    Yb::T
+    Lu::T
+    Y::T
+    Zr::T
+    Hf::T
+    Nb::T
+    Ta::T
+    Mo::T
+    W::T
+    Th::T
+    U::T
+end
+export NCKFMASHTOCO2logtrace
+
+# majorelements, traceelements and conversions
+majorelements(::Type{<:Union{NCKFMASHTOCO2trace, NCKFMASHTOCO2logtrace}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O, :O2, :H2O, :CO2)
+traceelements(::Type{<:Union{NCKFMASHTOCO2trace, NCKFMASHTOCO2logtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
+
+
 struct NCKFMASHTOCrtrace{T} <: LinearTraceComposition{T}
     SiO2::T
     TiO2::T

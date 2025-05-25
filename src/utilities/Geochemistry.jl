@@ -822,6 +822,15 @@
 
 ## --- Perplex name-related utilities
 
+    # Attempt to determine whether or not a given perplex dataset expects uppercase input
+    function perplex_dataset_uppercase(dataset::AbstractString)
+        if contains(dataset, "hp6") || contains(dataset, "hpha6")  || contains(dataset, "hpAQ") || contains(dataset, "DEW") || contains(dataset, "HKF")
+            false
+        else
+            true
+        end
+    end
+
     # Translate between perplex names and germ names
     function germ_perplex_name_matches(germ_name, perplex_name)
         # Feldspar
