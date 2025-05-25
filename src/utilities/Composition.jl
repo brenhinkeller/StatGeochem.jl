@@ -15,7 +15,7 @@ traceelements(::Type{T}) where {T<:AbstractComposition} = filter(k->!contains(St
 traceelements(::T) where {T<:AbstractComposition} = traceelements(T)
 export traceelements
 
-# Default constructor, given a an AbstractArray or NTuple of the appropriate length
+# Default constructor, given an AbstractArray or NTuple of the appropriate length
 @generated function (::Type{C})(v::Collection) where {T,C<:AbstractComposition{T}}
     result = :($C())
     for i in 1:fieldcount(C)
@@ -26,6 +26,27 @@ export traceelements
         :(@assert length(v) == fieldcount($C) "Collection must contain same number of elements as the composition $C you are trying to construct"),
         :(return $result)
     )
+end
+# Less efficient but more general constructors, given some combination of keys and values
+function (::Type{C})(d::Dict) where {T,C<:AbstractComposition{T}}
+    names = fieldnames(C)
+    data = ntuple(i->(haskey(d, String(names[i])) ? T(d[String(names[i])]) : T(NaN)), fieldcount(C))
+    return C(data)
+end
+function (::Type{C})(nt::NamedTuple) where {T,C<:AbstractComposition{T}}
+    names = fieldnames(C)
+    data = ntuple(i->(haskey(nt, names[i]) ? T(nt[names[i]]) : T(NaN)), fieldcount(C))
+    return C(data)
+end
+function (::Type{C})(concentrations::Collection{<:Number}, elements::Collection{Symbol}) where {T,C<:AbstractComposition{T}}
+    names = fieldnames(C)
+    data = ntuple(i->(names[i] ∈ elements ? T(concentrations[findfirst(isequal(names[i], elements))]) : T(NaN)), fieldcount(C))
+    return C(data)
+end
+function (::Type{C})(concentrations::Collection{<:Number}, elements::Collection{<:AbstractString}) where {T,C<:AbstractComposition{T}}
+    names = fieldnames(C)
+    data = ntuple(i->(String(names[i]) ∈ elements ? T(concentrations[findfirst(isequal(String(names[i])), elements)]) : T(NaN)), fieldcount(C))
+    return C(data)
 end
 
 # Default conversions between compositions

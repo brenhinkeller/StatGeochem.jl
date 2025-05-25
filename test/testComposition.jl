@@ -1,4 +1,4 @@
-# Test creating and normalizing Composition objects
+## --- Test creating and normalizing Composition objects
 
 x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test x isa NCKFMASHTOtrace{Float64}
@@ -150,7 +150,23 @@ xn = renormalize(x, anhydrous=true)
 @test !isnan(xn)
 @test isnan(xn * NaN)
 
-# Composition distributions
+# Test alternate constructors
+elements =       [ "SiO2", "Al2O3",  "FeO",  "MgO",  "CaO", "Na2O",  "K2O",  "H2O",  "CO2",]
+concentrations = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
+data = NamedTuple{(Symbol.(elements)...,)}((concentrations...,))
+c1 = NCKFMASHTOtrace{Float64}(data)
+@test c1 isa NCKFMASHTOtrace{Float64}
+data = Dict(elements .=> concentrations)
+c2 = NCKFMASHTOtrace{Float64}(data)
+@test c2 isa NCKFMASHTOtrace{Float64}
+c3 = NCKFMASHTOtrace{Float64}(concentrations, elements)
+@test c3 isa NCKFMASHTOtrace{Float64}
+c4 = NCKFMASHTOtrace{Float64}(concentrations, elements)
+@test c4 isa NCKFMASHTOtrace{Float64}
+@test c1 === c2 === c3 === c4
+@test StatGeochem.normconst(c1) ≈ 0.9827750000000002
+
+## --- Composition distributions
 μ = rand(40)
 Σ = [Float64(i==j) for i in 1:40, j in 1:40]
 d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
@@ -166,7 +182,7 @@ d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
 @test pdf(d, μ) ≈ pdf(d, mean(d)) ≈ 1.0874333119089363e-16
 @test logpdf(d, μ) ≈ logpdf(d, mean(d)) ≈ -36.75754132818691
 
-# Composition arrays
+## --- Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
 @test ca[1] isa NCKFMASHTOCrtrace{Float64}
