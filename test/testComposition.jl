@@ -171,13 +171,17 @@ concentrations = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.00
 data = NamedTuple{(Symbol.(elements)...,)}((concentrations...,))
 c1 = NCKFMASHTOtrace{Float64}(data)
 @test c1 isa NCKFMASHTOtrace{Float64}
+@test c1["SiO2"] ≈ c1[:SiO2] ≈ 50.0956
 data = Dict(elements .=> concentrations)
 c2 = NCKFMASHTOtrace{Float64}(data)
 @test c2 isa NCKFMASHTOtrace{Float64}
+@test c2["SiO2"] ≈ c2[:SiO2] ≈ 50.0956
 c3 = NCKFMASHTOtrace{Float64}(concentrations, elements)
 @test c3 isa NCKFMASHTOtrace{Float64}
+@test c3["SiO2"] ≈ c3[:SiO2] ≈ 50.0956
 c4 = NCKFMASHTOtrace{Float64}(concentrations, elements)
 @test c4 isa NCKFMASHTOtrace{Float64}
+@test c4["SiO2"] ≈ c4[:SiO2] ≈ 50.0956
 @test c1 === c2 === c3 === c4
 @test StatGeochem.normconst(c1) ≈ 0.9827750000000002
 

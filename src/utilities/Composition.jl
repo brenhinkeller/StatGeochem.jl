@@ -44,8 +44,8 @@ function (::Type{C})(concentrations::Collection{<:Number}, elements::Collection{
     return C(data)
 end
 function (::Type{C})(concentrations::Collection{<:Number}, elements::Collection{<:AbstractString}) where {T,C<:AbstractComposition{T}}
-    names = fieldnames(C)
-    data = ntuple(i->(String(names[i]) ∈ elements ? T(concentrations[findfirst(isequal(String(names[i])), elements)]) : T(NaN)), fieldcount(C))
+    names = String.(fieldnames(C))
+    data = ntuple(i->(names[i] ∈ elements ? T(concentrations[findfirst(isequal(names[i]), elements)]) : T(NaN)), fieldcount(C))
     return C(data)
 end
 
@@ -138,7 +138,9 @@ export traceelementvalues
 # if a concrete type does not override with something more specific
 Base.keys(x::C) where {C<:AbstractComposition} = fieldnames(C)
 Base.haskey(x::C, key::Symbol) where {C<:AbstractComposition} = hasfield(C, key)
+Base.haskey(x::C, key::String) where {C<:AbstractComposition} = hasfield(C, Symbol(key))
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
+Base.getindex(x::AbstractComposition, key::String) = getfield(x, Symbol(key))
 
 # Partial math interface, using generated functions so that we don't have to manually
 # write out all the field names for every concrete subtype of AbstractComposition
