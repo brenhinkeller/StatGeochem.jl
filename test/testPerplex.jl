@@ -162,23 +162,26 @@
     modes = perplex_query_modes(scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(extrema(modes["T(K)"]) .≈ T_range)
-    @test length(modes["T(K)"]) == 200
+    @test length(modes["T(K)"]) == length(modes["Opx(HP)"]) == 200
+    @test nanmean(modes["Opx(HP)"]) ≈ 10.047218620689655 atol=0.01
 
     phase = perplex_query_phase(scratchdir, "Opx(HP)", P_range, T_range, index=1, npoints=200)
     @test isa(phase, Dict) && !isempty(phase)
     @test haskey(phase,"T(K)") && all(extrema(phase["T(K)"]) .≈ T_range)
-    @test length(phase["T(K)"]) == 200
+    @test length(phase["T(K)"]) == length(phase["SIO2"]) == 200
+    @test nanmean(phase["SIO2"]) ≈ 49.11688856598355 atol=0.01
 
     sys = perplex_query_system(scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(sys, Dict) && !isempty(sys)
     @test haskey(sys,"T(K)") && all(extrema(sys["T(K)"]) .≈ T_range)
-    @test length(sys["T(K)"]) == 200
+    @test length(sys["T(K)"]) == length(sys["rho,kg/m3"]) == 200
+    @test nanmean(sys["rho,kg/m3"]) ≈ 2849.430250000001 atol=0.01
 
     # Query seismic properties on diagonal line across P-T space
     seismic = perplex_query_seismic(scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(seismic, Dict) && !isempty(seismic)
     @test haskey(seismic,"T(K)") && !isempty(seismic["T(K)"]) && all(extrema(seismic["T(K)"]) .≈ T_range)
-    @test length(seismic["T(K)"]) == 200
+    @test length(seismic["T(K)"]) == length(seismic["rho,kg/m3"])  == 200
     @test haskey(seismic, "rho,kg/m3") && !isempty(seismic["rho,kg/m3"]) && !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
 
 
@@ -189,28 +192,26 @@
     modes = perplex_query_modes(scratchdir, P, T, index=1)
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(isapprox.(modes["T(K)"], T, atol=0.1))
+    @test length(modes["Opx(HP)"]) == 16
+    @test modes["Opx(HP)"] ≈ [NaN, NaN, NaN, NaN, NaN, NaN, NaN, 5.14854, 9.1865, 10.3581, 10.362, 10.3658, 10.3688, 10.3719, 13.7688, 14.572] nans=true rtol=0.01
 
     phase = perplex_query_phase(scratchdir, "Opx(HP)", P, T, index=1)
     @test isa(phase, Dict) && !isempty(phase)
     @test haskey(phase,"T(K)") && all(isapprox.(phase["T(K)"], T, atol=0.1))
+    @test haskey(phase,"SIO2") && length(phase["SIO2"]) == 16
+    @test phase["SIO2"] ≈ [NaN, NaN, NaN, NaN, NaN, NaN, NaN, 49.019009803801964, 48.99169510083049, 49.01006569295402, 49.04348038260784, 49.07787546106227, 49.110609822121965, 49.14480982896197, 49.31759013648197, 49.55400991080199] nans=true rtol=0.01
 
     sys = perplex_query_system(scratchdir, P, T, index=1)
     @test isa(sys, Dict) && !isempty(sys)
     @test haskey(sys,"T(K)") && all(isapprox.(sys["T(K)"], T, atol=0.1))
-    @test haskey(sys, "rho,kg/m3") && !any(x->x<2700, sys["rho,kg/m3"]) && !any(x->x>3200, sys["rho,kg/m3"])
+    @test haskey(sys, "rho,kg/m3") && length(sys["rho,kg/m3"]) == 16
+    @test sys["rho,kg/m3"] ≈ [2875.21, 2875.21, 2875.21, 2875.21, 2875.2, 2874.94, 2874.93, 2833.74, 2825.41, 2824.65, 2826.44, 2828.01, 2829.42, 2830.68, 2840.64, 2844.03] nans=true rtol=0.01
 
     seismic = perplex_query_seismic(scratchdir, P, T, index=1)
     @test isa(seismic, Dict) && !isempty(seismic)
-    @test haskey(seismic,"T(K)")
-    if haskey(seismic,"T(K)")
-        @test isapprox(seismic["T(K)"], T, atol=0.01)
-        @test isapprox(seismic["T(K)"], [673.15, 686.483, 699.817, 713.15, 726.483, 739.817, 753.15, 766.483, 779.817, 793.15, 806.483, 819.817, 833.15, 846.483, 859.817, 873.15], atol=0.1)
-    end
-    @test haskey(seismic, "rho,kg/m3")
-    if haskey(seismic, "rho,kg/m3")
-        @test !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
-        @test isapprox(seismic["rho,kg/m3"], [2875.21, 2875.21, 2875.21, 2875.21, 2875.2, 2875.34, 2875.32, 2905.4, 2927.22, 2933.56, 2933.46, 2933.36, 2933.26, 2933.15, 2956.4, 2962.18], atol=0.1)
-    end
+    @test haskey(seismic,"T(K)") && all(isapprox.(sys["T(K)"], T, atol=0.1))
+    @test haskey(seismic, "rho,kg/m3") && length(sys["rho,kg/m3"]) == 16
+    @test seismic["rho,kg/m3"] ≈ [2875.21, 2875.21, 2875.21, 2875.21, 2875.2, 2875.34, 2875.32, 2905.4, 2927.22, 2933.56, 2933.46, 2933.36, 2933.26, 2933.15, 2956.4, 2962.18] nans=true atol=0.1
 
     ## --- # # # # # # # # Isobaric example with more advanced models # # # # # # # # #
 

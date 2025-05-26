@@ -9,7 +9,7 @@ perplex_configure_geotherm(scratchdir::String, composition, [elements],
     \tnpoints::Integer=100,
     \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
     \texcludes::String="ged\\nfanth\\ng\\n",
-    \tmode_basis::String="vol",  #["vol", "wt", "mol"]
+    \tmode_basis::String="wt",  #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
     \tfluid_eos::Integer=5)
 ```
@@ -31,7 +31,7 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
         npoints::Integer=100,
         solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
         excludes::String="ged\nfanth\ngl\n",
-        mode_basis::String="vol",
+        mode_basis::String="wt",
         composition_basis::String="wt",
         fluid_eos::Integer=5
     )
@@ -110,8 +110,8 @@ perplex_configure_isobar(scratchdir::String, composition, [elements],
     \tnpoints::Integer=100,
     \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
     \texcludes::String="ged\\nfanth\\ng\\n",
-    \tmode_basis::String="vol",  #["vol", "wt", "mol"]
-    \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+    \tmode_basis::String="wt",  #["vol", "wt", "mol"]
+    \tcomposition_basis::String="wt",  #["wt", "mol"]
     \tnonlinear_subdivision::Bool=false,
     \tfluid_eos::Integer=5)
 ```
@@ -212,7 +212,7 @@ perplex_configure_path(scratchdir::String, composition::Collection{Number}, PTdi
     \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
     \texcludes::String="ged\\nfanth\\ng\\n",
     \tmode_basis::String="wt",  #["vol", "wt", "mol"]
-    \tcomposition_basis::String="wt",  #["vol", "wt", "mol"]
+    \tcomposition_basis::String="wt",  #["wt", "mol"]
     \tnonlinear_subdivision::Bool=false,
     \tfluid_eos::Integer=5,
     \tfractionate::Integer=0)
@@ -231,7 +231,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
     excludes::String="ged\nfanth\ngl\n",
     mode_basis::String="wt",  #["vol", "wt", "mol"]
-    composition_basis::String="wt",  #["vol", "wt", "mol"]
+    composition_basis::String="wt",  #["wt", "mol"]
     nonlinear_subdivision::Bool=false,
     fluid_eos::Integer=5,
     fractionate::Integer=0,
@@ -343,7 +343,7 @@ perplex_configure_pseudosection(scratchdir::String, composition, [elements::Coll
     \tynodes::Integer=42,
     \tsolution_phases::String="melt(HGPH)\\nPl(I1,HP)\\nFsp(C1)\\nSp(HGP)\\nGt(HGP)\\nO(HGP)\\nOpx(HGP)\\nCpx(HGP)\\nCrd(HGP)\\nBi(HGP)\\nMica(W)\\nEp(HP)\\ncAmph(G)\\nIlm(WPH)\\nChl(W)\\n",
     \texcludes::String="ged\\nfanth\\ng\\n",
-    \tmode_basis::String="vol", #["vol", "wt", "mol"]
+    \tmode_basis::String="wt", #["vol", "wt", "mol"]
     \tcomposition_basis::String="wt", #["wt", "mol"]
     \tfluid_eos::Number=5)
 ```
@@ -365,7 +365,7 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
         ynodes::Integer=42,
         solution_phases::String="melt(HGPH)\nPl(I1,HP)\nFsp(C1)\nSp(HGP)\nGt(HGP)\nO(HGP)\nOpx(HGP)\nCpx(HGP)\nCrd(HGP)\nBi(HGP)\nMica(W)\nEp(HP)\ncAmph(G)\nIlm(WPH)\nChl(W)\n",
         excludes::String="ged\nfanth\ngl\n",
-        mode_basis::String="vol",
+        mode_basis::String="wt",
         composition_basis::String="wt",
         fluid_eos::Number=5
     )        
