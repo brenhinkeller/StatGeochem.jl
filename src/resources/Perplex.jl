@@ -95,8 +95,6 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
     # build PerpleX problem definition
     system("export $ldpathadjust; cd $prefix; $build < build.bat > build.log")
 
-    println("Built problem definition")
-
     # Run PerpleX vertex calculations
     result = system("export $ldpathadjust; cd $prefix; echo $index | $vertex > vertex.log")
     return result
@@ -430,7 +428,7 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
 end
 export perplex_configure_pseudosection
 
-## -- Perplex interface: 2. 0d queries
+## -- Perplex interface: 2. queries
 
 """
 ```julia
@@ -529,16 +527,16 @@ function perplex_query_point(scratchdir::String, P::Number, T::Number; index::In
 end
 export perplex_query_point
 
-## --- Perplex interface: 3. 1d queries
-
-# # We'll need this for when perplex messes up
-# molarmass = Dict("SIO2"=>60.083, "TIO2"=>79.8651, "AL2O3"=>101.96007714, "FE2O3"=>159.6874, "FEO"=>71.8442, "MGO"=>40.304, "CAO"=>56.0774, "MNO"=>70.9370443, "NA2O"=>61.978538564, "K2O"=>94.19562, "H2O"=>18.015, "CO2"=>44.009, "P2O5"=>141.942523997)
-
 """
 ```julia
 perplex_query_seismic(scratchdir::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="n",
-    \tmanual_grid::Bool=false, npoints::Integer=100)
+    \tindex::Integer=1, 
+    \tdof::Integer=1, 
+    \tinclude_fluid::String="n", 
+    \tnpoints::Integer=0
+    \tmanual_grid::Bool=npoints>0, 
+    \timportas=:Dict,
+)
 ```
 
 Query perplex seismic results along a previously configured 1-d path (dof=1,
@@ -546,12 +544,17 @@ isobar or geotherm) or 2-d grid / pseudosection (dof=2).
 Results are returned as a dictionary.
 """
 function perplex_query_seismic(scratchdir::String;
-    dof::Integer=1, index::Integer=1, include_fluid::String="n", importas=:Dict,
-    manual_grid::Bool=false, npoints::Integer=100)
+        index::Integer=1, 
+        dof::Integer=1, 
+        include_fluid::String="n", 
+        npoints::Integer=0,
+        manual_grid::Bool=npoints>0, 
+        importas=:Dict,
+    )
     # Query a pre-defined path (isobar or geotherm)
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -611,21 +614,32 @@ end
 """
 ```julia
 perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
+    \tindex::Integer=1,
+    \tnpoints::Integer=200, 
+    \tinclude_fluid="n", 
+    \timportas=:Dict,
+)
 ```
 ```julia
 perplex_query_seismic(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="n")
+    \tindex::Integer=1, 
+    \tinclude_fluid="n", 
+    \timportas=:Dict,
+)
 ```
 Query perplex seismic results along a specified P-T path using a pre-computed
 pseudosection. Results are returned as a dictionary.
 """
 function perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    index::Integer=1, npoints::Integer=200, include_fluid="n", importas=:Dict)
+        index::Integer=1,
+        npoints::Integer=200, 
+        include_fluid="n", 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -662,11 +676,14 @@ function perplex_query_seismic(scratchdir::String, P::NTuple{2,Number}, T::NTupl
     return data
 end
 function perplex_query_seismic(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    index::Integer=1, include_fluid="n", importas=:Dict)
+        index::Integer=1, 
+        include_fluid="n", 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Write TP data to file
     fp = open(prefix*"TP.tsv", "w")
@@ -714,8 +731,14 @@ export perplex_query_seismic
 """
 ```julia
 perplex_query_phase(scratchdir::String, phase::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true
-    \tmanual_grid::Bool=false, npoints::Integer=100)
+    \tindex::Integer=1, 
+    \tdof::Integer=1,
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true, 
+    \tnpoints::Integer=0,
+    \tmanual_grid::Bool=npoints>0, 
+    \timportas=:Dict,
+)
 ```
 
 Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
@@ -723,12 +746,18 @@ along a previously configured 1-d path (dof=1, isobar, geotherm, or P–T path) 
 grid / pseudosection (dof=2). Results are returned as a dictionary.
 """
 function perplex_query_phase(scratchdir::String, phase::String;
-    dof::Integer=1, index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict,
-    manual_grid::Bool=false, npoints::Integer=100)
+        index::Integer=1, 
+        dof::Integer=1,
+        include_fluid="y", 
+        clean_units::Bool=true, 
+        npoints::Integer=0,
+        manual_grid::Bool=npoints>0, 
+        importas=:Dict,
+    )
     # Query a pre-defined path (isobar or geotherm)
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -736,27 +765,15 @@ function perplex_query_phase(scratchdir::String, phase::String;
     if manual_grid
         # Edit perplex_option.dat to specify a manual grid size
         system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
-        # if dof == 1
-            #v7.1.8+, 1d path
-            write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n$npoints\n5\n0\n") #5 is for the case of immiscible phases
-    
-            # v7.1.6, 1d path
-            # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n")
-    
-            # v6.7.8, 1d path
-            # write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\n5\n0\n")
-            # If a named phase (e.g. feldspar) has multiple immiscible phases, average them (5)
-        # elseif dof == 2
-            # 2d grid
-            # write(fp,"$index\n2\n36\n2\n$phase\n$include_fluid\nn\n1\n0\n") # v6.7.8/v7.1.6
-        # else
-            # error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
-        # end
+
+        #v7.1.8+ (same for dof=1 & 2??)
+        write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n$npoints\n5\n0\n") #5 is for the case of immiscible phases
+
     else 
         # Edit perplex_option.dat to specify an automatic grid size
         system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   T |/\" -i.backup $(prefix)perplex_option.dat")
 
-        #v7.1.8+, 1d path
+        #v7.1.8+ (same for dof=1 & 2??)
         write(fp,"$index\n3\n36\n2\n$phase\n$include_fluid\nn\n1\n5\n0\n") #5 is for the case of immiscible phases
     end
 
@@ -809,11 +826,20 @@ end
 """
 ```julia
 perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+    \tindex::Integer=1, 
+    \tnpoints::Integer=200, 
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true, 
+    \timportas=:Dict,
+)
 ```
 ```julia
 perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+    \tindex::Integer=1, 
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true, 
+    \timportas=:Dict,
+)
 ```
 
 Query all perplex-calculated properties for a specified phase (e.g. "Melt(G)")
@@ -821,11 +847,16 @@ along a specified P-T path using a pre-computed pseudosection. Results are
 returned as a dictionary.
 """
 function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+        index::Integer=1, 
+        npoints::Integer=200, 
+        include_fluid="y", 
+        clean_units::Bool=true, 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -879,11 +910,15 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
     return result
 end
 function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray, T::AbstractArray;
-    index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+        index::Integer=1, 
+        include_fluid="y", 
+        clean_units::Bool=true, 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Write TP data to file
     fp = open(prefix*"TP.tsv", "w")
@@ -949,8 +984,13 @@ export perplex_query_phase
 """
 ```julia
 perplex_query_modes(scratchdir::String;
-    \tdof::Integer=1, index::Integer=1, include_fluid="y",
-    \tmanualgrid::Bool=false, npoints::Integer=100)
+    \tindex::Integer=1, 
+    \tdof::Integer=1, 
+    \tinclude_fluid="y", 
+    \tnpoints::Integer=0,
+    \tmanual_grid::Bool=npoints>0,
+    \timportas=:Dict,
+)
 ```
 
 Query modal mineralogy (mass proportions) along a previously configured 1-d
@@ -960,12 +1000,17 @@ Results are returned as a dictionary.
 Currently returns wt% 
 """
 function perplex_query_modes(scratchdir::String;
-    dof::Integer=1, index::Integer=1, include_fluid="y", importas=:Dict,
-    manual_grid::Bool=false, npoints::Integer=100)
+        index::Integer=1, 
+        dof::Integer=1, 
+        include_fluid="y", 
+        npoints::Integer=0,
+        manual_grid::Bool=npoints>0,
+        importas=:Dict,
+    )
     # Query a pre-defined path (isobar or geotherm)
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -1056,23 +1101,26 @@ function perplex_query_modes(scratchdir::String;
             result["node"] = nodes
 
         else # isobar or geotherm
-            t_steps = unique(table["T(K)"])
-            result = Dict{String, Vector{Float64}}(i => zeros(length(t_steps)) for i in phase_names)
+            pt_steps = unique([table["P(bar)"] table["T(K)"]], dims=1)
+            p_steps, t_steps = pt_steps[:,1], pt_steps[:,2]
+            result = Dict{String, Vector{Float64}}(i => zeros(size(pt_steps,1)) for i in phase_names)
+
             id = 1
             # Loop through table
-            for t in t_steps 
+            for i in axes(pt_steps,1)
                 # Index table 
-                t_idx = table["T(K)"] .== t
+                idx = (table["P(bar)"] .== pt_steps[i,1]) .& (table["T(K)"] .== pt_steps[i,2])
                 # Index phase name and weight(kg) 
-                name = table["Name"][t_idx]
-                kg = table["phase,kg"][t_idx]
+                name = table["Name"][idx]
+                kg = table["phase,kg"][idx]
                 # Calculate wt% and add to results dictionary
                 for i in zip(name, kg)
                     result[i[1]][id] = (i[2]/nansum(kg)) * 100
                 end
                 id+=1
             end
-            result["T(K)"] = t_steps
+            result["P(bar)"] = pt_steps[:,1]
+            result["T(K)"] = pt_steps[:,2]
         end
     else 
         # Read data as an Array{Any}
@@ -1086,22 +1134,33 @@ end
 """
 ```julia
 perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", manual_grid::Bool=false)
+    \tindex::Integer=1, 
+    \tnpoints::Integer=200, 
+    \tinclude_fluid="y", 
+    \timportas=:Dict,
+)
 ```
 ```julia
 perplex_query_modes(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y", manual_grid::Bool=false)
+    \tindex::Integer=1, 
+    \tinclude_fluid="y", 
+    \timportas=:Dict,
+)
 ```
 
 Query modal mineralogy (mass proportions) along a specified P-T path using a
 pre-computed pseudosection. Results are returned as a dictionary.
 """
 function perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    index::Integer=1, npoints::Integer=200, include_fluid="y", importas=:Dict)
+        index::Integer=1, 
+        npoints::Integer=200, 
+        include_fluid="y", 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -1137,10 +1196,14 @@ function perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{
     return result
 end
 function perplex_query_modes(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    index::Integer=1, include_fluid="y", importas=:Dict)
+        index::Integer=1, 
+        include_fluid="y", 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Write TP data to file
     fp = open(prefix*"TP.tsv", "w")
@@ -1187,9 +1250,15 @@ export perplex_query_modes
 """
 ```julia
 perplex_query_system(scratchdir::String;
-    \tindex::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict,
-    \tmanual_grid::Bool=false, npoints::Integer=100)
-```?
+    \tindex::Integer=1, 
+    \tdof::Integer=1, 
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true,
+    \tnpoints::Integer=0,
+    \tmanual_grid::Bool=npoints>0, 
+    \timportas=:Dict,
+)
+```
 
 Query all perplex-calculated properties for the system (with or without fluid)
 along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
@@ -1197,11 +1266,18 @@ grid / pseudosection (dof=2). Results are returned as a dictionary.
 Set include_fluid="n" to return solid+melt only.
 """
 function perplex_query_system(scratchdir::String;
-    index::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict,
-    manual_grid::Bool=false, npoints::Integer=100)
+        index::Integer=1, 
+        dof::Integer=1, 
+        include_fluid="y", 
+        clean_units::Bool=true,
+        npoints::Integer=0,
+        manual_grid::Bool=npoints>0, 
+        importas=:Dict,
+    )
     # Query a pre-defined path (isobar or geotherm)
     werami = joinpath(Perple_X_jll.PATH[], "werami")# path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -1219,16 +1295,6 @@ function perplex_query_system(scratchdir::String;
         # v 7.1.6+ (same for both dof=1 and dof=2)
         write(fp,"$index\n3\n36\n1\n$include_fluid\nn\n1\n0\n") #uses coarsest grid option
     end
-
-    # if dof == 1
-    #     # v6.7.8, 1d path
-    #     write(fp,"$index\n3\n36\n1\n$include_fluid\n0\n")
-    # elseif dof == 2
-    #     # v6.7.8, 2d grid
-    #     write(fp,"$index\n2\n36\n1\n$include_fluid\nn\n1\n0\n")
-    # else
-    #     error("Expecting dof = 1 (path) or 2 (grid/pseudosection) degrees of freedom")
-    # end
     
     close(fp)
 
@@ -1278,12 +1344,21 @@ function perplex_query_system(scratchdir::String;
 end
 """
 ```julia
-function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
+perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
+    \tindex::Integer=1, 
+    \tnpoints::Integer=200, 
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true, 
+    \timportas=:Dict,
+)
 ```
 ```julia
-function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    \tindex::Integer=1, npoints::Integer=200, include_fluid="y",clean_units::Bool=true)
+perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractArray;
+    \tindex::Integer=1, 
+    \tinclude_fluid="y", 
+    \tclean_units::Bool=true, 
+    \timportas=:Dict,
+)
 ```
 
 Query all perplex-calculated properties for the system (with or without fluid)
@@ -1291,11 +1366,16 @@ along a specified P-T path using a pre-computed pseudosection. Results are
 returned as a dictionary. Set include_fluid="n" to return solid+melt only.
 """
 function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple{2,Number};
-    index::Integer=1, npoints::Integer=200, include_fluid="y", clean_units::Bool=true, importas=:Dict)
-    
+        index::Integer=1, 
+        npoints::Integer=200, 
+        include_fluid="y", 
+        clean_units::Bool=true, 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
     werami = joinpath(Perple_X_jll.PATH[], "werami")# path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Create werami batch file
     fp = open(prefix*"werami.bat", "w")
@@ -1348,11 +1428,15 @@ function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple
     return result
 end
 function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractArray;
-    index::Integer=1, include_fluid="y", clean_units::Bool=true, importas=:Dict)
+        index::Integer=1, 
+        include_fluid="y", 
+        clean_units::Bool=true, 
+        importas=:Dict,
+    )
     # Query a new path from a pseudosection
-
     werami = joinpath(Perple_X_jll.PATH[], "werami") # path to PerpleX werami
     prefix = joinpath(scratchdir, "out$(index)/") # path to data files
+    include_fluid = parse_bool_to_yn(include_fluid)
 
     # Write TP data to file
     fp = open(prefix*"TP.tsv", "w")
@@ -1412,3 +1496,164 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
     return result
 end
 export perplex_query_system
+
+
+## --- Perplex name/string-related utilities
+
+    # Parse falsey/truey intput into "y" or "n"
+    function parse_bool_to_yn(x)
+        if x=="y" || x =="yes" || (x isa Number && x > 0)
+            return "y"
+        else
+            return "n"
+        end
+    end
+
+    # Attempt to determine whether or not a given perplex dataset expects uppercase input
+    function perplex_dataset_uppercase(dataset::AbstractString)
+        if contains(dataset, "hp6") || contains(dataset, "hpha6")  || contains(dataset, "hpAQ") || contains(dataset, "DEW") || contains(dataset, "HKF")
+            false
+        else
+            true
+        end
+    end
+
+    # Translate between perplex names and germ names
+    function germ_perplex_name_matches(germ_name, perplex_name)
+        # Feldspar
+        if germ_name == "Albite"
+            any(perplex_name .== ["ab", "abh"]) ||
+            any(contains.(perplex_name, ["albite",]))
+        elseif germ_name == "Anorthite"
+            perplex_name == "an" ||
+            any(contains.(perplex_name, ["anorthite",]))
+        elseif germ_name == "Orthoclase"
+            any(perplex_name .== ["mic", "Kf", "San", "San(TH)"]) ||
+            any(contains.(perplex_name, ["orthoclase",]))
+        # Amphibole
+        elseif germ_name == "Amphibole"
+            any(lowercase(perplex_name) .== ["gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts"]) ||
+            any(contains.(perplex_name, ["Amph", "GlTrTs", "Act(", "Anth"]))
+        # Mica
+        elseif germ_name == "Biotite"
+            any(perplex_name .== ["ann"]) ||
+            any(contains.(perplex_name, ["Bi(", "Bio("]))
+        elseif germ_name == "Phlogopite"
+            any(lowercase(perplex_name) .== ["naph", "phl", "fphl"])
+        elseif germ_name == "Muscovite"
+            any(lowercase(perplex_name) .== ["pheng(hp)", "mapa", "mu",]) ||
+            any(contains.(perplex_name, ["Mica", "KN-Phen"]))
+        # Pyroxene
+        elseif germ_name == "Clinopyroxene"
+            any(lowercase(perplex_name) .== ["di", "hed", "acm", "jd", "lcendi", "lcfshd",]) ||
+            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"])) ||
+            any(lowercase(perplex_name) .== ["mont",]) # Assume monticellite has similar partition coefficients to cpx
+        elseif germ_name == "Orthopyroxene"
+            any(lowercase(perplex_name) .== ["en", "fs"]) ||
+            contains(perplex_name, "Opx")
+        # Cordierite
+        elseif germ_name == "Cordierite"
+            any(lowercase(perplex_name) .== ["crd", "fcrd", "hcrd", "mncrd"]) ||
+            contains(perplex_name, "Crd")
+        # Garnet
+        elseif germ_name == "Garnet"
+            any(lowercase(perplex_name) .== ["py", "spss", "alm", "andr", "gr"]) ||
+            any(contains.(perplex_name, ["Grt", "Gt(", "Maj", "GrPyAlSp"]))
+        elseif germ_name == "Zoisite"
+            any(lowercase(perplex_name) .== ["zo", "cz", "ep", "fep"]) ||
+            any(contains.(perplex_name, ["Ep(",]))
+        # Oxides
+        elseif germ_name == "Ilmenite"
+            perplex_name == "ilm" || 
+            any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
+        elseif germ_name == "Magnetite"
+            perplex_name == "mt"
+        elseif germ_name == "Rutile"
+            perplex_name == "ru"
+        # Feldspathoids
+        elseif germ_name == "Leucite"
+            perplex_name == "lc"
+        elseif germ_name == "Nepheline"
+            perplex_name == "ne" || contains(perplex_name, "Neph")
+        # Olivine
+        elseif germ_name == "Olivine"
+            any(lowercase(perplex_name) .== ["fo", "fa"]) ||
+            any(contains.(perplex_name, ["O(", "Ol("]))
+        # Spinel
+        elseif germ_name == "Spinel"
+            any(lowercase(perplex_name) .== ["sp", "usp", "gahcsp"]) ||
+            contains(perplex_name, "Sp(")
+        # Accessories
+        elseif germ_name == "Sphene"
+            perplex_name == "sph"
+        elseif germ_name == "Zircon"
+            perplex_name == "zrc"
+        elseif germ_name == "Baddeleyite"
+            perplex_name == "bdy"
+        else
+            false
+        end
+    end
+    export germ_perplex_name_matches
+
+    function perplex_phase_is_fluid(phase_name)
+        any(phase_name .== ["F", "WADDAH", "H2O"]) ||
+        any(contains.(phase_name, ["Aq_", "F(", "Fluid"]))
+    end
+    export perplex_phase_is_fluid
+
+    function perplex_phase_is_melt(phase_name)
+        any(phase_name .== ["h2oL", "abL", "anL", "diL", "enL", "faL", "kspL", "qL", "silL"]) ||
+        any(contains.(phase_name, ["liq", "melt", "LIQ", "MELTS"]))
+    end
+    export perplex_phase_is_melt
+
+    function perplex_phase_is_solid(phase_name)
+        !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
+        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals", "CO2", "Missing", "system", "O2"]))
+    end
+    export perplex_phase_is_solid
+
+    function perplex_expand_name(name)
+        abbreviations = ("ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm","oilm","lime", "mft", "mt", "mang", "bunsn", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",)
+        full_names = ("akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote(ordered)", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite-bredigite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermaks pyroxene", "Diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "mg-tschermak", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite(Na-free)", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "fe-carpholite", "fe-sapphirine(793)", "mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite(14Ang)", "clinochlore(ordered)", "daphnite", "Fe-sudoite", "Mn-chlorite", "Sudoite", "antigorite", "chrysotile", "Fe-talc", "Kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)","lime", "magnesioferrite", "magnetite", "manganosite", "nickel oxide", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "Forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica",)
+        t = name .== abbreviations
+        if any(t)
+            full_names[findfirst(t)]
+        else
+            name
+        end
+    end
+    export perplex_expand_name
+
+    function perplex_abbreviate_name(name)
+        abbreviations = ("ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm", "oilm", "lime", "mft", "mt", "mang", "bunsn", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",)
+        full_names = ("akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote(ordered)", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite-bredigite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermaks pyroxene", "Diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "mg-tschermak", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite(Na-free)", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "fe-carpholite", "fe-sapphirine(793)", "mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite(14Ang)", "clinochlore(ordered)", "daphnite", "Fe-sudoite", "Mn-chlorite", "Sudoite", "antigorite", "chrysotile", "Fe-talc", "Kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)", "lime", "magnesioferrite", "magnetite", "manganosite", "nickel oxide", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "Forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica",)
+        t = name .== full_names
+        if any(t)
+            abbreviations[findfirst(t)]
+        else
+            name
+        end
+    end
+    export perplex_abbreviate_name
+
+    function perplex_common_name(name)
+        abbreviations = ("cg", "cgh", "kls", "lrn", "esk", "syv", "hlt", "pyr", "tro", "mil", "cv", "bn", "ccp", "any", "mal", "azr", "frw", "mrw", "fwd", "mwd", "cpv", "apv", "npv", "mpv", "fpv", "ppv", "fper", "maj", "wu", "nagt", "ak", "alm", "and", "andr", "chum", "cz", "crd", "ep", "fa", "fctd", "fcrd", "fep", "fosm", "fst", "fo", "geh", "gr", "hcrd", "tpz", "ky", "larn", "law", "merw", "mctd", "mst", "mnctd", "mncrd", "mnst", "mont", "osm1", "osm2", "phA", "pump", "py", "rnk", "sill", "spss", "sph", "spu", "teph", "ty", "vsv", "zrc", "zo", "acm", "cats", "di", "en", "fs", "hed", "jd", "mgts", "pswo", "pxmn", "rhod", "wo", "anth", "cumm", "fanth", "fgl", "ftr", "ged", "gl", "grun", "parg", "rieb", "tr", "ts", "deer", "fcar", "fspr", "mcar", "spr4", "spr7", "ann", "cel", "east", "fcel", "ma", "mnbi", "mu", "naph", "pa", "phl", "afchl", "ames", "clin", "daph", "fsud", "mnchl", "sud", "atg", "chr", "fta", "kao", "pre", "prl", "ta", "tats", "ab", "anl", "an", "coe", "crst", "heu", "abh", "kals", "lmt", "lc", "me", "mic", "ne", "q", "san", "stlb", "stv", "trd", "wrk", "bdy", "cor", "geik", "hem", "herc", "ilm", "oilm", "lime", "mft", "mt", "mang", "bunsn", "per", "pnt", "ru", "sp", "usp", "br", "dsp", "gth", "ank", "arag", "cc", "dol", "mag", "rhc", "sid", "diam", "gph", "iron", "Ni", "CO2", "CO", "H2", "CH4", "O2", "H2O", "abL", "anL", "diL", "enL", "faL", "fliq", "foL", "h2oL", "hliq", "kspL", "mliq", "qL", "silL", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi", "Aqfl(HGP)", "Cpx(HGP)", "Augite(G)", "Cpx(JH)", "Cpx(l)", "Cpx(h)", "Cpx(stx)", "Cpx(stx7)", "Omph(HP)", "Cpx(HP)", "Cpx(m)", "Cpx(stx8)", "Cps(HGP)", "Omph(GHP)", "cAmph(G)", "Cumm", "Gl", "Tr", "GlTrTsPg", "Amph(DHP)", "Amph(DPW)", "Ca-Amph(D)", "Na-Amph(D)", "Act(M)", "GlTrTsMr", "cAmph(DP)", "melt(HGPH)", "melt(G)", "melt(W)", "melt(HP)", "melt(HGP)", "pMELTS(G)", "mMELTS(G)", "LIQ(NK)", "LIQ(EF)", "Chl(W)", "Chl(HP)", "Chl(LWV)", "O(HGP)","O(JH)", "O(SG)", "O(HP)", "O(HPK)", "O(stx)", "O(stx7)", "Ol(m)", "O(stx8)", "Sp(HGP)", "Sp(JH)", "GaHcSp", "Sp(JR)", "Sp(GS)", "Sp(HP)", "Sp(stx)", "CrSp", "Sp(stx7)", "Sp(WPC)", "Sp(stx8)", "Pl(JH)", "Pl(h)", "Pl(stx8)", "Kf", "San", "San(TH)", "Gt(HGP)", "Grt(JH)", "Gt(W)", "CrGt", "Gt(MPF)", "Gt(B)", "Gt(GCT)", "Gt(HP)", "Gt(EWHP)", "Gt(WPH)", "Gt(stx)", "Gt(stx8)", "Gt(WPPH)", "ZrGt(KP)", "Maj", "Opx(HGP)", "Opx(JH)", "Opx(W)", "Opx(HP)", "CrOpx(HP)", "Opx(stx)", "Opx(stx8)", "Mica(W)", "Pheng(HP)", "MaPa", "Mica(CF)", "Mica(CHA1)", "Mica(CHA)", "Mica+(CHA)", "Mica(M)", "Mica(SGH)", "Ctd(W)", "Ctd(HP)", "Ctd(SGH)", "St(W)", "St(HP)", "Bi(HGP)", "Bi(W)", "Bio(TCC)", "Bio(WPH)", "Bio(HP)", "Crd(W)", "hCrd", "Sa(WP)", "Sapp(HP)", "Sapp(KWP)", "Sapp(TP)", "Osm(HP)", "F", "F(salt)", "COH-Fluid", "Aq_solven0", "WADDAH", "T", "Scap", "Carp", "Carp(M)", "Carp(SGH)", "Sud(Livi)", "Sud", "Sud(M)", "Anth", "o-Amph", "oAmph(DP)", "feldspar", "feldspar_B", "Pl(I1,HP)", "Fsp(C1)", "Do(HP)", "M(HP)", "Do(AE)", "Cc(AE)", "oCcM(HP)", "Carb(M)", "oCcM(EF)", "dis(EF)", "IlHm(A)", "IlGkPy", "Ilm(WPH)", "Ilm(WPH0)", "Neph(FB)", "Chum", "Atg(PN)", "B", "Pu(M)", "Stlp(M)", "Wus",)
+        common_names = ("nepheline", "nepheline", "kalsilite", "larnite", "eskolaite", "sylvite", "halite", "pyrite", "troilite", "millerite", "covellite", "bornite", "chalcopyrite", "anhydrite", "malachite", "azurite", "Fe-ringwoodite", "Mg-ringwoodite", "Fe-wadsleyite", "Mg-wadsleyite", "perovskite", "Al-perovskite", "Na-perovskite", "Mg-bridgmanite", "Fe-bridgmanite", "post-perovskite", "ferropericlase", "majorite", "wustite", "Na-garnet", "akermanite", "almandine", "andalusite", "andradite", "clinohumite", "clinozoisite", "cordierite", "epidote", "fayalite", "Fe-chloritoid", "Fe-cordierite", "Fe-epidote", "Fe-osumilite", "Fe-staurolite", "forsterite", "gehlenite", "grossular", "hydrous cordierite", "hydroxy-topaz", "kyanite", "larnite", "lawsonite", "merwinite", "Mg-chloritoid", "Mg-staurolite", "Mn-chloritoid", "Mn-cordierite", "Mn-staurolite", "monticellite", "osumilite(1)", "osumilite(2)", "phase A", "pumpellyite", "pyrope", "rankinite", "sillimanite", "spessartine", "sphene", "spurrite", "tephroite", "tilleyite", "vesuvianite", "zircon", "zoisite", "acmite", "Ca-tschermakite", "diopside", "enstatite", "ferrosilite", "hedenbergite", "jadeite", "Mg-tschermakite", "pseudowollastonite", "pyroxmangite", "rhodonite", "wollastonite", "anthophyllite", "cummingtonite", "Fe-anthophyllite", "Fe-glaucophane", "ferroactinolite", "gedrite", "glaucophane", "grunerite", "pargasite", "riebeckite", "tremolite", "tschermakite", "deerite", "Fe-carpholite", "Fe-sapphirine(793)", "Mg-carpholite", "sapphirine(442)", "sapphirine(793)", "annite", "celadonite", "eastonite", "Fe-celadonite", "margarite", "Mn-biotite", "muscovite", "Na-phlogopite", "paragonite", "phlogopite", "Al-free chlorite", "amesite", "clinochlore", "daphnite", "Fe-sudoite", "Mn-chlorite", "sudoite", "antigorite", "chrysotile", "Fe-talc", "kaolinite", "prehnite", "pyrophyllite", "talc", "tschermak-talc", "albite", "analcite", "anorthite", "coesite", "cristobalite", "heulandite", "highalbite", "kalsilite", "laumontite", "leucite", "meionite", "microcline", "nepheline", "quartz", "sanidine", "stilbite", "stishovite", "tridymite", "wairakite", "baddeleyite", "corundum", "geikielite", "hematite", "hercynite", "ilmenite", "ilmenite(ordered)", "lime", "magnesioferrite", "magnetite", "manganosite", "nickel oxide", "periclase", "pyrophanite", "rutile", "spinel", "ulvospinel", "brucite", "diaspore", "goethite", "ankerite", "aragonite", "calcite", "dolomite", "magnesite", "rhodochrosite", "siderite", "diamond", "graphite", "iron", "nickel", "carbon dioxide", "carbon monoxide", "hydrogen", "methane", "oxygen", "water fluid", "albite liquid", "anorthite liquid", "diopside liquid", "enstatite liquid", "fayalite liquid", "Fe-liquid (in KFMASH)", "forsterite liquid", "H2O liquid", "H2O liquid (in KFMASH)", "K-feldspar liquid", "Mg liquid (in KFMASH)", "Silica liquid", "Sillimanite liquid", "H+(aq)", "Cl(aq)", "OH(aq)", "Na+(aq)", "K+(aq)", "Ca2+(aq)", "Mg2+(aq)", "Fe2+(aq)", "Al3+(aq)", "CO3--(aq)", "Al(OH)3(aq)", "Al(OH)4----(aq)", "KOH(aq)", "HCl(aq)", "KCl(aq)", "NaCl(aq)", "CaCl(aq)", "CaCl+(aq)", "MgCl2(aq)", "MgCl+(aq)", "FeCl(aq)", "Aqueous silica", "Aqueous fluid", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinopyroxene", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "clinoamphibole", "melt", "melt", "melt", "melt", "melt", "melt", "melt", "melt", "melt", "chlorite", "chlorite", "chlorite", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "olivine", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "spinel", "plagioclase", "plagioclase", "plagioclase", "k-feldspar", "k-feldspar", "k-feldspar", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "garnet", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "orthopyroxene", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "white mica", "chloritoid", "chloritoid", "chloritoid", "staurolite", "staurolite", "biotite", "biotite", "biotite", "biotite", "biotite", "cordierite", "cordierite", "sapphirine", "sapphirine", "sapphirine", "sapphirine", "osumilite", "fluid", "fluid", "fluid", "fluid", "fluid", "talc", "scapolite", "carpholite", "carpholite", "carpholite", "sudoite", "sudoite", "sudoite", "orthoamphibole", "orthoamphibole", "orthoamphibole", "ternary feldspar", "ternary feldspar", "ternary feldspar", "ternary feldspar", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "calcite", "ilmenite", "ilmenite", "ilmenite", "ilmenite", "nepheline", "clinohumite", "serpentine", "brucite", "pumpellyite", "stilpnomelane", "wüstite",)
+        t = name .== abbreviations
+        if any(t)
+            common_names[findfirst(t)]
+        elseif contains(name,"anorthite")
+            "anorthite"
+        elseif contains(name,"albite")
+            "albite"
+        elseif contains(name,"orthoclase")
+            "orthoclase"
+        else
+            name
+        end
+    end
+    export perplex_common_name
+
+## --- End of File

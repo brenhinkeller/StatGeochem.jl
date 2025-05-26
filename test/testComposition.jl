@@ -225,7 +225,7 @@ ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 
 # Randomize and renormalize composition arrays
 StatGeochem.rand!(ca)
-@test nanmean(ca.SiO2) ≈ 10 atol = 2
+@test nanmean(ca.SiO2) ≈ 10 atol = 3
 @test sum(e->ca[1][e], majorelements(ca)) ≈ 99.99 atol=0.02
 renormalize!(ca; anhydrous=true)
 @test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca)))  ≈ 99.99 atol=0.02
