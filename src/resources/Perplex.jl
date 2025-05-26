@@ -1498,6 +1498,397 @@ end
 export perplex_query_system
 
 
+## --- PerpleX interface: 3. PerplexTrace
+
+    # Split binary and ternary feldspar solution models into An-Ab-Or endmembers
+    function enumerate_feldspar_modes!(modes::Dict, fsp::Dict, fsp_model::AbstractString; mode_basis="wt")
+        An_Ca = (238.12507+40.0784) / (15.999+40.0784)
+        Ab_Na = (239.22853+22.98977*2) / (15.999+22.98977*2)
+        Or_K  = (239.22853+39.09831*2) / (15.999+39.09831*2)
+        CaO = haskey(fsp, "CaO") ? fsp["CaO"] : fsp["CAO"]
+        Na2O = haskey(fsp, "Na2O") ? fsp["Na2O"] : fsp["NA2O"]
+        K2O = fsp["K2O"]
+        if mode_basis === "wt"
+            AnAbOr = [An_Ca*CaO  Ab_Na*Na2O  Or_K*K2O] # Modes by weight
+        elseif mode_basis === "vol"
+            AnAbOr = [An_Ca*CaO/2.73  Ab_Na*Na2O/2.63  Or_K*K2O/2.59] # Modes by weight
+        else
+            @error "Invalid mode basis $mode_basis. Try \"wt\" or \"vol\" instead."
+        end
+        renormalize!(AnAbOr, dim=2)
+        modes[fsp_model*"_anorthite"] = AnAbOr[:,1] .*  modes[fsp_model]
+        modes[fsp_model*"_albite"] = AnAbOr[:,2] .*  modes[fsp_model]
+        modes[fsp_model*"_orthoclase"] = AnAbOr[:,3] .*  modes[fsp_model]
+        return modes
+    end
+
+    # Calculate GERM solid/melt Kds for the bulk solid assemblage
+    function get_germ_bulk_kds(modes::Dict, trace_elements, si_index::Vector{<:Number})
+
+        d = Dict{String,Vector{Float64}}()
+        for e in trace_elements
+            # Calculate bulk partition coeff.
+            d[e] = zeros(size(modes["all_solids"]))
+            for m in germ_kd["minerals"]
+                for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
+                    # Note that minerals that we don't have data for end up being
+                    # treated like all elements are incompatible in them.
+                    # Note, geometric mean = log average
+                    nanadd!(d[e], modes[k]./modes["all_solids"] .* (10.0.^germ_kd[m][e][si_index]))
+                end
+            end
+        end
+        return d
+    end
+
+    # Ensure that more REEs are not partitioned into monazite than are structurally possible
+    function germ_monazite_kd_corr(calculated::Dict, lree, si_index::Vector{<:Number})
+        partitioned_REEt_in_monazite = zeros(length(si_index))
+        for e in lree
+            if haskey(calculated, e)
+                nanadd!(partitioned_REEt_in_monazite, (calculated[e].* (10.0.^germ_kd["Monazite"][e][si_index]))./molarmass[e])
+            end
+        end
+        return min.((596020.9/140.1161)./partitioned_REEt_in_monazite, 1)
+    end
+
+    # Update GERM kds in the presence of accessory phases
+    function update_kds!(d::Dict, modes::Dict, trace_elements, si_index::Vector{<:Number}, monazite_kd_corr::Vector{<:Number})
+        for e in trace_elements
+            fill!(d[e], 0.)
+            for m in germ_kd["minerals"]
+                if containsi(m,"zircon")
+                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
+                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
+                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                    nanadd!(d[e], modes["zircon"]./modes["all_solids"] .* zircon_kd)
+                elseif containsi(m,"monazite")
+                    nanadd!(d[e], modes["monazite"]./modes["all_solids"] .* (10.0.^germ_kd[m][e][si_index])) .* monazite_kd_corr
+                else
+                    for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
+                        # Note that minerals that we don't have data for end up being
+                        # treated like all elements are incompatible in them.
+                        # Note, geometric mean = log average
+                        nanadd!(d[e], modes[k]./modes["all_solids"] .* (10.0.^germ_kd[m][e][si_index]))
+                    end
+                end
+            end
+        end
+    end
+
+    function perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
+            apatite = :Harrison,
+            zircon = :Boehnke,
+            sphene = :Ayers,
+            monazite = :Montel,
+            export_bulk_kds::Bool = false,
+            export_mineral_kds::Bool = false,
+            export_mineral_compositions::Bool = false,
+            require_phase_for_export = "",
+            kwargs...,
+        )
+        major_elements = collect(String.(filter(e->!isnan(composition[e]), majorelements(composition))))
+        trace_elements = collect(String.(traceelements(composition)))
+
+        bulk = perplex_query_system(scratchdir, args...; kwargs...)
+        modes = perplex_query_modes(scratchdir, args...; kwargs...)
+
+        @assert count(perplex_phase_is_melt, keys(modes)) > 0 "No melt model found"
+        @assert count(perplex_phase_is_melt, keys(modes)) < 2 "Multiple melt models found"
+        melt_model = only(filter(perplex_phase_is_melt, keys(modes)))
+        melt = perplex_query_phase(scratchdir, melt_model, args...; kwargs...)
+        dataset_uppercase = haskey(melt, "SIO2")
+
+        # Add extra composite modes
+        colshape = size(modes["T(K)"])
+        modes["all_solids"] = fill(NaN, colshape)
+        for m in filter(perplex_phase_is_solid,  keys(modes))
+            nanadd!(modes["all_solids"], modes[m])
+        end
+        modes["all_fluids"] = fill(NaN, colshape)
+        for m in filter(perplex_phase_is_fluid,  keys(modes))
+            nanadd!(modes["all_fluids"], modes[m])
+        end
+        modes["all_melts"] = fill(NaN, colshape)
+        for m in filter(perplex_phase_is_melt,  keys(modes))
+            nanadd!(modes["all_melts"], modes[m])
+        end
+
+        for fsp_model in filter(x->contains(perplex_common_name(x), "feldspar"), keys(modes)) 
+            fsp = perplex_query_phase(scratchdir, fsp_model, args...; kwargs...)
+            enumerate_feldspar_modes!(modes, fsp, fsp_model)
+        end
+
+        # Add temperatures in C as well as K
+        bulk["T(C)"] = bulk["T(K)"] .- 273.15
+        modes["T(C)"] = modes["T(K)"] .- 273.15
+        melt["T(C)"] = melt["T(K)"] .- 273.15
+        meltrows = length(melt["T(K)"])
+
+        # Create dictionary to hold solid composition and fill it using what we know from system and melt
+        solid = Dict{String,Vector{Float64}}()
+        solid["wt_pct"] = modes["all_solids"]
+        solid_elements = setdiff(major_elements, ("CO2", "H2O", "O2",))
+        for e in solid_elements
+            solid[e] = (bulk[e] - (melt[e] .* melt["wt_pct"]/100)) ./ (solid["wt_pct"]/100)
+        end
+        renormalize!(solid, solid_elements, total=100)
+
+        ## --- First-pass calculation of trace elements
+
+        # Since the mineral/melt partition coefficients we're using are averaged from GERM
+        # as a function of silica (from 40-80), first figure out which coefficients we want
+        si_index = round.(Int, melt[dataset_uppercase ? "SIO2" : "SiO2"] .|> x-> isnan(x) ? 0 : x) .- 39
+        si_index[si_index.<1] .= 1
+        si_index[si_index.>40] .= 40
+
+        # Melt fraction
+        F = modes[melt_model] ./ (modes[melt_model] .+ modes["all_solids"])
+
+        # Use GERM partition coeffs to start
+        d = get_germ_bulk_kds(modes, trace_elements, si_index)
+
+        # Calculate trace elements as a function of melt fraction
+        calculated = Dict{String, Union{Vector{Float64}, Vector{String}}}()
+        calculated["elements"] = trace_elements
+        for e in calculated["elements"]
+            calculated[e] = composition[e] ./ (d[e].*(1.0.-F) + F)
+        end
+
+        # Prepare to add accessory minerals (zircon, apatite, sphene)
+        # Note that all Fe is _already_ as FeO, since perplex melt has no Fe2O3
+        # (redox balance is with O2 instead)
+
+        if apatite === :Harrison
+            # Add apatite using the apatite saturation temperature of Harrison and Watson
+            e = "SiO2", "Al2O3", "CaO", "Na2O", "K2O", "T(C)"
+            dataset_uppercase && (e = uppercase.(e))
+            PSat = StatGeochem.Harrison_tapatiteP.((e .|> x -> melt[x])...)
+
+            # Calculate mass of P in apatite. Note that you have to account for
+            # not only the P in the melt, but also the P that would
+            # reequilibrate into the melt from the solids at P=PSat. Note that mass
+            # of melt actually cancels when you write out the equation for this.
+            P_in_apatite = max.(calculated["P"] - PSat, 0) .* composition["P"]./calculated["P"]
+            modes["apatite"] = P_in_apatite * 4.36008264/10_000
+            nanadd!(modes["all_solids"], modes["apatite"])
+            map!(x -> (x>0 ? x : NaN), modes["apatite"], modes["apatite"])  # NaN-out zero masses, for printing
+
+            # Record ApSat in melt composition dictionary
+            calculated["ApSat_P"] = PSat
+            calculated["elements"] = ["ApSat_P"; calculated["elements"]]
+        end
+
+        if zircon === :Boehnke
+            # Add zircon using the zircon saturation temperature of Boehnke et al. 2013
+            # (Earth and Planetary Science Letters 453, 267–275. 10.1016/j.epsl.2016.07.014)
+            e = "SiO2", "TiO2", "Al2O3", "FeO", "MnO", "MgO", "CaO", "Na2O", "K2O", "P2O5"
+            dataset_uppercase && (e = uppercase.(e))
+            M = StatGeochem.tzircM((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))...)
+            ZrSat = StatGeochem.tzircZr((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))..., melt["T(C)"])
+            # Calculate mass of zirconium in zircon. Note that you have to account for
+            # not only the zirconium in the melt, but also the zirconium that would
+            # reequilibrate into the melt from the solids at Zr=ZrSat. Note that mass
+            # of melt actually cancels when you write out the equation for this.
+            # For now we'll also treat Hf as equivalent to Zr (b/c zircon-hafnon ssn)
+            ZrHf = calculated["Zr"]+calculated["Hf"]
+            Zr_in_zircon = max.(ZrHf - ZrSat, 0) .* (composition["Zr"]+composition["Hf"])./ZrHf
+            # Convert from zirconium mass to zircon mass and from ppm to wt. %
+            modes["zircon"] = Zr_in_zircon * 2.009/10_000
+            nanadd!(modes["all_solids"], modes["zircon"])
+            map!(x -> (x>0 ? x : NaN), modes["zircon"], modes["zircon"]) # NaN-out zero masses, for printing
+
+            # Record M and ZrSat in melt composition dictionary
+            calculated["M"] = M
+            calculated["ZrnSat_Zr"] = ZrSat
+            calculated["elements"] = ["M"; "ZrnSat_Zr"; calculated["elements"]]
+        end
+
+        if sphene === :Ayers
+            # Add sphene using the saturation equation of Ayers et al. 2018.
+            # (GSA abstract).
+            e = "SiO2", "TiO2", "Al2O3", "FeO", "MnO", "MgO", "CaO", "Na2O", "K2O", "P2O5", "T(C)"
+            dataset_uppercase && (e = uppercase.(e))
+            TiO2Sat = StatGeochem.Ayers_tspheneTiO2.((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))...)
+            modes["sphene"] = modes[melt_model]/100 .* max.(melt["TiO2"] - TiO2Sat, 0)*2.4545
+            nanadd!(modes["all_solids"], modes["sphene"])
+            nanadd!(modes[melt_model], -modes["sphene"])
+            map!(x -> (x>0 ? x : NaN), modes["sphene"], modes["sphene"]) # NaN-out zero masses, for printing
+            melt["TiO2"] = min.(melt["TiO2"], TiO2Sat)
+        end
+
+        if monazite === :Montel
+            # Add monazite using the saturation equation of Montel et al. 1993.
+            # (Chemical Geology 110, 127–146. 10.1016/0009-2541(93)90250-M)
+            e = "SiO2", "TiO2", "Al2O3", "FeOT", "MgO", "CaO", "Na2O", "K2O", "Li2O", "H2O", "T(C)"
+            dataset_uppercase && (e = uppercase.(e))
+            REEtSat = StatGeochem.Montel_tmonaziteREE.((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))...)
+            lree = "La", "Ce", "Pr", "Nd", "Sm", "Gd"
+            melt_lree = lree .|> x -> haskey(calculated, x) ? calculated[x] : zeros(meltrows)
+            melt_REEt = StatGeochem.LREEt.(melt_lree...) # In PPM/mol.wt.
+            bulk_REEt = StatGeochem.LREEt((lree .|> x -> haskey(composition, x) ? composition[x] : 0.)...)
+            # REEt_in_monazite = modes[melt_model]/100 .* max.(melt_REEt - REEtSat, 0) # naive
+            REEt_in_monazite = max.(melt_REEt - REEtSat, 0.) .* bulk_REEt./melt_REEt # accounting for back-equilibration
+            modes["monazite"] = REEt_in_monazite .* (StatGeochem.LREEmolwt.(melt_lree...) .+ 94.969762)/10_000
+            nanadd!(modes["all_solids"], modes["monazite"])
+            map!(x -> (x>0 ? x : NaN), modes["monazite"], modes["monazite"]) # NaN-out zero masses, for printing
+        end
+
+        # In contrast to other phases, monazite partition coefficients may
+        # actually be limited by mass balance!
+        monazite_kd_corr = germ_monazite_kd_corr(calculated, lree, si_index)
+
+        ## Recalculate bulk partition coeff. in presence of accessory phases
+        update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr)
+
+        # Recalculate trace elements in melt as a function of melt fraction (equilibrium)
+        for e in trace_elements
+            calculated[e] .= composition[e] ./ (d[e].*(1.0.-F) + F)
+        end
+
+        #Re-Recalculate trace elements with monazite
+        if haskey(modes, "monazite") && any(x->x>0, modes["monazite"])
+            # Recalculate monazite mass-balance Kd adjustment
+            all_ee3 = "La", "Ce", "Pr", "Nd", "Sm", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Y", "Th"
+            monazite_kd_corr .= germ_monazite_kd_corr(calculated, all_ee3, si_index)
+
+            # Re-recalculate bulk Kd
+            update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr)
+
+            # Re-Recalculate trace elements in melt as a function of melt fraction (equilibrium)
+            for e in trace_elements
+                calculated[e] .= composition[e] ./ (d[e].*(1.0.-F) .+ F)
+            end
+        end
+
+        # Adjust melt Zr and P contents to reflect zircon and apatite saturation,
+        # respectively
+        if haskey(modes, "zircon") && any(x->x>0, modes["zircon"])
+            calculated["Zr"] .= min.(calculated["Zr"], ZrSat)
+        end
+        if haskey(modes, "apatite") && any(x->x>0, modes["apatite"])
+            calculated["P"] .= min.(calculated["P"], PSat)
+        end
+
+
+        ## --- # # # # # # # # # # #  Export Results  # # # # # # # # # # # # #
+
+        # Which rows to plot and export (only those with melt, for example?)
+        exportrows = isempty(require_phase_for_export) ? trues(colshape) : modes[require_phase_for_export] .> 0
+
+        ## Collect and print main output
+        result = Dict{String, Union{Vector{String}, Vector{Float64}}}()
+        result["elements"] = String[]
+
+        # Modes
+        for e in ("P(bar)", "T(C)", "all_fluids", "all_melts", "all_solids", melt_model)
+            result[e] = modes[e]
+            result["elements"] = [result["elements"]; e]
+        end
+        minerals = collect(setdiff(keys(modes), ("elements", "T(C)", "T(K)", "P(bar)", "all_fluids", "all_melts", "all_solids", melt_model)))
+        t = sortperm(lowercase.(minerals))
+        for e in minerals[t]
+            # Don't print empty columns
+            if any(x->x>0, modes[e][exportrows])
+                result[e] = modes[e]
+                result["elements"] = [result["elements"]; e]
+            end
+        end
+
+        # Liquid composition
+        for e in melt["elements"]
+            # Don't print free energies, or empty columns
+            if any(x->x>0, melt[e][exportrows])
+                result["Melt_$(e)"] = melt[e]
+                result["elements"] = [result["elements"]; "Melt_$(e)"]
+            end
+        end
+        # Trace elements
+        for e in calculated["elements"]
+            result["Melt_$(e)"] = calculated[e]
+            result["elements"] = [result["elements"]; "Melt_$(e)"]
+        end
+
+        # [optionally] Bulk germ_kds
+        if export_bulk_kds
+            for e in trace_elements
+                result["D_$(e)"] = d[e]
+                result["elements"] = [result["elements"]; "D_$(e)"]
+            end
+        end
+
+        # [optionally] Individual mineral kds
+        if export_mineral_kds
+            for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
+                for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
+                    if any(x->x>0, modes[k][exportrows])
+                        for e in trace_elements
+                            if containsi(m, "monazite")
+                                result["D_$(k)_$(e)"] = (10.0 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr
+                            else
+                                result["D_$(k)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
+                            end
+                            result["elements"] = [result["elements"]; "D_$(k)_$(e)"]
+                        end
+                    end
+                end
+            end
+            # Zircon kds
+            if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
+                for e in trace_elements
+                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
+                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
+                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                    result["D_Zircon_$(e)"] = zircon_kd
+                    result["elements"] = [result["elements"]; "D_Zircon_$(e)"]
+                end
+            end
+        end
+
+        # [optionally] Individual mineral trace element compositions
+        if export_mineral_compositions
+            for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
+                for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
+                    if any(x->x>0, modes[k][exportrows])
+                        for e in trace_elements
+                            if containsi(m, "monazite")
+                                result["$(k)_$(e)"] = (calculated[e] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr) .+ NaN .* .!(modes[k] .> 0)
+                            else
+                                result["$(k)_$(e)"] = (calculated[e] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k] .> 0)
+                            end
+                            result["elements"] = [result["elements"]; "$(k)_$(e)"]
+                        end
+                    end
+                end
+            end
+            # Zircon composition
+            if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
+                zircon_Zr = 496000.0*(modes["zircon"] .> 0)
+                for e in trace_elements
+                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
+                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
+                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                    result["Zircon_$(e)"] = calculated[e] .* zircon_kd .+ (NaN .* .!(modes["zircon"] .> 0))
+                    result["elements"] = [result["elements"]; "Zircon_$(e)"]
+                    nanadd!(zircon_Zr, -result["Zircon_$(e)"])
+                end
+                # Add Ti in zircon
+                aSiO2 = 1.0
+                meltcomp = melt["SiO2"], melt["TiO2"], melt["Al2O3"], melt["FeO"], melt["MgO"], melt["CaO"], melt["Na2O"], melt["K2O"], calculated["P"].*70.9723/30.974/10000
+                aTiO2 = min.(melt["TiO2"] ./ StatGeochem.Hayden_trutileTiO2.(meltcomp..., melt["T(C)"]), 1.0) # Titanium activity as a fraction of the TiO2 neeeded for rutile saturation
+                result["Zircon_Ti"] = StatGeochem.Ferry_Ti_in_zircon.(melt["T(C)"], aSiO2, aTiO2)
+                result["Zircon_Ti"] .+= (NaN .* .!(modes["zircon"] .> 0)) # NaN out if no zircon
+                nanadd!(zircon_Zr, -result["Zircon_Ti"])
+
+                # Zircon Zr concentration in ppm, calculated as 496000 less other trace elements
+                result["Zircon_Zr"] = zircon_Zr .+ (NaN .* (zircon_Zr .<= 0))
+            end
+        end
+
+        return result
+    end
+    export perplextrace_query
+
 ## --- Perplex name/string-related utilities
 
     # Parse falsey/truey intput into "y" or "n"
