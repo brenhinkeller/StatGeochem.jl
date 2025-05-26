@@ -799,7 +799,7 @@ function perplex_query_phase(scratchdir::String, phase::String;
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -871,7 +871,7 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -936,7 +936,7 @@ function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1079,7 +1079,7 @@ function perplex_query_modes(scratchdir::String;
         data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
         # Convert to a dictionary.
         # Perplex sometimes returns duplicates of a single solution model, sum them.
-        result = elementify(data, sumduplicates=true, importas=importas)
+        result = elementify(data, sumduplicates=true, verbose=false, importas=importas)
     end
     return result
 end
@@ -1129,7 +1129,7 @@ function perplex_query_modes(scratchdir::String, P::NTuple{2,Number}, T::NTuple{
         # Read data as an Array{Any}
         data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
         # Convert to a dictionary
-        result = elementify(data, sumduplicates=true, importas=importas)
+        result = elementify(data, sumduplicates=true, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1174,7 +1174,7 @@ function perplex_query_modes(scratchdir::String, P::AbstractArray, T::AbstractAr
         # Read data as an Array{Any}
         data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
         # Convert to a dictionary
-        result = elementify(data, sumduplicates=true, importas=importas)
+        result = elementify(data, sumduplicates=true, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1269,7 +1269,7 @@ function perplex_query_system(scratchdir::String;
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1340,7 +1340,7 @@ function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
@@ -1404,7 +1404,7 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
         end
 
         # Convert to a dictionary
-        result = elementify(data,elements, skipstart=1,importas=importas)
+        result = elementify(data, elements, skipstart=1, verbose=false, importas=importas)
     catch
         # Return empty dictionary if file doesn't exist
         @warn "$(prefix)$(index)_1.tab could not be parsed, perplex may not have run"
