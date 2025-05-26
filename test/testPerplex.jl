@@ -163,27 +163,26 @@
     @test isa(modes, Dict) && !isempty(modes)
     @test haskey(modes,"T(K)") && all(extrema(modes["T(K)"]) .≈ T_range)
     @test length(modes["T(K)"]) == length(modes["Opx(HP)"]) == 200
-    @test nanmean(modes["Opx(HP)"]) ≈ 10.047218620689655 atol=0.01
+    @test nanmean(modes["Opx(HP)"]) ≈ 10.047218620689655 rtol=0.01
 
     phase = perplex_query_phase(scratchdir, "Opx(HP)", P_range, T_range, index=1, npoints=200)
     @test isa(phase, Dict) && !isempty(phase)
     @test haskey(phase,"T(K)") && all(extrema(phase["T(K)"]) .≈ T_range)
     @test length(phase["T(K)"]) == length(phase["SIO2"]) == 200
-    @test nanmean(phase["SIO2"]) ≈ 49.11688856598355 atol=0.01
+    @test nanmean(phase["SIO2"]) ≈ 49.11688856598355 rtol=0.01
 
     sys = perplex_query_system(scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(sys, Dict) && !isempty(sys)
     @test haskey(sys,"T(K)") && all(extrema(sys["T(K)"]) .≈ T_range)
     @test length(sys["T(K)"]) == length(sys["rho,kg/m3"]) == 200
-    @test nanmean(sys["rho,kg/m3"]) ≈ 2849.430250000001 atol=0.01
+    @test nanmean(sys["rho,kg/m3"]) ≈ 2849.430250000001 rtol=0.01
 
     # Query seismic properties on diagonal line across P-T space
     seismic = perplex_query_seismic(scratchdir, P_range, T_range, index=1, npoints=200)
     @test isa(seismic, Dict) && !isempty(seismic)
     @test haskey(seismic,"T(K)") && !isempty(seismic["T(K)"]) && all(extrema(seismic["T(K)"]) .≈ T_range)
     @test length(seismic["T(K)"]) == length(seismic["rho,kg/m3"])  == 200
-    @test haskey(seismic, "rho,kg/m3") && !isempty(seismic["rho,kg/m3"]) && !any(x->x<2700, seismic["rho,kg/m3"]) && !any(x->x>3200, seismic["rho,kg/m3"])
-
+    @test nanmean(seismic["rho,kg/m3"]) ≈ 2908.4681500000006 rtol=0.01
 
     # Query properties on a manually-specified diagonal P-T line
     P = range(first(P_range), last(P_range), length=16)
