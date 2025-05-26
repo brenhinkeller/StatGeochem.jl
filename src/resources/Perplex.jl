@@ -786,7 +786,8 @@ function perplex_query_phase(scratchdir::String, phase::String;
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
@@ -857,7 +858,8 @@ function perplex_query_phase(scratchdir::String, phase::String, P::NTuple{2,Numb
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
@@ -921,7 +923,8 @@ function perplex_query_phase(scratchdir::String, phase::String, P::AbstractArray
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized phase compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
@@ -1253,7 +1256,8 @@ function perplex_query_system(scratchdir::String;
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
@@ -1323,7 +1327,8 @@ function perplex_query_system(scratchdir::String, P::NTuple{2,Number}, T::NTuple
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
@@ -1386,7 +1391,8 @@ function perplex_query_system(scratchdir::String, P::AbstractArray, T::AbstractA
         # Renormalize weight percentages
         t = contains.(elements,"wt%")
         total_weight = nansum(Float64.(data[2:end,t]),dim=2)
-        if !(50 < nansum(total_weight)/count(x->x>0, total_weight) < 150)
+        hasdata = count(x->x>0, total_weight) 
+        if (hasdata > 0) && !(50 < nansum(total_weight)/hasdata < 150)
             @warn "Perple_X may be reporting incorrect or unnormalized system compositions"
         end
         data[2:end,t] .*= 100 ./ total_weight
