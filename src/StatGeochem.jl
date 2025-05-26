@@ -39,6 +39,7 @@ module StatGeochem
 
     using Perple_X_jll
     include("resources/Perplex.jl")
+    include("resources/Melts.jl")
 
     using FileIO: load
     using HDF5: h5read
