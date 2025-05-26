@@ -233,7 +233,7 @@
     for k in expected["elements"]
         @test haskey(results,k)
         if haskey(results, k)
-            @test results[k] ≈ expected[k] nans=true atol=0.1
+            @test results[k] ≈ expected[k] nans=true rtol=0.01
         end
     end
     # @test isequal(results, expected)

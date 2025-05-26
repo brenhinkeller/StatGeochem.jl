@@ -35,7 +35,7 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
         composition_basis::String="wt",
         fluid_eos::Integer=5
     )
-
+    @assert eachindex(composition) == eachindex(elements) "`composition` and `elements` must match"
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
 
@@ -66,7 +66,7 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
 
     # Name, components, and basic options. P-T conditions.
     elementstring = ""
-    for i in eachindex(composition, elements)
+    for i in eachindex(composition)
         if !isnan(composition[i])
             elementstring *= elements[i] * "\n"
         end
@@ -75,7 +75,7 @@ function perplex_configure_geotherm(scratchdir::String, composition::Collection{
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n5\n3\nn\ny\n2\n1\n$T_surf\n$geotherm\n$(first(P_range))\n$(last(P_range))\ny\n") # v6.8.1
 
     # Whole-rock composition
-    for i ∈ eachindex(composition, elements)
+    for i ∈ eachindex(composition)
         if !isnan(composition[i])
             write(fp,"$(composition[i]) ")
         end
@@ -137,7 +137,7 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
         nonlinear_subdivision::Bool=false,
         fluid_eos::Integer=5
     )
-
+    @assert eachindex(composition) == eachindex(elements) "`composition` and `elements` must match"
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
 
@@ -171,7 +171,7 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
 
     # Name, components, and basic options. P-T conditions.
     elementstring = ""
-    for i in eachindex(composition, elements)
+    for i in eachindex(composition)
         if !isnan(composition[i])
             elementstring *= elements[i] * "\n"
         end
@@ -181,7 +181,7 @@ function perplex_configure_isobar(scratchdir::String, composition::Collection{Nu
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\nn\nn\nn\n$elementstring\n$fluid_eos\n3\nn\nn\n2\n$(first(T_range))\n$(last(T_range))\n$P\ny\n") # v6.8.1
 
     # Whole-rock composition
-    for i ∈ eachindex(composition, elements)
+    for i ∈ eachindex(composition)
         if !isnan(composition[i])
             write(fp,"$(composition[i]) ")
         end
@@ -236,7 +236,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     fluid_eos::Integer=5,
     fractionate::Integer=0,
     )
-
+    @assert eachindex(composition) == eachindex(elements) "`composition` and `elements` must match"
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
 
@@ -298,7 +298,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
 
     # Name, components, and basic options. P-T conditions.
     elementstring = ""
-    for i in eachindex(composition, elements)
+    for i in eachindex(composition)
         if !isnan(composition[i])
             elementstring *= elements[i] * "\n"
         end
@@ -308,7 +308,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
     # Whole-rock composition
-    for i ∈ eachindex(composition, elements)
+    for i ∈ eachindex(composition)
         if !isnan(composition[i])
             write(fp,"$(composition[i]) ")
         end
@@ -369,7 +369,7 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
         composition_basis::String="wt",
         fluid_eos::Number=5
     )        
-
+    @assert eachindex(composition) == eachindex(elements) "`composition` and `elements` must match"
     build = joinpath(Perple_X_jll.PATH[], "build")# path to PerpleX build
     vertex = joinpath(Perple_X_jll.PATH[], "vertex")# path to PerpleX vertex
 
@@ -398,7 +398,7 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
 
     # Name, components, and basic options. P-T conditions.
     elementstring = ""
-    for i in eachindex(composition, elements)
+    for i in eachindex(composition)
         if !isnan(composition[i])
             elementstring *= elements[i] * "\n"
         end
@@ -406,7 +406,7 @@ function perplex_configure_pseudosection(scratchdir::String, composition::Collec
     write(fp,"$index\n$dataset\nperplex_option.dat\nn\n2\nn\nn\nn\n$elementstring\nn\n2\n$(first(T))\n$(last(T))\n$(first(P))\n$(last(P))\ny\n") # v6.8.7
 
     # Whole-rock composition
-    for i ∈ eachindex(composition, elements)
+    for i ∈ eachindex(composition)
         if !isnan(composition[i])
             write(fp,"$(composition[i]) ")
         end
