@@ -3,6 +3,8 @@
 x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test x isa NCKFMASHTOtrace{Float64}
 @test x === NCKFMASHTOtrace{Float64}(1:40)
+@test haskey(x, "SiO2") && haskey(x, :SiO2)
+@test x["SiO2"] ≈ x[:SiO2] ≈ 1
 @test ntuple(x) === ntuple(Float64, 40)
 @test majorelementvalues(x) === ((1:10.)...,)
 @test traceelementvalues(x) === ((11:40.)...,)
@@ -22,6 +24,8 @@ xn = renormalize(x, anhydrous=true)
 x = NCKFMASHTOlogtrace(x)
 @test x isa NCKFMASHTOlogtrace{Float64}
 @test x === NCKFMASHTOlogtrace{Float64}([1:10; log.(11:40)])
+@test haskey(x, "SiO2") && haskey(x, :SiO2)
+@test x["SiO2"] ≈ x[:SiO2] ≈ 1
 @test ntuple(x) === ((1:10.)..., log.(11:40)...,)
 @test majorelementvalues(x) === ((1:10.)...,)
 @test traceelementvalues(x) === (log.(11:40.)...,)
