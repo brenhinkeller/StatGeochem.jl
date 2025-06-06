@@ -1,818 +1,858 @@
-EarthRef.org -- GERM Partition Coefficient (Kd) Database
-Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
-
-DATA:
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
-Basanite	Amphibole	3	Li			.098	.09	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	4	Be			.14	.18	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	5	B			.074	.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	12	Mg			2.02	2.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	13	Al			1.03	.89	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	15	P			.019	.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	20	Ca			1.22	1.32	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	21	Sc			1.59	2.86	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	22	Ti			.72	1.35	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	22	Ti			.87	1.78	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	23	V			3.4	5.7	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	24	Cr			7	21	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	27	Co			1.88	2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	28	Ni			32	18	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	29	Cu			1.1	1.8	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	30	Zn			.33	.41	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	31	Ga			.6	.68	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	32	Ge			1.61	1.19	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	33	As			.044	.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	37	Rb			.26	.1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	38	Sr			.11	.43	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	38	Sr			.24	.42	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	39	Y			.01	.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	40	Zr			.13	.31	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	41	Nb			.069	.21	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	42	Mo			.0272	.06	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	47	Ag			3.01	1.45	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	48	Cd			.29	.09	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	49	In			1.09	2.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	50	Sn			.72	.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	51	Sb			.016	.007	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	55	Cs			.06	.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	56	Ba			.19	.26	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	57	La			.07	.17	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	57	La			.05	.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	58	Ce			.09	.19	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	60	Nd			.2	.37	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	62	Sm			.37	.7	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	62	Sm			.3	.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	65	Tb			.4	.64	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	67	Ho			.44	.73	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	67	Ho			.41	.61	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	69	Tm			.36	.51	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	70	Yb			.27	.44	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	71	Lu			.3	.44	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	71	Lu			.32	.48	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	72	Hf			.27	.59	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	73	Ta			.083	.24	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	74	W			.0011	.0025	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	81	Tl			.23	.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	82	Pb			.07	.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	83	Bi			.14	.49	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	90	Th			.0035	.009	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite	Amphibole	92	U			.0039	.008	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	22	Ti	.95				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	37	Rb	.34				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	38	Sr	.33				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	39	Y	.6				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	40	Zr	.25				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	41	Nb	.08				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	56	Ba	.46				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	73	Ta	.09				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	21	Sc	13				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	24	Cr	40				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	27	Co	6.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	30	Zn	1.6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	37	Rb	.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	38	Sr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	40	Zr	.5				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	55	Cs	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	56	Ba	.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	57	La	.31				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	58	Ce	.53				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	60	Nd	1.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	62	Sm	2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	63	Eu	1.9				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	65	Tb	2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	70	Yb	2.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	71	Lu	2.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	72	Hf	.54				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	73	Ta	.59				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	90	Th	.16				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	21	Sc	14				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	24	Cr	40				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	27	Co	37				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	30	Zn	2.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	37	Rb	.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	38	Sr	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	40	Zr	.5				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	55	Cs	.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	56	Ba	.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	57	La	.36				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	58	Ce	.68				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	60	Nd	1.6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	62	Sm	2.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	63	Eu	3.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	65	Tb	2.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	70	Yb	1.8				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	71	Lu	1.8				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	72	Hf	.52				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	73	Ta	.43				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	90	Th	.16				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
-Alkali Olivine Basalt	Kaersutite, Amphibole	39	Y	.873				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	57	La	.116				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	58	Ce	.185				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	59	Pr	.277				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	60	Nd	.396				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	62	Sm	.651				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	63	Eu	.657				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	64	Gd	.933				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	65	Tb	1				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	66	Dy	.967				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	67	Ho	1.03				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	68	Er	.851				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	69	Tm	.816				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	70	Yb	.787				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Alkali Olivine Basalt	Kaersutite, Amphibole	71	Lu	.698				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	57	La	.0437				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	58	Ce	.0709				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	60	Nd	.123				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	62	Sm	.158				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	63	Eu	.175				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	64	Gd	.188				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	66	Dy	.165				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	68	Er	.175				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-MARID Lamproite	Pargasite, Amphibole	70	Yb	.177				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	21	Sc	7.43				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	23	V	3.67				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	39	Y	.0196				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	57	La	.0274				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	58	Ce	.0293				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	60	Nd	.0325				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	62	Sm	.024				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	63	Eu	.0498				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	64	Gd	.018				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	66	Dy	.0136				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	68	Er	.0318				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Ultramafic Lamproite	K-Richterite, Amphibole	70	Yb	.102				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008
-Andesite	Amphibole	22	Ti	2.02				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	37	Rb	.14				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	38	Sr	.28				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	40	Zr	.23				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	41	Nb	.2				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	56	Ba	.12				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	58	Ce	.22				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	60	Nd	.62				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	62	Sm	.66				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	70	Yb	1.25				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	72	Hf	.45				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	73	Ta	.21				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	82	Pb	.12				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	90	Th	.017				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	92	U	.008				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000
-Synthetic Basalt	Amphibole	3	Li	.124				Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000
-Synthetic Basalt	Amphibole	4	Be	.15				Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	38	Sr			.079	.101	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	39	Y			.396	.499	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	40	Zr			.15	.233	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	41	Nb			.032	.196	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	56	Ba			.171	1.592	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	57	La			.061	.084	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	58	Ce			.092	.112	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	59	Pr			.117	.14	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	60	Nd			.187	.221	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	62	Sm			.234	.323	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	63	Eu			.19	.366	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	64	Gd			.322	.549	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	65	Tb			.301	.496	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	66	Dy			.322	.459	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	67	Ho			.346	.518	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	68	Er			.297	.43	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	70	Yb			.22	.301	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	71	Lu			.331	.38	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	72	Hf			.627	.838	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Lherzolite	Amphibole	90	Th			.006	.007	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000
-Basanite-Basalt	Amphibole	19	K	1.36	.78			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	22	Ti	.717	.028			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	37	Rb	.22	.043			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	38	Sr	.376	.005			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	39	Y	.333	.028			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	40	Zr	.124	.009			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	41	Nb	.05	.006			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	56	Ba	.278	.009			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	57	La	.039	.005			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	58	Ce	.067	.002			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	59	Pr	.105	.007			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	60	Nd	.142	.007			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	62	Sm	.188	.075			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	63	Eu	.351	.022			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	64	Gd	.368	.017			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	65	Tb	.385	.024			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	66	Dy	.406	.013			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	67	Ho	.35	.036			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	68	Er	.362	.008			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	69	Tm	.281	.03			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	70	Yb	.349	.045			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	71	Lu	.246	.032			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	72	Hf	.331	.05			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basanite-Basalt	Amphibole	73	Ta	.074	.015			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008
-Basalt-Andesite	Amphibole	3	Li	.3				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	23	V	3.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	24	Cr	12.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	27	Co	2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	28	Ni	6.8				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	29	Cu	.05				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	30	Zn	.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	37	Rb	.33				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	38	Sr	.48				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	57	La	.25				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	58	Ce	.32				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	62	Sm	1.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	63	Eu	1.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	65	Tb	1.3				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	70	Yb	1.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	71	Lu	1.1				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	72	Hf	.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	90	Th	.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	92	U	.1				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	25	Mn	15.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	26	Fe	22.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	28	Ni	9.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	29	Cu				1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	30	Zn	10.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	31	Ga	2.42				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	32	Ge				1.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	37	Rb	.18				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	38	Sr	.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	39	Y	11.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	40	Zr	.93				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	41	Nb			2.5		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	56	Ba	.28				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	82	Pb	.53				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	25	Mn			18	21.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	26	Fe			21	35.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	29	Cu			.77	1.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	30	Zn			7.8	11.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	31	Ga			1.15	1.77	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	32	Ge			2.8	3.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	37	Rb			.021	.046	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	38	Sr			.77	14.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	39	Y			4	23.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	40	Zr			.69	.76	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	41	Nb			.98	4.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	56	Ba			.28	4.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-High Silica Rhyolite	Amphibole	82	Pb			.19	.32	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	25	Mn			5.3	15.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	26	Fe			7.6	20.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	28	Ni			4	11.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	29	Cu			.49	1.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	30	Zn			2.61	6.99	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	31	Ga			.78	1.22	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	32	Ge			1.4	2.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	37	Rb			.028	.37	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	38	Sr			.25	1.13	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	39	Y			4	45.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	40	Zr			.53	.91	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	41	Nb			1.5	6.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	56	Ba			.16	.92	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Low Silica Rhyolite	Amphibole	82	Pb			.25	.61	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Aenigmatite	25	Mn	6.7	1.2			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Aenigmatite	26	Fe	7.26	0.32			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Aenigmatite	28	Ni				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	30	Zn	1.26	0.05			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	32	Ga	0.24	0.03			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	37	Ge	11.1	3.4			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	37	Rb				.013	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	38	Sr				.38	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	39	Y	0.017	0.003			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	40	Zr	0.047	0.001			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	41	Nb	0.76		0.02		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	82	Pb				.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	90	Th	0.45	0.17			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Per-Alkaline Rhyolite	Amphibole	92	U	1.6	1.0			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	40	Zr			1.339	1.789	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	57	La			.3664	.7219	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	58	Ce			.574	1.112	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	60	Nd			1.012	1.667	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	62	Sm			1.386	2.221	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	63	Eu			1.212	1.901	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	64	Gd			1.49	2.543	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	66	Dy			1.611	2.436	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	68	Er			1.496	1.984	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	70	Yb			1.488	1.796	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	71	Lu			1.325	1.8	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Calc-Alkaline Andesite	Amphibole	72	Hf			1.336	1.731	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	57	La	.045				Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	62	Sm			.033	2.9	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	63	Eu			.31	.52	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	67	Ho			.69	3	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	71	Lu			.5	2.1	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	37	Rb			.07	.16	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	38	Sr			.08	.35	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	39	Y			.4	1.3	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	40	Zr			.15	.35	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	41	Nb			.026	.21	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Amphibole	73	Ta			.021	.19	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	37	Rb	.58				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	38	Sr	.26				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	39	Y	.41				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	40	Zr	.33				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	41	Nb	.08				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	56	Ba	.6				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	73	Ta	.08				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	37	Rb	.28				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	38	Sr	.04				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	39	Y	.19				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	40	Zr	.23				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	41	Nb	.06				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	56	Ba	.01				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	73	Ta	.13				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	11	Na	.8				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	12	Mg	4.8				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	20	Ca	2.95				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	21	Sc	2.18				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	25	Mn	.94				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	57	La	.167				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	58	Ce	.338				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	62	Sm	.93				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	63	Eu	1.11				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	64	Gd	1.08				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	65	Tb	1.02				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	70	Yb	.98				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	71	Lu	.82				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000
-Dacite-Tonalite	Pargasite, Amphibole	22	Ti			2.75	10.84	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	39	Y			1.3	3.1	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	40	Zr			.25	1.06	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	41	Nb			.2	1	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	57	La			.1	.64	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	62	Sm			1.21	3.58	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	64	Gd			2	4	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	71	Lu			.98	2.52	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	72	Hf			.45	1.87	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Dacite-Tonalite	Pargasite, Amphibole	73	Ta			.17	1.6	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008
-Basalt	Amphibole	57	La			.06	.3	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	58	Ce			.09	.5	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	59	Pr			.1	.6	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	60	Nd			.2	.7	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	62	Sm			.2	.8	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	62	Sm			.3	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	63	Eu			.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	64	Gd			.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	65	Tb			.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	66	Dy			.2	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	67	Ho			.2	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	68	Er			.2	1.5	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	69	Tm			.2	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	70	Yb			.2	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	71	Lu			.15	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000
-Dacite	Ca-Amphibole	22	Ti			2.32	4.7	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	40	Zr			.26	.68	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	41	Nb			.28	.39	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	57	La			.12	.37	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	58	Ce			.24	.73	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	60	Nd			.63	.73	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	62	Sm			1.37	2.01	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	63	Eu			1.08	1.33	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	64	Gd			1.49	2.3	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	66	Dy			1.77	2.68	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	68	Er			1.47	2.47	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	70	Yb			1.15	2.1	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	71	Lu			1.07	1.7	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	72	Hf			.43	.95	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Dacite	Ca-Amphibole	73	Ta			.27	.38	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008
-Tonalite	Amphibole	23	V			2.32	4.7	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	40	Zr			.26	.68	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	41	Nb			.28	.39	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	57	La			.12	.37	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	58	Ce			.24	.73	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	60	Nd			.63	1.2	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	62	Sm			1.37	2.01	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	63	Eu			1.08	1.62	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	64	Gd			1.49	2.3	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	66	Dy			1.77	2.68	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	68	Er			1.47	2.47	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	70	Yb			1.15	2.1	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	71	Lu			1.07	1.7	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	72	Hf			.43	.95	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Tonalite	Amphibole	73	Ta			.27	.38	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	4	Be	.124				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	9	F	1.65				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	11	Na	.73				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	37	Rb	.2				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	38	Sr	.298				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	39	Y	.52				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	40	Zr	.127				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	41	Nb	.159				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	56	Ba	.16				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	57	La	.055				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	58	Ce	.096				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	59	Pr	.17				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	60	Nd	.25		.25		Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	64	Gd	.32				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	67	Ho	.62				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	68	Er	.57				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	69	Tm	.51				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	70	Yb	.43				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	72	Hf	.33				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	82	Pb	.04				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	90	Th	.0039				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite	Amphibole	92	U	.0041				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	21	Sc	2.9				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	27	Co	1.3				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	37	Rb	.09				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	40	Zr	.37				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	57	La	.12				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	63	Eu	.7				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	65	Tb	.87				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	72	Hf	.5				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	73	Ta	.19				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	90	Th	.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Basanite-Hawaiite	Amphibole	92	U	.08				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	21	Sc	4.01				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	27	Co	2.1				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	37	Rb	.11				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	40	Zr	.41				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	57	La	.22				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	63	Eu	1.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	65	Tb	1.45				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	72	Hf	.6				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	73	Ta	.39				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	90	Th	.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Mugearite	Amphibole	92	U	.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	21	Sc	15.3				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	27	Co	16.7				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	37	Rb	.14				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	40	Zr	.72				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	57	La	.85				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	63	Eu	2.72				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	65	Tb	3.67				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	72	Hf	.84				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	73	Ta	1.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	90	Th	.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Trachyte	Amphibole	92	U	.45				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	21	Sc	5.33				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	22	Ti	4.03				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	23	V	5.27				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	24	Cr	9.33				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	27	Co	5.2				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	28	Ni	6				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	29	Cu	1.5				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	30	Zn	2.64				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	57	La	.63				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	58	Ce	.73				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	62	Sm	2.07				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	63	Eu	1.61				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	65	Tb	1.72				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	70	Yb	1.3				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	71	Lu	1.19				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	72	Hf	.65				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	90	Th	.11				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Benmoreite	Amphibole	92	U	.3				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	21	Sc			8.1	13	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	23	V			6.3	13	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	24	Cr			31	90	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	29	Cu			7.2	16	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	30	Zn			5	8.7	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	55	Cs			.15	.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	56	Ba			.15	.22	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	57	La			.14	.19	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	58	Ce			.29	.37	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	60	Nd			.7	.95	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	62	Sm			1.2	1.7	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	63	Eu			1.5	1.9	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	65	Tb			1.5	2.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	66	Dy			1.7	2.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	70	Yb			1.1	1.6	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	71	Lu			1	1.6	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	72	Hf			.34	.52	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	90	Th			.13	.25	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	21	Sc	43.2				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	24	Cr	18				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	27	Co	22				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	31	Ga	6.6				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	56	Ba	.15				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	57	La	.54				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	58	Ce	.98				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	60	Nd	2.1				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	62	Sm	2.99				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	63	Eu	2.88				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	65	Tb	4.8				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	66	Dy	4.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	70	Yb	2.29				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	71	Lu	2.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	72	Hf	.76				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	73	Ta	.56				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	82	Pb				.6	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	90	Th	.054				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Trachyandesite	Amphibole	92	U	.05				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	11	Na	1				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	21	Sc	2.4				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	24	Cr	1.5				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	26	Fe	4.8				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	27	Co	18				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	40	Zr	.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	57	La	.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	58	Ce	.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	62	Sm	.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	63	Eu	.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	65	Tb	.03				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	70	Yb	.03				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	71	Lu	.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	72	Hf	.04				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	73	Ta	.3				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	90	Th				.04	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Pantellerite	Amphibole	92	U				.03	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000
-Syenite	Amphibole	21	Sc					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	37	Rb			.39	5.58	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	38	Sr			2.53	3.56	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	40	Zr			.54	1.19	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	41	Nb			.85	1.25	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	55	Cs			.11	.14	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	56	Ba			.03	.07	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	57	La			1.05	2.06	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	58	Ce					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	60	Nd			.37	1.77	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	62	Sm			1.07	9.39	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	63	Eu			1.45	9.74	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	65	Tb			.92	2	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	69	Tm			.33	2.1	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	70	Yb			1.08	2.83	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	71	Lu			.9	120.7	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	72	Hf			2.12	7.29	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	73	Ta			.22	.99	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	82	Pb			3	9.77	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	90	Th			.06	.45	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Syenite	Amphibole	92	U					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008
-Alkali Basalt	Amphibole	3	Li	.19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	21	Sc	2.18				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	24	Cr	.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	25	Mn	.94				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	27	Co	1.35				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	30	Zn	.69				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	37	Rb	.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	38	Sr	1.02				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	49	In	2.16				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	55	Cs	.046				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	56	Ba	.436				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	57	La	.195				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	58	Ce	.367				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	62	Sm	.913				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	63	Eu	1.08				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	64	Gd	1.19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	65	Tb	1.29				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	70	Yb	1.03				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	71	Lu	1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	3	Li	.124				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	21	Sc	4.2				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	24	Cr	1.59				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	25	Mn	.68				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	27	Co	1.77				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	30	Zn	.42				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	37	Rb	.4				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	38	Sr	.495				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	55	Cs	3.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	55	Cs	.2				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	56	Ba	.387				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	57	La	.435				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	58	Ce	.545				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	62	Sm	1.46				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	63	Eu	1.49				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	64	Gd	1.72				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	65	Tb	1.96				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	70	Yb	1.42				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	71	Lu	1.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	22	Ti	.69		.69		Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	38	Sr	.12				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	41	Nb	.8				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	57	La	.17				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	58	Ce	.26				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	59	Pr	.35				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	60	Nd	.44				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	62	Sm	.76				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	63	Eu	.88				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	64	Gd	.86				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	65	Tb	.83				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	66	Dy	.78				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	67	Ho	.73				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	68	Er	.68				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	69	Tm	.64				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	70	Yb	.59				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	71	Lu	.51				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	73	Ta	.38				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Basalt	Amphibole	82	Pb	.1				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	38	Sr	.58				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	56	Ba	.62				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	60	Nd	.63				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	62	Sm	.94				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	63	Eu	1.02				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	66	Dy	1.19				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	68	Er	1.05				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	70	Yb	.88				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Trachyte-Basalt	Amphibole	71	Lu	.89				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	3	Li			.18	.22	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	11	Na			.386	.41	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	12	Mg	    		24.2	50.6	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	19	K			.065	.081	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	21	Sc			5.8	6.3	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	26	Fe			11	11.9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	37	Rb			.0077	.014	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	38	Sr			.0224	.094	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	56	Ba			.044	.054	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	58	Ce			.429	1.77	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	60	Nd			1.03	4.49	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	62	Sm			1.61	8.2	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	63	Eu			1.39	5.9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	64	Gd	2				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	66	Dy			2.38	14	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	70	Yb			1.89	9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	71	Lu			1.75	6.3	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	57	La			.2	.5	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	62	Sm			.8	2.6	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	66	Dy	3.7				Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	67	Ho			1.1	3.3	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	70	Yb			.8	2.1	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000
-Basalt	amphibole	22	Ti			.48	7.96	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008
-Basalt	amphibole	40	Zr			.02	.7	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008
-Basalt	amphibole	72	Hf			.04	1.29	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008
-Andesite	Amphibole	20	Ca	.333				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	37	Rb	.0448				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	38	Sr	.188				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	56	Ba	.0996				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Camptonite	Amphibole	19	K			1.15	1.4	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Camptonite	Amphibole	37	Rb			.411	.427	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Camptonite	Amphibole	38	Sr			.548	.561	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Camptonite	Amphibole	56	Ba			.417	.731	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	58	Ce	.094				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	60	Nd	.189				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	62	Sm	.336				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	63	Eu	.358				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	64	Gd	.509				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	66	Dy	.636				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	68	Er	.484				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	70	Yb	.462				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Andesite	Amphibole	71	Lu	.436				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	21	Sc	4.2				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	22	Ti	3.06				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	23	V	1.49				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	24	Cr	4.2				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	38	Sr	.51				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	39	Y	1.47				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	40	Zr	.35				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	57	La	.16				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	58	Ce	.3				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	60	Nd	.77				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	62	Sm	1.18				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	66	Dy	1.52				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	68	Er	1.44				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Basalt-Andesite	Amphibole	70	Yb	1.03				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	21	Sc	35				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	22	Ti	3.66				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	23	V	4.92				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	24	Cr	21				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	38	Sr	.49				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	39	Y	2.46				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	40	Zr	.34				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	57	La	.26				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	58	Ce	.63				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	60	Nd	1.24				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	62	Sm	2.38				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	66	Dy	3.08				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	68	Er	2.34				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Dacite	Amphibole	70	Yb	1.31				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	21	Sc			90	144	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	22	Ti			13.6	18	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	23	V			17	22	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	24	Cr			43	53	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	38	Sr			.9	1.65	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	39	Y			8.28	11	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	40	Zr			.27	.59	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	57	La			.86	1.92	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	58	Ce			2.13	4.23	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	60	Nd			5.19	8.7	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	62	Sm			7.76	11.3	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	66	Dy			10.2	12.3	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	68	Er			6.86	8.2	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Rhyolite	Amphibole	70	Yb			4.41	5.5	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	11	Na			.41	.83	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	19	K			1.2	2.3	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	22	Ti			2	6.1	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	37	Rb			.22	.58	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	38	Sr			.062	.194	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	39	Y			.15	.348	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	40	Zr			.27	1.18	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	41	Nb			.11	.33	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	56	Ba			.068	.14	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	58	Ce			.04	.097	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Carbonatite	Amphibole	73	Ta			.3	.86	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	21	Sc	6				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	25	Mn	2.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	28	Ni	16				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	37	Rb	1.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	38	Sr	.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	40	Zr	1.2				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	55	Cs	.5				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	56	Ba	6.4				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	57	La	.6				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	63	Eu	.76				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	65	Tb	.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	72	Hf	.92				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	73	Ta	.62				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	90	Th	.11				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Alkali Basalt	Amphibole	92	U	.15				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	57	La			.06	.21	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	58	Ce			.1	.34	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	60	Nd			.2	.82	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	62	Sm			.27	.82	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	63	Eu			.32	1.03	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	64	Gd			.46	.72	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	65	Tb			.84	1.58	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	66	Dy			.44	.7	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	68	Er			.37	.69	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	70	Yb			.29	1.01	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Peridotite	Amphibole	71	Lu			.27	1.25	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	22	Ti	.74				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	24	Cr	3				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	37	Rb	.3				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	38	Sr	.57				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	39	Y	.46				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	40	Zr	.07				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	41	Nb	.18				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	56	Ba	.003				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	56	Ba	.44				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	57	La	.064				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	58	Ce	.09				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	59	Pr	.15				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	60	Nd	.2				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	63	Eu	.29				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	64	Gd	.33				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	64	Gd	.41				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	66	Dy	.42				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	67	Ho	.42				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	68	Er	.4				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	71	Lu	.57				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	72	Hf	.14				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	74	W	.16				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	90	Th	.01				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Garnet Pyroxenite	Amphibole	92	U	.009				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000
-Basaltic Andesite	Hornblende	22	Ti	1.6	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	24	Cr	7	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	37	Rb	.4	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	38	Sr	.5	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	39	Y	.9	.4			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	40	Zr	.3	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	57	La	.2	.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	58	Ce	.29	.07			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	60	Nd	.8	.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	62	Sm	2	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	66	Dy					Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	68	Er	3	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-Basaltic Andesite	Hornblende	70	Yb	2	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008
-
-LINKS TO REFERENCES:
-Adam & Green 1994 - http://earthref.org/cgi-bin/err.cgi?n=87
-Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679
-Adam et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=179
-Bacon & Druitt 1988 - http://earthref.org/cgi-bin/err.cgi?n=124
-Botazzi et al. 1999 - http://earthref.org/cgi-bin/err.cgi?n=303
-Brenan et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=309
-Brenan et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=308
-Chazot et al. 1996 - http://earthref.org/cgi-bin/err.cgi?n=313
-Dalpe & Baker 1994 - http://earthref.org/cgi-bin/err.cgi?n=320
-Dostal et al. 1983 - http://earthref.org/cgi-bin/err.cgi?n=324
-Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337
-Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346
-Green & Pearson 1985 - http://earthref.org/cgi-bin/err.cgi?n=92
-Green et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=98
-Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112
-Hilyard et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=116
-Irving & Frey 1984 - http://earthref.org/cgi-bin/err.cgi?n=127
-Klein et al. 1997 - http://earthref.org/cgi-bin/err.cgi?n=147
-Latourrette et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=155
-Lemarchand et al. 1987 - http://earthref.org/cgi-bin/err.cgi?n=166
-Liotard et al. 1982 - http://earthref.org/cgi-bin/err.cgi?n=177
-Luhr & Carmichael 1980 - http://earthref.org/cgi-bin/err.cgi?n=181
-Luhr et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=182
-Mahood & Stimac 1990 - http://earthref.org/cgi-bin/err.cgi?n=187
-Marks et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99700
-Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190
-McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200
-Nagasawa & Schnetzler 1971 - http://earthref.org/cgi-bin/err.cgi?n=210
-Nagasawa 1973 - http://earthref.org/cgi-bin/err.cgi?n=211
-Nicholls & Harris 1980 - http://earthref.org/cgi-bin/err.cgi?n=219
-Oberti et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99701
-Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232
-Ronov & Yaroshevskiy 1976 - http://earthref.org/cgi-bin/err.cgi?n=916
-Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240
-Sisson 1994 - http://earthref.org/cgi-bin/err.cgi?n=258
-Sweeney et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=271
-Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277
-Witt-Eickschen & Harte 1994 - http://earthref.org/cgi-bin/err.cgi?n=290
-Zack et al. 1997 - http://earthref.org/cgi-bin/err.cgi?n=296
-Zack et al. 2002 - http://earthref.org/cgi-bin/err.cgi?n=99712
-
-ACKNOWLEDGEMENTS:
-Sponsored by NSF -- EAR 0000998
-Supported by the San Diego SuperComputer Center
-
-DATABASE STATISTICS:
-EarthRef.org Database Version: 
-Search Time: 31 January 2013 10:08:48 AM
-
-LINKS TO EARTHREF.ORG:
-Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi
-Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=amphibole&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&
-
-SEARCH VALUES:
-Search Term(s):  amphibole (Mineral)
-Rock Type: Any Rock Type
-Mineral: Any Mineral
-Element Family: Any Element Family
-Reference: Adam & Green 2006
-Sort by: Reference
-
+EarthRef.org -- GERM Partition Coefficient (Kd) Database														
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen														
+														
+DATA:														
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted		
+Basanite	Amphibole	3	Li			0.098	0.09	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	4	Be			0.14	0.18	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	5	B			0.074	0.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	12	Mg			2.02	2.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	13	Al			1.03	0.89	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	15	P			0.019	0.03	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	20	Ca			1.22	1.32	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	21	Sc			1.59	2.86	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	22	Ti			0.72	1.35	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	22	Ti			0.87	1.78	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	23	V			3.4	5.7	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	24	Cr			7	21	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	27	Co			1.88	2	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	28	Ni			32	18	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	29	Cu			1.1	1.8	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	30	Zn			0.33	0.41	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	31	Ga			0.6	0.68	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	32	Ge			1.61	1.19	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	33	As			0.044	0.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	37	Rb			0.26	0.1	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	38	Sr			0.11	0.43	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	38	Sr			0.24	0.42	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	39	Y			0.01	0.02	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	40	Zr			0.13	0.31	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	41	Nb			0.069	0.21	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	42	Mo			0.0272	0.06	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	47	Ag			3.01	1.45	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	48	Cd			0.29	0.09	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	49	In			1.09	2.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	50	Sn			0.72	0.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	51	Sb			0.016	0.007	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	55	Cs			0.06	0.003	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	56	Ba			0.19	0.26	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	57	La			0.07	0.17	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	57	La			0.05	0.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	58	Ce			0.09	0.19	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	60	Nd			0.2	0.37	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	62	Sm			0.37	0.7	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	62	Sm			0.3	0.54	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	65	Tb			0.4	0.64	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	67	Ho			0.44	0.73	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	67	Ho			0.41	0.61	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	69	Tm			0.36	0.51	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	70	Yb			0.27	0.44	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	71	Lu			0.3	0.44	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	71	Lu			0.32	0.48	Experimental	Adam & Green 1994	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	72	Hf			0.27	0.59	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	73	Ta			0.083	0.24	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	74	W			0.0011	0.0025	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	81	Tl			0.23	0.11	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	82	Pb			0.07	0.05	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	83	Bi			0.14	0.49	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	90	Th			0.0035	0.009	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite	Amphibole	92	U			0.0039	0.008	Experimental	Adam & Green 2006	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	22	Ti	0.95				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	37	Rb	0.34				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	38	Sr	0.33				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	39	Y	0.6				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	40	Zr	0.25				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	41	Nb	0.08				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	56	Ba	0.46				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	73	Ta	0.09				Experimental	Adam et al. 1993	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	21	Sc	13				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	24	Cr	40				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	27	Co	6.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	30	Zn	1.6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	37	Rb	0.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	38	Sr	0.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	40	Zr	0.5				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	55	Cs	0.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	56	Ba	0.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	57	La	0.31				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	58	Ce	0.53				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	60	Nd	1.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	62	Sm	2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	63	Eu	1.9				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	65	Tb	2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	70	Yb	2.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	71	Lu	2.1				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	72	Hf	0.54				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	73	Ta	0.59				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	90	Th	0.16				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	21	Sc	14				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	24	Cr	40				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	27	Co	37				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	30	Zn	2.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	37	Rb	0.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	38	Sr	0.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	40	Zr	0.5				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	55	Cs	0.01				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	56	Ba	0.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	57	La	0.36				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	58	Ce	0.68				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	60	Nd	1.6				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	62	Sm	2.3				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	63	Eu	3.2				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	65	Tb	2.4				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	70	Yb	1.8				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	71	Lu	1.8				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	72	Hf	0.52				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	73	Ta	0.43				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	90	Th	0.16				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000		
+Alkali Olivine Basalt	Kaersutite, Amphibole	39	Y	0.873				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	57	La	0.116				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	58	Ce	0.185				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	59	Pr	0.277				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	60	Nd	0.396				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	62	Sm	0.651				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	63	Eu	0.657				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	64	Gd	0.933				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	65	Tb	1				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	66	Dy	0.967				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	67	Ho	1.03				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	68	Er	0.851				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	69	Tm	0.816				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	70	Yb	0.787				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Alkali Olivine Basalt	Kaersutite, Amphibole	71	Lu	0.698				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	57	La	0.0437				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	58	Ce	0.0709				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	60	Nd	0.123				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	62	Sm	0.158				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	63	Eu	0.175				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	64	Gd	0.188				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	66	Dy	0.165				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	68	Er	0.175				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+MARID Lamproite	Pargasite, Amphibole	70	Yb	0.177				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	21	Sc	7.43				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	23	V	3.67				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	39	Y	0.0196				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	57	La	0.0274				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	58	Ce	0.0293				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	60	Nd	0.0325				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	62	Sm	0.024				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	63	Eu	0.0498				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	64	Gd	0.018				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	66	Dy	0.0136				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	68	Er	0.0318				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Ultramafic Lamproite	K-Richterite, Amphibole	70	Yb	0.102				Experimental	Botazzi et al. 1999	Solid-Melt		08-DEC-2008		
+Andesite	Amphibole	22	Ti	2.02				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	37	Rb	0.14				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	38	Sr	0.28				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	40	Zr	0.23				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	41	Nb	0.2				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	56	Ba	0.12				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	58	Ce	0.22				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	60	Nd	0.62				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	62	Sm	0.66				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	70	Yb	1.25				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	72	Hf	0.45				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	73	Ta	0.21				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	82	Pb	0.12				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	90	Th	0.017				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	92	U	0.008				Experimental	Brenan et al. 1995	Solid-Melt		12-DEC-2000		
+Synthetic Basalt	Amphibole	3	Li	0.124				Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000		
+Synthetic Basalt	Amphibole	4	Be	0.15				Experimental	Brenan et al. 1998	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	38	Sr			0.079	0.101	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	39	Y			0.396	0.499	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	40	Zr			0.15	0.233	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	41	Nb			0.032	0.196	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	56	Ba			0.171	1.592	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	57	La			0.061	0.084	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	58	Ce			0.092	0.112	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	59	Pr			0.117	0.14	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	60	Nd			0.187	0.221	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	62	Sm			0.234	0.323	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	63	Eu			0.19	0.366	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	64	Gd			0.322	0.549	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	65	Tb			0.301	0.496	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	66	Dy			0.322	0.459	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	67	Ho			0.346	0.518	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	68	Er			0.297	0.43	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	70	Yb			0.22	0.301	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	71	Lu			0.331	0.38	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	72	Hf			0.627	0.838	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Lherzolite	Amphibole	90	Th			0.006	0.007	Calculated	Chazot et al. 1996	Solid-Melt		12-DEC-2000		
+Basanite-Basalt	Amphibole	19	K	1.36	0.78			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	22	Ti	0.717	0.028			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	37	Rb	0.22	0.043			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	38	Sr	0.376	0.005			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	39	Y	0.333	0.028			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	40	Zr	0.124	0.009			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	41	Nb	0.05	0.006			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	56	Ba	0.278	0.009			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	57	La	0.039	0.005			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	58	Ce	0.067	0.002			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	59	Pr	0.105	0.007			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	60	Nd	0.142	0.007			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	62	Sm	0.188	0.075			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	63	Eu	0.351	0.022			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	64	Gd	0.368	0.017			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	65	Tb	0.385	0.024			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	66	Dy	0.406	0.013			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	67	Ho	0.35	0.036			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	68	Er	0.362	0.008			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	69	Tm	0.281	0.03			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	70	Yb	0.349	0.045			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	71	Lu	0.246	0.032			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	72	Hf	0.331	0.05			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basanite-Basalt	Amphibole	73	Ta	0.074	0.015			Experimental	Dalpe & Baker 1994	Solid-Melt		08-DEC-2008		
+Basalt-Andesite	Amphibole	3	Li	0.3				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	23	V	3.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	24	Cr	12.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	27	Co	2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	28	Ni	6.8				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	29	Cu	0.05				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	30	Zn	0.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	37	Rb	0.33				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	38	Sr	0.48				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	57	La	0.25				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	58	Ce	0.32				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	62	Sm	1.4				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	63	Eu	1.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	65	Tb	1.3				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	70	Yb	1.2				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	71	Lu	1.1				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	72	Hf	0.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	90	Th	0.5				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	92	U	0.1				Phenocryst-Matrix	Dostal et al. 1983	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	25	Mn	15.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	26	Fe	22.9				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	28	Ni	9.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	29	Cu				1.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	30	Zn	10.7				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	31	Ga	2.42				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	32	Ge				1.9	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	37	Rb	0.18				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	38	Sr	0.6				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	39	Y	11.3				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	40	Zr	0.93				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	41	Nb			2.5		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	56	Ba	0.28				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	82	Pb	0.53				Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	25	Mn			18	21.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	26	Fe			21	35.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	29	Cu			0.77	1.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	30	Zn			7.8	11.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	31	Ga			1.15	1.77	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	32	Ge			2.8	3.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	37	Rb			0.021	0.046	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	38	Sr			0.77	14.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	39	Y			4	23.1	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	40	Zr			0.69	0.76	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	41	Nb			0.98	4.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	56	Ba			0.28	4.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+High Silica Rhyolite	Amphibole	82	Pb			0.19	0.32	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	25	Mn			5.3	15.6	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	26	Fe			7.6	20.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	28	Ni			4	11.5	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	29	Cu			0.49	1.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	30	Zn			2.61	6.99	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	31	Ga			0.78	1.22	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	32	Ge			1.4	2.4	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	37	Rb			0.028	0.37	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	38	Sr			0.25	1.13	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	39	Y			4	45.2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	40	Zr			0.53	0.91	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	41	Nb			1.5	6.7	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	56	Ba			0.16	0.92	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Low Silica Rhyolite	Amphibole	82	Pb			0.25	0.61	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Aenigmatite	25	Mn	6.7	1.2			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Aenigmatite	26	Fe	7.26	0.32			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Aenigmatite	28	Ni				2	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	30	Zn	1.26	0.05			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	32	Ga	0.24	0.03			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	37	Ge	11.1	3.4			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	37	Rb				0.013	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	38	Sr				0.38	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	39	Y	0.017	0.003			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	40	Zr	0.047	0.001			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	41	Nb	0.76		0.02		Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	82	Pb				0.19	Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	90	Th	0.45	0.17			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Per-Alkaline Rhyolite	Amphibole	92	U	1.6	1			Phenocryst-Matrix	Ewart & Griffin 1994	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	40	Zr			1.339	1.789	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	57	La			0.3664	0.7219	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	58	Ce			0.574	1.112	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	60	Nd			1.012	1.667	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	62	Sm			1.386	2.221	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	63	Eu			1.212	1.901	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	64	Gd			1.49	2.543	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	66	Dy			1.611	2.436	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	68	Er			1.496	1.984	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	70	Yb			1.488	1.796	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	71	Lu			1.325	1.8	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Calc-Alkaline Andesite	Amphibole	72	Hf			1.336	1.731	Phenocryst-Matrix	Fujimaki et al. 1984	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	57	La	0.045				Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	62	Sm			0.033	2.9	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	63	Eu			0.31	0.52	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	67	Ho			0.69	3	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	71	Lu			0.5	2.1	Experimental	Green & Pearson 1985	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	37	Rb			0.07	0.16	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	38	Sr			0.08	0.35	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	39	Y			0.4	1.3	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	40	Zr			0.15	0.35	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	41	Nb			0.026	0.21	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Amphibole	73	Ta			0.021	0.19	Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	37	Rb	0.58				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	38	Sr	0.26				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	39	Y	0.41				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	40	Zr	0.33				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	41	Nb	0.08				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	56	Ba	0.6				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	73	Ta	0.08				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	37	Rb	0.28				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	38	Sr	0.04				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	39	Y	0.19				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	40	Zr	0.23				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	41	Nb	0.06				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	56	Ba	0.01				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	73	Ta	0.13				Experimental	Green et al. 1993	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	11	Na	0.8				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	12	Mg	4.8				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	20	Ca	2.95				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	21	Sc	2.18				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	25	Mn	0.94				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	57	La	0.167				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	58	Ce	0.338				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	62	Sm	0.93				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	63	Eu	1.11				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	64	Gd	1.08				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	65	Tb	1.02				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	70	Yb	0.98				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	71	Lu	0.82				Phenocryst-Matrix	Higuchi & Nagasawa 1969	Solid-Melt		12-DEC-2000		
+Dacite-Tonalite	Pargasite, Amphibole	22	Ti			2.75	10.84	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	39	Y			1.3	3.1	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	40	Zr			0.25	1.06	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	41	Nb			0.2	1	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	57	La			0.1	0.64	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	62	Sm			1.21	3.58	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	64	Gd			2	4	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	71	Lu			0.98	2.52	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	72	Hf			0.45	1.87	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Dacite-Tonalite	Pargasite, Amphibole	73	Ta			0.17	1.6	Experimental	Hilyard et al. 2000	Solid-Melt		08-DEC-2008		
+Basalt	Amphibole	57	La			0.06	0.3	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	58	Ce			0.09	0.5	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	59	Pr			0.1	0.6	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	60	Nd			0.2	0.7	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	62	Sm			0.2	0.8	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	62	Sm			0.3	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	63	Eu			0.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	64	Gd			0.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	65	Tb			0.3	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	66	Dy			0.2	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	67	Ho			0.2	2	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	68	Er			0.2	1.5	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	69	Tm			0.2	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	70	Yb			0.2	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	71	Lu			0.15	1	Phenocryst-Matrix, Graphical	Irving & Frey 1984	Solid-Melt		12-DEC-2000		
+Dacite	Ca-Amphibole	22	Ti			2.32	4.7	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	40	Zr			0.26	0.68	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	41	Nb			0.28	0.39	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	57	La			0.12	0.37	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	58	Ce			0.24	0.73	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	60	Nd			0.63	0.73	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	62	Sm			1.37	2.01	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	63	Eu			1.08	1.33	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	64	Gd			1.49	2.3	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	66	Dy			1.77	2.68	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	68	Er			1.47	2.47	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	70	Yb			1.15	2.1	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	71	Lu			1.07	1.7	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	72	Hf			0.43	0.95	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Dacite	Ca-Amphibole	73	Ta			0.27	0.38	Experimental	Klein et al. 1997	Solid-Liquid		08-DEC-2008		
+Tonalite	Amphibole	23	V			2.32	4.7	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	40	Zr			0.26	0.68	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	41	Nb			0.28	0.39	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	57	La			0.12	0.37	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	58	Ce			0.24	0.73	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	60	Nd			0.63	1.2	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	62	Sm			1.37	2.01	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	63	Eu			1.08	1.62	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	64	Gd			1.49	2.3	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	66	Dy			1.77	2.68	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	68	Er			1.47	2.47	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	70	Yb			1.15	2.1	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	71	Lu			1.07	1.7	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	72	Hf			0.43	0.95	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Tonalite	Amphibole	73	Ta			0.27	0.38	Experimental	Klein et al. 1997	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	4	Be	0.124				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	9	F	1.65				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	11	Na	0.73				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	37	Rb	0.2				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	38	Sr	0.298				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	39	Y	0.52				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	40	Zr	0.127				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	41	Nb	0.159				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	56	Ba	0.16				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	57	La	0.055				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	58	Ce	0.096				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	59	Pr	0.17				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	60	Nd	0.25		0.25		Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	64	Gd	0.32				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	67	Ho	0.62				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	68	Er	0.57				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	69	Tm	0.51				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	70	Yb	0.43				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	72	Hf	0.33				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	82	Pb	0.04				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	90	Th	0.0039				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite	Amphibole	92	U	0.0041				Experimental	Latourrette et al. 1995	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	21	Sc	2.9				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	27	Co	1.3				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	37	Rb	0.09				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	40	Zr	0.37				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	57	La	0.12				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	63	Eu	0.7				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	65	Tb	0.87				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	72	Hf	0.5				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	73	Ta	0.19				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	90	Th	0.05				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Basanite-Hawaiite	Amphibole	92	U	0.08				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	21	Sc	4.01				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	27	Co	2.1				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	37	Rb	0.11				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	40	Zr	0.41				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	57	La	0.22				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	63	Eu	1.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	65	Tb	1.45				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	72	Hf	0.6				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	73	Ta	0.39				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	90	Th	0.04				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Mugearite	Amphibole	92	U	0.06				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	21	Sc	15.3				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	27	Co	16.7				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	37	Rb	0.14				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	40	Zr	0.72				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	57	La	0.85				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	63	Eu	2.72				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	65	Tb	3.67				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	72	Hf	0.84				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	73	Ta	1.02				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	90	Th	0.07				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Trachyte	Amphibole	92	U	0.45				Phenocryst-Matrix	Lemarchand et al. 1987	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	21	Sc	5.33				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	22	Ti	4.03				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	23	V	5.27				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	24	Cr	9.33				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	27	Co	5.2				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	28	Ni	6				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	29	Cu	1.5				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	30	Zn	2.64				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	57	La	0.63				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	58	Ce	0.73				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	62	Sm	2.07				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	63	Eu	1.61				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	65	Tb	1.72				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	70	Yb	1.3				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	71	Lu	1.19				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	72	Hf	0.65				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	90	Th	0.11				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Benmoreite	Amphibole	92	U	0.3				Phenocryst-Matrix	Liotard et al. 1982	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	21	Sc			8.1	13	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	23	V			6.3	13	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	24	Cr			31	90	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	29	Cu			7.2	16	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	30	Zn			5	8.7	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	55	Cs			0.15	0.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	56	Ba			0.15	0.22	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	57	La			0.14	0.19	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	58	Ce			0.29	0.37	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	60	Nd			0.7	0.95	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	62	Sm			1.2	1.7	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	63	Eu			1.5	1.9	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	65	Tb			1.5	2.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	66	Dy			1.7	2.5	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	70	Yb			1.1	1.6	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	71	Lu			1	1.6	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	72	Hf			0.34	0.52	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	90	Th			0.13	0.25	Phenocryst-Matrix	Luhr & Carmichael 1980	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	21	Sc	43.2				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	24	Cr	18				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	27	Co	22				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	31	Ga	6.6				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	56	Ba	0.15				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	57	La	0.54				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	58	Ce	0.98				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	60	Nd	2.1				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	62	Sm	2.99				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	63	Eu	2.88				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	65	Tb	4.8				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	66	Dy	4.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	70	Yb	2.29				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	71	Lu	2.3				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	72	Hf	0.76				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	73	Ta	0.56				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	82	Pb				0.6	Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	90	Th	0.054				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Trachyandesite	Amphibole	92	U	0.05				Phenocryst-Matrix	Luhr et al. 1984	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	11	Na	1				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	21	Sc	2.4				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	24	Cr	1.5				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	26	Fe	4.8				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	27	Co	18				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	40	Zr	0.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	57	La	0.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	58	Ce	0.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	62	Sm	0.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	63	Eu	0.06				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	65	Tb	0.03				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	70	Yb	0.03				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	71	Lu	0.05				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	72	Hf	0.04				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	73	Ta	0.3				Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	90	Th				0.04	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Pantellerite	Amphibole	92	U				0.03	Phenocryst-Matrix	Mahood & Stimac 1990	Solid-Melt		12-DEC-2000		
+Syenite	Amphibole	21	Sc					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	37	Rb			0.39	5.58	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	38	Sr			2.53	3.56	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	40	Zr			0.54	1.19	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	41	Nb			0.85	1.25	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	55	Cs			0.11	0.14	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	56	Ba			0.03	0.07	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	57	La			1.05	2.06	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	58	Ce					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	60	Nd			0.37	1.77	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	62	Sm			1.07	9.39	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	63	Eu			1.45	9.74	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	65	Tb			0.92	2	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	69	Tm			0.33	2.1	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	70	Yb			1.08	2.83	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	71	Lu			0.9	120.7	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	72	Hf			2.12	7.29	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	73	Ta			0.22	0.99	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	82	Pb			3	9.77	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	90	Th			0.06	0.45	Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Syenite	Amphibole	92	U					Phenocryst-Matrix	Marks et al. 2004	Solid-Melt		08-DEC-2008		
+Alkali Basalt	Amphibole	3	Li	0.19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	21	Sc	2.18				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	24	Cr	0.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	25	Mn	0.94				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	27	Co	1.35				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	30	Zn	0.69				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	37	Rb	0.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	38	Sr	1.02				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	49	In	2.16				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	55	Cs	0.046				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	56	Ba	0.436				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	57	La	0.195				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	58	Ce	0.367				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	62	Sm	0.913				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	63	Eu	1.08				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	64	Gd	1.19				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	65	Tb	1.29				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	70	Yb	1.03				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	71	Lu	1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	3	Li	0.124				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	21	Sc	4.2				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	24	Cr	1.59				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	25	Mn	0.68				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	27	Co	1.77				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	30	Zn	0.42				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	37	Rb	0.4				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	38	Sr	0.495				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	55	Cs	3.1				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	55	Cs	0.2				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	56	Ba	0.387				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	57	La	0.435				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	58	Ce	0.545				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	62	Sm	1.46				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	63	Eu	1.49				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	64	Gd	1.72				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	65	Tb	1.96				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	70	Yb	1.42				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	71	Lu	1.31				Phenocryst-Matrix	Matsui et al. 1977	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	22	Ti	0.69		0.69		Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	38	Sr	0.12				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	41	Nb	0.8				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	57	La	0.17				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	58	Ce	0.26				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	59	Pr	0.35				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	60	Nd	0.44				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	62	Sm	0.76				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	63	Eu	0.88				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	64	Gd	0.86				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	65	Tb	0.83				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	66	Dy	0.78				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	67	Ho	0.73				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	68	Er	0.68				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	69	Tm	0.64				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	70	Yb	0.59				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	71	Lu	0.51				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	73	Ta	0.38				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Basalt	Amphibole	82	Pb	0.1				Calculated	McKenzie & O'Nions 1991	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	38	Sr	0.58				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	56	Ba	0.62				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	60	Nd	0.63				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	62	Sm	0.94				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	63	Eu	1.02				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	66	Dy	1.19				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	68	Er	1.05				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	70	Yb	0.88				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Trachyte-Basalt	Amphibole	71	Lu	0.89				Phenocryst-Matrix	Nagasawa 1973	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	3	Li			0.18	0.22	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	11	Na			0.386	0.41	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	12	Mg	    		24.2	50.6	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	19	K			0.065	0.081	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	21	Sc			5.8	6.3	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	26	Fe			11	11.9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	37	Rb			0.0077	0.014	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	38	Sr			0.0224	0.094	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	56	Ba			0.044	0.054	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	58	Ce			0.429	1.77	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	60	Nd			1.03	4.49	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	62	Sm			1.61	8.2	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	63	Eu			1.39	5.9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	64	Gd	2				Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	66	Dy			2.38	14	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	70	Yb			1.89	9	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	71	Lu			1.75	6.3	Phenocryst-Matrix	Nagasawa & Schnetzler 1971	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	57	La			0.2	0.5	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	62	Sm			0.8	2.6	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	66	Dy	3.7				Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	67	Ho			1.1	3.3	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	70	Yb			0.8	2.1	Experimental	Nicholls & Harris 1980	Solid-Melt		12-DEC-2000		
+Basalt	amphibole	22	Ti			0.48	7.96	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008		
+Basalt	amphibole	40	Zr			0.02	0.7	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008		
+Basalt	amphibole	72	Hf			0.04	1.29	Phenocryst-Matrix	Oberti et al. 2000	Solid-Melt		08-DEC-2008		
+Andesite	Amphibole	20	Ca	0.333				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	37	Rb	0.0448				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	38	Sr	0.188				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	56	Ba	0.0996				Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Camptonite	Amphibole	19	K			1.15	1.4	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Camptonite	Amphibole	37	Rb			0.411	0.427	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Camptonite	Amphibole	38	Sr			0.548	0.561	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Camptonite	Amphibole	56	Ba			0.417	0.731	Phenocryst-Matrix	Philpotts & Schnetzler 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	58	Ce	0.094				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	60	Nd	0.189				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	62	Sm	0.336				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	63	Eu	0.358				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	64	Gd	0.509				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	66	Dy	0.636				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	68	Er	0.484				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	70	Yb	0.462				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Andesite	Amphibole	71	Lu	0.436				Phenocryst-Matrix	Schnetzler & Philpotts 1970	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	21	Sc	4.2				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	22	Ti	3.06				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	23	V	1.49				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	24	Cr	4.2				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	38	Sr	0.51				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	39	Y	1.47				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	40	Zr	0.35				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	57	La	0.16				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	58	Ce	0.3				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	60	Nd	0.77				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	62	Sm	1.18				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	66	Dy	1.52				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	68	Er	1.44				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Basalt-Andesite	Amphibole	70	Yb	1.03				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	21	Sc	35				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	22	Ti	3.66				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	23	V	4.92				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	24	Cr	21				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	38	Sr	0.49				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	39	Y	2.46				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	40	Zr	0.34				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	57	La	0.26				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	58	Ce	0.63				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	60	Nd	1.24				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	62	Sm	2.38				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	66	Dy	3.08				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	68	Er	2.34				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Dacite	Amphibole	70	Yb	1.31				Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	21	Sc			90	144	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	22	Ti			13.6	18	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	23	V			17	22	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	24	Cr			43	53	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	38	Sr			0.9	1.65	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	39	Y			8.28	11	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	40	Zr			0.27	0.59	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	57	La			0.86	1.92	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	58	Ce			2.13	4.23	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	60	Nd			5.19	8.7	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	62	Sm			7.76	11.3	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	66	Dy			10.2	12.3	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	68	Er			6.86	8.2	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Rhyolite	Amphibole	70	Yb			4.41	5.5	Phenocryst-Matrix, SIMS	Sisson 1994	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	11	Na			0.41	0.83	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	19	K			1.2	2.3	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	22	Ti			2	6.1	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	37	Rb			0.22	0.58	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	38	Sr			0.062	0.194	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	39	Y			0.15	0.348	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	40	Zr			0.27	1.18	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	41	Nb			0.11	0.33	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	56	Ba			0.068	0.14	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	58	Ce			0.04	0.097	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Carbonatite	Amphibole	73	Ta			0.3	0.86	Experimental	Sweeney et al. 1992	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	21	Sc	6				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	25	Mn	2.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	28	Ni	16				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	37	Rb	1.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	38	Sr	0.3				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	40	Zr	1.2				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	55	Cs	0.5				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	56	Ba	6.4				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	57	La	0.6				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	63	Eu	0.76				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	65	Tb	0.9				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	72	Hf	0.92				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	73	Ta	0.62				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	90	Th	0.11				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Alkali Basalt	Amphibole	92	U	0.15				Phenocryst-Matrix	Villemant et al. 1981	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	57	La			0.06	0.21	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	58	Ce			0.1	0.34	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	60	Nd			0.2	0.82	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	62	Sm			0.27	0.82	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	63	Eu			0.32	1.03	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	64	Gd			0.46	0.72	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	65	Tb			0.84	1.58	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	66	Dy			0.44	0.7	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	68	Er			0.37	0.69	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	70	Yb			0.29	1.01	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Peridotite	Amphibole	71	Lu			0.27	1.25	Phenocryst-Matrix, SIMS	Witt-Eickschen & Harte 1994	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	22	Ti	0.74				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	24	Cr	3				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	37	Rb	0.3				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	38	Sr	0.57				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	39	Y	0.46				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	40	Zr	0.07				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	41	Nb	0.18				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	56	Ba	0.003				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	56	Ba	0.44				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	57	La	0.064				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	58	Ce	0.09				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	59	Pr	0.15				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	60	Nd	0.2				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	63	Eu	0.29				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	64	Gd	0.33				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	64	Gd	0.41				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	66	Dy	0.42				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	67	Ho	0.42				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	68	Er	0.4				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	71	Lu	0.57				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	72	Hf	0.14				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	74	W	0.16				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	90	Th	0.01				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Garnet Pyroxenite	Amphibole	92	U	0.009				Phenocryst-Matrix	Zack et al. 1997	Solid-Melt		12-DEC-2000		
+Basaltic Andesite	Hornblende	22	Ti	1.6	0.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	24	Cr	7	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	37	Rb	0.4	0.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	38	Sr	0.5	0.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	39	Y	0.9	0.4			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	40	Zr	0.3	0.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	57	La	0.2	0.1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	58	Ce	0.29	0.07			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	60	Nd	0.8	0.3			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	62	Sm	2	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	66	Dy					Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	68	Er	3	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+Basaltic Andesite	Hornblende	70	Yb	2	1			Experimental	Ronov & Yaroshevskiy 1976	Solid-Melt		08-DEC-2008		
+														
+LINKS TO REFERENCES:														
+Adam & Green 1994 - http://earthref.org/cgi-bin/err.cgi?n=87														
+Adam & Green 2006 - http://earthref.org/cgi-bin/err.cgi?n=99679														
+Adam et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=179														
+Bacon & Druitt 1988 - http://earthref.org/cgi-bin/err.cgi?n=124														
+Botazzi et al. 1999 - http://earthref.org/cgi-bin/err.cgi?n=303														
+Brenan et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=309														
+Brenan et al. 1998 - http://earthref.org/cgi-bin/err.cgi?n=308														
+Chazot et al. 1996 - http://earthref.org/cgi-bin/err.cgi?n=313														
+Dalpe & Baker 1994 - http://earthref.org/cgi-bin/err.cgi?n=320														
+Dostal et al. 1983 - http://earthref.org/cgi-bin/err.cgi?n=324														
+Ewart & Griffin 1994 - http://earthref.org/cgi-bin/err.cgi?n=337														
+Fujimaki et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=346														
+Green & Pearson 1985 - http://earthref.org/cgi-bin/err.cgi?n=92														
+Green et al. 1993 - http://earthref.org/cgi-bin/err.cgi?n=98														
+Higuchi & Nagasawa 1969 - http://earthref.org/cgi-bin/err.cgi?n=112														
+Hilyard et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=116														
+Irving & Frey 1984 - http://earthref.org/cgi-bin/err.cgi?n=127														
+Klein et al. 1997 - http://earthref.org/cgi-bin/err.cgi?n=147														
+Latourrette et al. 1995 - http://earthref.org/cgi-bin/err.cgi?n=155														
+Lemarchand et al. 1987 - http://earthref.org/cgi-bin/err.cgi?n=166														
+Liotard et al. 1982 - http://earthref.org/cgi-bin/err.cgi?n=177														
+Luhr & Carmichael 1980 - http://earthref.org/cgi-bin/err.cgi?n=181														
+Luhr et al. 1984 - http://earthref.org/cgi-bin/err.cgi?n=182														
+Mahood & Stimac 1990 - http://earthref.org/cgi-bin/err.cgi?n=187														
+Marks et al. 2004 - http://earthref.org/cgi-bin/err.cgi?n=99700														
+Matsui et al. 1977 - http://earthref.org/cgi-bin/err.cgi?n=190														
+McKenzie & O'Nions 1991 - http://earthref.org/cgi-bin/err.cgi?n=200														
+Nagasawa & Schnetzler 1971 - http://earthref.org/cgi-bin/err.cgi?n=210														
+Nagasawa 1973 - http://earthref.org/cgi-bin/err.cgi?n=211														
+Nicholls & Harris 1980 - http://earthref.org/cgi-bin/err.cgi?n=219														
+Oberti et al. 2000 - http://earthref.org/cgi-bin/err.cgi?n=99701														
+Philpotts & Schnetzler 1970 - http://earthref.org/cgi-bin/err.cgi?n=232														
+Ronov & Yaroshevskiy 1976 - http://earthref.org/cgi-bin/err.cgi?n=916														
+Schnetzler & Philpotts 1970 - http://earthref.org/cgi-bin/err.cgi?n=240														
+Sisson 1994 - http://earthref.org/cgi-bin/err.cgi?n=258														
+Sweeney et al. 1992 - http://earthref.org/cgi-bin/err.cgi?n=271														
+Villemant et al. 1981 - http://earthref.org/cgi-bin/err.cgi?n=277														
+Witt-Eickschen & Harte 1994 - http://earthref.org/cgi-bin/err.cgi?n=290														
+Zack et al. 1997 - http://earthref.org/cgi-bin/err.cgi?n=296														
+Zack et al. 2002 - http://earthref.org/cgi-bin/err.cgi?n=99712														
+														
+ACKNOWLEDGEMENTS:														
+Sponsored by NSF -- EAR 0000998														
+Supported by the San Diego SuperComputer Center														
+														
+DATABASE STATISTICS:														
+EarthRef.org Database Version: 														
+Search Time: 31 January 2013 10:08:48 AM														
+														
+LINKS TO EARTHREF.ORG:														
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi														
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=amphibole&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&														
+														
+SEARCH VALUES:														
+Search Term(s):  amphibole (Mineral)														
+Rock Type: Any Rock Type														
+Mineral: Any Mineral														
+Element Family: Any Element Family														
+Reference: Adam & Green 2006														
+Sort by: Reference														
+														
+NON-GERM ADDITIONS														
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	3	Li	1.4				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	11	Na	0.785				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	12	Mg	162				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	13	Al	0.643				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	14	Si	0.625				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	19	K	0.1				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	20	Ca	35				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	21	Sc	79				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	22	Ti	12				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	23	V	31				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	25	Mn	7.64				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	30	Zn	13				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	31	Ga	0.832				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	32	Ge	2.89				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	37	Rb	0.012				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	38	Sr	0.442				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	39	Y	6.72				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	40	Zr	0.397				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	41	Nb	1.07				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	56	Ba	0.475				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	57	La	1.04				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	58	Ce	1.99				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	59	Pr	3.53				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	60	Nd	5.16				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	62	Sm	8.1				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	63	Eu	6.32				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	64	Gd	7.33				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	65	Tb	9.74				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	66	Dy	11				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	67	Ho	7.26				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	68	Er	6.52				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	69	Tm	5.13				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	70	Yb	4.6				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	71	Lu	4.21				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	72	Hf	0.821				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	73	Ta	0.427				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	82	Pb	0.066				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	90	Th	0.036				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Amphibole	92	U	0.073				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5

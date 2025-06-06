@@ -53,10 +53,14 @@
         flush(stdout)
         samples[m] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), string.(pr[m]["Mineral"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
         append!(allsamples, unique(samples[m]))
+        any(isequal("Eu3"), pr[m]["Elem"]) && @info m
 
         # Save unique elements
         append!(allelements, unique(pr[m]["Elem"]))
     end
+    append!(allelements, ["Eu3", "Eu2", "Ce3", "Ce4", "U4",])
+
+    # Deduplicate
     allsamples = sort(unique(allsamples))
     allelements = sort(unique(allelements))
 
@@ -93,18 +97,19 @@
 ## --- Fit invariant-charge elements as a function of activation energy and bulk modulus
 
     # Minerals with well-behaved 1+ onuma diagrams
-    m1p = ["Albite", "Allanite", "Amphibole", "Apatite", "Biotite", "Bridgmanite", "Olivine", "Orthopyroxene"]
+    m1p = ["Albite", "Allanite", "Amphibole", "Apatite", "Biotite", "Bridgmanite", "Olivine", "Orthopyroxene",]
 
     # Minerals with well-behaved 2+ onuma diagrams
     m2p = ["Albite", "Apatite", "Cordierite", "Perovskite",]
 
     # Minerals with well-behaved ree 3+ onuma diagrams
-    mree3p = ["Albite", "Allanite", "Amphibole", "Anorthite", "Apatite", "Baddeleyite", "Biotite", "Bridgmanite", "Clinopyroxene", "Cordierite", "Garnet", "Ilmenite", "Leucite", "Magnetite", "Melilite", "Monazite", "Muscovite", "Nepheline", "Olivine", "Orthoclase", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Whitlockite", "Xenotime", "Zircon", "Zoisite"]
+    # mree3p = ["Albite", "Allanite", "Amphibole", "Anorthite", "Apatite", "Baddeleyite", "Biotite", "Bridgmanite", "Chevkinite", "Clinopyroxene", "Cordierite", "Garnet", "Ilmenite", "Leucite", "Magnetite", "Melilite", "Monazite", "Muscovite", "Nepheline", "Olivine", "Orthoclase", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Whitlockite", "Xenotime", "Zircon", "Zoisite",]
+    mree3p = pr["minerals"] # All minerals
 
     # Minerals with well-behaved 3+ onuma diagrams
-    m3p = ["Bridgmanite", "Clinopyroxene", "Garnet", "Orthopyroxene", "Perovskite", "Rutile"]
+    m3p = ["Bridgmanite", "Clinopyroxene", "Garnet", "Orthopyroxene", "Perovskite", "Rutile",]
 
-    m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Zircon"]
+    m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Zircon",]
 
 
     # Need more data:
@@ -112,18 +117,28 @@
 
     e1 = (:Li, :Na, :Ag, :K, :Rb, :Cs)
     e1r = [ionicradius[e] for e in  e1]
+    e1_bonus = ()
+    e1r_bonus = Float64[]
 
     e2 = (:Be, :Fe2, :Co, :Ni, :Mg, :Zn, :Cd, :Ca, :Eu2, :Sr, :Pb, :Ba)
     e2r = [ionicradius[e] for e in  e2]
+    e2_bonus = (:Eu,)
+    e2r_bonus = [ionicradius[e] for e in  (:Eu2,)]
 
     ree3 = (:La, :Ce3, :Pr, :Nd, :Sm, :Eu3, :Gd, :Tb, :Dy, :Ho, :Y, :Er, :Tm, :Yb, :Lu,)
     ree3r = [ionicradius[e] for e in  ree3]
+    ree3_bonus = (:Ce, :Eu,)
+    ree3r_bonus = [ionicradius[e] for e in (:Ce3,:Eu3,)]
 
     e3 = (:Cr, :Fe3, :Sc, :V3, :Lu, :Y, ree3...,)
     e3r = [ionicradius[e] for e in (:Cr3, :Fe3, :Sc, :V3, :Lu, :Y,  ree3...,)]
+    e3_bonus = ()
+    e3r_bonus = Float64[]
 
     e4 = (:Ti, :Sn, :Hf, :Zr, :Ce4, :U4, :Th)
     e4r = [ionicradius[e] for e in  e4]
+    e4_bonus = (:Ce, :U,)
+    e4r_bonus = [ionicradius[e] for e in (:Ce4, :U4,)]
 
     # Equation we're fitting to (from Blundy and Wood, 1994):
     # log10D0 + 4π a * (r0/2*(x-r0)^2 + 1/3*(x-r0)^3)/log(10)
@@ -141,6 +156,9 @@
         charge = ("1+", "2+", "3+ree", "3+", "4+")[j]
         e = String.((e1, e2, ree3, e3, e4)[j])
         r = (e1r, e2r, ree3r, e3r, e4r)[j]
+        e_bonus = String.((e1_bonus, e2_bonus, ree3_bonus, e3_bonus, e4_bonus)[j])
+        r_bonus = (e1r_bonus, e2r_bonus, ree3r_bonus, e3r_bonus, e4r_bonus)[j]
+
         rplot = range(extrema(r)..., length=100)
 
         for m in (m1p, m2p, mree3p, m3p, m4p)[j]
@@ -156,15 +174,19 @@
                 kD = fill(NaN,length(e))
                 for j ∈ eachindex(e)
                     eⱼ = e[j]
-                    if haskey(pd[m], eⱼ)
-                        kD[j] = pd[m][eⱼ][i]
-                    else
-                        kD[j] = NaN
-                    end
+                    kD[j] = haskey(pd[m], eⱼ) ? pd[m][eⱼ][i] : NaN
+                end
+                if count(!isnan, kD) > 0
+                    plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
                 end
 
-                if count(.~isnan.(kD)) > 1
-                    plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
+                kD_bonus = fill(NaN,length(e_bonus))
+                for j ∈ eachindex(e_bonus)
+                    eⱼ = e_bonus[j]
+                    kD_bonus[j] = haskey(pd[m], eⱼ) ? pd[m][eⱼ][i] : NaN
+                end
+                if count(!isnan, kD_bonus) > 0
+                    plot!(h, r_bonus, kD_bonus, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], alpha=0.35, msalpha=0)
                 end
 
                 if (count(.~isnan.(kD)) > 2) && ((nanrange(r[.~isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.~isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
@@ -191,19 +213,14 @@
     end
 
     # Interpolate Eu partition coefficients where missing, assuming
-    # 60% Eu as Eu2+ (c.f. Ba, Sr, Ca) and 40% as Eu3+ (c.f. Sm, Gd)
-    # for m in = ["Albite","Anorthite","Orthoclase","Apatite"]
+    # 60% Eu as Eu2+ (c.f. Sr, Pb) and 40% as Eu3+ (c.f. Sm, Gd)
     for m in pd["minerals"]
         for i ∈ eachindex(pd["samples"])
+            isnan(pd[m]["Eu2"][i]) && (pd[m]["Eu2"][i] = nanmean([pd[m]["Sr"][i], pd[m]["Pb"][i]]))
+            isnan(pd[m]["Eu3"][i]) && (pd[m]["Eu3"][i] = nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
             if isnan(pd[m]["Eu"][i])
-                pd[m]["Eu"][i] = log10(0.6*10^nanmean([pd[m]["Sr"][i], pd[m]["Pb"][i]]) + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
-            end
-        end
-    end
-    for m in ("Monazite", "Xenotime", "Allanite")
-        for i ∈ eachindex(pd["samples"])
-            if isnan(pd[m]["Eu"][i])
-                pd[m]["Eu"][i] = log10(0.6*0 + 0.4*10^nanmean([pd[m]["Sm"][i], pd[m]["Gd"][i]]))
+                Eu_est = nanadd(0.6*exp10(pd[m]["Eu2"][i]), 0.4*exp10(pd[m]["Eu3"][i]))
+                Eu_est > 0 && (pd[m]["Eu"][i] = log10(Eu_est))
             end
         end
     end

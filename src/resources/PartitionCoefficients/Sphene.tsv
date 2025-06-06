@@ -60,392 +60,431 @@ Reference: Green & Pearson 1987
 Sort by: Reference														
 														
 NON-GERM ADDITIONS:														
-rb21-1	Sphene		Li	0.01	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Be	0.001	0.0005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		B	0.0003	0.00015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Sc	2.41	0.83			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		V	5.43	0.4			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Rb	0.0025	0.0025			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Sr	2.77	0.35			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Y	8.36	0.55			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Zr	3.18	0.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Nb	2.19	0.35			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Ba	0.0015	0.0015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		La	6.43	0.6			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Ce	11.1	1.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Nd	18.6	1.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Sm	21.4	2.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Eu	20.4	2.1			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Gd	18.3	1.4			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Dy	12.3	1.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Er	8.32	0.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Yb	4.51	0.39			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Hf	3.81	0.26			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Ta	7.54	0.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Pb	0.05	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		Th	0.22	0.05			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb21-1	Sphene		U	0.18	0.05			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
-rb31-3	Sphene		Li	0.01	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Be	0.001	0.0005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		B	0.001	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Sc	1.64	0.36			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		V	5.94	1.03			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Sr	2.68	0.46			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Y	5.42	1.07			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Zr	1.92	0.96			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Nb	2.2	1.16			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		La	4.73	2.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Ce	7.57	2.88			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Nd	12.4	3.86			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Sm	14	3.92			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Eu	13.8	4.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Gd	11.9	2.73			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Dy	8.27	2			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Er	5.54	1.23			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Yb	3.02	0.57			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Hf	2.43	0.77			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Ta	6.55	2.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Pb	0.04	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		Th	0.16	0.09			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb31-3	Sphene		U	0.14	0.08			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
-rb33-3	Sphene		Sc	1	0.29			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		V	2.72	0.76			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Rb	0.01	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Sr	5.88	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Y	8.04	0.71			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Zr	1.71	0.37			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Nb	4.82	1.03			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Ba	0.01	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		La	7.5	1.41			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Ce	12.1	1.95			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Nd	23.6	2.64			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Sm	26.4	1.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Eu	25.9	2.13			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Gd	20.2	1.75			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Dy	11.3	0.31			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Er	5.34	0.55			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Yb	3.31	0.13			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Ta	8.82	1.87			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Pb	0.07	0.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		Th	0.27	0.08			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb33-3	Sphene		U	0.21	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
-rb34-3	Sphene		Li	0.009	0.0045			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Be	0.003	0.0015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		B	0.011	0.0055			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Sc	1.13	0.56			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		V	21	7.3			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Rb	0.005	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Sr	1.5	0.43			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Y	4.52	0.51			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Zr	1.29	0.68			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Nb	1.84	0.39			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Ba	0.005	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		La	2.39	0.48			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Ce	4.01	0.81			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Nd	7.48	1.82			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Sm	8.89	1.95			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Eu	6.85	1.17			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Gd	7.82	1.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Dy	5.33	0.49			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Er	3.66	0.51			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Yb	2.22	0.33			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Hf	1.55	0.5			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Ta	4.44	0.41			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Pb	0.05	0.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		Th	0.25	0.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-rb34-3	Sphene		U	0.21	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
-Ammonia Tanks Rhyolite	Sphene		Sc	25.3	4.1			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Rb	0.236	0.035			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Sr	1.31	0.62			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Y	1920	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Ba	11	16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		La	370	460			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Ce	570	480			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Pr	1000	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Nd	1300	1500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Sm	1700	1900			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Eu	1600	1500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Gd	1500	1600			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Tb	3200	3200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Dy	1400	1400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Ho	1200	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Er	940	950			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Tm	700	700			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Yb	520	520			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Lu	370	370			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Pb	1.35	0.73			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		Th	27	12			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Ammonia Tanks Rhyolite	Sphene		U	9	6.7			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
-Tiva Canyon Rhyolite	Sphene		Sc	14.2	9.5			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Rb	0.16	0.11			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Sr	0.43	0.49			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Y	800	660			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Ba	0.35	0.29			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		La	150	150			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Ce	240	170			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Pr	410	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Nd	540	420			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Sm	800	570			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Eu	580	550			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Gd	710	540			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Tb	830	630			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Dy	1000	620			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Ho	900	630			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Er	730	470			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Tm	640	510			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Yb	490	350			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Lu	350	580			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Pb	0.42	0.46			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		Th	22	16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Tiva Canyon Rhyolite	Sphene		U	6.9	6.5			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
-Pagosa Peak Dacite	Sphene		Sc	18	14			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Rb	0.039	0.026			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Sr	0.5	0.3			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Y	870	730			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Ba	0.18	0.16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		La	200	210			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Ce	370	270			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Pr	690	550			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Nd	920	750			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Sm	1230	940			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Eu	610	580			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Gd	810	710			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Tb	1130	830			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Dy	1100	760			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Ho	1000	760			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Er	810	590			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Tm	670	560			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Yb	510	380			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Lu	340	320			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Pb	0.19	0.15			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		Th	25	19			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Pagosa Peak Dacite	Sphene		U	9	8.7			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
-Fish Canyon Rhyolite	Sphene		Sc	5.5	3.8			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Rb	0.056	0.038			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Sr	0.154	0.087			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Y	780	650			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Ba	0.072	0.047			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		La	320	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Ce	580	390			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Pr	720	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Nd	850	670			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Sm	910	670			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Eu	360	330			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Gd	790	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Tb	880	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Dy	900	570			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Ho	820	600			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Er	730	520			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Tm	650	530			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Yb	550	390			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Lu	430	370			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Pb	0.24	0.18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		Th	44	33			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Fish Canyon Rhyolite	Sphene		U	30	28			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
-Bonanza Rhyolite	Sphene		Sc	17	18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Rb	0.032	0.051			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Sr	0.28	0.28			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Y	900	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Ba	1.09	0.89			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		La	240	290			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Ce	470	430			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Pr	620	530			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Nd	800	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Sm	1010	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Eu	420	330			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Gd	840	590			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Tb	2000	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Dy	1000	560			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Ho	860	540			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Er	690	430			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Tm	540	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Yb	400	260			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Lu	290	220			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Pb	0.93	0.83			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		Th	26	25			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Bonanza Rhyolite	Sphene		U	27	33			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
-Peach Springs Rhyolite	Sphene		Sc	31	30			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Rb	1.13	0.69			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Sr	0.2	0.18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Y	10200	9800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Ba	4.4	2.9			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		La	1070	950			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Ce	2000	1000			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Pr	2800	1800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Nd	3900	2400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Sm	5600	3400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Eu	6300	6900			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Gd	4700	3100			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Tb	12000	7500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Dy	6800	3400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Ho	6700	5100			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Er	4600	2800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Tm	2800	2400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Yb	1320	880			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Lu	790	690			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Pb	0.78	0.71			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		Th	70	37			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Peach Springs Rhyolite	Sphene		U	33	32			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
-Phonolite	Sphene		Y	30	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Zr	7	1			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Nb	36	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		La	25	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Ce	40	3.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Pr	55	4.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Nd	63	6.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Sm	72	7.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Tb	62	7			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Dy	55	6			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Ho	47	5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Er	37	4			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Tm	28	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Yb	20	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Lu	13	1.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Hf	14	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Ta	110	13			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Pb	0.05	0.01			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		Th	1.9	0.25			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-Phonolite	Sphene		U	1.1	0.135			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
-ASI200	Sphene		Rb	0.00034	4E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Sr	0.54	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Y	0.73	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Zr	2.65	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Nb	1.3	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Cs	0.0024	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Ba	0.0019	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		La	0.4	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Ce	0.55	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Pr	0.83	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Sm	1.23	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Gd	1.09	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Lu	0.31	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Hf	3.07	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Ta	4.94	0.22			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Pb	0.25	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		Th	0.025	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI200	Sphene		U	0.07	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
-ASI220	Sphene		Rb	0.00043	0.00011			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Sr	0.61	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Y	1.53	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Zr	2.57	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Nb	2.81	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Cs	0.0024	0.0004			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Ba	0.0021	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		La	0.81	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Ce	1.21	0.07			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Pr	2.07	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Sm	3.44	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Gd	2.83	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Lu	0.55	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Ta	9.9	1.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Pb	0.23	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		Th	0.045	0.006			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI220	Sphene		U	0.091	0.031			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
-ASI240	Sphene		Rb	0.00025	7E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Sr	0.51	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Y	4.39	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Zr	3.32	0.38			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Nb	2.97	0.17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Cs	0.0018	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Ba	0.0023	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		La	1.38	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Ce	2.35	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Pr	4.55	0.25			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Sm	10.46	0.63			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Gd	9.06	0.67			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Lu	1.33	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Hf	4.71	0.39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Ta	25.1	0.33			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Pb	0.4	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		Th	0.11	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI240	Sphene		U	0.1	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
-ASI250	Sphene		Rb	0.00022	8E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Sr	0.45	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Y	18.5	1.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Zr	2.53	0.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Nb	4.42	0.37			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Cs	0.0017	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Ba	0.0022	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		La	2.76	0.21			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Ce	6.09	0.37			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Pr	15.38	0.97			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Sm	59	4.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Gd	53.4	4.8			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Lu	3.56	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Hf	4.5	0.57			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Ta	63.5	8.6			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Pb	0.57	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		Th	0.23	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI250	Sphene		U	0.093	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
-ASI260	Sphene		Rb	0.00019	3E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Sr	0.44	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Y	126	11			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Zr	2.46	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Nb	6.22	0.53			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Cs	0.0017	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Ba	0.0029	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		La	5.17	0.59			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Ce	16.8	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Pr	58.3	5.9			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Sm	383	46			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Gd	416	51			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Lu	13.2	1.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Hf	4.84	0.62			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Ta	88	17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Pb	0.88	0.23			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		Th	0.48	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI260	Sphene		U	0.104	0.006			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
-ASI280	Sphene		Rb	0.00043	0.0004			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Sr	0.48	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Y	246	39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Zr	2.72	0.39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Nb	6.5	3.7			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Cs	0.0032	0.003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Ba	0.0055	0.005			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		La	8.2	2.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Ce	28.4	3.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Pr	77	11			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Sm	364	85			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Gd	368	58			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Lu	50	6			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Hf	4.74	0.52			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Ta	41	19			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Pb	0.61	0.16			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		Th	3.55	0.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-ASI280	Sphene		U	0.39	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
-DAC Dacite	Sphene		Rb	0.00026	4E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Sr	0.62	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Y	14.3	1.7			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Zr	3.78	0.57			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Nb	7.26	0.73			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Cs	0.0023	0.0005			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Ba	0.0025	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		La	2.17	0.38			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Ce	4.6	0.72			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Pr	9.7	1.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Sm	31.2	4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Gd	30.5	3.9			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Lu	3.65	0.51			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Hf	6.9	1.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Ta	84	14			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Pb	0.87	0.17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		Th	0.28	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-DAC Dacite	Sphene		U	0.14	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
-RHY Rhyolite	Sphene		Rb	0.00033	3E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Sr	0.44	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Y	8.69	0.48			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Zr	3.48	0.47			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Nb	5.44	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Cs	0.0022	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Ba	0.0029	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		La	1.88	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Ce	3.61	0.19			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Pr	7.39	0.45			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Sm	20.4	1.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Gd	18.2	1.5			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Lu	2.38	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Hf	4.9	0.71			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Ta	54.8	7.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Pb	0.75	0.16			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		Th	0.15	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
-RHY Rhyolite	Sphene		U	0.101	0.008			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+rb21-1	Sphene	3	Li	0.01	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	4	Be	0.001	0.0005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	5	B	0.0003	0.00015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	21	Sc	2.41	0.83			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	23	V	5.43	0.4			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	37	Rb	0.0025	0.0025			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	38	Sr	2.77	0.35			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	39	Y	8.36	0.55			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	40	Zr	3.18	0.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	41	Nb	2.19	0.35			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	56	Ba	0.0015	0.0015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	57	La	6.43	0.6			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	58	Ce	11.1	1.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	60	Nd	18.6	1.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	62	Sm	21.4	2.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	63	Eu	20.4	2.1			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	64	Gd	18.3	1.4			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	66	Dy	12.3	1.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	68	Er	8.32	0.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	70	Yb	4.51	0.39			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	72	Hf	3.81	0.26			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	73	Ta	7.54	0.7			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	82	Pb	0.05	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	90	Th	0.22	0.05			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb21-1	Sphene	92	U	0.18	0.05			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.54	5
+rb31-3	Sphene	3	Li	0.01	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	4	Be	0.001	0.0005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	5	B	0.001	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	21	Sc	1.64	0.36			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	23	V	5.94	1.03			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	38	Sr	2.68	0.46			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	39	Y	5.42	1.07			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	40	Zr	1.92	0.96			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	41	Nb	2.2	1.16			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	57	La	4.73	2.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	58	Ce	7.57	2.88			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	60	Nd	12.4	3.86			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	62	Sm	14	3.92			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	63	Eu	13.8	4.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	64	Gd	11.9	2.73			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	66	Dy	8.27	2			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	68	Er	5.54	1.23			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	70	Yb	3.02	0.57			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	72	Hf	2.43	0.77			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	73	Ta	6.55	2.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	82	Pb	0.04	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	90	Th	0.16	0.09			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb31-3	Sphene	92	U	0.14	0.08			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.32	5
+rb33-3	Sphene	21	Sc	1	0.29			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	23	V	2.72	0.76			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	37	Rb	0.01	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	38	Sr	5.88	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	39	Y	8.04	0.71			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	40	Zr	1.71	0.37			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	41	Nb	4.82	1.03			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	56	Ba	0.01	0.01			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	57	La	7.5	1.41			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	58	Ce	12.1	1.95			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	60	Nd	23.6	2.64			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	62	Sm	26.4	1.19			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	63	Eu	25.9	2.13			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	64	Gd	20.2	1.75			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	66	Dy	11.3	0.31			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	68	Er	5.34	0.55			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	70	Yb	3.31	0.13			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	73	Ta	8.82	1.87			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	82	Pb	0.07	0.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	90	Th	0.27	0.08			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb33-3	Sphene	92	U	0.21	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.8	5
+rb34-3	Sphene	3	Li	0.009	0.0045			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	4	Be	0.003	0.0015			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	5	B	0.011	0.0055			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	21	Sc	1.13	0.56			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	23	V	21	7.3			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	37	Rb	0.005	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	38	Sr	1.5	0.43			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	39	Y	4.52	0.51			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	40	Zr	1.29	0.68			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	41	Nb	1.84	0.39			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	56	Ba	0.005	0.005			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	57	La	2.39	0.48			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	58	Ce	4.01	0.81			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	60	Nd	7.48	1.82			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	62	Sm	8.89	1.95			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	63	Eu	6.85	1.17			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	64	Gd	7.82	1.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	66	Dy	5.33	0.49			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	68	Er	3.66	0.51			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	70	Yb	2.22	0.33			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	72	Hf	1.55	0.5			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	73	Ta	4.44	0.41			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	82	Pb	0.05	0.02			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	90	Th	0.25	0.06			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+rb34-3	Sphene	92	U	0.21	0.04			Experimental	Tiepolo 2002 10.1016/S0009-2541(02)00151-1	Solid-Melt	CBK addition	15-MAY-2014	55.15	5
+Ammonia Tanks Rhyolite	Sphene	21	Sc	25.3	4.1			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	37	Rb	0.236	0.035			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	38	Sr	1.31	0.62			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	39	Y	1920	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	56	Ba	11	16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	57	La	370	460			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	58	Ce	570	480			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	59	Pr	1000	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	60	Nd	1300	1500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	62	Sm	1700	1900			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	63	Eu	1600	1500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	64	Gd	1500	1600			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	65	Tb	3200	3200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	66	Dy	1400	1400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	67	Ho	1200	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	68	Er	940	950			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	69	Tm	700	700			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	70	Yb	520	520			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	71	Lu	370	370			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	82	Pb	1.35	0.73			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	90	Th	27	12			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Ammonia Tanks Rhyolite	Sphene	92	U	9	6.7			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.5	5
+Tiva Canyon Rhyolite	Sphene	21	Sc	14.2	9.5			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	37	Rb	0.16	0.11			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	38	Sr	0.43	0.49			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	39	Y	800	660			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	56	Ba	0.35	0.29			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	57	La	150	150			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	58	Ce	240	170			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	59	Pr	410	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	60	Nd	540	420			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	62	Sm	800	570			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	63	Eu	580	550			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	64	Gd	710	540			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	65	Tb	830	630			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	66	Dy	1000	620			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	67	Ho	900	630			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	68	Er	730	470			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	69	Tm	640	510			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	70	Yb	490	350			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	71	Lu	350	580			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	82	Pb	0.42	0.46			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	90	Th	22	16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Tiva Canyon Rhyolite	Sphene	92	U	6.9	6.5			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.21	5
+Pagosa Peak Dacite	Sphene	21	Sc	18	14			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	37	Rb	0.039	0.026			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	38	Sr	0.5	0.3			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	39	Y	870	730			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	56	Ba	0.18	0.16			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	57	La	200	210			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	58	Ce	370	270			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	59	Pr	690	550			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	60	Nd	920	750			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	62	Sm	1230	940			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	63	Eu	610	580			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	64	Gd	810	710			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	65	Tb	1130	830			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	66	Dy	1100	760			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	67	Ho	1000	760			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	68	Er	810	590			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	69	Tm	670	560			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	70	Yb	510	380			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	71	Lu	340	320			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	82	Pb	0.19	0.15			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	90	Th	25	19			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Pagosa Peak Dacite	Sphene	92	U	9	8.7			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	74.87	5
+Fish Canyon Rhyolite	Sphene	21	Sc	5.5	3.8			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	37	Rb	0.056	0.038			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	38	Sr	0.154	0.087			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	39	Y	780	650			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	56	Ba	0.072	0.047			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	57	La	320	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	58	Ce	580	390			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	59	Pr	720	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	60	Nd	850	670			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	62	Sm	910	670			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	63	Eu	360	330			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	64	Gd	790	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	65	Tb	880	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	66	Dy	900	570			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	67	Ho	820	600			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	68	Er	730	520			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	69	Tm	650	530			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	70	Yb	550	390			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	71	Lu	430	370			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	82	Pb	0.24	0.18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	90	Th	44	33			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Fish Canyon Rhyolite	Sphene	92	U	30	28			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	75.05	5
+Bonanza Rhyolite	Sphene	21	Sc	17	18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	37	Rb	0.032	0.051			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	38	Sr	0.28	0.28			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	39	Y	900	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	56	Ba	1.09	0.89			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	57	La	240	290			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	58	Ce	470	430			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	59	Pr	620	530			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	60	Nd	800	610			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	62	Sm	1010	640			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	63	Eu	420	330			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	64	Gd	840	590			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	65	Tb	2000	1200			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	66	Dy	1000	560			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	67	Ho	860	540			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	68	Er	690	430			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	69	Tm	540	360			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	70	Yb	400	260			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	71	Lu	290	220			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	82	Pb	0.93	0.83			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	90	Th	26	25			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Bonanza Rhyolite	Sphene	92	U	27	33			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	76.02	5
+Peach Springs Rhyolite	Sphene	21	Sc	31	30			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	37	Rb	1.13	0.69			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	38	Sr	0.2	0.18			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	39	Y	10200	9800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	56	Ba	4.4	2.9			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	57	La	1070	950			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	58	Ce	2000	1000			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	59	Pr	2800	1800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	60	Nd	3900	2400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	62	Sm	5600	3400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	63	Eu	6300	6900			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	64	Gd	4700	3100			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	65	Tb	12000	7500			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	66	Dy	6800	3400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	67	Ho	6700	5100			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	68	Er	4600	2800			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	69	Tm	2800	2400			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	70	Yb	1320	880			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	71	Lu	790	690			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	82	Pb	0.78	0.71			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	90	Th	70	37			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Peach Springs Rhyolite	Sphene	92	U	33	32			Phenocryst-Matrix	Ackerson MS Thesis  2011	Solid-Melt	CBK addition	15-MAY-2014	72.4	5
+Phonolite	Sphene	39	Y	30	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	40	Zr	7	1			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	41	Nb	36	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	57	La	25	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	58	Ce	40	3.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	59	Pr	55	4.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	60	Nd	63	6.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	62	Sm	72	7.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	65	Tb	62	7			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	66	Dy	55	6			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	67	Ho	47	5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	68	Er	37	4			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	69	Tm	28	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	70	Yb	20	2.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	71	Lu	13	1.5			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	72	Hf	14	3			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	73	Ta	110	13			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	82	Pb	0.05	0.01			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	90	Th	1.9	0.25			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+Phonolite	Sphene	92	U	1.1	0.135			Phenocryst-Matrix	Olin 2012 10.1016/j.lithos.2011.10.007	Solid-Melt	CBK addition	15-MAY-2014	58	5
+ASI200	Sphene	37	Rb	0.00034	4E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	38	Sr	0.54	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	39	Y	0.73	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	40	Zr	2.65	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	41	Nb	1.3	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	55	Cs	0.0024	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	56	Ba	0.0019	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	57	La	0.4	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	58	Ce	0.55	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	59	Pr	0.83	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	62	Sm	1.23	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	64	Gd	1.09	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	71	Lu	0.31	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	72	Hf	3.07	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	73	Ta	4.94	0.22			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	82	Pb	0.25	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	90	Th	0.025	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI200	Sphene	92	U	0.07	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	55.88	5
+ASI220	Sphene	37	Rb	0.00043	0.00011			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	38	Sr	0.61	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	39	Y	1.53	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	40	Zr	2.57	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	41	Nb	2.81	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	55	Cs	0.0024	0.0004			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	56	Ba	0.0021	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	57	La	0.81	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	58	Ce	1.21	0.07			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	59	Pr	2.07	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	62	Sm	3.44	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	64	Gd	2.83	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	71	Lu	0.55	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	73	Ta	9.9	1.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	82	Pb	0.23	0.05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	90	Th	0.045	0.006			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI220	Sphene	92	U	0.091	0.031			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	59.87	5
+ASI240	Sphene	37	Rb	0.00025	7E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	38	Sr	0.51	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	39	Y	4.39	0.24			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	40	Zr	3.32	0.38			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	41	Nb	2.97	0.17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	55	Cs	0.0018	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	56	Ba	0.0023	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	57	La	1.38	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	58	Ce	2.35	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	59	Pr	4.55	0.25			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	62	Sm	10.46	0.63			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	64	Gd	9.06	0.67			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	71	Lu	1.33	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	72	Hf	4.71	0.39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	73	Ta	25.1	0.33			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	82	Pb	0.4	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	90	Th	0.11	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI240	Sphene	92	U	0.1	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.67	5
+ASI250	Sphene	37	Rb	0.00022	8E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	38	Sr	0.45	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	39	Y	18.5	1.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	40	Zr	2.53	0.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	41	Nb	4.42	0.37			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	55	Cs	0.0017	0.0003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	56	Ba	0.0022	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	57	La	2.76	0.21			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	58	Ce	6.09	0.37			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	59	Pr	15.38	0.97			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	62	Sm	59	4.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	64	Gd	53.4	4.8			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	71	Lu	3.56	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	72	Hf	4.5	0.57			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	73	Ta	63.5	8.6			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	82	Pb	0.57	0.13			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	90	Th	0.23	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI250	Sphene	92	U	0.093	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.99	5
+ASI260	Sphene	37	Rb	0.00019	3E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	38	Sr	0.44	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	39	Y	126	11			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	40	Zr	2.46	0.26			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	41	Nb	6.22	0.53			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	55	Cs	0.0017	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	56	Ba	0.0029	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	57	La	5.17	0.59			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	58	Ce	16.8	0.18			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	59	Pr	58.3	5.9			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	62	Sm	383	46			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	64	Gd	416	51			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	71	Lu	13.2	1.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	72	Hf	4.84	0.62			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	73	Ta	88	17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	82	Pb	0.88	0.23			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	90	Th	0.48	0.09			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI260	Sphene	92	U	0.104	0.006			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	61.37	5
+ASI280	Sphene	37	Rb	0.00043	0.0004			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	38	Sr	0.48	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	39	Y	246	39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	40	Zr	2.72	0.39			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	41	Nb	6.5	3.7			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	55	Cs	0.0032	0.003			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	56	Ba	0.0055	0.005			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	57	La	8.2	2.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	58	Ce	28.4	3.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	59	Pr	77	11			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	62	Sm	364	85			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	64	Gd	368	58			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	71	Lu	50	6			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	72	Hf	4.74	0.52			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	73	Ta	41	19			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	82	Pb	0.61	0.16			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	90	Th	3.55	0.3			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+ASI280	Sphene	92	U	0.39	0.04			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	57.51	5
+DAC Dacite	Sphene	37	Rb	0.00026	4E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	38	Sr	0.62	0.03			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	39	Y	14.3	1.7			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	40	Zr	3.78	0.57			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	41	Nb	7.26	0.73			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	55	Cs	0.0023	0.0005			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	56	Ba	0.0025	0.0002			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	57	La	2.17	0.38			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	58	Ce	4.6	0.72			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	59	Pr	9.7	1.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	62	Sm	31.2	4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	64	Gd	30.5	3.9			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	71	Lu	3.65	0.51			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	72	Hf	6.9	1.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	73	Ta	84	14			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	82	Pb	0.87	0.17			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	90	Th	0.28	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+DAC Dacite	Sphene	92	U	0.14	0.02			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	62.8	5
+RHY Rhyolite	Sphene	37	Rb	0.00033	3E-05			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	38	Sr	0.44	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	39	Y	8.69	0.48			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	40	Zr	3.48	0.47			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	41	Nb	5.44	0.1			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	55	Cs	0.0022	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	56	Ba	0.0029	0.0001			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	57	La	1.88	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	58	Ce	3.61	0.19			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	59	Pr	7.39	0.45			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	62	Sm	20.4	1.4			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	64	Gd	18.2	1.5			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	71	Lu	2.38	0.08			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	72	Hf	4.9	0.71			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	73	Ta	54.8	7.2			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	82	Pb	0.75	0.16			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	90	Th	0.15	0.01			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+RHY Rhyolite	Sphene	92	U	0.101	0.008			Experimental	Prowatke and Klemme 2005 10.1016/j.gca.2004.06.037	Solid-Melt	CBK addition	15-MAY-2014	67.22	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	3	Li	1.41				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	5	B	2.82				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	11	Na	0.022				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	12	Mg	1.14				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	13	Al	0.164				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	14	Si	0.395				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	20	Ca	79				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	21	Sc	19				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	22	Ti	251				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	23	V	214				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	25	Mn	6.26				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	30	Zn	2.75				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	31	Ga	0.598				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	32	Ge	15				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	37	Rb	0.015				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	38	Sr	0.904				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	39	Y	344				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	40	Zr	8.66				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	41	Nb	61				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	56	Ba	9.08				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	57	La	75				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	58	Ce	160				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	59	Pr	288				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	60	Nd	438				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	62	Sm	733				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	63	Eu	551				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	64	Gd	596				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	65	Tb	727				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	66	Dy	655				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	67	Ho	437				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	68	Er	361				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	69	Tm	229				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	70	Yb	183				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	71	Lu	126				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	72	Hf	16				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	73	Ta	76				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	82	Pb	0.143				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	90	Th	9.08				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Sphene	92	U	3.65				Phenocryst-Matrix	Padill a & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5

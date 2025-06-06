@@ -163,7 +163,7 @@ for j in 1:5
                 end
             end
 
-            if count(.~isnan.(kD)) > 1
+            if count(.!isnan.(kD)) > 0
                 plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
             end
 

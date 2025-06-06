@@ -459,16 +459,48 @@ BS25 Carbonatite	Apatite		Ta	0.006	0.003			Experimental	Klemme and Dalpe 2003 10
 BS25 Carbonatite	Apatite		Pb	0.02	0.03			Experimental	Klemme and Dalpe 2003 10.2138/am-2003-0417	Solid-Melt	CBK addition	15-MAY-2014	NaN	NaN
 BS25 Carbonatite	Apatite		Th	0.13	0.06			Experimental	Klemme and Dalpe 2003 10.2138/am-2003-0417	Solid-Melt	CBK addition	15-MAY-2014	NaN	NaN
 Torihama Dacite	Apatite		La	36	11			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	73.34	5
-Torihama Dacite	Apatite		Ce	48	15			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	74.34	6
-Torihama Dacite	Apatite		Pr	64	19			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	75.34	7
-Torihama Dacite	Apatite		Nd	77	23			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	76.34	8
-Torihama Dacite	Apatite		Sm	93	28			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	77.34	9
-Torihama Dacite	Apatite		Eu	55	17			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	78.34	10
-Torihama Dacite	Apatite		Gd	127	38			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	79.34	11
-Torihama Dacite	Apatite		Tb	102	31			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	80.34	12
-Torihama Dacite	Apatite		Dy	76	23			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	81.34	13
-Torihama Dacite	Apatite		Ho	62	19			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	82.34	14
-Torihama Dacite	Apatite		Er	57	17			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	83.34	15
-Torihama Dacite	Apatite		Tm	53	16			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	84.34	16
-Torihama Dacite	Apatite		Yb	48	14			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	85.34	17
-Torihama Dacite	Apatite		Lu	33	10			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	86.34	18
+Torihama Dacite	Apatite		Ce	48	15			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	74.34	5
+Torihama Dacite	Apatite		Pr	64	19			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	75.34	5
+Torihama Dacite	Apatite		Nd	77	23			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	76.34	5
+Torihama Dacite	Apatite		Sm	93	28			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	77.34	5
+Torihama Dacite	Apatite		Eu	55	17			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	78.34	5
+Torihama Dacite	Apatite		Gd	127	38			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	79.34	5
+Torihama Dacite	Apatite		Tb	102	31			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	80.34	5
+Torihama Dacite	Apatite		Dy	76	23			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	81.34	5
+Torihama Dacite	Apatite		Ho	62	19			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	82.34	5
+Torihama Dacite	Apatite		Er	57	17			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	83.34	5
+Torihama Dacite	Apatite		Tm	53	16			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	84.34	5
+Torihama Dacite	Apatite		Yb	48	14			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	85.34	5
+Torihama Dacite	Apatite		Lu	33	10			Phenocryst-Matrix	Sano 2002 10.1016/s0009-2541(01)00366-7	Solid-Melt	CBK addition	15-MAY-2014	86.34	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	3	Li	277				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	11	Na	8.42				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	20	Ca	160				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	21	Sc	152				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	22	Ti	575				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	23	V	909				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	31	Ga	45				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	38	Sr	57				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	39	Y	135				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	40	Zr	1.62				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	41	Nb	54				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	55	Cs	84				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	56	Ba	489				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	57	La	109				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	58	Ce	133				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	59	Pr	169				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	60	Nd	239				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	62	Sm	253				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	63	Eu	152				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	64	Gd	230				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	65	Tb	280				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	66	Dy	232				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	67	Ho	168				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	68	Er	111				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	69	Tm	80				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	70	Yb	77				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	71	Lu	42				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	73	Ta	15				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	81	Tl	64				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	82	Pb	5.36				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	90	Th	5.13				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+Peach Springs Tuff high-silica rhyolite KPST01A	Apatite	92	U	2.07				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
