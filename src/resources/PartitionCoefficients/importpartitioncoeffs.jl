@@ -112,9 +112,6 @@
     m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Zircon",]
 
 
-    # Need more data:
-    # Spinel (different kinds?) check existing REE data
-
     e1 = (:Li, :Na, :Ag, :K, :Rb, :Cs)
     e1r = [ionicradius[e] for e in  e1]
     e1_bonus = ()
@@ -162,7 +159,6 @@
         rplot = range(extrema(r)..., length=100)
 
         for m in (m1p, m2p, mree3p, m3p, m4p)[j]
-
             h = plot(title=m, 
                 legend=:bottomleft, 
                 ylabel="log10(Kd)",
@@ -186,12 +182,12 @@
                     kD_bonus[j] = haskey(pd[m], eⱼ) ? pd[m][eⱼ][i] : NaN
                 end
                 if count(!isnan, kD_bonus) > 0
-                    plot!(h, r_bonus, kD_bonus, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], alpha=0.35, msalpha=0)
+                    plot!(h, r_bonus, kD_bonus, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], alpha=0.25, msalpha=0)
                 end
 
-                if (count(.~isnan.(kD)) > 2) && ((nanrange(r[.~isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.~isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
+                if (count(.!isnan.(kD)) > 2) && ((nanrange(r[.!isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.!isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
                     # Fit to Blundy and Wood curve
-                    t = .~( isnan.(kD) .| isinf.(kD) )
+                    t = .!( isnan.(kD) .| isinf.(kD) )
                     param = [maximum(kD[t]), -1e-4, nanmean(r)] # initial guess
                     f = curve_fit(blundy_wood, r[t], kD[t], param; lower, upper) # Fit
                     @info "$m : $(f.param)"

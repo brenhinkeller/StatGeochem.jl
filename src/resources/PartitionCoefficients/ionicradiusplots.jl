@@ -91,40 +91,30 @@ end
 
 ## --- Fit invariant-charge elements as a function of activation energy and bulk modulus
 
-
-# Minerals with well-behaved 1+ onuma diagrams
-m1p = ["Albite", "Allanite", "Amphibole", "Apatite", "Biotite", "Bridgmanite", "Olivine", "Orthopyroxene"]
-
-# Minerals with well-behaved 2+ onuma diagrams
-m2p = ["Albite", "Apatite", "Cordierite", "Perovskite",]
-
-# Minerals with well-behaved ree 3+ onuma diagrams
-mree3p = ["Albite", "Allanite", "Amphibole", "Anorthite", "Apatite", "Baddeleyite", "Biotite", "Bridgmanite", "Clinopyroxene", "Cordierite", "Garnet", "Ilmenite", "Leucite", "Magnetite", "Melilite", "Monazite", "Muscovite", "Nepheline", "Olivine", "Orthoclase", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Whitlockite", "Xenotime", "Zircon", "Zoisite"]
-
-# Minerals with well-behaved 3+ onuma diagrams
-m3p = ["Bridgmanite", "Clinopyroxene", "Garnet", "Orthopyroxene", "Perovskite", "Rutile"]
-
-m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Zircon"]
-
-
-# Need more data:
-# Spinel (different kinds?) check existing REE data
-
 e1 = (:Li, :Na, :Ag, :K, :Rb, :Cs)
 e1r = [ionicradius[e] for e in  e1]
+e1_bonus = ()
+e1r_bonus = Float64[]
 
 e2 = (:Be, :Fe2, :Co, :Ni, :Mg, :Zn, :Cd, :Ca, :Eu2, :Sr, :Pb, :Ba)
 e2r = [ionicradius[e] for e in  e2]
+e2_bonus = (:Eu,)
+e2r_bonus = [ionicradius[e] for e in  (:Eu2,)]
 
 ree3 = (:La, :Ce3, :Pr, :Nd, :Sm, :Eu3, :Gd, :Tb, :Dy, :Ho, :Y, :Er, :Tm, :Yb, :Lu,)
 ree3r = [ionicradius[e] for e in  ree3]
+ree3_bonus = (:Ce, :Eu,)
+ree3r_bonus = [ionicradius[e] for e in (:Ce3,:Eu3,)]
 
-# :Al, :Ga, :Sb, :In,
 e3 = (:Cr, :Fe3, :Sc, :V3, :Lu, :Y, ree3...,)
 e3r = [ionicradius[e] for e in (:Cr3, :Fe3, :Sc, :V3, :Lu, :Y,  ree3...,)]
+e3_bonus = ()
+e3r_bonus = Float64[]
 
 e4 = (:Ti, :Sn, :Hf, :Zr, :Ce4, :U4, :Th)
 e4r = [ionicradius[e] for e in  e4]
+e4_bonus = (:Ce, :U,)
+e4r_bonus = [ionicradius[e] for e in (:Ce4, :U4,)]
 
 # Equation we're fitting to (from Blundy and Wood, 1994):
 # log10D0 + 4π a * (r0/2*(x-r0)^2 + 1/3*(x-r0)^3)/log(10)
@@ -142,9 +132,12 @@ for j in 1:5
     charge = ("1+", "2+", "3+ree", "3+", "4+")[j]
     e = String.((e1, e2, ree3, e3, e4)[j])
     r = (e1r, e2r, ree3r, e3r, e4r)[j]
-    rplot = range(extrema(r)..., length=100)
-    for m in pd["minerals"]
+    e_bonus = String.((e1_bonus, e2_bonus, ree3_bonus, e3_bonus, e4_bonus)[j])
+    r_bonus = (e1r_bonus, e2r_bonus, ree3r_bonus, e3r_bonus, e4r_bonus)[j]
 
+    rplot = range(extrema(r)..., length=100)
+
+    for m in pd["minerals"]
         h = plot(title=m, 
             legend=:bottomleft, 
             ylabel="log10(Kd)",
@@ -156,20 +149,24 @@ for j in 1:5
             kD = fill(NaN,length(e))
             for j ∈ eachindex(e)
                 eⱼ = e[j]
-                if haskey(pd[m], eⱼ)
-                    kD[j] = pd[m][eⱼ][i]
-                else
-                    kD[j] = NaN
-                end
+                kD[j] = haskey(pd[m], eⱼ) ? pd[m][eⱼ][i] : NaN
             end
-
-            if count(.!isnan.(kD)) > 0
+            if count(!isnan, kD) > 0
                 plot!(h, r, kD, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], msalpha=0)
             end
 
-            if (count(.~isnan.(kD)) > 2) && ((nanrange(r[.~isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.~isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
+            kD_bonus = fill(NaN,length(e_bonus))
+            for j ∈ eachindex(e_bonus)
+                eⱼ = e_bonus[j]
+                kD_bonus[j] = haskey(pd[m], eⱼ) ? pd[m][eⱼ][i] : NaN
+            end
+            if count(!isnan, kD_bonus) > 0
+                plot!(h, r_bonus, kD_bonus, label="", seriestype=:scatter, color=lines[mod(i,length(lines))+1], alpha=0.25, msalpha=0)
+            end
+
+            if (count(.!isnan.(kD)) > 2) && ((nanrange(r[.!isnan.(kD)]) > 0.55*nanrange(r)) || ((nanrange(r[.!isnan.(kD)]) > 0.45*nanrange(r)) && charge=="3+ree" ))
                 # Fit to Blundy and Wood curve
-                t = .~( isnan.(kD) .| isinf.(kD) )
+                t = .!( isnan.(kD) .| isinf.(kD) )
                 param = [maximum(kD[t]), -1e-4, nanmean(r)] # initial guess
                 f = curve_fit(blundy_wood, r[t], kD[t], param; lower, upper) # Fit
                 @info "$m : $(f.param)"
