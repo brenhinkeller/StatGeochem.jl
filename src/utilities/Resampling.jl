@@ -1077,7 +1077,7 @@
             @batch for g ∈ eachindex(spatialscaleᵣ)
                 for h ∈ eachindex(agescale)
                     kᵢ = 0.0
-                    @inbounds for j ∈ 1:N
+                    @inbounds @simd ivdep for j ∈ 1:N
                         kᵢⱼ = 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
                         kᵢ += kᵢⱼ
                     end
@@ -1175,18 +1175,12 @@
         k = Array{Float64}(undef, N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds @batch for i ∈ 1:N
-            if isnan(x[i])
-                # If there is missing data, set k=inf for weight=0
-                k[i] = Inf
-            else
-                # Otherwise, calculate weight
-                kᵢ = 0.0
-                @turbo for j ∈ 1:N
-                    kᵢⱼ = 1.0 / ( (abs(x[i] - x[j])/xscale)^lp + 1.0)
-                    kᵢ += kᵢⱼ
-                end
-                k[i] = kᵢ
+            kᵢ = 0.0
+            @turbo for j ∈ 1:N
+                kᵢⱼ = 1.0 / ( (abs(x[i] - x[j])/xscale)^lp + 1.0)
+                kᵢ += kᵢⱼ
             end
+            k[i] = kᵢ
             (i % 10 == 0) && next!(p)
         end
         return k
@@ -1196,15 +1190,33 @@
 
     """
     ```julia
-    k = invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
+    k = invweight_age(age::AbstractArray;
+        \tlp::Number=2, 
+        \tagescale::Number=38.0
+    )
     ```
 
     Find the inverse weights `k` (proportional to temporal sample density) for
     a set of geological samples with specified `age` (of crystallization, deposition, etc.).
     """
-    function invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
-        return invweight(age, agescale, lp=lp)
-    end
+    invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0) = invweight(age, agescale; lp)
     export invweight_age
+
+
+    """
+    ```julia
+    resamplingprobability(k; median_probability::Number=1/6)
+    ```
+
+    Calculate scaled resampling probabilities `p` given a vector of inverse weights `k` 
+    and a desired median resampling probability (1/6 by default).
+    """
+    function resamplingprobability(k; median_probability::Number=1/6)
+        median_k = 1/median_probability - 1
+        f = median_k / nanmedian(filter(isfinite, k))
+        p = @. 1 / ((k * f) + 1)
+        return p
+    end
+    export resamplingprobability
 
 ## --- End of file
