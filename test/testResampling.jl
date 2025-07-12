@@ -196,6 +196,31 @@
     @test isapprox(el, [0.05, 0.08, 0.15, 0.4, 3.1], rtol=0.5)
     @test isapprox(eu, [0.05, 0.09, 0.17, 0.51, 6.42], rtol=0.5)
 
+## --- Constant silica reference model
+
+    N = 10000
+    SiO2 = rand(N) * 40 .+ 40
+    Age = rand(N) * 3800
+    Y = 1 .+ rand(N) .* (SiO2 .- 40)./10 .* (4000 .- Age)./1000
+    ds = (; Y=Y, Age=Age, SiO2=SiO2, Y_sigma=Y*0.05, Age_sigma=Age*0.05)
+
+    c,m,el,eu = constproportion(bin_bsr_means, ds, "Age", "Y", 0, 4000, 8)
+    @test c == 250:500:3750
+    @test round.(m, sigdigits=2) ≈  [4.9, 4.4, 3.8, 3.4, 2.8, 2.3, 1.8, 1.4] rtol=0.2
+    @test round.(el, sigdigits=2) ≈ [0.12, 0.1, 0.091, 0.08, 0.063, 0.043, 0.029, 0.021] rtol=0.2
+    @test round.(eu, sigdigits=2) ≈ [0.12, 0.1, 0.092, 0.074, 0.062, 0.043, 0.03, 0.023] rtol=0.2
+
+    Num = 10 .+ rand(N) .* (SiO2 .- 40)./10 .* (4000 .- Age)./1000
+    Denom = 100 .- rand(N) .* (SiO2 .- 40)./10 .* Age./1000
+    ds = (; ds..., Num=Num, Denom=Denom, Num_sigma=0.05Num, Denom_sigma=0.05Denom)
+
+    c,m,el,eu = constproportion(bin_bsr_ratio_medians, ds, "Age", "Num", "Denom", 0, 4000, 8)
+    @test c == 250:500:3750
+    @test round.(m, sigdigits=2) ≈ [0.14, 0.13, 0.13, 0.12, 0.12, 0.12, 0.11, 0.11] rtol=0.2
+    @test round.(el, sigdigits=2) ≈ [0.0019, 0.0018, 0.0016, 0.0014, 0.0011, 0.00087, 0.00073, 0.00084] rtol=0.2
+    @test round.(eu, sigdigits=2) ≈ [0.002, 0.0018, 0.0017, 0.0013, 0.0011, 0.00089, 0.00076, 0.00083] rtol=0.2
+
+
 ## --- Monte Carlo interpolation/fitting
 
     (c,m) = mcfit(0:11, ones(12), 0:11, ones(12), 1, 10, 10)
