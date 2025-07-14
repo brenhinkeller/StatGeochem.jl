@@ -1582,6 +1582,32 @@ export perplex_query_system
         end
     end
     
+    """
+    ```julia
+    perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
+        \tapatite = :Harrison,  # Harrison & Watson 1984 (doi: 10.1016/0016-7037(84)90403-4) + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
+        \tzircon = :Boehnke,    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+        \tsphene = :Ayers,      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+        \tmonazite = :Montel,   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \texport_bulk_kds::Bool = false,
+        \texport_mineral_kds::Bool = false,
+        \texport_mineral_compositions::Bool = false,
+        \trequire_phase_for_export = "",
+        \tkwargs...,
+    )
+    ```
+    Calculate trace element compositions of all phases, including accessory minerals, by
+        1. Calculating the phase assemblage and (if applicable) melt composition given the bulk 
+            major element composition via equilibrium thermodynamics using Perple_X
+        2. Calculating equilibrium trace element concentrations in all phases (particularly
+            including melt, if present) using GERM-based partition coefficients (`germ_kd`) 
+        3. Evaluating the saturation state of accessory minerals given the calculated 
+            trace element abundances
+        4. Recalculating trace element partitioning in the presence of newly-saturated
+            accessory phases
+    
+    The results are returned as a dictionary.
+    """
     function perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
             apatite = :Harrison,
             zircon = :Boehnke,
@@ -1607,15 +1633,15 @@ export perplex_query_system
 
         # Add extra composite modes
         colshape = size(modes["T(K)"])
-        modes["all_solids"] = fill(NaN, colshape)
+        modes["all_solids"] = fill(0.0, colshape)
         for m in filter(perplex_phase_is_solid,  keys(modes))
             nanadd!(modes["all_solids"], modes[m])
         end
-        modes["all_fluids"] = fill(NaN, colshape)
+        modes["all_fluids"] = fill(0.0, colshape)
         for m in filter(perplex_phase_is_fluid,  keys(modes))
             nanadd!(modes["all_fluids"], modes[m])
         end
-        modes["all_melts"] = fill(NaN, colshape)
+        modes["all_melts"] = fill(0.0, colshape)
         for m in filter(perplex_phase_is_melt,  keys(modes))
             nanadd!(modes["all_melts"], modes[m])
         end
@@ -1664,6 +1690,8 @@ export perplex_query_system
         # Prepare to add accessory minerals (zircon, apatite, sphene)
         # Note that all Fe is _already_ as FeO, since perplex melt has no Fe2O3
         # (redox balance is with O2 instead)
+        _, lastmelt = findmin(x->(x > 0 ? x : Inf), modes["all_melts"])
+        subsolidus = modes["all_melts"] .== 0
 
         if apatite === :Harrison
             # Add apatite using the apatite saturation temperature of Harrison and Watson
@@ -1677,6 +1705,7 @@ export perplex_query_system
             # of melt actually cancels when you write out the equation for this.
             P_in_apatite = max.(calculated["P"] - PSat, 0) .* composition["P"]./calculated["P"]
             modes["apatite"] = P_in_apatite * 4.36008264/10_000
+            modes["apatite"][subsolidus] .= modes["apatite"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["apatite"])
             map!(x -> (x>0 ? x : NaN), modes["apatite"], modes["apatite"])  # NaN-out zero masses, for printing
 
@@ -1701,6 +1730,7 @@ export perplex_query_system
             Zr_in_zircon = max.(ZrHf - ZrSat, 0) .* (composition["Zr"]+composition["Hf"])./ZrHf
             # Convert from zirconium mass to zircon mass and from ppm to wt. %
             modes["zircon"] = Zr_in_zircon * 2.009/10_000
+            modes["zircon"][subsolidus] .= modes["zircon"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["zircon"])
             map!(x -> (x>0 ? x : NaN), modes["zircon"], modes["zircon"]) # NaN-out zero masses, for printing
 
@@ -1717,8 +1747,9 @@ export perplex_query_system
             dataset_uppercase && (e = uppercase.(e))
             TiO2Sat = StatGeochem.Ayers_tspheneTiO2.((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))...)
             modes["sphene"] = modes[melt_model]/100 .* max.(melt["TiO2"] - TiO2Sat, 0)*2.4545
-            nanadd!(modes["all_solids"], modes["sphene"])
             nanadd!(modes[melt_model], -modes["sphene"])
+            modes["sphene"][subsolidus] .= modes["sphene"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
+            nanadd!(modes["all_solids"], modes["sphene"])
             map!(x -> (x>0 ? x : NaN), modes["sphene"], modes["sphene"]) # NaN-out zero masses, for printing
             melt["TiO2"] = min.(melt["TiO2"], TiO2Sat)
         end
@@ -1736,6 +1767,7 @@ export perplex_query_system
             # REEt_in_monazite = modes[melt_model]/100 .* max.(melt_REEt - REEtSat, 0) # naive
             REEt_in_monazite = max.(melt_REEt - REEtSat, 0.) .* bulk_REEt./melt_REEt # accounting for back-equilibration
             modes["monazite"] = REEt_in_monazite .* (StatGeochem.LREEmolwt.(melt_lree...) .+ 94.969762)/10_000
+            modes["monazite"][subsolidus] .= modes["monazite"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["monazite"])
             map!(x -> (x>0 ? x : NaN), modes["monazite"], modes["monazite"]) # NaN-out zero masses, for printing
         end
@@ -1784,12 +1816,12 @@ export perplex_query_system
 
         ## Collect and print main output
         result = Dict{String, Union{Vector{String}, Vector{Float64}}}()
-        result["elements"] = String[]
+        result["elements"] = elements = String[]
 
         # Modes
         for e in ("P(bar)", "T(C)", "all_fluids", "all_melts", "all_solids", melt_model)
             result[e] = modes[e]
-            result["elements"] = [result["elements"]; e]
+            push!(elements, e)
         end
         minerals = collect(setdiff(keys(modes), ("elements", "T(C)", "T(K)", "P(bar)", "all_fluids", "all_melts", "all_solids", melt_model)))
         t = sortperm(lowercase.(minerals))
@@ -1797,7 +1829,7 @@ export perplex_query_system
             # Don't print empty columns
             if any(x->x>0, modes[e][exportrows])
                 result[e] = modes[e]
-                result["elements"] = [result["elements"]; e]
+                push!(elements, e)
             end
         end
 
@@ -1806,20 +1838,20 @@ export perplex_query_system
             # Don't print free energies, or empty columns
             if any(x->x>0, melt[e][exportrows])
                 result["Melt_$(e)"] = melt[e]
-                result["elements"] = [result["elements"]; "Melt_$(e)"]
+                push!(elements, "Melt_$(e)")
             end
         end
         # Trace elements
         for e in calculated["elements"]
             result["Melt_$(e)"] = calculated[e]
-            result["elements"] = [result["elements"]; "Melt_$(e)"]
+            push!(elements, "Melt_$(e)")
         end
 
         # [optionally] Bulk germ_kds
         if export_bulk_kds
             for e in trace_elements
                 result["D_$(e)"] = d[e]
-                result["elements"] = [result["elements"]; "D_$(e)"]
+                push!(elements, "D_$(e)")
             end
         end
 
@@ -1834,7 +1866,7 @@ export perplex_query_system
                             else
                                 result["D_$(k)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
                             end
-                            result["elements"] = [result["elements"]; "D_$(k)_$(e)"]
+                            push!(elements, "D_$(k)_$(e)")
                         end
                     end
                 end
@@ -1846,7 +1878,7 @@ export perplex_query_system
                     zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
                     zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
                     result["D_Zircon_$(e)"] = zircon_kd
-                    result["elements"] = [result["elements"]; "D_Zircon_$(e)"]
+                    push!(elements, "D_Zircon_$(e)")
                 end
             end
         end
@@ -1862,7 +1894,7 @@ export perplex_query_system
                             else
                                 result["$(k)_$(e)"] = (calculated[e] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k] .> 0)
                             end
-                            result["elements"] = [result["elements"]; "$(k)_$(e)"]
+                            push!(elements, "$(k)_$(e)")
                         end
                     end
                 end
@@ -1875,8 +1907,8 @@ export perplex_query_system
                     zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
                     zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
                     result["Zircon_$(e)"] = calculated[e] .* zircon_kd .+ (NaN .* .!(modes["zircon"] .> 0))
-                    result["elements"] = [result["elements"]; "Zircon_$(e)"]
                     nanadd!(zircon_Zr, -result["Zircon_$(e)"])
+                    push!(elements, "Zircon_$(e)")
                 end
                 # Add Ti in zircon
                 aSiO2 = 1.0
