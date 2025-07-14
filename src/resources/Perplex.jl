@@ -1061,9 +1061,7 @@ function perplex_query_modes(scratchdir::String;
     modified_content = replace(file_content, "Missing data" => replace("Missing data", "Missing data" => "Missing"))
     write("$(prefix)$(index)_1.phm", modified_content)
 
-    # Read results and return them if possible
-    result = importas==:Dict ? Dict() : ()
-    
+    # Read results and return them if possible    
     if dof == 1 
         try
             # Read data as an Array{Any}
@@ -1071,60 +1069,68 @@ function perplex_query_modes(scratchdir::String;
         catch
             # Return empty dictionary if file doesn't exist
             @warn "$(prefix)$(index)_1.phm could not be parsed, perplex may not have run"
+            return Dict{String,Vector{Float64}}()
         end
         # Convert to a dictionary.
-        table = elementify(data, importas=importas)
+        table = elementify(data, importas=:Dict)
         # Create results dictionary
         phase_names = unique(table["Name"])
 
         if haskey(table, "node#") #PT path
             nodes = unique(table["node#"])
 
-            # Create result dictionary
+            # Initialize result dictionary
             result = Dict{String, Vector{Float64}}(i => zeros(length(nodes)) for i in phase_names)
             result["P(bar)"] = zeros(length(nodes))
+            result["T(K)"] = zeros(length(nodes))
+            result["node"] = nodes
 
             # Loop through table
-            for n in nodes
+            row = 1
+            for node in nodes
                 # Index table 
-                n_idx = table["node#"] .== n
+                thisrow = table["node#"] .== node
                 # Index phase name and weight(kg) 
-                name = table["Name"][n_idx]
-                kg = table["phase,kg"][n_idx]
+                name = table["Name"][thisrow]
+                kg = table["phase,kg"][thisrow]
+                normconst = 100/nansum(kg)
                 #  Calculate wt% and add to results dictionary
-                for i in zip(name, kg)
-                    result[i[1]][floor(Int64, n)] = (i[2]/nansum(kg)) * 100
+                for (n,m) in zip(name, kg)
+                    result[n][row] += m*normconst
                 end
-                result["P(bar)"][floor(Int64, n)] = table["P(bar)"][n_idx][1]
+                result["P(bar)"][row] = first(table["P(bar)"][thisrow])
+                result["T(K)"][row] = first(table["T(K)"][thisrow])
+                row += 1
             end
-            result["T(K)"] = unique(table["T(K)"])
-            result["node"] = nodes
 
         else # isobar or geotherm
             pt_steps = unique([table["P(bar)"] table["T(K)"]], dims=1)
-            p_steps, t_steps = pt_steps[:,1], pt_steps[:,2]
-            result = Dict{String, Vector{Float64}}(i => zeros(size(pt_steps,1)) for i in phase_names)
 
-            id = 1
+            # Initialize result dictionary
+            result = Dict{String, Vector{Float64}}(i => zeros(size(pt_steps,1)) for i in phase_names)
+            result["P(bar)"] = p_steps = pt_steps[:,1]
+            result["T(K)"] = t_steps = pt_steps[:,2]
+
+            row = 1
             # Loop through table
             for i in axes(pt_steps,1)
                 # Index table 
-                idx = (table["P(bar)"] .== pt_steps[i,1]) .& (table["T(K)"] .== pt_steps[i,2])
+                thisrow = (table["P(bar)"] .== p_steps[i]) .& (table["T(K)"] .== t_steps[i])
                 # Index phase name and weight(kg) 
-                name = table["Name"][idx]
-                kg = table["phase,kg"][idx]
+                name = table["Name"][thisrow]
+                kg = table["phase,kg"][thisrow]
+                normconst = 100/nansum(kg)
                 # Calculate wt% and add to results dictionary
-                for i in zip(name, kg)
-                    result[i[1]][id] = (i[2]/nansum(kg)) * 100
+                for (n,m) in zip(name, kg)
+                    result[n][row] += m*normconst
                 end
-                id+=1
+                row += 1
             end
-            result["P(bar)"] = pt_steps[:,1]
-            result["T(K)"] = pt_steps[:,2]
         end
     else 
         # Read data as an Array{Any}
         data = readdlm("$(prefix)$(index)_1.tab", ' ', skipstart=8)
+
         # Convert to a dictionary.
         # Perplex sometimes returns duplicates of a single solution model, sum them.
         result = elementify(data, sumduplicates=true, verbose=false, importas=importas)
@@ -1575,7 +1581,7 @@ export perplex_query_system
             end
         end
     end
-
+    
     function perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
             apatite = :Harrison,
             zircon = :Boehnke,
@@ -1988,7 +1994,7 @@ export perplex_query_system
     export germ_perplex_name_matches
 
     function perplex_phase_is_fluid(phase_name)
-        phase_name ∈ ("Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
+        phase_name ∈ ("H2O", "CO2", "Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
         containsi(phase_name, "fluid")
     end
     export perplex_phase_is_fluid
@@ -2002,7 +2008,7 @@ export perplex_query_system
 
     function perplex_phase_is_solid(phase_name)
         !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
-        !any(contains.(phase_name, ["P(", "T(", "Pressure", "Temperature", "elements", "minerals", "CO2", "Missing", "system", "O2"]))
+        !any(contains.(phase_name, ["_", "P(", "T(", "Pressure", "Temperature", "elements", "minerals", "CO2", "Missing", "system", "O2"]))
     end
     export perplex_phase_is_solid
 
