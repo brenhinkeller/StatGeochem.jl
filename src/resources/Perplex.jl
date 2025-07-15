@@ -1592,6 +1592,8 @@ export perplex_query_system
         \texport_bulk_kds::Bool = false,
         \texport_mineral_kds::Bool = false,
         \texport_mineral_compositions::Bool = false,
+        \texport_melt_parameters::Bool = true,
+        \texport_empty_columns::Bool = false,
         \trequire_phase_for_export = "",
         \tkwargs...,
     )
@@ -1616,7 +1618,7 @@ export perplex_query_system
             export_bulk_kds::Bool = false,
             export_mineral_kds::Bool = false,
             export_mineral_compositions::Bool = false,
-            export_melt_parameters::Bool = false,
+            export_melt_parameters::Bool = true,
             export_empty_columns::Bool = false,
             require_phase_for_export = "",
             kwargs...,
@@ -2071,7 +2073,7 @@ export perplex_query_system
     export germ_perplex_name_matches
 
     function perplex_phase_is_fluid(phase_name)
-        phase_name ∈ ("H2O", "CO2", "O2", "ideal_gas", "Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
+        phase_name ∈ ("CO2", "CO", "H2", "CH4", "O2", "H2O", "ideal_gas", "Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
         (containsi(phase_name, "fluid") && !containsi(phase_name, "_")) ||
         containsi(phase_name, "vapor")
     end
