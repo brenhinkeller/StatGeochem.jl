@@ -1826,23 +1826,33 @@ export perplex_query_system
         ## --- # # # # # # # # # # #  Export Results  # # # # # # # # # # # # #
 
         # Which rows to plot and export (only those with melt, for example?)
-        exportrows = isempty(require_phase_for_export) ? trues(colshape) : modes[require_phase_for_export] .> 0
-
+        exportrows = trues(colshape)
+        if !isnothing(require_phase_for_export) && !isempty(require_phase_for_export)  
+            if require_phase_for_export isa AbstractString
+                exportrows .&= modes[require_phase_for_export] .> 0
+            else
+                for phase in require_phase_for_export
+                    exportrows .&= modes[phase] .> 0
+                end
+            end
+        end
+        si_index = si_index[exportrows]
+        
         ## Collect and print main output
         result = Dict{String, Union{Vector{String}, Vector{Float64}}}()
         result["elements"] = elements = String[]
 
         # Modes
-        for e in ("P(bar)", "T(C)", "all_fluids", "all_melts", "all_solids", melt_model)
-            result[e] = modes[e]
+        for e in ("P(bar)", "T(C)", "all_melts", "all_fluids", "all_solids", melt_model)
+            result[e] = modes[e][exportrows]
             push!(elements, e)
         end
-        minerals = collect(setdiff(keys(modes), ("elements", "T(C)", "T(K)", "P(bar)", "all_fluids", "all_melts", "all_solids", melt_model)))
+        minerals = collect(setdiff(keys(modes), ("elements", "T(C)", "T(K)", "P(bar)", "all_melts", "all_fluids", "all_solids", melt_model)))
         t = sortperm(lowercase.(minerals))
         for e in minerals[t]
             # Don't print empty columns
             if any(x->x>0, modes[e][exportrows])
-                result[e] = modes[e]
+                result[e] = modes[e][exportrows]
                 push!(elements, e)
             end
         end
@@ -1851,20 +1861,20 @@ export perplex_query_system
         for e in melt["elements"]
             # Don't print free energies, or empty columns
             if any(x->x>0, melt[e][exportrows])
-                result["Melt_$(e)"] = melt[e]
+                result["Melt_$(e)"] = melt[e][exportrows]
                 push!(elements, "Melt_$(e)")
             end
         end
         # Trace elements
         for e in calculated["elements"]
-            result["Melt_$(e)"] = calculated[e]
+            result["Melt_$(e)"] = calculated[e][exportrows]
             push!(elements, "Melt_$(e)")
         end
 
         # [optionally] Bulk germ_kds
         if export_bulk_kds
             for e in trace_elements
-                result["D_$(e)"] = d[e]
+                result["D_$(e)"] = d[e][exportrows]
                 push!(elements, "D_$(e)")
             end
         end
@@ -1888,7 +1898,7 @@ export perplex_query_system
             # Zircon kds
             if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
                 for e in trace_elements
-                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
+                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
                     zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
                     zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
                     result["D_Zircon_$(e)"] = zircon_kd
@@ -1904,9 +1914,9 @@ export perplex_query_system
                     if any(x->x>0, modes[k][exportrows])
                         for e in trace_elements
                             if containsi(m, "monazite")
-                                result["$(k)_$(e)"] = (calculated[e] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr) .+ NaN .* .!(modes[k] .> 0)
+                                result["$(k)_$(e)"] = (calculated[e][exportrows] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr[exportrows]) .+ NaN .* .!(modes[k][exportrows] .> 0)
                             else
-                                result["$(k)_$(e)"] = (calculated[e] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k] .> 0)
+                                result["$(k)_$(e)"] = (calculated[e][exportrows] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k][exportrows] .> 0)
                             end
                             push!(elements, "$(k)_$(e)")
                         end
@@ -1915,12 +1925,12 @@ export perplex_query_system
             end
             # Zircon composition
             if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
-                zircon_Zr = 496000.0*(modes["zircon"] .> 0)
+                zircon_Zr = 496000.0*(modes["zircon"][exportrows] .> 0)
                 for e in trace_elements
-                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
+                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
                     zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
                     zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
-                    result["Zircon_$(e)"] = calculated[e] .* zircon_kd .+ (NaN .* .!(modes["zircon"] .> 0))
+                    result["Zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
                     nanadd!(zircon_Zr, -result["Zircon_$(e)"])
                     push!(elements, "Zircon_$(e)")
                 end
@@ -1928,8 +1938,8 @@ export perplex_query_system
                 aSiO2 = 1.0
                 meltcomp = melt["SiO2"], melt["TiO2"], melt["Al2O3"], melt["FeO"], melt["MgO"], melt["CaO"], melt["Na2O"], melt["K2O"], calculated["P"].*70.9723/30.974/10000
                 aTiO2 = min.(melt["TiO2"] ./ StatGeochem.Hayden_trutileTiO2.(meltcomp..., melt["T(C)"]), 1.0) # Titanium activity as a fraction of the TiO2 neeeded for rutile saturation
-                result["Zircon_Ti"] = StatGeochem.Ferry_Ti_in_zircon.(melt["T(C)"], aSiO2, aTiO2)
-                result["Zircon_Ti"] .+= (NaN .* .!(modes["zircon"] .> 0)) # NaN out if no zircon
+                result["Zircon_Ti"] = StatGeochem.Ferry_Ti_in_zircon.(melt["T(C)"], aSiO2, aTiO2)[exportrows]
+                result["Zircon_Ti"] .+= (NaN .* .!(modes["zircon"][exportrows] .> 0)) # NaN out if no zircon
                 nanadd!(zircon_Zr, -result["Zircon_Ti"])
 
                 # Zircon Zr concentration in ppm, calculated as 496000 less other trace elements
@@ -2040,21 +2050,24 @@ export perplex_query_system
     export germ_perplex_name_matches
 
     function perplex_phase_is_fluid(phase_name)
-        phase_name ∈ ("H2O", "CO2", "Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
-        containsi(phase_name, "fluid")
+        phase_name ∈ ("H2O", "CO2", "O2", "ideal_gas", "Aq_solven0", "Aqfl(HGP)", "COHF", "F", "F(salt)", "GCOHF", "WADDAH", "H+", "Cl-", "OH-", "Na+", "K+", "Ca++", "Mg++", "Fe++", "Al+++", "CO3", "AlOH3", "AlOH4-", "KOH", "HCL", "KCL", "NaCl", "CaCl2", "CaCl+", "MgCl2", "MgCl", "FeCl2", "aqSi",) || 
+        (containsi(phase_name, "fluid") && !containsi(phase_name, "_")) ||
+        containsi(phase_name, "vapor")
     end
     export perplex_phase_is_fluid
 
     function perplex_phase_is_melt(phase_name)
         phase_name ∈ ("abL", "anL", "diL", "enL", "faL", "foL", "h2oL", "kspL", "qL", "silL") ||
-        containsi(phase_name, "melt") || 
+        (containsi(phase_name, "melt") && !containsi(phase_name, "_")) || 
         containsi(phase_name, "liq")
     end
     export perplex_phase_is_melt
 
     function perplex_phase_is_solid(phase_name)
-        !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
-        !any(contains.(phase_name, ["_", "P(", "T(", "Pressure", "Temperature", "elements", "minerals", "CO2", "Missing", "system", "O2"]))
+        phase_name ∈ ("cAmph_I(DP)", "cAmph_I(G)", "Cpx_I(HGP)", "Sp_II(WPC)", "feldspar_B") || (
+            !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
+            !any(contains.(phase_name, ["_", "P(", "T(", "Pressure", "Temperature", "elements", "minerals", "system", "bulk",]))
+        )
     end
     export perplex_phase_is_solid
 
