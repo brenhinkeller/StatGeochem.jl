@@ -1616,6 +1616,8 @@ export perplex_query_system
             export_bulk_kds::Bool = false,
             export_mineral_kds::Bool = false,
             export_mineral_compositions::Bool = false,
+            export_melt_parameters::Bool = false,
+            export_empty_columns::Bool = false,
             require_phase_for_export = "",
             kwargs...,
         )
@@ -1851,31 +1853,42 @@ export perplex_query_system
         t = sortperm(lowercase.(minerals))
         for e in minerals[t]
             # Don't print empty columns
-            if any(x->x>0, modes[e][exportrows])
+            if export_empty_columns || any(x->x>0, modes[e][exportrows])
                 result[e] = modes[e][exportrows]
                 push!(elements, e)
             end
         end
 
         # Liquid composition
-        for e in melt["elements"]
-            # Don't print free energies, or empty columns
-            if any(x->x>0, melt[e][exportrows])
-                result["Melt_$(e)"] = melt[e][exportrows]
+        for e in major_elements
+            c = melt[e][exportrows]
+            if export_empty_columns || any(x->x>0, c)
+                result["Melt_$(e)"] = c
                 push!(elements, "Melt_$(e)")
             end
         end
         # Trace elements
-        for e in calculated["elements"]
-            result["Melt_$(e)"] = calculated[e][exportrows]
-            push!(elements, "Melt_$(e)")
+        for e in trace_elements
+            if export_empty_columns || any(x->x>0, calculated[e])
+                result["Melt_$(e)"] = calculated[e][exportrows]
+                push!(elements, "Melt_$(e)")
+            end
+        end
+        # [optionally] Other melt properties
+        if export_melt_parameters
+            for e in setdiff(melt["elements"], major_elements)
+                result["Melt_$(e)"] = melt[e][exportrows]
+                push!(elements, "Melt_$(e)")
+            end
         end
 
         # [optionally] Bulk germ_kds
         if export_bulk_kds
             for e in trace_elements
-                result["D_$(e)"] = d[e][exportrows]
-                push!(elements, "D_$(e)")
+                if export_empty_columns || any(x->x>0, calculated[e])
+                    result["D_$(e)"] = d[e][exportrows]
+                    push!(elements, "D_$(e)")
+                end
             end
         end
 
@@ -1883,26 +1896,30 @@ export perplex_query_system
         if export_mineral_kds
             for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
                 for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
-                    if any(x->x>0, modes[k][exportrows])
+                    if export_empty_columns || any(x->x>0, modes[k][exportrows])
                         for e in trace_elements
-                            if containsi(m, "monazite")
-                                result["D_$(k)_$(e)"] = (10.0 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr
-                            else
-                                result["D_$(k)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
+                            if export_empty_columns || any(x->x>0, calculated[e])
+                                if containsi(m, "monazite")
+                                    result["D_$(k)_$(e)"] = (10.0 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr
+                                else
+                                    result["D_$(k)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
+                                end
+                                push!(elements, "D_$(k)_$(e)")
                             end
-                            push!(elements, "D_$(k)_$(e)")
                         end
                     end
                 end
             end
             # Zircon kds
-            if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
+            if haskey(modes, "zircon") && (export_empty_columns || any(x->x>0, modes["zircon"][exportrows]))
                 for e in trace_elements
-                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
-                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
-                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
-                    result["D_Zircon_$(e)"] = zircon_kd
-                    push!(elements, "D_Zircon_$(e)")
+                    if export_empty_columns || any(x->x>0, calculated[e])
+                        zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
+                        zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
+                        zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                        result["D_Zircon_$(e)"] = zircon_kd
+                        push!(elements, "D_Zircon_$(e)")
+                    end
                 end
             end
         end
@@ -1911,28 +1928,32 @@ export perplex_query_system
         if export_mineral_compositions
             for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
                 for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
-                    if any(x->x>0, modes[k][exportrows])
+                    if export_empty_columns || any(x->x>0, modes[k][exportrows])
                         for e in trace_elements
-                            if containsi(m, "monazite")
-                                result["$(k)_$(e)"] = (calculated[e][exportrows] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr[exportrows]) .+ NaN .* .!(modes[k][exportrows] .> 0)
-                            else
-                                result["$(k)_$(e)"] = (calculated[e][exportrows] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k][exportrows] .> 0)
+                            if export_empty_columns || any(x->x>0, calculated[e])
+                                if containsi(m, "monazite")
+                                    result["$(k)_$(e)"] = (calculated[e][exportrows] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr[exportrows]) .+ NaN .* .!(modes[k][exportrows] .> 0)
+                                else
+                                    result["$(k)_$(e)"] = (calculated[e][exportrows] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k][exportrows] .> 0)
+                                end
+                                push!(elements, "$(k)_$(e)")
                             end
-                            push!(elements, "$(k)_$(e)")
                         end
                     end
                 end
             end
             # Zircon composition
-            if haskey(modes, "zircon") && any(x->x>0, modes["zircon"][exportrows])
+            if haskey(modes, "zircon") && (export_empty_columns || any(x->x>0, modes["zircon"][exportrows]))
                 zircon_Zr = 496000.0*(modes["zircon"][exportrows] .> 0)
                 for e in trace_elements
-                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
-                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
-                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
-                    result["Zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
-                    nanadd!(zircon_Zr, -result["Zircon_$(e)"])
-                    push!(elements, "Zircon_$(e)")
+                    if export_empty_columns || any(x->x>0, calculated[e])
+                        zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
+                        zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
+                        zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                        result["Zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
+                        nanadd!(zircon_Zr, -result["Zircon_$(e)"])
+                        push!(elements, "Zircon_$(e)")
+                    end
                 end
                 # Add Ti in zircon
                 aSiO2 = 1.0
