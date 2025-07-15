@@ -1878,6 +1878,10 @@ export perplex_query_system
         end
         # [optionally] Other melt properties
         if export_melt_parameters
+            for e in setdiff(calculated["elements"], trace_elements)
+                result["Melt_$(e)"] = calculated[e][exportrows]
+                push!(elements, "Melt_$(e)")
+            end
             for e in setdiff(melt["elements"], major_elements)
                 result["Melt_$(e)"] = melt[e][exportrows]
                 push!(elements, "Melt_$(e)")
