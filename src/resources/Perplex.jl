@@ -1675,7 +1675,7 @@ export perplex_query_system
         si_index[si_index.>40] .= 40
 
         # Melt fraction
-        F = modes[melt_model] ./ (modes[melt_model] .+ modes["all_solids"])
+        F = modes["all_melts"] ./ (modes["all_melts"] .+ modes["all_solids"])
 
         # Use GERM partition coeffs to start
         d = get_germ_bulk_kds(modes, trace_elements, si_index)
@@ -1704,7 +1704,10 @@ export perplex_query_system
             # reequilibrate into the melt from the solids at P=PSat. Note that mass
             # of melt actually cancels when you write out the equation for this.
             P_in_apatite = max.(calculated["P"] - PSat, 0) .* composition["P"]./calculated["P"]
-            modes["apatite"] = P_in_apatite * 4.36008264/10_000
+            # Convert from P mass to apatite mass and from ppm to wt. %
+            modes["apatite"] = P_in_apatite * 4.36008264/10_000 # wt. % apatite
+            nanadd!(modes[melt_model], -modes["apatite"])
+            nanadd!(modes["all_melts"], -modes["apatite"])
             modes["apatite"][subsolidus] .= modes["apatite"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["apatite"])
             map!(x -> (x>0 ? x : NaN), modes["apatite"], modes["apatite"])  # NaN-out zero masses, for printing
@@ -1728,8 +1731,10 @@ export perplex_query_system
             # For now we'll also treat Hf as equivalent to Zr (b/c zircon-hafnon ssn)
             ZrHf = calculated["Zr"]+calculated["Hf"]
             Zr_in_zircon = max.(ZrHf - ZrSat, 0) .* (composition["Zr"]+composition["Hf"])./ZrHf
-            # Convert from zirconium mass to zircon mass and from ppm to wt. %
-            modes["zircon"] = Zr_in_zircon * 2.009/10_000
+            # Convert from Zr mass to zircon mass and from ppm to wt. %
+            modes["zircon"] = Zr_in_zircon * 2.009/10_000  # wt. % zircon
+            nanadd!(modes[melt_model], -modes["zircon"])
+            nanadd!(modes["all_melts"], -modes["zircon"])
             modes["zircon"][subsolidus] .= modes["zircon"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["zircon"])
             map!(x -> (x>0 ? x : NaN), modes["zircon"], modes["zircon"]) # NaN-out zero masses, for printing
@@ -1746,8 +1751,9 @@ export perplex_query_system
             e = "SiO2", "TiO2", "Al2O3", "FeO", "MnO", "MgO", "CaO", "Na2O", "K2O", "P2O5", "T(C)"
             dataset_uppercase && (e = uppercase.(e))
             TiO2Sat = StatGeochem.Ayers_tspheneTiO2.((e .|> x -> haskey(melt,x) ? melt[x] : zeros(meltrows))...)
-            modes["sphene"] = modes[melt_model]/100 .* max.(melt["TiO2"] - TiO2Sat, 0)*2.4545
+            modes["sphene"] = modes[melt_model]/100 .* max.(melt["TiO2"] - TiO2Sat, 0)*2.4545 # wt. % sphene
             nanadd!(modes[melt_model], -modes["sphene"])
+            nanadd!(modes["all_melts"], -modes["sphene"])
             modes["sphene"][subsolidus] .= modes["sphene"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["sphene"])
             map!(x -> (x>0 ? x : NaN), modes["sphene"], modes["sphene"]) # NaN-out zero masses, for printing
@@ -1766,7 +1772,9 @@ export perplex_query_system
             bulk_REEt = StatGeochem.LREEt((lree .|> x -> haskey(composition, x) ? composition[x] : 0.)...)
             # REEt_in_monazite = modes[melt_model]/100 .* max.(melt_REEt - REEtSat, 0) # naive
             REEt_in_monazite = max.(melt_REEt - REEtSat, 0.) .* bulk_REEt./melt_REEt # accounting for back-equilibration
-            modes["monazite"] = REEt_in_monazite .* (StatGeochem.LREEmolwt.(melt_lree...) .+ 94.969762)/10_000
+            modes["monazite"] = REEt_in_monazite .* (StatGeochem.LREEmolwt.(melt_lree...) .+ 94.969762)/10_000 # wt. % monazite
+            nanadd!(modes[melt_model], -modes["monazite"])
+            nanadd!(modes["all_melts"], -modes["monazite"])
             modes["monazite"][subsolidus] .= modes["monazite"][lastmelt] # Set subsolidus accessory phase abundance to that at time of last melt
             nanadd!(modes["all_solids"], modes["monazite"])
             map!(x -> (x>0 ? x : NaN), modes["monazite"], modes["monazite"]) # NaN-out zero masses, for printing
@@ -1779,6 +1787,12 @@ export perplex_query_system
         ## Recalculate bulk partition coeff. in presence of accessory phases
         update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr)
 
+        # Ensure all updated modes are positive
+        map!(x->max(x,0), modes[melt_model], modes[melt_model])
+        map!(x->max(x,0), modes["all_melts"], modes["all_melts"])
+        map!(x->max(x,0), modes["all_solids"], modes["all_solids"])
+        # Recalculate F in the presence of accessory phases
+        F = modes["all_melts"] ./ (modes["all_melts"] .+ modes["all_solids"])
         # Recalculate trace elements in melt as a function of melt fraction (equilibrium)
         for e in trace_elements
             calculated[e] .= composition[e] ./ (d[e].*(1.0.-F) + F)
