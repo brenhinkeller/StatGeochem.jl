@@ -1733,8 +1733,8 @@ export perplex_query_system
             # reequilibrate into the melt from the solids at Zr=ZrSat. Note that mass
             # of melt actually cancels when you write out the equation for this.
             # For now we'll also treat Hf as equivalent to Zr (b/c zircon-hafnon ssn)
-            ZrHf = calculated["Zr"]+calculated["Hf"]
-            Zr_in_zircon = max.(ZrHf - ZrSat, 0) .* (composition["Zr"]+composition["Hf"])./ZrHf
+            ZrHf = nanadd(calculated["Zr"], calculated["Hf"])
+            Zr_in_zircon = max.(ZrHf - ZrSat, 0) .* nanadd(composition["Zr"], composition["Hf"])./ZrHf
             # Convert from Zr mass to zircon mass and from ppm to wt. %
             modes["zircon"] = Zr_in_zircon * 2.009/10_000  # wt. % zircon
             nanadd!(modes[melt_model], -modes["zircon"])
