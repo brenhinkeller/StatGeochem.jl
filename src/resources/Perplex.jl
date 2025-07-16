@@ -1585,26 +1585,30 @@ export perplex_query_system
     """
     ```julia
     perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
-        \tapatite = :Harrison,  # Harrison & Watson 1984 (doi: 10.1016/0016-7037(84)90403-4) + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-        \tzircon = :Boehnke,    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-        \tsphene = :Ayers,      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-        \tmonazite = :Montel,   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \tapatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
+        \tzircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+        \tsphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+        \tmonazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
         \texport_bulk_kds::Bool = false,
         \texport_mineral_kds::Bool = false,
         \texport_mineral_compositions::Bool = false,
         \texport_melt_parameters::Bool = true,
         \texport_empty_columns::Bool = false,
         \trequire_phase_for_export = "",
-        \tkwargs...,
+        \tkwargs...,                            # Any other keyword arguments are forwarded to `perplex_query_` functions
     )
     ```
     Calculate trace element compositions of all phases, including accessory minerals, by
+
         1. Calculating the phase assemblage and (if applicable) melt composition given the bulk 
             major element composition via equilibrium thermodynamics using Perple_X
+
         2. Calculating equilibrium trace element concentrations in all phases (particularly
             including melt, if present) using GERM-based partition coefficients (`germ_kd`) 
+
         3. Evaluating the saturation state of accessory minerals given the calculated 
             trace element abundances
+            
         4. Recalculating trace element partitioning in the presence of newly-saturated
             accessory phases
     
