@@ -25,7 +25,7 @@ julia> claiborne_zircon_kd("Yb", 600)
 1016.9198328977473
 ```
 """
-function claiborne_zircon_kd(elem::String, T::Number)
+function claiborne_zircon_kd(elem::AbstractString, T::Number)
     # Convert temperature to Kelvin
     T += 273.15
     # Calculate partition coefficient

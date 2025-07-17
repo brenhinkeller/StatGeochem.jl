@@ -1558,16 +1558,26 @@ export perplex_query_system
         return min.((596020.9/140.1161)./partitioned_REEt_in_monazite, 1)
     end
 
+    function get_zircon_kd(e::AbstractString, si_index::Integer, TC::Number, zircon_kd_source::Symbol=:average)
+        if zircon_kd_source === :GERM
+            10.0^germ_kd["Zircon"][e][si_index]
+        elseif zircon_kd_source === :Claiborne
+            claiborne_zircon_kd(e, TC)
+        elseif zircon_kd_source === :average
+            sqrt(claiborne_zircon_kd(e, TC) * 10.0^germ_kd["Zircon"][e][si_index])
+        else
+            @warn "Zircon kd source $zircon_kd_source not recognized, using log average of Claiborne and GERM"
+            sqrt(claiborne_zircon_kd(e, TC) * 10.0^germ_kd["Zircon"][e][si_index])
+        end
+    end
+
     # Update GERM kds in the presence of accessory phases
-    function update_kds!(d::Dict, modes::Dict, trace_elements, si_index::Vector{<:Number}, monazite_kd_corr::Vector{<:Number})
+    function update_kds!(d::Dict, modes::Dict, trace_elements, si_index::Vector{<:Number}, monazite_kd_corr::Vector{<:Number}; zircon_kd_source=:average)
         for e in trace_elements
             fill!(d[e], 0.)
             for m in germ_kd["minerals"]
-                if containsi(m,"zircon")
-                    zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"])
-                    zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
-                    zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
-                    nanadd!(d[e], modes["zircon"]./modes["all_solids"] .* zircon_kd)
+                if containsi(m,"zircon") 
+                    nanadd!(d[e], modes["zircon"]./modes["all_solids"] .* get_zircon_kd.(e, si_index, modes["T(C)"], zircon_kd_source))
                 elseif containsi(m,"monazite")
                     nanadd!(d[e], modes["monazite"]./modes["all_solids"] .* (10.0.^germ_kd[m][e][si_index])) .* monazite_kd_corr
                 else
@@ -1589,6 +1599,7 @@ export perplex_query_system
         \tzircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
         \tsphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
         \tmonazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
         \texport_bulk_kds::Bool = false,
         \texport_mineral_kds::Bool = false,
         \texport_mineral_compositions::Bool = false,
@@ -1615,10 +1626,11 @@ export perplex_query_system
     The results are returned as a dictionary.
     """
     function perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
-            apatite = :Harrison,
-            zircon = :Boehnke,
-            sphene = :Ayers,
-            monazite = :Montel,
+            apatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
+            zircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+            sphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+            monazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+            zircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
             export_bulk_kds::Bool = false,
             export_mineral_kds::Bool = false,
             export_mineral_compositions::Bool = false,
@@ -1793,7 +1805,7 @@ export perplex_query_system
         monazite_kd_corr = germ_monazite_kd_corr(calculated, lree, si_index)
 
         ## Recalculate bulk partition coeff. in presence of accessory phases
-        update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr)
+        update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr; zircon_kd_source)
 
         # Ensure all updated modes are positive
         map!(x->max(x,0), modes[melt_model], modes[melt_model])
@@ -1813,7 +1825,7 @@ export perplex_query_system
             monazite_kd_corr .= germ_monazite_kd_corr(calculated, all_ee3, si_index)
 
             # Re-recalculate bulk Kd
-            update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr)
+            update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr; tzircon_kd_source)
 
             # Re-Recalculate trace elements in melt as a function of melt fraction (equilibrium)
             for e in trace_elements
@@ -1924,10 +1936,7 @@ export perplex_query_system
             if haskey(modes, "zircon") && (export_empty_columns || any(x->x>0, modes["zircon"][exportrows]))
                 for e in trace_elements
                     if export_empty_columns || any(x->x>0, calculated[e])
-                        zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
-                        zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
-                        zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
-                        result["D_Zircon_$(e)"] = zircon_kd
+                        result["D_Zircon_$(e)"] = get_zircon_kd.(e, si_index, modes["T(C)"][exportrows], zircon_kd_source)
                         push!(elements, "D_Zircon_$(e)")
                     end
                 end
@@ -1957,9 +1966,7 @@ export perplex_query_system
                 zircon_Zr = 496000.0*(modes["zircon"][exportrows] .> 0)
                 for e in trace_elements
                     if export_empty_columns || any(x->x>0, calculated[e])
-                        zircon_kd_c = claiborne_zircon_kd.(e, modes["T(C)"][exportrows])
-                        zircon_kd_g = 10.0.^germ_kd["Zircon"][e][si_index]
-                        zircon_kd = sqrt.(zircon_kd_c .* zircon_kd_g)
+                        zircon_kd = get_zircon_kd.(e, si_index, modes["T(C)"][exportrows], zircon_kd_source)
                         result["Zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
                         nanadd!(zircon_Zr, -result["Zircon_$(e)"])
                         push!(elements, "Zircon_$(e)")
