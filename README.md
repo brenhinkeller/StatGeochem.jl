@@ -35,6 +35,10 @@ julia> using IJulia
 julia> notebook()
 ```
 
+## Citation
+StatGeochem.jl may be cited as:
+> Keller, C.B. (2021). *StatGeochem.jl: Computational tools for statistical geochemistry and petrology.* [10.17605/osf.io/TJHMW](https://doi.org/10.17605/osf.io/TJHMW)
+
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://brenhinkeller.github.io/StatGeochem.jl/dev/
 [ci-img]: https://github.com/brenhinkeller/StatGeochem.jl/workflows/CI/badge.svg
