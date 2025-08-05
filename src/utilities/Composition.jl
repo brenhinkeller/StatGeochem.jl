@@ -290,17 +290,30 @@ end
     )
 end
 
-function renormalize(x::AbstractComposition; anhydrous::Bool=false) 
-    c = anhydrous ? normconstanhydrous(x) : normconst(x)
-    return x/c
-end
-export renormalize
-
+# Check if a composition is normalized
 function isnormalized(x::AbstractComposition; anhydrous::Bool=false)
     c = anhydrous ? normconstanhydrous(x) : normconst(x)
     return c ≈ 1
 end
 export isnormalized
+
+# Normalize a Composition or CompositionArray
+function renormalize(x::AbstractComposition; anhydrous::Bool=false) 
+    c = anhydrous ? normconstanhydrous(x) : normconst(x)
+    return x/c
+end
+renormalize(x::AbstractArray{<:AbstractComposition}; kwargs...) = renormalize!(copy(x); kwargs...)
+function StatGeochemBase.renormalize!(x::AbstractArray{<:AbstractComposition}; anhydrous::Bool=false)
+    for i in eachindex(x)
+        xᵢ = x[i]
+        c = anhydrous ? normconstanhydrous(xᵢ) : normconst(xᵢ)
+        if !(c ≈ 1)
+            x[i] = xᵢ/c
+        end
+    end
+    return x
+end
+export renormalize, renormalize!
 
 # Other things we might want to do to compositions
 @generated function dehydrate(x::C) where {T, C<:AbstractComposition{T}}
@@ -314,7 +327,31 @@ export isnormalized
     end
     return result
 end
-export dehydrate
+dehydrate(x::AbstractArray{<:AbstractComposition}) = dehydrate!(copy(x))
+function dehydrate!(x::AbstractArray{<:AbstractComposition})
+    for i in eachindex(x)
+        x[i] = dehydrate(x[i])
+    end
+    return x
+end
+export dehydrate, dehydrate!
+
+# Convert any infinite values to NaN
+@generated function naninf(c::C) where {T, C<:AbstractComposition{T}}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(isinf(c.$e) ? $T(NaN) : c.$e))
+    end
+    return result
+end
+naninf(x::AbstractArray{<:AbstractComposition}) = naninf!(copy(x))
+function naninf!(x::AbstractArray{<:AbstractComposition})
+    for i in eachindex(x)
+        x[i] = naninf(x[i])
+    end
+    return x
+end
+export naninf, naninf!
 
 struct NCKFMASHTOtrace{T} <: LinearTraceComposition{T}
     SiO2::T

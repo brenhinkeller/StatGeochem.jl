@@ -16,6 +16,7 @@ module StatGeochem
     using Distributions
     using Downloads: download
     using LazyArtifacts
+    using LinearAlgebra
     using LogExpFunctions: logaddexp
     using ProgressMeter: @showprogress, update!, next!, Progress
     using Random

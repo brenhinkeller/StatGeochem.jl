@@ -32,19 +32,9 @@ traceelements(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x)
 majorelements(x::CompositionArray{T}) where {T<:AbstractComposition} = majorelements(T)
 traceelements(x::CompositionArray{T}) where {T<:AbstractComposition} = traceelements(T)
 
-# Extend StatGeochemBase.renormalize! for CompositionArray{<:AbstractComposition}
-function StatGeochemBase.renormalize!(x::CompositionArray{<:AbstractComposition}; anhydrous::Bool=false)
-    for i in eachindex(x)
-        xᵢ = x[i]
-        c = anhydrous ? normconstanhydrous(xᵢ) : normconst(xᵢ)
-        if !(c ≈ 1)
-            x[i] = xᵢ/c
-        end
-    end
-    return x
-end
 
-function partiallymix!(x::CompositionArray, mixingfraction::Number, ifirst=findfirst(!isnan, getfield(x,:data)), ilast=findlast(!isnan, getfield(x,:data)))
+# Partial mixing of CompositionArrays
+function partiallymix!(x::AbstractArray{<:AbstractComposition}, mixingfraction::Number, ifirst=findfirst(!isnan, getfield(x,:data)), ilast=findlast(!isnan, getfield(x,:data)))
     @assert 0 <= mixingfraction <= 1 "Mixing fraction must be between 0 and 1"
     unmixingfraction = 1 - mixingfraction
     xfirst, xlast = x[ifirst], x[ilast]
@@ -58,28 +48,28 @@ function partiallymix!(x::CompositionArray, mixingfraction::Number, ifirst=findf
 end
 export partiallymix!
 
-# Extend NaNStatistics for CompositionArrays
-function NaNStatistics.nanmean(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+# Extend NaNStatistics for CompositionArrays and Arrays of Compositions
+function NaNStatistics.nanmean(x::AbstractArray{C}) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     μ = ntuple(i->T(nanmean(x[e[i]])), fieldcount(C))
     return C(μ)
 end
-function NaNStatistics.nanvar(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+function NaNStatistics.nanvar(x::AbstractArray{C}) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     σ² = ntuple(i->T(nanvar(x[e[i]])), fieldcount(C))
     return C(σ²)
 end
-function NaNStatistics.nanstd(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+function NaNStatistics.nanstd(x::AbstractArray{C}) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     σ = ntuple(i->T(nanstd(x[e[i]])), fieldcount(C))
     return C(σ)
 end
-function NaNStatistics.nansem(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+function NaNStatistics.nansem(x::AbstractArray{C}) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     σ = ntuple(i->T(nansem(x[e[i]])), fieldcount(C))
     return C(σ)
 end
-function NaNStatistics.nancov(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+function NaNStatistics.nancov(x::AbstractArray{C}; posdef=true, mineigenvalue=1e-12) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     Σ = zeros(T, fieldcount(C), fieldcount(C))
     @inbounds for i in eachindex(e)
@@ -87,9 +77,9 @@ function NaNStatistics.nancov(x::CompositionArray{C}) where {T, C<:AbstractCompo
             Σ[i,j] = Σ[j,i] = nancov(x[e[i]], x[e[j]])
         end
     end
-    return Σ
+    return posdef ? nearestposdef(Σ; mineigenvalue) : Symmetric(Σ)
 end
-function NaNStatistics.nancovem(x::CompositionArray{C}) where {T, C<:AbstractComposition{T}}
+function NaNStatistics.nancovem(x::AbstractArray{C}; posdef=true, mineigenvalue=1e-12) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     Σ = zeros(T, fieldcount(C), fieldcount(C))
     @inbounds for i in eachindex(e)
@@ -97,7 +87,12 @@ function NaNStatistics.nancovem(x::CompositionArray{C}) where {T, C<:AbstractCom
             Σ[i,j] = Σ[j,i] = nancovem(x[e[i]], x[e[j]])
         end
     end
-    return Σ
+    return posdef ? nearestposdef(Σ; mineigenvalue) : Symmetric(Σ)
+end
+
+function nearestposdef(A; mineigenvalue=1e-12)
+    eigenvalues, Eigenvectors = eigen(A)
+    Symmetric(Eigenvectors * Diagonal(max.(eigenvalues, mineigenvalue)) * Eigenvectors')
 end
 
 ## -- Distributions of compositions

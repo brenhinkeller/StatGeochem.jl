@@ -227,8 +227,14 @@ ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 StatGeochem.rand!(ca)
 @test nanmean(ca.SiO2) ≈ 10 atol = 3
 @test sum(e->ca[1][e], majorelements(ca)) ≈ 99.99 atol=0.02
+car = renormalize(ca; anhydrous=true)
+@test sum(e->car[1][e], filter(x->!(x===:H2O), majorelements(car)))  ≈ 99.99 atol=0.02
 renormalize!(ca; anhydrous=true)
 @test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca)))  ≈ 99.99 atol=0.02
+cad = dehydrate(ca)
+@test sum(e->cad[1][e], majorelements(cad))  ≈ 99.99 atol=0.02
+can = naninf(cad)
+@test sum(e->can[1][e], majorelements(can))  ≈ 99.99 atol=0.02
 
 cam = partiallymix!(copy(ca), 1)
 @test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
