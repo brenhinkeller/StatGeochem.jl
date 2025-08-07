@@ -204,6 +204,23 @@ d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
 @test cov(d) == Σ
 @test pdf(d, μ) ≈ pdf(d, mean(d)) ≈ 1.0874333119089363e-16
 @test logpdf(d, μ) ≈ logpdf(d, mean(d)) ≈ -36.75754132818691
+@test pdf(d, μ) ≈ pdf(d, logtrace(mean(d))) ≈ 1.0874333119089363e-16
+@test logpdf(d, μ) ≈ logpdf(d, logtrace(mean(d))) ≈ -36.75754132818691
+
+d = CompositionNormal(NCKFMASHTOCrlogtrace{Float64}, μ, Σ)
+@test d == CompositionNormal(NCKFMASHTOCrlogtrace{Float64}(μ), Σ)
+@test d isa CompositionNormal{Float64, NCKFMASHTOCrlogtrace{Float64}}
+@test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrlogtrace{Float64}}
+@test rand(d) isa NCKFMASHTOCrlogtrace{Float64}
+@test rand(d,10) isa Vector{NCKFMASHTOCrlogtrace{Float64}}
+@test mean(d) === NCKFMASHTOCrlogtrace{Float64}(μ)
+@test var(d) === NCKFMASHTOCrlogtrace{Float64}(diag(Σ))
+@test std(d) === NCKFMASHTOCrlogtrace{Float64}(sqrt.(diag(Σ)))
+@test cov(d) == Σ
+@test pdf(d, μ) ≈ pdf(d, mean(d)) ≈ 1.0874333119089363e-16
+@test logpdf(d, μ) ≈ logpdf(d, mean(d)) ≈ -36.75754132818691
+@test pdf(d, μ) ≈ pdf(d, lineartrace(mean(d))) ≈ 1.0874333119089363e-16
+@test logpdf(d, μ) ≈ logpdf(d, lineartrace(mean(d))) ≈ -36.75754132818691
 
 ## --- Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)

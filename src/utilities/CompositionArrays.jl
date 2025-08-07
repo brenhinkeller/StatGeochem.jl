@@ -3,7 +3,10 @@ struct CompositionArray{T,N,C,I} <: AbstractArray{T,N}
     data::StructArray{T,N,C,I}
 end
 CompositionArray(args...) = CompositionArray(StructArray(args...))
-CompositionArray{T}(args...) where {T<:AbstractComposition} = CompositionArray(StructArray{T}(args...))
+CompositionArray{C}(args...) where {C<:AbstractComposition} = CompositionArray(StructArray{C}(args...))
+# Convert Dicts to NamedTuples
+CompositionArray(d::Dict) = CompositionArray(TupleDataset(d))
+CompositionArray{C}(d::Dict) where {C<:AbstractComposition} = CompositionArray{C}(TupleDataset(d))
 export CompositionArray
 
 # Forward properties from wrapped StructArray
@@ -107,10 +110,12 @@ abstract type CompositionDistribution{C} end
 # Distributions.jl-style interface: forward to underlying distribution
 Distributions.pdf(d::CompositionDistribution, x::AbstractVector) = pdf(d.dist, x)
 Distributions.logpdf(d::CompositionDistribution, x::AbstractVector) = logpdf(d.dist, x)
+Distributions.pdf(d::CompositionDistribution{C}, x::AbstractComposition) where {C<:AbstractComposition} = pdf(d, C(x))
 function Distributions.pdf(d::CompositionDistribution{C}, x::C) where {C<:AbstractComposition}
     d.buffer .= ntuple(x)
     return pdf(d, d.buffer)
 end
+Distributions.logpdf(d::CompositionDistribution{C}, x::AbstractComposition) where {C<:AbstractComposition} = logpdf(d, C(x))
 function Distributions.logpdf(d::CompositionDistribution{C}, x::C) where {C<:AbstractComposition}
     d.buffer .= ntuple(x)
     return logpdf(d, d.buffer)
