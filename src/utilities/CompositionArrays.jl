@@ -22,6 +22,13 @@ export CompositionArray
 @inline Base.axes(x::CompositionArray, args...) = axes(getfield(x, :data), args...)
 @inline Base.view(x::CompositionArray, args...) = CompositionArray(view(getfield(x, :data), args...))
 @inline Base.copy(x::CompositionArray) = CompositionArray(copy(getfield(x, :data)))
+function Base.isapprox(x::CompositionArray, y::CompositionArray; kwargs...)
+    eachindex(x) == eachindex(y) || return false
+    for i in eachindex(x)
+        isapprox(x[i], y[i]; kwargs...) || return false
+    end
+    return true
+end
 
 # Key-based indexing
 @inline Base.keys(x::CompositionArray) = propertynames(x)
@@ -35,6 +42,14 @@ traceelements(x::CompositionArray) = filter(k->!contains(String(k),"O"), keys(x)
 majorelements(x::CompositionArray{T}) where {T<:AbstractComposition} = majorelements(T)
 traceelements(x::CompositionArray{T}) where {T<:AbstractComposition} = traceelements(T)
 
+# Convert between log- and linear trace formulations
+function logtrace(x::CompositionArray{<:LinearTraceComposition}; naninf=false)
+    xlog = CompositionArray(logtrace.(x))
+    naninf && naninf!(xlog)
+    return xlog
+end
+lineartrace(x::CompositionArray{<:LogTraceComposition}) = CompositionArray(lineartrace.(x))
+export logtrace, lineartrace
 
 # Partial mixing of CompositionArrays
 function partiallymix!(x::AbstractArray{<:AbstractComposition}, mixingfraction::Number, ifirst=findfirst(!isnan, getfield(x,:data)), ilast=findlast(!isnan, getfield(x,:data)))

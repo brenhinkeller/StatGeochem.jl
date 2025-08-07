@@ -816,4 +816,3 @@ majorelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:SiO2, :T
 traceelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 logtrace(c::NCKFMASTCrtrace{T}) where {T} = NCKFMASTCrlogtrace{T}(c)
 lineartrace(c::NCKFMASTCrlogtrace{T}) where {T} = NCKFMASTCrtrace{T}(c)
-export logtrace, lineartrace

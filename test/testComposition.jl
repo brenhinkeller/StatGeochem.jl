@@ -190,15 +190,14 @@ c4 = NCKFMASHTOtrace{Float64}(concentrations, elements)
 @test StatGeochem.normconst(c1) ≈ 0.9827750000000002
 
 ## --- Composition distributions
-μ = rand(40)
+μ = renormalize(NCKFMASHTOCrtrace{Float64}(40:-1:1))
 Σ = [Float64(i==j) for i in 1:40, j in 1:40]
-d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
-@test d == CompositionNormal(NCKFMASHTOCrtrace{Float64}(μ), Σ)
+d = CompositionNormal(μ, Σ)
 @test d isa CompositionNormal{Float64, NCKFMASHTOCrtrace{Float64}}
 @test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrtrace{Float64}}
 @test rand(d) isa NCKFMASHTOCrtrace{Float64}
 @test rand(d,10) isa Vector{NCKFMASHTOCrtrace{Float64}}
-@test mean(d) === NCKFMASHTOCrtrace{Float64}(μ)
+@test mean(d) === μ
 @test var(d) === NCKFMASHTOCrtrace{Float64}(diag(Σ))
 @test std(d) === NCKFMASHTOCrtrace{Float64}(sqrt.(diag(Σ)))
 @test cov(d) == Σ
@@ -207,13 +206,12 @@ d = CompositionNormal(NCKFMASHTOCrtrace{Float64}, μ, Σ)
 @test pdf(d, μ) ≈ pdf(d, logtrace(mean(d))) ≈ 1.0874333119089363e-16
 @test logpdf(d, μ) ≈ logpdf(d, logtrace(mean(d))) ≈ -36.75754132818691
 
-d = CompositionNormal(NCKFMASHTOCrlogtrace{Float64}, μ, Σ)
-@test d == CompositionNormal(NCKFMASHTOCrlogtrace{Float64}(μ), Σ)
+d = CompositionNormal(logtrace(μ), Σ)
 @test d isa CompositionNormal{Float64, NCKFMASHTOCrlogtrace{Float64}}
 @test d isa StatGeochem.CompositionDistribution{NCKFMASHTOCrlogtrace{Float64}}
 @test rand(d) isa NCKFMASHTOCrlogtrace{Float64}
 @test rand(d,10) isa Vector{NCKFMASHTOCrlogtrace{Float64}}
-@test mean(d) === NCKFMASHTOCrlogtrace{Float64}(μ)
+@test mean(d) === logtrace(μ)
 @test var(d) === NCKFMASHTOCrlogtrace{Float64}(diag(Σ))
 @test std(d) === NCKFMASHTOCrlogtrace{Float64}(sqrt.(diag(Σ)))
 @test cov(d) == Σ
@@ -252,6 +250,10 @@ cad = dehydrate(ca)
 @test sum(e->cad[1][e], majorelements(cad))  ≈ 99.99 atol=0.02
 can = naninf(cad)
 @test sum(e->can[1][e], majorelements(can))  ≈ 99.99 atol=0.02
+calog = logtrace(ca)
+@test calog isa CompositionArray{NCKFMASHTOCrlogtrace{Float64}}
+calin = lineartrace(calog)
+@test calin ≈ ca
 
 cam = partiallymix!(copy(ca), 1)
 @test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
