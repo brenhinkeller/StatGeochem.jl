@@ -6,6 +6,7 @@ x = NCKFMASHTOtrace((1.0:length(fieldnames(NCKFMASHTOtrace)))...,)
 @test haskey(x, "SiO2") && haskey(x, :SiO2)
 @test x["SiO2"] ≈ x[:SiO2] ≈ 1
 @test ntuple(x) === ntuple(Float64, 40)
+@test NamedTuple(x) === NamedTuple{fieldnames(NCKFMASHTOtrace)}(1:40.)
 @test majorelementvalues(x) === ((1:10.)...,)
 @test traceelementvalues(x) === ((11:40.)...,)
 xn = renormalize(x) 
@@ -27,6 +28,7 @@ x = NCKFMASHTOlogtrace(x)
 @test haskey(x, "SiO2") && haskey(x, :SiO2)
 @test x["SiO2"] ≈ x[:SiO2] ≈ 1
 @test ntuple(x) === ((1:10.)..., log.(11:40)...,)
+@test NamedTuple(x) === NamedTuple{fieldnames(NCKFMASHTOlogtrace)}([1:10; log.(11:40)])
 @test majorelementvalues(x) === ((1:10.)...,)
 @test traceelementvalues(x) === (log.(11:40.)...,)
 xn = renormalize(x) 
@@ -238,7 +240,7 @@ ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
 @test eachindex(ca.La) === Base.OneTo(99)
 @test ca.La === ca[:La]
 
-# Randomize and renormalize composition arrays
+# Randomize and renormalize CompositionArrays
 StatGeochem.rand!(ca)
 @test nanmean(ca.SiO2) ≈ 10 atol = 3
 @test sum(e->ca[1][e], majorelements(ca)) ≈ 99.99 atol=0.02
@@ -250,10 +252,18 @@ cad = dehydrate(ca)
 @test sum(e->cad[1][e], majorelements(cad))  ≈ 99.99 atol=0.02
 can = naninf(cad)
 @test sum(e->can[1][e], majorelements(can))  ≈ 99.99 atol=0.02
+
+# Other conversions and transformations of CompositionArrays
 calog = logtrace(ca)
 @test calog isa CompositionArray{NCKFMASHTOCrlogtrace{Float64}}
 calin = lineartrace(calog)
 @test calin ≈ ca
+catup = TupleDataset(ca)
+@test catup isa NamedTuple
+@test CompositionArray{NCKFMASHTOCrlogtrace{Float64}}(catup) ≈ ca
+cadict = DictDataset(ca)
+@test cadict isa Dict
+@test CompositionArray{NCKFMASHTOCrlogtrace{Float64}}(cadict) ≈ ca
 
 cam = partiallymix!(copy(ca), 1)
 @test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]

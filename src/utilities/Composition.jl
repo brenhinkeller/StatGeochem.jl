@@ -108,6 +108,8 @@ end
     end
     return result
 end
+# Convert to a NamedTuple
+Base.NamedTuple(x::C) where {C<:AbstractComposition} = NamedTuple{fieldnames(C)}(ntuple(x))
 
 # Extract elements as an NTuple
 @generated function Base.ntuple(x::C) where {C<:AbstractComposition}

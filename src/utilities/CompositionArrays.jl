@@ -4,10 +4,15 @@ struct CompositionArray{T,N,C,I} <: AbstractArray{T,N}
 end
 CompositionArray(args...) = CompositionArray(StructArray(args...))
 CompositionArray{C}(args...) where {C<:AbstractComposition} = CompositionArray(StructArray{C}(args...))
-# Convert Dicts to NamedTuples
+# Convert Dicts to NamedTuples to allow conversion to CompositionArray
 CompositionArray(d::Dict) = CompositionArray(TupleDataset(d))
 CompositionArray{C}(d::Dict) where {C<:AbstractComposition} = CompositionArray{C}(TupleDataset(d))
 export CompositionArray
+
+# Conversion to other dataset types
+Base.NamedTuple(x::CompositionArray) = getfield(getfield(x, :data), :components) # That one's a freebie: just extract from underlying StructArray
+StatGeochemBase.TupleDataset(x::CompositionArray) = NamedTuple(x)
+StatGeochemBase.DictDataset(x::CompositionArray) = DictDataset(NamedTuple(x))
 
 # Forward properties from wrapped StructArray
 @inline Base.propertynames(x::CompositionArray) = propertynames(getfield(x, :data))
