@@ -186,13 +186,16 @@ end
     end
     return result
 end
-function Base.isapprox(x::C1, y::C2; kwargs...) where {C1<:AbstractComposition, C2<:AbstractComposition}
-    (fieldnames(C1) === fieldnames(C2)) || return false
-    for e in fieldnames(C1)
+Base.isapprox(x::AbstractComposition, y::AbstractComposition; kwargs...) = false
+function Base.isapprox(x::C, y::C; kwargs...) where {C<:AbstractComposition}
+    for e in fieldnames(C)
         isapprox(x[e], y[e]; kwargs...) || return false
     end
     return true
 end
+Base.isapprox(x::LogTraceComposition, y::LinearTraceComposition; kwargs...) = isapprox(lineartrace(x), y; kwargs...)
+Base.isapprox(x::LinearTraceComposition, y::LogTraceComposition; kwargs...) = isapprox(x, lineartrace(y); kwargs...)
+
 @generated function Base.isnan(x::C) where {C<:AbstractComposition}
     result = Expr(:(||))
     for e in fieldnames(C)

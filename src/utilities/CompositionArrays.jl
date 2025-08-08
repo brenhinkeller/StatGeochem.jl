@@ -13,6 +13,7 @@ export CompositionArray
 Base.NamedTuple(x::CompositionArray) = getfield(getfield(x, :data), :components) # That one's a freebie: just extract from underlying StructArray
 StatGeochemBase.TupleDataset(x::CompositionArray) = NamedTuple(x)
 StatGeochemBase.DictDataset(x::CompositionArray) = DictDataset(NamedTuple(x))
+StatGeochemBase.unelementify(x::CompositionArray; kwargs...) = unelementify(NamedTuple(x); kwargs...)
 
 # Forward properties from wrapped StructArray
 @inline Base.propertynames(x::CompositionArray) = propertynames(getfield(x, :data))

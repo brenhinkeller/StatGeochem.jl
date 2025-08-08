@@ -260,10 +260,12 @@ calin = lineartrace(calog)
 @test calin ≈ ca
 catup = TupleDataset(ca)
 @test catup isa NamedTuple
-@test CompositionArray{NCKFMASHTOCrlogtrace{Float64}}(catup) ≈ ca
+@test CompositionArray{NCKFMASHTOCrtrace{Float64}}(catup) ≈ ca
 cadict = DictDataset(ca)
 @test cadict isa Dict
-@test CompositionArray{NCKFMASHTOCrlogtrace{Float64}}(cadict) ≈ ca
+@test CompositionArray{NCKFMASHTOCrtrace{Float64}}(cadict) ≈ ca
+cmat = unelementify(ca, floatout=true)
+@test cmat isa Matrix{Float64}
 
 cam = partiallymix!(copy(ca), 1)
 @test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
