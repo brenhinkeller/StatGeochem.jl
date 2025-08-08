@@ -2,8 +2,8 @@
 struct CompositionArray{T,N,C,I} <: AbstractArray{T,N}
     data::StructArray{T,N,C,I}
 end
-CompositionArray(args...) = CompositionArray(StructArray(args...))
-CompositionArray{C}(args...) where {C<:AbstractComposition} = CompositionArray(StructArray{C}(args...))
+CompositionArray(args...; kwargs...) = CompositionArray(StructArray(args...; kwargs...))
+CompositionArray{C}(args...; kwargs...) where {C<:AbstractComposition} = CompositionArray(StructArray{C}(args...; kwargs...))
 # Convert Dicts to NamedTuples to allow conversion to CompositionArray
 CompositionArray(d::Dict) = CompositionArray(TupleDataset(d))
 CompositionArray{C}(d::Dict) where {C<:AbstractComposition} = CompositionArray{C}(TupleDataset(d))
