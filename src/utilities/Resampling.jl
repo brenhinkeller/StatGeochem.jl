@@ -580,15 +580,15 @@
     """
     ```julia
     bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin:step:xmax, [w];
-        \tx_sigma = zeros(size(x)),
-        \ty_sigma = zeros(size(y)),
+        \tx_sigma = 0.05x,
+        \ty_sigma = 0.05y,
         \tnresamplings = 1000,
         \tsem = :sigma,
         \tp = 0.2
     )
     bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
-        \ty_sigma = zeros(size(y)),
+        \tx_sigma = 0.05x,
+        \ty_sigma = 0.05y,
         \tnresamplings = 1000,
         \tsem = :sigma,
         \tp = 0.2
@@ -604,11 +604,11 @@
 
     Optional keyword arguments and defaults:
 
-        x_sigma = zeros(size(x))
+        x_sigma = 0.05x
 
     A vector representing the uncertainty (standard deviation) of each x value
 
-        y_sigma = zeros(size(y))
+        y_sigma = 0.05y
 
     A vector representing the uncertainty (standard deviation) of each y value
 
@@ -640,8 +640,8 @@
     """
     bin_bsr(f!::Function, x::AbstractVector, y::AbstractVecOrMat, edges::AbstractRange, args...; kwargs...) = bin_bsr(f!, x, y, minimum(edges),maximum(edges),length(edges)-1, args...; kwargs...)
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(y)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -683,8 +683,8 @@
         end
     end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(y)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -734,8 +734,8 @@
         end
     end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(x)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05x,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -789,14 +789,14 @@
     """
     ```julia
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
         \tp::Union{Number,Vector} = 0.2
     )
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
@@ -817,7 +817,7 @@
     """
     bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, edges::AbstractRange, args...; kwargs...) = bin_bsr_ratios(f!, x, num, denom, minimum(edges), maximum(edges), length(edges)-1, args...; kwargs...)
     function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
+            x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
             nresamplings=1000,
@@ -854,7 +854,7 @@
         return c, m, el, eu
     end
     function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
-            x_sigma::AbstractVector=zeros(size(x)),
+            x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
             nresamplings=1000,
@@ -896,7 +896,7 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_ratio_medians(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
