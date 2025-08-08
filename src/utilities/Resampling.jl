@@ -649,14 +649,15 @@
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
+        means = Array{T}(undef, nbins, nresamplings)
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins)
         # Resample
@@ -692,14 +693,14 @@
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
-        dtype = float(eltype(data))
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{dtype}(undef, nrows, ncols)
-        means = Array{dtype}(undef, nbins, nresamplings, size(y,2))
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings, size(y,2))
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins, size(y,2))
@@ -712,17 +713,17 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         if sem === :sigma
-            m = Array{dtype}(undef, nbins, size(y,2))
-            e = Array{dtype}(undef, nbins, size(y,2))
+            m = Array{T}(undef, nbins, size(y,2))
+            e = Array{T}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
                 m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
                 e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
             end
             return c, m, e
         elseif sem === :credibleinterval || sem === :CI || sem === :pctile
-            m = Array{dtype}(undef, nbins, size(y,2))
-            el = Array{dtype}(undef, nbins, size(y,2))
-            eu = Array{dtype}(undef, nbins, size(y,2))
+            m = Array{T}(undef, nbins, size(y,2))
+            el = Array{T}(undef, nbins, size(y,2))
+            eu = Array{T}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
                 m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
                 el[:,j] .= m[:,j] .- nanpctile!(view(means,:,:,j), 2.5, dim=2)
@@ -743,14 +744,14 @@
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, y_sigma, zeros(size(w)));
-
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamplings)
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins)
@@ -826,16 +827,17 @@
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
-        fractions = Array{Float64}(undef, nrows)
-        fraction_means = Array{Float64}(undef, nbins)
+        means = Array{T}(undef, nbins, nresamplings)
+        fractions = Array{T}(undef, nrows)
+        fraction_means = Array{T}(undef, nbins)
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
@@ -863,18 +865,19 @@
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
-        fractions = Array{Float64}(undef, nrows)
-        fraction_means = Array{Float64}(undef, nbins)
+        means = Array{T}(undef, nbins, nresamplings)
+        fractions = Array{T}(undef, nrows)
+        fraction_means = Array{T}(undef, nbins)
         rng = MersenneTwister()
-        W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
+        W = Array{T}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
