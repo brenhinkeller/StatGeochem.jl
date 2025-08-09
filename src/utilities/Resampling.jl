@@ -734,6 +734,58 @@
             return c, means
         end
     end
+    function bin_bsr(f!::Function, x::AbstractVector{T}, y::AbstractVector{C}, xmin::Number, xmax::Number, nbins::Integer;
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
+            nresamplings = 1000,
+            sem = :sigma,
+            p = 0.2
+        ) where {T, C<:AbstractComposition{T}}
+
+        data = hcat(x, unelementify(y, floatout=true))
+        sigma = hcat(x_sigma, unelementify(y_sigma, floatout=true))
+        binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
+
+        # Preallocate
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings, fieldcount(C))
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
+        rng = MersenneTwister()
+        N = Array{Int}(undef, nbins, fieldcount(C))
+        # Resample
+        for i in 1:nresamplings
+            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
+            f!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+fieldcount(C)), xmin, xmax, nbins)
+        end
+
+        # Return summary of results
+        if sem === :sigma
+            c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+            m = CompositionArray{C}(undef, nbins)
+            e = Array{T}(undef, fieldcount(C), fieldcount(C), nbins)
+            for i in eachindex(m)
+                meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
+                m[i] = nanmean(meansᵢ)
+                e[:, :, i] .= nancov(meansᵢ)
+            end
+            return c, m, e
+        elseif sem === :Normal
+            c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+            meansᵢ = CompositionArray{C}(@views(means[end, :, :]), dims=2)
+            dᵢ = typeof(CompositionNormal(nanmean(meansᵢ), nancov(meansᵢ)))
+            d = Array{typeof(dᵢ)}(undef, nbins)
+            for i in Iterators.drop(eachindex(m),1)
+                meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
+                d[i] = CompositionNormal(nanmean(meansᵢ), nancov(meansᵢ))
+            end
+            d[end] = dᵢ
+            return c, d
+        else
+            return c, means
+        end
+    end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
             x_sigma = 0.05x,
             y_sigma = 0.05x,

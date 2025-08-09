@@ -12,22 +12,47 @@ export CompositionArray
 # Conversion to other dataset types
 Base.NamedTuple(x::CompositionArray) = getfield(getfield(x, :data), :components) # That one's a freebie: just extract from underlying StructArray
 StatGeochemBase.TupleDataset(x::CompositionArray) = NamedTuple(x)
-StatGeochemBase.DictDataset(x::CompositionArray) = DictDataset(NamedTuple(x))
-StatGeochemBase.unelementify(x::CompositionArray; kwargs...) = unelementify(NamedTuple(x); kwargs...)
+StatGeochemBase.TupleDataset(x::AbstractArray{<:AbstractComposition}) = TupleDataset(CompositionArray(x))
+StatGeochemBase.DictDataset(x::AbstractArray{<:AbstractComposition}) = DictDataset(TupleDataset(x))
+StatGeochemBase.unelementify(x::AbstractArray{<:AbstractComposition}; kwargs...) = unelementify(TupleDataset(x); kwargs...)
 
 # Forward properties from wrapped StructArray
 @inline Base.propertynames(x::CompositionArray) = propertynames(getfield(x, :data))
 @inline Base.hasproperty(x::CompositionArray, key::Symbol) = hasproperty(getfield(x, :data), key)
 @inline Base.getproperty(x::CompositionArray, key::Symbol) = getproperty(getfield(x, :data), key)
 
-# Forward array interface to wrapped StructArray
-@inline Base.setindex!(x::CompositionArray, args...) = setindex!(getfield(x, :data), args...)
-@inline Base.getindex(x::CompositionArray, args...) = CompositionArray(getindex(getfield(x, :data), args...))
-@inline Base.getindex(x::CompositionArray, inds::Vararg{Int}) = getindex(getfield(x, :data), inds...)
+# Special generated method for fast scalar getindex
+Base.@propagate_inbounds @generated function Base.getindex(x::CompositionArray{C}, inds::Vararg{Int}) where {C<:AbstractComposition}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(getindex(x.$e, inds...)))
+    end
+    return result
+end
+# Forward the rest of the AbstractArray interface to wrapped StructArray
+Base.@propagate_inbounds Base.setindex!(x::CompositionArray, args...) = setindex!(getfield(x, :data), args...)
+Base.@propagate_inbounds Base.getindex(x::CompositionArray, args...) = CompositionArray(getindex(getfield(x, :data), args...))
+Base.@propagate_inbounds Base.getindex(x::CompositionArray, inds::Vararg{Int}) = getindex(getfield(x, :data), inds...)
 @inline Base.size(x::CompositionArray, args...) = size(getfield(x, :data), args...)
 @inline Base.axes(x::CompositionArray, args...) = axes(getfield(x, :data), args...)
 @inline Base.view(x::CompositionArray, args...) = CompositionArray(view(getfield(x, :data), args...))
-@inline Base.copy(x::CompositionArray) = CompositionArray(copy(getfield(x, :data)))
+@inline Base.similar(x::CompositionArray, ::Type{S}, dims::Dims) where {S} = CompositionArray(similar(getfield(x, :data), S, dims))
+# Also forward other Array-related methods that StructArray implements special versions of
+Base.copyto!(I::CompositionArray, J::CompositionArray) = copyto!(getfield(I, :data), getfield(J, :data))
+Base.copyto!(I::CompositionArray, doffs::Integer, J::CompositionArray, soffs::Integer, n::Integer) = copyto!(getfield(I, :data), doffs, getfield(J, :data), soffs, n)
+Base.fill!(A::CompositionArray, x) = fill!(getfield(A, :data), x)
+Base.resize!(A::CompositionArray, i::Integer) = resize!(getfield(A, :data), i)
+Base.empty!(A::CompositionArray) = empty!(getfield(A, :data))
+Base.sizehint!(A::CompositionArray, i::Integer) = sizehint!(getfield(A, :data))
+Base.copy(A::CompositionArray) = CompositionArray(copy(getfield(A, :data)))
+
+# # Broadcasting interface (enable this if we want broadcasting on CompositionArrays to return CompositionArrays)
+# struct CompositionArrayStyle <: Broadcast.BroadcastStyle end
+# Broadcast.BroadcastStyle(::Type{CompositionArray}) = CompositionArrayStyle()
+# Broadcast.BroadcastStyle(::CompositionArrayStyle, ::Broadcast.DefaultArrayStyle) = CompositionArrayStyle()
+# Base.similar(bc::Base.Broadcast.Broadcasted{CompositionArrayStyle}, ::Type{T}) where {T} = similar(CompositionArray{T}, axes(bc))
+
+# Other Base functions
 function Base.isapprox(x::CompositionArray, y::CompositionArray; kwargs...)
     eachindex(x) == eachindex(y) || return false
     for i in eachindex(x)

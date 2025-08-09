@@ -10,12 +10,22 @@
 
     # Compact show methods for custom types
     function Base.show(io::IO, x::T) where {T<:AbstractComposition}
-        k = first(keys(x))
-        l = last(keys(x))
-        print(io, "$T($k = $(x[k]), ... $l = $(x[l]))")
+        compact = get(io, :compact, false)
+        if compact
+            k = first(keys(x))
+            l = last(keys(x))
+            print(io, "$T($(x[k]), ...$(x[l]))")
+        else
+            Base.show_default(io, x)
+        end
     end
     function Base.show(io::IO, x::CompositionArray{T,N}) where {T,N}
-        print(io, "CompositionArray{$T,$N}$(size(x)) with $(length(keys(x))) elements $(first(keys(x))) ... $(last(keys(x)))")
+        compact = get(io, :compact, false)
+        if compact
+            print(io, "CompositionArray{$T,$N}$(size(x)) with $(length(keys(x))) elements $(first(keys(x))) ... $(last(keys(x)))")
+        else
+            Base.show_default(io, x)
+        end
     end
 
     # Verbose show methods for custom types
