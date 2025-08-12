@@ -899,6 +899,6 @@ export NCKFMASTrlogt
 
 # majorelements, traceelements and conversions
 majorelements(::Type{<:Union{NCKFMASTrt, NCKFMASTrlogt}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O,)
-traceelements(::Type{<:Union{NCKFMASTrt, NCKFMASTrlogt}}) = (:P, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Th, :U)
+traceelements(::Type{<:Union{NCKFMASTrt, NCKFMASTrlogt}}) = (:P, :Sr, :Ba, :Sc, :Cr, :Mn, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Th, :U)
 logtrace(c::NCKFMASTrt{T}) where {T} = NCKFMASTrlogt{T}(c)
 lineartrace(c::NCKFMASTrlogt{T}) where {T} = NCKFMASTrt{T}(c)

@@ -171,6 +171,20 @@ x = NCKFMASHTOCO2logtrace(x)
 @test majorelementvalues(x) === ((1:11.)...,)
 @test traceelementvalues(x) === (log.(12:41.)...,)
 
+x = NCKFMASTrt((1.0:length(fieldnames(NCKFMASTrt)))...,)
+@test x isa NCKFMASTrt{Float64}
+@test x === NCKFMASTrt{Float64}(1:31)
+@test ntuple(x) === ntuple(Float64, 31)
+@test majorelementvalues(x) === ((1:8.)...,)
+@test traceelementvalues(x) === ((9:31.)...,)
+
+x = NCKFMASTrlogt(x)
+@test x isa NCKFMASTrlogt{Float64}
+@test x === NCKFMASTrlogt{Float64}([1:8; log.(9:31)])
+@test ntuple(x) === ((1:8.)..., log.(9:31)...,)
+@test majorelementvalues(x) === ((1:8.)...,)
+@test traceelementvalues(x) === (log.(9:31.)...,)
+
 # Test alternate constructors
 elements =       [ "SiO2", "Al2O3",  "FeO",  "MgO",  "CaO", "Na2O",  "K2O",  "H2O",  "CO2",]
 concentrations = [50.0956, 15.3224, 8.5103, 9.2520, 9.6912, 2.5472, 0.8588, 2.0000, 0.6000,]
