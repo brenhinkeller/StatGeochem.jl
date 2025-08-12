@@ -7,7 +7,14 @@ CompositionArray{C}(args...; kwargs...) where {C<:AbstractComposition} = Composi
 # Convert Dicts to NamedTuples to allow conversion to CompositionArray
 CompositionArray(d::Dict) = CompositionArray(TupleDataset(d))
 CompositionArray{C}(d::Dict) where {C<:AbstractComposition} = CompositionArray{C}(TupleDataset(d))
+# Convert CompositionArrays to other CompositionArrays
+CompositionArray{C}(a::CompositionArray) where {C<:AbstractComposition} = CompositionArray(C.(a))
 export CompositionArray
+
+# Type aliases for vectors and matrices
+const CompositionVector{T,C,I} = CompositionArray{T,1,C,I}
+const CompositionMatrix{T,C,I} = CompositionArray{T,2,C,I}
+export CompositionVector, CompositionMatrix
 
 # Conversion to other dataset types
 Base.NamedTuple(x::CompositionArray) = getfield(getfield(x, :data), :components) # That one's a freebie: just extract from underlying StructArray

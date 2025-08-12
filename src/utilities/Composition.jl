@@ -50,6 +50,11 @@ function (::Type{C})(concentrations::Collection{<:Number}, elements::Collection{
 end
 
 # Default conversions between compositions
+@inline equivalentelements(C,D) = (majorelements(C) === majorelements(D)) && (traceelements(C) === traceelements(D))
+function Base.convert(::Type{D}, c::C) where {D<:AbstractComposition, C<:AbstractComposition}
+    equivalentelements(C,D) || @error "Implicit conversion between $C and $D disallowed; elements do not match"
+    D(c)
+end
 @generated function (::Type{C})(c::D) where {T, C<:LinearTraceComposition, D<:LinearTraceComposition{T}}
     result = :($C())
     for e in fieldnames(C)

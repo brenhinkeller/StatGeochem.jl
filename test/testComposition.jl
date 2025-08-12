@@ -224,11 +224,11 @@ d = CompositionNormal(logtrace(μ), Σ)
 
 ## --- Composition arrays
 ca = CompositionArray{NCKFMASHTOCrtrace{Float64}}(undef, 99)
-@test ca isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test ca isa CompositionVector{NCKFMASHTOCrtrace{Float64}}
 @test ca[1] isa NCKFMASHTOCrtrace{Float64}
-@test ca[1:10] isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
-@test view(ca, 1:10) isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
-@test copy(ca[1:10]) isa CompositionArray{NCKFMASHTOCrtrace{Float64}}
+@test ca[1:10] isa CompositionVector{NCKFMASHTOCrtrace{Float64}}
+@test view(ca, 1:10) isa CompositionVector{NCKFMASHTOCrtrace{Float64}}
+@test copy(ca[1:10]) isa CompositionVector{NCKFMASHTOCrtrace{Float64}}
 @test length(ca) === 99
 @test eachindex(ca) === Base.OneTo(99)
 @test ca.SiO2 isa Vector{Float64}
@@ -255,7 +255,7 @@ can = naninf(cad)
 
 # Other conversions and transformations of CompositionArrays
 calog = logtrace(ca)
-@test calog isa CompositionArray{NCKFMASHTOCrlogtrace{Float64}}
+@test calog isa CompositionVector{NCKFMASHTOCrlogtrace{Float64}}
 calin = lineartrace(calog)
 @test calin ≈ ca
 catup = TupleDataset(ca)
@@ -302,3 +302,22 @@ StatGeochem.rand!(ca, d)
 @test nansem(ca) ≈ std(d)/sqrt(length(ca)) rtol=0.1
 @test nancov(ca) ≈ cov(d) rtol=0.3
 @test nancovem(ca) ≈ cov(d)/length(ca) rtol=0.3
+
+# Test implicit conversion (filling array with different type)
+@test compositiondist isa CompositionNormal{Float64, NCKFMASHTOlogtrace{Float64}}
+calog = CompositionArray(rand(compositiondist, 10000))
+@test calog isa CompositionVector{NCKFMASHTOlogtrace{Float64}}
+μ = nanmean(calog)
+@test μ.SiO2 ≈ 60 atol=5
+@test μ.Lu ≈ -1.15 atol=0.5
+
+# Test conversion to different eltype
+ca = CompositionArray{NCKFMASHTOtrace}(calog)
+@test ca isa CompositionVector{NCKFMASHTOtrace{Float64}}
+@test nanmean(ca) ≈ nanmean(lineartrace(calog))
+
+# Test implicit conversion of comparable Compositions
+StatGeochem.rand!(ca, compositiondist)
+μ = nanmean(ca)
+@test μ.SiO2 ≈ 60 atol=5
+@test μ.Lu ≈ 0.315 atol=0.5
