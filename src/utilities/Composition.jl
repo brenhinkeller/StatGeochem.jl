@@ -826,3 +826,79 @@ majorelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:SiO2, :T
 traceelements(::Type{<:Union{NCKFMASTCrtrace, NCKFMASTCrlogtrace}}) = (:P, :Rb, :Cs, :Sr, :Ba, :Sc, :V, :Mn, :Co, :Ni, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Mo, :W, :Th, :U)
 logtrace(c::NCKFMASTCrtrace{T}) where {T} = NCKFMASTCrlogtrace{T}(c)
 lineartrace(c::NCKFMASTCrlogtrace{T}) where {T} = NCKFMASTCrtrace{T}(c)
+
+struct NCKFMASTrt{T} <: LinearTraceComposition{T}
+    SiO2::T
+    TiO2::T
+    Al2O3::T
+    FeO::T
+    MgO::T
+    CaO::T
+    Na2O::T
+    K2O::T
+    P::T
+    Sr::T
+    Ba::T
+    Sc::T
+    Cr::T
+    Mn::T
+    La::T
+    Ce::T
+    Nd::T
+    Sm::T
+    Eu::T
+    Gd::T
+    Tb::T
+    Dy::T
+    Yb::T
+    Lu::T
+    Y::T
+    Zr::T
+    Hf::T
+    Nb::T
+    Ta::T
+    Th::T
+    U::T
+end
+export NCKFMASTrt
+
+struct NCKFMASTrlogt{T} <: LogTraceComposition{T}
+    SiO2::T
+    TiO2::T
+    Al2O3::T
+    FeO::T
+    MgO::T
+    CaO::T
+    Na2O::T
+    K2O::T
+    P::T
+    Sr::T
+    Ba::T
+    Sc::T
+    Cr::T
+    Mn::T
+    La::T
+    Ce::T
+    Nd::T
+    Sm::T
+    Eu::T
+    Gd::T
+    Tb::T
+    Dy::T
+    Yb::T
+    Lu::T
+    Y::T
+    Zr::T
+    Hf::T
+    Nb::T
+    Ta::T
+    Th::T
+    U::T
+end
+export NCKFMASTrlogt
+
+# majorelements, traceelements and conversions
+majorelements(::Type{<:Union{NCKFMASTrt, NCKFMASTrlogt}}) = (:SiO2, :TiO2, :Al2O3, :FeO, :MgO, :CaO, :Na2O, :K2O,)
+traceelements(::Type{<:Union{NCKFMASTrt, NCKFMASTrlogt}}) = (:P, :Sr, :Ba, :Sc, :V, :Cr, :Mn, :La, :Ce, :Nd, :Sm, :Eu, :Gd, :Tb, :Dy, :Yb, :Lu, :Y, :Zr, :Hf, :Nb, :Ta, :Th, :U)
+logtrace(c::NCKFMASTrt{T}) where {T} = NCKFMASTrlogt{T}(c)
+lineartrace(c::NCKFMASTrlogt{T}) where {T} = NCKFMASTrt{T}(c)
