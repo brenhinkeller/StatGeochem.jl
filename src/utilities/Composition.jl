@@ -151,6 +151,7 @@ Base.getindex(x::AbstractComposition, key::String) = getfield(x, Symbol(key))
 
 # Partial math interface, using generated functions so that we don't have to manually
 # write out all the field names for every concrete subtype of AbstractComposition
+# Math operations between compositions and scalars
 @generated function Base.:*(x::C, n::Number) where {C<:LinearTraceComposition}
     result = :($C())
     for e in fieldnames(C)
@@ -174,6 +175,42 @@ end
 end
 Base.:*(n::Number, x::AbstractComposition) = x * n          # Scalar multiplication is commutative
 Base.:/(x::AbstractComposition, n::Number) = x * inv(n)     # Division by a scalar is multiplciation by multiplicative inverse
+
+# Math operations between two compositions
+@generated function Base.:*(x::C, y::C) where {C<:LinearTraceComposition}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(x.$e * y.$e))
+    end
+    return result
+end
+@generated function Base.:*(x::C, y::C) where {C<:LogTraceComposition}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(x.$e * y.$e))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(x.$e + y.$e))
+    end
+    return result
+end
+@generated function Base.:/(x::C, y::C) where {C<:LinearTraceComposition}
+    result = :($C())
+    for e in fieldnames(C)
+        push!(result.args, :(x.$e / y.$e))
+    end
+    return result
+end
+@generated function Base.:/(x::C, y::C) where {C<:LogTraceComposition}
+    result = :($C())
+    for e in majorelements(C)
+        push!(result.args, :(x.$e / y.$e))
+    end
+    for e in traceelements(C)
+        push!(result.args, :(x.$e - y.$e))
+    end
+    return result
+end
 @generated function Base.:+(x::C, y::C) where {C<:LinearTraceComposition}
     result = :($C())
     for e in fieldnames(C)

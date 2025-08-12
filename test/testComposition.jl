@@ -294,7 +294,10 @@ StatGeochem.rand!(ca)
 @test nanmean(ca.SiO2) ≈ 10 atol = 2
 @test sum(e->ca[1][e], majorelements(ca)) ≈ 99.99 atol=0.02
 renormalize!(ca; anhydrous=true)
-@test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca)))  ≈ 99.99 atol=0.02
+@test sum(e->ca[1][e], filter(x->!(x===:H2O), majorelements(ca))) ≈ 99.99 atol=0.02
+# Test math on compositions
+@test ca[1] + ca[1] ≈ 2 * ca[1]
+@test (ca[1]*ca[1])/ca[1] ≈ ca[1]
 
 cam = partiallymix!(copy(ca), 1)
 @test cam[50] ≈ 0.5*ca[1] + 0.5*ca[99]
