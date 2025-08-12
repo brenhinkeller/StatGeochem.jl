@@ -739,7 +739,8 @@
             y_sigma = 0.05y,
             nresamplings = 1000,
             sem = :sigma,
-            p = 0.2
+            p = 0.2,
+            ResultType::Type{<:AbstractComposition}=C,
         ) where {T, C<:AbstractComposition{T}}
 
         data = hcat(x, unelementify(y, floatout=true))
@@ -761,29 +762,21 @@
         end
 
         # Return summary of results
-        if sem === :sigma
-            c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-            m = CompositionArray{C}(undef, nbins)
-            e = Array{T}(undef, fieldcount(C), fieldcount(C), nbins)
-            for i in eachindex(m)
-                meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
-                m[i] = nanmean(meansᵢ)
-                e[:, :, i] .= nancov(meansᵢ)
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = CompositionArray{ResultType}(undef, nbins)
+        e = Array{T}(undef, fieldcount(C), fieldcount(C), nbins)
+        for i in eachindex(m)
+            meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
+            if ResultType !== C
+                meansᵢ = CompositionArray(ResultType.(meansᵢ))
             end
+            m[i] = nanmean(meansᵢ)
+            e[:, :, i] .= nancov(meansᵢ)
+        end
+        if sem === :sigma
             return c, m, e
         elseif sem === :Normal
-            c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
-            meansᵢ = CompositionArray{C}(@views(means[end, :, :]), dims=2)
-            dᵢ = typeof(CompositionNormal(nanmean(meansᵢ), nancov(meansᵢ)))
-            d = Array{typeof(dᵢ)}(undef, nbins)
-            for i in Iterators.drop(eachindex(m),1)
-                meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
-                d[i] = CompositionNormal(nanmean(meansᵢ), nancov(meansᵢ))
-            end
-            d[end] = dᵢ
-            return c, d
-        else
-            return c, means
+            return c, CompositionNormal.(m, eachslice(e, dims=3))
         end
     end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;

@@ -123,7 +123,10 @@ function NaNStatistics.nancov(x::AbstractArray{C}; posdef=true, mineigenvalue=1e
     Σ = zeros(T, fieldcount(C), fieldcount(C))
     @inbounds for i in eachindex(e)
         for j in 1:i
-            Σ[i,j] = Σ[j,i] = nancov(x[e[i]], x[e[j]])
+            c = nancov(x[e[i]], x[e[j]])
+            if isfinite(c)
+                Σ[i,j] = Σ[j,i] = c
+            end
         end
     end
     return posdef ? nearestposdef(Σ; mineigenvalue) : Symmetric(Σ)
@@ -133,7 +136,10 @@ function NaNStatistics.nancovem(x::AbstractArray{C}; posdef=true, mineigenvalue=
     Σ = zeros(T, fieldcount(C), fieldcount(C))
     @inbounds for i in eachindex(e)
         for j in 1:i
-            Σ[i,j] = Σ[j,i] = nancovem(x[e[i]], x[e[j]])
+            c = nancovem(x[e[i]], x[e[j]])
+            if isfinite(c)
+                Σ[i,j] = Σ[j,i] = c
+            end
         end
     end
     return posdef ? nearestposdef(Σ; mineigenvalue) : Symmetric(Σ)
