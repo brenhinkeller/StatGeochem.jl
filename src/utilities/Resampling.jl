@@ -606,11 +606,11 @@
 
         x_sigma = 0.05x
 
-    A vector representing the uncertainty (standard deviation) of each x value
+    A vector representing the absolute uncertainty (standard deviation) of each x value
 
         y_sigma = 0.05y
 
-    A vector representing the uncertainty (standard deviation) of each y value
+    A vector representing the absolute uncertainty (standard deviation) of each y value
 
         nresamplings = 1000
 
@@ -745,6 +745,12 @@
 
         data = hcat(x, unelementify(y, floatout=true))
         sigma = hcat(x_sigma, unelementify(y_sigma, floatout=true))
+        if C<:LogTraceComposition
+            # Convert trace element uncertainties from absolute to factor, if trace elements are in log space
+            ntrace = length(traceelements(C))
+            sigma[(end-ntrace+1):end] .-= data[(end-ntrace+1):end]
+            sigma[(end-ntrace+1):end] .= log1p.(exp.(sigma[(end-ntrace+1):end]))
+        end
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
