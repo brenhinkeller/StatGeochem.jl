@@ -149,6 +149,11 @@ Base.haskey(x::C, key::String) where {C<:AbstractComposition} = hasfield(C, Symb
 Base.getindex(x::AbstractComposition, key::Symbol) = getfield(x, key)
 Base.getindex(x::AbstractComposition, key::String) = getfield(x, Symbol(key))
 
+# Basic iteration interface for broadcasting
+Base.length(c::AbstractComposition) = 1
+Base.iterate(c::AbstractComposition) = (c, nothing)
+Base.iterate(c::AbstractComposition, i) = nothing
+
 # Partial math interface, using generated functions so that we don't have to manually
 # write out all the field names for every concrete subtype of AbstractComposition
 # Math operations between compositions and scalars
