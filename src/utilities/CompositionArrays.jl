@@ -9,7 +9,7 @@ CompositionArray(d::Dict) = CompositionArray(TupleDataset(d))
 CompositionArray{C}(d::Dict) where {C<:AbstractComposition} = CompositionArray{C}(TupleDataset(d))
 # Convert CompositionArrays to other CompositionArrays
 CompositionArray(a::CompositionArray) = a
-CompositionArray{C}(a::CompositionArray) where {C<:AbstractComposition} = C.(a)
+CompositionArray{C}(a::CompositionArray) where {C<:AbstractComposition} = CompositionArray(C.(a))
 export CompositionArray
 
 # Type aliases for vectors and matrices
@@ -55,10 +55,10 @@ Base.sizehint!(A::CompositionArray, i::Integer) = sizehint!(getfield(A, :data))
 Base.copy(A::CompositionArray) = CompositionArray(copy(getfield(A, :data)))
 
 # # Broadcasting interface (enable this if we want broadcasting on CompositionArrays to return CompositionArrays)
-struct CompositionArrayStyle <: Base.Broadcast.BroadcastStyle end
-Base.Broadcast.BroadcastStyle(::Type{<:CompositionArray}) = CompositionArrayStyle()
-Base.Broadcast.BroadcastStyle(::CompositionArrayStyle, ::Base.Broadcast.DefaultArrayStyle) = CompositionArrayStyle()
-Base.similar(bc::Base.Broadcast.Broadcasted{CompositionArrayStyle}, ::Type{T}) where {T} = similar(CompositionArray{T}, axes(bc))
+# struct CompositionArrayStyle <: Base.Broadcast.BroadcastStyle end
+# Base.Broadcast.BroadcastStyle(::Type{<:CompositionArray}) = CompositionArrayStyle()
+# Base.Broadcast.BroadcastStyle(::CompositionArrayStyle, ::Base.Broadcast.DefaultArrayStyle) = CompositionArrayStyle()
+# Base.similar(bc::Base.Broadcast.Broadcasted{CompositionArrayStyle}, ::Type{T}) where {T} = similar(CompositionArray{T}, axes(bc))
 
 # Other Base functions
 function Base.isapprox(x::CompositionArray, y::CompositionArray; kwargs...)

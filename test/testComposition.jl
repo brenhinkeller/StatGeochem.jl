@@ -300,8 +300,8 @@ renormalize!(ca; anhydrous=true)
 @test ca[1] + ca[1] ≈ 2 * ca[1]
 @test (ca[1]*ca[1])/ca[1] ≈ ca[1]
 # Test dot-broadcasting on compositions / compositionarrays
-@test (ca .+ ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}} ≈ (2 .* ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}}
-@test ((ca .* ca)./ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}} ≈ ca
+# @test (ca .+ ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}} ≈ (2 .* ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}}
+# @test ((ca .* ca)./ca)::CompositionVector{NCKFMASHTOlogtrace{Float64}} ≈ ca
 @test CompositionArray(ca .+ ca) ≈ CompositionArray(2 .* ca)
 @test CompositionArray((ca .* ca)./ca) ≈ ca
 
