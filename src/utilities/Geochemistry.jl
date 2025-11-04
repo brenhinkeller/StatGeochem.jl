@@ -1102,64 +1102,64 @@
 
      """
     ```julia
-    TiO2Sat = Ayers_tspheneTiO2_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    TiO2Sat = Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
     ```
     Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
     (in C) following the sphene saturation calibration of Ayers et al., 2022
     (doi: 10.1007/s00410-022-01902-z)
     """
-    function Ayers_tspheneTiO2_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
+    function Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
         M = Ayers_tspheneM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         TiO2 = max((0.978*M)+(0.0048*(TC+273.15))-5.90, 0)
         return TiO2
     end
-    export Ayers_tspheneTiO2_22
-
-    """
-    ```julia
-    TC = Ayers_tsphene_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-    ```
-    Calculate sphene saturation temperature in degrees Celsius
-    Following the sphene saturation calibration of Ayers et al., 2022
-    (doi: 10.1007/s00410-022-01902-z)
-    """
-    function Ayers_tsphene_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        M = Ayers_tspheneM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        TC = (TiO2 + 5.90 - (0.978*M))/0.0048 - 273.15
-        return TC
-    end
-    export Ayers_tsphene_22
-
-    """
-    ```julia
-    TiO2Sat = Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
-    ```
-    Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
-    (in C) following the sphene saturation calibration of Ayers et al., 2018
-    (doi: 10.1130/abs/2018AM-320568)
-    """
-    function Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
-        C = Ayers_tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
-        TiO2 = max(0.79*C - 7993/(TC+273.15) + 7.88, 0)
-        return TiO2
-    end
     export Ayers_tspheneTiO2
-
 
     """
     ```julia
     TC = Ayers_tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
     ```
     Calculate sphene saturation temperature in degrees Celsius
+    Following the sphene saturation calibration of Ayers et al., 2022
+    (doi: 10.1007/s00410-022-01902-z)
+    """
+    function Ayers_tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        M = Ayers_tspheneM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TC = (TiO2 + 5.90 - (0.978*M))/0.0048 - 273.15
+        return TC
+    end
+    export Ayers_tsphene
+
+    """
+    ```julia
+    TiO2Sat = Ayers_tspheneTiO2_18(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ```
+    Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
+    (in C) following the sphene saturation calibration of Ayers et al., 2018
+    (doi: 10.1130/abs/2018AM-320568)
+    """
+    function Ayers_tspheneTiO2_18(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
+        C = Ayers_tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TiO2 = max(0.79*C - 7993/(TC+273.15) + 7.88, 0)
+        return TiO2
+    end
+    export Ayers_tspheneTiO2_18
+
+
+    """
+    ```julia
+    TC = Ayers_tsphene_18(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate sphene saturation temperature in degrees Celsius
     Following the sphene saturation calibration of Ayers et al., 2018
     (doi: 10.1130/abs/2018AM-320568)
     """
-    function Ayers_tsphene(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    function Ayers_tsphene_18(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         C = Ayers_tspheneC(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
         TC = 7993/(0.79*C - TiO2 + 7.88) - 273.15
         return TC
     end
-    export Ayers_tsphene
+    export Ayers_tsphene_18
 
 ## --- Rutile saturation calculations
 

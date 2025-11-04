@@ -102,12 +102,12 @@
     @test tzircZr(majors..., 800) ≈ 826.1071302971219
     @test mean(tzircM((repeat([m],2) for m in majors)...,)) ≈ 2.328787411099651
 
-    @test StatGeochem.Ayers_tsphene(majors...) ≈ 637.7486728299519
-    @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 2.3486842447760026
+    @test StatGeochem.Ayers_tsphene_18(majors...) ≈ 637.7486728299519
+    @test StatGeochem.Ayers_tspheneTiO2_18(majors..., 800) ≈ 2.3486842447760026
     @test mean(StatGeochem.Ayers_tspheneC.((repeat([m],2) for m in majors)...,)) ≈ 2.4263934899817188
 
-    @test StatGeochem.Ayers_tsphene_22(majors...) ≈ 694.4428983217797
-    @test StatGeochem.Ayers_tspheneTiO2_22(majors..., 800) ≈ 1.5286740880554586
+    @test StatGeochem.Ayers_tsphene(majors...) ≈ 694.4428983217797
+    @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 1.5286740880554586
 
     #                SiO2,   TiO2,  Al2O3,  FeOT,   MgO,  CaO,   Na2O,  K2O,   Li2O, H2O
     montel_elems = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.01, 4.0]
