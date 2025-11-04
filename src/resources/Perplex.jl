@@ -1871,6 +1871,7 @@ export perplex_query_system
             push!(elements, e)
         end
         minerals = collect(setdiff(keys(modes), ("elements", "T(C)", "T(K)", "P(bar)", "all_melts", "all_fluids", "all_solids", melt_model)))
+        filter!(m->!contains(m, "dqf"), minerals) # Don't include dqf corrections as independent minerals
         t = sortperm(lowercase.(minerals))
         for e in minerals[t]
             # Don't print empty columns
@@ -2396,7 +2397,7 @@ export perplex_query_system
     function perplex_phase_is_solid(phase_name)
         phase_name ∈ ("cAmph_I(DP)", "cAmph_I(G)", "Cpx_I(HGP)", "Sp_II(WPC)", "feldspar_B") || (
             !perplex_phase_is_fluid(phase_name) && !perplex_phase_is_melt(phase_name) &&
-            !any(contains.(phase_name, ["_", "P(", "T(", "Pressure", "Temperature", "elements", "minerals", "system", "bulk",]))
+            !any(contains.(phase_name, ["_", "P(", "T(", "Pressure", "Temperature", "elements", "minerals", "system", "bulk", "dqf"]))
         )
     end
     export perplex_phase_is_solid
