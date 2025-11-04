@@ -1079,6 +1079,57 @@
         return (10 * eCa) / (Al * Si)
     end
 
+    function Ayers_tspheneM(SiO2::Number, TiO2::Number, Al2O3::Number, FeOT::Number, MnO::Number, MgO::Number, CaO::Number, Na2O::Number, K2O::Number, P2O5::Number)
+        #Cations
+        Na = Na2O/30.9895
+        K = K2O/47.0827
+        Ca = CaO/56.0774
+        Al = Al2O3/50.9806
+        Si = SiO2/60.0843
+        Ti = TiO2/79.865
+        Fe = FeOT/71.8444
+        Mg = MgO/24.3050
+        Mn = MnO/70.9374
+        P = P2O5/70.9723
+
+         # Normalize cation fractions
+        normconst = nansum((Na, K, Ca, Al, Si, Ti, Fe, Mg, Mn, P))
+        K, Na, Ca, Al, Si = (K, Na, Ca, Al, Si) ./ normconst
+
+        M = (Na + K + (2 * Ca))/(Al * Si)
+        return M
+    end
+
+     """
+    ```julia
+    TiO2Sat = Ayers_tspheneTiO2_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)
+    ```
+    Calculate sphene saturation TiO2 concentration (in wt. %) for a given temperature
+    (in C) following the sphene saturation calibration of Ayers et al., 2022
+    (doi: 10.1007/s00410-022-01902-z)
+    """
+    function Ayers_tspheneTiO2_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, TC)
+        M = Ayers_tspheneM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TiO2 = max((0.978*M)+(0.0048*(TC+273.15))-5.90, 0)
+        return TiO2
+    end
+    export Ayers_tspheneTiO2_22
+
+    """
+    ```julia
+    TC = Ayers_tsphene_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate sphene saturation temperature in degrees Celsius
+    Following the sphene saturation calibration of Ayers et al., 2022
+    (doi: 10.1007/s00410-022-01902-z)
+    """
+    function Ayers_tsphene_22(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        M = Ayers_tspheneM(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5)
+        TC = (TiO2 + 5.90 - (0.978*M))/0.0048 - 273.15
+        return TC
+    end
+    export Ayers_tsphene_22
+
     """
     ```julia
     TiO2Sat = Ayers_tspheneTiO2(SiO2, TiO2, Al2O3, FeOT, MnO, MgO, CaO, Na2O, K2O, P2O5, T)

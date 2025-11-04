@@ -106,6 +106,9 @@
     @test StatGeochem.Ayers_tspheneTiO2(majors..., 800) ≈ 2.3486842447760026
     @test mean(StatGeochem.Ayers_tspheneC.((repeat([m],2) for m in majors)...,)) ≈ 2.4263934899817188
 
+    @test StatGeochem.Ayers_tsphene_22(majors...) ≈ 694.4428983217797
+    @test StatGeochem.Ayers_tspheneTiO2_22(majors..., 800) ≈ 1.5286740880554586
+
     #                SiO2,   TiO2,  Al2O3,  FeOT,   MgO,  CaO,   Na2O,  K2O,   Li2O, H2O
     montel_elems = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.01, 4.0]
     @test StatGeochem.Montel_tmonaziteREE(montel_elems..., 750.0) ≈ 11.884450325741755
