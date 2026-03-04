@@ -259,7 +259,7 @@ end
     end
     return result
 end
-@generated function Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LinearTraceComposition{T}}
+@generated function Base.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LinearTraceComposition{T}}
     result = :($C())
     for e in majorelements(C)
         push!(result.args, :(rand(rng, T)*20))
@@ -269,7 +269,7 @@ end
     end
     return :(renormalize($result))
 end
-@generated function Random.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LogTraceComposition{T}}
+@generated function Base.rand(rng::AbstractRNG, ::Random.SamplerType{C}) where {T, C<:LogTraceComposition{T}}
     result = :($C())
     for e in majorelements(C)
         push!(result.args, :(rand(rng, T)*20))

@@ -209,7 +209,7 @@ export CompositionNormal
 # Interface for drawing Compositions from MvNormal distribution
 # (using Random interface, rather than Distributions.jl interface)
 Random.gentype(::Type{<:CompositionDistribution{C}}) where {C<:AbstractComposition} = C
-function Random.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
+function Base.rand(rng::AbstractRNG, d::Random.SamplerTrivial{<:CompositionNormal{T,C}}) where {T,C<:AbstractComposition{T}}
     rand!(rng, d.self.dist, d.self.buffer) 
     return renormalize(C(d.self.buffer))
 end
