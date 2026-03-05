@@ -1828,7 +1828,7 @@ export perplex_query_system
             monazite_kd_corr .= germ_monazite_kd_corr(calculated, all_ee3, si_index)
 
             # Re-recalculate bulk Kd
-            update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr; tzircon_kd_source)
+            update_kds!(d, modes, trace_elements, si_index, monazite_kd_corr; zircon_kd_source)
 
             # Re-Recalculate trace elements in melt as a function of melt fraction (equilibrium)
             for e in trace_elements

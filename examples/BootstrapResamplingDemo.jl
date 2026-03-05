@@ -1,5 +1,5 @@
 
-## --- Load (and install if neccesary) the StatGeochem package which has the resampling functions we'll want
+## --- Load the StatGeochem package which has the resampling functions we'll want
 
     using StatGeochem
     using Plots
