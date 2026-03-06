@@ -28,10 +28,10 @@
     ```julia
     materialize(x)
     ```
-    Convert an array-like object to an materialized, actual allocated `Array`,
+    Convert an array-like object to an materialized, allocated `Array`,
     and leaving other types unchanged.
 
-    Unlike `collect`, will merely pass through an already-allocated `Array`
+    Unlike `collect`, will merely pass through an existing `Array`
     without change, rather than allocating new memory and making a copy.
 
     ### Examples
@@ -50,8 +50,7 @@
     ```
     """
     materialize(x) = x
-    materialize(x::Array) = x
-    materialize(x::Number) = x
+    materialize(x::DenseArray) = x
     materialize(x::Collection) = collect(x)
 
 ## --- End of File

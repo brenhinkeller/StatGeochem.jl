@@ -7,36 +7,8 @@
 
 ## --- Configure
 
-    # Absolute paths to perplex resources
-    # perplexdir = joinpath(resourcepath,"perplex-stable")
-    scratchdir = "./scratch/" # Location of directory to store output files
-
-##-- 
-    # Attempt to install perplex, if not already extant
-    if !isfile(joinpath(perplexdir,"vertex"))
-        # Make sure resourcepath exists
-        run(`mkdir -p $resourcepath`)
-
-        # Try to compile PerpleX from source; if that fails, try to download linux binaries
-        try
-            # Check if there is a fortran compiler
-            run(`gfortran -v`)
-
-            # Download Perplex v6.8.7 -- known to work with interface used here
-            file = download("https://storage.googleapis.com/statgeochem/perplex-6.8.7-source.zip", joinpath(resourcepath,"perplex-stable.zip"))
-
-            # # For a more updated perplex version, you might also try
-            # file = download("https://petrol.natur.cuni.cz/~ondro/perplex-sources-stable.zip", joinpath(resourcepath,"perplex-stable.zip"))
-
-            run(`unzip -u $file -d $resourcepath`) # Extract
-            system("cd $perplexdir; make") # Compile
-        catch
-            @warn "Failed to compile from source, trying precompiled linux binaries instead"
-            run(`mkdir -p $perplexdir`)
-            file = download("https://petrol.natur.cuni.cz/~ondro/Perple_X_6.8.7_Linux_64_gfortran.tar.gz","perplex-6.8.7-linux.tar.gz")
-            run(`tar -xzf $file -C $perplexdir`)
-        end
-    end
+    # Location of directory to store output files
+    scratchdir = "./scratch/" 
 
 ## --- # # # # # # # # # # # # # Initial composition # # # # # # # # # # # # # #
 
@@ -90,7 +62,7 @@
 
     # # Configure (run build and vertex)
     # melt_model = "melt(G)"
-    # @time perplex_configure_isobar(perplexdir, scratchdir, composition, elements, P, T_range,
+    # @time perplex_configure_isobar(scratchdir, composition, elements, P, T_range,
     #     dataset="hpha11ver.dat",
     #     npoints=100,
     #     excludes=G_excludes,
@@ -108,7 +80,6 @@
 ## --- Query all properties at a single temperature -- results returned as text
 
     T = 850+273.15
-    # data_isobaric = perplex_query_point(perplexdir, scratchdir, T) |> print
     data_isobaric = perplex_query_point(scratchdir, T) |> print
 
 
@@ -218,12 +189,12 @@
         solution_phases=HP_solution_phases, npoints=200, index=2, mode_basis="wt")
 
     # # Alternative configuration, using hpha02ver.dat
-    # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+    # @time perplex_configure_geotherm(scratchdir, composition, elements,
     #     P_range, T_surf, geotherm, dataset="hpha02ver.dat", excludes="qGL\n"*HP_excludes,
     #     solution_phases=HP_solution_phases, npoints=200, index=2)
 
     # # Alternative configuration, using hpha02ver.dat and new phases for metapelites
-    # @time perplex_configure_geotherm(perplexdir, scratchdir, composition, elements,
+    # @time perplex_configure_geotherm(scratchdir, composition, elements,
     #     P_range, T_surf, geotherm, dataset="hpha02ver.dat", excludes="qGL\n"*W_excludes,
     #     solution_phases=W_solution_phases, npoints=200, index=2)
 

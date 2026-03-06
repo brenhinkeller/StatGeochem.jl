@@ -5,23 +5,32 @@ module StatGeochem
     using Reexport
     @reexport using NaNStatistics
     @reexport using StatGeochemBase
+    using StatGeochemBase: Collection
 
     # Vectorization and parallelization tools
     using LoopVectorization: @turbo
     using Polyester: @batch
 
     # General requirements
-    using DelimitedFiles, Random, Downloads, LazyArtifacts
-    using ProgressMeter: @showprogress, Progress, update!, next!
-    const Collection{T} = Union{DenseArray{<:T}, AbstractRange{<:T}, NTuple{N,T}} where N
-    include("utilities/System.jl")
-    include("utilities/Resampling.jl")
+    using DelimitedFiles: readdlm, writedlm
+    using Distributions
+    using Downloads: download
+    using LazyArtifacts
+    using LinearAlgebra
+    using LogExpFunctions: logaddexp
+    using ProgressMeter: @showprogress, update!, next!, Progress
+    using Random
+    using StructArrays
+    
     include("utilities/Changepoint.jl")
-
     include("resources/Chemistry.jl")
+    include("utilities/Composition.jl")
+    include("utilities/CompositionArrays.jl")
     include("utilities/Geochronology.jl")
     include("utilities/Geochemistry.jl")
     include("utilities/GIS.jl")
+    include("utilities/Resampling.jl")
+    include("utilities/System.jl")
     include("utilities/Etc.jl")
 
     # Resources
@@ -31,6 +40,7 @@ module StatGeochem
 
     using Perple_X_jll
     include("resources/Perplex.jl")
+    include("resources/Melts.jl")
 
     using FileIO: load
     using HDF5: h5read

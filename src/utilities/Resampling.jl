@@ -580,15 +580,15 @@
     """
     ```julia
     bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin:step:xmax, [w];
-        \tx_sigma = zeros(size(x)),
-        \ty_sigma = zeros(size(y)),
+        \tx_sigma = 0.05x,
+        \ty_sigma = 0.05y,
         \tnresamplings = 1000,
         \tsem = :sigma,
         \tp = 0.2
     )
     bin_bsr([f!::Function=nanbinmean!], x::Vector, y::VecOrMat, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
-        \ty_sigma = zeros(size(y)),
+        \tx_sigma = 0.05x,
+        \ty_sigma = 0.05y,
         \tnresamplings = 1000,
         \tsem = :sigma,
         \tp = 0.2
@@ -604,13 +604,13 @@
 
     Optional keyword arguments and defaults:
 
-        x_sigma = zeros(size(x))
+        x_sigma = 0.05x
 
-    A vector representing the uncertainty (standard deviation) of each x value
+    A vector representing the absolute uncertainty (standard deviation) of each x value
 
-        y_sigma = zeros(size(y))
+        y_sigma = 0.05y
 
-    A vector representing the uncertainty (standard deviation) of each y value
+    A vector representing the absolute uncertainty (standard deviation) of each y value
 
         nresamplings = 1000
 
@@ -640,8 +640,8 @@
     """
     bin_bsr(f!::Function, x::AbstractVector, y::AbstractVecOrMat, edges::AbstractRange, args...; kwargs...) = bin_bsr(f!, x, y, minimum(edges),maximum(edges),length(edges)-1, args...; kwargs...)
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(y)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -649,14 +649,15 @@
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
+        means = Array{T}(undef, nbins, nresamplings)
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins)
         # Resample
@@ -683,8 +684,8 @@
         end
     end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(y)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -692,14 +693,14 @@
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
-        dtype = float(eltype(data))
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{dtype}(undef, nrows, ncols)
-        means = Array{dtype}(undef, nbins, nresamplings, size(y,2))
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings, size(y,2))
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins, size(y,2))
@@ -712,17 +713,17 @@
         # Return summary of results
         c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
         if sem === :sigma
-            m = Array{dtype}(undef, nbins, size(y,2))
-            e = Array{dtype}(undef, nbins, size(y,2))
+            m = Array{T}(undef, nbins, size(y,2))
+            e = Array{T}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
                 m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
                 e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
             end
             return c, m, e
         elseif sem === :credibleinterval || sem === :CI || sem === :pctile
-            m = Array{dtype}(undef, nbins, size(y,2))
-            el = Array{dtype}(undef, nbins, size(y,2))
-            eu = Array{dtype}(undef, nbins, size(y,2))
+            m = Array{T}(undef, nbins, size(y,2))
+            el = Array{T}(undef, nbins, size(y,2))
+            eu = Array{T}(undef, nbins, size(y,2))
             for j = 1:size(y,2)
                 m[:,j] .= nanmean(view(means,:,:,j),dim=2) # Mean-of-means
                 el[:,j] .= m[:,j] .- nanpctile!(view(means,:,:,j), 2.5, dim=2)
@@ -733,9 +734,60 @@
             return c, means
         end
     end
+    function bin_bsr(f!::Function, x::AbstractVector{T}, y::AbstractVector{C}, xmin::Number, xmax::Number, nbins::Integer;
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
+            nresamplings = 1000,
+            sem = :sigma,
+            p = 0.2,
+            ResultType::Type{<:AbstractComposition}=C,
+        ) where {T, C<:AbstractComposition{T}}
+
+        data = hcat(x, unelementify(y, floatout=true))
+        sigma = hcat(x_sigma, unelementify(y_sigma, floatout=true))
+        if C<:LogTraceComposition
+            # Convert trace element uncertainties from absolute to factor, if trace elements are in log space
+            ntrace = length(traceelements(C))
+            sigma[(end-ntrace+1):end] .-= data[(end-ntrace+1):end]
+            sigma[(end-ntrace+1):end] .= log1p.(exp.(sigma[(end-ntrace+1):end]))
+        end
+        binwidth = (xmax-xmin)/nbins
+        nrows = size(data,1)
+        ncols = size(data,2)
+
+        # Preallocate
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings, fieldcount(C))
+        index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
+        rng = MersenneTwister()
+        N = Array{Int}(undef, nbins, fieldcount(C))
+        # Resample
+        for i in 1:nresamplings
+            bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
+            f!(view(means,:,i,:), N, view(dbs,:,1), view(dbs,:,2:1+fieldcount(C)), xmin, xmax, nbins)
+        end
+
+        # Return summary of results
+        c = (xmin+binwidth/2):binwidth:(xmax-binwidth/2) # Bin centers
+        m = CompositionArray{ResultType}(undef, nbins)
+        e = Array{T}(undef, fieldcount(C), fieldcount(C), nbins)
+        for i in eachindex(m)
+            meansᵢ = CompositionArray{C}(@views(means[i, :, :]), dims=2)
+            if ResultType !== C
+                meansᵢ = CompositionArray(ResultType.(meansᵢ))
+            end
+            m[i] = nanmean(meansᵢ)
+            e[:, :, i] .= nancov(meansᵢ)
+        end
+        if sem === :sigma
+            return c, m, e
+        elseif sem === :Normal
+            return c, CompositionNormal.(m, eachslice(e, dims=3))
+        end
+    end
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
-            x_sigma = zeros(size(x)),
-            y_sigma = zeros(size(x)),
+            x_sigma = 0.05x,
+            y_sigma = 0.05x,
             nresamplings = 1000,
             sem = :credibleinterval,
             p = 0.2
@@ -743,14 +795,14 @@
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, y_sigma, zeros(size(w)));
-
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
-        means = Array{Float64}(undef, nbins, nresamplings)
+        dbs = Array{T}(undef, nrows, ncols)
+        means = Array{T}(undef, nbins, nresamplings)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins)
@@ -789,14 +841,14 @@
     """
     ```julia
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
         \tp::Union{Number,Vector} = 0.2
     )
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
@@ -817,7 +869,7 @@
     """
     bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, edges::AbstractRange, args...; kwargs...) = bin_bsr_ratios(f!, x, num, denom, minimum(edges), maximum(edges), length(edges)-1, args...; kwargs...)
     function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer;
-            x_sigma::AbstractVector=zeros(size(x)),
+            x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
             nresamplings=1000,
@@ -826,16 +878,17 @@
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
-        fractions = Array{Float64}(undef, nrows)
-        fraction_means = Array{Float64}(undef, nbins)
+        means = Array{T}(undef, nbins, nresamplings)
+        fractions = Array{T}(undef, nrows)
+        fraction_means = Array{T}(undef, nbins)
         rng = MersenneTwister()
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
@@ -854,7 +907,7 @@
         return c, m, el, eu
     end
     function bin_bsr_ratios(f!::Function, x::AbstractVector, num::AbstractVector, denom::AbstractVector, xmin, xmax, nbins::Integer, w::AbstractVector;
-            x_sigma::AbstractVector=zeros(size(x)),
+            x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
             nresamplings=1000,
@@ -863,18 +916,19 @@
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
+        T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
         nrows = size(data,1)
         ncols = size(data,2)
 
         # Preallocate
-        dbs = Array{Float64}(undef, nrows, ncols)
+        dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        means = Array{Float64}(undef, nbins, nresamplings)
-        fractions = Array{Float64}(undef, nrows)
-        fraction_means = Array{Float64}(undef, nbins)
+        means = Array{T}(undef, nbins, nresamplings)
+        fractions = Array{T}(undef, nrows)
+        fraction_means = Array{T}(undef, nbins)
         rng = MersenneTwister()
-        W = Array{Float64}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
+        W = Array{T}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
             bsr!(dbs, index, data, sigma, p, rng=rng) # Boostrap Resampling
@@ -896,7 +950,7 @@
     """
     ```julia
     (c, m, el, eu) = bin_bsr_ratio_medians(x::Vector, num::Vector, denom::Vector, xmin, xmax, nbins, [w];
-        \tx_sigma = zeros(size(x)),
+        \tx_sigma = 0.05x,
         \tnum_sigma = zeros(size(num)),
         \tdenom_sigma = zeros(size(denom)),
         \tnresamplings = 1000,
@@ -908,6 +962,104 @@
     bin_bsr_ratio_medians(args...; kwargs...) = bin_bsr_ratios(nanbinmedian!,args...; kwargs...)
     export bin_bsr_ratio_medians
 
+
+    """
+    ```julia
+    (c, m, el, eu) = constproportion(binbsrfunction::Function, dataset::Dict, xelem, [yelem | numelem, denomelem], xmin::Number, xmax::Number, nbins::Integer; 
+        \tnorm_by = dataset["SiO2"], 
+        \tnorm_bins = [43,55,65,78], 
+        \tx_sigma = dataset[xelem*"_sigma"], 
+        \t[y_sigma = dataset[yelem*"_sigma"] | num_sigma = dataset[numelem*"_sigma"], denom_sigma = dataset[denomelem*"_sigma"]],
+        \tnresamplings = 1000,
+        \tp = 0.2,
+    )
+    ```
+    Call `binbsrfunction` repeatedly for each interval in `norm_bins` and return the results
+    weighted by the fraction of `norm_by` that falls in each bin implied by `norm_bins`.
+
+    By default, combines the results assuming constant proportions of mafic, intermediate, and felsic 
+    lithologies, following the approach of Keller and Harrison 2020 (doi: 10.1073/pnas.2009431117)
+
+    ### Examples
+    ```julia
+    julia> c,m,el,eu = constproportion(bin_bsr_means, dataset, "Age", "K2O", 0, 4000, 40);
+
+    julia> c,m,el,eu = constproportion(bin_bsr_ratio_medians, dataset, "Age", "La", "Yb", 0, 4000, 40);
+    ```
+    """
+    function constproportion(binbsrfunction::Function, dataset::Union{Dict,NamedTuple}, xelem, yelem, xmin::Number, xmax::Number, nbins::Integer; 
+            norm_by = dataset isa NamedTuple ? dataset[:SiO2] : dataset["SiO2"], 
+            norm_bins = [43,55,65,78], 
+            x_sigma = dataset isa NamedTuple ? dataset[Symbol(String(xelem)*"_sigma")] : dataset[xelem*"_sigma"], 
+            y_sigma = dataset isa NamedTuple ? dataset[Symbol(String(yelem)*"_sigma")] : dataset[yelem*"_sigma"], 
+            nresamplings = 1000,
+            p = fill(0.2, length(norm_by)),
+        )
+        x = dataset isa NamedTuple ? dataset[Symbol(xelem)] : dataset[xelem]
+        y = dataset isa NamedTuple ? dataset[Symbol(yelem)] : dataset[yelem]
+
+        c = zeros(nbins)
+        m = zeros(nbins)
+        el = zeros(nbins)
+        eu = zeros(nbins)
+        for i in firstindex(norm_bins):lastindex(norm_bins)-1
+            # Find the samples we're looking for
+            t = (norm_bins[i] .< norm_by .< norm_bins[i+1]) .& (y .> 0)
+
+            # See what proportion of the modern crust falls in this norm_bin
+            prop = sum((norm_bins[i] .< norm_by .< norm_bins[i+1]) .& (p .> 0)) / sum((norm_bins[1] .< norm_by .< norm_bins[end]) .& (p .> 0))
+
+            # Resample, returning binned means and uncertainties
+            # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+            (c[:],m1,el1,eu1) = binbsrfunction(x[t], y[t], xmin, xmax, nbins; x_sigma=x_sigma[t], y_sigma=y_sigma[t], p=p[t], nresamplings)
+
+            m .+= prop.*m1
+            el .+= prop.*el1
+            eu .+= prop.*eu1
+        end
+        el ./= sqrt(length(norm_bins)-1) # Standard error
+        eu ./= sqrt(length(norm_bins)-1) # Standard error
+
+        return c, m, el, eu
+    end
+    function constproportion(binbsrfunction::Function, dataset::Union{Dict,NamedTuple}, xelem, numelem, denomelem, xmin::Number, xmax::Number, nbins::Integer; 
+            norm_by = dataset isa NamedTuple ? dataset[:SiO2] : dataset["SiO2"],
+            norm_bins = [43,55,65,78], 
+            x_sigma = dataset isa NamedTuple ? dataset[Symbol(String(xelem)*"_sigma")] : dataset[xelem*"_sigma"],
+            num_sigma = dataset isa NamedTuple ?  dataset[Symbol(String(numelem)*"_sigma")] : dataset[numelem*"_sigma"],
+            denom_sigma = dataset isa NamedTuple ? dataset[Symbol(String(denomelem)*"_sigma")] : dataset[denomelem*"_sigma"],
+            nresamplings = 1000,
+            p = fill(0.2, length(norm_by)),
+        )
+        x = dataset isa NamedTuple ? dataset[Symbol(xelem)] : dataset[xelem]
+        num = dataset isa NamedTuple ? dataset[Symbol(numelem)] : dataset[numelem]
+        denom = dataset isa NamedTuple ? dataset[Symbol(denomelem)] : dataset[denomelem]
+        
+        c = zeros(nbins)
+        m = zeros(nbins)
+        el = zeros(nbins)
+        eu = zeros(nbins)
+        for i in firstindex(norm_bins):lastindex(norm_bins)-1
+            # Find the samples we're looking for
+            t = (norm_bins[i] .< norm_by .< norm_bins[i+1]) .& (num.>0) .& (denom.>0)
+
+            # See what proportion of the modern crust falls in this norm_bin
+            prop = sum((norm_bins[i] .< norm_by .< norm_bins[i+1]) .& (p .> 0)) / sum((norm_bins[1] .< norm_by .< norm_bins[end]) .& (p .> 0))
+
+            # Resample, returning binned means and uncertainties
+            # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+            (c[:],m1,el1,eu1) = binbsrfunction(x[t],num[t],denom[t],xmin,xmax,nbins; x_sigma=x_sigma[t], num_sigma=num_sigma[t], denom_sigma=denom_sigma[t], p=p[t], nresamplings)
+
+            m .+= prop.*m1
+            el .+= prop.*el1
+            eu .+= prop.*eu1
+        end
+        el ./= sqrt(length(norm_bins)-1) # Standard error
+        eu ./= sqrt(length(norm_bins)-1) # Standard error
+
+        return c, m, el, eu
+    end
+    export constproportion
 
 ## --- Quick Monte Carlo binning/interpolation functions
 
@@ -1077,7 +1229,7 @@
             @batch for g ∈ eachindex(spatialscaleᵣ)
                 for h ∈ eachindex(agescale)
                     kᵢ = 0.0
-                    @inbounds for j ∈ 1:N
+                    @inbounds @simd ivdep for j ∈ 1:N
                         kᵢⱼ = 1.0 / ((spatialdistᵣ[j]/spatialscaleᵣ[g])^lp + 1.0) + 1.0 / ((abs(age[i] - age[j])/agescale[h])^lp + 1.0)
                         kᵢ += kᵢⱼ
                     end
@@ -1149,44 +1301,38 @@
 
     """
     ```julia
-    k = invweight(nums::AbstractArray, scale::Number; lp=2)
+    k = invweight(x::AbstractArray, xscale::Number; lp=2)
     ```
 
-    Find the inverse weights for a single array `nums` for a given `scale`, and
+    Find the inverse weights for a single array `x` for a given `xscale`, and
     exponent `lp` (default lp = 2).
 
     Returns an array k where k[i] is the "inverse weight" for element i of the
     input array.
     """
-    function invweight(nums::AbstractArray, scale::Number; lp=2)
-        numsₘ = materialize(nums)
-        if any(isnan, numsₘ)
-            k = fill(Inf, length(numsₘ))
-            t = @. !isnan(numsₘ)
-            k[t] .= invweight_nonans(numsₘ[t], scale, lp,)
+    function invweight(x::AbstractArray, xscale::Number; lp=2)
+        xₘ = materialize(x)
+        if any(isnan, xₘ)
+            k = fill(Inf, length(xₘ))
+            t = @. !isnan(xₘ)
+            k[t] .= invweight_nonans(xₘ[t], xscale, lp,)
             return k
         else
-            return invweight_nonans(numsₘ, scale, lp,)
+            return invweight_nonans(xₘ, xscale, lp,)
         end
     end
-    function invweight_nonans(nums::AbstractArray, scale::Number, lp::Number)
+    function invweight_nonans(x::AbstractArray, xscale::Number, lp::Number)
 
-        N = length(nums)
+        N = length(x)
         k = Array{Float64}(undef, N)
         p = Progress(N÷10, desc="Calculating weights: ")
         @inbounds @batch for i ∈ 1:N
-            if isnan(nums[i])
-                # If there is missing data, set k=inf for weight=0
-                k[i] = Inf
-            else
-                # Otherwise, calculate weight
-                kᵢ = 0.0
-                @turbo for j ∈ 1:N
-                    kᵢⱼ = 1.0 / ( (abs(nums[i] - nums[j])/scale)^lp + 1.0)
-                    kᵢ += kᵢⱼ
-                end
-                k[i] = kᵢ
+            kᵢ = 0.0
+            @turbo for j ∈ 1:N
+                kᵢⱼ = 1.0 / ( (abs(x[i] - x[j])/xscale)^lp + 1.0)
+                kᵢ += kᵢⱼ
             end
+            k[i] = kᵢ
             (i % 10 == 0) && next!(p)
         end
         return k
@@ -1196,15 +1342,33 @@
 
     """
     ```julia
-    k = invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
+    k = invweight_age(age::AbstractArray;
+        \tlp::Number=2, 
+        \tagescale::Number=38.0
+    )
     ```
 
     Find the inverse weights `k` (proportional to temporal sample density) for
     a set of geological samples with specified `age` (of crystallization, deposition, etc.).
     """
-    function invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0)
-        return invweight(age, agescale, lp=lp)
-    end
+    invweight_age(age::AbstractArray; lp::Number=2, agescale::Number=38.0) = invweight(age, agescale; lp)
     export invweight_age
+
+
+    """
+    ```julia
+    resamplingprobability(k; median_probability::Number=1/6)
+    ```
+
+    Calculate scaled resampling probabilities `p` given a vector of inverse weights `k` 
+    and a desired median resampling probability (1/6 by default).
+    """
+    function resamplingprobability(k; median_probability::Number=1/6)
+        median_k = 1/median_probability - 1
+        f = median_k / nanmedian(filter(isfinite, k))
+        p = @. 1 / ((k * f) + 1)
+        return p
+    end
+    export resamplingprobability
 
 ## --- End of file
