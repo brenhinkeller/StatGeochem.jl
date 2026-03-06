@@ -263,9 +263,8 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
         PTfile = joinpath(prefix, "P–T.dat")
         # PTdir = "P–T.dat"
         # Save P–T path as .dat file
-        # Apparently you need to have it as T and then P despite what Perplex tells you
         open(PTfile, "w") do file
-            for i in zip(T, P)
+            for i in zip(P, T)
                 write(file, "$(i[1])\t$(i[2])\n")
             end
         end
@@ -950,7 +949,8 @@ function perplex_query_modes(scratchdir::String;
          # Edit perplex_option.dat to specify a manual grid size
          system("sed -e \"s/sample_on_grid .*|/sample_on_grid                   F |/\" -i.backup $(prefix)perplex_option.dat")
         if dof == 1 
-            write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\nn\n$npoints\n0\n") # v7.1.8+ 1d path
+            write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n$npoints\n$npoints\n0\n") # v7.1.10 1d path
+            # write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\nn\n$npoints\n0\n") # v7.1.8+ 1d path
             # write(fp,"$index\n3\n38\n3\n$include_fluid\n37\n0\n0\n1\n0\n") # v7.1.6 1d path
             # write(fp,"$index\n3\n38\n3\nn\n37\n0\n0\n") # v6.7.8 1d path
         elseif dof == 2
@@ -1162,7 +1162,7 @@ export perplex_query_modes
 perplex_query_system(scratchdir::String;
     \tindex::Integer=1, include_fluid="y", clean_units::Bool=true, dof::Integer=1, importas=:Dict,
     \tmanual_grid::Bool=false, npoints::Integer=100)
-```?
+```
 
 Query all perplex-calculated properties for the system (with or without fluid)
 along a previously configured 1-d path (dof=1, isobar or geotherm) or 2-d
