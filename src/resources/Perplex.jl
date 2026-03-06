@@ -280,6 +280,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
             end 
         end
 
+        PTfile = joinpath(prefix, "P–T.dat")
         # Save P–T path as .dat file
         open(PTfile, "w") do file
             for i in zip(P, T)
