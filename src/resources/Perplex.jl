@@ -287,6 +287,8 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
                 write(file, "$(i[1])\t$(i[2])\n")
             end
         end
+        system("cp $(PTfile) $prefix")
+        PTfilename = "P–T.dat"
     else 
         system("cp $(PTdir) $prefix")
     end
@@ -301,7 +303,7 @@ function perplex_configure_path(scratchdir::String, composition::Collection{Numb
             elementstring *= elements[i] * "\n"
         end
     end
-    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\ny\n") #7.1.8
+    write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\ny\n$PTfilename\ny\n") #7.1.8+
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n5\ny\n$PTfilename\ny\n") #7.1.6
     # write(fp,"$index\n$dataset\nperplex_option.dat\nn\n3\nn\nn\nn\n$elementstring\n$fluid_eos\ny\n$PTfilename\n2\ny\n") #6.8.7
 
