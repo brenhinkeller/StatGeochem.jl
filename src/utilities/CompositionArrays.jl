@@ -51,7 +51,7 @@ Base.copyto!(I::CompositionArray, doffs::Integer, J::CompositionArray, soffs::In
 Base.fill!(A::CompositionArray, x) = fill!(getfield(A, :data), x)
 Base.resize!(A::CompositionArray, i::Integer) = resize!(getfield(A, :data), i)
 Base.empty!(A::CompositionArray) = empty!(getfield(A, :data))
-Base.sizehint!(A::CompositionArray, i::Integer) = sizehint!(getfield(A, :data))
+Base.sizehint!(A::CompositionArray, i::Integer) = sizehint!(getfield(A, :data), i)
 Base.copy(A::CompositionArray) = CompositionArray(copy(getfield(A, :data)))
 
 # # Broadcasting interface (enable this if we want broadcasting on CompositionArrays to return CompositionArrays)
