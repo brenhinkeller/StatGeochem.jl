@@ -107,6 +107,11 @@
     @test StatGeochem.Harrison_tapatiteP2O5(58.509, 750.) ≈ 0.10142278764336987
     @test StatGeochem.Harrison_tapatite(58.509, 0.1) ≈ 748.6127179814277
 
+    @test StatGeochem.Klein_tapatiteP2O5(58.509, 14.858, 5.912, 3.296, 2.399, 750.) ≈ 0.022651652389251542
+    @test StatGeochem.Klein_tapatiteP(58.509, 14.858, 5.912, 3.296, 2.399, 750.) ≈ 98.8578858081878
+    @test StatGeochem.Klein_tapatite(58.509, 14.858, 5.912, 3.296, 2.399, 0.1) ≈ 977.5019551109068
+    @test StatGeochem.Klein_tapatite(58.509, 14.858, 5.912, 3.296, 2.399, 1.0) ≈ 1042.6322241551698
+
     #          SiO2,  TiO2,  Al2O3,  FeOT,   MgO,   CaO,   Na2O,  K2O,  P2O5
     majors = [58.509, 1.022, 14.858, 4.371, 4.561, 5.912, 3.296, 2.399, 0.279]
     @test StatGeochem.Tollari_tapatite(majors...) ≈ 528.5868109033141

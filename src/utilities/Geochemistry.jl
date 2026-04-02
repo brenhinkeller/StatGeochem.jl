@@ -803,7 +803,7 @@
     """
     As `Harrison_tapatiteP2O5`, but returns saturation phosphorus concentration in PPM P
     """
-    Harrison_tapatiteP(x...) = Harrison_tapatiteP2O5(x...) * 10_000 / 2.2913349
+    Harrison_tapatiteP(args...) = Harrison_tapatiteP2O5(args...) * 10_000 / 2.2913349
     export Harrison_tapatiteP
 
     """
@@ -822,7 +822,7 @@
 
     """
     ```julia
-    P2O5 = Tollari_tapatiteP2O5(SiO2, CaO, T)
+    P2O5 = Tollari_tapatiteP2O5(SiO2, CaO, TC)
     ```
     Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
     given `T` (in C) following the apatite saturation model of Tollari et al. 2006
@@ -862,9 +862,52 @@
         CaOₘ = Ca / normconst * 100
         SiO2ₘ = Si / normconst * 100
         P2O5ₘ = P2 / normconst * 100
-        TC = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165) - 273.15
-        return TC
+        TK = (log(P2O5ₘ) + 10/3*log(CaOₘ)) / (-0.8579/(139.0 - SiO2ₘ) + 0.0165)
+        return TK - 273.15
     end
+
+    """
+    ```julia
+    TC = Klein_tapatite(SiO2, Al2O3, CaO, Na2O, K2O, P2O5)
+    ```
+    Calculate apatite saturation temperature in degrees Celcius
+    following the apatite saturation model of Klein et al. 2026
+    (doi: 10.1007/s00410-026-02300-5)
+    """
+    function Klein_tapatite(SiO2, Al2O3, CaO, Na2O, K2O, P2O5)
+        wSiO2 = SiO2/100
+        Al = Al2O3/50.98003857
+        Ca, Na, K = CaO/56.0774, Na2O/30.989269282, K2O/47.09781
+        ASI = Al/(2Ca+Na+K)
+        TK = 1e4 * (6.71 - 7.15wSiO2) / (-log10(P2O5) + 50.15 - 55.6wSiO2 + 2ASI)
+        return TK - 273.15
+    end
+    export Klein_tapatite
+
+    """
+    ```julia
+    P2O5 = Klein_tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, TC)
+    ```
+    Calculate `P2O5` concentration (in wt.%) required for apatite saturation at a
+    given `T` (in C) following the apatite saturation model of Klein et al. 2026
+    (doi: 10.1007/s00410-026-02300-5)
+    """
+    function Klein_tapatiteP2O5(SiO2, Al2O3, CaO, Na2O, K2O, TC)
+        wSiO2 = SiO2/100
+        Al = Al2O3/50.98003857
+        Ca, Na, K = CaO/56.0774, Na2O/30.989269282, K2O/47.09781
+        ASI = Al/(2Ca+Na+K)
+        TK = TC + 273.15
+        logP2O5 =  1e4 * (-1.47 + 1.28wSiO2) / TK + 12.79 + 1.06ASI - 14.06wSiO2
+        return exp10(logP2O5)
+    end
+    export Klein_tapatiteP2O5
+
+    """
+    As `Klein_tapatiteP2O5`, but returns saturation phosphorus concentration in PPM P rather than wt. % P2O5
+    """
+    Klein_tapatiteP(args...) = Klein_tapatiteP2O5(args...) * 10_000 / 2.2913349
+    export Klein_tapatiteP
 
 ## --- Ti-in-zircon thermometry
 
