@@ -1590,11 +1590,12 @@ export perplex_query_system
     """
     ```julia
     perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
-        \tapatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-        \tzircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-        \tsphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-        \tmonazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
-        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
+        \tapatite = :Harrison,                  # [:Harrison | :Klein | :none]  Default: Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
+        \tzircon = :Boehnke,                    # [:Boehnke | :none]    Default: Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+        \tsphene = :Ayers,                      # [:Ayers   | :none]    Default: Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+        \tmonazite = :Montel,                   # [:Montel  | :none]    Default: Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]   Default: :average
+        \tcommon_name::Bool = false,            # Export minerals using their common names, rather than PerpleX solution model names
         \texport_bulk_kds::Bool = false,
         \texport_mineral_kds::Bool = false,
         \texport_mineral_compositions::Bool = false,
@@ -1628,6 +1629,7 @@ export perplex_query_system
             sphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
             monazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
             zircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
+            common_name::Bool = false,            # Export minerals using their common names, rather than PerpleX solution model names
             export_bulk_kds::Bool = false,
             export_mineral_kds::Bool = false,
             export_mineral_compositions::Bool = false,
@@ -1711,11 +1713,15 @@ export perplex_query_system
         _, lastmelt = findmin(x->(x > 0 ? x : Inf), modes["all_melts"])
         subsolidus = modes["all_melts"] .== 0
 
-        if apatite === :Harrison
+        if apatite === :Harrison || apatite === :Klein
             # Add apatite using the apatite saturation temperature of Harrison and Watson
             e = "SiO2", "Al2O3", "CaO", "Na2O", "K2O", "T(C)"
             dataset_uppercase && (e = uppercase.(e))
-            PSat = StatGeochem.Harrison_tapatiteP.((e .|> x -> melt[x])...)
+            PSat = if apatite === :Klein
+                StatGeochem.Klein_tapatiteP.((e .|> x -> melt[x])...)
+            else
+                StatGeochem.Harrison_tapatiteP.((e .|> x -> melt[x])...)
+            end
 
             # Calculate mass of P in apatite. Note that you have to account for
             # not only the P in the melt, but also the P that would
@@ -1918,14 +1924,15 @@ export perplex_query_system
             for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
                 for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
                     if export_empty_columns || any(x->x>0, modes[k][exportrows])
+                        om = common_name ? perplex_common_name(k) : k
                         for e in trace_elements
                             if export_empty_columns || any(x->x>0, calculated[e])
                                 if containsi(m, "monazite")
-                                    result["D_$(k)_$(e)"] = (10.0 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr
+                                    result["D_$(om)_$(e)"] = (10.0 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr
                                 else
-                                    result["D_$(k)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
+                                    result["D_$(om)_$(e)"] = 10.0 .^ germ_kd[m][e][si_index]
                                 end
-                                push!(elements, "D_$(k)_$(e)")
+                                push!(elements, "D_$(om)_$(e)")
                             end
                         end
                     end
@@ -1935,8 +1942,8 @@ export perplex_query_system
             if haskey(modes, "zircon") && (export_empty_columns || any(x->x>0, modes["zircon"][exportrows]))
                 for e in trace_elements
                     if export_empty_columns || any(x->x>0, calculated[e])
-                        result["D_Zircon_$(e)"] = get_zircon_kd.(e, si_index, modes["T(C)"][exportrows], zircon_kd_source)
-                        push!(elements, "D_Zircon_$(e)")
+                        result["D_zircon_$(e)"] = get_zircon_kd.(e, si_index, modes["T(C)"][exportrows], zircon_kd_source)
+                        push!(elements, "D_zircon_$(e)")
                     end
                 end
             end
@@ -1947,14 +1954,15 @@ export perplex_query_system
             for m in setdiff(germ_kd["minerals"], ("Zircon",)) # Everything but zircon
                 for k in filter(x -> (germ_perplex_name_matches(m, x) | containsi(x, m)), keys(modes))
                     if export_empty_columns || any(x->x>0, modes[k][exportrows])
+                        om = common_name ? perplex_common_name(k) : k
                         for e in trace_elements
                             if export_empty_columns || any(x->x>0, calculated[e])
                                 if containsi(m, "monazite")
-                                    result["$(k)_$(e)"] = (calculated[e][exportrows] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr[exportrows]) .+ NaN .* .!(modes[k][exportrows] .> 0)
+                                    result["$(om)_$(e)"] = (calculated[e][exportrows] .* (10 .^ germ_kd[m][e][si_index]) .* monazite_kd_corr[exportrows]) .+ NaN .* .!(modes[k][exportrows] .> 0)
                                 else
-                                    result["$(k)_$(e)"] = (calculated[e][exportrows] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k][exportrows] .> 0)
+                                    result["$(om)_$(e)"] = (calculated[e][exportrows] .* 10 .^ germ_kd[m][e][si_index]) .+ NaN .* .!(modes[k][exportrows] .> 0)
                                 end
-                                push!(elements, "$(k)_$(e)")
+                                push!(elements, "$(om)_$(e)")
                             end
                         end
                     end
@@ -1966,21 +1974,21 @@ export perplex_query_system
                 for e in trace_elements
                     if export_empty_columns || any(x->x>0, calculated[e])
                         zircon_kd = get_zircon_kd.(e, si_index, modes["T(C)"][exportrows], zircon_kd_source)
-                        result["Zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
-                        nanadd!(zircon_Zr, -result["Zircon_$(e)"])
-                        push!(elements, "Zircon_$(e)")
+                        result["zircon_$(e)"] = calculated[e][exportrows] .* zircon_kd .+ (NaN .* .!(modes["zircon"][exportrows] .> 0))
+                        nanadd!(zircon_Zr, -result["zircon_$(e)"])
+                        push!(elements, "zircon_$(e)")
                     end
                 end
                 # Add Ti in zircon
                 aSiO2 = 1.0
                 meltcomp = melt["SiO2"], melt["TiO2"], melt["Al2O3"], melt["FeO"], melt["MgO"], melt["CaO"], melt["Na2O"], melt["K2O"], calculated["P"].*70.9723/30.974/10000
                 aTiO2 = min.(melt["TiO2"] ./ StatGeochem.Hayden_trutileTiO2.(meltcomp..., melt["T(C)"]), 1.0) # Titanium activity as a fraction of the TiO2 neeeded for rutile saturation
-                result["Zircon_Ti"] = StatGeochem.Ferry_Ti_in_zircon.(melt["T(C)"], aSiO2, aTiO2)[exportrows]
-                result["Zircon_Ti"] .+= (NaN .* .!(modes["zircon"][exportrows] .> 0)) # NaN out if no zircon
-                nanadd!(zircon_Zr, -result["Zircon_Ti"])
+                result["zircon_Ti"] = StatGeochem.Ferry_Ti_in_zircon.(melt["T(C)"], aSiO2, aTiO2)[exportrows]
+                result["zircon_Ti"] .+= (NaN .* .!(modes["zircon"][exportrows] .> 0)) # NaN out if no zircon
+                nanadd!(zircon_Zr, -result["zircon_Ti"])
 
                 # Zircon Zr concentration in ppm, calculated as 496000 less other trace elements
-                result["Zircon_Zr"] = zircon_Zr .+ (NaN .* (zircon_Zr .<= 0))
+                result["zircon_Zr"] = zircon_Zr .+ (NaN .* (zircon_Zr .<= 0))
             end
         end
 
@@ -1992,11 +2000,11 @@ export perplex_query_system
     """
     ```julia
     perplextrace_query_melt(scratchdir, composition::LinearTraceComposition, args...; 
-        \tapatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-        \tzircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-        \tsphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-        \tmonazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
-        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
+        \tapatite = :Harrison,                  # [:Harrison | :Klein | :none]  Default: Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
+        \tzircon = :Boehnke,                    # [:Boehnke | :none]    Default: Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+        \tsphene = :Ayers,                      # [:Ayers   | :none]    Default: Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+        \tmonazite = :Montel,                   # [:Montel  | :none]    Default: Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]   Default: :average
         \texport_melt_parameters::Bool = true,
         \texport_empty_columns::Bool = false,
         \trequire_phase_for_export = "",
@@ -2015,9 +2023,6 @@ export perplex_query_system
             sphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
             monazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
             zircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
-            export_bulk_kds::Bool = false,
-            export_mineral_kds::Bool = false,
-            export_mineral_compositions::Bool = false,
             export_melt_parameters::Bool = true,
             export_empty_columns::Bool = false,
             require_phase_for_export = "",
@@ -2098,11 +2103,15 @@ export perplex_query_system
         _, lastmelt = findmin(x->(x > 0 ? x : Inf), modes["all_melts"])
         subsolidus = modes["all_melts"] .== 0
 
-        if apatite === :Harrison
+        if apatite === :Harrison || apatite === :Klein
             # Add apatite using the apatite saturation temperature of Harrison and Watson
             e = "SiO2", "Al2O3", "CaO", "Na2O", "K2O", "T(C)"
             dataset_uppercase && (e = uppercase.(e))
-            PSat = StatGeochem.Harrison_tapatiteP.((e .|> x -> melt[x])...)
+            PSat = if apatite === :Klein
+                StatGeochem.Klein_tapatiteP.((e .|> x -> melt[x])...)
+            else
+                StatGeochem.Harrison_tapatiteP.((e .|> x -> melt[x])...)
+            end
 
             # Calculate mass of P in apatite. Note that you have to account for
             # not only the P in the melt, but also the P that would
