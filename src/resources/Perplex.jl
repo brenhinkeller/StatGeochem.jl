@@ -1590,11 +1590,12 @@ export perplex_query_system
     """
     ```julia
     perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
-        \tapatite = :Harrison,                  # [:Harrison | :Klein | :none]  Default: Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-        \tzircon = :Boehnke,                    # [:Boehnke | :none]    Default: Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-        \tsphene = :Ayers,                      # [:Ayers   | :none]    Default: Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-        \tmonazite = :Montel,                   # [:Montel  | :none]    Default: Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
-        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]   Default: :average
+        \tapatite = :Klein,                     # [:Klein   | :Harrison | :none ] 
+        \tzircon = :Boehnke,                    # [:Boehnke | :none ]
+        \tsphene = :Ayers,                      # [:Ayers   | :none ]
+        \tmonazite = :Montel,                   # [:Montel  | :none ]
+        \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
+        \texportas = :Dict,                     # [:Dict | :Tuple]
         \tcommon_name::Bool = false,            # Export minerals using their common names, rather than PerpleX solution model names
         \texport_bulk_kds::Bool = false,
         \texport_mineral_kds::Bool = false,
@@ -1602,7 +1603,6 @@ export perplex_query_system
         \texport_melt_parameters::Bool = true,
         \texport_empty_columns::Bool = false,
         \trequire_phase_for_export = "",
-        \texportas = :Dict,
         \tkwargs...,                            # Any other keyword arguments are forwarded to `perplex_query_` functions
     )
     ```
@@ -1619,24 +1619,58 @@ export perplex_query_system
             
         4. Recalculating trace element partitioning in the presence of newly-saturated
             accessory phases
+
+    Available accessory mineral saturation models include:
+
+    Apatite:
+        `:Klein`
+    Klein et al. 2026 (doi:10.1007/s00410-026-02300-5)
+        `:Harrison`
+    Harrison & Watson 1984 (doi: 10.1016/0016-7037(84)90403-4) + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
     
-    The results are returned as a dictionary.
+    Zircon:
+        `:Boehnke`
+    Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+
+    Sphene:
+        `:Ayers`
+    Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+
+    Monazite:
+        `:Montel`
+    Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+
+    Other optional keyword arguments include:
+
+        `zircon_kd_source` [:Claiborne | :GERM | :average]s
+        
+    Choice of zircon partition coefficients; either the temperature-dependent partition coeeficients of Claiborne et al. 2018
+    a composition-dependent fitting of the GERM partition coefficients, or an average thereof.
+
+        `require_phase_for_export`
+    
+    Only return output rows containing the specified phase
+
+        `exportas` [:Dict | :Tuple]
+
+    Return results either as a dictionary or a named tuple
+
     """
     perplextrace_query(scratchdir, composition::LogTraceComposition, args...; kwargs...) = perplextrace_query(scratchdir, lineartrace(composition), args...; kwargs...)
     function perplextrace_query(scratchdir, composition::LinearTraceComposition, args...; 
-            apatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-            zircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-            sphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-            monazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
-            zircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
-            common_name::Bool = false,            # Export minerals using their common names, rather than PerpleX solution model names
+            apatite::Symbol = :Klein,                       # [:Klein   | :Harrison | :none ] 
+            zircon::Symbol = :Boehnke,                      # [:Boehnke | :none ]
+            sphene::Symbol = :Ayers,                        # [:Ayers   | :none ]
+            monazite::Symbol = :Montel,                     # [:Montel  | :none ]
+            zircon_kd_source::Symbol = :average,            # [:Claiborne | :GERM | :average]
+            exportas::Symbol = :Dict,                       # [:Dict | :Tuple]
+            common_name::Bool = false,
             export_bulk_kds::Bool = false,
             export_mineral_kds::Bool = false,
             export_mineral_compositions::Bool = false,
             export_melt_parameters::Bool = true,
             export_empty_columns::Bool = false,
             require_phase_for_export = "",
-            exportas = :Dict,
             kwargs...,
         )
         major_elements = collect(String.(filter(e->!isnan(composition[e]), majorelements(composition))))
@@ -2000,11 +2034,12 @@ export perplex_query_system
     """
     ```julia
     perplextrace_query_melt(scratchdir, composition::LinearTraceComposition, args...; 
-        \tapatite = :Harrison,                  # [:Harrison | :Klein | :none]  Default: Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-        \tzircon = :Boehnke,                    # [:Boehnke | :none]    Default: Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-        \tsphene = :Ayers,                      # [:Ayers   | :none]    Default: Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-        \tmonazite = :Montel,                   # [:Montel  | :none]    Default: Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
+        \tapatite = :Klein,                     # [:Klein   | :Harrison | :none ]
+        \tzircon = :Boehnke,                    # [:Boehnke | :none ]    Default: Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
+        \tsphene = :Ayers,                      # [:Ayers   | :none ]    Default: Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
+        \tmonazite = :Montel,                   # [:Montel  | :none ]    Default: Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
         \tzircon_kd_source = :average,          # [:Claiborne | :GERM | :average]   Default: :average
+        \texportas = :Dict,                     # [:Dict | :Tuple]
         \texport_melt_parameters::Bool = true,
         \texport_empty_columns::Bool = false,
         \trequire_phase_for_export = "",
@@ -2018,15 +2053,15 @@ export perplex_query_system
     """
     perplextrace_query_melt(scratchdir, composition::LogTraceComposition, args...; kwargs...) = perplextrace_query_melt(scratchdir, lineartrace(composition), args...; kwargs...)
     function perplextrace_query_melt(scratchdir, composition::LinearTraceComposition, args...; 
-            apatite = :Harrison,                  # Harrison & Watson 1984 + Bea et al. 1992 (doi: 10.1016/0024-4937(92)90033-U)
-            zircon = :Boehnke,                    # Boehnke, Watson, et al., 2013 (doi: 10.1016/j.chemgeo.2013.05.028)
-            sphene = :Ayers,                      # Ayers et al., 2018 (doi: 10.1130/abs/2018AM-320568)
-            monazite = :Montel,                   # Montel 1993 (doi: 10.1016/0009-2541(93)90250-M)
-            zircon_kd_source = :average,          # [:Claiborne | :GERM | :average]
+            apatite::Symbol = :Klein,                       # [:Klein   | :Harrison | :none ] 
+            zircon::Symbol = :Boehnke,                      # [:Boehnke | :none ]
+            sphene::Symbol = :Ayers,                        # [:Ayers   | :none ]
+            monazite::Symbol = :Montel,                     # [:Montel  | :none ]
+            zircon_kd_source::Symbol = :average,            # [:Claiborne | :GERM | :average]
+            exportas::Symbol = :Dict,                       # [:Dict | :Tuple]
             export_melt_parameters::Bool = true,
             export_empty_columns::Bool = false,
             require_phase_for_export = "",
-            exportas = :Dict,
             kwargs...,
         )
         major_elements = collect(String.(filter(e->!isnan(composition[e]), majorelements(composition))))
