@@ -325,6 +325,7 @@ StatGeochem.rand!(ca, d)
 @test nansem(ca) ≈ std(d)/sqrt(length(ca)) rtol=0.1
 @test nancov(ca) ≈ cov(d) rtol=0.3
 @test nancovem(ca) ≈ cov(d)/length(ca) rtol=0.3
+@test nancor(ca) ≈ cor(d) rtol=0.3
 
 # Test implicit conversion (filling array with different type)
 @test compositiondist isa CompositionNormal{Float64, NCKFMASHTOlogtrace{Float64}}

@@ -126,6 +126,19 @@ function NaNStatistics.nansem(x::AbstractArray{C}) where {T, C<:AbstractComposit
     σ = ntuple(i->T(nansem(x[e[i]])), fieldcount(C))
     return C(σ)
 end
+function NaNStatistics.nancor(x::AbstractArray{C}; posdef=true, mineigenvalue=1e-12) where {T, C<:AbstractComposition{T}}
+    e = fieldnames(C)
+    Ρ = zeros(T, fieldcount(C), fieldcount(C))
+    @inbounds for i in eachindex(e)
+        for j in 1:i
+            c = nancor(x[e[i]], x[e[j]])
+            if isfinite(c)
+                Ρ[i,j] = Ρ[j,i] = c
+            end
+        end
+    end
+    return posdef ? nearestposdef(Ρ; mineigenvalue) : Symmetric(Ρ)
+end
 function NaNStatistics.nancov(x::AbstractArray{C}; posdef=true, mineigenvalue=1e-12) where {T, C<:AbstractComposition{T}}
     e = fieldnames(C)
     Σ = zeros(T, fieldcount(C), fieldcount(C))
@@ -184,6 +197,7 @@ Distributions.mean(d::CompositionDistribution{C}) where C = C(mean(d.dist))
 Distributions.var(d::CompositionDistribution{C}) where C = C(var(d.dist))
 Distributions.std(d::CompositionDistribution{C}) where C = C(sqrt.(var(d.dist)))
 Distributions.cov(d::CompositionDistribution) = cov(d.dist)
+Distributions.cor(d::CompositionDistribution) = cor(d.dist)
 Base.:(==)(a::CompositionDistribution, b::CompositionDistribution) = false
 Base.:(==)(a::C, b::C) where {C<:CompositionDistribution} = isequal(a.dist, b.dist)
 
