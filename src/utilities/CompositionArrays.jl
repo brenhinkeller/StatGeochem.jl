@@ -195,7 +195,7 @@ function Distributions.logpdf(d::CompositionDistribution{C}, x::C) where {C<:Abs
 end
 Distributions.mean(d::CompositionDistribution{C}) where C = C(mean(d.dist))
 Distributions.var(d::CompositionDistribution{C}) where C = C(var(d.dist))
-Distributions.std(d::CompositionDistribution{C}) where C = C(sqrt.(var(d.dist)))
+Distributions.std(d::CompositionDistribution{C}) where C = C(std(d.dist))
 Distributions.cov(d::CompositionDistribution) = cov(d.dist)
 Distributions.cor(d::CompositionDistribution) = cor(d.dist)
 Base.:(==)(a::CompositionDistribution, b::CompositionDistribution) = false
