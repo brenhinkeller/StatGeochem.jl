@@ -51,6 +51,7 @@ module StatGeochem
     include("resources/Geology.jl")
     include("resources/Geography.jl")
     include("resources/Seafloorage.jl")
+    include("resources/MineralChemistry/MineralChemistry.jl")
     include("resources/PartitionCoefficients/PartitionCoefficients.jl")
 
     # Custom pretty printing for some types
