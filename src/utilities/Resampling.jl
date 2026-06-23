@@ -856,8 +856,8 @@
         dbs = similar(data, T)
         index = similar(data, Int, size(data,1)) # Must be preallocated even if we don't want it later
         nxbins, nybins = length(xedges)-1, length(yedges)-1
-        means = similar(data, T, nxbins, nybins, nresamplings)
-        N = similar(data, Int, nxbins, nybins)
+        means = similar(data, T, nybins, nxbins, nresamplings)
+        N = similar(data, Int, nybins, nxbins)
 
         # Resample
         for i=1:nresamplings
@@ -887,6 +887,40 @@
 
     end
     export bin_bsr_2d
+
+    function bin_bsr_thi(age::AbstractVector, MgO::AbstractVector, FeO::AbstractVector, agebins::AbstractRange, mgobins::AbstractRange=3.5:1:8.5; 
+            age_sigma = 0.05age, 
+            MgO_sigma = 0.05MgO, 
+            FeO_sigma = 0.05FeO, 
+            sem::Symbol=:sigma, 
+            kwargs...
+        )
+        xc, yc, feomeans = bin_bsr_2d(age, MgO, FeO, agebins, mgobins; kwargs..., x_sigma=age_sigma, y_sigma=MgO_sigma, z_sigma=FeO_sigma, sem=:none)
+        means = similar(feomeans, size(feomeans, 2), size(feomeans,3))
+        for j in axes(feomeans,3)
+            for i in axes(feomeans,2)
+                means[i,j] = feomeans[1,i,j]/feomeans[end,i,j]
+            end
+        end
+
+        # Return summary of results
+        if sem === :sigma || sem === :sem
+            m = nanmean(means, dim=2) # Mean-of-means
+            # Standard deviation of means (sem)
+            e = nanstd(means, dim=2)
+            return xc, m, e
+        elseif sem === :credibleinterval || sem === :CI || sem === :ci || sem === :pctile
+            m = nanmean(means, dim=2) # Mean-of-means
+            # Lower bound of central 95% CI of means
+            el = m .- nanpctile!(means, 2.5, dim=2)
+            # Upper bound of central 95% CI of means
+            eu = nanpctile!(means, 97.5, dim=2) .- m
+            return xc, m, el, eu
+        else
+            return xc, means
+        end
+    end
+    export bin_bsr_thi
 
     """
     ```julia

@@ -222,6 +222,14 @@
     @test mean(el ./ m) ≈ 0.12 atol = 0.05
     @test mean(eu ./ m) ≈ 0.14 atol = 0.05
 
+    N = 10000
+    age = rand(N) .* 4000
+    MgO = rand(N) .* 4 .+ 4
+    FeO = 0.5 * MgO
+    c, m, e = bin_bsr_thi(age, MgO, FeO, 0:100:3900, nresamplings=1000, sem=:sigma)
+    @test c == 50:100:3850
+    @test m ≈ fill(0.56, 39) rtol = 0.1
+
 ## -- bin_bsr_ratios
 
     x = 0:100; num = 0:100; denom=reverse(num)
