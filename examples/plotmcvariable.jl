@@ -65,7 +65,7 @@
 
     # Plot results
     plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkblue,markerstrokecolor=:darkblue,label="")
-    plot!(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
+    plot!(xlabel="Age [Ma]", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
 
 ## --- Multiple silica ranges together
 
@@ -77,7 +77,7 @@
 
 
     t = trues(size(ign[elem]))
-    h = plot(xlabel="Age (Ma)", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
+    h = plot(xlabel="Age [Ma]", ylabel="$elem (wt. %)",xlims=(xmin,xmax),framestyle=:box,grid=:off,xflip=true) # Format plot
     for i=1:length(rsi)-1
         t .= rsi[i] .< ign["SiO2"] .< rsi[i+1]
 
@@ -114,11 +114,30 @@
 
     # Plot results
     h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:darkred,label="")
-    plot!(h, xlabel="Age (Ma)", ylabel="$(num) / $(denom)",xlims=(tmin,tmax),framestyle=:box,grid=:off,xflip=true) # Format plot
+    plot!(h, xlabel="Age [Ma]", ylabel="$(num) / $(denom)",xlims=(tmin,tmax),framestyle=:box,grid=:off,xflip=true) # Format plot
     display(h)
 
     # savefig(h,"$(num)$(denom)_$(tmax)-$(tmin)Ma.pdf")
 
+## --- Resample tholeiitic index (THI)
+
+    tmin = 0 # Minimum age
+    tmax = 4000 # Maximum age
+    agebins = 0:100:3900
+    t = (40 .< ign["SiO2"] .< 80) .& (0 .< ign["Elevation"])
+
+    # Resample, returning binned means and uncertainties
+    # (c = bincenters, m = mean, el = lower 95% CI, eu = upper 95% CI)
+    (c,m,el,eu) = bin_bsr_thi(ign["Age"][t], ign["MgO"][t], ign["FeOT"][t], agebins;
+        age_sigma = ign["Age_sigma"][t],
+        p = p[t],
+        sem = :CI,
+    )
+
+    # Plot results
+    h = plot(c,m,yerror=(el,eu),seriestype=:scatter,color=:darkred,markerstrokecolor=:darkred,label="")
+    plot!(h, xlabel="Age [Ma]", ylabel="THI (Fe4/Fe8)", xlims=(tmin,tmax), ylims=(0.7,1.3), framestyle=:box,grid=:off,xflip=true) # Format plot
+    display(h)
 
 ## --- Single element differentiation example
 
@@ -238,7 +257,7 @@
     )
 
     data = Dict{String,Array{Union{Float64, String}}}()
-    data["elements"] = ["Age (Ma)"]
+    data["elements"] = ["Age [Ma]"]
     for elem in (major ∪ trace)
         # Resample, returning binned means and uncertainties
         (c,m,e) = bin_bsr(ign["Age"][t], ign[elem][t], xmin, xmax, nbins;
@@ -246,7 +265,7 @@
             x_sigma = ign["Age_sigma"][t],
             y_sigma = ign[elem*"_sigma"][t]
         )
-        data["Age (Ma)"] = c
+        data["Age [Ma]"] = c
         data[elem] = m
         push!(data["elements"], elem)
         data[elem*"_sigma"] = e

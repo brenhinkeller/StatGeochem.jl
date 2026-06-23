@@ -887,20 +887,72 @@
 
     end
     export bin_bsr_2d
-
-    function bin_bsr_thi(age::AbstractVector, MgO::AbstractVector, FeO::AbstractVector, agebins::AbstractRange, mgobins::AbstractRange=3.5:1:8.5; 
+## ---
+    function bin_bsr_thi(age::AbstractVector, MgO::AbstractVector, FeO::AbstractVector, agebins::AbstractRange, mgobins::AbstractRange=3.5:8.5; 
             age_sigma = 0.05age, 
-            MgO_sigma = 0.05MgO, 
-            FeO_sigma = 0.05FeO, 
+            MgO_sigma = 0.01MgO, 
+            FeO_sigma = 0.01FeO, 
+            p = 0.2,
             sem::Symbol=:sigma, 
+            method::Symbol=:interpolate,
+            nresamplings::Integer=1000,
+            rng::AbstractRNG = MersenneTwister(),
             kwargs...
         )
-        xc, yc, feomeans = bin_bsr_2d(age, MgO, FeO, agebins, mgobins; kwargs..., x_sigma=age_sigma, y_sigma=MgO_sigma, z_sigma=FeO_sigma, sem=:none)
-        means = similar(feomeans, size(feomeans, 2), size(feomeans,3))
-        for j in axes(feomeans,3)
-            for i in axes(feomeans,2)
-                means[i,j] = feomeans[1,i,j]/feomeans[end,i,j]
+        if method === :interpolate
+
+            # Concatenate data
+            data = hcat(age, MgO, FeO)
+            sigma = hcat(age_sigma, MgO_sigma, FeO_sigma)
+            T = float(eltype(data))
+
+            # Preallocate
+            dbs = similar(data, T)
+            index = similar(data, Int, size(data,1)) # Must be preallocated even if we don't want it later
+            xc = cntr(agebins)
+            nxbins = length(xc)
+            means = similar(data, T, nxbins, nresamplings)
+
+            # Resample
+            for j=1:nresamplings
+                bsr!(dbs, index, data, sigma, p; rng) # Boostrap Resampling
+                ager, MgOr, FeOr = view(dbs,:,1), view(dbs,:,2), view(dbs,:,3)
+                for i in eachindex(xc)
+                    t = (agebins[i] .< ager .< agebins[i+1]) .& .!isnan.(FeOr)
+                    if any(t)
+                        tl = t .& (2 .< MgOr .< 6)
+                        ml = MgOr[tl]
+                        Al = [ml.^0 ml.^1 ml.^2 ml.^3]
+                        a, b, c, d = Al \ FeOr[tl] # Fit to line of form a + bx + cx^2 + dx^3
+                        fe4 = a + 4b + 16c + 64d
+
+                        tu = t .& (6 .< MgOr .< 10)
+                        mu = MgOr[tu]
+                        Au = [mu.^0 mu.^1 mu.^2 mu.^3]
+                        a, b, c, d = Au \ FeOr[tu] # Fit to line of form a + bx + cx^2 + dx^3
+                        fe8 = a + 8b + 64c + 512d
+                    else
+                        fe4 = fe8 = zero(T)
+                    end
+                    means[i,j] = fe4/fe8
+                end
             end
+
+        elseif method === :bin
+            mgocenters = cntr(mgobins)
+            @assert first(mgocenters) ≈ 4 "First bin must be centered around 4"
+            @assert last(mgocenters) ≈ 8 "Last bin must be centered around 8"
+
+            xc, yc, feomeans = bin_bsr_2d(age, MgO, FeO, agebins, mgobins; x_sigma=age_sigma, y_sigma=MgO_sigma, z_sigma=FeO_sigma, sem=:none, nresamplings, rng, p, kwargs...)
+            means = similar(feomeans, size(feomeans, 2), size(feomeans,3))
+            for j in axes(feomeans,3)
+                for i in axes(feomeans,2)
+                    means[i,j] = feomeans[1,i,j]/feomeans[end,i,j]
+                end
+            end
+
+        else
+            @error "`method` must be either `:bin` or `:interpolate`"
         end
 
         # Return summary of results
@@ -921,7 +973,7 @@
         end
     end
     export bin_bsr_thi
-
+## --- 
     """
     ```julia
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];
