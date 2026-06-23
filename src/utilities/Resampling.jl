@@ -838,6 +838,56 @@
     bin_bsr_medians(args...; kwargs...) = bin_bsr(nanbinmedian!, args...; kwargs...)
     export bin_bsr_medians
 
+    function bin_bsr_2d(x::AbstractVector, y::AbstractVector, z::AbstractVector, xedges::AbstractRange, yedges::AbstractRange;
+            x_sigma = 0.05x,
+            y_sigma = 0.05y,
+            z_sigma = 0.05z,
+            p = 0.2,
+            nresamplings::Integer = 1000,
+            sem::Symbol = :none,
+            rng::AbstractRNG = MersenneTwister(),
+        )  
+        # Concatenate data
+        data = hcat(x, y, z)
+        sigma = hcat(x_sigma, y_sigma, z_sigma)
+        T = float(eltype(data))
+
+        # Preallocate
+        dbs = similar(data, T)
+        index = similar(data, Int, size(data,1)) # Must be preallocated even if we don't want it later
+        nxbins, nybins = length(xedges)-1, length(yedges)-1
+        means = similar(data, T, nxbins, nybins, nresamplings)
+        N = similar(data, Int, nxbins, nybins)
+
+        # Resample
+        for i=1:nresamplings
+            bsr!(dbs, index, data, sigma, p; rng) # Boostrap Resampling
+            xr, yr, zr = view(dbs,:,1), view(dbs,:,2), view(dbs,:,3)
+            nanbinmean!(view(means,:,:,i), N, xr, yr, zr, xedges, yedges)
+        end
+
+        # Return summary of results
+        xc = cntr(xedges)
+        yc = cntr(yedges)
+        if sem === :sigma || sem === :sem
+            m = nanmean(means, dims=3) # Mean-of-means
+            # Standard deviation of means (sem)
+            e = nanstd(means, dims=3)
+            return xc, yc, m, e
+        elseif sem === :credibleinterval || sem === :CI || sem === :ci || sem === :pctile
+            m = nanmean(means, dims=3) # Mean-of-means
+            # Lower bound of central 95% CI of means
+            el = m .- nanpctile!(means, 2.5, dims=3)
+            # Upper bound of central 95% CI of means
+            eu = nanpctile!(means, 97.5, dims=3) .- m
+            return xc, yc, m, el, eu
+        else
+            return xc, yc, means
+        end
+
+    end
+    export bin_bsr_2d
+
     """
     ```julia
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];

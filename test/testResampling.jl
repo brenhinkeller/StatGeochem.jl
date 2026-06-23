@@ -196,6 +196,32 @@
     @test m.FeO ≈ [10.6, 7.37, 4.32, 1.52] atol=2
     @test m.Sm ≈ [1.82, 1.87, 1.92, 1.94] atol=2
 
+## -- bin_bsr_2d
+
+    x = vec(repeat(0.5:9.5, 1, 10))
+    y = vec(repeat((0.5:9.5)', 10, 1))
+    z = x .* y
+    xc, yc, means = bin_bsr_2d(x, y, z, 0:10, 0:10, nresamplings=1000)
+    @test xc == yc == 0.5:9.5
+    @test size(means) == (10,10,1000)
+    m = nanmean(means, dim=3)
+    @test all(x->(0<x<111), m)
+    @test m ≈ ((0.5:9.5) * (0.5:9.5)') rtol = 0.1
+
+    xc, yc, m, e = bin_bsr_2d(x, y, z, 0:10, 0:10, nresamplings=1000, sem=:sigma)
+    @test xc == yc == 0.5:9.5
+    @test all(x->(0<x<111), m)
+    @test m ≈ ((0.5:9.5) * (0.5:9.5)') rtol = 0.1
+    @test mean(e ./ m) ≈ 0.065 atol = 0.01
+
+    xc, yc, m, el, eu = bin_bsr_2d(x, y, z, 0:10, 0:10, nresamplings=1000, sem=:CI)
+    @test xc == yc == 0.5:9.5
+    @test all(x->(0<x<111), m)
+    @test m ≈ ((0.5:9.5) * (0.5:9.5)') rtol = 0.1
+    @test eu ≈ el rtol = 0.3
+    @test mean(el ./ m) ≈ 0.12 atol = 0.05
+    @test mean(eu ./ m) ≈ 0.14 atol = 0.05
+
 ## -- bin_bsr_ratios
 
     x = 0:100; num = 0:100; denom=reverse(num)
