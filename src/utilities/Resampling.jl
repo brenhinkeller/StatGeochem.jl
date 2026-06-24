@@ -262,7 +262,7 @@
     """
     ```julia
     resampled = bsresample(data::AbstractArray, sigma, nrows, [p];
-        \t kernel = gaussian,
+        \t kernel::Function = gaussian,
         \t rng = MersenneTwister(),
         \t return_index = false
     )
@@ -271,9 +271,9 @@
     with uncertainties `sigma` and resampling probabilities `p`
     """
     function bsresample(data::AbstractArray, sigma, nrows::Integer, p=min(0.2,nrows/size(data,1));
-            kernel = gaussian,
-            rng = MersenneTwister(),
-            return_index = false,
+            kernel::Function = gaussian,
+            rng::AbstractRNG = MersenneTwister(),
+            return_index::Bool = false,
         )
         index = Array{Int}(undef, nrows)
         resampled = Array{float(eltype(data))}(undef, nrows, size(data,2))
@@ -283,7 +283,7 @@
     """
     ```julia
     resampled = bsresample(dataset::Union{Dict,NamedTuple}, nrows, [elements], [p];
-        \t kernel = gaussian,
+        \t kernel::Function = gaussian,
         \t rng = MersenneTwister()
     )
     ```
@@ -291,8 +291,8 @@
     in `dataset["err"]` or `dataset["[variable]_sigma"]`
     """
     function bsresample(dataset::Dict, nrows::Integer, elements=dataset["elements"], p=min(0.2,nrows/length(dataset[first(elements)]));
-            kernel = gaussian,
-            rng = MersenneTwister(),
+            kernel::Function = gaussian,
+            rng::AbstractRNG = MersenneTwister(),
             sigma = :auto,
         )
         # 2d array of nominal values
@@ -312,8 +312,8 @@
         return elementify(sdata, elements, skipstart=0, importas=:Dict)
     end
     function bsresample(dataset::NamedTuple, nrows, elements, p=min(0.2,nrows/length(dataset[first(elements)]));
-            kernel = gaussian,
-            rng = MersenneTwister(),
+            kernel::Function = gaussian,
+            rng::AbstractRNG = MersenneTwister(),
             sigma = :auto,
         )
         # 2d array of nominal values
@@ -642,23 +642,22 @@
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer;
             x_sigma = 0.05x,
             y_sigma = 0.05y,
-            nresamplings = 1000,
-            sem = :credibleinterval,
-            p = 0.2
+            p = 0.2,
+            sem::Symbol = :ci,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
         )
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
         T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
         means = Array{T}(undef, nbins, nresamplings)
-        rng = MersenneTwister()
         N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamplings
@@ -673,7 +672,7 @@
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
+        elseif sem === :ci || sem === :CI || sem === :credibleinterval || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
@@ -686,23 +685,22 @@
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractMatrix, xmin::Number, xmax::Number, nbins::Integer;
             x_sigma = 0.05x,
             y_sigma = 0.05y,
-            nresamplings = 1000,
-            sem = :credibleinterval,
-            p = 0.2
+            p = 0.2,
+            sem::Symbol = :ci,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
         )
 
         data = hcat(x, y)
         sigma = hcat(x_sigma, y_sigma)
         T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
-        means = Array{T}(undef, nbins, nresamplings, size(y,2))
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        rng = MersenneTwister()
+        means = Array{T}(undef, nbins, nresamplings, size(y,2))
         N = Array{Int}(undef, nbins, size(y,2))
         # Resample
         for i=1:nresamplings
@@ -720,7 +718,7 @@
                 e[:,j] .= nanstd(view(means,:,:,j),dim=2) # Standard deviation of means (sem)
             end
             return c, m, e
-        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
+        elseif sem === :ci || sem === :CI || sem === :credibleinterval || sem === :pctile
             m = Array{T}(undef, nbins, size(y,2))
             el = Array{T}(undef, nbins, size(y,2))
             eu = Array{T}(undef, nbins, size(y,2))
@@ -737,9 +735,10 @@
     function bin_bsr(f!::Function, x::AbstractVector{T}, y::AbstractVector{C}, xmin::Number, xmax::Number, nbins::Integer;
             x_sigma = 0.05x,
             y_sigma = 0.05y,
-            nresamplings = 1000,
-            sem = :sigma,
             p = 0.2,
+            sem::Symbol = :sigma,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
             ResultType::Type{<:AbstractComposition}=C,
         ) where {T, C<:AbstractComposition{T}}
 
@@ -752,14 +751,12 @@
             sigma[(end-ntrace+1):end] .= log1p.(exp.(sigma[(end-ntrace+1):end]))
         end
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
-        means = Array{T}(undef, nbins, nresamplings, fieldcount(C))
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        rng = MersenneTwister()
+        means = Array{T}(undef, nbins, nresamplings, fieldcount(C))
         N = Array{Int}(undef, nbins, fieldcount(C))
         # Resample
         for i in 1:nresamplings
@@ -788,23 +785,22 @@
     function bin_bsr(f!::Function, x::AbstractVector, y::AbstractVector, xmin::Number, xmax::Number, nbins::Integer, w::AbstractVector;
             x_sigma = 0.05x,
             y_sigma = 0.05x,
-            nresamplings = 1000,
-            sem = :credibleinterval,
-            p = 0.2
+            p = 0.2,
+            sem::Symbol = :ci,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
         )
 
         data = hcat(x, y, w)
         sigma = hcat(x_sigma, y_sigma, zeros(size(w)));
         T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
-        means = Array{T}(undef, nbins, nresamplings)
         index = Array{Int}(undef, nrows) # Must be preallocated even if we don't want it later
-        rng = MersenneTwister()
+        means = Array{T}(undef, nbins, nresamplings)
         N = Array{Int}(undef, nbins)
         # Resample
         for i=1:nresamplings
@@ -819,7 +815,7 @@
             # Standard deviation of means (sem)
             e = nanstd(means,dim=2)
             return c, m, e
-        elseif sem === :credibleinterval || sem === :CI || sem === :pctile
+        elseif sem === :ci || sem === :CI || sem === :credibleinterval || sem === :pctile
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means,2.5,dim=2)
             # Upper bound of central 95% CI of means
@@ -843,8 +839,8 @@
             y_sigma = 0.05y,
             z_sigma = 0.05z,
             p = 0.2,
+            sem::Symbol = :ci,
             nresamplings::Integer = 1000,
-            sem::Symbol = :none,
             rng::AbstractRNG = MersenneTwister(),
         )  
         # Concatenate data
@@ -874,7 +870,7 @@
             # Standard deviation of means (sem)
             e = nanstd(means, dims=3)
             return xc, yc, m, e
-        elseif sem === :credibleinterval || sem === :CI || sem === :ci || sem === :pctile
+        elseif sem === :ci || sem === :CI || sem === :credibleinterval || sem === :pctile
             m = nanmean(means, dims=3) # Mean-of-means
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means, 2.5, dims=3)
@@ -887,7 +883,8 @@
 
     end
     export bin_bsr_2d
-## ---
+    
+
     function bin_bsr_thi(age::AbstractVector, MgO::AbstractVector, FeO::AbstractVector, agebins::AbstractRange, mgobins::AbstractRange=3.5:8.5; 
             age_sigma = 0.05age, 
             MgO_sigma = 0.01MgO, 
@@ -961,7 +958,7 @@
             # Standard deviation of means (sem)
             e = nanstd(means, dim=2)
             return xc, m, e
-        elseif sem === :credibleinterval || sem === :CI || sem === :ci || sem === :pctile
+        elseif sem === :ci || sem === :CI || sem === :credibleinterval || sem === :pctile
             m = nanmean(means, dim=2) # Mean-of-means
             # Lower bound of central 95% CI of means
             el = m .- nanpctile!(means, 2.5, dim=2)
@@ -973,7 +970,9 @@
         end
     end
     export bin_bsr_thi
-## --- 
+
+
+    
     """
     ```julia
     bin_bsr_ratios([f!::Function=nanbinmean!], x::Vector, num::Vector, denom::Vector, xmin:step:xmax, [w];
@@ -1008,16 +1007,16 @@
             x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
+            p::Union{Number,AbstractVector}=0.2,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
         )
 
         data = hcat(x, num, denom)
         sigma = hcat(x_sigma, num_sigma, denom_sigma)
         T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
@@ -1025,7 +1024,6 @@
         means = Array{T}(undef, nbins, nresamplings)
         fractions = Array{T}(undef, nrows)
         fraction_means = Array{T}(undef, nbins)
-        rng = MersenneTwister()
         N = Array{Int}(undef, nbins) # Array of bin counts -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
@@ -1046,16 +1044,16 @@
             x_sigma::AbstractVector=0.05x,
             num_sigma::AbstractVector=zeros(size(num)),
             denom_sigma::AbstractVector=zeros(size(denom)),
-            nresamplings=1000,
-            p::Union{Number,AbstractVector}=0.2
+            p::Union{Number,AbstractVector}=0.2,
+            nresamplings::Integer = 1000,
+            rng::AbstractRNG = MersenneTwister(),
         )
 
         data = hcat(x, num, denom, w)
         sigma = hcat(x_sigma, num_sigma, denom_sigma, zeros(size(w)))
         T = float(eltype(data))
         binwidth = (xmax-xmin)/nbins
-        nrows = size(data,1)
-        ncols = size(data,2)
+        nrows, ncols = size(data)
 
         # Preallocate
         dbs = Array{T}(undef, nrows, ncols)
@@ -1063,7 +1061,6 @@
         means = Array{T}(undef, nbins, nresamplings)
         fractions = Array{T}(undef, nrows)
         fraction_means = Array{T}(undef, nbins)
-        rng = MersenneTwister()
         W = Array{T}(undef, nbins) # Array of bin weights -- Not used but preallocated for speed
         # Resample
         for i=1:nresamplings
