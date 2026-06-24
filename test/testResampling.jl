@@ -201,7 +201,7 @@
     x = vec(repeat(0.5:9.5, 1, 10))
     y = vec(repeat((0.5:9.5)', 10, 1))
     z = x .* y
-    xc, yc, means = bin_bsr_2d(x, y, z, 0:10, 0:10, nresamplings=1000)
+    xc, yc, means = bin_bsr_2d(x, y, z, 0:10, 0:10, nresamplings=1000, sem=:none)
     @test xc == yc == 0.5:9.5
     @test size(means) == (10,10,1000)
     m = nanmean(means, dim=3)
@@ -224,11 +224,19 @@
 
     N = 10000
     age = rand(N) .* 4000
-    MgO = rand(N) .* 4 .+ 4
+    MgO = rand(N) .* 8 .+ 2
     FeO = 0.5 * MgO
-    c, m, e = bin_bsr_thi(age, MgO, FeO, 0:100:3900, nresamplings=1000, sem=:sigma)
+    c, m, e = bin_bsr_thi(age, MgO, FeO, 0:100:3900, nresamplings=1000, sem=:sigma, method=:interpolate)
     @test c == 50:100:3850
-    @test m ≈ fill(0.56, 39) rtol = 0.1
+    @test m ≈ fill(0.5, 39) rtol = 0.1
+
+    c, m, e = bin_bsr_thi(age, MgO, FeO, 0:100:3900, nresamplings=1000, sem=:sigma, method=:interpolatebinned)
+    @test c == 50:100:3850
+    @test m ≈ fill(0.5, 39) rtol = 0.1
+
+    c, m, e = bin_bsr_thi(age, MgO, FeO, 0:100:3900, nresamplings=1000, sem=:sigma, method=:bin)
+    @test c == 50:100:3850
+    @test m ≈ fill(0.5, 39) rtol = 0.1
 
 ## -- bin_bsr_ratios
 

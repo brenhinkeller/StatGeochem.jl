@@ -935,6 +935,29 @@
                 end
             end
 
+        elseif method === :interpolatebinned
+
+            mgobins = 1.875:0.375:10.125
+            mgocenters = cntr(mgobins)
+            low = 2 .<= mgocenters .<= 6
+            cl = mgocenters[low]
+            Al = [cl.^0 cl.^1 cl.^2 cl.^3]
+            high = 6 .<= mgocenters .<= 10
+            ch = mgocenters[high]
+            Ah = [ch.^0 ch.^1 ch.^2 ch.^3]
+
+            xc, yc, feomeans = bin_bsr_2d(age, MgO, FeO, agebins, mgobins; kwargs..., x_sigma=age_sigma, y_sigma=MgO_sigma, z_sigma=FeO_sigma, sem=:none)
+            means = similar(feomeans, size(feomeans, 2), size(feomeans,3))
+            for j in axes(feomeans,3)
+                for i in axes(feomeans,2)
+                    a, b, c, d =  Al \ feomeans[low, i, j] # Fit to line of form a + bx + cx^2 + dx^3
+                    fe4 = a + 4b + 16c + 64d
+                    a, b, c, d =  Ah \ feomeans[high, i, j] # Fit to line of form a + bx + cx^2 + dx^3
+                    fe8 = a + 8b + 64c + 512d
+                    means[i,j] = fe4/fe8
+                end
+            end
+
         elseif method === :bin
             mgocenters = cntr(mgobins)
             @assert first(mgocenters) ≈ 4 "First bin must be centered around 4"
