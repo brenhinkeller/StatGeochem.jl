@@ -1218,29 +1218,36 @@
     export constproportion
 
 ## --- Quick Monte Carlo binning/interpolation functions
-
+        
+    # Run a simplified Monte Carlo fit with nbins of witdth binwidth between xmin and xmax
     function mcfit(x::AbstractVector, σx::AbstractVector, y::AbstractVector, σy::AbstractVector,
             xmin::Number, xmax::Number, nbins::Integer=10;
             binwidth::Number=(xmax-xmin)/(nbins-1),
             minrows::Number=100000
         )
-        # Run a simplified Monte Carlo fit with nbins of witdth binwidth between xmin and xmax
-
-        # Remove missing data
+        # Filter out missing data
         hasdata = .!(isnan.(x) .| isnan.(y))
-        x′ = x[hasdata]
-        y′ = y[hasdata]
-        σx′ = σx[hasdata]
-        σy′ = σy[hasdata]
+        xₜ = x[hasdata]
+        yₜ = y[hasdata]
+        σxₜ = σx[hasdata]
+        σyₜ = σy[hasdata]
 
-        # Fill in variances where not provided explicitly
-        σx′[isnan.(σx′)] .= nanstd(x′)
-        σy′[isnan.(σy′)] .= nanstd(y′)
+        # Filter for only data within our x range of interest
+        inrange = hasdata .& (xmin .<= x .<= xmax)
+        xᵣ = x[inrange]
+        yᵣ = y[inrange]
 
-        # Increase x uncertainty if x sampling is sparse
-        xsorted = [xmin; sort(x′); xmax]
-        minerr = maximum(xsorted[2:end] - xsorted[1:end-1]) / 2
-        σx′[σx′ .< minerr] .= minerr
+        # Default to variance of the in-range data when not provided explicitly
+        σxₜ[isnan.(σxₜ)] .= nanstd(xᵣ)
+        σyₜ[isnan.(σyₜ)] .= nanstd(yᵣ)
+
+        # Minimum x uncertainty given sparsity of data
+        xsorted = sort!([xmin; xᵣ; xmax])
+        minerr = maximum(diff(xsorted))
+
+        # Ensure uncertainties cannot be NaN, negative, or (for x) belowe minerr
+        σxₜ[.!(σxₜ .> minerr)] .= minerr
+        σyₜ[.!(σyₜ .> 0)] .= 0
 
         # Bin centers
         c = xmin:(xmax-xmin)/(nbins-1):xmax
@@ -1248,14 +1255,14 @@
 
         # Run the Monte Carlo
         N = fill(0, nbins)
-        m = fill(zero(float(eltype(y′))), nbins)
-        xresampled = similar(x′, float(eltype(x′)))
-        yresampled = similar(y′, float(eltype(y′)))
-        @inbounds for n = 1:ceil(Int, minrows/length(x′))
+        m = fill(zero(float(eltype(yₜ))), nbins)
+        xresampled = similar(xₜ, float(eltype(xₜ)))
+        yresampled = similar(yₜ, float(eltype(yₜ)))
+        @inbounds for n = 1:ceil(Int, minrows/length(xₜ))
             randn!(xresampled)
-            xresampled .= x′ .+ σx′ .* xresampled
+            xresampled .= xₜ .+ σxₜ .* xresampled
             randn!(yresampled)
-            yresampled .= y′ .+ σy′ .* yresampled
+            yresampled .= yₜ .+ σyₜ .* yresampled
             for j = 1:nbins
                 l = (c[j] - halfwidth)
                 u = (c[j] + halfwidth)
