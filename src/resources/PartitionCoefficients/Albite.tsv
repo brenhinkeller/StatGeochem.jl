@@ -1,158 +1,494 @@
-EarthRef.org -- GERM Partition Coefficient (Kd) Database														
-Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen														
-														
-DATA:														
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
-Rhyolite	Alkali Feldspar	11	Na			0.72	3.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	12	Mg			0.18	0.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	13	Al			1.24	1.62	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	14	Si			0.87	0.94	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	15	P			0.22	1.16	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	19	K			0.3	3.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	20	Ca			0.21	6.58	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	26	Fe			0.18	0.64	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	37	Rb			0.07	0.76	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	38	Sr			7.96	23.05	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	55	Cs			0.09	0.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-Rhyolite	Alkali Feldspar	56	Ba			1.07	18.38	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN	NaN
-														
-LINKS TO REFERENCES:														
-Icenhower & London 1996 - http://earthref.org/cgi-bin/err.cgi?n=119														
-														
-ACKNOWLEDGEMENTS:														
-Sponsored by NSF -- EAR 0000998														
-Supported by the San Diego SuperComputer Center														
-														
-DATABASE STATISTICS:														
-EarthRef.org Database Version: 														
-Search Time: 30 January 2013 05:27:13 PM														
-														
-LINKS TO EARTHREF.ORG:														
-Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi														
-Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=alkali%20feldspar&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&														
-														
-SEARCH VALUES:														
-Search Term(s):  alkali feldspar (Mineral)														
-Rock Type: Any Rock Type														
-Mineral: Any Mineral														
-Element Family: Any Element Family														
-Reference: Icenhower & London 1996														
-Sort by: Reference														
-														
-NON-GERM ADDITIONS:														
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	3	Li	0.45	0.09			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	4	Be	0.1	0.019			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	5	B	0.003	0.00057			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	15	P	0.61	0.0671			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	22	Ti	0.14	0.0112			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	25	Mn	0.087	0.00783			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	30	Zn	0.032	0.0144			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	32	Ge	0.51	0.0816			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	37	Rb	0.008	0.00056			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	38	Sr	10.8	3.564			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	40	Zr	0.003	0.00072			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	41	Nb	0.003	0.00111			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	50	Sn	0.048	0.01008			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	55	Cs	0.0007	0.00014			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	56	Ba	0.87	0.3045			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	57	La	3.57	0.2499			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	62	Sm	0.68	0.204			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	63	Eu	17.9	4.475			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	64	Gd	0.45	0.1395			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	70	Yb	0.02	0.0214			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	73	Ta	0.004	0.00192			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	74	W	0.003	0.00084			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	82	Pb	2.98	0.3576			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	92	U	0.008	0.00168			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt		14-FEB-2025	71.36	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	55	Cs	0.04				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	37	Rb	0.34				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	56	Ba	19.55				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	57	La	0.17				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	58	Ce	0.104				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	63	Eu	3.75				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	65	Tb	0.024				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	70	Yb	0.019				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	71	Lu	0.012				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	21	Sc	0.016				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	72	Hf	0.029				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	73	Ta	0.063				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	51	Sb	0.22				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	25	Mn	0.013				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	24	Cr	2.35				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT34E High Silica Rhyolite	Ab52 Alkali feldspar	27	Co	0.87				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.18	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	55	Cs	0.025				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	37	Rb	0.34				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	90	Th	0.03				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	56	Ba	15.91				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	57	La	0.101				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	58	Ce	0.068				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	63	Eu	4.64				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	65	Tb	0.022				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	70	Yb	0.026				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	71	Lu	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	21	Sc	0.03				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	72	Hf	0.042				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	73	Ta	0.034				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	51	Sb	0.08				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	25	Mn	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	24	Cr	0.48				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT165A High Silica Rhyolite	Ab46 Alkali feldspar	27	Co	0.5				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	77.11	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	55	Cs	0.06				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	37	Rb	0.2				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	38	Sr	13.1				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	56	Ba	9.82				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	57	La	0.07				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	58	Ce	0.037				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	63	Eu	4.97				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	65	Tb	0.027				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	70	Yb	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	21	Sc	0.014				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	72	Hf	0.046				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	73	Ta	0.046				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	51	Sb	0.09				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	25	Mn	0.008				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	24	Cr	1.29				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	27	Co	1.42				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	76.59	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	55	Cs	0.084				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	37	Rb	0.13				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	38	Sr	10.5				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	56	Ba	6.95				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	57	La	0.074				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	58	Ce	0.032				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	63	Eu	5.62				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	70	Yb	0.012				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	71	Lu	0.013				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	21	Sc	0.014				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	72	Hf	0.028				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	73	Ta	0.045				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	51	Sb	0.13				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	25	Mn	0.01				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	24	Cr	1.11				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-RT173C High Silica Rhyolite	Ab70 Alkali feldspar	27	Co	0.75				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt		31-MAR-2025	75.47	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	3	Li	0.334				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	11	Na	3.52				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	12	Mg	0.079				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	13	Al	2.56				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	14	Si	0.964				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	19	K	0.226				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	20	Ca	11				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	21	Sc	0.466				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	22	Ti	0.127				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	23	V	0.281				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	25	Mn	0.043				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	29	Cu	0.057				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	30	Zn	0.155				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	31	Ga	1.31				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	32	Ge	0.5				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	37	Rb	0.018				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	38	Sr	14				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	39	Y	0.011				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	40	Zr	0.004				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	55	Cs	0.017				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	56	Ba	4.5				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	57	La	0.307				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	58	Ce	0.189				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	59	Pr	0.119				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	60	Nd	0.092				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	63	Eu	3.36				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
-Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	82	Pb	0.62				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76	5
+EarthRef.org -- GERM Partition Coefficient (Kd) Database													
+Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen													
+													
+DATA:													
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2
+Rhyolite	Alkali Feldspar	11	Na			0.72	3.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	12	Mg			0.18	0.75	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	13	Al			1.24	1.62	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	14	Si			0.87	0.94	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	15	P			0.22	1.16	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	19	K			0.3	3.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	20	Ca			0.21	6.58	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	26	Fe			0.18	0.64	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	37	Rb			0.07	0.76	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	38	Sr			7.96	23.05	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	55	Cs			0.09	0.13	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+Rhyolite	Alkali Feldspar	56	Ba			1.07	18.38	Experimental	Icenhower & London 1996	Solid-Melt		12-DEC-2000	NaN
+													
+LINKS TO REFERENCES:													
+Icenhower & London 1996 - http://earthref.org/cgi-bin/err.cgi?n=119													
+													
+ACKNOWLEDGEMENTS:													
+Sponsored by NSF -- EAR 0000998													
+Supported by the San Diego SuperComputer Center													
+													
+DATABASE STATISTICS:													
+EarthRef.org Database Version: 													
+Search Time: 30 January 2013 05:27:13 PM													
+													
+LINKS TO EARTHREF.ORG:													
+Original search form - http://earthref.org/cgi-bin/kdd-s0-main.cgi													
+Search results - http://earthref.org/cgi-bin/kdd-s1-advanced.cgi?database_name=kdd&search_start=main&term=&term=alkali%20feldspar&term=&term_type=rock_type&term_type=mineral&term_type=element&conjunction=AND&conjunction=AND&rock_type=Any%20Rock%20Type&mineral=Any%20Mineral&element_family=Any%20Element%20Family&er_citation_id=Any%20Reference&sort=short_authors&													
+													
+SEARCH VALUES:													
+Search Term(s):  alkali feldspar (Mineral)													
+Rock Type: Any Rock Type													
+Mineral: Any Mineral													
+Element Family: Any Element Family													
+Reference: Icenhower & London 1996													
+Sort by: Reference													
+													
+NON-GERM ADDITIONS:													
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	3	Li	0.45	0.09			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	4	Be	0.1	0.019			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	5	B	0.003	0.00057			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	15	P	0.61	0.0671			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	22	Ti	0.14	0.0112			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	25	Mn	0.087	0.00783			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	30	Zn	0.032	0.0144			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	32	Ge	0.51	0.0816			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	37	Rb	0.008	0.00056			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	38	Sr	10.8	3.564			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	40	Zr	0.003	0.00072			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	41	Nb	0.003	0.00111			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	50	Sn	0.048	0.01008			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	55	Cs	0.0007	0.00014			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	56	Ba	0.87	0.3045			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	57	La	3.57	0.2499			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	62	Sm	0.68	0.204			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	63	Eu	17.9	4.475			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	64	Gd	0.45	0.1395			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	70	Yb	0.02	0.0214			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	73	Ta	0.004	0.00192			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	74	W	0.003	0.00084			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	82	Pb	2.98	0.3576			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+Peraluminous Rhyolite	Ab65-Ab90 Plagioclase	92	U	0.008	0.00168			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt	CBK addition	14-FEB-2025	71.36
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	55	Cs	0.04				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	37	Rb	0.34				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	56	Ba	19.55				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	57	La	0.17				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	58	Ce	0.104				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	63	Eu	3.75				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	65	Tb	0.024				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	70	Yb	0.019				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	71	Lu	0.012				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	21	Sc	0.016				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	72	Hf	0.029				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	73	Ta	0.063				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	51	Sb	0.22				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	25	Mn	0.013				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	24	Cr	2.35				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT34E High Silica Rhyolite	Ab52 Alkali feldspar	27	Co	0.87				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.18
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	55	Cs	0.025				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	37	Rb	0.34				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	90	Th	0.03				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	56	Ba	15.91				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	57	La	0.101				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	58	Ce	0.068				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	63	Eu	4.64				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	65	Tb	0.022				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	70	Yb	0.026				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	71	Lu	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	21	Sc	0.03				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	72	Hf	0.042				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	73	Ta	0.034				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	51	Sb	0.08				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	25	Mn	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	24	Cr	0.48				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT165A High Silica Rhyolite	Ab46 Alkali feldspar	27	Co	0.5				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	77.11
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	55	Cs	0.06				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	37	Rb	0.2				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	38	Sr	13.1				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	56	Ba	9.82				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	57	La	0.07				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	58	Ce	0.037				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	63	Eu	4.97				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	65	Tb	0.027				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	70	Yb	0.023				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	21	Sc	0.014				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	72	Hf	0.046				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	73	Ta	0.046				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	51	Sb	0.09				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	25	Mn	0.008				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	24	Cr	1.29				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT 173B High Silica Rhyolite	Ab70 Alkali feldspar	27	Co	1.42				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	76.59
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	55	Cs	0.084				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	37	Rb	0.13				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	38	Sr	10.5				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	56	Ba	6.95				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	57	La	0.074				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	58	Ce	0.032				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	63	Eu	5.62				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	70	Yb	0.012				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	71	Lu	0.013				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	21	Sc	0.014				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	72	Hf	0.028				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	73	Ta	0.045				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	51	Sb	0.13				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	25	Mn	0.01				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	24	Cr	1.11				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+RT173C High Silica Rhyolite	Ab70 Alkali feldspar	27	Co	0.75				Phenocryst-Matrix	Streck & Grunder 1997	Solid-Melt	CBK addition	31-MAR-2025	75.47
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	3	Li	0.334				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	11	Na	3.52				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	12	Mg	0.079				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	13	Al	2.56				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	14	Si	0.964				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	19	K	0.226				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	20	Ca	11				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	21	Sc	0.466				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	22	Ti	0.127				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	23	V	0.281				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	25	Mn	0.043				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	29	Cu	0.057				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	30	Zn	0.155				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	31	Ga	1.31				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	32	Ge	0.5				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	37	Rb	0.018				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	38	Sr	14				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	39	Y	0.011				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	40	Zr	0.004				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	55	Cs	0.017				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	56	Ba	4.5				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	57	La	0.307				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	58	Ce	0.189				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	59	Pr	0.119				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	60	Nd	0.092				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	63	Eu	3.36				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Peach Springs Tuff high-silica rhyolite KPST01A	Ab70 Alkali feldspar	82	Pb	0.62				Phenocryst-Matrix	Padilla & Gualda 2016, doi.org/10.1016/j.chemgeo.2016.07.004	Solid-Melt	CBK addition	1-JUN-2025	76
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	3	Li	0.36144578				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	12	Mg	0.055045872				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	19	K	0.018348624				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	26	Fe	0.6				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	30	Zn	0.18367347				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	31	Ga	1.0454545				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	37	Rb	0.013178295				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	38	Sr	3.1081081				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	39	Y	0.026635514				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	55	Cs	0.0026706231				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	56	Ba	0.5				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	57	La	0.37810945				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	62	Sm	0.11056338				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (90-10), 0.0001 GPa, 1251.0 C, NaN	Plagioclase (An48)	82	Pb	0.48387097				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.54
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.054794521				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.39740821				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	62	Sm	0.082395087				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-3), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	64	Gd	0.061676511				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.4
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.055944056				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.3982684				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	60	Nd	0.10562414				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	66	Dy	0.046121734				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-6), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	68	Er	0.041033435				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.27
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.054794521				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.39740821				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	62	Sm	0.078546926				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-2), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	64	Gd	0.054197662				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.3
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.055172414				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.3982684				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	60	Nd	0.1134485				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	66	Dy	0.037966994				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (104-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	68	Er	0.03277044				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.59
+Synthetic (94-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.053872054				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.39569892				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	57	La	0.23792991				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	3	Li	0.22631579				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	4	Be	0.27659574				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	5	B	0.16891892				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	9	F	1.2258065				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.040572283				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	15	P	0.088467615				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	17	Cl	0.90909091				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.16277551				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	21	Sc	0.31386861				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.090207842				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	24	Cr	0.10869159				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.27961218				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	27	Co	0.30483271				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	28	Ni	0.43566879				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	37	Rb	0.018300654				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	38	Sr	3.7575758				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	39	Y	0.056291391				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	40	Zr	0.0061200924				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	41	Nb	0.016216216				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	56	Ba	0.66144201				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	57	La	0.26255789				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	58	Ce	0.41395171				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	59	Pr	0.36666667				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	60	Nd	0.30762489				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	62	Sm	0.18505338				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An46)	82	Pb	2.3837209				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	57.07
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.054794521				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.39569892				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	57	La	0.2334999				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	58	Ce	0.14247141				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-4), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	71	Lu	0.042639939				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.94
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	12	Mg	0.054421769				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	19	K	0.14457831				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	22	Ti	0.057971014				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	26	Fe	0.39655172				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	39	Y	0.011611833				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	57	La	0.23592787				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	58	Ce	0.13422819				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (104-5), 0.0001 GPa, 1150.0 C, -0.638272163982	Plagioclase (An46)	71	Lu	0.044531762				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.97
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	12	Mg	0.015521064				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	19	K	0.37864078				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	22	Ti	0.042056075				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	26	Fe	0.033207547				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	38	Sr	2.1781305				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	12	Mg	0.015521064				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	19	K	0.37864078				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	22	Ti	0.042056075				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	26	Fe	0.033207547				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (TJ-1), 0.7 GPa, 1170.0 C, NaN	Plagioclase (An46)	38	Sr	2.1781305				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.25
+Synthetic (94-4), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	56	Ba	0.6875				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	60.71
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	12	Mg	0.026548673				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	19	K	0.37962963				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	22	Ti	0.030769231				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	26	Fe	0.040540541				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	38	Sr	0.90311987				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	12	Mg	0.026548673				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	19	K	0.37962963				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	22	Ti	0.030769231				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	26	Fe	0.040540541				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (500B-44), 2.7 GPa, 1430.0 C, NaN	Plagioclase (An45)	38	Sr	0.90311987				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	56.32
+Synthetic (94-6), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	56	Ba	0.60377358				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	60.67
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	38	Sr	3.2068965				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	3	Li	0.20979021				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	4	Be	0.22727273				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	5	B	0.89347826				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	9	F	4.8717949				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	12	Mg	0.035357266				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	15	P	0.16121309				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	17	Cl	1.5795455				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	19	K	0.14658605				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	22	Ti	0.095536255				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	23	V	0.048717949				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	24	Cr	0.19170732				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	25	Mn	0.091346154				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	26	Fe	0.28862173				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	27	Co	1.0362319				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	28	Ni	1.1612903				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	38	Sr	3.0836742				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	39	Y	0.28169014				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	40	Zr	0.012625698				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	41	Nb	0.083333333				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	55	Cs	0.10864198				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	56	Ba	0.60409556				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	57	La	0.6309795				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	58	Ce	0.40682037				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	59	Pr	0.44				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	60	Nd	0.50302419				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	62	Sm	0.43265306				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	63	Eu	0.61038961				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-3), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	82	Pb	5.1823417				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.3
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	56	Ba	0.6				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	3	Li	0.24279835				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	4	Be	0.17391304				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	5	B	0.19647059				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	9	F	0.99418605				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	12	Mg	0.061381445				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	15	P	0.16846361				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	17	Cl	1.2481752				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	19	K	0.16023926				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	22	Ti	0.11177955				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	24	Cr	0.074758065				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	26	Fe	0.29346407				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	27	Co	0.21333333				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	28	Ni	0.33801717				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	37	Rb	0.066939891				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	38	Sr	3.7659574				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	39	Y	0.11589404				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	40	Zr	0.012654321				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	56	Ba	0.6924832				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	57	La	0.49069149				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	58	Ce	0.2327318				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	59	Pr	0.28205128				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	60	Nd	0.27539196				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	62	Sm	0.28617363				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (94-5), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An45)	82	Pb	0.907173				Experimental	Bindeman et al. 1998 10.1016/S0016-7037(98)00047-7	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.08
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	12	Mg	0.01703163				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	15	P	0.015625				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	19	K	0.39805825				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	22	Ti	0.035320088				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	26	Fe	0.038871951				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	38	Sr	1.8733108				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	12	Mg	0.01703163				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	15	P	0.015625				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	19	K	0.39805825				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	22	Ti	0.035320088				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	26	Fe	0.038871951				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (TJ-20), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An45)	38	Sr	1.8733108				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.84
+Synthetic (94-2), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An44)	38	Sr	3.0612244				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	60.85
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	12	Mg	0.015075377				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	19	K	0.45045045				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	22	Ti	0.029411765				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	26	Fe	0.024727273				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	12	Mg	0.015075377				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	19	K	0.45045045				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	22	Ti	0.029411765				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-15), 1.0 GPa, 1160.0 C, NaN	Plagioclase (An43)	26	Fe	0.024727273				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	49.54
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	12	Mg	0.01459854				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	19	K	0.41666667				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	22	Ti	0.021028037				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	26	Fe	0.0336				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	38	Sr	1.6766667				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	12	Mg	0.01459854				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	19	K	0.41666667				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	22	Ti	0.021028037				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	26	Fe	0.0336				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (TJ-12), 1.3 GPa, 1185.0 C, NaN	Plagioclase (An43)	38	Sr	1.6766667				Experimental	Auwera et al. 2000 10.1016/S0012-821X(00)00086-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	48.77
+Synthetic (94-1), 0.0001 GPa, 1153.0 C, -0.638272163982	Plagioclase (An43)	38	Sr	3.3194445				Experimental	Drake 1972	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.54
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	3	Li	0.24469274				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	4	Be	0.28770302				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	5	B	0.19911504				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	12	Mg	0.044420182				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	15	P	0.10641892				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	19	K	0.17404079				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	22	Ti	0.096123328				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	26	Fe	0.2739726				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	37	Rb	0.033101045				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	38	Sr	3.3423729				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	39	Y	0.064084507				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	40	Zr	0.0095061728				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	56	Ba	0.66346154				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	57	La	0.2700415				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	58	Ce	0.47035573				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	59	Pr	0.41134752				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	60	Nd	0.3853211				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (94-7), 0.0001 GPa, 1153.0 C, -0.638	Plagioclase (An42)	62	Sm	0.21784387				Experimental	Bindeman & Davis 2000 10.1016/S0016-7037(00)00389-6	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.5
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	3	Li	0.15410959				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	12	Mg	0.044548287				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	31	Ga	1.1111111				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	37	Rb	0.016136364				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	38	Sr	2.7083333				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	39	Y	0.0039800995				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	55	Cs	0.00028695652				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	56	Ba	0.46835443				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	57	La	0.082214765				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	62	Sm	0.016666667				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (93-11b), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An42)	82	Pb	0.4375				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	61.92
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	3	Li	0.15189873				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	12	Mg	0.04040404				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	22	Ti	0.062018349				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	26	Fe	0.056105611				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	31	Ga	0.39712919				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	38	Sr	2.2148148				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	39	Y	0.018641811				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	40	Zr	0.0057142857				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	41	Nb	0.0069264069				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	57	La	0.1504065				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	58	Ce	0.11594203				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	60	Nd	0.080438757				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	62	Sm	0.053691275				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	63	Eu	1.0402414				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	64	Gd	0.044982699				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	68	Er	0.011702128				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	71	Lu	0.013380282				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	72	Hf	0.009771987				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (Run), 1.5 GPa, 1255.0 C, NaN	Plagioclase (An41)	73	Ta	0.022222222				Experimental	Blundy et al. 1998 10.1016/S0012-821X(98)00106-X	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	50.17
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	3	Li	0.12347826				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	12	Mg	0.029927007				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	19	K	0.021390374				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	30	Zn	0.27272727				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	31	Ga	1.1080332				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	37	Rb	0.010682493				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	38	Sr	4.15625				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	39	Y	0.016155089				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	55	Cs	0.00021545667				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	56	Ba	0.84018265				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	57	La	0.30926518				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	62	Sm	0.06971831				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (93-11a), 0.0001 GPa, 1184.0 C, NaN	Plagioclase (An40)	82	Pb	0.744				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	62.39
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	12	Mg	0.021428571				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	19	K	0.46601942				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	22	Ti	0.034626866				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	24	Cr	0.10714286				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	26	Fe	0.060307018				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	37	Rb	0.29166667				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	38	Sr	1.3496648				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	39	Y	0.1969697				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	40	Zr	0.011852776				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	57	La	0.086021505				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	58	Ce	0.062962963				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	60	Nd	0.13076923				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	62	Sm	0.20588235				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (CNM-41), 2.0 GPa, 1325.0 C, NaN	Plagioclase (An40)	70	Yb	0.36363636				Experimental	Mercer & Johnston 2008 10.1007/s00410-007-0259-8	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	54.32
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	12	Mg	0.068965517				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	19	K	0.10447761				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	22	Ti	0.055555556				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	26	Fe	0.11764706				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	29	Cu	0.11517857				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	12	Mg	0.068965517				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	19	K	0.10447761				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	22	Ti	0.055555556				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	26	Fe	0.11764706				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (D-8), 1.0 GPa, 950.0 C, NaN	Plagioclase (An36)	29	Cu	0.11517857				Experimental	Liu et al. 2015 10.1016/j.gca.2014.12.010	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	72.42
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	12	Mg	0.047169811				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	19	K	0.5605013				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	22	Ti	0.12711864				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	25	Mn	0.45614035				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	27	Co	0.35585586				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	30	Zn	0.90697674				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	37	Rb	0.42330699				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	38	Sr	2.5302059				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	39	Y	0.4005102				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	48	Cd	2.5				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	50	Sn	0.38912134				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	55	Cs	0.40929535				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	56	Ba	0.70139562				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	57	La	0.55095541				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	60	Nd	0.48199876				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	62	Sm	0.46808511				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	71	Lu	0.40016411				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	82	Pb	1.0426829				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (31), 1.0 GPa, 1090.0 C, NaN	Plagioclase (An36)	88	Ra	0.4516129				Experimental	Fabbrizio et al. 2009 10.1016/j.epsl.2009.01.022	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	63.92
+Synthetic (REC13c), 1.5 GPa, 1285.0 C, NaN	Plagioclase (An35)	26	Fe	0.038626609				Experimental	Gaetani 2004 10.1007/s00410-004-0575-1	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	52.0
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	3	Li	0.12096774				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	12	Mg	0.015625				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	30	Zn	0.030120482				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	31	Ga	0.25				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	37	Rb	0.032116788				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	38	Sr	2.7921406				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	39	Y	0.0070707071				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	55	Cs	0.0044361304				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	56	Ba	1.8195876				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	57	La	0.13981043				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	62	Sm	0.022871046				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5b), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An14)	82	Pb	0.28				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	65.89
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	3	Li	0.12748344				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	12	Mg	0.009478673				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	19	K	0.19142857				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	31	Ga	0.70588235				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	37	Rb	0.026923077				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	38	Sr	3.1842105				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	39	Y	0.0041193182				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	55	Cs	0.00081264108				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	56	Ba	1.7593985				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	57	La	0.25				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	62	Sm	0.031884058				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (93-5a), 0.0001 GPa, 1108.0 C, NaN	Plagioclase (An13)	82	Pb	0.25555556				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	66.51
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	3	Li	0.1483376				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	12	Mg	0.037735849				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	26	Fe	7.75				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	30	Zn	0.062318841				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	31	Ga	1.05				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	37	Rb	0.027534247				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	38	Sr	6.9626168				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	39	Y	0.0024878049				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	55	Cs	0.00049528302				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	56	Ba	1.8533333				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	57	La	0.11975117				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	62	Sm	0.015699659				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73
+Synthetic (90-11), 0.0001 GPa, 1086.0 C, NaN	Plagioclase (An9)	82	Pb	1.8				Experimental	Dohmen & Blundy 2014 10.2475/09.2014.04	Solid-Melt	Compiled by: Nielsen & Ustunisik 2019 10.1594/IEDA/111284	15-OCT-2026	67.73

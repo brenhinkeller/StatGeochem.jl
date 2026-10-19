@@ -1,79 +1,79 @@
-DATA:														
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2	SiO2_sigma
-Synthetic silicic peraluminous melt	Muscovite	14	Si	0.73	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	22	Ti	7.28	1.19			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	13	Al	1.97	0.06			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	12	Mg	16	2.98			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	20	Са	0.12	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	25	Mn	1	0.14			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	26	Fe	5.17	0.34			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	38	Sr	0.52	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	56	Ва	5.62	1.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	11	Na	0.4	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	19	K	2.54	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.51	0.11			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.23	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	9	F	1.92	0.15			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+14		64.27	5
-Synthetic silicic peraluminous melt	Muscovite	14	Si	0.74	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	22	Ti	4.44	0.59			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	13	Al	1.89	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	12	Mg	10.75	1.38			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	20	Са	0.14	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	25	Mn	1	0.12			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	26	Fe	4.28	0.37			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	38	Sr	0.49	0.09			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	56	Ва	3.41	0.42			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	11	Na	0.35	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	19	K	2.58	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.75	0.04			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.24	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	9	F	1.81	0.07			Experimental	Icenhower & London 1995	Solid-Melt	Sample 5+15		63.94	5
-Synthetic silicic peraluminous melt	Muscovite	14	Si	0.69	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	22	Ti	8.29	1.36			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	13	Al	2.06	0.03			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	12	Mg	20.75	5.27			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	20	Са	0.03	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	25	Mn	1.5	0.15			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	26	Fe	6.91	0.76			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	11	Na	0.24	0.01			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	19	K	2.46	0.05			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	37	Rb	1.56	0.05			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	55	Cs	0.16	0.02			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic silicic peraluminous melt	Muscovite	9	F	1.68	0.08			Experimental	Icenhower & London 1995	Solid-Melt	Sample 7+10		65.4	5
-Synthetic pegmatite	Muscovite	9	F	1.04				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 4		74.4	5
-Synthetic pegmatite	Muscovite	3	Li	0.17				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 4		74.4	5
-Synthetic pegmatite	Muscovite	4	Be	0.34				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 4		74.4	5
-Synthetic pegmatite	Muscovite	9	F	0.95				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 17		72.7	5
-Synthetic pegmatite	Muscovite	3	Li	0.12				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 17		72.7	5
-Synthetic pegmatite	Muscovite	4	Be	1.61				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 17		72.7	5
-Synthetic pegmatite	Muscovite	9	F	1.14				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 20		73.8	5
-Synthetic pegmatite	Muscovite	3	Li	0.22				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 20		73.8	5
-Synthetic pegmatite	Muscovite	4	Be	1.59				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 20		73.8	5
-Synthetic pegmatite	Muscovite	9	F	0.94				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 77		74.3	5
-Synthetic pegmatite	Muscovite	3	Li	0.24				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 77		74.3	5
-Synthetic pegmatite	Muscovite	4	Be	0.85				Experimental	Pichavant et al. 2016	Solid-Melt	Sample 77		74.3	5
-Peraluminous Rhyolite	Sanidine	3	Li	1.12	0.224			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	4	Be	0.1	0.007			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	5	B	0.04	0.002			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	13	Al					Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	15	P	0.07	0.0056			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	22	Ti	19.8	1.188			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	25	Mn	0.32	0.0224			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	30	Zn	1.61	0.161			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	32	Ge	0.61	0.0732			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	37	Rb	1.75	0.0875			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	38	Sr	0.3	0.051			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	40	Zr	0.21	0.0105			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	41	Nb	4.3	0.215			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	50	Sn	0.53	0.0371			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	55	Cs	0.08	0.004			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	56	Ba	3.3	0.66			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	57	La	0.002	0.00102			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	62	Sm	0.01	0.0111			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	63	Eu	0.29	0.1334			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	64	Gd	0.03	0.0234			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	70	Yb	0.05	0.0225			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	73	Ta	0.63	0.0315			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	74	W	2.1	0.126			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	82	Pb	0.23	0.0207			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
-Peraluminous Rhyolite	Sanidine	92	U	0.01	0.0012			Phenocryst-Matrix	Pichavant et al. 2024	Solid-Melt			71.36	5
+DATA:													
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2
+Synthetic silicic peraluminous melt (5+14)	Muscovite	14	Si	0.73	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	22	Ti	7.28	1.19			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	13	Al	1.97	0.06			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	12	Mg	16	2.98			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	20	Са	0.12	0.04			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	25	Mn	1	0.14			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	26	Fe	5.17	0.34			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	38	Sr	0.52	0.12			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	56	Ва	5.62	1.12			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	11	Na	0.4	0.03			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	19	K	2.54	0.12			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	37	Rb	1.51	0.11			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	55	Cs	0.23	0.03			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+14)	Muscovite	9	F	1.92	0.15			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		64.27
+Synthetic silicic peraluminous melt (5+15)	Muscovite	14	Si	0.74	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	22	Ti	4.44	0.59			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	13	Al	1.89	0.02			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	12	Mg	10.75	1.38			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	20	Са	0.14	0.02			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	25	Mn	1	0.12			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	26	Fe	4.28	0.37			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	38	Sr	0.49	0.09			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	56	Ва	3.41	0.42			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	11	Na	0.35	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	19	K	2.58	0.04			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	37	Rb	1.75	0.04			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	55	Cs	0.24	0.02			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (5+15)	Muscovite	9	F	1.81	0.07			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		63.94
+Synthetic silicic peraluminous melt (7+10)	Muscovite	14	Si	0.69	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	22	Ti	8.29	1.36			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	13	Al	2.06	0.03			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	12	Mg	20.75	5.27			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	20	Са	0.03	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	25	Mn	1.5	0.15			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	26	Fe	6.91	0.76			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	11	Na	0.24	0.01			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	19	K	2.46	0.05			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	37	Rb	1.56	0.05			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	55	Cs	0.16	0.02			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic silicic peraluminous melt (7+10)	Muscovite	9	F	1.68	0.08			Experimental	Icenhower & London 1995 10.2138/am-1995-11-1213	Solid-Melt	CBK addtion		65.4
+Synthetic pegmatite (4)	Muscovite	9	F	1.04				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.4
+Synthetic pegmatite (4)	Muscovite	3	Li	0.17				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.4
+Synthetic pegmatite (4)	Muscovite	4	Be	0.34				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.4
+Synthetic pegmatite (17)	Muscovite	9	F	0.95				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		72.7
+Synthetic pegmatite (17)	Muscovite	3	Li	0.12				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		72.7
+Synthetic pegmatite (17)	Muscovite	4	Be	1.61				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		72.7
+Synthetic pegmatite (20)	Muscovite	9	F	1.14				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		73.8
+Synthetic pegmatite (20)	Muscovite	3	Li	0.22				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		73.8
+Synthetic pegmatite (20)	Muscovite	4	Be	1.59				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		73.8
+Synthetic pegmatite (77)	Muscovite	9	F	0.94				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.3
+Synthetic pegmatite (77)	Muscovite	3	Li	0.24				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.3
+Synthetic pegmatite (77)	Muscovite	4	Be	0.85				Experimental	Pichavant et al. 2016	Solid-Melt	CBK addtion		74.3
+Peraluminous Rhyolite	Sanidine	3	Li	1.12	0.224			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	4	Be	0.1	0.007			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	5	B	0.04	0.002			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	13	Al					Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	15	P	0.07	0.0056			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	22	Ti	19.8	1.188			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	25	Mn	0.32	0.0224			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	30	Zn	1.61	0.161			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	32	Ge	0.61	0.0732			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	37	Rb	1.75	0.0875			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	38	Sr	0.3	0.051			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	40	Zr	0.21	0.0105			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	41	Nb	4.3	0.215			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	50	Sn	0.53	0.0371			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	55	Cs	0.08	0.004			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	56	Ba	3.3	0.66			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	57	La	0.002	0.00102			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	62	Sm	0.01	0.0111			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	63	Eu	0.29	0.1334			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	64	Gd	0.03	0.0234			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	70	Yb	0.05	0.0225			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	73	Ta	0.63	0.0315			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	74	W	2.1	0.126			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	82	Pb	0.23	0.0207			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
+Peraluminous Rhyolite	Sanidine	92	U	0.01	0.0012			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt	CBK addtion		71.36
