@@ -1223,7 +1223,7 @@
     function mcfit(x::AbstractVector, σx::AbstractVector, y::AbstractVector, σy::AbstractVector,
             xmin::Number, xmax::Number, nbins::Integer=10;
             binwidth::Number=(xmax-xmin)/(nbins-1),
-            minrows::Number=100000
+            minrows::Number=1_000_000
         )
         # Filter out missing data
         hasdata = .!(isnan.(x) .| isnan.(y))
