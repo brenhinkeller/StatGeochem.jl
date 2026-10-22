@@ -241,3 +241,226 @@ Peraluminous Rhyolite	Ilmenite	73	Ta	43.2	9.936			Phenocryst-Matrix	Pichavant et
 Peraluminous Rhyolite	Ilmenite	74	W	0.44	0.1232			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt			71.36
 Peraluminous Rhyolite	Ilmenite	82	Pb	1.18	0.295			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt			71.36
 Peraluminous Rhyolite	Ilmenite	92	U	0.04	0.01			Phenocryst-Matrix	Pichavant et al. 2024 10.1016/j.gca.2023.11.021	Solid-Melt			71.36
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	21	Sc	1.462	0.05			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	23	V	7.104	0.191			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	24	Cr	104.83	1.626			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	25	Mn	1.64	0.078			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	27	Co	4.29	0.104			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	28	Ni	11.042	0.486			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	29	Cu	1.068				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	30	Zn	8.167				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	39	Y	0.017	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	40	Zr	0.45	0.023			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	41	Nb	1.054	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	42	Mo	0.245	0.021			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	57	La	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	58	Ce	0.004	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	63	Eu	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	66	Dy	0.019	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	68	Er	0.029	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	70	Yb	0.073	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	71	Lu	0.092	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	72	Hf	0.653	0.008			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (15FeP-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Ilmenite	73	Ta	1.816	0.037			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.72
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	21	Sc	2.586	0.031			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	23	V	11.576	0.328			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	24	Cr	55.015	5.874			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	25	Mn	2.059	0.021			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	27	Co	4.914	0.307			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	28	Ni	13.624	1.137			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	30	Zn	1.978				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	39	Y	0.037				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	40	Zr	0.567	0.023			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	41	Nb	1.707	0.021			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	42	Mo	0.426	0.213			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	58	Ce	0.005				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	60	Nd	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	62	Sm	0.01				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	63	Eu	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	64	Gd	0.018				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	66	Dy	0.027				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	68	Er	0.049				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	70	Yb	0.106				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	71	Lu	0.161				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	72	Hf	0.636	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	73	Ta	2.515	0.186			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	21	Sc	2.62	0.13			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	23	V	12.36	1.0			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	24	Cr	81.568	0.204			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	25	Mn	2.08	0.03			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	27	Co	4.781	0.108			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	28	Ni	13.42	0.16			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	29	Cu	0.48	0.04			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	30	Zn	0.84	0.09			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	39	Y	0.29	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	40	Zr	0.593	0.027			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	41	Nb	1.07				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	42	Mo	0.408				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	57	La	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	58	Ce	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	60	Nd	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	62	Sm	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	63	Eu	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	64	Gd	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	66	Dy	0.024	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	68	Er	0.051	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	70	Yb	0.112	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	71	Lu	0.154	0.013			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	72	Hf	0.68	0.02			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	73	Ta	1.53	0.12			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	21	Sc	2.124	0.005			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	23	V	9.633	0.137			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	24	Cr	50.966	2.551			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	25	Mn	1.567	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	27	Co	3.49	0.011			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	28	Ni	9.74	0.047			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	29	Cu	0.341	0.042			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	30	Zn	1.409	0.104			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	39	Y	0.023	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	40	Zr	0.518	0.021			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	41	Nb	1.205	0.083			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	42	Mo	0.472	0.013			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	57	La	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	58	Ce	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	62	Sm	0.005				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	63	Eu	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	64	Gd	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	66	Dy	0.015	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	68	Er	0.041	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	70	Yb	0.089	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	71	Lu	0.12	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	72	Hf	0.609	0.012			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	73	Ta	1.873	0.07			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	21	Sc	2.028	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	23	V	10.131	0.091			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	24	Cr	56.486	0.482			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	25	Mn	1.632	0.02			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	27	Co	3.957	0.008			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	28	Ni	11.218	0.286			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	29	Cu	0.68	0.03			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	30	Zn	0.751				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	39	Y	0.024	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	40	Zr	0.478	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	41	Nb	1.142	0.011			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	42	Mo	0.441	0.01			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	57	La	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	58	Ce	0.008	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	60	Nd	0.006	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	62	Sm	0.007	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	63	Eu	0.004	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	64	Gd	0.007	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	66	Dy	0.021	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	68	Er	0.035	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	70	Yb	0.081	0.011			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	71	Lu	0.112	0.008			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	72	Hf	0.553	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (10FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	73	Ta	1.699	0.008			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.27
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	21	Sc	2.061	0.035			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	23	V	10.923	0.025			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	24	Cr	62.447	0.612			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	25	Mn	1.814	0.03			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	27	Co	4.256	0.011			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	28	Ni	10.909	0.099			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	29	Cu	0.283	0.057			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	30	Zn	1.302	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	39	Y	0.02				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	40	Zr	0.449	0.01			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	41	Nb	1.082	0.028			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	42	Mo	0.449	0.035			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	63	Eu	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	64	Gd	0.005				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	66	Dy	0.02	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	68	Er	0.035				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	70	Yb	0.083	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	71	Lu	0.109				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	72	Hf	0.533				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (15FeP-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Ilmenite	73	Ta	1.715	0.027			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	47.8
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	21	Sc	2.07	0.73			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	23	V	16.92	1.56			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	24	Cr	50.33	3.97			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	25	Mn	2.08	0.05			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	27	Co	4.8	0.21			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	28	Ni	11.78	0.61			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	29	Cu	0.59	0.107			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	30	Zn	5.294	1.35			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	39	Y	0.031	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	40	Zr	0.51	0.04			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	41	Nb	0.98	0.06			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	42	Mo	0.88	0.08			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	57	La	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	58	Ce	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	60	Nd	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	62	Sm	0.005	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	63	Eu	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	64	Gd	0.1	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	66	Dy	0.022	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	68	Er	0.054	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	70	Yb	0.124	0.017			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	71	Lu	0.166	0.015			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	72	Hf	0.62	0.04			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (10Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	73	Ta	1.54	0.19			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.12
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	21	Sc	1.967	0.021			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	23	V	13.348	0.237			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	24	Cr	41.348	4.25			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	25	Mn	1.702	0.024			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	27	Co	3.829	0.097			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	28	Ni	8.88	0.979			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	29	Cu	0.546	0.093			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	30	Zn	1.61	0.057			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	39	Y	0.027	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	40	Zr	0.499	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	41	Nb	1.271	0.025			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	42	Mo	1.119	0.038			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	57	La	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	58	Ce	0.002	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	62	Sm	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	63	Eu	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	64	Gd	0.01	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	66	Dy	0.019	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	68	Er	0.044	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	70	Yb	0.096	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	71	Lu	0.134	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	72	Hf	0.618	0.01			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (15Fe-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	73	Ta	2.069	0.052			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.95
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	21	Sc	2.025	0.065			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	23	V	15.399	0.325			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	24	Cr	45.822	1.193			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	25	Mn	1.935	0.035			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	27	Co	4.587	0.119			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	28	Ni	10.949	1.179			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	29	Cu	0.563	0.152			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	30	Zn	2.307	0.524			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	39	Y	0.022	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	40	Zr	0.446	0.026			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	41	Nb	1.026	0.04			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	42	Mo	0.972	0.048			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	58	Ce	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	60	Nd	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	63	Eu	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	64	Gd	0.008				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	66	Dy	0.016	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	68	Er	0.038	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	70	Yb	0.082	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	71	Lu	0.111	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	72	Hf	0.497	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (10FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	73	Ta	1.566	0.06			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	48.43
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	21	Sc	1.893	0.023			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	23	V	13.896	0.18			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	24	Cr	42.285	0.592			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	25	Mn	1.659	0.045			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	27	Co	3.942	0.127			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	28	Ni	9.273	0.401			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	29	Cu	0.45	0.056			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	30	Zn	2.99	0.128			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	39	Y	0.023	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	40	Zr	0.463	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	41	Nb	1.003	0.029			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	42	Mo	1.11	0.048			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	63	Eu	0.003	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	64	Gd	0.007				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	66	Dy	0.016	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	68	Er	0.042	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	70	Yb	0.091	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	71	Lu	0.122	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	72	Hf	0.599	0.008			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61
+Synthetic (15FeP-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Ilmenite	73	Ta	1.717	0.026			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.61

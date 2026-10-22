@@ -2,7 +2,7 @@ EarthRef.org -- GERM Partition Coefficient (Kd) Database
 Database development and maintenance by the PACER Team -- Data contribution by Roger Nielsen
 
 DATA:
-Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted
+Rock Type	Mineral	Z	Elem	Value	SD	Low	High	Kd Type	Reference	Definition	Notes	Inserted	SiO2
 Rhyolite	Magnetite	21	Sc	5				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
 Rhyolite	Magnetite	24	Cr	30				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
 Rhyolite	Magnetite	27	Co	80				Phenocryst-Matrix	Bacon & Druitt 1988	Solid-Melt		12-DEC-2000
@@ -326,3 +326,193 @@ Element Family: Any Element Family
 Reference: Bacon & Druitt 1988
 Sort by: Reference
 
+NON-GERM ADDITIONS:													
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	21	Sc	0.88	0.018			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	23	V	10.086	0.265			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	24	Cr	371.31	59.4			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	25	Mn	2.638	0.053			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	27	Co	11.246	0.098			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	28	Ni	43.481	1.429			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	29	Cu	1.054	0.156			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	39	Y	0.003	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	40	Zr	0.086	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	41	Nb	0.121	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	42	Mo	0.055	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	57	La	0.002	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	58	Ce	0.005	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	62	Sm	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	63	Eu	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	64	Gd	0.003	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	66	Dy	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	68	Er	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	70	Yb	0.011	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	71	Lu	0.011	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	72	Hf	0.12	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (5-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	73	Ta	0.169	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	57.66
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	21	Sc	0.652	0.019			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	23	V	8.159	0.157			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	24	Cr	1320.1	96.62			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	25	Mn	2.319	0.069			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	27	Co	10.287	0.06			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	28	Ni	42.767	0.253			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	29	Cu	0.845	0.148			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	39	Y	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	40	Zr	0.057	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	41	Nb	0.066	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	42	Mo	0.026	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	57	La	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	60	Nd	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	63	Eu	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	68	Er	0.003	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	70	Yb	0.009				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	71	Lu	0.007				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	72	Hf	0.098	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	73	Ta	0.108	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	21	Sc	1.308	0.077			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	23	V	13.44	1.17			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	24	Cr	1173.1	274.28			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	25	Mn	3.308	0.236			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	27	Co	15.874	0.715			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	28	Ni	75.9	7.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	29	Cu	0.963	0.12			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	30	Zn	46.037	5.186			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	39	Y	0.006	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	40	Zr	0.101	0.012			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	41	Nb	0.172	0.019			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	42	Mo	0.135	0.023			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	57	La	0.02				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	58	Ce	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	60	Nd	0.018				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	62	Sm	0.019				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	63	Eu	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	64	Gd	0.023				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	66	Dy	0.027				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	68	Er	0.014	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	70	Yb	0.021	0.014			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	71	Lu	0.016	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	72	Hf	0.163	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	73	Ta	0.23	0.003			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	21	Sc	0.67	0.012			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	23	V	6.98	0.126			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	24	Cr	226.48	34.73			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	25	Mn	1.692	0.032			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	27	Co	8.01	0.036			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	28	Ni	35.211	0.574			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	29	Cu	0.652	0.05			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	30	Zn	7.192	0.89			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	39	Y	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	40	Zr	0.073	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	41	Nb	0.09	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	42	Mo	0.051	0.005			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	57	La	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	58	Ce	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	63	Eu	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	66	Dy	0.005				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	68	Er	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	70	Yb	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	71	Lu	0.006	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	72	Hf	0.097	0.004			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (10FeP-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Magnetite	73	Ta	0.12	0.007			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.68
+Synthetic (5P-12), 0.0001 GPa, 1080.0 C, FMQ+0.87	Magnetite	24	Cr	965.31	55.28			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.82
+Synthetic (10Fe-12), 0.0001 GPa, 1080.0 C, FMQ+0.87	Magnetite	24	Cr	738.72	310.02			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	61.75
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	21	Sc	0.73	0.03			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	23	V	22.4	1.07			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	24	Cr	901.49	98.94			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	25	Mn	1.836	0.039			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	27	Co	7.65	0.28			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	28	Ni	26.313	0.59			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	29	Cu	1.2	0.26			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	39	Y	0.002	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	40	Zr	0.09	0.01			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	41	Nb	0.214	0.012			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	42	Mo	0.271	0.02			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	57	La	0.003	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	58	Ce	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	63	Eu	0.013				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	64	Gd	0.008				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	68	Er	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	70	Yb	0.014				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	71	Lu	0.009	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	72	Hf	0.152	0.02			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (5-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	73	Ta	0.329	0.036			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	53.02
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	21	Sc	0.676				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	23	V	21.952				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	24	Cr	904.46	38.67			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	25	Mn	1.773				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	27	Co	6.526				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	28	Ni	23.941				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	29	Cu	1.029				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	39	Y	0.002				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	40	Zr	0.085				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	41	Nb	0.158				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	42	Mo	0.246				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	71	Lu	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	72	Hf	0.125				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (15Fe-8), 0.0001 GPa, 1080.0 C, FMQ+0.05	Magnetite	73	Ta	0.26				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.41
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	23	V	41.1692141164175	0.0132558305232027			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (5-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	24	Cr	534.46	24.29			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	50.33
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	23	V	49.766549744898	0.0176983860722843			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (10Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	24	Cr	1632.43	33.18			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.79
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	21	Sc	0.808	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	23	V	32.93	0.747			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	24	Cr	452.45	10.04			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	25	Mn	1.504	0.016			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	27	Co	5.499	0.061			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	28	Ni	21.956	0.341			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	29	Cu	0.799	0.053			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	39	Y	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	40	Zr	0.123	0.005			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	41	Nb	0.212	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	42	Mo	0.49	0.043			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	57	La	0.003	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	58	Ce	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	63	Eu	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	64	Gd	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	68	Er	0.006	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	71	Lu	0.01	0.005			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	72	Hf	0.18	0.006			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (15Fe-9), 0.0001 GPa, 1080.0 C, FMQ-0.94	Magnetite	73	Ta	0.308	0.002			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	46.64
+Synthetic (5-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Magnetite	23	V	62.8464702312723	0.0210355538176081			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.75
+Synthetic (5-11), 0.0001 GPa, 1080.0 C, FMQ-2.13	Magnetite	24	Cr	488.82	16.67			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	49.75
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	21	Sc	6.071	0.063			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	23	V	4.356	0.093			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	24	Cr	275.373	4.737			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	25	Mn	0.582	0.009			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	27	Co	2.739	0.055			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	28	Ni	5.154	0.076			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	30	Zn	8.857				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	39	Y	0.006				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	40	Zr	1.519	0.026			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	41	Nb	1.551	0.052			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	42	Mo	0.065	0.005			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	57	La	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	63	Eu	0.001				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	66	Dy	0.004	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	68	Er	0.011				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	70	Yb	0.034				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	71	Lu	0.054	0.001			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	72	Hf	1.981	0.038			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (10P-7), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	73	Ta	2.606	0.038			Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	52.32
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	21	Sc	5.848				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	23	V	6.019				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	24	Cr	112.184				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	25	Mn	0.619				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	27	Co	2.844				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	28	Ni	7.939				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	29	Cu	0.36				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	30	Zn	4.278				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	39	Y	0.015				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	40	Zr	1.234				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	41	Nb	1.482				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	42	Mo	0.24				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	57	La	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	58	Ce	0.008				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	62	Sm	0.003				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	63	Eu	0.011				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	64	Gd	0.004				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	66	Dy	0.005				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	68	Er	0.019				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	70	Yb	0.063				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	71	Lu	0.083				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	72	Hf	1.139				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36
+Synthetic (5-10), 0.0001 GPa, 1080.0 C, FMQ+1.82	Ulvospinel 	73	Ta	1.084				Experimental	Shepherd et al. 2022 10.1007/s00410-022-01957-y	Solid-Melt	CBK addition	15-OCT-2026	62.36

@@ -2353,58 +2353,58 @@ export perplex_query_system
             perplex_name == "an" || perplex_common_name(perplex_name) == "plagioclase"
         elseif germ_name == "Orthoclase"
             perplex_name ∈ ("mic", "san") || perplex_common_name(perplex_name) == "alkali feldspar"
-        # Amphibole
-        elseif germ_name == "Amphibole"
-            lowercase(perplex_name) ∈ ("a", "gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts") ||
-            any(contains.(perplex_name, ["Amph", "GlTrTs", "Act(", "Anth"]))
-        # Mica
-        elseif germ_name == "Biotite"
-            perplex_name == "ann" ||
-            any(contains.(perplex_name, ["Bi(", "Bio("]))
-        elseif germ_name == "Phlogopite"
-            lowercase(perplex_name) ∈ ("naph", "phl", "fphl",)
-        elseif germ_name == "Muscovite"
-            lowercase(perplex_name) ∈ ("pheng(hp)", "mapa", "mu",) ||
-            any(contains.(perplex_name, ["Mica", "KN-Phen"]))
-        # Pyroxene
-        elseif germ_name == "Clinopyroxene"
-            lowercase(perplex_name) ∈ ("di", "hed", "acm", "jd", "lcendi", "lcfshd") ||
-            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"])) ||
-            lowercase(perplex_name) == "mont" # Assume monticellite has similar partition coefficients to cpx
-        elseif germ_name == "Orthopyroxene"
-            lowercase(perplex_name) ∈ ("en", "fs") ||
-            contains(perplex_name, "Opx")
-        # Cordierite
-        elseif germ_name == "Cordierite"
-            lowercase(perplex_name) ∈ ("crd", "fcrd", "hcrd", "mncrd") ||
-            contains(perplex_name, "Crd")
-        # Garnet
-        elseif germ_name == "Garnet"
-            lowercase(perplex_name) ∈ ("py", "spss", "alm", "andr", "gr") ||
-            any(contains.(perplex_name, ["Grt", "Gt(", "Maj", "GrPyAlSp"]))
-        elseif germ_name == "Zoisite"
-            lowercase(perplex_name) ∈ ("zo", "cz", "ep", "fep") ||
-            any(contains.(perplex_name, ["Ep(",]))
-        # Oxides
-        elseif germ_name == "Ilmenite"
-            perplex_name ∈ ("ilm", "oilm") || 
-            any(contains.(perplex_name, ["Aki", "Ilm", "IlHm", "IlGk"]))
-        elseif germ_name == "Magnetite"
-            perplex_name == "mt"
-        elseif germ_name == "Rutile"
-            perplex_name == "ru"
         # Feldspathoids
         elseif germ_name == "Leucite"
             perplex_name == "lc"
         elseif germ_name == "Nepheline"
             perplex_name ∈ ("ne", "cg", "cgh") || contains(perplex_name, "Neph")
+        # Mica
+        elseif germ_name == "Biotite"
+            lowercase(perplex_name) ∈ ("ann", "fphl", "phl", "naph", "mnbi", "east") ||
+            any(contains.(perplex_name, ["Bi(", "Bio("]))            
+        elseif germ_name == "Muscovite"
+            lowercase(perplex_name) ∈ ("pa", "pheng(hp)", "mapa", "mu",) ||
+            any(contains.(perplex_name, ["Mica", "KN-Phen"]))
+        # Cordierite
+        elseif germ_name == "Cordierite"
+            lowercase(perplex_name) ∈ ("crd", "fcrd", "hcrd", "mncrd") ||
+            contains(perplex_name, "Crd")
+        # Amphibole
+        elseif germ_name == "Amphibole"
+            lowercase(perplex_name) ∈ ("a", "gl", "fgl", "rieb", "anth", "fanth", "cumm", "grun", "tr", "ftr", "ged", "parg", "ts") ||
+            any(contains.(perplex_name, ["Amph", "GlTrTs", "Act(", "Anth"]))
+        # Pyroxene
+        elseif germ_name == "Clinopyroxene"
+            lowercase(perplex_name) ∈ ("acm", "di", "hed", "jd", "cats", "mgts", "lcendi", "lcfshd") ||
+            any(contains.(perplex_name, ["Augite", "Cpx", "Omph"]))
+        elseif germ_name == "Orthopyroxene"
+            lowercase(perplex_name) ∈ ("en", "fs") ||
+            contains(perplex_name, "Opx")
         # Olivine
         elseif germ_name == "Olivine"
-            lowercase(perplex_name) ∈ ("fo", "fa") ||
+            lowercase(perplex_name) ∈ ("fo", "fa", "mont", "teph") ||
             any(contains.(perplex_name, ["O(", "Ol("]))
-        # Spinel
+        # Garnet
+        elseif germ_name == "Garnet"
+            lowercase(perplex_name) ∈ ("py", "spss", "alm", "andr", "gr") ||
+            any(contains.(perplex_name, ["Grt", "Gt(", "Maj", "GrPyAlSp"]))
+        # Epidote
+        elseif germ_name == "Zoisite"
+            lowercase(perplex_name) ∈ ("zo", "cz", "ep", "fep") ||
+            any(contains.(perplex_name, ["Ep(",]))
+        # Oxides
+        elseif germ_name == "Rutile"
+            perplex_name == "ru"
+        elseif germ_name == "Ilmenite"
+            # Geikelite-Pyrophanite-Ilmenite-Hematite series
+            perplex_name ∈ ("geik", "pnt", "ilm", "oilm", "hem") || 
+            any(contains.(perplex_name, ["Ilm", "IlHm", "IlGk"]))
+        elseif germ_name == "Magnetite"
+            # Ulvospinel-Magnetite-Magnesioferrite series
+            perplex_name ∈ ("usp", "mt", "mft", "MF")
         elseif germ_name == "Spinel"
-            lowercase(perplex_name) ∈ ("sp", "usp", "crsp", "gahcsp") ||
+            # Spinel-Hercynite-Gahnite series
+            lowercase(perplex_name) ∈ ("sp", "crsp", "herc", "gahcsp",) ||
             contains(perplex_name, "Sp(")
         # Accessories
         elseif germ_name == "Sphene"

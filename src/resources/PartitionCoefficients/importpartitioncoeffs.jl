@@ -36,6 +36,7 @@
     allelements = String[]
     for m in pr["minerals"]
         # Initialize SiO2 and SiO2_sigma variables if not present
+        @info "Importing data for $m"
         haskey(pr[m],"SiO2") || (pr[m]["SiO2"] = fill(NaN, size(pr[m]["Reference"])))
         haskey(pr[m],"SiO2_sigma") || (pr[m]["SiO2_sigma"] = fill(NaN, size(pr[m]["Reference"])))
         # Estimate SiO2 from rock type
@@ -50,8 +51,6 @@
         pr[m]["SiO2_sigma"][isnan.(pr[m]["SiO2_sigma"])] .= SiO2_sigma_default
 
         # Save unique samples
-        println(m)
-        flush(stdout)
         samples[m] = collect(zip(string.(pr[m]["Reference"]), string.(pr[m]["Rock Type"]), string.(pr[m]["Mineral"]), pr[m]["SiO2"], pr[m]["SiO2_sigma"]))
         append!(allsamples, unique(samples[m]))
         any(isequal("Eu3"), pr[m]["Elem"]) && @info m
@@ -147,20 +146,20 @@
 
 ## --- Fit invariant-charge elements as a function of activation energy and bulk modulus
 
-    # Minerals with well-behaved 1+ onuma diagrams
+    # Minerals with well-behaved 1+ Onuma diagrams
     m1p = ["Albite", "Allanite", "Amphibole", "Biotite", "Bridgmanite",]
 
-    # Minerals with well-behaved 2+ onuma diagrams
+    # Minerals with well-behaved 2+ Onuma diagrams
     m2p = ["Albite", "Apatite", "Cordierite", "Perovskite", ]
 
-    # Minerals with well-behaved ree 3+ onuma diagrams
+    # Minerals with well-behaved ree 3+ Onuma diagrams
     mree3p = setdiff(pr["minerals"], ["Spinel",]) # All minerals except...
 
-    # Minerals with well-behaved 3+ onuma diagrams
+    # Minerals with well-behaved 3+ Onuma diagrams
     m3p = ["Bridgmanite", "Clinopyroxene", "Garnet", "Orthopyroxene", "Perovskite", "Rutile", "Spinel"]
 
-    # Minerals with well-behaved 4+ onuma diagrams
-    m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Phlogopite", "Rutile", "Sphene", "Spinel", "Zircon",]
+    # Minerals with well-behaved 4+ Onuma diagrams
+    m4p = ["Allanite", "Baddeleyite", "Bridgmanite", "Ilmenite", "Orthopyroxene", "Perovskite", "Rutile", "Sphene", "Spinel", "Zircon",]
 
 
     e1 = (:Na, :Ag, :K, :Rb, :Cs)

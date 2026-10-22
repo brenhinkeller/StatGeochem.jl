@@ -749,7 +749,7 @@ Element Family: Any Element Family
 Reference: Adam & Green 2006
 Sort by: Reference
 
-NON-GERM ADDITIONS:
+NON-GERM ADDITIONS:													
 Synthetic (MH25), 5.0 GPa, 1350.0 C	Garnet	15	P	0.0836492890995261				Experimental	Spandler et al. 2017 10.1016/j.chemgeo.2017.05.002	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	60.58
 Synthetic (MH25), 5.0 GPa, 1350.0 C	Garnet	22	Ti	0.305112881806109				Experimental	Spandler et al. 2017 10.1016/j.chemgeo.2017.05.002	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	60.58
 Synthetic (MH25), 5.0 GPa, 1350.0 C	Garnet	23	V	7.69444444444445				Experimental	Spandler et al. 2017 10.1016/j.chemgeo.2017.05.002	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	60.58
@@ -3253,3 +3253,60 @@ Synthetic (A898), 3.0 GPa, 1400.0 C	Garnet	6	C	0.000317548746518106				Experimen
 Synthetic (A898), 3.0 GPa, 1400.0 C	Garnet	9	F	0.00476839237057221				Experimental	Rosenthal et al. 2015 10.1016/j.epsl.2014.11.044	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	46.3
 Synthetic (A970), 3.0 GPa, 1400.0 C	Garnet	6	C	3.77073906485671e-5				Experimental	Rosenthal et al. 2015 10.1016/j.epsl.2014.11.044	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	47.6
 Synthetic (A970), 3.0 GPa, 1400.0 C	Garnet	9	F	0.00213675213675214				Experimental	Rosenthal et al. 2015 10.1016/j.epsl.2014.11.044	Solid-Melt	Compiled by: Nielsen & Ustunisik 2022 10.26022/IEDA/112323	15-OCT-2026	47.6
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	3	Li	0.0661897189973515	0.00700357998387174			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	20	Ca	0.607560421691307	0.0399099234721674			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	21	Sc	3.11977996254682	0.194243196470139			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	22	Ti	0.103094122020505	0.00589943381476932			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	23	V	0.742465588770549	0.0322514141930416			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	24	Cr	18.4584548104956	1.42421088900805			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	25	Mn	1.97837611415544	0.139355224977461			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	27	Co	1.08091802860061	0.0708285400625588			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	28	Ni	0.764518561971005	0.132315722033921			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	37	Rb	0.00223466972463576	0.000725694190953279			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	38	Sr	0.00372921303048648	0.000461368775021559			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	39	Y	1.82435991202055	0.122758191941617			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	40	Zr	0.0933037452483891	0.00616193741166493			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	41	Nb	0.000557523396724093	0.000154641467925692			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	57	La	0.00164502852809697	0.000208766713177264			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	58	Ce	0.00324792184420259	0.000317356072525046			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	60	Nd	0.0195576952008425	0.00152508021148321			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	62	Sm	0.110580952123489	0.00100675232146374			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	63	Eu	0.208359861528526	0.00356091447688002			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	64	Gd	0.368755764842954	0.00625532856912193			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	66	Dy	1.1799400014066	0.0480319526936747			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	67	Ho	1.89013433955883	0.0607343771655732			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	70	Yb	4.48251131657218	0.247044101827777			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	71	Lu	5.49300343823515	0.30392279179669			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	72	Hf	0.0780213016628922	0.00520089305822698			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	73	Ta	0.000830317177227584	0.000163375431117969			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	90	Th	0.000254082867160374	3.87095531171408e-5			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	92	U	0.00141063030096581	0.000165378483454985			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	47.17
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	3	Li	0.0611613049208508	0.00467163576451547			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	20	Ca	0.653223136707728	0.0559213421598745			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	21	Sc	3.53717852912619	0.265747243221974			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	22	Ti	0.123444581016364	0.0135072859170751			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	23	V	1.06105997248676	0.0881581193767484			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	24	Cr	15.1074068875164	2.26254155761643			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	25	Mn	2.56287882755236	0.205971361095314			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	27	Co	1.46031962924374	0.101430023950367			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	28	Ni	0.501929570670526	0.218668302939946			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	37	Rb	0.00052319277488819	8.80215618025686e-5			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	38	Sr	0.0019927118701791	0.000343929524831766			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	39	Y	1.89806772599235	0.15875624909825			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	40	Zr	0.0975726049580305	0.00932946538184609			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	41	Nb	0.000523105967122688	0.000232426727126444			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	56	Ba	0.000794456012691055	0.000645705527948105			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	57	La	0.00602509867524731	0.00111569342003459			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	58	Ce	0.00913421863847563	0.00132077940207443			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	60	Nd	0.0254658340217185	0.00329423267783443			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	62	Sm	0.117411982186371	0.0112561533190108			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	63	Eu	0.215053820066143	0.0194683798290532			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	64	Gd	0.389930357868547	0.0353087235686592			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	66	Dy	1.23937830652682	0.113519138768091			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	67	Ho	1.93948942240616	0.152456439979226			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	70	Yb	4.55275648619599	0.397114158055904			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	71	Lu	5.42682288375787	0.48489405423367			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	72	Hf	0.0792353201817229	0.00728812172275016			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	73	Ta	0.000840564650741187	0.000161315923894855			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	90	Th	0.000345634425818464	8.35735037675584e-5			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0
+Synthetic (tr10e), 3.0 GPa, 1250.0 C, FMQ+1	Garnet	92	U	0.00166235581807734	0.000214375093711586			Experimental	Condamine et al. 2022 10.1016/j.gca.2022.04.011	Solid-Melt	CBK addition	15-OCT-2026	49.0

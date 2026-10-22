@@ -1,6 +1,6 @@
 cd(@__DIR__)
 date = "15-OCT-2026"
-for mineral in ("Albite", "Anorthite", "Amphibole", "Biotite", "Clinopyroxene", "Orthopyroxene", "Olivine", "Garnet", "Spinel")
+for mineral in ("Albite", "Anorthite", "Amphibole", "Biotite", "Clinopyroxene", "Ilmenite", "Magnetite", "Orthopyroxene", "Olivine", "Garnet", "Spinel")
     ds = importdataset("$mineral.tsv", importas=:Tuple)
 
     parsed = (;
@@ -30,10 +30,11 @@ for mineral in ("Albite", "Anorthite", "Amphibole", "Biotite", "Clinopyroxene", 
                         strip(ds.Sample[i])
                     end
                     push!(parsed.Rock_Type, descriptor)
-                    if (mineral == "Albite") || (mineral == "Anorthite")
+                    detailedmineral = (haskey(ds, :Mineral) && !isempty(ds.Mineral[i])) ? ds.Mineral[i] : mineral
+                    if (detailedmineral == "Albite") || (detailedmineral == "Anorthite")
                         push!(parsed.Mineral, "Plagioclase (An$(round(Int, ds._An[i])))")
                     else
-                        push!(parsed.Mineral, mineral)
+                        push!(parsed.Mineral, detailedmineral)
                     end
                     push!(parsed.Z, atomicnumber[e])
                     push!(parsed.Elem, String(e))
